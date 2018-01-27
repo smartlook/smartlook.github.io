@@ -8,10 +8,9 @@
 # in the templates via {{ site.myvariable }}.
 
 title: API | Smartlook
-email: info@smartlook.com
 description: Smartlook API. Tricks and tips for developers.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+email: info@smartlook.com
+site.url: ""
 
 # BUILD SETTINGS
 

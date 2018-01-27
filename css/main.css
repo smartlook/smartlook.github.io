@@ -7,7 +7,8 @@
 /* = MAIN CSS = */
 
 body {
-  background: #FFFEFF;
+  background: #fffeff;
+  margin-top: 80px;
 }
 
 footer {
@@ -21,3 +22,5 @@ footer {
 .card:hover {
   border: 1px solid #4693e0;
 }
+
+.jumbotron {border-radius: 0;}
