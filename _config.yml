@@ -1,21 +1,17 @@
-# This file is *NOT* reloaded automatically when you use 'bundle exec jekyll serve'. 
 # If you change this file restart server.
 
-# SITE SETTINGS
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# Site
+title: "API | Smartlook"
+company_url: "https://www.smartlook.com/"
+company_email: info@smartlook.com
+url: ""
 
-title: API | Smartlook
-description: Smartlook API. Tricks and tips for developers.
-email: info@smartlook.com
-site.url: ""
+# Misc
+highlighter: rouge
 
-# BUILD SETTINGS
-
+# Build
 markdown: kramdown
 exclude:
-- readme.md
-- Gemfile
-- Gemfile.lock
+  - readme.md
+  - Gemfile 
+  - Gemfile.lock
