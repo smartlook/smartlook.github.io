@@ -4,7 +4,7 @@
 title: "API | Smartlook"
 company_url: "https://www.smartlook.com/"
 company_email: info@smartlook.com
-url: ""
+baseurl: "" # root folder of your Jekyll site
 
 # Misc
 highlighter: rouge
