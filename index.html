@@ -2,59 +2,33 @@
 layout: default 
 ---
 
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">{{ site.title }}</h1>
-      <p>Smartlook offers a number of extra features. It is possible that some of them will help you make your recordings even
-        better.</p>
+<div class="container">
+
+  <h1>{{ site.title }}</h1>
+  <p>Smartlook offers a number of extra features. It is possible that some of them will help you make your recordings even better.</p>
+
+  <div class="row">
+    <div class="col-6">
+      <a href="{{ '/identify-visitor/' | relative_url }}"><h2>Identify visitor</h2></a>
+      <p>Display in Smartlook dashboard detailed information about visitor.</p>
+    </div>
+    <div class="col-6">
+      <a href="{{ '/sensitive-data-protection/' | relative_url }}"><h2>Sensitive data protection</h2></a>
+      <p>Do not record visitor sensitive data by masking forms and inputs.</p>
     </div>
   </div>
+  <!-- row -->
 
-  <div class="container">
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Identify visitor</h2>
-            <p class="card-text">Display in Smartlook dashboard detailed information about visitor.</p>
-            <a href="{{ 'identify-visitor.html' | relative_url }}" class="btn btn-primary">Read more ...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Sensitive data protection</h2>
-            <p class="card-text">Do not record visitor sensitive data by masking forms and inputs.</p>
-            <a href="{{ 'sensitive-data-protection.html' | relative_url }}" class="btn btn-primary">Read more ...</a>
-          </div>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-6">
+      <a href="{{ '/custom-events/' | relative_url }}"><h2>Custom events</h2></a>
+      <p>Create your own specific events for tracking.</p>
     </div>
-    <!-- #row -->
-
-    <div class="row top-buffer">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Custom events</h2>
-            <p class="card-text">Create your own specific events for tracking.</p>
-            <a href="{{ 'custom-events.html' | relative_url }}" class="btn btn-primary">Read more ...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Recording info</h2>
-            <p class="card-text">Get information about recording such as recording URL.</p>
-            <a href="{{ 'recording-info.html' | relative_url }}" class="btn btn-primary">Read more ...</a>
-          </div>
-        </div>
-      </div>
+    <div class="col-6">
+      <a href="{{ '/recording-info/' | relative_url }}"><h2>Recording info</h2></a>
+      <p>Get information about recording such as recording URL.</p>
     </div>
-    <!-- #row -->
-
   </div>
-  <!-- /container -->
+  <!-- row -->
+</div>
+<!-- container -->

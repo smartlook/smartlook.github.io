@@ -1,16 +1,20 @@
 # If you change this file restart server.
 
-# Site
+# site
 title: "API | Smartlook"
-company_url: "https://www.smartlook.com/"
-company_email: info@smartlook.com
+description: "Smartlook API. Tricks and tips for developers."
 baseurl: "" # root folder of Jekyll site, by default, baseurl is set to "" (never set to "/")
 url: "" # = ?
 
-# Misc
-highlighter: rouge
+# custom variables
+product_name: "Smartlook.com"
+product_url: "https://www.smartlook.com/"
+product_email: info@smartlook.com
 
-# Build
+# server
+livereload: true
+
+# build
 markdown: kramdown
 exclude:
   - readme.md
