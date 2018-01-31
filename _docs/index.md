@@ -1,5 +1,6 @@
 --- 
 layout: default 
+permalink: /docs/index.html # show this page as index for collections: https://jekyllrb.com/docs/collections/#step3
 ---
 
 <div class="container">

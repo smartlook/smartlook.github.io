@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Custom events
-permalink: /custom-events/
+permalink: /docs/custom-events/
 ---
 
 In case our defined events are not enough, you can add your own and we will track them. The format you need in your JavaSript is as follows:

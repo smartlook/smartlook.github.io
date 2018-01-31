@@ -4,6 +4,7 @@
 *
 * blue = #4693e0;
 * gray = ?
+* green = ?
 * .... = ?
 */
 
@@ -16,7 +17,7 @@
 
 body {
   background: #fffeff;
-  padding-top: 110px;
+  padding-top: 100px;
 }
 
 a,
@@ -44,13 +45,7 @@ main img:hover {
   transition: .75s;
 }
 
-/* intro */
-
-/* .intro {
-  background: linear-gradient(252deg, #3bddfb, #1571ce) fixed;
-} */
-
-/* header */
+/* HEADER */
 
 header {
   position: fixed;
@@ -58,10 +53,26 @@ header {
   left: 0;
   top: 0;
   right: 0;
-  background-color: #fafafa;
+  background-color: #fff;
   color: #3e5b78;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  min-height: 72px;
   -webkit-box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
   box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
+}
+
+header .container {
+  margin-top: 10px;
+}
+
+.navbar {
+    position: relative;
+    left: 20px;
 }
 
 .navbar-brand {
@@ -78,7 +89,7 @@ header {
 }
 
 ol.breadcrumb {
-  margin-top: 0;
+  margin-top: 50px;
   padding: 8px 15px;
   background-color: #fafafa;
   border-radius: 5px;
@@ -94,7 +105,7 @@ ol.breadcrumb>li+li:before {
   color: rgba(62, 91, 120, 0.56);
 }
 
-/* footer */
+/* FOOTER */
 
 footer {
   height: 60px;
@@ -115,12 +126,19 @@ footer a:hover {
   color: #fff;
 }
 
-/* error 404 */
+/* ERROR 404 */
 
+.error-404 {
+  text-align: center;
+}
 
+/* INTRO */
 
+/* .intro {
+  background: linear-gradient(252deg, #3bddfb, #1571ce) fixed;
+} */
 
-/* misc */
+/* MISC */
 
 .card h2 {
   color: #4693e0;

@@ -17,7 +17,21 @@ livereload: true
 
 # build
 markdown: kramdown
+
 exclude:
   - readme.md
   - Gemfile 
   - Gemfile.lock
+
+# build: DOCS
+collections:
+  docs:
+    permalink: /:collection/:path/
+    output: true
+
+defaults:
+  - scope:
+      path: _docs
+      type: docs
+    values:
+      layout: page

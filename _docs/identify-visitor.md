@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Identify visitor
-permalink: /identify-visitor/
+permalink: /docs/identify-visitor/
 ---
 
 Display in Smartlook Dashboard information such as: e-mail and name.

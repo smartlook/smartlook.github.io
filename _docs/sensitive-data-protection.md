@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Sensitive data protection
-permalink: /sensitive-data-protection/
+permalink: /docs/sensitive-data-protection/
 ---
 
 <div class="bs-callout bs-callout-danger">
