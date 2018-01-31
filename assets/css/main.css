@@ -17,7 +17,7 @@
 
 body {
   background: #fffeff;
-  padding-top: 100px;
+  padding-top: 130px;
 }
 
 a,
@@ -43,6 +43,10 @@ main img:hover {
   background: #eee;
   -webkit-transition: .75s;
   transition: .75s;
+}
+
+.card h2 {
+  color: #4693e0;
 }
 
 /* HEADER */
@@ -140,7 +144,12 @@ footer a:hover {
 
 /* MISC */
 
-.card h2 {
-  color: #4693e0;
+::-moz-selection {
+  color: #fff;
+  background: #4693e0;
 }
 
+::selection {
+  color: #fff;
+  background: #4693e0;
+}
