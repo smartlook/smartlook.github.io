@@ -8,16 +8,15 @@ Display in Smartlook Dashboard information such as: e-mail and name.
 
 Code that you need to insert has a following format:
 
-{% highlight javascript %}
-<script>
-  smartlook('identify', uid);
-</script>
-{% endhighlight %}
+<pre class="language-javascript">
+<code class="language-javascript">
+&lt;script&gt; 
+  smartlook('identify', uid); 
+&lt;/script&gt;
+</code>
+</pre>
 
-<p>`uid` is unique number used to identify user = user ID. Let's say in your user database is following record:</p>
-
-
-
+`uid` is unique number used to identify user = user ID. Let's say in your user database is following record:
 
 <table>
   <thead>
@@ -36,34 +35,40 @@ Code that you need to insert has a following format:
   </tbody>
 </table>
 
-<p>Now let's have a look at example in <strong>PHP</strong>:</p>
+Now let's have a look at example in **PHP**:
 
-{% highlight php %}
-echo "<script>";
-echo "smartlook('identify', '11');";
-echo "</script>";
-{% endhighlight %}
+<pre class="language-php">
+<code class="language-php">
+echo &quot;&lt;script&gt;&quot;;
+echo &quot;smartlook('identify', '12345');&quot;;
+echo &quot;&lt;/script&gt;&quot;;
+</code>
+</pre>
 
 In your website the following code will be generated:
 
-{% highlight javascript %}
-<script>
-  smartlook('identify', 12345);
-</script>
-{% endhighlight %}
+<pre class="language-javascript">
+<code class="language-javascript">
+&lt;script&gt; 
+  smartlook('identify', 12345); 
+&lt;/script&gt;
+</code>
+</pre>
 
-<h2>Detailed identification</h2>
+## Detailed identification
 
-<p>You can get more information using another parameter which can contain all information you want to assign to any given recording. Except email and name, it can be information about what package user as prepaid or total sum paid. There is no limit on what information you assign to recording so use the code below as an example only:</p>
+You can get more information using another parameter which can contain all information you want to assign to any given recording. Except email and name, it can be information about what package user as prepaid or total sum paid. There is no limit on what information you assign to recording so use the code below as an example only:
 
-{% highlight javascript %}
-<script>
-  smartlook('identify', uid, {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "sex": "male",
-    "package": "Premium",
-    "totalSpend": 150
-  });
-</script>
-{% endhighlight %}
+<pre class="language-javascript">
+<code class="language-javascript">
+&lt;script&gt; 
+  smartlook('identify', uid, { 
+    &quot;name&quot;: &quot;John Doe&quot;, 
+    &quot;email&quot;: &quot;john.doe@example.com&quot;, 
+    &quot;sex&quot;: &quot;male&quot;, 
+    &quot;package&quot;: &quot;Premium&quot;, 
+    &quot;totalSpend&quot;: 150 
+    }); 
+&lt;/script&gt;
+</code>
+</pre>
