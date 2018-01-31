@@ -7,8 +7,46 @@
 * .... = ?
 */
 
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   background: #fffeff;
 }
 
-/* navbar */
+a,
+a:hover,
+a:active {
+  color: #4693e0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* header */
+
+/* footer */
+footer {
+  height: 60px;
+  background: linear-gradient(257deg, #5490AE, #3B649A);
+  
+}
+
+footer p {
+  line-height: 60px;
+  color: #fff;
+}
+
+footer a {
+  color: #d8ebff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #fff;
+}
