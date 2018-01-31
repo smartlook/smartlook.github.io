@@ -4,9 +4,9 @@ title: Identify visitor
 permalink: /identify-visitor/
 ---
 
-<p>Display in Smartlook Dashboard information such as: e-mail and name.</p>
+Display in Smartlook Dashboard information such as: e-mail and name.
 
-<p>Code that you need to insert has a following format:</p>
+Code that you need to insert has a following format:
 
 {% highlight javascript %}
 <script>
@@ -16,12 +16,15 @@ permalink: /identify-visitor/
 
 <p>`uid` is unique number used to identify user = user ID. Let's say in your user database is following record:</p>
 
-<table class="table">
-  <thead class="thead-light">
+
+
+
+<table>
+  <thead>
     <tr>
-      <th scope="col">uid</th>
-      <th scope="col">name</th>
-      <th scope="col">e-mail</th>
+      <th>uid</th>
+      <th>name</th>
+      <th>e-mail</th>
     </tr>
   </thead>
   <tbody>
