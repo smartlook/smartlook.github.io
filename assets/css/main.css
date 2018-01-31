@@ -16,7 +16,7 @@
 
 body {
   background: #fffeff;
-  padding-top: 100px;
+  padding-top: 110px;
 }
 
 a,
@@ -28,6 +28,20 @@ a:active {
 
 a:hover {
   text-decoration: underline;
+}
+
+main img {
+  padding: 2px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+main img:hover {
+  border: 1px solid #ccc;
+  background: #eee;
+  -webkit-transition: .75s;
+  transition: .75s;
 }
 
 /* intro */
@@ -44,8 +58,7 @@ header {
   left: 0;
   top: 0;
   right: 0;
-  /* display: block; */
-  background-color: #fff;
+  background-color: #fafafa;
   color: #3e5b78;
   -webkit-box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
   box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
@@ -53,7 +66,10 @@ header {
 
 .navbar-brand {
   float: left;
-  margin-left: 20px;
+}
+
+#navbar ul {
+  margin-left: 150px;
 }
 
 #navbar ul li {
@@ -83,7 +99,7 @@ ol.breadcrumb>li+li:before {
 footer {
   height: 60px;
   background: linear-gradient(257deg, #5490AE, #3B649A);
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 footer p {
@@ -99,8 +115,14 @@ footer a:hover {
   color: #fff;
 }
 
+/* error 404 */
+
+
+
+
 /* misc */
 
 .card h2 {
   color: #4693e0;
 }
+

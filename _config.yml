@@ -1,4 +1,4 @@
-# If you change this file restart server.
+# IF YOU CHANGE THIS FILE RESTART SERVER!
 
 # site
 title: "API | Smartlook"
@@ -10,6 +10,7 @@ url: "" # = ?
 product_name: "Smartlook.com"
 product_url: "https://www.smartlook.com/"
 product_email: info@smartlook.com
+help_url: "https://www.smartlook.com/help/"
 
 # server
 livereload: true
