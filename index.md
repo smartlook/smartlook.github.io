@@ -25,9 +25,18 @@ layout: default
   <div class="row">
     <div class="col-12">
       <h2>Help</h2>
-      <p><a href="{{ site.help_url }}">Check out over 50+ integrations.</a> Install in your CMS, e-commerce solution or website.</p>
+      <p><a href="{{ site.help_url }}">Discover tutorials for over 50+ integrations.</a> Install in your CMS, e-commerce solution or website.</p>
     </div>
   </div>
   <!-- row -->
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Plugins</h2>
+      <p><a href="https://github.com/smartlook?utf8=%E2%9C%93&q=plugin&type=&language=" target="_blank">Check out our plugins on Github.</a> We support CMS like WordPress, PrestaShop, Magento, OpenCart and Joomla.</p>
+    </div>
+  </div>
+  <!-- row -->
+
 </div>
 <!-- container -->
