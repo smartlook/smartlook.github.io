@@ -1,6 +1,6 @@
-/* === MAIN CSS === */
+/* # MAIN CSS */
 
-/* Company colors:
+/* COMPANY COLORS
 *
 * blue = #4693e0;
 * gray = ?
@@ -35,7 +35,6 @@ main img {
   padding: 2px;
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 5px;
 }
 
 main img:hover {
@@ -96,7 +95,6 @@ ol.breadcrumb {
   margin-top: 50px;
   padding: 8px 15px;
   background-color: #fafafa;
-  border-radius: 5px;
 }
 
 ol.breadcrumb li {
@@ -130,17 +128,53 @@ footer a:hover {
   color: #fff;
 }
 
-/* ERROR 404 */
+/* ERROR PAGES */
 
 .error-404 {
   text-align: center;
 }
 
-/* INTRO */
+/* TABLES */
 
-/* .intro {
-  background: linear-gradient(252deg, #3bddfb, #1571ce) fixed;
-} */
+table {
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+th,
+td {
+  padding: .75rem;
+  vertical-align: top;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+th {
+  border-bottom: 2px solid #ccc;
+}
+
+tr:hover {
+  background-color: #eee;
+}
+
+thead tr:hover {
+  background-color: #fff;
+}
+
+/* ALERTS */
+
+.alert {
+  padding: 1px 20px;
+}
+
+.alert-warning {
+    border-left: 5px solid #ffeeba;
+    background-color: #fff3cd;
+}
+
+.alert-warning p {
+  color: #856404;
+}
 
 /* MISC */
 
@@ -153,3 +187,18 @@ footer a:hover {
   color: #fff;
   background: #4693e0;
 }
+
+/* ## JOINT CLASSES */
+
+ol.breadcrumb,
+.alert,
+pre,
+main img {
+  border-radius: 5px;
+}
+
+/* INTRO */
+
+/* .intro {
+  background: linear-gradient(252deg, #3bddfb, #1571ce) fixed;
+} */

@@ -6,7 +6,11 @@ permalink: /docs/identify-visitor/
 
 Display detailed information about visitor in dashboard such as: **email** and **name**.
 
-Code that you need to insert has a following format.
+<div class="alert alert-warning">
+<p>You need to create a connection to your user database for this code to work.</p>
+</div>
+
+Code you need to insert in your site has a following format in **JavaScript**.
 
 ```javascript
 <script>
@@ -14,31 +18,33 @@ Code that you need to insert has a following format.
 </script> 
 ```
 
-**User ID** = `uid` is unique number used to identify user. Let's say in your user database is following record.
+**UID** stands for *User ID* and it is unique number used to identify your user. Let's say in your user database is this record.
 
 | uid | name | email |
 |---|---|---|
-| 12345 | John Doe | john.doe@example.com |
+| 123 | John Doe | john.doe@example.com |
 
-Now let's have a look at example in **PHP**.
+Here is example in **PHP**.
 
 ```php
 echo "<script>";
-echo "smartlook('identify', '12345');";
+echo "smartlook('identify', '123');";
 echo "</script>";
 ```
 
-In your website the following code will be generated.
+In your site following code will be generated in **JavaScript**.
 
 ```javascript
 <script>
-  smartlook('identify', 12345);
+  smartlook('identify', 123);
 </script>
 ```
 
-## Detailed identification
+## More visitor details
 
-You can get more information using another parameter which can contain all information you want to assign to any given recording. Except email and name, it can be information about what package user as prepaid or total sum paid. There is no limit on what information you assign to recording so use the code below as an example only.
+You can connect to your user database and get any information you want. It is up to you. There is no limit on what you display in dashboard. It can be **name** or **email** but also what **package** user paid for, in what **currency** and what is the **cost**.
+
+Feel free to modify and expand to your needs example below.
 
 ```javascript
 <script>
@@ -47,7 +53,7 @@ You can get more information using another parameter which can contain all infor
     "email": "john.doe@example.com",
     "package": "Premium",
     "currency": "USD",
-    "totalSpend": 150
+    "cost": 150
   });
 </script>
 ```
