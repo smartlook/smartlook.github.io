@@ -4,89 +4,87 @@ title: Sensitive data protection
 permalink: /docs/sensitive-data-protection/
 ---
 
-<div class="bs-callout bs-callout-danger">
-<h5 id="masking">Masking</h5>
+**Passwords and credit card numbers are not recorded by default.** Recordings of credit cards are safe because most payment gates are 3rd party apps where customer gets redirected to another site. These payment gates are usually in an iframe which we block from being recorded as well.
 
-<p>If visitors enter sensitive data (e.g. credit card numbers, visible passwords) on your website, you should exclude this data from the recording by masking forms and inputs.</p>
-</div>
+## Masking
 
-By default passwords are not recorded. The same goes for credit cards because most payment gates are 3rd party apps where customer gets redirected to another site or these payment gates are usually in an iframe which we block as well.
+There can be situations where you want to **disable** recordings or maybe **ignore** certain elements from being recorded.
 
-## Methods
-
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>disable</code></td>
-      <td>Disable recordings.</td>
-    </tr>
-    <tr>
-      <td><code>ignore</code></td>
-      <td>Ignore recordings of given element.</td>
-    </tr>
-  </tbody>
-</table>
+| Name | Description |
+|---|---|
+| `disable` | Disable recordings. |
+| `ignore` | Ignore recordings of given element. |
 
 ### disable
 
-Following code will disable recording of entire page.
+Following code will disable recording of an entire page.
 
 ```javascript
-<script>smartlook('disable', true);</script>
+<script>
+  smartlook('disable', true);
+</script>
 ```
 
-In recording you can ignore selected element. Use attribute data-recording-disable for element that contains sensitive information. This element will not be shown in recording.
+Attribute `data-recording-disable` disables element containing sensitive information which will not be recorded at all. Element *will* ***not*** *be displayed* in recordings.
 
 ```html
 <div data-recording-disable>
-  Customer sensitive text that won't be recorded
+  Sensitive information will not be recorded.
 </div>
 ```
 
 ### ignore
 
-Second option is to ignore selected element. Using this option will display element in recordings but values will be hidden.
+Attribute `data-recording-ignore` ignores elements. Element *will be displayed* in recordings but **values will not**.
 
-Attribute `data-recording-ignore` can have following values:
+This attribute can have 2 values:
 
-* `mask` - inserted characters will be replaced by asterisk **\'\*\'**, the same for input **\'password\'**. Password is masked by default
-* `events` - inserted values will not be displayed at all
+1. `mask` - inserted characters will be replaced by asterisk **\'\*\'**
+2. `events` - inserted values will not be displayed at all
+
+```html
+<input type="text" placeholder="Person age" data-recording-ignore="mask">
+```
 
 ```html
 <input type="text" placeholder="Card number" data-recording-ignore="events">
 ```
 
-## Masking
+*You probably noticed ...*
 
-Most often you will need to mask a form. There are 2 ways how you can do it:
+... the *Card number* example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
+
+## Masking forms
+
+Forms are everywhere these days on webistes and most often you will want to mask some of them.
+
+<div class="callout callout-danger"> Exclude visitors enter sensitive data from recordings by masking forms and inputs.</div>
 
 ### Mask all fields
 
+Use this if you need to mask entire form.
+
 ```html
-<!-- Mask all fields in form -->
+<!-- Mask all fields in a form -->
 <form data-recording-ignore="mask">
   <div>
     <label>Card number</label>
     <input type="text" placeholder="Card number">
   </div>
   <div>
-    <label>Card year</label>
-    <input type="text" placeholder="YYYY-MM">
+    <label>Expiration Date</label>
+    <input type="text" placeholder="MM-YY">
   </div>
 </form>
 ```
 
-### Mask only selected fields
+### Mask selected fields
+
+Maybe you want to mask only some selected fields.
 
 ```html
 <form>
-  <!-- Mask only field in this div -->
+  <!-- Mask this field -->
   <div data-recording-ignore="mask">
     <label>Card number</label>
     <input type="text" placeholder="Card number">
@@ -94,8 +92,8 @@ Most often you will need to mask a form. There are 2 ways how you can do it:
   
   <!-- This field is not masked -->
   <div>
-    <label>Card year</label>
-    <input type="text" placeholder="YYYY-MM">
+    <label>Expiration Date</label>
+    <input type="text" placeholder="MM-YY">
   </div>
 </form>
 ```

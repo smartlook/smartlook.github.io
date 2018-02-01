@@ -4,7 +4,9 @@ title: Custom events
 permalink: /docs/custom-events/
 ---
 
-In case our defined events are not enough, you can add your own and we will track them. The format you need in your JavaSript is as follows:
+It may happen that our predefined events are not enough for what you need to track at this moment. No problem. Simply add your own events and we will track them as well. Maybe you already have on your site our API code which can [Identify Visitor](../identify-visitor/). Well in that case our **custom events** information (custom user action) will be displayed in recording as well.
+
+Code you need to insert in your site has a following format in **JavaScript**.
 
 ```javascript
 <script>
@@ -12,22 +14,22 @@ In case our defined events are not enough, you can add your own and we will trac
 </script>
 ```
 
-For example, if inside your app a user sees a window for package upgrade. In the moment this event happens, you can send us this information using following code:
+For example if user gets to see in your application a pop up window for package upgrade in that moment when this event occurs you can send us the information using following code.
 
 ```javascript
 <script>
   smartlook('track', 'UserOpenUpsellWindow', {
-    "type": "SmallDiskLimit"
+    "type": "SmallDiscLimit"
   });
 </script>
 ```
 
-Parameters `properties` are variable. In case your event does not need any parameters, you do not use this one. In case user will reach prepaid limit and all you need to do is to display this action in recording, you do not need to use any other parameters.
+Parameter `properties` are variable. In case you need to display only a specific information about your user there is no need to use any other parameters in your custom event. 
+
+Have a look at this example where user reached app preset limit.
 
 ```javascript
 <script>
-  smartlook('track', 'UserReachLimit');
+  smartlook('track', 'UserLimitReached');
 </script>
 ```
-
-In case you use in your website [Identify Visitor](/identify-visitor/), this identification will be displayed in recording with this user action.

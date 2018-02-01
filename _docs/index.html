@@ -1,6 +1,6 @@
 --- 
 layout: default 
-permalink: /docs/index.html # show this page as index for collections: https://jekyllrb.com/docs/collections/#step3
+permalink: /docs/index.html
 ---
 
 <div class="container">
@@ -18,21 +18,9 @@ permalink: /docs/index.html # show this page as index for collections: https://j
         <a href="{{ '/docs/identify-visitor/' | relative_url }}">
           <h2>Identify visitor</h2>
         </a>
-        <p>Display detailed information about visitor in dashboard.</p>
+        <p>Display detailed visitor information in dashboard.</p>
       </div>
     </div>
-    <div class="col-6">
-      <div class="card">
-        <a href="{{ '/docs/sensitive-data-protection/' | relative_url }}">
-          <h2>Sensitive data protection</h2>
-        </a>
-        <p>Do not record sensitive data. Mask forms and inputs.</p>
-      </div>
-    </div>
-  </div>
-  <!-- row -->
-
-  <div class="row">
     <div class="col-6">
       <div class="card">
         <a href="{{ '/docs/custom-events/' | relative_url }}">
@@ -41,12 +29,24 @@ permalink: /docs/index.html # show this page as index for collections: https://j
         <p>Create your own specific events for tracking.</p>
       </div>
     </div>
+  </div>
+  <!-- row -->
+
+  <div class="row">
     <div class="col-6">
       <div class="card">
-        <a href="{{ '/docs/recording-info/' | relative_url }}">
-          <h2>Recording info</h2>
+        <a href="{{ '/docs/sensitive-data-protection/' | relative_url }}">
+          <h2>Sensitive data protection</h2>
         </a>
-        <p>Get information about recording such as recording URL.</p>
+        <p>Do not record sensitive data. Mask forms and inputs.</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <a href="{{ '/docs/recording-information/' | relative_url }}">
+          <h2>Recording information</h2>
+        </a>
+        <p>Get recording information such as URL.</p>
       </div>
     </div>
   </div>

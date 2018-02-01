@@ -4,11 +4,13 @@ title: Identify visitor
 permalink: /docs/identify-visitor/
 ---
 
-Display detailed information about visitor in dashboard such as: **email** and **name**.
+Display detailed visitor information in dashboard such as: **email** and **name**.
 
 <div class="alert alert-warning">
-<p>You need to create a connection to your user database for this code to work.</p>
+<strong>Database connection:</strong> This API code needs a connection to your user database in order to work.
 </div>
+
+
 
 Code you need to insert in your site has a following format in **JavaScript**.
 
@@ -18,9 +20,9 @@ Code you need to insert in your site has a following format in **JavaScript**.
 </script> 
 ```
 
-**UID** stands for *User ID* and it is unique number used to identify your user. Let's say in your user database is this record.
+**User ID** in short `uid` is unique number used to identify your user. Let's say in your user database is this record.
 
-| uid | name | email |
+| UID | Name | Email |
 |---|---|---|
 | 123 | John Doe | john.doe@example.com |
 
