@@ -18,13 +18,16 @@ For example if user gets to see in your application a pop up window for package 
 
 ```javascript
 <script>
-  smartlook('track', 'UserOpenUpsellWindow', {
+  // full example with your defined variables
+  var eventName = 'UserOpenUpsellWindow';
+  var properties = {
     "type": "SmallDiscLimit"
-  });
+  };
+  smartlook('track', eventName, properties);
 </script>
 ```
 
-Parameter `properties` are variable. In case you need to display only a specific information about your user there is no need to use any other parameters in your custom event. 
+Parameter `properties` is variable. In case you need to display only a specific information about your user there is no need to use any other parameters in your custom event. 
 
 Have a look at this example where user reached app preset limit.
 

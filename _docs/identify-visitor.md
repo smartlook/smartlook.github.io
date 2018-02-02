@@ -20,17 +20,19 @@ Code you need to insert in your site has a following format in **JavaScript**.
 </script> 
 ```
 
-**User ID** in short `uid` is unique number used to identify your user. Let's say in your user database is this record.
+**User ID** in short `uid` is unique number used to identify your user. Let's say in your user database is this record. 
 
 | UID | Name | Email |
 |---|---|---|
 | 123 | John Doe | john.doe@example.com |
 
+`uid` is the identificator you need in your code to lookup corresponding user in your database.
+
 Here is example in **PHP**.
 
 ```php
 echo "<script>";
-echo "smartlook('identify', '123');";
+echo "smartlook('identify', '{$user->id}');";
 echo "</script>";
 ```
 
@@ -38,7 +40,7 @@ In your site following code will be generated in **JavaScript**.
 
 ```javascript
 <script>
-  smartlook('identify', 123);
+  smartlook('identify', '123');
 </script>
 ```
 
