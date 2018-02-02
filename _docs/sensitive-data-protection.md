@@ -50,9 +50,7 @@ This attribute can have 2 values:
 <input type="text" placeholder="Card number" data-recording-ignore="events">
 ```
 
-*You probably noticed ...*
-
-... the *Card number* example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
+You probably noticed the *Card number* example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
 
 ## Masking forms
 

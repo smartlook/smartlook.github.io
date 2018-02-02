@@ -7,7 +7,7 @@ permalink: /docs/identify-visitor/
 Display detailed visitor information in dashboard such as: **email** and **name**.
 
 <div class="alert alert-warning">
-<strong>Database connection:</strong> This API code needs a connection to your user database in order to work.
+<strong>Database connection:</strong> This API code needs a connection to <em>your</em> user database in order to work.
 </div>
 
 

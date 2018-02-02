@@ -15,9 +15,27 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: #fffeff;
   padding-top: 130px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.site-content {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 a,
@@ -48,15 +66,11 @@ main img:hover {
   transition: .75s;
 }
 
-.card h2 {
-  color: #4693e0;
-}
-
 code {
   font-family: monospace;
   -webkit-box-flex: 1;
   -ms-flex: 1;
-      flex: 1;
+  flex: 1;
   padding: 2px 4px;
   font-size: 90%;
   color: #ff344f;
@@ -78,11 +92,15 @@ header {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
   min-height: 72px;
   -webkit-box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
   box-shadow: 0 1px 4px 0 rgba(36, 93, 151, 0.5);
+}
+
+.card h2 {
+  color: #4693e0;
 }
 
 header .container {
@@ -90,8 +108,8 @@ header .container {
 }
 
 .navbar {
-    position: relative;
-    left: 20px;
+  position: relative;
+  left: 20px;
 }
 
 .navbar-brand {
@@ -125,22 +143,20 @@ ol.breadcrumb>li+li:before {
 
 /* FOOTER */
 
-footer {
-  height: 60px;
+.site-footer {
+  margin-top: 6rem;
   background: linear-gradient(257deg, #5490AE, #3B649A);
-  margin-top: 70px;
 }
 
-footer p {
-  line-height: 60px;
+.site-footer p {
   color: #fff;
 }
 
-footer a {
+.site-footer a {
   color: #d8ebff;
 }
 
-footer a:hover {
+.site-footer a:hover {
   color: #fff;
 }
 
@@ -184,20 +200,19 @@ thead tr:hover {
   position: relative;
   padding: .75rem 1.25rem;
   margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-}
-
-.alert strong {
-    color: #856404;
 }
 
 .alert-warning {
-  color: #856404;
   background-color: #fff3cd;
   border-color: #ffeeba;
+  border-left: 5px solid #ffeeba;
 }
 
+.alert-warning,
+.alert-warning strong,
+.alert-warning em {
+  color: #856404;
+}
 
 /* CALLOUTS */
 
@@ -232,15 +247,9 @@ thead tr:hover {
 
 /* ## JOINT CLASSES */
 
-ol.breadcrumb,
-.alert,
 pre,
-main img {
+.alert,
+ol.breadcrumb,
+.smartlook-cinema {
   border-radius: 5px;
 }
-
-/* INTRO */
-
-/* .intro {
-  background: linear-gradient(252deg, #3bddfb, #1571ce) fixed;
-} */
