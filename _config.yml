@@ -1,7 +1,7 @@
 # IF YOU CHANGE THIS FILE RESTART SERVER!
 
 # site
-title: "API | Smartlook"
+title: "Smartlook API"
 description: "Smartlook API. Tricks and tips for developers."
 baseurl: "" # root folder of Jekyll site, by default, baseurl is set to "" (never set to "/")
 url: "" # = ?
