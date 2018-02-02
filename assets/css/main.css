@@ -244,9 +244,48 @@ thead tr:hover {
 
 /* ## JOINT CLASSES */
 
-pre,
+/* pre,
 .alert,
-ol.breadcrumb,
-.smartlook-cinema {
+ol.breadcrumb {
   border-radius: 5px;
+} */
+
+
+/* SYNTAX LANGUAGE */
+
+pre[class]::before {
+  font-size: 0.75rem;
+  content: attr(class);
+  color: white;
+  position: relative;
+  top: -22px;
+  left: -15px;
+  width: 100%;
+  background: #999;
+  padding: 0 5px;
+  text-indent: 15px;
+}
+
+pre[class*="language-javascript"]::before {
+  background: #9c27b0;
+}
+
+pre[class*="language-javascript"]::before {
+  content: "JS";
+}
+
+pre[class*="language-php"]::before {
+background: #4caf50;
+}
+
+pre[class*="language-php"]::before {
+  content: "PHP";
+}
+
+pre[class*="language-html"]::before {
+  background: #ff9800;
+}
+
+pre[class*="language-html"]::before {
+  content: "HTML";
 }

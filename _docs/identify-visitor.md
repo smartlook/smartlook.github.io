@@ -17,7 +17,7 @@ Code you need to insert in your site has a following format in **JavaScript**.
 ```javascript
 <script>
   smartlook('identify', uid);
-</script> 
+</script>
 ```
 
 **User ID** in short `uid` is unique number used to identify your user. Let's say in your user database is this record. 
