@@ -19,25 +19,29 @@ Do you need even more information about your recordings? We prepared for you som
 
 This example shows a code how it can look in a console.
 
-```javascript
-<script>
+<pre>
+<code class="language-javascript">
+&lt;script&gt;
   smartlook(
     function () {
       console.log(smartlook.playUrl);
       console.log(smartlook.visitorId);
     }
   );
-</script>
-```
+&lt;/script&gt;
+</code>
+</pre>
 
 Now let's say you want to save recording URL = `playUrl` in your own service.
 
-```javascript
-<script>
+<pre>
+<code class="language-javascript">
+&lt;script&gt;
   smartlook(
     function () {
       MyServiceToLogUrl.sendToApi(smartlook.playUrl);
     }
   );
-</script>
-```
+&lt;/script&gt;
+</code>
+</pre>

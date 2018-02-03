@@ -19,19 +19,23 @@ There can be situations where you want to **disable** recordings or maybe **igno
 
 Following code will disable recording of an entire page.
 
-```javascript
-<script>
+<pre>
+<code class="language-javascript">
+&lt;script&gt;
   smartlook('disable', true);
-</script>
-```
+&lt;/script&gt;
+</code>
+</pre>
 
 Attribute `data-recording-disable` disables element containing sensitive information which will not be recorded at all. Element *will* ***not*** *be displayed* in recordings.
 
-```html
-<div data-recording-disable>
+<pre>
+<code class="language-html">
+&lt;div data-recording-disable&gt;
   Sensitive information will not be recorded.
-</div>
-```
+&lt;/div&gt;
+</code>
+</pre>
 
 ### ignore
 
@@ -42,13 +46,17 @@ This attribute can have 2 values:
 1. `mask` - inserted characters will be replaced by asterisk **\'\*\'**
 2. `events` - inserted values will not be displayed at all
 
-```html
-<input type="text" placeholder="Person age" data-recording-ignore="mask">
-```
+<pre>
+<code class="language-html">
+&lt;input type="text" placeholder="Person age" data-recording-ignore="mask"&gt;
+</code>
+</pre>
 
-```html
-<input type="text" placeholder="Card number" data-recording-ignore="events">
-```
+<pre>
+<code class="language-html">
+&lt;input type="text" placeholder="Card number" data-recording-ignore="events"&gt;
+</code>
+</pre>
 
 You probably noticed the *Card number* example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
 
@@ -62,36 +70,40 @@ Forms are everywhere these days on webistes and most often you will want to mask
 
 Use this if you need to mask entire form.
 
-```html
-<!-- Mask all fields in a form -->
-<form data-recording-ignore="mask">
-  <div>
-    <label>Card number</label>
-    <input type="text" placeholder="Card number">
-  </div>
-  <div>
-    <label>Expiration Date</label>
-    <input type="text" placeholder="MM-YY">
-  </div>
-</form>
-```
+<pre>
+<code class="language-html">
+&lt;!-- Mask all fields in a form --&gt;
+&lt;form data-recording-ignore="mask"&gt;
+  &lt;div&gt;
+    &lt;label&gt;Card number&lt;/label&gt;
+    &lt;input type="text" placeholder="Card number"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label&gt;Expiration Date&lt;/label&gt;
+    &lt;input type="text" placeholder="MM-YY"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code>
+</pre>
 
 ### Mask selected fields
 
 Maybe you want to mask only some selected fields.
 
-```html
-<form>
-  <!-- Mask this field -->
-  <div data-recording-ignore="mask">
-    <label>Card number</label>
-    <input type="text" placeholder="Card number">
-  </div>
+<pre>
+<code class="language-html">
+&lt;form&gt;
+  &lt;!-- Mask this field --&gt;
+  &lt;div data-recording-ignore="mask"&gt;
+    &lt;label&gt;Card number&lt;/label&gt;
+    &lt;input type="text" placeholder="Card number"&gt;
+  &lt;/div&gt;
   
-  <!-- This field is not masked -->
-  <div>
-    <label>Expiration Date</label>
-    <input type="text" placeholder="MM-YY">
-  </div>
-</form>
-```
+  &lt;!-- This field is not masked --&gt;
+  &lt;div&gt;
+    &lt;label&gt;Expiration Date&lt;/label&gt;
+    &lt;input type="text" placeholder="MM-YY"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code>
+</pre>

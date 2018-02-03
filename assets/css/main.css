@@ -1,12 +1,25 @@
-/* === MAIN CSS === */
-
-/* COMPANY COLORS
+/** COLORS
 *
-* blue = #4693e0;
-* gray = ?
-* green = ?
-* .... = ?
-*/
+* COMPANY:
+* 
+* blue = #1991eb;
+* blueish-black: #3f5b78;
+* green = #2ec09a;
+* white = #fafafa;
+* grayblue = #7599bd;
+* pale-teal = #76bcaa;
+* dust = #bd9b75;
+* brownish-pink: #bd7575;
+*
+* :TODO: add colors from CSS and either adjust to company or add below 
+* 
+* OTHER:
+*
+* yellow = ##f1c40f;
+* ... = ?
+* ... = ?
+* 
+**/
 
 *,
 ::after,
@@ -49,17 +62,9 @@ a:hover {
   text-decoration: underline;
 }
 
-main img {
-  padding: 2px;
-  background: #fff;
-  border: 1px solid #eee;
-}
-
-main img:hover {
-  border: 1px solid #ccc;
-  background: #eee;
-  -webkit-transition: .75s;
-  transition: .75s;
+a,
+button:focus {
+  outline: none;
 }
 
 code {
@@ -71,7 +76,6 @@ code {
   font-size: 90%;
   color: #ff344f;
   background-color: rgba(255, 52, 79, 0.1);
-  border-radius: 4px;
 }
 
 /* HEADER */
@@ -219,7 +223,6 @@ thead tr:hover {
   margin-bottom: 1.25rem;
   border: 1px solid #eee;
   border-left-width: .25rem;
-  border-radius: .25rem;
 }
 
 .callout-danger {
@@ -242,32 +245,33 @@ thead tr:hover {
   background: #4693e0;
 }
 
-/* JOINT CLASSES */
+/* LANGUAGE SYNTAX */
 
-/* pre,
-.alert,
-ol.breadcrumb {
-  border-radius: 5px;
-} */
-
-
-/* SYNTAX LANGUAGE */
+pre {
+  position: relative;
+  
+}
 
 pre[class]::before {
-  font-size: 0.75rem;
   content: attr(class);
+  background: #3f5b78;
+  min-width: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 10px;
   color: white;
-  position: relative;
-  top: -22px;
-  left: -15px;
-  width: 100%;
-  background: #999;
-  padding: 0 5px;
-  text-indent: 15px;
+  text-align: center;
+  /* text-indent: 20px; */
+  padding: 3px 0;
+}
+
+pre[class*="language-"]{
+  padding: 10px 20px 0;
 }
 
 pre[class*="language-javascript"]::before {
-  background: #9c27b0;
+  background: #f1c40f;
 }
 
 pre[class*="language-javascript"]::before {
@@ -275,7 +279,7 @@ pre[class*="language-javascript"]::before {
 }
 
 pre[class*="language-php"]::before {
-background: #4caf50;
+  background: #76bcaa;
 }
 
 pre[class*="language-php"]::before {
@@ -283,9 +287,54 @@ pre[class*="language-php"]::before {
 }
 
 pre[class*="language-html"]::before {
-  background: #ff9800;
+  background: #bd9b75;
 }
 
 pre[class*="language-html"]::before {
   content: "HTML";
 }
+
+/* CLIPBOARD */
+
+.copy-button {
+  cursor: pointer;
+  border: 0;
+  font-size: 10px;
+  height: 23px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0 20px;
+  color: #795548;
+  background-color: transparent;
+  position: absolute;
+  top: -2px;
+  right: 0;
+}
+
+.copy-button:hover {
+  /* color: #bd9b75; */
+  background-color: #eae4e0;
+}
+
+.copy-button::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  background-size: contain;
+  background-image: url(../img/clipboard.svg);
+  background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+}
+
+/* JOINT CLASSES */
+
+/* pre,
+code,
+.alert,
+.callout,
+ol.breadcrumb {
+  border-radius: 5px;
+} */
