@@ -135,7 +135,7 @@ ol.breadcrumb li {
   display: inline-block;
 }
 
-ol.breadcrumb>li+li:before {
+ol.breadcrumb > li + li:before {
   content: "/\00a0";
   padding: 0 5px;
   color: rgba(62, 91, 120, 0.56);
@@ -145,7 +145,7 @@ ol.breadcrumb>li+li:before {
 
 .site-footer {
   margin-top: 6rem;
-  background: linear-gradient(257deg, #5490AE, #3B649A);
+  background: linear-gradient(257deg, #5490ae, #3b649a);
 }
 
 .site-footer p {
@@ -178,7 +178,7 @@ table {
 th,
 td {
   text-align: left;
-  padding: .75rem;
+  padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #ccc;
 }
@@ -199,7 +199,7 @@ thead tr:hover {
 
 .alert {
   position: relative;
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
 }
 
@@ -222,7 +222,7 @@ thead tr:hover {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   border: 1px solid #eee;
-  border-left-width: .25rem;
+  border-left-width: 0.25rem;
 }
 
 .callout-danger {
@@ -249,7 +249,6 @@ thead tr:hover {
 
 pre {
   position: relative;
-  
 }
 
 pre[class]::before {
@@ -266,7 +265,7 @@ pre[class]::before {
   padding: 3px 0;
 }
 
-pre[class*="language-"]{
+pre[class*="language-"] {
   padding: 10px 20px 0;
 }
 
@@ -317,7 +316,7 @@ pre[class*="language-html"]::before {
 }
 
 .copy-button::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 16px;
   height: 16px;
