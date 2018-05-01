@@ -1,4 +1,4 @@
-/** COLORS
+/** COLORS = smartlook.github.io
 *
 * COMPANY:
 * 
@@ -261,7 +261,6 @@ pre[class]::before {
   font-size: 10px;
   color: white;
   text-align: center;
-  /* text-indent: 20px; */
   padding: 3px 0;
 }
 
@@ -311,7 +310,6 @@ pre[class*="language-html"]::before {
 }
 
 .copy-button:hover {
-  /* color: #bd9b75; */
   background-color: #eae4e0;
 }
 
@@ -327,13 +325,3 @@ pre[class*="language-html"]::before {
   position: relative;
   top: 3px;
 }
-
-/* JOINT CLASSES */
-
-/* pre,
-code,
-.alert,
-.callout,
-ol.breadcrumb {
-  border-radius: 5px;
-} */
