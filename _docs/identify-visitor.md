@@ -24,7 +24,7 @@ Code you need to insert in your site has a following format in **JavaScript**.
 
 | UID | Name | Email |
 |---|---|---|
-| 123 | John Doe | john.doe@example.com |
+| 123 | John Dove | john.doe@example.com |
 
 `uid` is the identificator you need in your code to lookup corresponding user in your database.
 
