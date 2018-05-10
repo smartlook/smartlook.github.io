@@ -14,7 +14,6 @@ help_url: "https://www.smartlook.com/help/"
 
 # server
 livereload: true
-port: 4001
 
 # build
 markdown: kramdown
