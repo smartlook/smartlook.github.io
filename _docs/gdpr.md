@@ -3,16 +3,10 @@ title: "GDPR"
 subtitle: "Record user information of EU visitors."
 ---
 
-Depending on content you record you need your user’s consent. Once user gave you his consent use API code below. The code needs to be adjusted based on what answer you received.
+Depending on content you record you need your user’s consent. Once user gave you his consent this API. The code below needs to be adjusted based on what answer you received.
 
 Make sure you enabled required project settings before using this API.
 {: .alert .alert-warning }
-
-There are 3 possible values to choose from which you can enter in the code:
-
-1. `true` if user agreed and provided consent
-2. `false` if user declined
-3. `null` if user was not asked or did not chose an option yet
 
 ## Form inputs
 
@@ -20,7 +14,14 @@ User consented to have his form inputs recorded.
 
 ```js
 <script>
-  smartlook('consentForms', 'YOUR_CONSENT_VALUE');
+  // in this variable inser your consent
+  var consentText = 'Here goes consent text from your website.';
+
+  // choose only one variable
+  var clientDecision = true; // if user agreed and provided consent
+  var clientDecision = false; // if user refused to provide consent
+
+  smartlook('consentForms', clientDecision ? consentText : false);
 </script>
 ```
 
@@ -30,7 +31,14 @@ User consented to have his IP address recorded.
 
 ```js
 <script>
-  smartlook('consentIP', 'YOUR_CONSENT_VALUE');
+  // in this variable inser your consent
+  var consentText = 'Here goes consent text from your website.';
+
+  // choose only one variable
+  var clientDecision = true; // if user agreed and provided consent
+  var clientDecision = false; // if user refused to provide consent
+
+  smartlook('consentIP', clientDecision ? consentText : false);
 </script>
 ```
 
@@ -40,7 +48,14 @@ User consented to being identified via the API.
 
 ```js
 <script>
-  smartlook('consentAPI', 'YOUR_CONSENT_VALUE');
+  // in this variable inser your consent
+  var consentText = 'Here goes consent text from your website.';
+
+  // choose only one variable
+  var clientDecision = true; // if user agreed and provided consent
+  var clientDecision = false; // if user refused to provide consent
+
+  smartlook('consentAPI', clientDecision ? consentText : false);
 </script>
 ```
 
@@ -57,3 +72,9 @@ Verify if a visitor gave his consent or not by using this code.
   });
 </script>
 ```
+
+There are 3 possible values that you can see in the console:
+
+1. `true` if user agreed and provided consent
+2. `false` if user refused to provide consent
+3. `null` if user was not asked for consent yet
