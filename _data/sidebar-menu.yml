@@ -1,0 +1,18 @@
+# Sidebar menu
+docs_list_title: Docs
+docs:
+
+- title: Identify visitor
+  url: /docs/identify-visitor/
+
+- title: GDPR
+  url: /docs/gdpr/
+
+- title: Sensitive data protection
+  url: /docs/sensitive-data-protection/
+
+- title: Custom events
+  url: /docs/custom-events/
+
+- title: Recording information
+  url: /docs/recording-information/

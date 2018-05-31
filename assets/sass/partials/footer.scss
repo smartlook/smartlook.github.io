@@ -1,0 +1,25 @@
+// footer.scss
+
+.section-footer {
+  z-index: 0;
+  padding: 0;
+}
+
+.section-footer p {
+  margin: 0 0 20px 0;
+}
+
+.section-footer p,
+.section-footer a {
+  color: $o_grey_500;
+}
+
+.section-footer a:active,
+.section-footer a:focus,
+.section-footer a:hover {
+  color: $o_grey_600;
+}
+
+.home-github .section-footer {
+  padding: 20px 0 0 0;
+}

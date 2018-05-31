@@ -1,0 +1,29 @@
+// buttons.scss
+
+.btn.btn-link {
+  color: $c_primary;
+}
+
+.btn.btn-link.active,
+.btn.btn-link:active,
+.btn.btn-link:focus,
+.btn.btn-link:hover {
+  color: $c_primary;
+}
+
+.btn.btn-primary {
+  background: $c_secondary;
+  border: solid 1px $c_secondary;
+}
+
+.btn.btn-primary:active,
+.btn.btn-primary:focus,
+.btn.btn-primary:hover {
+  background: $o_greenish;
+  border-color: $o_greenish;
+}
+
+.btn.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.1rem rgba(39, 166, 132, .2);
+  box-shadow: 0 0 0 0.1rem rgba(39, 166, 132, .2);
+}

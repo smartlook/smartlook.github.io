@@ -1,0 +1,40 @@
+<div class="docs-navbar">
+  <a class="btn btn-link btn-action off-canvas-toggle" href="#sidebar">
+    <i class="icon icon-menu"></i>
+  </a>
+</div>
+
+<div id="sidebar" class="docs-sidebar off-canvas-sidebar">
+<!-- SHOW: sidebar + overlay -->
+  <div class="docs-nav">
+
+    <ul class="menu">
+      <li class="divider" data-content="{{ site.pa_javascript_api }}"></li>
+      
+      {% for item in site.data.sidebar-menu.docs %}
+        <li class="menu-item {% if item.url == page.url %}active{% endif %}">
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+      
+      <li class="divider"></li>
+      <li class="menu-item back-to-docs">
+        <a href="{{ site.url_docs_root }}">← Back to {{ site.pa_docs }}</a>
+      </li>
+    </ul>
+    <!-- menu -->
+
+    <div class="edit-on-github">
+      <a href="https://www.github.com/{{ site.github_username }}/{{ site.git_repo }}/blob/master/{{ page.path }}" target="_blank">
+        {% include component/svg/github-logo.html %} Edit on GitHub
+      </a>
+    </div>
+    <!-- edit-on-github -->
+
+  </div>
+  <!-- docs-nav -->
+</div>
+<!-- sidebar-menu -->
+
+<a class="off-canvas-overlay" href="#close"></a>
+<!-- HIDE: sidebar + overlay -->

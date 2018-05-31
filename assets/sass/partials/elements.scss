@@ -1,0 +1,66 @@
+// elements.scss
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: $font_stack;
+}
+
+html,
+body {
+  height: 100%;
+  background: $o_white_2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: $o_blue_grey_900;
+}
+
+p,
+li,
+blockquote {
+  font-weight: 400;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+a:visited {
+  color: $c_primary;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus,
+.btn:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+ol li,
+ul li {
+  margin-top: 0;
+}
+
+.btn {
+  border-radius: $radius_2;
+}
+
+.docs img,
+.typography img {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+          border-radius: $radius_2;
+}

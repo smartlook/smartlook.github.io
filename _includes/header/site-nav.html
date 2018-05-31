@@ -1,0 +1,38 @@
+<header class="navbar">
+  <section class="navbar-section">
+
+    <div id="logo">
+      <a href="{% if page.class == 'home-github' %}{{ site.pr_url }}{% else %}{{ site.url_docs_root }}{% endif %}">
+        <span class="nav-logo">{{ site.pr_name }}</span>
+      </a>
+    </div>
+
+    <div id="nav-menu">
+      <ul>
+        <li>
+          <a href="{{ site.url_docs_root }}" class="btn btn-link">{{ site.pa_javascript_api }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="search" class="input-group input-inline">
+      <form action="/search.html" method="get">
+        <input type="text" name="query" id="search-box" class="form-input" placeholder="Search ...">
+      </form>
+    </div>
+
+    <div id="language-switch">
+      {% if page.lang == 'en' %}
+      <a href="#">
+        <img src="/assets/img/flags/cz.png" width="32" height="32" alt="CZ">
+      </a>
+      {% else %}
+      <a href="#">
+        <img src="/assets/img/flags/en.png" width="32" height="32" alt="EN">
+      </a>
+      {% endif %}
+    </div>
+
+  </section>
+</header>
+<!-- site-nav -->

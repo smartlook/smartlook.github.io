@@ -1,0 +1,106 @@
+# 
+# >>> IF YOU CHANGE CONFIG RESTART SERVER: "⌃C + bundle exec jekyll serve" <<<
+#
+
+# VARIABLES ==================================================
+
+## Site variables
+title: "Smartlook API"
+google_analytics: "UA-XXXXX-Y"
+github_username: krsiakdaniel
+git_repo: krsiakdaniel.github.io
+
+## Custom variables
+
+### Product
+pr_author: "Smartsupp"
+pr_name: "Smartlook"
+pr_url: "https://www.smartlook.com/"
+pr_url_name: "Smartlook.com"
+pr_email: "info@smartlook.com"
+pr_description: "Smartlook API. Developer DOCS."
+
+### Url
+url_canonical: "http://www.smartlook.com/docs/api"
+url_alternate_en: "http://www.smartlook.com/docs/api"
+url_alternate_cs: "http://www.smartlook.com/cs/docs/api"
+url_docs_root: "/docs/"
+
+### Pages
+pa_github: "Smartlook GitHub"
+pa_docs: "Docs"
+pa_javascript_api: "JavaScript API"
+
+### Pages (docs)
+pa_identify_visitor: "Identify visitor"
+pa_custom_events: "Custom events"
+pa_sensitive_data_protection: "Sensitive data protection"
+pa_recording_information: "Recording information"
+pa_gdpr: "GDPR"
+
+### Pages (short descriptions)
+pa_d_identify_visitor: "Display detailed visitor information in dashboard."
+pa_d_custom_events: "Create your own specific events for tracking."
+pa_d_sensitive_data_protection: "Do not record sensitive data. Mask forms and inputs."
+pa_d_recording_information: "Get recording information such as URL."
+pa_d_gdpr: "Record user information of EU visitors."
+
+# PLUGINS ==================================================
+
+## Github --safe
+plugins:
+  - jemoji
+
+# BUILD ==================================================
+
+## Server (localhost)
+livereload: true
+port: 4001
+
+## Warnings
+strict_front_matter: true
+liquid:
+  error_mode: strict
+
+## Final _site
+exclude:
+  - README.md
+  - config.codekit3
+  - Gemfile.lock
+  - Gemfile
+
+# COLLECTIONS ==================================================
+
+## Docs
+collections:
+  docs:
+    permalink: /:collection/:path/
+    output: true # render .MD files to HTML on build
+
+# FRONT MATTER ==================================================
+
+## Settings
+defaults:
+  -
+    scope:
+      path: "" # empty string means all files in the project
+      type: "pages" # select pages only
+    values:
+      layout: "page"
+      lang: "en"
+  -
+    scope:
+      path: "_docs"
+      type: "docs" # created in collections
+    values:
+      layout: "default"
+      lang: "en"
+      custom_title: null # add custom title variable in docs article if needed
+
+## Conversion
+permalink: pretty
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true # disable Rouge highliter
+  parse_block_html: true # in .MD files render MD inside HTML blocks

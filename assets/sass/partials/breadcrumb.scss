@@ -1,0 +1,24 @@
+// breadcrumb.scss
+
+.breadcrumb {
+  z-index: 4;
+  width: 100%;
+  border-bottom: 1px solid $o_grey_300;
+  background-color: $o_grey_100;
+  position: fixed;
+  left: 0;
+  padding-left: 30px;
+  top: 68px;
+}
+
+.breadcrumb .breadcrumb-item:not(:last-child) a,
+.breadcrumb .breadcrumb-item:not(:last-child) a:active,
+.breadcrumb .breadcrumb-item:not(:last-child) a:focus,
+.breadcrumb .breadcrumb-item:not(:last-child) a:hover,
+.breadcrumb .breadcrumb-item:not(:last-child) a:visited {
+  color: $c_primary;
+}
+
+.breadcrumb .breadcrumb-item:not(:first-child)::before {
+  color: $o_grey_300;
+}

@@ -1,0 +1,227 @@
+// media-queries.scss
+
+/**
+  * Index
+  * - Laptop (large)
+  * - Laptop
+  * - Tablet
+  * - Mobile
+  *
+  */
+
+// = LAPTOP (LARGE) = 
+
+@media (max-width: 1280px) {
+  #toc-article {
+    display: block;
+  }
+  .docs-content .column {
+    padding-right: 40px;
+  }
+
+  #btt {
+    right: 32px;
+  }
+}
+
+// = LAPTOP = 
+
+@media (max-width: 1024px) {
+  .column {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 960px) {
+  .docs-navbar {
+    border-bottom: 1px solid $o_grey_300;
+  }
+  .docs-sidebar .docs-nav {
+    top: 92px;
+  }
+  .docs-sidebar .menu .menu-item>a {
+    padding: .2rem .4rem;
+  }
+  .docs-content.off-canvas-content {
+    padding: 0 0 0 40px;
+  }
+  .docs-content .s-subtitle,
+  .docs-content .s-title {
+    padding-top: 1rem;
+  }
+  .column {
+    padding: 0 30px;
+  }
+  .home-docs .section-cards {
+    margin-bottom: 0;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+
+  // fix anchor position issue
+  :target:before {
+    content: "";
+    display: block;
+    height: 220px;
+    margin: -220px 0 0;
+  }
+}
+
+@media (min-width: 955px) and (max-width: 960px) {
+  .docs-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 955px) {
+  #sidebar .menu {
+    margin: 3px 0 25px 0;
+  }
+  .docs-sidebar .docs-nav {
+    top: 170px;
+  }
+  .off-canvas .off-canvas-sidebar {
+    width: 250px;
+  }
+  article {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 840px) {
+  // add css if needed 
+}
+
+// = TABLET = 
+
+@media (max-width: 768px) {
+  .column {
+    padding: 0 20px;
+  }
+  .docs-content .column {
+    padding-right: 40px;
+  }
+  #btt {
+    right: 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  #nav-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .off-canvas .off-canvas-toggle {
+    left: 1.5rem;
+  }
+  #nav-menu {
+    display: none;
+  }
+
+  // TABLES 
+  thead {
+      display: none;
+    }
+
+  tr,
+  td {
+    display: block;
+  }
+
+  tr {
+    border: none;
+    margin-bottom: 10px;
+  }
+
+  td {
+    border: 1px solid $o_grey_100;
+    border-bottom: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  tbody tr:hover {
+    background-color: $o_white;
+  }
+
+  tbody td:hover {
+    background-color: $o_grey_50;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  td:last-child {
+    border: 1px solid $o_grey_100;
+  }
+}
+
+@media (max-width: 520px) {
+  #logo {
+    margin-right: 60px;
+  }
+  
+  #logo a::after {
+    display: none;
+  }
+
+  #btt {
+    left: 40px;
+    right: 32px;
+    bottom: 0;
+    border-top: 1px solid $o_white_2;
+    border-bottom: 30px solid $o_white_2;
+    background-color: $o_white_2;
+  }
+
+  #btt button {
+    width: 100%;
+  }
+  
+  .docs .section-footer {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  // add css if needed 
+}
+
+// = MOBILE = 
+
+@media (max-width: 425px) {
+.home-docs .nav-logo,
+.docs .nav-logo {
+    background: url("../img/logo-small.png");
+    width: 43px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 403px) {
+  .docs .section-footer span {
+    color: $o_white_2;
+  }
+}
+
+@media (max-width: 375px) {
+  .section-footer span {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  // add css if needed
+}

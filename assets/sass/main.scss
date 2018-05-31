@@ -1,0 +1,20 @@
+// main.scss
+
+@import 'partials/variables';
+@import 'partials/elements';
+
+// layout
+@import 'partials/header';
+@import 'partials/breadcrumb';
+@import 'partials/sidebar';
+@import 'partials/main-content';
+@import 'partials/table-of-contents';
+@import 'partials/footer';
+
+// other
+@import 'partials/language-syntax';
+@import 'partials/buttons';
+@import 'partials/misc';
+
+// responsive
+@import 'partials/media-queries';

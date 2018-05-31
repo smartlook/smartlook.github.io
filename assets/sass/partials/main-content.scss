@@ -1,0 +1,287 @@
+// main-content.scss
+
+/**
+  * Index
+  * - Main content
+  * - Pages
+  * - Sections
+  * - Anchors
+  * - Tables
+  * - Alerts
+  * - Callouts
+  *
+  */
+
+// MAIN CONTENT
+
+article {
+  margin-top: 20px;
+}
+
+article h1 {
+  margin-bottom: 0;
+}
+
+article h2,
+article h3,
+article h4 {
+  margin-top: 50px;
+}
+
+.title-block {
+  border-bottom: 1px dashed $o_grey_300;
+  margin-bottom: 20px;
+  position: relative;
+}
+.page-subtitle {
+  color: $o_grey_500;
+}
+
+.docs-content.off-canvas-content {
+  padding: 0 0 0 60px;
+}
+
+.docs-content .s-subtitle,
+.docs-content .s-title {
+  z-index: 0;
+}
+
+.docs-content .s-subtitle::before,
+.docs-content .s-title::before {
+  background: inherit;
+}
+
+.docs-content .column {
+  padding-right: 20px;
+}
+
+// PAGES
+
+// Body classes
+.page {
+  padding-top: 135px;
+}
+
+.home-github {
+  margin-top: 72px;
+}
+
+.home-github .section p {
+  margin-top: 20px;
+}
+
+.home-github #logo a::after,
+.home-github #nav-menu,
+.home-github #search {
+  display: none;
+}
+
+.home-docs,
+.docs {
+  padding-top: 135px;
+}
+
+// GitHub homepage
+.bg-primary {
+  background-image: linear-gradient(254deg, $c_aqua, $c_sea)
+}
+
+.bg-gray {
+  background: $o_grey_50;
+}
+
+.bg-white {
+  background: $o_white;
+}
+
+// SECTIONS
+.section-smartlook h2,
+.section-smartlook p {
+  color: $o_white;
+}
+
+.section-smartlook,
+.section-help,
+.section-docs,
+.section-github {
+  padding: 1rem 0.5rem;
+}
+
+.section-smartlook,
+.section-help,
+.section-docs,
+.section-github {
+  padding: 4rem 2rem;
+}
+
+.home-docs .section-cards {
+  margin-bottom: 30px;
+}
+
+.card {
+  border-radius: $radius_2;
+  border: 1px solid $o_grey_300;
+}
+
+.card:hover {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.section-footer .container {
+  z-index: 0;
+  padding: 0rem 2rem;
+}
+
+// ANCHORS 
+.docs h1 a,
+.docs h2 a,
+.docs h3 a,
+.docs h4 a {
+  color: $o_grey_300;
+  text-decoration: none;
+  margin-left: 5px;
+  padding: 0 5px;
+  display: none;
+}
+
+.docs h1:hover a,
+.docs h2:hover a,
+.docs h3:hover a,
+.docs h4:hover a {
+  display: inline-block;
+}
+
+.docs h1 a:hover,
+.docs h2 a:hover,
+.docs h3 a:hover,
+.docs h4 a:hover {
+  color: $c_primary;
+}
+
+// fix anchor position issue
+:target:before {
+  content: "";
+  display: block;
+  height: 162px;
+  margin: -162px 0 0;
+}
+
+// TABLES 
+table {
+  background-color: $o_white;
+  border-collapse: collapse;
+  margin: 0 0 20px 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+tr {
+  background-color: $o_white;
+  border: 1px solid $o_grey_100;
+}
+
+td {
+  // word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  vertical-align: top;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+thead tr:hover {
+  background-color: $o_white;
+}
+
+tbody tr:hover {
+  background-color: $o_grey_50;
+}
+
+// ALERTS 
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: $radius_2;
+}
+
+.alert-success {
+  background-color: $o_green_100;
+  border-left: 5px solid $o_green_500;
+}
+
+.alert-success,
+.alert-success strong,
+.alert-success em {
+  color: $o_green_900;
+}
+
+.alert-warning {
+  background-color: $o_yellow_100;
+  border-left: 5px solid $o_yellow_600;
+}
+
+.alert-warning,
+.alert-warning strong,
+.alert-warning em {
+  color: $o_brown_500;
+}
+
+.alert-danger {
+  background-color: $o_red_100;
+  border-left: 5px solid $o_red_500;
+}
+
+.alert-danger,
+.alert-danger strong,
+.alert-danger em {
+  color: $o_red_900;
+}
+
+.alert-info {
+  background-color: $o_blue_100;
+  border-left: 5px solid $o_blue_500;
+}
+
+.alert-info,
+.alert-info strong,
+.alert-info em {
+  color: $o_blue_900;
+}
+
+// CALLOUTS 
+.callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid $o_grey_300;
+  border-left-width: 0.25rem;
+  border-radius: $radius_2;
+}
+
+.callout-success {
+  border-left-color: $o_green_500;
+}
+
+.callout-danger {
+  border-left-color: $o_red_500;
+}
+
+.callout-warning {
+  border-left-color: $o_yellow_600;
+}
+
+.callout-info {
+  border-left-color: $o_blue_500;
+}

@@ -1,0 +1,76 @@
+// sidebar.scss
+
+/**
+  * Index
+  * - Responsive menu icon
+  * - Sidebar menu
+  * - Menu items
+  * - Sidebar layout
+  *
+  */
+
+// RESPONSIVE MENU ICON
+.docs-navbar {
+  z-index: 3;
+  position: fixed;
+  top: 113px;
+  background: $o_grey_50;
+  height: 60px;
+}
+
+.docs-navbar .btn {
+  top: 10px;
+}
+
+// SIDEBAR MENU
+.docs-sidebar .docs-nav {
+  background: $o_grey_50;
+  position: fixed;
+  top: 113px;
+  bottom: 0;
+  padding: 0 20px;
+  width: 253px;
+}
+
+#sidebar .menu {
+  margin: 20px 0 25px 0;
+  width: 213px;
+  border-radius: $radius_2;
+}
+
+.divider-vert[data-content]::after,
+.divider[data-content]::after,
+.back-to-docs {
+  color: $o_grey_500;
+  font-size: .7rem;
+}
+
+// MENU ITEMS
+
+.menu .menu-item>a {
+  border-radius: $radius_2;
+}
+
+.menu .menu-item>a:active,
+.menu .menu-item>a:focus,
+.menu .menu-item>a:hover {
+  color: $c_primary;
+  background: $o_grey_100;
+}
+
+.menu li.active a {
+  color: $c_primary;
+  background: $o_grey_100;
+}
+
+// SIDEBAR LAYOUT
+.off-canvas .off-canvas-sidebar {
+  z-index: 2;
+  background: $o_grey_50;
+}
+
+.off-canvas .off-canvas-sidebar.active~.off-canvas-overlay,
+.off-canvas .off-canvas-sidebar:target~.off-canvas-overlay {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+}

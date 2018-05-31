@@ -1,0 +1,79 @@
+// table-of-contents.scss
+
+/**
+  * Index
+  * - Table of contents
+  * - Heading 2
+  * - Heading 3
+  * - Heading 4
+  *
+  */
+
+// TABLE OF CONTENTS
+
+#toc-article,
+#toc-aside {
+  border-left: 1px solid $o_grey_100;
+}
+
+#toc-article {
+  margin: 20px 0 40px 0;
+  display: none;
+}
+
+#toc-aside {
+  position: fixed;
+  top: 170px;
+  width: 100%;
+}
+
+.toc h5 {
+  padding-left: 24px;
+}
+
+.toc ul,
+.toc ul ul {
+  list-style-type: none;
+  font-size: 14px;
+}
+
+.toc ul {
+  margin: 0;
+}
+
+.toc ul li {
+  margin-top: 0;
+}
+
+.toc ul ul {
+  margin-left: 0px;
+}
+
+// HEADING H2
+.toc ul li a {
+  color: $o_grey_500;
+  display: block;
+  padding: 2px 0 2px 25px;
+  border-left: 1px solid $o_grey_100;
+  position: relative;
+  left: -1px;
+}
+
+.toc ul li a:active,
+.toc ul li a:focus,
+.toc ul li a:hover {
+  color: $c_primary;
+  text-decoration: none;
+  background-color: $o_grey_100;
+  border-left: 1px solid $c_primary;
+}
+
+// HEADING H3
+.toc ul ul li a {
+  padding-left: 35px;
+}
+
+// HEADING H4
+.toc ul ul ul li a {
+  padding-left: 45px;
+}

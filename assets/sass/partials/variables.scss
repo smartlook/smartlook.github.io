@@ -1,0 +1,53 @@
+// variables.scss
+
+// === VARIABLES ===
+
+// = FONTS =
+
+$font_stack: "Lato", // default
+-apple-system, // Apple
+BlinkMacSystemFont, // Chrome
+"Segoe UI", // Windows
+"Roboto", // Android
+"Helvetica Neue",
+Arial,
+sans-serif; // Basic web fallback
+
+// = COLORS = 
+
+// COMPANY
+$c_primary: #4693e0; // rgb(70, 147, 224)
+$c_secondary: #2ec09a; // rgb(46, 192, 154)
+$c_aqua: #3bddfb; // rgb(59, 221, 251)
+$c_sea: #1571ce; // rgb(21, 113, 206)
+
+// OTHER (CUSTOM)
+$o_white: #ffffff; // rgb(255, 255, 255)
+$o_white_2: #fffeff; // rgb(255, 254, 255)
+$o_greenish: #27a684; // rgb(39, 166, 132)
+
+// OTHER (MATERIAL DESIGN)
+$o_grey_50: #fafafa; // rgb(250, 250, 250)
+$o_grey_100: #f5f5f5; // rgb(245, 245, 245)
+$o_grey_300: #e0e0e0; // rgb(224, 224, 224)
+$o_grey_500: #9e9e9e; // rgb(158, 158, 158)
+$o_grey_600: #757575; // rgb(117, 117, 117)
+$o_red_100: #ffcdd2; // rgb(255,205,210)
+$o_red_500: #f44336; // rgb(244, 67, 54)
+$o_red_900: #b71c1c; // rgb(183,28,28)
+$o_green_100: #c8e6c9; // rgb(200,230,201)
+$o_green_500: #4caf50; // rgb(76,175,80)
+$o_green_900: #1b5e20; // rgb(27,94,32)
+$o_yellow_100: #fff9c4; // rgb(255, 249, 196)
+$o_yellow_600: #fdd835; // rgb(253,216,53)
+$o_brown_500: #8d6e63; // rgb(141, 110, 99)
+$o_blue_100: #bbdefb; // rgb(187,222,251)
+$o_blue_500: #2196f3; // rgb(33,150,243)
+$o_blue_900: #0d47a1; // rgb(13,71,161)
+$o_teal_200: #80cbc4; // rgb(128, 203, 196)
+$o_blue_grey_900: #263238; // rgb(38, 50, 56)
+
+// = ELEMENTS =
+
+$radius_2: 2px;
+$transition_03: .3s;

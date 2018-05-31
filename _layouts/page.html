@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head/meta-data.html %}
+
+  <body{% if page.layout=='page' %} class="{{ page.layout }} {{ page.title | slugify }}{% if page.class != null %} {{ page.class }}{% endif %}"{% endif %}>
+
+    {% include header/site-nav.html %} 
+    
+    <div class="container grid-lg">
+
+      <div class="columns">
+        <div class="column col-12">
+
+          {{ content }} 
+          
+          {% include footer/footer.html %}
+
+        </div>
+        <!-- column -->
+      </div>
+      <!-- columns -->
+
+    </div>
+    <!-- container -->
+
+    {% include footer/scripts.html %}
+    
+  </body>
+
+</html>

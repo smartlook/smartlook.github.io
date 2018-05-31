@@ -1,6 +1,6 @@
 # Smartlook API Docs
 
-* This site is still WIP. Current documentation is at: https://www.smartlook.com/docs/api
+This site is WIP. Our current documentation is at: https://www.smartlook.com/docs/api
 
 ## Copyright
 

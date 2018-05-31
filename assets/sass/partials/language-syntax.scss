@@ -1,0 +1,105 @@
+// language-syntax.scss
+
+/**
+  * Index
+  * - Language syntax
+  * - Code
+  * - Clipboard
+  *
+  */
+
+// LANGUAGE SYNTAX
+
+pre {
+  position: relative;
+}
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+  background: $o_grey_50;
+  margin-bottom: 20px;
+  border-radius: $radius_2;
+}
+
+pre[class]::before {
+  content: attr(class);
+  background: $o_grey_500;
+  min-width: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 10px;
+  color: $o_white;
+  text-align: center;
+  padding: 4px 0;
+}
+
+pre[class*="language-"] {
+  padding: 30px 20px 20px 20px;
+}
+
+pre[class*="language-js"]::before {
+  background: $o_yellow_600;
+}
+
+pre[class*="language-js"]::before {
+  content: "JS";
+}
+
+pre[class*="language-php"]::before {
+  background: $o_green_500;
+}
+
+pre[class*="language-php"]::before {
+  content: "PHP";
+}
+
+pre[class*="language-html"]::before {
+  background: $o_brown_500;
+}
+
+pre[class*="language-html"]::before {
+  content: "HTML";
+}
+
+pre[class*="language-markdown"]::before {
+  background: $o_grey_600;
+}
+
+pre[class*="language-markdown"]::before {
+  content: "MD";
+}
+
+// CODE
+code {
+  font-family: monospace;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 2px 4px;
+  font-size: 90%;
+  color: $o_red_500;
+  background-color: rgba(244, 67, 54, .1);
+}
+
+// CLIPBOARD 
+.copy-button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 5px 10px 3px 10px;
+  color: $o_grey_500;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transition: $transition_03;
+  transition: $transition_03;
+}
+
+.copy-button:hover {
+  color: $o_white;
+  background-color: $c_primary;
+}
