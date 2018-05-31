@@ -1,7 +1,6 @@
-# Smartlook API docs
+# Smartlook API Docs
 
-* This site is still WIP. We will move content to Github pages. 
-* To see our current documentation visit: https://www.smartlook.com/docs/api
+* This site is still WIP. Current documentation is at: https://www.smartlook.com/docs/api
 
 ## Copyright
 
