@@ -84,9 +84,15 @@ Blockquote text ...
 
 ## Text elements
 
-* **Bold** = `**Bold**`
-* *Emphasis* = `*Emphasis*`
-* ~~Deleted~~ = `~~Deleted~~`
+```markdown
+* **Bold**
+* *Emphasis*
+* ~~Deleted~~
+```
+
+* **Bold**
+* *Emphasis*
+* ~~Deleted~~
 
 ---
 
@@ -120,7 +126,7 @@ Type **3 [backticks](https://www.google.com/search?ei=z0sMW5f2HcKrswHJi7ToDQ&q=%
 
 Have a look at screenshot for better understanding.
 
-![code-block-with-language](/assets/img/typography/code-block-with-language.png)
+![code-block-with-language](/assets/img/pages/typography/code-block-with-language.png)
 
 #### Examples
 
@@ -156,7 +162,7 @@ Links are easy to create: [Google.com](https://google.com/)
 ![image alt text](/path/to/img.jpg)
 ```
 
-![Godzilla](https://upload.wikimedia.org/wikipedia/en/8/87/Godzilla_Power_Hour.jpg)
+![Godzilla](/assets/img/pages/typography/godzilla-01.jpg)
 
 Adding a link to image is simple. Wrap image into link syntax.
 
@@ -165,7 +171,7 @@ Adding a link to image is simple. Wrap image into link syntax.
 
 ```
 
-[![Godzilla](/assets/img/typography/cartoon-godzilla.jpeg)](https://en.wikipedia.org/wiki/Godzilla)
+[![Godzilla](/assets/img/pages/typography/godzilla-02.jpeg)](https://en.wikipedia.org/wiki/Godzilla)
 
 ---
 

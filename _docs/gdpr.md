@@ -3,10 +3,34 @@ title: "GDPR"
 subtitle: "Record user information of EU visitors."
 ---
 
-Depending on content you record you need your user’s consent. Once user gave you his consent this API. The code below needs to be adjusted based on what answer you received.
+Depending on content you record you need your user’s consent. Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
 
 Make sure you enabled required project settings before using this API.
-{: .alert .alert-warning }
+{: .callout .callout-warning }
+
+## Verify user consent
+
+At Smartlook we use pop up window to ask for user consent. You should implement similar solution on your site.
+
+![User consent](/assets/img/docs/gdpr/consent.png)
+
+Verify if a visitor gave his consent or not by using this code.
+
+```js
+<script>
+  smartlook(function() {
+    console.log(smartlook.consent.api)
+    console.log(smartlook.consent.forms)
+    console.log(smartlook.consent.ip)
+  });
+</script>
+```
+
+There are 3 possible values that you can see in the console:
+
+1. `true` if user agreed and provided consent
+2. `false` if user refused to provide consent
+3. `null` if user was not asked for consent yet
 
 ## Form inputs
 
@@ -58,23 +82,3 @@ User consented to being identified via the API.
   smartlook('consentAPI', clientDecision ? consentText : false);
 </script>
 ```
-
-## Verify consent
-
-Verify if a visitor gave his consent or not by using this code.
-
-```js
-<script>
-  smartlook(function() {
-    console.log(smartlook.consent.api)
-    console.log(smartlook.consent.forms)
-    console.log(smartlook.consent.ip)
-  });
-</script>
-```
-
-There are 3 possible values that you can see in the console:
-
-1. `true` if user agreed and provided consent
-2. `false` if user refused to provide consent
-3. `null` if user was not asked for consent yet
