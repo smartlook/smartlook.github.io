@@ -60,7 +60,15 @@ ul li {
 
 .docs img,
 .typography img {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
-          border-radius: $radius_2;
+  border: 1px solid $o_grey_300;
+  border-radius: $radius_2;
+  padding: 4px;
+  background: $o_grey_50;
+  -webkit-transition: $transition_03;
+  transition: $transition_03;
+}
+
+.docs a img:hover,
+.typography a img:hover {
+  border: 1px solid $o_grey_500;
 }

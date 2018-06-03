@@ -74,6 +74,9 @@ header ul li {
   top: 3px;
   -webkit-box-shadow: none;
   box-shadow: none;
+  border: none;
+  padding: 0;
+  background: $o_white;
 }
 
 #language-switch img:hover {
