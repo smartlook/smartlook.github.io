@@ -190,7 +190,6 @@
   }
   
   .docs .section-footer {
-    text-align: center;
     margin-bottom: 60px;
   }
 }
@@ -207,6 +206,10 @@
     background: url("../img/logo-small.png");
     width: 43px;
     height: 22px;
+  }
+
+  .section-footer {
+    text-align: center;
   }
 }
 
