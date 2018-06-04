@@ -201,6 +201,7 @@
 // = MOBILE = 
 
 @media (max-width: 425px) {
+.page .nav-logo,
 .home-docs .nav-logo,
 .docs .nav-logo {
     background: url("../img/logo-small.png");
@@ -220,11 +221,11 @@
 }
 
 @media (max-width: 375px) {
-  .section-footer span {
-    display: none;
-  }
+  // add css if needed
 }
 
 @media (max-width: 320px) {
-  // add css if needed
+  .section-footer span {
+    display: none;
+  }
 }
