@@ -26,7 +26,7 @@ This example shows a code how it can look in a console.
 </script>
 ```
 
-Now let's say you want to save recording URL = `playUrl` in your own service.
+Now let's say you want to save a recording URL (`playUrl`) in your own service.
 
 ```js
 <script>
