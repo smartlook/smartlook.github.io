@@ -1,10 +1,10 @@
 # Smartlook Docs
 
-API documentation for [Smartlook.com](https://www.smartlook.com/)
+Read our [Docs](https://smartlook.github.io/docs/) for [Smartlook.com](https://www.smartlook.com/) or have a look at landing page for [smartlook.github.io](https://smartlook.github.io/).
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
@@ -21,8 +21,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Deployment
 
-1. Jekyll is built automatically on GitHub. 
-2. On localhost have a look at how to [Serve the site](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/#serve-the-site).
+1. **Localhost:** Learn how to [serve the site](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/#serve-the-site) on your machine.
+2. **GitHub:** Jekyll site is built automatically once repo is updated.
 
 
 ## Contributing
