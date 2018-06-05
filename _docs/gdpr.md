@@ -3,7 +3,7 @@ title: "GDPR"
 subtitle: "Record user information of EU visitors."
 ---
 
-Depending on content you record you need your user’s consent. Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="\_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
+Depending on content you record you need your user’s consent. Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
 
 Make sure you enabled required project settings before using this API.
 {: .callout .callout-warning }
