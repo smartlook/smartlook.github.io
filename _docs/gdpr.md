@@ -82,3 +82,13 @@ User consented to being identified via the API.
   smartlook('consentAPI', clientDecision ? consentText : false);
 </script>
 ```
+
+### GDPR safe data
+
+You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
+
+```html
+<p data-recording-gdpr-safe>
+  Tesla Model X price is $80,700.
+</p>
+```
