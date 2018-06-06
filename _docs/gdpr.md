@@ -83,7 +83,7 @@ User consented to being identified via the API.
 </script>
 ```
 
-### GDPR safe data
+## GDPR safe data
 
 You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
 
