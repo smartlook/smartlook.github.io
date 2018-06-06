@@ -8,7 +8,7 @@ In addition to basic info shown by default in dashboard you can also display: **
 **Database connection:** This API needs a connection to *your user database* in order to work.
 {: .callout .callout-warning }
 
-## Visitor information
+## Visitor information (dev)
 
 Code you need to insert in your site has a following format in **JavaScript**.
 
