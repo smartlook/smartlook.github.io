@@ -6,6 +6,19 @@
         <li class="breadcrumb-item">
           <a href="{{ site.url_docs_root }}">{{ site.pa_docs }}</a>
         </li>
+
+        {% if page.url contains 'web' %}
+        <li class="breadcrumb-item">
+          <a href="{{ site.url_docs_root }}{{ site.ca_web }}/">{{ site.ca_web }}</a>
+        </li>
+        {% endif %}
+        
+        {% if page.url contains 'sdk' %}
+        <li class="breadcrumb-item">
+          <a href="{{ site.url_docs_root }}{{ site.ca_sdk }}/">{{ site.ca_sdk }}</a>
+        </li>
+        {% endif %}
+
         <li class="breadcrumb-item">{{ page.title }}</li>
       </ul>
       <!-- breadcrumb -->

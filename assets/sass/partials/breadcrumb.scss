@@ -11,6 +11,10 @@
   top: 68px;
 }
 
+.breadcrumb li:nth-child(2) {
+  text-transform: uppercase;
+}
+
 .breadcrumb .breadcrumb-item:not(:last-child) a,
 .breadcrumb .breadcrumb-item:not(:last-child) a:active,
 .breadcrumb .breadcrumb-item:not(:last-child) a:focus,
