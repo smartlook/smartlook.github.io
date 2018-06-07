@@ -22,11 +22,14 @@ These instructions will get you a copy of the project up and running on your loc
 ## Deployment
 
 1. **Localhost:** Learn how to [serve the site](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/#serve-the-site) on your machine.
-2. **GitHub:** Jekyll site is built automatically once repo is updated.
-
+2. **GitHub:** Jekyll site is built automatically `master` branch is updated.
 
 ## Contributing
 
-1. Fork this repo. 
+1. Fork this repo.
 2. Update content or fix what you think is a bug.
 3. Create pull request.
+
+## Theme
+
+Using Jekyll theme **Smart Docs** which is under MIT license.
