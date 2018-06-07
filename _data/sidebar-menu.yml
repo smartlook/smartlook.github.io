@@ -1,18 +1,27 @@
 # Sidebar menu
-docs_list_title: Docs
-docs:
+
+## WEB
+docs_list_title: Web
+web:
 
 - title: Identify visitor
-  url: /docs/identify-visitor/
+  url: /docs/web/identify-visitor/
 
 - title: GDPR
-  url: /docs/gdpr/
+  url: /docs/web/gdpr/
 
 - title: Sensitive data protection
-  url: /docs/sensitive-data-protection/
+  url: /docs/web/sensitive-data-protection/
 
 - title: Custom events
-  url: /docs/custom-events/
+  url: /docs/web/custom-events/
 
 - title: Recording information
-  url: /docs/recording-information/
+  url: /docs/web/recording-information/
+
+## SDK
+docs_list_title: Sdk
+sdk:
+
+- title: Android
+  url: /docs/sdk/android/

@@ -38,6 +38,10 @@
   border-radius: $radius_2;
 }
 
+#sidebar .menu .divider {
+  text-transform: uppercase;
+}
+
 .divider-vert[data-content]::after,
 .divider[data-content]::after,
 .back-to-docs {

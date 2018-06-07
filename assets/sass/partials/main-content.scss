@@ -1,5 +1,4 @@
 // main-content.scss
-
 /**
   * Index
   * - Main content
@@ -13,7 +12,6 @@
   */
 
 // MAIN CONTENT
-
 article {
   margin-top: 20px;
 }
@@ -33,6 +31,7 @@ article h4 {
   margin-bottom: 20px;
   position: relative;
 }
+
 .page-subtitle {
   color: $o_grey_500;
 }
@@ -56,7 +55,6 @@ article h4 {
 }
 
 // PAGES
-
 // Body classes
 .page {
   padding-top: 135px;
@@ -118,19 +116,44 @@ article h4 {
   margin-bottom: 30px;
 }
 
+.home-docs .section-cards a:hover {
+  text-decoration: none;
+}
+
+.home-docs .section-cards p {
+  margin: 0;
+}
+
 .card {
   border-radius: $radius_2;
   border: 1px solid $o_grey_300;
+  -webkit-transition: $transition_03;
+  transition: $transition_03;
 }
 
 .card:hover {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid $c_primary;
+  background: $o_grey_50;
+}
+
+.card:active {
+  position: relative;
+  top: 1px;
 }
 
 .section-footer .container {
   z-index: 0;
   padding: 0rem 2rem;
+}
+
+// Docs (categories)
+.category-headline {
+  text-transform: uppercase;
+  color: $o_grey_600;
+  border-bottom: 1px dashed $o_grey_300;
+  margin-bottom: 20px;
 }
 
 // ANCHORS 

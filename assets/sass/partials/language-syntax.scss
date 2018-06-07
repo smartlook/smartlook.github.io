@@ -24,7 +24,7 @@ pre[class*="language-"] {
 pre[class]::before {
   content: attr(class);
   background: $o_grey_500;
-  min-width: 50px;
+  min-width: 60px;
   position: absolute;
   top: 0;
   left: 0;
@@ -60,6 +60,14 @@ pre[class*="language-html"]::before {
 
 pre[class*="language-html"]::before {
   content: "HTML";
+}
+
+pre[class*="language-android"]::before {
+  background: $o_green_900;
+}
+
+pre[class*="language-android"]::before {
+  content: "ANDROID";
 }
 
 pre[class*="language-markdown"]::before {

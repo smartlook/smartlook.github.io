@@ -9,8 +9,11 @@
 
     <div id="nav-menu">
       <ul>
-        <li>
-          <a href="{{ site.url_docs_root }}" class="btn btn-link">{{ site.pa_javascript_api }}</a>
+      <li class="navbar-item{% if page.url contains 'web' %} navbar-item-active{% endif %}">
+        <a href="{{ site.url_docs_root }}{{ site.ca_web }}/">{{ site.ca_web }}</a>
+      </li>
+        <li class="navbar-item{% if page.url contains 'sdk' %} navbar-item-active{% endif %}">
+          <a href="{{ site.url_docs_root }}{{ site.ca_sdk }}/">{{ site.ca_sdk }}</a>
         </li>
       </ul>
     </div>
@@ -21,7 +24,7 @@
       </form>
     </div>
 
-    <div id="language-switch">
+    <!-- <div id="language-switch">
       {% if page.lang == 'en' %}
       <a href="#">
         <img src="/assets/img/flags/cz.png" width="32" height="32" alt="CZ">
@@ -31,7 +34,7 @@
         <img src="/assets/img/flags/en.png" width="32" height="32" alt="EN">
       </a>
       {% endif %}
-    </div>
+    </div> -->
 
   </section>
 </header>

@@ -90,7 +90,9 @@
 }
 
 @media (max-width: 840px) {
-  // add css if needed 
+  #search {
+    width: 300px;
+  }
 }
 
 // = TABLET = 
@@ -102,14 +104,27 @@
   .docs-content .column {
     padding-right: 40px;
   }
+
+  #search {
+    width: 250px;
+  }
+
   #btt {
     right: 32px;
   }
 }
 
 @media (max-width: 700px) {
-  #nav-menu {
+  #logo {
+    margin-right: 60px;
+  }
+
+  #logo a::after {
     display: none;
+  }
+
+  #search {
+    width: 280px;
   }
 }
 
@@ -117,8 +132,9 @@
   .off-canvas .off-canvas-toggle {
     left: 1.5rem;
   }
-  #nav-menu {
-    display: none;
+
+  #search {
+    width: 180px;
   }
 
   // TABLES 
@@ -176,6 +192,18 @@
     display: none;
   }
 
+  .page .nav-logo,
+  .home-docs .nav-logo,
+  .docs .nav-logo {
+    background: url("../img/logo-small.png");
+    width: 43px;
+    height: 22px;
+  }
+
+  #search {
+    width: 220px;
+  }
+  
   #btt {
     left: 40px;
     right: 32px;
@@ -195,18 +223,20 @@
 }
 
 @media (max-width: 480px) {
-  // add css if needed 
+  #search {
+    width: 180px;
+  }
 }
 
 // = MOBILE = 
 
 @media (max-width: 425px) {
-.page .nav-logo,
-.home-docs .nav-logo,
-.docs .nav-logo {
-    background: url("../img/logo-small.png");
-    width: 43px;
-    height: 22px;
+  #nav-menu {
+    display: none;
+  }
+
+  #search {
+    width: 300px;
   }
 
   .section-footer {
@@ -221,10 +251,16 @@
 }
 
 @media (max-width: 375px) {
-  // add css if needed
+  #search {
+    width: 265px;
+  }
 }
 
 @media (max-width: 320px) {
+    #search {
+      width: 210px;
+    }
+  
   .section-footer span {
     display: none;
   }
