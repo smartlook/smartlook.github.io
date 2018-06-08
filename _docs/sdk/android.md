@@ -65,7 +65,7 @@ In order for SDK to work you have to call: `Smartlook.init(YOUR_API_KEY)` method
 
 If you call `Smartlook.init(YOUR_API_KEY)` method later in the app, SDK will still work. However anything that happened before the call would not be accessible -> no recording/analytics.
 
-Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`. However, we should alert developers that those keys should be non sensitive, i.e. no e-mail, name etc. - I believe it is a law in at least US.
+Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
 
 ## Session
 Session starts when app is brought to foreground. Once home button is pressed, app crashes or user turns the screen off, SDK will end a session. Any data related to the session are cached until we are able to upload them to the server. However before public release, we should probably change this to cache last i.e. 5 sessions so we do not store data without any limit. - This limit might be higher in case recording is not applicable -> only analytics data.

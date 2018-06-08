@@ -113,7 +113,7 @@ article h4 {
 }
 
 .home-docs .section-cards {
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
 .home-docs .section-cards a:hover {
@@ -129,6 +129,7 @@ article h4 {
   border: 1px solid $o_grey_300;
   -webkit-transition: $transition_03;
   transition: $transition_03;
+  margin-bottom: 20px;
 }
 
 .card:hover {
