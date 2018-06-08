@@ -51,6 +51,7 @@ pa_d_gdpr: "Record user information of EU visitors."
 
 ## Pages (docs: sdk)
 pa_android: "Android"
+pa_ios: "iOS"
 
 # PLUGINS ==================================================
 

@@ -1,6 +1,6 @@
 ---
 title: "Android"
-subtitle: "SDK for screen recording and analytics."
+subtitle: "SDK for screen recording and analytics for Android devices."
 ---
 
 With this SDK developers and/or companies should be able to:

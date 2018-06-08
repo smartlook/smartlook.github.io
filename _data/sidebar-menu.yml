@@ -25,3 +25,6 @@ sdk:
 
 - title: Android
   url: /docs/sdk/android/
+
+- title: iOS
+  url: /docs/sdk/ios/
