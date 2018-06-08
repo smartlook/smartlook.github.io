@@ -37,7 +37,7 @@ Developer can also mark session with some internal key that is associated to the
 
 If you call `Smartlook.init(YOUR_API_KEY)` method later in the app SDK will still work. However anything that happened before the call would not be accessible -> no recording/analytics.
 
-Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`. However we should alert developers that those keys should be non sensitive i.e. no e-mail, name etc. - I believe it is a law in at least US.
+Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
 
 In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as TextureView recording etc.
 
