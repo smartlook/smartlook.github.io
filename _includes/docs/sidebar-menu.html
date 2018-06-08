@@ -11,14 +11,14 @@
     <ul class="menu">
       <li class="divider" data-content="{{ site.ca_web }}"></li>
       
-      {% for item in site.data.sidebar-menu.web %}
+      {% for item in site.data.articles.web %}
         <li class="menu-item {% if item.url == page.url %}active{% endif %}">
           <a href="{{ item.url }}">{{ item.title }}</a>
         </li>
       {% endfor %}
       
       <li class="divider" data-content="{{ site.ca_sdk }}"></li>
-      {% for item in site.data.sidebar-menu.sdk %}
+      {% for item in site.data.articles.sdk %}
       <li class="menu-item {% if item.url == page.url %}active{% endif %}">
         <a href="{{ item.url }}">{{ item.title }}</a>
       </li>

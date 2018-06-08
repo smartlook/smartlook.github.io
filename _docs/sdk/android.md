@@ -33,7 +33,7 @@ Also add this line to your module setting (add correct VERSION).
 
 ## How to use
 
-In order for SDK to work you have to call: `Smartlook.init(YOUR_API_KEY)` method as soon as possible. You can do that in `onCreate` method in your Application class or in Activity that is an entry point to your app. If you are using any super class as a wrapper for the Activity feel free to call init method in super `onCreate` method. SDK keeps track of its own state so you don't have to.
+Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
 
 If you call `Smartlook.init(YOUR_API_KEY)` method later in the app SDK will still work. However anything that happened before the call would not be accessible -> no recording/analytics.
 

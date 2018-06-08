@@ -27,9 +27,7 @@
 // = LAPTOP = 
 
 @media (max-width: 1024px) {
-  .column {
-    padding: 0 30px;
-  }
+// add CSS if needed
 }
 
 @media (max-width: 960px) {
@@ -51,12 +49,6 @@
   }
   .column {
     padding: 0 30px;
-  }
-  .home-docs .section-cards {
-    margin-bottom: 0;
-  }
-  .card {
-    margin-bottom: 20px;
   }
 
   // fix anchor position issue
