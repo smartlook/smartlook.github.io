@@ -19,15 +19,6 @@ web:
 - title: Recording information
   url: /docs/web/recording-information/
 
-- title: x1
-  url: /x1/
-
-- title: x1
-  url: /x1/
-
-- title: x1
-  url: /x1/
-
 ## SDK
 docs_list_title: Sdk
 sdk:
