@@ -78,6 +78,22 @@ pre[class*="language-markdown"]::before {
   content: "MD";
 }
 
+pre[class*="language-swift"]::before {
+  background: $o_orange_500;
+}
+
+pre[class*="language-swift"]::before {
+  content: "SWIFT";
+}
+
+pre[class*="language-objc"]::before {
+  background: $o_blue_900;
+}
+
+pre[class*="language-objc"]::before {
+  content: "OBJC";
+}
+
 // CODE
 code {
   font-family: monospace;
