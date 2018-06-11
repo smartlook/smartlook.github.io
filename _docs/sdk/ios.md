@@ -12,95 +12,108 @@ With this SDK developers and/or companies can:
 
 ## Installation
 
-Smartlook iOS SDK can be installed via CocoaPods or by downloading the SDK directly [here.](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.0.zip)
+Install via CocoaPods or download Smartlook iOS SDK.
 
-### Cocoapods installation:
+### Cocoapods installation
+
 1. Add `pod 'Smartlook'` to your project's Podfile.
 2. Run `pod install`
-3. Optionally add `-ObjC` flag to your app target's Other Linker flags. Cocoapods should add -ObjC flag to Other linker flags by default. -ObjC flag is needed because the SDK uses categories. [More info](https://developer.apple.com/library/content/qa/qa1490/_index.html)
-4. Import Smartlook SDK in your app's App Delegate class
-
-	Objective C:
-	`#import <Smartlook/Smartlook.h>`
-
-	Swift:
-	`import Smartlook`
-
+3. Optionally add `-ObjC` flag to your app target's Other Linker flags. Cocoapods should add -ObjC flag to Other linker flags by default. -ObjC flag is needed because the SDK uses [categories](https://developer.apple.com/library/content/qa/qa1490/_index.html){:target="_blank"}.
+4. Import Smartlook SDK in your app's App Delegate class:
+  * **Objective C:** `#import <Smartlook/Smartlook.h>`
+  * **Swift:** `import Smartlook`
 5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method. You can find your Smartlook Key in the Smartlook Dashboard.
 
-	Objective C:
-	`[Smartlook startWithKey:@"your-smartlook-key"];`
+* **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
+* **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
 
-	Swift:
-	`Smartlook.start(withKey: "your-smartlook-key");`
+### Manual installation
 
-### Manual installation:
-1. Download the SDK [here](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.0.zip).
+1. Download [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.0.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
-3. Optionally add `-ObjC` flag to your app target's Other Linker flags. -ObjC flag is needed because the SDK uses categories. [More info](https://developer.apple.com/library/content/qa/qa1490/_index.html)
-4. Import Smartlook SDK in your app's App Delegate class
-
-	Objective C:
-	`#import <Smartlook/Smartlook.h>`
-
-	Swift:
-	`import Smartlook`
-
+3. Optionally add `-ObjC` flag to your app target's Other Linker flags. -ObjC flag is needed because the SDK uses [categories](https://developer.apple.com/library/content/qa/qa1490/_index.html){:target="_blank"}.
+4. Import Smartlook SDK in your app's App Delegate class:
+  * **Objective C:** `#import <Smartlook/Smartlook.h>`
+  * **Swift:** `import Smartlook`
 5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method. You can find your Smartlook Key in the Smartlook Dashboard.
-	
-	Objective C:
-	`[Smartlook startWithKey:@"your-smartlook-key"];`
 
-	Swift:
-	`Smartlook.start(withKey: "your-smartlook-key");`
+* **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
+* **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
 
 ## API Reference
 
 Applications can interact with the SDK using public SDK methods.
 
-### Starting Smartlook
-`+ (void)startWithKey:(nonnull NSString*)key;`
+### Initialize Smartlook
 
-This method initializes the SDK. Should be called in App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method. You must supply your Smartlook SDK key, which can be acquired in the Smartlook Dashboard.
+You must supply your **Smartlook SDK key** which can be acquired in the Smartlook Dashboard.
+{: .alert .alert-warning }
 
-### Marking (and unmarking) sensitive views
-`+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
+Use: `+ (void)startWithKey:(nonnull NSString*)key;`
+
+This method initializes the SDK. It should be called in App Delegate's method A or B:
+
+* A: `application:didFinishLaunchingWithOptions:`
+* B: `application(_:didFinishLaunchingWithOptions:)` 
+
+### Mark and unmark sensitive views
+
+Use: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
 `+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
 
 You can mark sensitive views to be hidden from recordings. Textfields and Webviews are hidden by default.
 
-### Recording custom events
-`+ (void)recordCustomEventWithEventName:(nonnull NSString*)eventName propertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)propertiesDictionary;`
+### Record custom events
 
-You can add custom timestamped events. Those events will be shown in your Dashboard. Smartlook is recording some events automatically (button presses, screens openings). Properties in the dictionary must be strings, values must be strings only too. Other values (like arrays, nested dictionaries) will be stringified.
+Use: `+ (void)recordCustomEventWithEventName:(nonnull NSString*)eventName propertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)propertiesDictionary;`
 
-Example (Objective C):
-`[Smartlook recordCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]`
+You can add custom timestamped events. Those events will be shown in your Dashboard. Smartlook is recording some events automatically (button presses, screens opening). Properties in the dictionary must be strings and values must be strings as well. Other values (like arrays, nested dictionaries) will be stringified.
 
-Example (Swift):
-`Smartlook.recordCustomEvent(withEventName: "user-bought-subscription", propertiesDictionary: ["tier" : "basic"]);`
+```objc
+[Smartlook recordCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
+```
 
-### Adding user identifier
-`+ (void)setUserIdentifier:(nullable NSString*)userIdentifier;`
+```swift
+Smartlook.recordCustomEvent(withEventName: "user-bought-subscription", propertiesDictionary: ["tier" : "basic"]);
+```
+
+### Add user identifier
+
+Use: `+ (void)setUserIdentifier:(nullable NSString*)userIdentifier;`
 
 You can specify your app's user identifier. You can then look up those identifiers in the Dashboard to find specific user's recordings.
 
-Example (Objective C):
-`[Smartlook  setUserIdentifier:@"some-user-identifier"];`
+```objc
+[Smartlook  setUserIdentifier:@"some-user-identifier"];
+```
 
-Example (Swift):
-`Smartlook.setUserIdentifier("some-user-identifier");`
+```swift
+Smartlook.setUserIdentifier("some-user-identifier");
+```
 
-### Adding other user properties
-`+ (void)setUserPropertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)userPropertiesDictionary;`
+### Add other user properties
+
+Use: `+ (void)setUserPropertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)userPropertiesDictionary;`
 
 You can set additional user information, such as name, email and other custom properties. You'll see those properties in the Dashboard in Visitor details. You can use any NSString as a key and any NSString as a value in the dictionary.
 
-Note:
-Keys "name" and "email" will be highlighted in Visitors details.
+Keys **"name"** and **"email"** will be highlighted in Visitor information.
+{: .callout .callout-info }
 
-Example (Objective C):
-`[Smartlook setUserPropertiesDictionary:@{ @"name" : @"some-name", @"email" : @"some-email", @"some-other-property" : @"some-other-value" }]`
+```objc
+[
+  Smartlook setUserPropertiesDictionary:@{ 
+    @"name" : @"some-name", 
+    @"email" : @"some-email", 
+    @"some-other-property" : @"some-other-value"
+  }
+]
+```
 
-Example (Swift):
-`Smartlook.setUserPropertiesDictionary(["name" : "some-name", "email" : "some-email", "some-other-property" : "some-other-value"]);`
+```swift
+Smartlook.setUserPropertiesDictionary([
+  "name" : "some-name", 
+  "email" : "some-email",
+  "some-other-property" : "some-other-value"
+]);
+```
