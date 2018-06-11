@@ -70,11 +70,11 @@ pre[class*="language-android"]::before {
   content: "ANDROID";
 }
 
-pre[class*="language-markdown"]::before {
+pre[class*="language-md"]::before {
   background: $o_grey_600;
 }
 
-pre[class*="language-markdown"]::before {
+pre[class*="language-md"]::before {
   content: "MD";
 }
 

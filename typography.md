@@ -10,7 +10,7 @@ Markdown that can be used for writing content.
 
 ## Emojies
 
-```markdown
+```md
 You can use same [Emojies](https://emojipedia.org/) as on Slack :fire: :sunglasses: :heart:
 ```
 
@@ -20,7 +20,7 @@ You can use same [Emojies](https://emojipedia.org/) as on Slack :fire: :sunglass
 
 ## Headings
 
-```markdown
+```md
 # H1 Heading
 ## H2 Heading
 ### H3 Heading
@@ -40,13 +40,13 @@ You can use same [Emojies](https://emojipedia.org/) as on Slack :fire: :sunglass
 
 ## Text
 
-```markdown
+```md
 What you type will become a paragraph.
 ```
 
 What you type will become a paragraph.
 
-```markdown
+```md
 Blockquote text ...
 
 > "Do. Or do not. There is no try."  ~ Yoda
@@ -60,7 +60,7 @@ Blockquote text ...
 
 ## Lists
 
-```markdown
+```md
 1. First item
 2. Second item
 3. Third item
@@ -70,7 +70,7 @@ Blockquote text ...
 2. Second item
 3. Third item
 
-```markdown
+```md
 * First item
 * Second item
 * Third item
@@ -84,7 +84,7 @@ Blockquote text ...
 
 ## Text elements
 
-```markdown
+```md
 * **Bold**
 * *Emphasis*
 * ~~Deleted~~
@@ -102,7 +102,7 @@ Code has 2 types and accepts language property.
 
 ### Inline code
 
-```markdown
+```md
 Inline code looks like this: `inline code` or `!@#$%^&*()` or `<p>lorem</p>`. 
 ```
 
@@ -144,11 +144,25 @@ Have a look at screenshot for better understanding.
 <p>Lorem ipsum.</p>
 ```
 
+```objc
+[Smartlook  setUserIdentifier:@"some-user-identifier"];
+```
+
+```swift
+Smartlook.setUserIdentifier("some-user-identifier");
+```
+
+```md
+* this 
+* will be 
+* an unordered list
+```
+
 ---
 
 ## Links
 
-```markdown
+```md
 Links are easy to create: [Google.com](https://google.com/)
 ```
 
@@ -158,7 +172,7 @@ Links are easy to create: [Google.com](https://google.com/)
 
 ## Images
 
-```markdown
+```md
 ![image alt text](/path/to/img.jpg)
 ```
 
@@ -166,7 +180,7 @@ Links are easy to create: [Google.com](https://google.com/)
 
 Adding a link to image is simple. Wrap image into link syntax.
 
-```markdown
+```md
 ![image alt text](/path/to/img.jpg) + []() = [![image alt text](/path/to/img.jpg)](link)
 
 ```
@@ -177,7 +191,7 @@ Adding a link to image is simple. Wrap image into link syntax.
 
 ## Separator
 
-```markdown
+```md
 Horizontal rule is created by `---` but it is not recommended. Better not to use it or if then via CSS.
 ```
 
