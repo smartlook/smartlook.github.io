@@ -1,4 +1,4 @@
-# 
+#
 # >>> IF YOU CHANGE CONFIG RESTART SERVER: "⌃C + bundle exec jekyll serve" <<<
 #
 
@@ -76,6 +76,9 @@ exclude:
   - config.codekit3
   - Gemfile.lock
   - Gemfile
+  - /vendor
+  - /docker-compose.yml
+  - /docker-start
 
 # COLLECTIONS ==================================================
 
