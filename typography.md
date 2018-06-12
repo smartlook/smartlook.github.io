@@ -168,6 +168,12 @@ Links are easy to create: [Google.com](https://google.com/)
 
 Links are easy to create: [Google.com](https://google.com/)
 
+```md
+Direct links with no custom text <https://google.com/>
+```
+
+Direct links with no custom text <https://google.com/>
+
 ---
 
 ## Images
