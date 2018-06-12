@@ -1,0 +1,11 @@
+version: '2'
+services:
+  site:
+    image: jekyll/jekyll:pages
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
+    ports:
+      - 4001:4001
+      - 35729:35729
+    command: ./docker-start

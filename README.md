@@ -6,13 +6,15 @@ Read our [Docs](https://smartlook.github.io/docs/) for [Smartlook.com](https://w
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### Prerequisites
+### Local Jekyll
 
-* [https://jekyllrb.com/docs/installation/#requirements](https://jekyllrb.com/docs/installation/#requirements)
+[https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/)
 
-### Installing
+### Jekyll on Docker
 
-* [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/)
+```sh
+docker-compose up
+```
 
 ## Built With
 

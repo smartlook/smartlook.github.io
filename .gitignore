@@ -4,3 +4,4 @@ _site
 .vscode
 .htaccess
 config.codekit3
+/vendor
