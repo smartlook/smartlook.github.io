@@ -4,7 +4,6 @@
   * Index
   * - Header
   * - Search
-  * - Language switch
   *
   */
 
@@ -139,33 +138,4 @@ body.search ul {
 
 span.no-results {
   color: $o_red_500;
-}
-
-// LANGUAGE SWITCH
-
-#language-switch {
-  margin-right: 30px;
-}
-
-#language-switch img {
-  position: relative;
-  top: 3px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  background: $o_white;
-}
-
-#language-switch img:hover {
-  opacity: .7;
-}
-
-#language-switch img:active {
-  top: 4px;
-}
-
-.home-github #language-switch {
-  position: absolute;
-  right: 0;
 }
