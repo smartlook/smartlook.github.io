@@ -51,10 +51,10 @@ You must supply your **Smartlook SDK key** which can be acquired in the Smartloo
 
 Use: `+ (void)startWithKey:(nonnull NSString*)key;`
 
-This method initializes the SDK. It should be called in App Delegate's method A or B:
+This method initializes the SDK. It should be called in App Delegate's methods:
 
-* A: `application:didFinishLaunchingWithOptions:`
-* B: `application(_:didFinishLaunchingWithOptions:)` 
+* **Objective C:** `application:didFinishLaunchingWithOptions:`
+* **Swift:** `application(_:didFinishLaunchingWithOptions:)`
 
 ### Mark and unmark sensitive views
 
