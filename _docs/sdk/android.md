@@ -13,13 +13,11 @@ With this SDK developers and/or companies should be able to:
 
 ## Project build
 
-In case you want to use SDK in Android project add these lines to your root gradle project.
+In case you want to use SDK in Android project add these lines to your gradle project file:
 
 ```android
 allprojects {
   repositories {
-    jcenter()
-
     maven {
       url "http://artifactory.smartlook.com:8081/artifactory/libs-release-local"
     }
@@ -27,39 +25,43 @@ allprojects {
 }
 ```
 
-Also add this line to your module setting (add correct VERSION).
+Also add this line to your module gradle:
 
 `implementation('com.smartlook.recording:app:VERSION')`
 
-## How to use
 
-Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
+## API Reference
 
-If you call `Smartlook.init(YOUR_API_KEY)` method later in the app SDK will still work. However anything that happened before the call would not be accessible -> no recording/analytics.
+Applications can interact with the SDK using public SDK methods.
 
-Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
+### Initialize Smartlook
+
+You must supply your **Smartlook SDK key** which can be acquired in the Smartlook Dashboard.
+
+Use: `Smartlook.init(YOUR_API_KEY)`
+
+This method initializes the SDK. Best place to call this method is Application class or any entry point to your app.
 
 In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as TextureView recording etc.
 
-## Session recording
-
-Developers can use `markViewAsSensitive(View view)` to mark any view as sensitive. Marked view will be blacked out in the recording. Later we might introduce some automatic options like `isAnyInputSensitive(boolean isSensitive)` but it is not so important right now.
-
 Currently we support API 18+ for recording. In future we would like to extend recording functionality to any API.
 
-## Crash reporting
+### Mark sensitive views
 
-In case developer did not handle any exception SDK will automatically report stackTrace - basically last action in the session. This works our of box and is sent to our servers in case analytics/errors is applicable.
+Use: `markViewAsSensitive(View view)`
 
-Because app process is killed by the crash video is going to be rendered and sent to the server once new session is started.
+You can mark sensitive views to be hidden from recordings. EditTexts and Webviews are hidden by default.
 
-Proguard mapping file still not available -> Beta functionality.
+### Recording marking
+
+Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
+
 
 ## Analytics
 
 SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering. In case developers want to be sure that data are sent to our servers right away, they should call `flush()` method.
 
-Next method I added is `timeEvent(@NonNull String eventName)`. It is not sending any event, but once developer calls any `track(...)` method with corresponding eventName, it will also add extra duration property. This might be usefull for developers to measure any time sensitive or long running actions in the app.
+Next method is `timeEvent(@NonNull String eventName)`. It is not sending any event, but once developer calls any `track(...)` method with corresponding eventName, it will also add extra duration property. This might be usefull for developers to measure any time sensitive or long running actions in the app.
 
 Our SDK also supports super props. Those can be set by `setGlobalProperties(JSONObject eventProperties)` method. Such props are added to any event sent from the client in the future. Properties in global scope has higher priority so in merging process those from global scope will override custom props with the same key.
 
@@ -68,3 +70,12 @@ Developer can also use `setGlobalImmutableProperties(JSONObject eventProperties)
 Methods accepting `JSONObject` also exists in alternative form accepting `Bundle` object.
 
 In case developer wants to remove any global props he can do that by `removeSuperPropertyByKey(String propertyKey)` or `removeAllSuperProperties()` methods. Any global property is stored until app is uninstalled.
+
+
+## Crash reporting
+
+In case developer did not handle any exception SDK will automatically report stackTrace - basically last action in the session. This works our of box and is sent to our servers in case analytics/errors is applicable.
+
+Because app process is killed by the crash video is going to be rendered and sent to the server once new session is started.
+
+Proguard mapping file still not available -> Beta functionality.
