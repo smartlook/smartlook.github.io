@@ -2,8 +2,6 @@
 title: "Typography"
 ---
 
-# {{ page.title }}
-
 Markdown that can be used for writing content.
 
 ---
