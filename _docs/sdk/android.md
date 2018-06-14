@@ -19,7 +19,7 @@ In case you want to use SDK in Android project add these lines to your gradle pr
 allprojects {
   repositories {
     maven {
-      url "http://artifactory.smartlook.com:8081/artifactory/libs-release-local"
+      url "https://smartlook.bintray.com/maven"
     }
   }
 }
@@ -27,7 +27,7 @@ allprojects {
 
 Also add this line to your module gradle:
 
-`implementation('com.smartlook.recording:app:VERSION')`
+`implementation('com.smartlook.recording:app:0.9.0.0.5.1-beta')`
 
 
 ## API Reference
