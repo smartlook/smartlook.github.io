@@ -13,21 +13,9 @@ With this SDK developers and/or companies should be able to:
 
 ## Project build
 
-In case you want to use SDK in Android project add these lines to your gradle project file:
+In case you want to use SDK in Android project add these lines to your gradle module file:
 
-```android
-allprojects {
-  repositories {
-    maven {
-      url "http://artifactory.smartlook.com:8081/artifactory/libs-release-local"
-    }
-  }
-}
-```
-
-Also add this line to your module gradle:
-
-`implementation('com.smartlook.recording:app:VERSION')`
+`implementation('com.smartlook.recording:app:0.9.0.0.5.1-beta')`
 
 
 ## API Reference
