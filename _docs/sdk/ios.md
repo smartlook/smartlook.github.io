@@ -14,6 +14,9 @@ With this SDK developers and/or companies can:
 
 Install via CocoaPods or download Smartlook iOS SDK.
 
+You need to provide your **SDK Key** which can be found in [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
+{: .alert .alert-warning }
+
 ### Cocoapods installation
 
 1. Add `pod 'Smartlook'` to your project's Podfile.
@@ -22,7 +25,7 @@ Install via CocoaPods or download Smartlook iOS SDK.
 4. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method. You can find your Smartlook Key in the Smartlook Dashboard.
+5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
 
 * **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
 * **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
@@ -35,7 +38,7 @@ Install via CocoaPods or download Smartlook iOS SDK.
 4. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method. You can find your Smartlook Key in the Smartlook Dashboard.
+5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
 
 * **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
 * **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
@@ -44,10 +47,10 @@ Install via CocoaPods or download Smartlook iOS SDK.
 
 Applications can interact with the SDK using public SDK methods.
 
-### Initialize Smartlook
-
-You must supply your **Smartlook SDK key** which can be acquired in the Smartlook Dashboard.
+You need to provide your **SDK Key** which can be found in [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
 {: .alert .alert-warning }
+
+### Initialize Smartlook
 
 Use: `+ (void)startWithKey:(nonnull NSString*)key;`
 
