@@ -32,7 +32,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.0.zip) directly.
+1. Download [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.1.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Optionally add `-ObjC` flag to your app target's Other Linker flags. -ObjC flag is needed because the SDK uses [categories](https://developer.apple.com/library/content/qa/qa1490/_index.html){:target="_blank"}.
 4. Import Smartlook SDK in your app's App Delegate class:
