@@ -19,7 +19,7 @@ In case you want to use SDK in Android project add these lines to your gradle pr
 allprojects {
   repositories {
     maven {
-      url "https://smartlook.bintray.com/maven"
+      url "https://sdk.smartlook.com/android/release"
     }
   }
 }
