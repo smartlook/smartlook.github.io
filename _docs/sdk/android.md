@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.6.4-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.7.9-beta')`
 
 
 ## API Reference
@@ -77,3 +77,12 @@ In case developer did not handle any exception SDK will automatically report sta
 Because app process is killed by the crash video is going to be rendered and sent to the server once new session is started.
 
 Proguard mapping file still not available -> Beta functionality.
+
+
+## Crashlytics
+
+In case you are using Crashlytics in your project, once Fabric setup is done, you can call `enableCrashlytics(boolean enable)` method and we will do our best to add extra information directly to your crash report.
+
+![New key-value pair](https://sdk.smartlook.com/android/docs/crash_docs_pair.png)
+
+In Crashlytics dashboard, there should be new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before mentioned crash by Crashlytics.
