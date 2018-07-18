@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.7.9-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.8.1-beta')`
 
 
 ## API Reference
@@ -48,7 +48,7 @@ Currently we support API 18+ for recording. In future we would like to extend re
 
 Use: `markViewAsSensitive(View view)`
 
-You can mark sensitive views to be hidden from recordings. EditTexts and Webviews are hidden by default.
+You can mark sensitive views to be hidden from recordings. EditTexts and Webviews are hidden by default. In case you are using Webview for rendering of non-sensitive information, feel free to temporary allow their recording: `enableWebviewRecording(boolean enable)`
 
 ### Recording marking
 
