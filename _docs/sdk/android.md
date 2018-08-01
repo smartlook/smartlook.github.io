@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.8.3-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.9.3-beta')`
 
 
 ## API Reference
@@ -57,7 +57,7 @@ Developer can also mark session with some internal key that is associated to the
 
 ## Analytics
 
-SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering. In case developers want to be sure that data are sent to our servers right away, they should call `flush()` method.
+SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering.
 
 Next method is `timeEvent(@NonNull String eventName)`. It is not sending any event, but once developer calls any `track(...)` method with corresponding eventName, it will also add extra duration property. This might be usefull for developers to measure any time sensitive or long running actions in the app.
 
