@@ -21,24 +21,22 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 
 1. Add `pod 'Smartlook'` to your project's Podfile.
 2. Run `pod install`
-3. Optionally add `-ObjC` flag to your app target's Other Linker flags. Cocoapods should add -ObjC flag to Other linker flags by default. -ObjC flag is needed because the SDK uses [categories](https://developer.apple.com/library/content/qa/qa1490/_index.html){:target="_blank"}.
-4. Import Smartlook SDK in your app's App Delegate class:
+3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
+4. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
 
 * **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
 * **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.2.zip) directly.
+1. Download [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.3.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
-3. Optionally add `-ObjC` flag to your app target's Other Linker flags. -ObjC flag is needed because the SDK uses [categories](https://developer.apple.com/library/content/qa/qa1490/_index.html){:target="_blank"}.
-4. Import Smartlook SDK in your app's App Delegate class:
+3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-5. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
+4. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
 
 * **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
 * **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
