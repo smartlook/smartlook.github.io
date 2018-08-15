@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.9.5-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.2.3-beta')`
 
 
 ## API Reference
@@ -54,6 +54,9 @@ You can mark sensitive views to be hidden from recordings. EditTexts and Webview
 
 Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
 
+### On demand pause and start
+
+In case you want to pause recording, feel free to call `Smartlook.pause()`. Once user is somewhere else where recording makes sense to you, call `Smartlook.start()`.
 
 ## Analytics
 
