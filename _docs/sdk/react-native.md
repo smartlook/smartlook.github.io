@@ -49,4 +49,4 @@ var Smartlook = require('smartlook-react-native-wrapper');
 Smartlook.init("KEY");
 ```
   
-Description of additional public SDK methods can be found i.e. in Android docs section.
+Description of additional public SDK methods can be found i.e. in <a href="https://smartlook.github.io/docs/sdk/android/">Android</a> docs section.
