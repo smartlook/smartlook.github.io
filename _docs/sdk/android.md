@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.4.2-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.4.4-beta')`
 
 
 ## API Reference
