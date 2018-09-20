@@ -3,7 +3,7 @@ source "https://rubygems.org"
 # Jekyll
 
 ## Ensure latest Jekyll version is used (change it and run "bundle update" in terminal)
-gem "jekyll", "~> 3.8.1"
+gem "jekyll", "~> 3.8.3"
 
 ## Plugins
 
