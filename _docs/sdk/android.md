@@ -10,7 +10,6 @@ With this SDK developers and/or companies should be able to:
 * Set their own custom analytics event and do complex funnels/queries in the dashboard
 * Get automatic crash reports
 
-
 ## Project build
 
 In case you want to use SDK in Android project add these lines to your gradle project file:
@@ -26,7 +25,6 @@ allprojects {
 ```
 
 Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.4.4-beta')`
-
 
 ## API Reference
 
