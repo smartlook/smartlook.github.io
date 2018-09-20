@@ -3,7 +3,7 @@ title: "Custom events"
 subtitle: "Create your own specific events for tracking."
 ---
 
-Maybe you already have on your site our API code which can [Identify visitor](/docs/identify-visitor/). In that case **custom events** information (custom user actions) will be displayed directly in recordings. Create your own events and we will track them for you.
+Maybe you already have on your site our API code which can [Identify visitor](/docs/web/identify-visitor/). In that case **custom events** information (custom user actions) will be displayed directly in recordings. Create your own events and we will track them for you.
 
 ## What you can track
 

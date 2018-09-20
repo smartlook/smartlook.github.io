@@ -25,7 +25,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.0.8.3-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.4.4-beta')`
 
 
 ## API Reference
@@ -54,10 +54,13 @@ You can mark sensitive views to be hidden from recordings. EditTexts and Webview
 
 Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
 
+### On demand pause and start
+
+In case you want to pause recording, feel free to call `Smartlook.pause()`. Once user is somewhere else where recording makes sense to you, call `Smartlook.start()`.
 
 ## Analytics
 
-SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering. In case developers want to be sure that data are sent to our servers right away, they should call `flush()` method.
+SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering.
 
 Next method is `timeEvent(@NonNull String eventName)`. It is not sending any event, but once developer calls any `track(...)` method with corresponding eventName, it will also add extra duration property. This might be usefull for developers to measure any time sensitive or long running actions in the app.
 
