@@ -2,7 +2,7 @@
   <div id="toc-aside" class="toc">
     <h5>Contents</h5>
     {% assign my_min = page.toc_min | default: site.toc_min | default: 2 %}
-    {% assign my_max = page.toc_max | default: site.toc_max | default: 4 %}
+    {% assign my_max = page.toc_max | default: site.toc_max | default: 2 %}
     {% include docs/toc.html html=content h_min=my_min h_max=my_max %}
   </div>
 </div>
