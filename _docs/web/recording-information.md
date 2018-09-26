@@ -11,7 +11,7 @@ Our API offers options to display even more information about your recordings.
 
 {% include component/tables/docs/{{ page.title | slugify }}/variables.html %}
 
-### Access variables
+## Access variables
 
 This example shows a code how it can look in a console.
 
