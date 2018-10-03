@@ -10,6 +10,10 @@ With this SDK developers and/or companies can:
 * Set their own custom analytics event and do complex funnels/queries in the dashboard
 * Get automatic crash reports
 
+## Reporting issues
+
+Please report all issues to [Smartlook iOS SDK issues](https://github.com/smartlook/smartlook-ios-sdk/issues) at GitHub.
+
 ## Installation
 
 Install via CocoaPods or download Smartlook iOS SDK.
