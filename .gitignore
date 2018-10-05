@@ -5,3 +5,4 @@ _site
 .htaccess
 config.codekit3
 /vendor
+node_modules
