@@ -1,49 +1,14 @@
-#
 # >>> IF YOU CHANGE CONFIG RESTART SERVER: "⌃C + bundle exec jekyll serve" <<<
-#
 
-# VARIABLES ==================================================
-
-## Site variables
-title: "Smartlook API"
-google_analytics: "UA-XXXXX-Y"
-github_username: smartlook
-git_repo: smartlook.github.io
-
-## Custom variables
-javascript_api: "JavaScript API"
-
-## Product
-pr_author: "Smartsupp"
-pr_name: "Smartlook"
-pr_url: "https://www.smartlook.com/"
-pr_url_name: "Smartlook.com"
-pr_email: "info@smartlook.com"
-pr_description: "Smartlook API. Developer DOCS."
-
-## Url
-url_docs_root: "/docs/"
-
-## Categories
-ca_web: "web"
-ca_d_web: "Smartlook JavaScript API offers a number of extra features to make your recordings even better."
-ca_sdk: "sdk"
-ca_d_sdk: "Smartlook SDK gives you the ability to record your native mobile apps."
-
-## Pages
-pa_github: "Smartlook GitHub"
-pa_docs: "Docs"
-
-# PLUGINS ==================================================
-
-## Github --safe
-plugins:
-  - jemoji
+# 1. Build
+# 2. Collections
+# 3. Front Matter
+# 4. Plugins
+# 5. Variables
 
 # BUILD ==================================================
 
 ## Server (localhost)
-livereload: true
 port: 4001
 
 ## Warnings
@@ -60,6 +25,7 @@ exclude:
   - /vendor
   - /docker-compose.yml
   - /docker-start
+  - node_modules
 
 # COLLECTIONS ==================================================
 
@@ -96,3 +62,43 @@ kramdown:
   syntax_highlighter_opts:
     disable: true # disable Rouge highliter
   parse_block_html: true # in .MD files render MD inside HTML blocks
+
+# PLUGINS ==================================================
+
+## Github --safe
+plugins:
+  - jemoji
+
+# VARIABLES ==================================================
+
+## Site variables
+title: "Smartlook API"
+google_analytics: "UA-XXXXX-Y"
+github_username: smartlook
+git_repo: smartlook.github.io
+
+## Custom variables
+javascript_api: "JavaScript API"
+
+## Product
+pr_author: "Smartsupp"
+pr_name: "Smartlook"
+pr_url: "https://www.smartlook.com/"
+pr_url_name: "Smartlook.com"
+pr_email: "info@smartlook.com"
+pr_description: "Smartlook API. Developer DOCS."
+
+## Url
+url_docs_root: "/docs/"
+
+## Pages
+pa_github: "Smartlook GitHub"
+pa_docs: "Docs"
+
+## Categories
+ca_web: "web"
+ca_sdk: "sdk"
+
+## Categories (descreptions)
+ca_d_web: "Smartlook JavaScript API offers a number of extra features to make your recordings even better."
+ca_d_sdk: "Smartlook SDK gives you the ability to record your native mobile apps."
