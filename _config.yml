@@ -22,9 +22,6 @@ pr_email: "info@smartlook.com"
 pr_description: "Smartlook API. Developer DOCS."
 
 ## Url
-url_canonical: "http://www.smartlook.com/docs/api"
-url_alternate_en: "http://www.smartlook.com/docs/api"
-url_alternate_cs: "http://www.smartlook.com/cs/docs/api"
 url_docs_root: "/docs/"
 
 ## Categories
@@ -36,25 +33,6 @@ ca_d_sdk: "Smartlook SDK gives you the ability to record your native mobile apps
 ## Pages
 pa_github: "Smartlook GitHub"
 pa_docs: "Docs"
-
-## Pages (docs: web)
-pa_identify_visitor: "Identify visitor"
-pa_custom_events: "Custom events"
-pa_sensitive_data_protection: "Sensitive data protection"
-pa_recording_information: "Recording information"
-pa_gdpr: "GDPR"
-
-## Pages (docs: web - description)
-pa_d_identify_visitor: "Display detailed visitor information in dashboard."
-pa_d_custom_events: "Create your own specific events for tracking."
-pa_d_sensitive_data_protection: "Do not record sensitive data. Mask forms and inputs."
-pa_d_recording_information: "Get recording information such as URL."
-pa_d_gdpr: "Record user information of EU visitors."
-
-## Pages (docs: sdk)
-pa_android: "Android"
-pa_ios: "iOS"
-pa_react: "React Native"
 
 # PLUGINS ==================================================
 
