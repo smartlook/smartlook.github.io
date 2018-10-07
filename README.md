@@ -1,4 +1,4 @@
-# Smartlook Docs
+# Smartlook API Docs
 
 Read our [Docs](https://smartlook.github.io/docs/) for [Smartlook.com](https://www.smartlook.com/) or have a look at landing page for [smartlook.github.io](https://smartlook.github.io/).
 
@@ -6,11 +6,15 @@ Read our [Docs](https://smartlook.github.io/docs/) for [Smartlook.com](https://w
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### Local Jekyll
+### Jekyll on localhost
+
+Original but slower.
 
 [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/)
 
-### Jekyll on Docker
+### Jekyll on Docker (faster)
+
+Recommended and much faster.
 
 ```sh
 docker-compose up
@@ -24,7 +28,7 @@ docker-compose up
 ## Deployment
 
 1. **Localhost:** Learn how to [serve the site](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/#serve-the-site) on your machine.
-2. **GitHub:** Jekyll site is built automatically `master` branch is updated.
+2. **GitHub:** Jekyll site is built automatically when `master` branch is updated.
 
 ## Contributing
 
@@ -34,4 +38,12 @@ docker-compose up
 
 ## Theme
 
-Using Jekyll theme **Smart Docs** which is under MIT license.
+Using Jekyll based theme [Smart Docs](https://github.com/smartsupp/smart-docs/) which is under MIT license.
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
+
+## Copyright
+
+Copyright (c) 2018 [smartsupp.com](https://www.smartsupp.com/)
