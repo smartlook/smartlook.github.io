@@ -9,7 +9,7 @@
 # BUILD ==================================================
 
 ## Server (localhost)
-port: 4001
+port: 4003
 
 ## Warnings
 strict_front_matter: true
