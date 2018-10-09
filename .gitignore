@@ -1,8 +1,20 @@
+# jekyll
 _site
 .sass-cache
 .jekyll-metadata
+/vendor
+
+# codekit3
+.config.codekit3
+.idea
+_cache
+_logs
+cache
+log
+logs
+node_modules
+/storage/framework/sessions
+
+# custom
 .vscode
 .htaccess
-config.codekit3
-/vendor
-node_modules

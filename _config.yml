@@ -19,13 +19,17 @@ liquid:
 ## Final _site
 exclude:
   - README.md
-  - config.codekit3
-  - Gemfile.lock
+  - Gemfile.lock # jekyll
   - Gemfile
   - /vendor
-  - /docker-compose.yml
+  - /docker-compose.yml # docker
   - /docker-start
+  - config.codekit3 # codekit3
+  - cache
+  - log
+  - logs
   - node_modules
+  - /storage/framework/sessions
 
 # COLLECTIONS ==================================================
 
