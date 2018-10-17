@@ -9,6 +9,7 @@ With this SDK developers and/or companies should be able to:
 * See app structure as an ordered graph where nodes are unique screens
 * Set their own custom analytics event and do complex funnels/queries in the dashboard
 * Get automatic crash reports
+* Collect referrer value and source of installation per visitor
 
 ## Reporting issues
 
@@ -28,7 +29,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.4.4-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.6.2-beta')`
 
 ## API Reference
 
