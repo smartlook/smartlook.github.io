@@ -1,20 +1,19 @@
 // main.scss
-
-@import 'partials/variables';
-@import 'partials/elements';
+@import 'main/variables';
+@import 'main/elements';
 
 // layout
-@import 'partials/header';
-@import 'partials/breadcrumb';
-@import 'partials/sidebar';
-@import 'partials/main-content';
-@import 'partials/table-of-contents';
-@import 'partials/footer';
+@import 'main/header';
+@import 'main/breadcrumb';
+@import 'main/sidebar';
+@import 'main/main-content';
+@import 'main/table-of-contents';
+@import 'main/footer';
 
 // other
-@import 'partials/language-syntax';
-@import 'partials/buttons';
-@import 'partials/misc';
+@import 'main/language-syntax';
+@import 'main/buttons';
+@import 'main/misc';
 
 // responsive
-@import 'partials/media-queries';
+@import 'main/media-queries'; 

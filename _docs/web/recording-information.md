@@ -1,9 +1,8 @@
 ---
 title: "Recording information"
 subtitle: "Get recording information such as URL."
+description: "Our API offers options to display even more information about your recordings."
 ---
-
-Our API offers options to display even more information about your recordings.
 
 ## Variables
 

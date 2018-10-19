@@ -7,22 +7,7 @@
       </a>
     </div>
 
-    <div id="nav-menu">
-      <ul>
-      <li class="navbar-item{% if page.url contains 'web' %} navbar-item-active{% endif %}">
-        <a href="{{ site.url_docs_root }}{{ site.ca_web }}/">{{ site.ca_web }}</a>
-      </li>
-        <li class="navbar-item{% if page.url contains 'sdk' %} navbar-item-active{% endif %}">
-          <a href="{{ site.url_docs_root }}{{ site.ca_sdk }}/">{{ site.ca_sdk }}</a>
-        </li>
-      </ul>
-    </div>
-
-    <div id="search" class="input-group input-inline">
-      <form action="/search.html" method="get">
-        <input type="text" name="query" id="search-box" class="form-input" placeholder="Search ...">
-      </form>
-    </div>
+    {% include search/field.html %}
 
   </section>
 </header>

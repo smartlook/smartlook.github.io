@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head/meta-data.html %}
+
+<body {% if page.layout=='article' %}class="docs {% if page.url contains site.ca_url_customization %}{{ site.ca_customization | downcase }}{% endif %}{% if page.url contains site.ca_url_javascript_api %}{{ site.ca_javascript_api | downcase | replace: " ", "-"  }}{% endif %}{% if page.url contains site.ca_url_examples %}{{ site.ca_examples | downcase }}{% endif %} {{ page.title | slugify }}" {% endif %}>
+
+  {% include header/site-nav.html %}
+  {% include docs/breadcrumb.html %}
+
+  <div class="docs-container off-canvas off-canvas-sidebar-show">
+
+    {% include docs/sidebar-menu.html %}
+
+    <div id="content" class="docs-content off-canvas-content">
+
+      <div class="columns">
+        <div class="column col-9 col-xl-12 col-lg-12 col-xs-12">
+
+          <article>
+
+            <div class="title-block">
+              <h1 id="{{ page.title | slugify }}">{% if page.custom_title != null %}{{ page.custom_title }}{% else %}{{ page.title }}{% endif %}</h1>
+              <p class="page-subtitle">{{ page.subtitle }}</p>
+            </div>
+            <!-- title-block -->
+            
+            <p>{{ page.description }}</p>
+
+            <div id="toc-article" class="toc">
+              <h5>Navigation</h5>
+              {% assign my_min = page.toc_min | default: site.toc_min | default: 2 %}
+              {% assign my_max = page.toc_max | default: site.toc_max | default: 3 %}
+              {% include docs/toc.html html=content h_min=my_min h_max=my_max %}
+            </div>
+
+            {{ content }}
+
+          </article>
+
+        </div>
+        <!-- column -->
+
+        {% include docs/aside.html %}
+
+      </div>
+      <!-- columns -->
+
+      {% include footer/footer.html %}
+
+    </div>
+    <!-- docs-content -->
+  </div>
+  <!-- docs-container -->
+
+  <p id="btt">
+    <button onclick="topFunction()">Back to top &uarr;</button>
+  </p>
+
+  {% include footer/scripts.html %}
+
+</body>
+
+</html>

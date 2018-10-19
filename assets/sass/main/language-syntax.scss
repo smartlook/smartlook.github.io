@@ -94,9 +94,16 @@ pre[class*="language-objc"]::before {
   content: "OBJC";
 }
 
+pre[class*="language-json"]::before {
+  background: $o_purple_500;
+}
+
+pre[class*="language-json"]::before {
+  content: "JSON";
+}
+
 // CODE
 code {
-  font-family: monospace;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -104,6 +111,13 @@ code {
   font-size: 90%;
   color: $o_red_500;
   background-color: rgba(244, 67, 54, .1);
+}
+
+pre,
+code,
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: monospace, monospace;
 }
 
 // CLIPBOARD 

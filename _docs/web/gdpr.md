@@ -1,18 +1,19 @@
 ---
 title: "GDPR"
 subtitle: "Record user information of EU visitors."
+description: "Depending on content you record you need your user’s consent."
 ---
-
-Depending on content you record you need your user’s consent. Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
 
 Make sure you enabled required project settings before using this API.
 {: .callout .callout-warning }
 
 ## Verify user consent
 
+Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
+
 At Smartlook we use pop up window to ask for user consent. You should implement similar solution on your site.
 
-![User consent](/assets/img/docs/gdpr/consent.png)
+![user consent](/assets/img/docs/web/gdpr/consent.png)
 
 Verify if a visitor gave his consent or not by using this code.
 

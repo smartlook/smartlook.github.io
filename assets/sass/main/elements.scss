@@ -1,5 +1,14 @@
 // elements.scss
 
+/**
+  * Index
+  * - Base
+  * - Responsive images
+  *
+  */
+
+// = BASE =
+
 *,
 ::after,
 ::before {
@@ -10,7 +19,7 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
   background: $o_white_2;
 }
 

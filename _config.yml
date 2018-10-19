@@ -55,7 +55,7 @@ defaults:
       path: "_docs"
       type: "docs" # created in collections
     values:
-      layout: "default"
+      layout: "article"
       lang: "en"
       custom_title: null # add custom title variable in docs article if needed
 
@@ -82,7 +82,7 @@ github_username: smartlook
 git_repo: smartlook.github.io
 
 ## Custom variables
-javascript_api: "JavaScript API"
+# (add if needed)
 
 ## Product
 pr_author: "Smartsupp"
@@ -100,9 +100,13 @@ pa_github: "Smartlook GitHub"
 pa_docs: "Docs"
 
 ## Categories
-ca_web: "web"
-ca_sdk: "sdk"
+ca_web: "WEB"
+ca_sdk: "SDK"
 
-## Categories (descreptions)
+## Categories (descreption)
 ca_d_web: "Smartlook JavaScript API offers a number of extra features to make your recordings even better."
 ca_d_sdk: "Smartlook SDK gives you the ability to record your native mobile apps."
+
+### Categories (URL)
+ca_url_web: "/docs/web/"
+ca_url_sdk: "/docs/sdk/"

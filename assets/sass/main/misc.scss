@@ -13,19 +13,18 @@
 // EDIT ON GITHUB
 
 .edit-on-github a {
-  color: $o_blue_grey_900;
+  color: $o_grey_500;
   font-size: 14px;
   border: 1px solid $o_grey_300;
   padding: 5px 10px;
   border-radius: $radius_2;
   background: $o_white;
-  -webkit-box-shadow: 0 1px 1px 0 rgba(116, 129, 141, 0.3);
-          box-shadow: 0 1px 1px 0 rgba(116, 129, 141, 0.3);
 }
 
 .edit-on-github a:hover {
   color: $c_primary;
   text-decoration: none;
+  border-color: $o_grey_500;
 }
 
 .edit-on-github svg {
@@ -38,6 +37,10 @@
 }
 
 .edit-on-github svg path {
+  fill: $o_grey_500;
+}
+
+.edit-on-github:hover svg path {
   fill: $o_blue_grey_900;
 }
 
@@ -56,7 +59,6 @@
   outline: none;
   font-size: 14px;
   color: $o_white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 2px;
   background-color: $o_grey_500;
   border-radius: $radius_2;
   padding: 5px 10px;

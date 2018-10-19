@@ -13,7 +13,7 @@
   }
 
   function displaySearchResults(results, store) {
-    var searchResults = document.getElementById('search-results');
+    var searchResults = document.getElementById('search-results-list');
 
     if (results.length) { // Are there any results?
       var appendString = '';

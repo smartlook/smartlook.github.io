@@ -1,9 +1,8 @@
 ---
 title: "Identify visitor"
 subtitle: "Display detailed visitor information in dashboard."
+description: "In addition to basic info shown in dashboard you can also display: email and name."
 ---
-
-In addition to basic info shown by default in dashboard you can also display: **email** and **name**.
 
 **Database connection:** This API needs a connection to *your user database* in order to work.
 {: .callout .callout-warning }

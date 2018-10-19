@@ -5,14 +5,23 @@
   width: 100%;
   border-bottom: 1px solid $o_grey_300;
   background-color: $o_grey_100;
+  padding: 4px 0 4px 28px;
   position: fixed;
   left: 0;
-  padding-left: 30px;
   top: 68px;
 }
 
-.breadcrumb li:nth-child(2) {
-  text-transform: uppercase;
+.breadcrumb .breadcrumb-item a {
+  padding-bottom: 9px;
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+  border-bottom: 3px solid $o_grey_500;
+}
+
+.breadcrumb .breadcrumb-item a.active {
+  border-bottom: 3px solid $c_primary;
 }
 
 .breadcrumb .breadcrumb-item:not(:last-child) a,
@@ -25,4 +34,5 @@
 
 .breadcrumb .breadcrumb-item:not(:first-child)::before {
   color: $o_grey_300;
+  content: "";
 }

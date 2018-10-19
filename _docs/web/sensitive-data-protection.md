@@ -1,16 +1,15 @@
 ---
 title: "Sensitive data protection"
 subtitle: "Do not record sensitive data. Mask forms and inputs."
+description: "We take privacy and security seriously. This API will help you to implement same standards across your website."
 ---
-
-We take privacy and security very seriously and this API will help you to implement same standards across your website.
 
 Passwords and credit card numbers are not recorded by default.
 {: .callout .callout-warning }
 
 ## Payment gates
 
- Recordings of credit cards are safe because most payment gates are 3rd party apps where customer gets redirected to another site. These payment gates are usually in an iframe which we block from being recorded as well.
+Recordings of credit cards are safe because most payment gates are 3rd party apps where customer gets redirected to another site. These payment gates are usually in an iframe which we block from being recorded as well.
 
 ## Masking
 

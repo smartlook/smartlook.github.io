@@ -5,18 +5,19 @@ docs_list_title: Web
 web:
 
 - title: Identify visitor
+  subtitle: Display detailed visitor information in dashboard.
   url: /docs/web/identify-visitor/
-
 - title: GDPR
+  subtitle: Record user information of EU visitors.
   url: /docs/web/gdpr/
-
 - title: Sensitive data protection
+  subtitle: Do not record sensitive data. Mask forms and inputs.
   url: /docs/web/sensitive-data-protection/
-
 - title: Custom events
+  subtitle: Create your own specific events for tracking.
   url: /docs/web/custom-events/
-
 - title: Recording information
+  subtitle: Get recording information such as URL.
   url: /docs/web/recording-information/
 
 ## SDK
@@ -24,10 +25,11 @@ docs_list_title: Sdk
 sdk:
 
 - title: Android
+  subtitle: SDK for screen recording and analytics for Android devices.
   url: /docs/sdk/android/
-
 - title: iOS
+  subtitle: SDK for screen recording and analytics for iOS devices.
   url: /docs/sdk/ios/
-
 - title: React Native
+  subtitle: SDK for screen recording and analytics for React Native.
   url: /docs/sdk/react-native/

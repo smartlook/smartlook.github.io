@@ -101,10 +101,10 @@ Code has 2 types and accepts language property.
 ### Inline code
 
 ```md
-Inline code looks like this: `inline code` or `!@#$%^&*()` or `<p>lorem</p>`. 
+Inline code looks like this: `inline code` or `!@#$%^&*()` or `<p>lorem</p>`.
 ```
 
-Inline code looks like this: `inline code` or `!@#$%^&*()` or `<p>lorem</p>`. 
+Inline code looks like this: `inline code` or `!@#$%^&*()` or `<p>lorem</p>`.
 
 ### Code in a block
 
@@ -148,6 +148,14 @@ Have a look at screenshot for better understanding.
 
 ```swift
 Smartlook.setUserIdentifier("some-user-identifier");
+```
+
+```json
+{ 
+  "name":"John",
+  "surname":"Doe",
+  "car":1
+}
 ```
 
 ```md

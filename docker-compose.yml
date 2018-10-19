@@ -6,6 +6,6 @@ services:
       - .:/srv/jekyll
       - ./vendor/bundle:/usr/local/bundle
     ports:
-      - 4001:4001
+      - 4003:4003
       - 35729:35729
     command: ./docker-start

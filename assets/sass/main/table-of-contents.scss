@@ -11,14 +11,18 @@
 
 // TABLE OF CONTENTS
 
-#toc-article,
-#toc-aside {
-  border-left: 1px solid $o_grey_100;
-}
-
 #toc-article {
   margin: 20px 0 40px 0;
   display: none;
+}
+
+#toc-article h5 {
+  padding-top: 12px;
+}
+
+#toc-aside,
+#toc-article {
+  border-left: 1px solid $o_grey_100;
 }
 
 #toc-aside {
@@ -29,6 +33,7 @@
 
 .toc h5 {
   padding-left: 24px;
+  margin: 12px 0;
 }
 
 .toc ul,

@@ -7,33 +7,56 @@ permalink: /docs/index.html
 <div class="container grid-lg">
   <div class="columns">
     <div class="column col-12">
-      <h1>Developer API</h1>
-      <p>Welcome to {{ site.pr_name }} developer Docs. Feel free to look around.</p>
+      <div class="intro">
+        <h1>Developer API</h1>
+        <p>Welcome to Smartlook developer Docs. Feel free to look around.</p>
+        
+        {% include search/field.html %}
+        
+      </div>
     </div>
   </div>
 </div>
 <!-- container -->
 
 <div class="container grid-lg">
-  <div class="columns">
-    <div class="column col-12">
-      <h2 class="category-headline">{{ site.ca_web }}</h2>
-      <p>{{ site.ca_d_web }}</p>
+  <div class="section section-cards docs-index">
+    <div class="columns">
+      <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4">
+        <a href="{{ site.ca_url_web }}">
+          <div class="card">
+            <div class="card-header">
+              <img src="/assets/img/icons/web.png" class="center" width="96px" height="96px" alt="{{ site.ca_web }}">
+              <div class="card-title h2">
+                <p>{{ site.ca_web}}</p>
+              </div>
+              <p class="card-subtitle">{{ site.ca_d_web }} Pre-chat form, rating, connect to Google Analytics, ...</p>
+            </div>
+          </div>
+        </a>
+        <!-- card -->
+      </div>
+      <!-- column -->
+
+      <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4">
+        <a href="{{ site.ca_url_sdk }}">
+          <div class="card">
+            <div class="card-header">
+              <img src="/assets/img/icons/sdk.png" class="center" width="96px" height="96px" alt="{{ site.ca_sdk }}">
+              <div class="card-title h2">
+                <p>{{ site.ca_sdk }}</p>
+              </div>
+              <p class="card-subtitle">{{ site.ca_d_sdk }} Display visitor info, change theme, adjust banner, ...</p>
+            </div>
+          </div>
+        </a>
+        <!-- card -->
+      </div>
+      <!-- column -->
+
     </div>
+    <!-- columns -->
   </div>
+  <!-- section -->
 </div>
 <!-- container -->
-
-{% include docs/category/web.html %}
-
-<div class="container grid-lg">
-  <div class="columns">
-    <div class="column col-12">
-      <h2 class="category-headline">{{ site.ca_sdk }}</h2>
-      <p>{{ site.ca_d_sdk }}</p>
-    </div>
-  </div>
-</div>
-<!-- container -->
-
-{% include docs/category/sdk.html %}

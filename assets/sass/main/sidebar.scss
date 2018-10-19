@@ -14,7 +14,7 @@
   z-index: 3;
   position: fixed;
   top: 113px;
-  background: $o_grey_50;
+  background: $o_white;
   height: 60px;
 }
 
@@ -24,18 +24,31 @@
 
 // SIDEBAR MENU
 .docs-sidebar .docs-nav {
-  background: $o_grey_50;
+  background: $o_white;
   position: fixed;
   top: 113px;
   bottom: 0;
-  padding: 0 20px;
-  width: 253px;
+  padding: 0 0 0 20px;
+  width: 254px;
+  border-right: 1px solid $o_grey_300;
+}
+
+.docs-sidebar .docs-nav h5 {
+  margin: 13px 0 5px 7px;
 }
 
 #sidebar .menu {
-  margin: 20px 0 25px 0;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 35px;
   width: 213px;
   border-radius: $radius_2;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#sidebar .menu ul li {
+  width: 230px;
 }
 
 #sidebar .menu .divider {
@@ -50,6 +63,10 @@
 }
 
 // MENU ITEMS
+.menu .menu-item {
+  // width: 239px;
+  font-size: 15px;
+}
 
 .menu .menu-item>a {
   border-radius: $radius_2;
@@ -70,7 +87,8 @@
 // SIDEBAR LAYOUT
 .off-canvas .off-canvas-sidebar {
   z-index: 2;
-  background: $o_grey_50;
+  background: $o_white_2;
+  width: 254px;
 }
 
 .off-canvas .off-canvas-sidebar.active~.off-canvas-overlay,

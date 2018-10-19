@@ -1,9 +1,10 @@
 ---
 title: "iOS"
 subtitle: "SDK for screen recording and analytics for iOS devices."
+description: "This SDK offers several options to developers and/or companies."
 ---
 
-With this SDK developers and/or companies can:
+## What you can do
 
 * Replay session recordings in our web player
 * See app structure as an ordered graph where nodes are unique screens

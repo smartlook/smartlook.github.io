@@ -1,18 +1,23 @@
 --- 
-layout: "custom" 
+layout: "category" 
 title: "WEB"
 class: "home-docs" 
 permalink: /docs/web/index.html 
 ---
 
-<div class="container grid-lg">
-  <div class="columns">
-    <div class="column col-12">
-      <h1>{{ page.title }}</h1>
-      <p>{{ site.ca_d_web }}</p>
+<div class="section section-cards">
+  {% for item in site.data.articles.web %}
+  <a href="{{ item.url }}">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title h3">
+          <p>{{ item.title }}</p>
+        </div>
+        <p class="card-subtitle">{{ item.subtitle }}</p>
+      </div>
     </div>
-  </div>
+  </a>
+  <!-- card -->
+  {% endfor %}
 </div>
-<!-- container -->
-
-{% include docs/category/web.html %}
+<!-- section -->

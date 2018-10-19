@@ -3,9 +3,10 @@
 
 {% include head/meta-data.html %}
 
-<body {% if page.layout == 'page' %}class="{{ page.layout }} {{ page.title | slugify }}{% if page.class != null %} {{ page.class }}{% endif %}"{% endif %}>
+<body {% if page.layout == 'category' %}class="{{ page.layout }} {{ page.title | slugify }}{% if page.class != null %} {{ page.class }}{% endif %}"{% endif %}>
 
   {% include header/site-nav.html %}
+  {% include docs/breadcrumb.html %}
 
   <div class="container grid-lg">
 
@@ -13,6 +14,7 @@
       <div class="column col-12">
 
         <h1>{{ page.title }}</h1>
+        <p class="page-subtitle">{{ page.subtitle }}</p>
 
         {{ content }}
 
