@@ -1,4 +1,4 @@
-# Smartlook API Docs
+# Developer Docs
 
 Read our [Docs](https://smartlook.github.io/docs/) for [Smartlook.com](https://www.smartlook.com/) or have a look at landing page for [smartlook.github.io](https://smartlook.github.io/).
 
