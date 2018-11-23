@@ -15,6 +15,8 @@ description: "This SDK offers several options to developers and/or companies."
 
 Please report all issues to [Smartlook iOS SDK issues](https://github.com/smartlook/smartlook-ios-sdk/issues) at GitHub.
 
+You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
+
 ## Installation
 
 Install via CocoaPods or download Smartlook iOS SDK.
