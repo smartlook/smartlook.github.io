@@ -16,6 +16,8 @@ description: "This SDK offers several options to developers and/or companies."
 
 Please report all issues to [Smartlook Android SDK issues](https://github.com/smartlook/smartlook-android-sdk/issues) at GitHub.
 
+You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
+
 ## Project build
 
 In case you want to use SDK in Android project add these lines to your gradle project file:
