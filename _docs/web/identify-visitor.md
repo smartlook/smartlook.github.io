@@ -4,7 +4,7 @@ subtitle: "Display detailed visitor information in dashboard."
 description: "In addition to basic info shown in dashboard you can also identify your users with their email, name or any other property."
 ---
 
-**Developer needed:** The `identify` method requires you or *your developer* to propagate the information from your service. This method is called from the browser of your visitor, therefore any information you want to associate with your visitor need to be part of your webpage.
+**Developer needed:** The `identify` method requires you or *your developer* to propagate the information from your service. This method is called from the browser of your visitor, therefore any information you want to associate with your visitor needs to be part of your webpage.
 {: .callout .callout-warning }
 
 ## Visitor information
