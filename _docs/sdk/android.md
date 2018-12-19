@@ -32,7 +32,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.8.1-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.2.0.0-beta')`
 
 ## API Reference
 
@@ -46,7 +46,7 @@ Use: `Smartlook.init(YOUR_API_KEY)`
 
 This method initializes the SDK. Best place to call this method is Application class or any entry point to your app.
 
-In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as TextureView recording etc.
+In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
 
 Currently we support API 18+ for recording. In future we would like to extend recording functionality to any API.
 
