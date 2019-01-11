@@ -7,9 +7,9 @@ description: "This SDK offers several options to developers and/or companies."
 ## What you can do
 
 * Replay session recordings in our web player
-* See app structure as an ordered graph where nodes are unique screens
-* Set their own custom analytics event and do complex funnels/queries in the dashboard
-* Get automatic crash reports
+* Capture all of the user interactions and find ones you can about in the Events manager
+* Set your own custom analytics event and do complex funnels/queries in the dashboard
+* Collect referrer value and source of installation per visitor
 
 ## Reporting issues
 
