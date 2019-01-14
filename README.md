@@ -42,4 +42,4 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 ## Copyright
 
-Copyright (c) 2018 [smartlook.com](https://www.smartlook.com/)
+Copyright (c) 2019 [smartlook.com](https://www.smartlook.com/)
