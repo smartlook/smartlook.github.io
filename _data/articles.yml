@@ -33,3 +33,6 @@ sdk:
 - title: React Native
   subtitle: SDK for screen recording and analytics for React Native.
   url: /docs/sdk/react-native/
+- title: Unity
+  subtitle: SDK for screen recording and analytics for Unity.
+  url: /docs/sdk/unity/
