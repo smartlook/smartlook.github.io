@@ -31,7 +31,7 @@ You can also contact our developers directly on our [Discord server](https://dis
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unity SDK v0.1.8.5](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-0.1.8.5.zip).
+1. Download [Smartlook iOS Unity SDK v0.1.8.6](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-0.1.8.6.zip).
 2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
 3. `Smartlook.cs` Unity bridge is part of the archive
 
