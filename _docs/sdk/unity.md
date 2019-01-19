@@ -41,3 +41,49 @@ Applications can interact with the SDK using public SDK methods.
 
 You need to provide your **SDK Key** which can be found in [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
 {: .alert .alert-warning }
+
+### Initialize Smartlook
+
+This method initializes the SDK, frames per second value is set to 1.
+
+```csharp
+  Smartlook.Init(string key);
+```
+
+You can raise the framerate by passing in the second argument. This should mainly be used for testing purposes, higher framerates may affect performance of your application significantly.
+
+```csharp
+  Smartlook.Init(string key, int framerate);
+```
+
+### Record custom events
+
+```csharp
+  Smartlook.RecordEvent(string eventName);
+```
+
+Custom events are being propagated to the Smartlook Events dashboard automatically. You can then create playlists of sessions with this event.
+
+```csharp
+  Smartlook. RecordEvent(string eventName, string properties);
+```
+
+You can also pass in `properties` in form of stringified JSON object.
+
+### Add user identifier
+
+```csharp
+  Smartlook.SetUserIdentifier(string userIdentifier);
+```
+
+You can specify your app's user identifier. You can then look up those identifiers in the Dashboard to find specific user's recordings.
+
+### Pause and resume recording
+
+```csharp
+  Smartlook.PauseRecording();
+```
+
+```csharp
+  Smartlook.ResumeRecording();
+```
