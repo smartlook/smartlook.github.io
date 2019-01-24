@@ -1,7 +1,6 @@
 ---
 title: "Unity"
 subtitle: "SDK for screen recording and analytics of Unity games."
-description: "This SDK offers several options to developers and/or companies."
 ---
 
 ## Description
