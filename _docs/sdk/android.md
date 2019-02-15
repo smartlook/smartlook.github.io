@@ -7,14 +7,15 @@ description: "This SDK offers several options to developers and/or companies."
 ## What you can do
 
 * Replay session recordings in our web player
-* See app structure as an ordered graph where nodes are unique screens
-* Set their own custom analytics event and do complex funnels/queries in the dashboard
-* Get automatic crash reports
+* Capture all of the user interactions and find ones you can about in the Events manager
+* Set your own custom analytics event and do complex funnels/queries in the dashboard
 * Collect referrer value and source of installation per visitor
 
 ## Reporting issues
 
 Please report all issues to [Smartlook Android SDK issues](https://github.com/smartlook/smartlook-android-sdk/issues) at GitHub.
+
+You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
 
 ## Project build
 
@@ -30,7 +31,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.1.7.7-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.2.1.4-beta')`
 
 ## API Reference
 
@@ -44,7 +45,7 @@ Use: `Smartlook.init(YOUR_API_KEY)`
 
 This method initializes the SDK. Best place to call this method is Application class or any entry point to your app.
 
-In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as TextureView recording etc.
+In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
 
 Currently we support API 18+ for recording. In future we would like to extend recording functionality to any API.
 

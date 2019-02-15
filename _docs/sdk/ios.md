@@ -7,13 +7,15 @@ description: "This SDK offers several options to developers and/or companies."
 ## What you can do
 
 * Replay session recordings in our web player
-* See app structure as an ordered graph where nodes are unique screens
-* Set their own custom analytics event and do complex funnels/queries in the dashboard
-* Get automatic crash reports
+* Capture all of the user interactions and find ones you can about in the Events manager
+* Set your own custom analytics event and do complex funnels/queries in the dashboard
+* Collect referrer value and source of installation per visitor
 
 ## Reporting issues
 
 Please report all issues to [Smartlook iOS SDK issues](https://github.com/smartlook/smartlook-ios-sdk/issues) at GitHub.
+
+You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
 
 ## Installation
 
@@ -36,7 +38,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v0.1.7](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.7.zip) directly.
+1. Download [Smartlook iOS SDK v0.1.10](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.10.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
