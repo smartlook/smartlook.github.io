@@ -28,6 +28,8 @@ You can also contact our developers directly on our [Discord server](https://dis
 2. Unzip the archive and put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get [`Smartlook.cs`](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs) Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs)
 
+**Note: For stability/performance goals, currently we support Android 23+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
+
 ## Installation for iOS
 
 1. Download [Smartlook iOS Unity SDK v0.1.8.6](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-0.1.8.6.zip).
