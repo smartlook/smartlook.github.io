@@ -66,10 +66,14 @@ This method initializes the SDK. It should be called in App Delegate's methods:
 
 ### Mark and unmark sensitive views
 
-Use: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
-`+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
+You can mark sensitive views to be hidden from recordings. Text input fields and Web views are hidden by default.
 
-You can mark sensitive views to be hidden from recordings. Textfields and Webviews are hidden by default.
+To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` property. To set custom overlay color of a sensitive view, use its `UIColor slOverlay` property.
+
+Both `slSensitive` and `slOverlay` are also accessible in Xcode Interface Builder.
+
+Alternatively, there legacy methods can be also used when working with sensitive views: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
+`+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
 
 ### Record custom events
 
