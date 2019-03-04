@@ -38,7 +38,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v0.1.10](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.10.zip) directly.
+1. Download [Smartlook iOS SDK v0.1.11](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.11.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
@@ -66,13 +66,13 @@ This method initializes the SDK. It should be called in App Delegate's methods:
 
 ### Mark and unmark sensitive views
 
-You can mark sensitive views to be hidden from recordings. Text input fields and Web views are hidden by default.
+You can mark sensitive views to be hidden from recordings. Text input fields (`UITextView`, `UITextField`) and Web views (`UIWebView`, `WKWebView`) are hidden by default. `SafariServices` and `AuthenticationServices` web views shows as an empty screen. 
 
 To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` property. To set custom overlay color of a sensitive view, use its `UIColor slOverlay` property.
 
 Both `slSensitive` and `slOverlay` are also accessible in Xcode Interface Builder.
 
-Alternatively, there legacy methods can be also used when working with sensitive views: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
+Alternatively, these legacy methods can be also used when working with sensitive views: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
 `+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
 
 ### Record custom events
