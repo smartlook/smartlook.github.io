@@ -6,13 +6,13 @@ description: "Use in case you have on your site our API code which can record vi
 
 ## What props can you add
 
-By adding `data-recording-click-props` attribute into any html element, data contained in this attribute on this element and on every parent element up the body will be added to the click params.
+The `data-recording-click-props` attribute can be added to any HTML element. When a click occurs on an element, the DOM tree is traversed from said element up to the body element and content of each of the attributes is merged into a single object.
 
-The attribute `data-recording-click-props` enabled values is only a JSON.
+The content of `data-recording-click-props` attribute is expected to be a JSON object.
 
 ```html
-<div data-recording-click-props='{"customDivData":"customDivValue"}'>
-    <a data-recording-click-props='{"customLinkData":"customLinkValue"}'>
+<div data-recording-click-props='{"key1":"val1","key2":42,"key3":true}'>
+    <a data-recording-click-props='{"key4":"val4"}'>
         Link
     </a>
 </div>
@@ -25,7 +25,9 @@ When the link is clicked, the click properties will contain both values in addit
 
 ```json
 {
-   "customDivData": "customDivValue",
-   "customLinkData": "customLinkValue"
+   "key1": "val1",
+   "key2": 42,
+   "key3": true,
+   "key4": "val4"
 }
 ```
