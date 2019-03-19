@@ -1,7 +1,7 @@
 ---
 title: "Custom click props"
 subtitle: "Log your own specific data for click tracking."
-description: "Use in case you have on your site our API code which can record visitors."
+description: ""
 ---
 
 ## What props can you add
@@ -21,7 +21,7 @@ The content of `data-recording-click-props` attribute is expected to be a JSON o
 {: .alert .alert-warning }
 Pay attention on the format of the single and double quotes. Other format of quotes is not supported.
 
-When the link is clicked, the click properties will contain both values in addition to other values like the ones from identify API.
+When the link is clicked, the click properties will contain values from the attributes in addition to other values like the ones from identify API.
 
 ```json
 {
