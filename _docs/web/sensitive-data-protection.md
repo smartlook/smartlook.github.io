@@ -32,8 +32,38 @@ Attribute `data-recording-disable` disables element containing sensitive informa
 ```html
 <div data-recording-disable>
   Sensitive information will not be recorded.
+  </div>
+    Sensitive information will not be recorded.
+  </div>
 </div>
 ```
+
+### sensitive
+
+Attribute `data-recording-sensitive` replaces all characters in element and its' descendants with a `*`. 
+
+```html
+<div data-recording-sensitive>
+  This text will be replaced by *.
+  </div>
+    This text will be replaced by *.
+  </div>
+</div>
+```
+
+This is how the example html will look like in the recordings.
+
+```html
+<div data-recording-sensitive>
+  **** **** **** ** ******** ** **
+  </div>
+    **** **** **** ** ******** ** **
+  </div>
+</div>
+```
+
+{: .alert .alert-warning }
+All input elements affected by `data-recording-sensitive` will be have their values and events ignored.
 
 ### ignore
 
