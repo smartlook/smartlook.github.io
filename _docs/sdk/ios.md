@@ -64,6 +64,18 @@ This method initializes the SDK. It should be called in App Delegate's methods:
 * **Objective C:** `application:didFinishLaunchingWithOptions:`
 * **Swift:** `application(_:didFinishLaunchingWithOptions:)`
 
+### On demand pause and start
+
+In case you want to pause recording, feel free to call 
+
+* **Objective C:** `[Smartlook pauseRecording];`
+* **Swift:** `Smartlook.pauseRecording()`
+
+Once user is somewhere else where recording makes sense to you, call
+
+* **Objective C:** `[Smartlook resumeRecording];`
+* **Swift:** `Smartlook.resumeRecording()`
+
 ### Mark and unmark sensitive views
 
 You can mark sensitive views to be hidden from recordings. Text input fields (`UITextView`, `UITextField`) and Web views (`UIWebView`, `WKWebView`) are hidden by default. `SafariServices` and `AuthenticationServices` web views shows as an empty screen. 
