@@ -38,7 +38,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v0.1.11](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.11.zip) directly.
+1. Download [Smartlook iOS SDK v0.1.12](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.12.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
@@ -63,6 +63,18 @@ This method initializes the SDK. It should be called in App Delegate's methods:
 
 * **Objective C:** `application:didFinishLaunchingWithOptions:`
 * **Swift:** `application(_:didFinishLaunchingWithOptions:)`
+
+### On demand pause and start
+
+In case you want to pause recording, feel free to call 
+
+* **Objective C:** `[Smartlook pauseRecording];`
+* **Swift:** `Smartlook.pauseRecording()`
+
+Once user is somewhere else where recording makes sense to you, call
+
+* **Objective C:** `[Smartlook resumeRecording];`
+* **Swift:** `Smartlook.resumeRecording()`
 
 ### Mark and unmark sensitive views
 
