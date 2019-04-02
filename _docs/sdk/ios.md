@@ -11,11 +11,13 @@ description: "This SDK offers several options to developers and/or companies."
 * Set your own custom analytics event and do complex funnels/queries in the dashboard
 * Collect referrer value and source of installation per visitor
 
-## Reporting issues
+## Reporting issues and changelog
 
 Please report all issues to [Smartlook iOS SDK issues](https://github.com/smartlook/smartlook-ios-sdk/issues) at GitHub.
 
 You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
+
+[Smartlook iOS SDK Changelog](https://github.com/smartlook/smartlook-ios-sdk) records all notable improvements, changes and fixes in SDK releases.
 
 ## Installation
 
