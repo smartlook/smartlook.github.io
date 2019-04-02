@@ -63,7 +63,7 @@ This is how the example html will look like in the recordings.
 ```
 
 {: .alert .alert-warning }
-All input elements affected by `data-recording-sensitive` will be have their values and events ignored.
+All input elements affected by `data-recording-sensitive` will have their values and events ignored.
 
 ### ignore
 
