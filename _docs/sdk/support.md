@@ -54,4 +54,4 @@ To resolve your issue more quickly, please provide following information:
 - *(optional)* **Rendering**
     - Metal
     - OpenGL
-    - Vulkan (+ version)
+    - Vulkan
