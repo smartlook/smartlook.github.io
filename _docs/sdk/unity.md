@@ -18,9 +18,7 @@ If you are not using Unity, check out our [Android](https://smartlook.github.io/
 
 ## Reporting issues
 
-Please report all issues to [Smartlook iOS SDK issue track](https://github.com/smartlook/smartlook-ios-sdk/issues) or [Smartlook Android SDK issue track](https://github.com/smartlook/smartlook-android-sdk/issues) at GitHub.
-
-You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
+For more information on how to report issues please check our [Smartlook SDK Support section](https://smartlook.github.io/docs/sdk/support/#how-to-submit-an-issue).
 
 ## Installation for Android
 
