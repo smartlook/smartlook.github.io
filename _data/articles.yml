@@ -16,9 +16,6 @@ web:
 - title: Custom events
   subtitle: Create your own specific events for tracking.
   url: /docs/web/custom-events/
-- title: Custom click props
-  subtitle: Log your own specific data for click tracking.
-  url: /docs/web/custom-click-props/
 - title: Recording information
   subtitle: Get recording information such as URL.
   url: /docs/web/recording-information/
@@ -37,5 +34,8 @@ sdk:
   subtitle: SDK for screen recording and analytics for React Native.
   url: /docs/sdk/react-native/
 - title: Unity
-  subtitle: SDK for screen recording and analytics for Unity.
+  subtitle: SDK for screen recording and analytics of Unity games.
   url: /docs/sdk/unity/
+- title: Support
+  subtitle: Support for Smartlook SDK
+  url: /docs/sdk/support/
