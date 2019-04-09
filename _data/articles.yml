@@ -16,6 +16,9 @@ web:
 - title: Custom events
   subtitle: Create your own specific events for tracking.
   url: /docs/web/custom-events/
+- title: Custom click props
+  subtitle: Log your own specific data for click tracking.
+  url: /docs/web/custom-click-props/
 - title: Recording information
   subtitle: Get recording information such as URL.
   url: /docs/web/recording-information/
