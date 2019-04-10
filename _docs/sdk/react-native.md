@@ -18,14 +18,17 @@ description: "This SDK offers several options to developers and/or companies."
 
 ### iOS
 
-1. `$ pod init` - can be skipped in case you are already using pods
-2. Add `pod 'Smartlook'` to your Podfile
-3. `$ pod install`
+1. In your Xcode project file, find the **Header search path** in **Build settings tab** of the *application target*.
+2. Expand the **Header search path** settings, and copy the line that contains `smartlook-react-native-wrapper/ios`, e.g., `$(SRCROOT)/../node_modules/smartlook-react-native-wrapper/ios`
+3. Copy the line to **Framework search patch** (this settings is most likely just above the **Header search path**)
+4. Repeat for all relevant targets in your app project file.
+
+![iOS Framework Search Path](https://sdk.smartlook.com/android/docs/iOS-Framework-Search-Path.jpg)
 
 ### Android
 
 1. Open `android/build.gradle`
-2. Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'`
+2. Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using older React native version
 3. Add our maven repository:
 
 ```android
@@ -38,7 +41,7 @@ allprojects {
 }
 ```
 
-Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip`
+Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> This step is not needed in newer React native versions. 
 
 ## Usage
 
@@ -47,4 +50,4 @@ var Smartlook = require('smartlook-react-native-wrapper');
 Smartlook.init("KEY");
 ```
 
-Description of additional public SDK methods can be found i.e. in <a href="https://smartlook.github.io/docs/sdk/android/">Android</a> docs section.
+Description of additional public SDK methods can be found in <a href="https://smartlook.github.io/docs/sdk/android/">Android</a> and <a href="https://smartlook.github.io/docs/sdk/ios/">iOS</a> docs section. Please note that `initIrregular` methods **are not available** in React native Android version.
