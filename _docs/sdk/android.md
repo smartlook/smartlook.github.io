@@ -29,7 +29,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.2.3.9-beta')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.2.5.3-beta')`
 
 ## API Reference
 
@@ -39,15 +39,15 @@ Applications can interact with the SDK using public SDK methods.
 
 You must supply your **Smartlook SDK key** which can be acquired in the Smartlook Dashboard.
 
-Use: `Smartlook.init(YOUR_API_KEY)`
+Basic init method is `Smartlook.init(YOUR_API_KEY)` This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
 
-This method initializes the SDK. Best place to call this method is Application class or any entry point to your app.
+In case you need to init SDK after i.e. fetching your API key or in the middle of the activity lifecycle, feel free to use `Smartlook.initIrregular(YOUR_API_KEY, currentActivity)` version of init method. Keep in mind that this init method **starts the recording as well.**
 
-In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
-
-In case you need to init SDK after i.e. fetching your API key or in the middle of the activity lifecycle, feel free to use `Smartlook.initIrregular(YOUR_API_KEY, currentActivity)` version of init method, same logic for experimental flag applies.
+In case you want to init the SDK and you want to handle start of the recording by yourself, use `Smartlook.initPassive(YOUR_API_KEY)` For more information about manual start or pause of the recording, see **On demand pause and start** section.
 
 Apart from above mentioned methods you can also use extended versions to **set custom FPS for recording**, i.e. `Smartlook.init(YOUR_API_KEY, FPS)` 
+
+In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
 
 Currently we support API 18+ for recording.
 
