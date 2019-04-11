@@ -39,6 +39,9 @@ sdk:
 - title: Unity
   subtitle: SDK for screen recording and analytics of Unity games.
   url: /docs/sdk/unity/
+- title: Cocos
+  subtitle: SDK for screen recording and analytics of Cocos games.
+  url: /docs/sdk/cocos/
 - title: Support
   subtitle: Support for Smartlook SDK
   url: /docs/sdk/support/
