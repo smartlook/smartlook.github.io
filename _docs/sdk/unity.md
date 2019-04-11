@@ -22,7 +22,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for Android
 
-1. Download [Smartlook Android Unity SDK v0.9.0.2.4.4](https://sdk.smartlook.com/android/app-0.9.0.2.4.4-beta-unity.aar).
+1. Download [Smartlook Android Unity SDK v0.9.0.2.5.4](https://sdk.smartlook.com/android/app-0.9.0.2.5.4-beta-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get [`Smartlook.cs`](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs) Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs)
 
