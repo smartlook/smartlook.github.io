@@ -6,7 +6,7 @@ subtitle: "for Smartlook SDK"
 ## Changelog
 
 - [iOS SDK changelog](https://github.com/smartlook/smartlook-ios-sdk)
-- [Android SDK changelog](https://github.com/smartlook/smartlook-ios-sdk)
+- [Android SDK changelog](https://github.com/smartlook/smartlook-android-sdk)
 
 ## Reporting issues
 
