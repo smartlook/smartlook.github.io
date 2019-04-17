@@ -1,7 +1,7 @@
 ---
 title: "Smartlook Integrations"
-subtitle: ""
-description: "Learn how to integrate Smartlook with other services."
+subtitle: "Learn how to integrate Smartlook with other services"
+description: "This document provides concise guides of how to integrate with third parties."
 ---
 
 ## Segment
