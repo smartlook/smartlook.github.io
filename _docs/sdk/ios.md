@@ -62,7 +62,10 @@ Smartlook.start(withKey: "your-app-sdk-key")
 
 This method should be called as soon as the app starts in its `AppDelegate` `didFinishLaunchingWithOptions` method.
 
-That is all. There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app.
+That is all. 
+
+There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
+{: .alert .alert-warning }
 
 ### Initialize Smartlook to start it later
 
@@ -94,9 +97,10 @@ Smartlook.isPaused()        // returns true/false
 [Smartlook isPaused]        // returns true/false
 ```
 
-It is harmless to call the method in unruly order (e.g., to _resume_ already running recording.
+It is harmless to call the method in unruly order (e.g., to _resume_ while already recording).
 
-There is also no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app.
+There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
+{: .alert .alert-warning }
 
 ### Mark and unmark sensitive views
 
@@ -106,11 +110,11 @@ To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` 
 
 Both `slSensitive` and `slOverlay` properties are also accessible in Xcode Interface Builder.
 
-Alternatively, these legacy methods `markViewAsSensitive`, `unmarkViewAsSensitive` and `overlayColor` property can be also used to work with sensitive views.
+Alternatively, legacy methods `markViewAsSensitive`, `unmarkViewAsSensitive` and `overlayColor` property can be also used to work with sensitive views.
 
 ### Record custom events
 
-You can add custom timestamped events. Those events will be shown in your Dashboard. Smartlook records some events automatically (button presses, screens opening). Properties in the dictionary must be strings and values must be strings as well. Other values (like arrays, nested dictionaries) will be stringified.
+You can add custom events. Those events will be shown in your Dashboard. Smartlook records some events automatically (button presses, screens opening). Properties in the dictionary must be strings and values must be strings as well. Other values (like arrays, nested dictionaries) will be _stringified_.
 
 ```swift
 Smartlook.recordCustomEvent(withEventName: "user-bought-subscription", propertiesDictionary: ["tier" : "basic"]);
