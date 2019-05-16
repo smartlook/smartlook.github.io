@@ -153,3 +153,7 @@ Smartlook.setUserPropertiesDictionary([
   }
 ]
 ```
+
+### Crashlytics integration
+
+When Crashlytics are setup in your app, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. The value is URL of the latest recording made by Smartlook during or before the crash.
