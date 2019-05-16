@@ -31,10 +31,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-4. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
-
-* **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
-* **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
+4. Run Smartlook by calling either `start(withKey: String)` or `initialize(withKey: String)` in your AppDelegate as described below.
 
 ### Manual installation
 
@@ -43,10 +40,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 3. Import Smartlook SDK in your app's App Delegate class:
   * **Objective C:** `#import <Smartlook/Smartlook.h>`
   * **Swift:** `import Smartlook`
-4. Initialize the SDK by calling your App Delegate's `application:didFinishLaunchingWithOptions:` or `application(_:didFinishLaunchingWithOptions:)` method.
-
-* **Objective C:** `[Smartlook startWithKey:@"your-smartlook-key"];`
-* **Swift:** `Smartlook.start(withKey: "your-smartlook-key");`
+4. Run Smartlook by calling either `start(withKey: String)` or `initialize(withKey: String)` in your AppDelegate as described below.
 
 ## API Reference
 
@@ -55,26 +49,54 @@ Applications can interact with the SDK using public SDK methods.
 You need to provide your **SDK Key** which can be found in [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
 {: .alert .alert-warning }
 
-### Initialize Smartlook
+### Run Smartlook
 
-Use: `+ (void)startWithKey:(nonnull NSString*)key;`
+The typical way to initialize and start recording with Smartlook is by calling 
 
-This method initializes the SDK. It should be called in App Delegate's methods:
+```swift
+Smartlook.start(withKey: "your-app-sdk-key")
+```
+```objc
+[Smartlook startWithKey:@"your-app-sdk-key"];
+```
 
-* **Objective C:** `application:didFinishLaunchingWithOptions:`
-* **Swift:** `application(_:didFinishLaunchingWithOptions:)`
+This method should be called as soon as the app starts in its `AppDelegate` `didFinishLaunchingWithOptions` method.
+
+That is all. There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app.
+
+### Initialize Smartlook to start it later
+
+If you do not want to start recording immediately with the app start (you want, e.g., recording only some parts of the app), you still should initialise Smartlook there. To do it, call
+
+```swift
+Smartlook.initialize(withKey: "your-app-sdk-key")
+```
+```objc
+[Smartlook initializeWithKey:@"your-app-sdk-key"];
+```
+
+This method should be called as soon as the app starts in its `AppDelegate` `didFinishLaunchingWithOptions` method.
+
+Then, Smartlook is ready to start recording later with `startRecording` method. 
 
 ### On demand pause and start
 
-In case you want to pause recording, feel free to call 
+Regardless how is Smartlook initialized, it is always possible to pause/resume the recording, and also check if the recording is active.  
 
-* **Objective C:** `[Smartlook pauseRecording];`
-* **Swift:** `Smartlook.pauseRecording()`
+```swift
+Smartlook.resumeRecording() // start or resume paused recording
+Smartlook.pauseRecording()  // pause recorging
+Smartlook.isPaused()        // returns true/false
+```
+```objc
+[Smartlook resumeRecording] // start or resume paused recording
+[Smartlook pauseRecording]  // pause recorging
+[Smartlook isPaused]        // returns true/false
+```
 
-Once user is somewhere else where recording makes sense to you, call
+It is harmless to call the method in unruly order (e.g., to _resume_ already running recording.
 
-* **Objective C:** `[Smartlook resumeRecording];`
-* **Swift:** `Smartlook.resumeRecording()`
+There is also no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app.
 
 ### Mark and unmark sensitive views
 
