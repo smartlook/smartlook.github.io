@@ -65,7 +65,7 @@ This method should be called as soon as the app starts in its `AppDelegate` `did
 That is all. 
 
 There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
-{: .alert .alert-warning }
+{: .callout .callout-info }
 
 ### Initialize Smartlook to start it later
 
@@ -100,7 +100,7 @@ Smartlook.isPaused()        // returns true/false
 It is harmless to call the method in unruly order (e.g., to _resume_ while already recording).
 
 There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
-{: .alert .alert-warning }
+{: .callout .callout-info }
 
 ### Mark and unmark sensitive views
 
@@ -122,6 +122,20 @@ Smartlook.recordCustomEvent(withEventName: "user-bought-subscription", propertie
 ```objc
 [Smartlook recordCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
 ```
+
+### Add duration to custom events
+
+Custom events can also have duration. In order to record it, call first
+```swift
+Smartlook.startCustomEvent(withEventName: "user-bought-subscription", propertiesDictionary: ["tier" : "basic"]);
+```
+```objc
+[Smartlook startCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
+```
+
+This method does not record an event. It is the subsequent `recordCustomEvent` call with the same `eventName` that does. {: .callout .callout-info } 
+
+In the resulting event, the property dictionaries of `start` and `record` are merged (the `record` values override the `start` ones if the key is the same), and a `duration` property is added to them.
 
 ### Add user identifier
 
@@ -160,4 +174,4 @@ Smartlook.setUserPropertiesDictionary([
 
 ### Crashlytics integration
 
-When Crashlytics are setup in your app, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. The value is URL of the latest recording made by Smartlook during or before the crash.
+When Crashlytics are setup in your app, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. Its value is URL of the latest recording made by Smartlook during or before the crash.
