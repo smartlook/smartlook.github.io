@@ -100,11 +100,11 @@ There is also no need to manually stop or pause recording when the app gets susp
 
 ### Mark and unmark sensitive views
 
-You can mark sensitive views to be hidden from recordings. Text input fields (`UITextView`, `UITextField`) and Web views (`UIWebView`, `WKWebView`) are hidden by default. `SafariServices` and `AuthenticationServices` web views shows as an empty screen. 
+You can mark views that preset sensitive information to be hidden from recordings. Text input fields (`UITextView`, `UITextField`) and Web views (`UIWebView`, `WKWebView`) are hidden by default. `SafariServices` and `AuthenticationServices` web views show as empty screens. 
 
-To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` property. To set custom overlay color of a sensitive view, use its `UIColor slOverlay` property.
+To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` property. To set custom overlay colour of a sensitive view, use its `UIColor slOverlay` property.
 
-Both `slSensitive` and `slOverlay` are also accessible in Xcode Interface Builder.
+Both `slSensitive` and `slOverlay` properties are also accessible in Xcode Interface Builder.
 
 Alternatively, these legacy methods can be also used when working with sensitive views: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
 `+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
