@@ -79,7 +79,7 @@ This method should be called as soon as the app starts in its `AppDelegate` `did
 
 Then, Smartlook is ready to start recording later with `startRecording` method. 
 
-### On demand pause and start
+### Recording pausing and resuming
 
 Regardless how is Smartlook initialized, it is always possible to pause/resume the recording, and also check if the recording is active.  
 
@@ -106,46 +106,44 @@ To flag or unflag an `UIView` instance as sensitive, use its `BOOL slSensitive` 
 
 Both `slSensitive` and `slOverlay` properties are also accessible in Xcode Interface Builder.
 
-Alternatively, these legacy methods can be also used when working with sensitive views: `+ (void)markViewAsSensitive:(nonnull UIView*)view overlayColor:(nullable UIColor*)overlayColor;`
-`+ (void)unmarkViewAsSensitive:(nonnull UIView*)view;`
+Alternatively, these legacy methods `markViewAsSensitive`, `unmarkViewAsSensitive` and `overlayColor` property can be also used to work with sensitive views.
 
 ### Record custom events
 
-Use: `+ (void)recordCustomEventWithEventName:(nonnull NSString*)eventName propertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)propertiesDictionary;`
-
-You can add custom timestamped events. Those events will be shown in your Dashboard. Smartlook is recording some events automatically (button presses, screens opening). Properties in the dictionary must be strings and values must be strings as well. Other values (like arrays, nested dictionaries) will be stringified.
-
-```objc
-[Smartlook recordCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
-```
+You can add custom timestamped events. Those events will be shown in your Dashboard. Smartlook records some events automatically (button presses, screens opening). Properties in the dictionary must be strings and values must be strings as well. Other values (like arrays, nested dictionaries) will be stringified.
 
 ```swift
 Smartlook.recordCustomEvent(withEventName: "user-bought-subscription", propertiesDictionary: ["tier" : "basic"]);
 ```
+```objc
+[Smartlook recordCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
+```
 
 ### Add user identifier
 
-Use: `+ (void)setUserIdentifier:(nullable NSString*)userIdentifier;`
-
-You can specify your app's user identifier. You can then look up those identifiers in the Dashboard to find specific user's recordings.
-
-```objc
-[Smartlook  setUserIdentifier:@"some-user-identifier"];
-```
+User identifier can be specified for each recording session. This identifier can be then used in Smartlook Dashboard to lookup the recordings.
 
 ```swift
 Smartlook.setUserIdentifier("some-user-identifier");
 ```
+```objc
+[Smartlook  setUserIdentifier:@"some-user-identifier"];
+```
 
 ### Add other user properties
 
-Use: `+ (void)setUserPropertiesDictionary:(nullable NSDictionary<NSString*, NSString*>*)userPropertiesDictionary;`
-
-You can set additional user information, such as name, email and other custom properties. You'll see those properties in the Dashboard in Visitor details. You can use any NSString as a key and any NSString as a value in the dictionary.
+Additional custom information can be set for recording sessions, such as name, email and such. You'll see those properties in the Dashboard in Visitor details. You can use any NSString as a key and any NSString as a value in the dictionary.
 
 Keys **"name"** and **"email"** will be highlighted in Visitor information.
 {: .callout .callout-info }
 
+```swift
+Smartlook.setUserPropertiesDictionary([
+  "name" : "some-name", 
+  "email" : "some-email",
+  "some-other-property" : "some-other-value"
+]);
+```
 ```objc
 [
   Smartlook setUserPropertiesDictionary:@{ 
@@ -154,12 +152,4 @@ Keys **"name"** and **"email"** will be highlighted in Visitor information.
     @"some-other-property" : @"some-other-value"
   }
 ]
-```
-
-```swift
-Smartlook.setUserPropertiesDictionary([
-  "name" : "some-name", 
-  "email" : "some-email",
-  "some-other-property" : "some-other-value"
-]);
 ```
