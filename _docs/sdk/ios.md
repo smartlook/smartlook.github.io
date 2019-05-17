@@ -84,7 +84,7 @@ Then, Smartlook is ready to start recording later with `startRecording` method.
 
 ### Recording pausing and resuming
 
-Regardless how is Smartlook initialized, it is always possible to pause/resume the recording, and also check if the recording is active.  
+Regardless how is Smartlook initialised, it is always possible to pause/resume the recording, and also check if the recording is active.  
 
 ```swift
 Smartlook.resumeRecording() // start or resume paused recording
@@ -135,7 +135,9 @@ Smartlook.startCustomEvent(withEventName: "user-bought-subscription", properties
 
 This method does not record an event. It is the subsequent `recordCustomEvent` call with the same `eventName` that does. {: .callout .callout-info } 
 
-In the resulting event, the property dictionaries of `start` and `record` are merged (the `record` values override the `start` ones if the key is the same), and a `duration` property is added to them.
+In the resulting event, the property dictionaries of `start` and `record` are merged (the `record` values override the `start` ones if the key is the same).
+
+The `duration` is shown as a property of the event, too.
 
 ### Add user identifier
 
