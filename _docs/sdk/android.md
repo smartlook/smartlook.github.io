@@ -53,46 +53,59 @@ You need to provide your **Smartlook SDK Key** which can be acquired in the [Sma
 For standard initialization use: 
 
 ```Java
-Smartlook.init(YOUR_API_KEY)
+Smartlook.init(String YOUR_API_KEY)
 ```
 
 This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
 
-### Initalize irregular
+#### Initalize irregular
 
 In case you need to initialize SDK later i.e. fetching your API key or in the middle of the activity lifecycle, use:
 ```Java
-Smartlook.initIrregular(YOUR_API_KEY, currentActivity)
+Smartlook.initIrregular(String YOUR_API_KEY, Activity currentActivity)
 ```
 Keep in mind that this init method **starts the recording as well.**
 
-### Intialize passive
+#### Intialize passive
 
 In case you want to initialize the SDK and you want to handle the start of the recording by yourself, use: 
 ```Java
-Smartlook.initPassive(YOUR_API_KEY)
+Smartlook.initPassive(String YOUR_API_KEY)
 ``` 
 For more information about manual start or pause of the recording, see **On demand pause and start** section.
 
-### Intialize parameters
+#### Intialize parameters
 
-Apart from above mentioned methods you can also use extended versions to **set custom FPS for recording**, i.e. `Smartlook.init(YOUR_API_KEY, FPS)` 
+All SDK initialization methods have variants with theese parameters:
+* `fps` You can set custom **framerate** for recording by setting `fps` parameter (allowed values between 2 and 10).
+* `experimental` Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.
 
-In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
+### On demand pause and start
+
+In case you want to pause recording, feel free to call:
+```Java
+Smartlook.pause()
+```
+Once user is somewhere else where recording makes sense to you, call:
+```Java
+Smartlook.start()
+```
 
 ### Mark sensitive views
 
-Use: `markViewAsSensitive(View view)`
+You can mark sensitive views to be hidden from recordings using this method:
+```Java
+Smartlook.markViewAsSensitive(View view)
+```
 
-You can mark sensitive views to be hidden from recordings. EditTexts and Webviews are hidden by default. In case you are using Webview for rendering of non-sensitive information, feel free to temporary allow their recording: `enableWebviewRecording(boolean enable)`
+**EditTexts** and **Webviews** are **hidden by default**. In case you are using Webview for rendering of non-sensitive information, feel free to temporary allow their recording: 
+```Java
+Smartlook.enableWebviewRecording(boolean enable)
+```
 
 ### Recording marking
 
 Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
-
-### On demand pause and start
-
-In case you want to pause recording, feel free to call `Smartlook.pause()`. Once user is somewhere else where recording makes sense to you, call `Smartlook.start()`.
 
 ## Analytics
 
