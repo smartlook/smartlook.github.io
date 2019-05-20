@@ -17,6 +17,10 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 [Smartlook Android SDK changelog](https://github.com/smartlook/smartlook-android-sdk) reports all notable improvements, changes and fixes in SDK releases.
 
+## Supported versions
+
+Currently we support API 18+ for recording.
+
 ## Installation
 
 Add the following dependency in your app's build.gradle:
@@ -75,8 +79,6 @@ For more information about manual start or pause of the recording, see **On dema
 Apart from above mentioned methods you can also use extended versions to **set custom FPS for recording**, i.e. `Smartlook.init(YOUR_API_KEY, FPS)` 
 
 In case you are using TextureView, you can try different init method: `Smartlook.init(YOUR_API_KEY, true)` It has some experimental features as **TextureView/Maps/MapBox** recording etc.
-
-Currently we support API 18+ for recording.
 
 ### Mark sensitive views
 
