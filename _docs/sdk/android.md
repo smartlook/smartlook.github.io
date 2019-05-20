@@ -11,9 +11,11 @@ description: "This SDK offers several options to developers and/or companies."
 * Set your own custom analytics event and do complex funnels/queries in the dashboard
 * Collect referrer value and source of installation per visitor
 
-## Reporting issues
+## Reporting issues and changelog
 
 For more information on how to report issues please check our [Smartlook SDK Support section](https://smartlook.github.io/docs/sdk/support/#how-to-submit-an-issue).
+
+[Smartlook Android SDK changelog](https://github.com/smartlook/smartlook-android-sdk) reports all notable improvements, changes and fixes in SDK releases.
 
 ## Project build
 
