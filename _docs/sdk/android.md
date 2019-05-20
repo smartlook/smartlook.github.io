@@ -19,7 +19,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Supported versions
 
-Currently we support API 18+ for recording.
+Currently, we support API 18+ for recording.
 
 ## Installation
 
@@ -64,29 +64,29 @@ In case you need to initialize SDK later i.e. fetching your API key or in the mi
 ```Java
 Smartlook.initIrregular(String YOUR_API_KEY, Activity currentActivity)
 ```
-Keep in mind that this init method **starts the recording as well.**
+Keep in mind that this initialize method **starts the recording** as well.
 
 #### Intialize passive
 
-In case you want to initialize the SDK and you want to handle the start of the recording by yourself, use: 
+In case you want to initialize the SDK and want to handle the start of the recording by yourself, use: 
 ```Java
 Smartlook.initPassive(String YOUR_API_KEY)
 ``` 
-For more information about manual start or pause of the recording, see **On demand pause and start** section.
+For more information about manual start or pause of the recording, see **On-demand pause and start** section.
 
 #### Intialize parameters
 
-All SDK initialization methods have variants with theese parameters:
+All SDK initialization methods have variants with these parameters:
 * `fps` You can set custom **framerate** for recording by setting `fps` parameter (allowed values between 2 and 10).
 * `experimental` Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.
 
-### On demand pause and start
+### On-demand pause and start
 
 In case you want to pause recording, feel free to call:
 ```Java
 Smartlook.pause()
 ```
-Once user is somewhere else where recording makes sense to you, call:
+Once a user is somewhere else where recording makes sense to you, call:
 ```Java
 Smartlook.start()
 ```
@@ -98,7 +98,7 @@ You can mark sensitive views to be hidden from recordings using this method:
 Smartlook.markViewAsSensitive(View view)
 ```
 
-**EditTexts** and **Webviews** are **hidden by default**. In case you are using Webview for rendering of non-sensitive information, feel free to temporary allow their recording: 
+**EditTexts** and **Webviews** are **hidden by default**. In case you are using Webview for the rendering of non-sensitive information, feel free to temporary allow their recording: 
 ```Java
 Smartlook.enableWebviewRecording(boolean enable)
 ```
@@ -147,7 +147,7 @@ Additional data can be used in **funnels** or any additional **filtering**.
 
 #### Time event
 
-In case you want to measure duration of any time sensitive or long running actions in the app.
+In case you want to measure the duration of any time-sensitive or long running actions in the app.
 You can call:
 ```Java
 Smartlook.timeEvent(@NotNull String eventName)
@@ -172,11 +172,11 @@ or
 ```Java
 Smartlook.setGlobalProperties(Bundle eventProperties)
 ```
-Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properites with the same key.
+Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
 
 #### Imutable super properties
 
-Imutable super properties can be set by calling:
+Immutable super properties can be set by calling:
 ```Java
 Smartlook.setGlobalImmutableProperties(JSONObject eventProperties)
 ```
@@ -184,10 +184,10 @@ or
 ```Java
 Smartlook.setGlobalImmutableProperties(Bundle eventProperties)
 ```
-Once global imutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
+Once a global immutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
 
 ### Remove global property
-If you want to remove some global property with given key call:
+If you want to remove some global property with a given key call:
 ```Java
 Smartlook.removeSuperPropertyByKey(String propertyKey)
 ```
@@ -195,13 +195,13 @@ Or you can remove all global properties:
 ```Java
 removeAllSuperProperties()
 ``` 
-Global properies are stored until they are not removed or app is uninstalled.
+Global properties are stored until they are not removed or the app is uninstalled.
 
 ## Crash reporting
 
-In case developer did not handle any exception SDK will automatically report stackTrace. This works our of box and is sent to our servers in case analytics/errors are applicable.
+In case developer did not handle any exception SDK will automatically report stackTrace. This works out of the box and is sent to our servers in case analytics/errors are applicable.
 
-Because app process is killed by the crash, video is going to be rendered and sent to the server once new session is started (next application start).
+Because the app process is killed by the crash, video is going to be rendered and sent to the server once a new session is started (next application start).
 
 Proguard mapping file still not available -> Beta functionality.
 
@@ -214,4 +214,4 @@ Smartlook.enableCrashlytics(boolean enable)
 
 ![New key-value pair](https://sdk.smartlook.com/android/docs/crash_docs_pair.png)
 
-Then in Crashlytics dashboard, there should be new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
+Then in Crashlytics dashboard, there should be a new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
