@@ -187,15 +187,15 @@ Smartlook.setGlobalImmutableProperties(Bundle eventProperties)
 Once global imutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
 
 ### Remove global property
-If you want to remove any global property call:
+If you want to remove some global property with given key call:
 ```Java
 Smartlook.removeSuperPropertyByKey(String propertyKey)
 ```
-or 
+Or you can remove all global properties:
 ```Java
 removeAllSuperProperties()
 ``` 
-Any global property is stored until it si not removed or app is uninstalled.
+Global properies are stored until they are not removed or app is uninstalled.
 
 ## Crash reporting
 
