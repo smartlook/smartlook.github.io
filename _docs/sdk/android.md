@@ -54,17 +54,23 @@ Smartlook.init(YOUR_API_KEY)
 
 This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
 
+### Initalize irregular
+
 In case you need to initialize SDK later i.e. fetching your API key or in the middle of the activity lifecycle, use:
 ```Java
 Smartlook.initIrregular(YOUR_API_KEY, currentActivity)
 ```
 Keep in mind that this init method **starts the recording as well.**
 
+### Intialize passive
+
 In case you want to initialize the SDK and you want to handle the start of the recording by yourself, use: 
 ```Java
 Smartlook.initPassive(YOUR_API_KEY)
 ``` 
 For more information about manual start or pause of the recording, see **On demand pause and start** section.
+
+### Intialize parameters
 
 Apart from above mentioned methods you can also use extended versions to **set custom FPS for recording**, i.e. `Smartlook.init(YOUR_API_KEY, FPS)` 
 
