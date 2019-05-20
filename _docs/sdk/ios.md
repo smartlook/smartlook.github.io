@@ -30,7 +30,7 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 2. Run `pod install`
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
-import Smartlook`
+import Smartlook
 ```
 ```objc
 #import <Smartlook/Smartlook.h>
@@ -43,7 +43,7 @@ import Smartlook`
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
-import Smartlook`
+import Smartlook
 ```
 ```objc
 #import <Smartlook/Smartlook.h>
