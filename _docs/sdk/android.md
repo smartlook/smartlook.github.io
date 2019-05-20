@@ -43,13 +43,28 @@ Applications can interact with the SDK using public SDK methods.
 
 ### Initialize Smartlook
 
-You must supply your **Smartlook SDK key** which can be acquired in the Smartlook Dashboard.
+You need to provide your **Smartlook SDK Key** which can be acquired in the [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
+{: .alert .alert-warning }
 
-Basic init method is `Smartlook.init(YOUR_API_KEY)` This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
+For standard initialization use: 
 
-In case you need to init SDK after i.e. fetching your API key or in the middle of the activity lifecycle, feel free to use `Smartlook.initIrregular(YOUR_API_KEY, currentActivity)` version of init method. Keep in mind that this init method **starts the recording as well.**
+```Java
+Smartlook.init(YOUR_API_KEY)
+```
 
-In case you want to init the SDK and you want to handle start of the recording by yourself, use `Smartlook.initPassive(YOUR_API_KEY)` For more information about manual start or pause of the recording, see **On demand pause and start** section.
+This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
+
+In case you need to initialize SDK later i.e. fetching your API key or in the middle of the activity lifecycle, use:
+```Java
+Smartlook.initIrregular(YOUR_API_KEY, currentActivity)
+```
+Keep in mind that this init method **starts the recording as well.**
+
+In case you want to initialize the SDK and you want to handle the start of the recording by yourself, use: 
+```Java
+Smartlook.initPassive(YOUR_API_KEY)
+``` 
+For more information about manual start or pause of the recording, see **On demand pause and start** section.
 
 Apart from above mentioned methods you can also use extended versions to **set custom FPS for recording**, i.e. `Smartlook.init(YOUR_API_KEY, FPS)` 
 
