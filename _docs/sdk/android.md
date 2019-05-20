@@ -103,38 +103,115 @@ Smartlook.markViewAsSensitive(View view)
 Smartlook.enableWebviewRecording(boolean enable)
 ```
 
-### Recording marking
+### Add user id & properties
 
-Developer can also mark session with some internal key that is associated to the user via `identify(@NonNull String userId)` method or more detailed method `identify(@NonNull String userId, final JSONObject userProperties)`.
+You can specify your app’s user identifier by calling:
+```Java 
+Smartlook.identify(@NonNull String userId)
+``` 
+You can then look up those identifiers in the Dashboard to find specific user’s recordings.
 
-## Analytics
+Additional user information, such as name, email and other custom user properties can be set by calling:
 
-SDK provides several methods for analytics. First one is `track(@NonNull String eventName)` which is very simple event without any props. Second one is `track(@NonNull String eventName, JSONObject eventProperties)` with additional data which can be used in funnels or any additional filtering.
+```Java 
+Smartlook.identify(@NonNull String userId, JSONObject userProperties)
+``` 
+You’ll see those properties in the Dashboard in Visitor details.
 
-Next method is `timeEvent(@NonNull String eventName)`. It is not sending any event, but once developer calls any `track(...)` method with corresponding eventName, it will also add extra duration property. This might be usefull for developers to measure any time sensitive or long running actions in the app.
+### Analytics
 
-Our SDK also supports super props. Those can be set by `setGlobalProperties(JSONObject eventProperties)` method. Such props are added to any event sent from the client in the future. Properties in global scope has higher priority so in merging process those from global scope will override custom props with the same key.
+SDK records several analytic events by default:
+* Activity changes
+* Fragment changes
+* Focus events
+* Orientation events
+* Clicked Views
 
-Developer can also use `setGlobalImmutableProperties(JSONObject eventProperties)` method. Once property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable props are superior to the custom and normal global ones -> will override same keys.
+But you can track whatever you want by using custom events.
 
-Methods accepting `JSONObject` also exists in alternative form accepting `Bundle` object.
+#### Custom events
 
-In case developer wants to remove any global props he can do that by `removeSuperPropertyByKey(String propertyKey)` or `removeAllSuperProperties()` methods. Any global property is stored until app is uninstalled.
+You can track custom event by calling:
+```Java
+Smartlook.track(@NonNull String eventName)
+```
+If you need to send some additional data with custom event use:
+```Java
+Smartlook.track(@NonNull String eventName, JSONObject eventProperties)
+```
+or
+```Java
+Smartlook.track(@NonNull String eventName, Bundle eventProperties)
+```
+Additional data can be used in **funnels** or any additional **filtering**. 
 
+#### Time event
+
+In case you want to measure duration of any time sensitive or long running actions in the app.
+You can call:
+```Java
+Smartlook.timeEvent(@NotNull String eventName)
+```
+This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
+
+Typical use might look like this:
+```Java
+Smartlook.timeEvent("duration_event")
+Thread.sleep(1000) //long running operation
+Smartlook.track("duration_event")
+```
+In this case `duration_event` will have duration property set to circa `1000ms`.
+
+#### Mutable super properties
+
+Mutable super properties can be set by calling:
+```Java
+Smartlook.setGlobalProperties(JSONObject eventProperties)
+```
+or
+```Java
+Smartlook.setGlobalProperties(Bundle eventProperties)
+```
+Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properites with the same key.
+
+#### Imutable super properties
+
+Imutable super properties can be set by calling:
+```Java
+Smartlook.setGlobalImmutableProperties(JSONObject eventProperties)
+```
+or
+```Java
+Smartlook.setGlobalImmutableProperties(Bundle eventProperties)
+```
+Once global imutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
+
+### Remove global property
+If you want to remove any global property call:
+```Java
+Smartlook.removeSuperPropertyByKey(String propertyKey)
+```
+or 
+```Java
+removeAllSuperProperties()
+``` 
+Any global property is stored until it si not removed or app is uninstalled.
 
 ## Crash reporting
 
-In case developer did not handle any exception SDK will automatically report stackTrace - basically last action in the session. This works our of box and is sent to our servers in case analytics/errors is applicable.
+In case developer did not handle any exception SDK will automatically report stackTrace. This works our of box and is sent to our servers in case analytics/errors are applicable.
 
-Because app process is killed by the crash video is going to be rendered and sent to the server once new session is started.
+Because app process is killed by the crash, video is going to be rendered and sent to the server once new session is started (next application start).
 
 Proguard mapping file still not available -> Beta functionality.
 
-
 ## Crashlytics
 
-In case you are using Crashlytics in your project, once Fabric setup is done, you can call `enableCrashlytics(boolean enable)` method and we will do our best to add extra information directly to your crash report.
+In case you are using Crashlytics in your project, once Crashlytics setup is done, you can call:
+```Java
+Smartlook.enableCrashlytics(boolean enable)
+```
 
 ![New key-value pair](https://sdk.smartlook.com/android/docs/crash_docs_pair.png)
 
-In Crashlytics dashboard, there should be new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before mentioned crash by Crashlytics.
+Then in Crashlytics dashboard, there should be new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
