@@ -17,9 +17,15 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 [Smartlook Android SDK changelog](https://github.com/smartlook/smartlook-android-sdk) reports all notable improvements, changes and fixes in SDK releases.
 
-## Project build
+## Installation
 
-In case you want to use SDK in Android project add these lines to your Gradle project file:
+Add the following dependency in your app's build.gradle:
+
+```Gradle
+implementation('com.smartlook.recording:app:0.9.0.2.5.3-beta')
+```
+
+And add the following in your project's build.gradle:
 
 ```Gradle
 allprojects {
@@ -30,8 +36,6 @@ allprojects {
   }
 }
 ```
-
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:0.9.0.2.5.3-beta')`
 
 ## API Reference
 
