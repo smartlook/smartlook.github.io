@@ -64,7 +64,7 @@ This method should be called as soon as the app starts in its `AppDelegate` `did
 
 That is all. 
 
-There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
+There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. This happens automatically.
 {: .callout .callout-info }
 
 ### Initialize Smartlook to start it later
@@ -99,8 +99,35 @@ Smartlook.isPaused()        // returns true/false
 
 It is harmless to call the method in unruly order (e.g., to _resume_ while already recording).
 
-There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. It happens automatically.
+There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. This happens automatically.
 {: .callout .callout-info }
+
+### Initialize Smartlook with framerate options
+
+In Smartlook, the default framerate of screen recording is **1 frame per second** (fps). 
+
+By our experience, this framerate is quite sufficient for capturing user behaviour for analytics purposes. 
+
+If you need *smoother* recordings, use optional `framerate` attribute of the `startWithKey` and `initializeWithKey` to increase it. 
+
+Higher framerates do not necessarily lead to bigger video data, but more frequent screen capture increases the device CPU/GPU load and energy consumption. Compromise strategy could be e.g., enabling higher framerate during beta-testing phase, and decrease it to the default value in production builds.
+
+**start**
+```swift
+Smartlook.start(withKey: "your-app-sdk-key", framerate: 3)
+```
+```objc
+[Smartlook startWithKey:@"your-app-sdk-key" framerate:3];
+```
+
+**initialize**
+```swift
+Smartlook.initialize(withKey: "your-app-sdk-key", framerate: 3)
+```
+```objc
+[Smartlook initializeWithKey:@"your-app-sdk-key" framerate:3];
+```
+
 
 ### Mark and unmark sensitive views
 
