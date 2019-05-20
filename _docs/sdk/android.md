@@ -77,7 +77,7 @@ Developer can also use `setGlobalImmutableProperties(JSONObject eventProperties)
 
 Methods accepting `JSONObject` also exists in alternative form accepting `Bundle` object.
 
-In case developer wants to remove any global props he can do that by `removeSuperPropertyByKey(String propertyKey)` or `removeAllSuperProperties()` methods. Any global property is stored until app is uninstalled.
+In case developer wants to remove any global props they can do that by `removeSuperPropertyByKey(String propertyKey)` or `removeAllSuperProperties()` methods. Any global property is stored until app is uninstalled.
 
 
 ## Crash reporting
