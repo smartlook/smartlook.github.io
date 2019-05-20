@@ -29,18 +29,26 @@ You need to provide your **SDK Key** which can be found in [Smartlook Dashboard]
 1. Add `pod 'Smartlook'` to your project's Podfile.
 2. Run `pod install`
 3. Import Smartlook SDK in your app's App Delegate class:
-  * **Objective C:** `#import <Smartlook/Smartlook.h>`
-  * **Swift:** `import Smartlook`
-4. Run Smartlook by calling either `start(withKey: String)` or `initialize(withKey: String)` in your AppDelegate as described below.
+```swift
+import Smartlook`
+```
+```objc
+#import <Smartlook/Smartlook.h>
+```
+4. Run Smartlook by calling either `start` or `initialize` in your AppDelegate as described below.
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v0.1.12](https://sdk.smartlook.com/ios/smartlook-ios-sdk-0.1.12.zip) directly.
+1. Download [Smartlook iOS SDK v1.0.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.0.0.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
-  * **Objective C:** `#import <Smartlook/Smartlook.h>`
-  * **Swift:** `import Smartlook`
-4. Run Smartlook by calling either `start(withKey: String)` or `initialize(withKey: String)` in your AppDelegate as described below.
+```swift
+import Smartlook`
+```
+```objc
+#import <Smartlook/Smartlook.h>
+```
+4. Run Smartlook by calling either `start` or `initialize` in your AppDelegate as described below.
 
 ## API Reference
 
