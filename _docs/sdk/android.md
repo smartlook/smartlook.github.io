@@ -17,9 +17,9 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Project build
 
-In case you want to use SDK in Android project add these lines to your gradle project file:
+In case you want to use SDK in Android project add these lines to your Gradle project file:
 
-```android
+```Gradle
 allprojects {
   repositories {
     maven {
