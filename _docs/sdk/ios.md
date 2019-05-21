@@ -77,7 +77,7 @@ There is no need to manually stop or pause recording when the app gets suspended
 
 ### Initialize Smartlook to start it later
 
-If you do not want to start recording immediately with the app start (you want, e.g., recording only some parts of the app), you still should initialise Smartlook there. To do it, call
+If you do not want to start recording immediately with the app start (you want, e.g., recording only some parts of the app), you still should initialise Smartlook as soon as possible. To do it, call
 
 ```swift
 Smartlook.initialize(withKey: "your-app-sdk-key")
@@ -88,11 +88,11 @@ Smartlook.initialize(withKey: "your-app-sdk-key")
 
 This method should be called as soon as the app starts in its `AppDelegate` `didFinishLaunchingWithOptions` method.
 
-Then, Smartlook is ready to start recording later with `startRecording` method. 
+Then, Smartlook is ready to start recording later with `resumeRecording` method. 
 
 ### Recording pausing and resuming
 
-Regardless how is Smartlook initialised, it is always possible to pause/resume the recording, and also check if the recording is active.  
+Regardless how is Smartlook initialised, it is always possible to pause/resume the recording, and check if the recording is active.  
 
 ```swift
 Smartlook.resumeRecording() // start or resume paused recording
@@ -105,37 +105,29 @@ Smartlook.isPaused()        // returns true/false
 [Smartlook isPaused]        // returns true/false
 ```
 
-It is harmless to call the method in unruly order (e.g., to _resume_ while already recording).
+It is harmless to call the methods in unruly order (e.g., to _resume_ while already recording).
 
 There is no need to manually stop or pause recording when the app gets suspended by the user by pressing Home button or switching to another app, or restart recording when the app wakes up. This happens automatically.
 {: .callout .callout-info }
 
 ### Initialize Smartlook with framerate options
 
-In Smartlook, the default framerate of screen recording is **1 frame per second** (fps). 
+The default framerate of Smartlook screen recording is **1 frame per second** (fps). 
 
 By our experience, this framerate is quite sufficient for capturing user behaviour for analytics purposes. 
 
-If you need *smoother* recordings, use optional `framerate` attribute of the `startWithKey` and `initializeWithKey` to increase it. 
+If you need *smoother* recordings, use optional `framerate` attribute of the `startWithKey` and `initializeWithKey` methods to increase the framerate. 
 
-Higher framerates do not necessarily lead to bigger video data, but more frequent screen capture increases the device CPU/GPU load and energy consumption. Compromise strategy could be e.g., enabling higher framerate during beta-testing phase, and decrease it to the default value in production builds.
+Higher framerates do not necessarily lead to bigger video data, but more frequent screen capture increases the device CPU/GPU load and energy consumption. Compromise strategy could be e.g., enabling higher framerate during beta-testing, and decrease it to the default value in production builds.
 
-**start**
 ```swift
-Smartlook.start(withKey: "your-app-sdk-key", framerate: 3)
+Smartlook.start(withKey: "your-app-sdk-key", framerate: 3)       // initialize and start with custom framerate
+Smartlook.initialize(withKey: "your-app-sdk-key", framerate: 3)  // just initialize with custom framerate
 ```
 ```objc
-[Smartlook startWithKey:@"your-app-sdk-key" framerate:3];
+[Smartlook startWithKey:@"your-app-sdk-key" framerate:3];        // initialize and start with custom framerate
+[Smartlook initializeWithKey:@"your-app-sdk-key" framerate:3];   // just initialize with custom framerate
 ```
-
-**initialize**
-```swift
-Smartlook.initialize(withKey: "your-app-sdk-key", framerate: 3)
-```
-```objc
-[Smartlook initializeWithKey:@"your-app-sdk-key" framerate:3];
-```
-
 
 ### Mark and unmark sensitive views
 
@@ -168,7 +160,8 @@ Smartlook.startCustomEvent(withEventName: "user-bought-subscription", properties
 [Smartlook startCustomEventWithEventName:@"user-bought-subscription" propertiesDictionary:@{ @"tier" : @"basic" } ]
 ```
 
-This method does not record an event. It is the subsequent `recordCustomEvent` call with the same `eventName` that does. {: .callout .callout-info } 
+This method does not record an event. It is the subsequent `recordCustomEvent` call with the same `eventName` that does. 
+{: .callout .callout-info } 
 
 In the resulting event, the property dictionaries of `start` and `record` are merged (the `record` values override the `start` ones if the key is the same).
 
@@ -187,7 +180,7 @@ Smartlook.setUserIdentifier("some-user-identifier");
 
 ### Add other user properties
 
-Additional custom information can be set for recording sessions, such as name, email and such. You'll see those properties in the Dashboard in Visitor details. You can use any NSString as a key and any NSString as a value in the dictionary.
+Additional custom information can be set for recording sessions, such as name, email and such. You'll see those properties in the Dashboard in Visitor details. Keys and values in the dictionary are expected to be Strings.
 
 Keys **"name"** and **"email"** will be highlighted in Visitor information.
 {: .callout .callout-info }
