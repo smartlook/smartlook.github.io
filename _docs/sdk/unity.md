@@ -22,9 +22,52 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for Android
 
-1. Download [Smartlook Android Unity SDK v0.9.0.2.5.4](https://sdk.smartlook.com/android/app-0.9.0.2.5.4-beta-unity.aar).
+1. Download [Smartlook Android Unity SDK v0.9.0.2.5.6](https://sdk.smartlook.com/android/app-0.9.0.2.5.6-beta-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
-3. Get [`Smartlook.cs`](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs) Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge/blob/master/Smartlook.cs)
+3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
+
+**Note: For stability/performance goals, currently we support Android 23+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
+
+## Installation for Android (Gradle)
+
+In case there is a conflict with other libraries, we also released lite version of the SDK. This solution however needs to be implemented via gradle of the app itself. Steps are described below. Flow is similar to integration of our native SDK.
+
+1.
+
+Add the following in your project's build.gradle:
+
+```Gradle
+allprojects {
+  repositories {
+    maven {
+      url "https://sdk.smartlook.com/android/release"
+    }
+  }
+}
+```
+
+
+2.
+
+Add the following dependency in your app's build.gradle:
+
+```Gradle
+implementation('com.smartlook.recording:app:0.9.0.2.5.6-beta-unity-lite')
+```
+
+
+3.
+
+In case you are missing some of the dependencies, feel free to add:
+
+```Gradle
+implementation('com.squareup.retrofit2:converter-gson:2.4.0') {
+        exclude group: 'com.squareup.okhttp3', module:'okhttp'
+    }
+```
+
+
+4. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
 
 **Note: For stability/performance goals, currently we support Android 23+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
 
