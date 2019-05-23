@@ -91,6 +91,15 @@ Once a user is somewhere else where recording makes sense to you, call:
 Smartlook.start()
 ```
 
+### Check if SDK is recording
+
+If your are using `start()` and `pause()` methods it might be handy to know if SDK is currently recording or not.
+Simply call:
+
+```Java
+Smartlook.isRecording()
+```
+
 ### Mark sensitive views
 
 You can mark sensitive views to be hidden from recordings using this method:
