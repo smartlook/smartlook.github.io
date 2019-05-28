@@ -25,13 +25,13 @@ Currently, we support API 18+ for recording.
 
 Add the following dependency in your app's build.gradle:
 
-```Gradle
+```gradle
 implementation('com.smartlook.recording:app:0.9.0.2.5.7-beta')
 ```
 
 And add the following in your project's build.gradle:
 
-```Gradle
+```gradle
 allprojects {
   repositories {
     maven {
@@ -52,7 +52,7 @@ You need to provide your **Smartlook SDK Key** which can be acquired in the [Sma
 
 For standard initialization use: 
 
-```Java
+```java
 Smartlook.init(String YOUR_API_KEY)
 ```
 
@@ -61,7 +61,7 @@ This method initializes the SDK **and starts the recording.** Best place to call
 #### Initalize irregular
 
 In case you need to initialize SDK later i.e. fetching your API key or in the middle of the activity lifecycle, use:
-```Java
+```java
 Smartlook.initIrregular(String YOUR_API_KEY, Activity currentActivity)
 ```
 Keep in mind that this initialize method **starts the recording** as well.
@@ -69,7 +69,7 @@ Keep in mind that this initialize method **starts the recording** as well.
 #### Intialize passive
 
 In case you want to initialize the SDK and want to handle the start of the recording by yourself, use: 
-```Java
+```java
 Smartlook.initPassive(String YOUR_API_KEY)
 ``` 
 For more information about manual start or pause of the recording, see **On-demand pause and start** section.
@@ -83,11 +83,11 @@ All SDK initialization methods have variants with these parameters:
 ### On-demand pause and start
 
 In case you want to pause recording, feel free to call:
-```Java
+```java
 Smartlook.pause()
 ```
 Once a user is somewhere else where recording makes sense to you, call:
-```Java
+```java
 Smartlook.start()
 ```
 
@@ -96,33 +96,33 @@ Smartlook.start()
 If your are using `start()` and `pause()` methods it might be handy to know if SDK is currently recording or not.
 Simply call:
 
-```Java
+```java
 Smartlook.isRecording()
 ```
 
 ### Mark sensitive views
 
 You can mark sensitive views to be hidden from recordings using this method:
-```Java
+```java
 Smartlook.markViewAsSensitive(View view)
 ```
 
 **EditTexts** and **Webviews** are **hidden by default**. In case you are using Webview for the rendering of non-sensitive information, feel free to temporary allow their recording: 
-```Java
+```java
 Smartlook.enableWebviewRecording(boolean enable)
 ```
 
 ### Add user id & properties
 
 You can specify your app’s user identifier by calling:
-```Java 
+```java 
 Smartlook.identify(@NonNull String userId)
 ``` 
 You can then look up those identifiers in the Dashboard to find specific user’s recordings.
 
 Additional user information, such as name, email and other custom user properties can be set by calling:
 
-```Java 
+```java 
 Smartlook.identify(@NonNull String userId, JSONObject userProperties)
 ``` 
 You’ll see those properties in the Dashboard in Visitor details.
@@ -141,15 +141,15 @@ But you can track whatever you want by using custom events.
 #### Custom events
 
 You can track custom event by calling:
-```Java
+```java
 Smartlook.track(@NonNull String eventName)
 ```
 If you need to send some additional data with custom event use:
-```Java
+```java
 Smartlook.track(@NonNull String eventName, JSONObject eventProperties)
 ```
 or
-```Java
+```java
 Smartlook.track(@NonNull String eventName, Bundle eventProperties)
 ```
 Additional data can be used in **funnels** or any additional **filtering**. 
@@ -158,13 +158,13 @@ Additional data can be used in **funnels** or any additional **filtering**.
 
 In case you want to measure the duration of any time-sensitive or long running actions in the app.
 You can call:
-```Java
+```java
 Smartlook.timeEvent(@NotNull String eventName)
 ```
 This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
 
 Typical use might look like this:
-```Java
+```java
 Smartlook.timeEvent("duration_event")
 Thread.sleep(1000) //long running operation
 Smartlook.track("duration_event")
@@ -174,11 +174,11 @@ In this case `duration_event` will have duration property set to circa `1000ms`.
 #### Mutable super properties
 
 Mutable super properties can be set by calling:
-```Java
+```java
 Smartlook.setGlobalProperties(JSONObject eventProperties)
 ```
 or
-```Java
+```java
 Smartlook.setGlobalProperties(Bundle eventProperties)
 ```
 Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
@@ -186,22 +186,22 @@ Such properties are added to any event sent from the client in the future. Prope
 #### Imutable super properties
 
 Immutable super properties can be set by calling:
-```Java
+```java
 Smartlook.setGlobalImmutableProperties(JSONObject eventProperties)
 ```
 or
-```Java
+```java
 Smartlook.setGlobalImmutableProperties(Bundle eventProperties)
 ```
 Once a global immutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
 
 ### Remove global property
 If you want to remove some global property with a given key call:
-```Java
+```java
 Smartlook.removeSuperPropertyByKey(String propertyKey)
 ```
 Or you can remove all global properties:
-```Java
+```java
 removeAllSuperProperties()
 ``` 
 Global properties are stored until they are not removed or the app is uninstalled.
@@ -217,7 +217,7 @@ Proguard mapping file still not available -> Beta functionality.
 ## Crashlytics
 
 In case you are using Crashlytics in your project, once Crashlytics setup is done, you can call:
-```Java
+```java
 Smartlook.enableCrashlytics(boolean enable)
 ```
 
