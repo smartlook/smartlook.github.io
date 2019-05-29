@@ -102,6 +102,22 @@ pre[class*="language-json"]::before {
   content: "JSON";
 }
 
+pre[class*="language-gradle"]::before {
+  background: $o_green_500;
+}
+
+pre[class*="language-gradle"]::before {
+  content: "GRADLE";
+}
+
+pre[class*="language-java"]::before {
+  background: $o_blue_900;
+}
+
+pre[class*="language-java"]::before {
+  content: "JAVA";
+}
+
 // CODE
 code {
   -webkit-box-flex: 1;
