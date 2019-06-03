@@ -218,6 +218,6 @@ When debugging your app with Smartlook, you will encounter a warning which title
 
 The warning is harmless, and is caused by capturing screen on background. The alternative (capturing the screenshot on the main thread) may cause glitches of the app UI - so having it this way and having this warning is a necessary trade-off to enable recording functionality.
 
-This warning also might be accompanied by a short freeze of the app. This freeze does not happen in production builds, and is caused by an Xcode debug option. You can turn this option off in the respective run scheme diagnostic options:
+This warning also might be accompanied by a short freeze of the app. This freeze does not happen in production builds, and is caused by an Xcode debug option. This option can be switched off in the respective run scheme diagnostic options:
 
-!(ios-main-thread-checker.png)
+![Setting pause on issue off](ios-main-thread-checker.png)
