@@ -17,6 +17,10 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 [Smartlook iOS SDK Changelog](https://github.com/smartlook/smartlook-ios-sdk) records all notable improvements, changes and fixes in SDK releases.
 
+### A note to `Main Thread Checker` warning
+
+When debugging your app with Smartlook, you will encounter a `Main Thread Checker` which might be accompanied by a short app freeze. The freeze does not happen in production builds. For details, see [this technical note](#a-note-to-main-thread-checker-warning).
+
 ## Installation
 
 Install via CocoaPods or download Smartlook iOS SDK.
@@ -205,3 +209,15 @@ Smartlook.setUserPropertiesDictionary([
 ### Crashlytics integration
 
 When Crashlytics are setup in your app, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. Its value is URL of the latest recording made by Smartlook during or before the crash.
+
+## A note to Main Thread Checker warning
+
+When debugging your app with Smartlook, you will encounter a warning which title reads
+
+`Main Thread Checker: UI API called on a background thread: -[UIView drawViewHierarchyInRect:afterScreenUpdates:]`
+
+The warning is harmless, and is caused by capturing screen on background. The alternative (capturing the screenshot on the main thread) may cause glitches of the app UI - so having it this way and having this warning is a necessary trade-off to enable recording functionality.
+
+This warning also might be accompanied by a short freeze of the app. This freeze does not happen in production builds, and is caused by an Xcode debug option. You can turn this option off in the respective run scheme diagnostic options:
+
+!(ios-main-thread-checker.png)
