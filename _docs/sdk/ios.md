@@ -17,9 +17,9 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 [Smartlook iOS SDK Changelog](https://github.com/smartlook/smartlook-ios-sdk) records all notable improvements, changes and fixes in SDK releases.
 
-### A note to `Main Thread Checker` warning
+### A note to _Main Thread Checker_ warning
 
-When debugging your app with Smartlook, you will encounter a `Main Thread Checker` which might be accompanied by a short app freeze. The freeze does not happen in production builds. For details, see [this technical note](#a-note-to-main-thread-checker-warning).
+When debugging your app with Smartlook, you will encounter a `Main Thread Checker` warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see [this technical note](#main-thread-checker-warning).
 
 ## Installation
 
@@ -210,7 +210,7 @@ Smartlook.setUserPropertiesDictionary([
 
 When Crashlytics are setup in your app, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. Its value is URL of the latest recording made by Smartlook during or before the crash.
 
-## A note to Main Thread Checker warning
+## Main Thread Checker warning
 
 When debugging your app with Smartlook, you will encounter a warning which title reads
 
