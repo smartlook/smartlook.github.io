@@ -220,4 +220,4 @@ The warning is harmless, and is caused by capturing screen on background. The al
 
 This warning also might be accompanied by a short freeze of the app. This freeze does not happen in production builds, and is caused by an Xcode debug option. This option can be switched off in the respective run scheme diagnostic options:
 
-![Setting pause on issue off](https://github.com/smartlook/smartlook.github.io/blob/master/_docs/sdk/ios-main-thread-checker.png)
+![Setting pause on issue off](https://raw.githubusercontent.com/smartlook/smartlook.github.io/master/_docs/sdk/ios-main-thread-checker.png)
