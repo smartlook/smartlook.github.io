@@ -19,7 +19,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ### A note to _Main Thread Checker_ warning
 
-When debugging your app with Smartlook, you will encounter a `Main Thread Checker` warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see [this technical note](#a-technical-note-main-thread-checker-warning).
+When debugging your app with Smartlook, you will encounter a **Main Thread Checker** warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see [this technical note](#a-technical-note-main-thread-checker-warning).
 
 ## Installation
 
@@ -220,4 +220,4 @@ The warning is harmless, and is caused by capturing screen on background. The al
 
 This warning also might be accompanied by a short freeze of the app. This freeze does not happen in production builds, and is caused by an Xcode debug option. This option can be switched off in the respective run scheme diagnostic options:
 
-![Setting pause on issue off](ios-main-thread-checker.png)
+![Setting pause on issue off](https://raw.githubusercontent.com/smartlook/smartlook.github.io/master/_docs/sdk/ios-main-thread-checker.png)
