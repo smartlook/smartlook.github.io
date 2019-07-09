@@ -58,7 +58,7 @@ Smartlook.setupAndStartRecording(String YOUR_API_KEY)
 
 In case you want to start recording later use:
 
-```
+```java
 Smartlook.setup(String YOUR_API_KEY)
 ```
 
@@ -79,9 +79,6 @@ If you have SDK set-up you can start or stop recording by calling:
 
 ```java
 Smartlook.startRecording()
-```
-
-```java
 Smartlook.stopRecording()
 ```
 
@@ -100,20 +97,14 @@ SDK contains list of blacklisted/sensitive views. These views will be not record
 You can view mark view(s) as blacklisted by calling:
 
 ```java
-Smartlook.registerBlacklistedViews(View view)
-```
-
-```java
-Smartlook.registerBlacklistedView(List<View> views)
+Smartlook.registerBlacklistedView(View view)
+Smartlook.registerBlacklistedViews(List<View> views)
 ```
 
 If view(s) is o longer sensitive you can remove it from blacklist:
 
 ```java
 Smartlook.unregisterBlacklistedView(View view)
-```
-
-```java
 Smartlook.unregisterBlacklistedViews(List<View> views)
 ```
 
@@ -123,9 +114,6 @@ You can blacklist view(s) of certain Class (typicaly custom views):
 
 ```java
 Smartlook.registerBlacklistedClass(Class class)
-```
-
-```java
 Smartlook.registerBlacklistedClasses(List<Class> classes)
 ```
 
@@ -133,9 +121,6 @@ Note that `EditText` and `WebView` are **blacklisted by default**. If you want t
 
 ```java
 Smartlook.unregisterBlacklistedClass(Class class)
-```
-
-```java
 Smartlook.unregisterBlacklistedClasses(List<Class> classes)
 ```
 
@@ -145,9 +130,6 @@ In case you need some view(s) to be recorded even if its instance of blacklisted
 
 ```java
 Smartlook.registerWhitelistedView(View view)
-```
-
-```java
 Smartlook.registerWhitelistedViews(List<View> views)
 ```
 
@@ -157,9 +139,6 @@ You can remove view(s) from whitelist:
 
 ```java
 Smartlook.unregisterWhitelistedView(View view)
-```
-
-```java
 Smartlook.unregisterWhitelistedViews(List<View> views)
 ```
 
@@ -167,14 +146,15 @@ Smartlook.unregisterWhitelistedViews(List<View> views)
 
 You can specify your app’s user identifier by calling:
 ```java 
-Smartlook.identify(@NonNull String userId)
+Smartlook.setUserIdentifier(@NonNull String identifier)
 ``` 
 You can then look up those identifiers in the Dashboard to find specific user’s recordings.
 
-Additional user information, such as name, email and other custom user properties can be set by calling:
+Additional user information, such as name, email and other custom properties can be set by calling:
 
 ```java 
-Smartlook.identify(@NonNull String userId, JSONObject userProperties)
+Smartlook.setUserIdentifier(@NonNull String identifier, JSONObject sessionProperties)
+Smartlook.setUserIdentifier(@NonNull String identifier, Bundle sessionProperties)
 ``` 
 You’ll see those properties in the Dashboard in Visitor details.
 
