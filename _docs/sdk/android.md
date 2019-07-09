@@ -45,55 +45,49 @@ allprojects {
 
 Applications can interact with the SDK using public SDK methods.
 
-### Initialize Smartlook
+### Setup
 
 You need to provide your **Smartlook SDK Key** which can be acquired in the [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
 {: .alert .alert-warning }
 
-For standard initialization use: 
+If you want to setup SDK and start recording use:
 
 ```java
-Smartlook.init(String YOUR_API_KEY)
+Smartlook.setupAndStartRecording(String YOUR_API_KEY)
 ```
 
-This method initializes the SDK **and starts the recording.** Best place to call this method is Application class or any entry point to your app.
+In case you want to start recording later use:
 
-#### Initalize irregular
-
-In case you need to initialize SDK later i.e. fetching your API key or in the middle of the activity lifecycle, use:
-```java
-Smartlook.initIrregular(String YOUR_API_KEY, Activity currentActivity)
 ```
-Keep in mind that this initialize method **starts the recording** as well.
-
-#### Intialize passive
-
-In case you want to initialize the SDK and want to handle the start of the recording by yourself, use: 
-```java
-Smartlook.initPassive(String YOUR_API_KEY)
-``` 
-For more information about manual start or pause of the recording, see **On-demand pause and start** section.
-
-#### Intialize parameters
-
-All SDK initialization methods have variants with these parameters:
-* `fps` You can set custom **framerate** for recording by setting `fps` parameter (allowed values between 2 and 10).
-* `experimental` Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.
-
-### On-demand pause and start
-
-In case you want to pause recording, feel free to call:
-```java
-Smartlook.pause()
+Smartlook.setup(String YOUR_API_KEY)
 ```
-Once a user is somewhere else where recording makes sense to you, call:
+
+Best place to call one of these methods is in Application class or any entry point to your app.
+
+### Setup parameters
+
+|    Parameter   | Required |                                                                         Description                                                                         | Default value |
+|:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
+|    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in dashboard).                                                                                   | ""            |
+|      `fps`     |    no    | Recorded video framerate (allowed values between 2 and 10).                                                                                                 | 2             |
+| `experimental` |    no    | Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.                                                         | false         |
+|   `activity`   |    no    | In case you need to setup SDK later i.e. fetching your API key or in the middle of the activity lifecycle, call setup with activity reference as parameter. | null          |
+
+### Start and stop recording
+
+If you have SDK set-up you can start or stop recording by calling:
+
 ```java
-Smartlook.start()
+Smartlook.startRecording()
+```
+
+```java
+Smartlook.stopRecording()
 ```
 
 ### Check if SDK is recording
 
-If your are using `start()` and `pause()` methods it might be handy to know if SDK is currently recording or not.
+If your are using `startRecording()` and `stopRecording()` methods it might be handy to know if SDK is currently recording or not.
 Simply call:
 
 ```java
