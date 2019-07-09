@@ -173,28 +173,35 @@ But you can track whatever you want by using custom events.
 
 You can track custom event by calling:
 ```java
-Smartlook.track(@NonNull String eventName)
+Smartlook.trackCustomEvent(@NonNull String eventName)
 ```
 If you need to send some additional data with custom event use:
 ```java
-Smartlook.track(@NonNull String eventName, JSONObject eventProperties)
-```
-or
-```java
-Smartlook.track(@NonNull String eventName, Bundle eventProperties)
+Smartlook.trackCustomEvent(@NonNull String eventName, JSONObject eventProperties)
+Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties)
+Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, String value)
 ```
 Additional data can be used in **funnels** or any additional **filtering**. 
 
-#### Time event
+#### Timed event
 
 In case you want to measure the duration of any time-sensitive or long running actions in the app.
 You can call:
 ```java
-Smartlook.timeEvent(@NotNull String eventName)
+Smartlook.startTimedCustomEvent(@NotNull String eventName)
 ```
 This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
 
-Typical use might look like this:
+You can set some aditional data by calling:
+
+```java
+Smartlook.startTimedCustomEvent(@NotNull String eventName, JSONObject eventProperties)
+Smartlook.startTimedCustomEvent(@NotNull String eventName, Bundle eventProperties)
+```
+
+Properties set in `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from `trackCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
+
+Typical use of timed event might look like this:
 ```java
 Smartlook.timeEvent("duration_event")
 Thread.sleep(1000) //long running operation
