@@ -142,6 +142,32 @@ Smartlook.unregisterWhitelistedView(View view)
 Smartlook.unregisterWhitelistedViews(List<View> views)
 ```
 
+### Sensitive mode
+
+In case you dont want SDK to record user video, but still want it to send analytic events you can use sensitive mode.
+
+```java
+Smartlook.startFullscreenSensitiveMode()
+```
+
+Instead of application recording video will be black when sensitive mode is active. You can change sensitive mode fill color by calling:
+
+```java
+Smartlook.startFullscreenSensitiveMode(@ColorInt int color) 
+```
+
+Sensitive mode can be stopped like this:
+
+```java
+Smartlook.stopFullscreenSensitiveMode()
+```
+
+if you want to check if sensitive mode is active, use:
+
+```java
+Smartlook.isFullscreenSensitiveModeActive()
+```
+
 ### Add user id & properties
 
 You can specify your app’s user identifier by calling:
