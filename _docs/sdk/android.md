@@ -288,3 +288,7 @@ Smartlook.enableCrashlytics(boolean enable)
 ![New key-value pair](https://sdk.smartlook.com/android/docs/crash_docs_pair.png)
 
 Then in Crashlytics dashboard, there should be a new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
+
+## Deprecated/beta API
+
+If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new Api methods. old ones are now **deprecated** and should still work, but this might change in the future.
