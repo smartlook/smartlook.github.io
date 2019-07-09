@@ -94,16 +94,73 @@ Simply call:
 Smartlook.isRecording()
 ```
 
-### Mark sensitive views
+### Blacklisted views
+SDK contains list of blacklisted/sensitive views. These views will be not recorded (only black rectangle instead of the view).
 
-You can mark sensitive views to be hidden from recordings using this method:
+You can view mark view(s) as blacklisted by calling:
+
 ```java
-Smartlook.markViewAsSensitive(View view)
+Smartlook.registerBlacklistedViews(View view)
 ```
 
-**EditTexts** and **Webviews** are **hidden by default**. In case you are using Webview for the rendering of non-sensitive information, feel free to temporary allow their recording: 
 ```java
-Smartlook.enableWebviewRecording(boolean enable)
+Smartlook.registerBlacklistedView(List<View> views)
+```
+
+If view(s) is o longer sensitive you can remove it from blacklist:
+
+```java
+Smartlook.unregisterBlacklistedView(View view)
+```
+
+```java
+Smartlook.unregisterBlacklistedViews(List<View> views)
+```
+
+### Blacklisted classes
+
+You can blacklist view(s) of certain Class (typicaly custom views):
+
+```java
+Smartlook.registerBlacklistedClass(Class class)
+```
+
+```java
+Smartlook.registerBlacklistedClasses(List<Class> classes)
+```
+
+Note that `EditText` and `WebView` are **blacklisted by default**. If you want to remove them or any other class from blacklist, use:
+
+```java
+Smartlook.unregisterBlacklistedClass(Class class)
+```
+
+```java
+Smartlook.unregisterBlacklistedClasses(List<Class> classes)
+```
+
+### Whitelisted views
+
+In case you need some view(s) to be recorded even if its instance of blacklisted class, you can whitelist them:
+
+```java
+Smartlook.registerWhitelistedView(View view)
+```
+
+```java
+Smartlook.registerWhitelistedViews(List<View> views)
+```
+
+Typical usage might be the need to record one `EditText` in whole Application. Thanks to whitelist, `EditText` can be blacklisted and you only need to whitelist one instance of it.
+
+You can remove view(s) from whitelist:
+
+```java
+Smartlook.unregisterWhitelistedView(View view)
+```
+
+```java
+Smartlook.unregisterWhitelistedViews(List<View> views)
 ```
 
 ### Add user id & properties
