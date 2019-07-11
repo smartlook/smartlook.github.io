@@ -283,6 +283,15 @@ Smartlook.enableCrashlytics(boolean enable)
 
 Then in Crashlytics dashboard, there should be a new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
 
+## Referrer
+
+SDK automatically collects referrer value and source of installation per visitor and displays it in Dashboard. 
+In some cases you might want to set custom refreer by yourself, you can to this by calling:
+
+```java
+Smartlook.setReferrer(String referrer, String source)
+```
+
 ## Deprecated/beta API
 
 If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new Api methods. old ones are now **deprecated** and should still work, but this might change in the future.
