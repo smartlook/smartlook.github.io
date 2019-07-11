@@ -235,40 +235,34 @@ Smartlook.track("duration_event")
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
-#### Mutable super properties
+#### Global event properties
 
-Mutable super properties can be set by calling:
+Event super properties can be set by calling:
+
 ```java
-Smartlook.setGlobalProperties(JSONObject eventProperties)
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
 ```
-or
-```java
-Smartlook.setGlobalProperties(Bundle eventProperties)
-```
+
 Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
 
-#### Imutable super properties
+Properties set to be `immutable` have the highest priority and once set they cannot be overriden (only removed).
 
-Immutable super properties can be set by calling:
-```java
-Smartlook.setGlobalImmutableProperties(JSONObject eventProperties)
-```
-or
-```java
-Smartlook.setGlobalImmutableProperties(Bundle eventProperties)
-```
-Once a global immutable property is set, it cannot be changed. This can be helpful i.e. in cases when we want to set something only once and be sure we will never touch that again. Immutable properties are superior to the custom and mutable global ones -> will **override** properties with same keys.
-
-### Remove global property
+### Remove global event property
 If you want to remove some global property with a given key call:
+
 ```java
-Smartlook.removeSuperPropertyByKey(String propertyKey)
+Smartlook.removeGlobalEventProperty(String propertyKey)
 ```
-Or you can remove all global properties:
+
+Or you can remove all global event properties:
+
 ```java
-removeAllSuperProperties()
-``` 
-Global properties are stored until they are not removed or the app is uninstalled.
+Smartlook.removeAllGlobalEventProperties()
+```
+
+Note that global event properties are stored until they are not removed or the app is uninstalled.
 
 ## Crash reporting
 
