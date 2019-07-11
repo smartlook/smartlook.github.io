@@ -101,7 +101,7 @@ Smartlook.registerBlacklistedView(View view)
 Smartlook.registerBlacklistedViews(List<View> views)
 ```
 
-If view(s) is o longer sensitive you can remove it from blacklist:
+If view(s) is no longer sensitive you can remove it from blacklist:
 
 ```java
 Smartlook.unregisterBlacklistedView(View view)
