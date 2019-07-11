@@ -292,6 +292,16 @@ In some cases you might want to set custom refreer by yourself, you can to this 
 Smartlook.setReferrer(String referrer, String source)
 ```
 
+## Shareable session url
+
+You can obtain url leading to the dashboard for currently recorded session:
+
+```java
+Smartlook.getPlayUrl()
+```
+
+This url can than be shared to everyone who has access to the dashboard.
+
 ## Deprecated/beta API
 
 If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new Api methods. old ones are now **deprecated** and should still work, but this might change in the future.
