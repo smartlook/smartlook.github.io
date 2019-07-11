@@ -297,7 +297,7 @@ Smartlook.setReferrer(String referrer, String source)
 You can obtain url leading to the dashboard for currently recorded session:
 
 ```java
-Smartlook.getPlayUrl()
+Smartlook.getDashboardSessionUrl()
 ```
 
 This url can than be shared to everyone who has access to the dashboard.
