@@ -50,7 +50,7 @@ Applications can interact with the SDK using public SDK methods.
 You need to provide your **Smartlook SDK Key** which can be acquired in the [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
 {: .alert .alert-warning }
 
-If you want to setup SDK and start recording use:
+If you want to setup SDK and start recording, use:
 
 ```java
 Smartlook.setupAndStartRecording(String YOUR_API_KEY)
@@ -68,7 +68,7 @@ Best place to call one of these methods is in Application class or any entry poi
 
 |    Parameter   | Required |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
-|    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in dashboard).                                                                                   | ""            |
+|    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in the dashboard).                                                                                   | ""            |
 |      `fps`     |    no    | Recorded video framerate (allowed values between 2 and 10).                                                                                                 | 2             |
 | `experimental` |    no    | Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.                                                         | false         |
 |   `activity`   |    no    | In case you need to setup SDK later i.e. fetching your API key or in the middle of the activity lifecycle, call setup with activity reference as parameter. | null          |
@@ -84,7 +84,7 @@ Smartlook.stopRecording()
 
 ### Check if SDK is recording
 
-If your are using `startRecording()` and `stopRecording()` methods it might be handy to know if SDK is currently recording or not.
+If you are using `startRecording()` and `stopRecording()` methods it might be handy to know if SDK is currently recording or not.
 Simply call:
 
 ```java
@@ -92,7 +92,7 @@ Smartlook.isRecording()
 ```
 
 ### Blacklisted views
-SDK contains list of blacklisted/sensitive views. These views will be not recorded (only black rectangle instead of the view).
+SDK contains a list of blacklisted/sensitive views. These views will be not recorded (only black rectangle instead of the view).
 
 You can view mark view(s) as blacklisted by calling:
 
@@ -126,14 +126,14 @@ Smartlook.unregisterBlacklistedClasses(List<Class> classes)
 
 ### Whitelisted views
 
-In case you need some view(s) to be recorded even if its instance of blacklisted class, you can whitelist them:
+In case you need some view(s) to be recorded even if its instance of a blacklisted class, you can whitelist them:
 
 ```java
 Smartlook.registerWhitelistedView(View view)
 Smartlook.registerWhitelistedViews(List<View> views)
 ```
 
-Typical usage might be the need to record one `EditText` in whole Application. Thanks to whitelist, `EditText` can be blacklisted and you only need to whitelist one instance of it.
+Typical usage might be the need to record one `EditText` in the whole Application. Thanks to whitelist, `EditText` can be blacklisted and you only need to whitelist one instance of it.
 
 You can remove view(s) from whitelist:
 
@@ -144,13 +144,13 @@ Smartlook.unregisterWhitelistedViews(List<View> views)
 
 ### Sensitive mode
 
-In case you dont want SDK to record user video, but still want it to send analytic events you can use sensitive mode.
+In case you don't want SDK to record user video, but still, want it to send analytic events you can use sensitive mode.
 
 ```java
 Smartlook.startFullscreenSensitiveMode()
 ```
 
-Instead of application recording video will be black when sensitive mode is active. You can change sensitive mode fill color by calling:
+Instead of application recording, the video will be black when the sensitive mode is active. You can change sensitive mode fill color by calling:
 
 ```java
 Smartlook.startFullscreenSensitiveMode(@ColorInt int color) 
@@ -162,7 +162,7 @@ Sensitive mode can be stopped like this:
 Smartlook.stopFullscreenSensitiveMode()
 ```
 
-if you want to check if sensitive mode is active, use:
+If you want to check if the sensitive mode is active, use:
 
 ```java
 Smartlook.isFullscreenSensitiveModeActive()
@@ -211,7 +211,7 @@ Additional data can be used in **funnels** or any additional **filtering**.
 
 #### Timed event
 
-In case you want to measure the duration of any time-sensitive or long running actions in the app.
+In case you want to measure the duration of any time-sensitive or long-running actions in the app.
 You can call:
 ```java
 Smartlook.startTimedCustomEvent(@NotNull String eventName)
@@ -247,7 +247,7 @@ Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boo
 
 Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
 
-Properties set to be `immutable` have the highest priority and once set they cannot be overriden (only removed).
+Properties set to be `immutable` have the highest priority and once set they cannot be overridden (only removed).
 
 ### Remove global event property
 If you want to remove some global property with a given key call:
@@ -266,7 +266,7 @@ Note that global event properties are stored until they are not removed or the a
 
 ## Crash reporting
 
-In case developer did not handle any exception SDK will automatically report stackTrace. This works out of the box and is sent to our servers in case analytics/errors are applicable.
+In case developer did not handle any exception SDK will automatically report stack trace. This works out of the box and is sent to our servers in case analytics/errors are applicable.
 
 Because the app process is killed by the crash, video is going to be rendered and sent to the server once a new session is started (next application start).
 
@@ -286,22 +286,22 @@ Then in Crashlytics dashboard, there should be a new `SMARTLOOK SESSION URL` key
 ## Referrer
 
 SDK automatically collects referrer value and source of installation per visitor and displays it in Dashboard. 
-In some cases you might want to set custom refreer by yourself, you can to this by calling:
+In some cases you might want to set custom referrer by yourself, you can do this by calling:
 
 ```java
 Smartlook.setReferrer(String referrer, String source)
 ```
 
-## Shareable session url
+## Shareable session URL
 
-You can obtain url leading to the dashboard for currently recorded session:
+You can obtain URL leading to the dashboard for a currently recorded session:
 
 ```java
 Smartlook.getDashboardSessionUrl()
 ```
 
-This url can than be shared to everyone who has access to the dashboard.
+This URL can then be shared to everyone who has access to the dashboard.
 
 ## Deprecated/beta API
 
-If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new Api methods. old ones are now **deprecated** and should still work, but this might change in the future.
+If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. old ones are now **deprecated** and should still work, but this might change in the future.
