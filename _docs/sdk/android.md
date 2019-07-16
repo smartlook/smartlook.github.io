@@ -94,7 +94,7 @@ Smartlook.isRecording()
 ### Blacklisted views
 SDK contains a list of blacklisted/sensitive views. These views won't be recorded (only black rectangle instead of the view).
 
-You can view mark view(s) as blacklisted by calling:
+You can mark view(s) as blacklisted by calling:
 
 ```java
 Smartlook.registerBlacklistedView(View view)
@@ -126,14 +126,12 @@ Smartlook.unregisterBlacklistedClasses(List<Class> classes)
 
 ### Whitelisted views
 
-In case you need some view(s) to be recorded even if its instance of a blacklisted class, you can whitelist them:
+In case you need some view(s) to be recorded even if it is instance of a blacklisted class, you can whitelist it:
 
 ```java
 Smartlook.registerWhitelistedView(View view)
 Smartlook.registerWhitelistedViews(List<View> views)
 ```
-
-Typical usage might be the need to record one `EditText` in the whole Application. Thanks to whitelist, `EditText` can be blacklisted and you only need to whitelist one instance of it.
 
 You can remove view(s) from whitelist:
 
@@ -150,13 +148,13 @@ In case you don't want SDK to record user video, but still, want it to send anal
 Smartlook.startFullscreenSensitiveMode()
 ```
 
-Instead of application recording, the video will be black when the sensitive mode is active. You can change sensitive mode fill color by calling:
+Instead of application recording, the video will be black when the sensitive mode is active. You can change sensitive mode fill color by starting it like this:
 
 ```java
 Smartlook.startFullscreenSensitiveMode(@ColorInt int color) 
 ```
 
-Sensitive mode can be stopped like this:
+Sensitive mode can be stopped:
 
 ```java
 Smartlook.stopFullscreenSensitiveMode()
@@ -171,10 +169,12 @@ Smartlook.isFullscreenSensitiveModeActive()
 ### Add user id & properties
 
 You can specify your app’s user identifier by calling:
+
 ```java 
 Smartlook.setUserIdentifier(@NonNull String identifier)
 ``` 
-You can then look up those identifiers in the Dashboard to find specific user’s recordings.
+
+You can then lookup those identifiers in the Dashboard to find specific user’s recordings.
 
 Additional user information, such as name, email and other custom properties can be set by calling:
 
@@ -182,7 +182,7 @@ Additional user information, such as name, email and other custom properties can
 Smartlook.setUserIdentifier(@NonNull String identifier, JSONObject sessionProperties)
 Smartlook.setUserIdentifier(@NonNull String identifier, Bundle sessionProperties)
 ``` 
-You’ll see those properties in the Dashboard in Visitor details.
+You’ll see those properties in the Dashboard at Visitor details.
 
 ### Analytics
 
@@ -198,24 +198,30 @@ But you can track whatever you want by using custom events.
 #### Custom events
 
 You can track custom event by calling:
+
 ```java
 Smartlook.trackCustomEvent(@NonNull String eventName)
 ```
+
 If you need to send some additional data with custom event use:
+
 ```java
 Smartlook.trackCustomEvent(@NonNull String eventName, JSONObject eventProperties)
 Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties)
 Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, String value)
 ```
+
 Additional data can be used in **funnels** or any additional **filtering**. 
 
 #### Timed event
 
 In case you want to measure the duration of any time-sensitive or long-running actions in the app.
 You can call:
+
 ```java
 Smartlook.startTimedCustomEvent(@NotNull String eventName)
 ```
+
 This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
 
 You can set some aditional data by calling:
@@ -229,9 +235,9 @@ Properties set in `startTimedCustomEvent` will be merged with properties set in 
 
 Typical use of timed event might look like this:
 ```java
-Smartlook.timeEvent("duration_event")
+Smartlook.startTimedCustomEvent("duration_event")
 Thread.sleep(1000) //long running operation
-Smartlook.track("duration_event")
+Smartlook.trackCustomEvent("duration_event")
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
@@ -304,4 +310,4 @@ This URL can then be shared to everyone who has access to the dashboard.
 
 ## Deprecated/beta API
 
-If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. old ones are now **deprecated** and should still work, but this might change in the future.
+If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. Old ones are now **deprecated**. They should still work, but this might change in the future.
