@@ -81,7 +81,7 @@ Simply call `isRecording` and check callback for result:
 ```javascript
 cordova.plugins.SmartlookPlugin.isRecording(
     function(isRecording){
-          
+        //check here 
     }
 )
 ```
@@ -107,7 +107,7 @@ If you want to check if the sensitive mode is active, use:
 ```javascript
 cordova.plugins.SmartlookPlugin.isFullscreenSensitiveModeActive(
     function(isFullscreenSensitiveModeActive){
-          
+        //check here
     }
 )
 ```
