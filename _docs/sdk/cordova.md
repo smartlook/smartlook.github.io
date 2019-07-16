@@ -59,7 +59,7 @@ cordova.plugins.SmartlookPlugin.setup({smartlookAPIKey: "key"});
 Best place to call one of these functions is in on `deviceready`.
 
 ```javascript
-$$(document).on('deviceready', function deviceIsReady() {
+Dom7(document).on('deviceready', function deviceIsReady() {
   // here
 });
 ```
