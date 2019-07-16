@@ -92,7 +92,7 @@ Smartlook.isRecording()
 ```
 
 ### Blacklisted views
-SDK contains a list of blacklisted/sensitive views. These views will be not recorded (only black rectangle instead of the view).
+SDK contains a list of blacklisted/sensitive views. These views won't be recorded (only black rectangle instead of the view).
 
 You can view mark view(s) as blacklisted by calling:
 
