@@ -41,25 +41,19 @@ You need to provide your **Smartlook SDK Key** which can be acquired in the [Sma
 If you want to setup SDK and start recording, use:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.setupAndStartRecording(
-    {smartlookAPIKey: "key"},
-    errorCallback);
+cordova.plugins.SmartlookPlugin.setupAndStartRecording({smartlookAPIKey: "key"});
 ```
 
 In case you want to configure recorded video framerate (allowed values between 2 and 10), use:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.setupAndStartRecording(
-    {smartlookAPIKey: "key", fps: 2},
-    errorCallback);
+cordova.plugins.SmartlookPlugin.setupAndStartRecording({smartlookAPIKey: "key", fps: 2});
 ```
 
 If you want to start recording later use:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.setup(
-    {smartlookAPIKey: "key"},
-    errorCallback);
+cordova.plugins.SmartlookPlugin.setup({smartlookAPIKey: "key"});
 ```
 
 Best place to call one of these functions is in on `deviceready`.
@@ -123,9 +117,7 @@ cordova.plugins.SmartlookPlugin.isFullscreenSensitiveModeActive(
 You can specify your app’s user identifier by calling:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.setUserIdentifier(
-    {identifier: "CordovaUser"}, 
-    errorCallback)
+cordova.plugins.SmartlookPlugin.setUserIdentifier({identifier: "CordovaUser"})
 ``` 
 
 You can then look up those identifiers in the Dashboard to find specific user’s recordings.
@@ -134,8 +126,7 @@ Additional user information, such as name, email and other custom properties can
 
 ```javascript
 cordova.plugins.SmartlookPlugin.setUserIdentifier(
-    {identifier: "CordovaUser", sessionProperties: {name: "Cordova", surname: "User"}},
-    errorCallback)
+    {identifier: "CordovaUser", sessionProperties: {name: "Cordova", surname: "User"}})
 ``` 
 
 You’ll see those properties in the Dashboard in Visitor details.
@@ -158,17 +149,14 @@ Focus, click and more custom events can be tracked by using custom events.
 You can track custom event by calling:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.trackCustomEvent(
-    {name: "button_click"},
-    errorCallback)
+cordova.plugins.SmartlookPlugin.trackCustomEvent({name: "button_click"})
 ``` 
 
 If you need to send some additional data with custom event use:
 
 ```javascript
 cordova.plugins.SmartlookPlugin.trackCustomEvent(
-    {name: "button_click", eventProperties: {id: "button_id", text: "click me!"}},
-    errorCallback)
+    {name: "button_click", eventProperties: {id: "button_id", text: "click me!"}})
 ``` 
 
 Additional data can be used in **funnels** or any additional **filtering**. 
@@ -179,9 +167,7 @@ In case you want to measure the duration of any time-sensitive or long-running a
 You can call:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.startTimedCustomEvent(
-    {name: "download_finish"},
-    errorCallback)
+cordova.plugins.SmartlookPlugin.startTimedCustomEvent({name: "download_finish"})
 ```
 
 This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
@@ -190,8 +176,7 @@ You can set some aditional data by calling:
 
 ```javascript
 cordova.plugins.SmartlookPlugin.startTimedCustomEvent(
-    {name: "download_finish", eventProperties: {timestamp: "2019-01-10T11:00:00+00:00"}},
-    errorCallback)
+    {name: "download_finish", eventProperties: {timestamp: "2019-01-10T11:00:00+00:00"}})
 ```
 
 Properties set in `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from `trackCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
@@ -199,9 +184,9 @@ Properties set in `startTimedCustomEvent` will be merged with properties set in 
 Typical use of timed event might look like this:
 
 ```javascript
-SmartlookPlugin.startTimedCustomEvent({name: "download_finish"}, errorCallback)
+cordova.plugins.SmartlookPlugin.startTimedCustomEvent({name: "download_finish"})
 sleep(1000) //long running operation
-SmartlookPlugin.trackCustomEvent({name: "download_finish"}, errorCallback)
+cordova.plugins.SmartlookPlugin.trackCustomEvent({name: "download_finish"})
 ```
 In this case `download_finish` will have duration property set to circa `1000ms`.
 
@@ -211,16 +196,14 @@ Event super properties can be set by calling:
 
 ```javascript
 cordova.plugins.SmartlookPlugin.setGlobalEventProperties(
-    {globalEventProperties: {global: "Property", second: "one"}, immutable: false},
-    errorCallback)
+    {globalEventProperties: {global: "Property", second: "one"}, immutable: false})
 ```
 
 or
 
 ```javascript
 cordova.plugins.SmartlookPlugin.setGlobalEventProperty(
-    {key: "unique", value: "simple property", immutable: false},
-    errorCallback)
+    {key: "unique", value: "simple property", immutable: false})
 ```
 
 Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
@@ -231,9 +214,7 @@ Properties set to be `immutable` have the highest priority and once set they can
 If you want to remove some global property with a given key call:
 
 ```javascript
-cordova.plugins.SmartlookPlugin.removeGlobalEventProperty(
-    {key: "property_to_remove"},
-    errorCallback)
+cordova.plugins.SmartlookPlugin.removeGlobalEventProperty({key: "property_to_remove"})
 ```
 
 Or you can remove all global event properties:
