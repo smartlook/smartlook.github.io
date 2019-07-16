@@ -26,7 +26,7 @@ Currently, we support API 18+ for recording.
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:0.9.0.2.5.7-beta')
+implementation('com.smartlook.recording:app:1.0.0')
 ```
 
 And add the following in your project's build.gradle:
