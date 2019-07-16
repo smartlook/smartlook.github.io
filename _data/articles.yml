@@ -45,3 +45,6 @@ sdk:
 - title: Support
   subtitle: Support for Smartlook SDK
   url: /docs/sdk/support/
+- title: Cordova
+  subtitle: SDK for screen recording and analytics of Cordova applications.
+  url: /docs/sdk/cordova/
