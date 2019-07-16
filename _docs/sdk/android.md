@@ -66,6 +66,8 @@ Best place to call one of these methods is in Application class or any entry poi
 
 ### Setup parameters
 
+Both `setup` and `setupAndStartRecording` can be further parameterized with these parameters:
+
 |    Parameter   | Required |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
 |    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in the dashboard).                                                                                   | ""            |
