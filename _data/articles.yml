@@ -42,9 +42,9 @@ sdk:
 - title: Cocos
   subtitle: SDK for screen recording and analytics of Cocos games.
   url: /docs/sdk/cocos/
-- title: Support
-  subtitle: Support for Smartlook SDK
-  url: /docs/sdk/support/
 - title: Cordova
   subtitle: SDK for screen recording and analytics of Cordova applications.
   url: /docs/sdk/cordova/
+- title: Support
+  subtitle: Support for Smartlook SDK
+  url: /docs/sdk/support/
