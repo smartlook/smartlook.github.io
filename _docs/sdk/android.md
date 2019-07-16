@@ -66,7 +66,7 @@ Best place to call one of these methods is in Application class or any entry poi
 
 ### Setup parameters
 
-Both methods `setup` and `setupAndStartRecording` can be further parameterized with these parameters:
+Both methods `setup` and `setupAndStartRecording` can be further customized with these parameters:
 
 |    Parameter   | Required |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
