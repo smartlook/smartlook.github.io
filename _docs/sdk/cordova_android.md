@@ -1,6 +1,6 @@
 ---
-title: "Cordova"
-subtitle: "SDK for screen recording and analytics for Cordova applications."
+title: "Cordova Android"
+subtitle: "SDK for screen recording and analytics for Cordova Android applications."
 description: "This SDK offers several options to developers and/or companies."
 ---
 
