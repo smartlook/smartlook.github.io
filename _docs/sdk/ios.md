@@ -186,16 +186,16 @@ protocol Smartlook.NotSensitiveData
 As noted above, some classes are **blacklisted by default**. To record only some of their instances, you can whitelist:
 
 ```swift
-self.emailLabel.slSensitive = false                             
-Smartlook.registerWhitelisted(object: someView)         
-Smartlook.registerWhitelisted(object: SensitiveView.self)      
-Smartlook.registerWhitelisted(object: SensitiveProtocol.self)  
+self.emailLabel.slSensitive = false                               // whitelists individual instance      
+Smartlook.registerWhitelisted(object: someView)                   // whitelists individual instance
+Smartlook.registerWhitelisted(object: SensitiveView.self)         // whitelists all instances of the class
+Smartlook.registerWhitelisted(object: SensitiveProtocol.self)     // whitelists all classes that conform the protocol
 ```
 ```objc
-self.emailLabel.slSensitive = NO;                             
-[Smartlook registerWhitelistedObject:someView];
-[Smartlook registerWhitelistedObject:SensitiveView.class];          
-[Smartlook registerWhitelistedObject:@protocol(SensitiveProtocol)];
+self.emailLabel.slSensitive = NO;                                    // whitelists individual instance
+[Smartlook registerWhitelistedObject:someView];                      // whitelists individual instance
+[Smartlook registerWhitelistedObject:SensitiveView.class];           // whitelists all instances of the class
+[Smartlook registerWhitelistedObject:@protocol(SensitiveProtocol)];  // whitelists all classes that conform the protocol
 ```
 
 Also here, objects can be removed from the whitelist by calling the respective `unregisterWhitelisted(object:)` or toggling the `slSensitive` method.
@@ -221,10 +221,10 @@ The default colour of the sensitive data overlay is black. You can customized th
 
 ```swift
 Smartlook.setBlacklistedItem(color: UIColor) // changes default overlay colour
-sensitiveView.slOverlay = UIColor.darkGray // changes overlay colour of an UIView instance
+sensitiveView.slOverlay = UIColor.darkGray   // changes overlay colour of an UIView instance
 ```
 ```objc
-[Smartlook setBlacklistedItem:(UIColor *)color];  // changes default overlay colour
+[Smartlook setBlacklistedItem:(UIColor *)color];   // changes default overlay colour
 sensitiveView.slOverlay = [UIColor darkGrayColor]; // changes overlay colour of an UIView instance
 ```
 
