@@ -198,7 +198,7 @@ self.emailLabel.slSensitive = NO;                                    // whitelis
 [Smartlook registerWhitelistedObject:@protocol(SensitiveProtocol)];  // whitelists all classes that conform the protocol
 ```
 
-Also here, objects can be removed from the whitelist by calling the respective `unregisterWhitelisted(object:)` or toggling the `slSensitive` method.
+Also here, objects can be removed from the whitelist by calling the respective `unregisterWhitelisted(object:)` or toggling the `slSensitive` property.
 
 #### Sensitive mode
 
