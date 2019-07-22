@@ -89,7 +89,7 @@ Smartlook.setup(key: "your-app-sdk-key", options:[.enableCrashytics: true, .fram
 
 |    Parameter   | Type     |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
-|   `.enableCrashlytics`   |   `bool`   | When this option is set to `true`, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. Its value is URL of the latest recording made by Smartlook during or before the crash.                                                                                   |  `false`           |
+|   `.enableCrashlytics`   |   `bool`   | When this option is set to `true`, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to Crashlytics reports. Its value is URL of the recording made by Smartlook during or before the crash.                                                                                   |  `false`           |
 |      `.framerate`        |    `Int`  | Framerate of screen capturing in frames per second (ftp)                                                                                                |  `1`             |
 
 #### Framerate Option
