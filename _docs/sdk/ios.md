@@ -87,10 +87,10 @@ Smartlook.setup(key: "your-app-sdk-key", options:[.enableCrashytics: true, .fram
 [Smartlook setupWithKey:@"your-app-key" options:@{ SLSetupOptionEnableCrashyticsKey : @YES, SLSetupOptionFramerateKey : @2 }];
 ```
 
-|    Parameter   | Type |                                                                         Description                                                                         | Default value |
+|    Parameter   | Type     |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
 |   `.enableCrashlytics`   |   `bool`   | When this option is set to `true`, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to crash reports. Its value is URL of the latest recording made by Smartlook during or before the crash.                                                                                   |  `false`           |
-|      `.framerate`     |    `Int`  | Framerate of screen capturing in frames per second (ftp)                                                                                                |  `1`             |
+|      `.framerate`        |    `Int`  | Framerate of screen capturing in frames per second (ftp)                                                                                                |  `1`             |
 
 #### Framerate Option
 
@@ -117,7 +117,6 @@ Smartlook.isRecording()    // returns true/false
 It is harmless to call the methods in unruly order (e.g., to _start_ while already recording).
 
 There is no need to manually stop recording when the app gets suspended by the user by pressing Home button or by switching to another app, or restart recording when the app wakes up. This happens automatically.
-{: .callout .callout-info }
 
 ### Working with sensitive data
 
@@ -147,7 +146,7 @@ self.emailLabel.slSensitive = NO;
 ```
 #### Blacklisted classes and protocols
 
-You can also blacklist all descendants of some UIView subclass or all UIView subclasses that conform some protocol as sensitive and all its instances will be blackened in the recordings.
+You can also blacklist all descendants of some UIView subclass or all UIView subclasses that conform some protocol.
 
 ```swift
 Smartlook.registerBlacklisted(object: SensitiveView.self)      
@@ -158,7 +157,7 @@ Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)]; 
 ```
 
-Note that convenience, some classes are **blacklisted by default**: `UITextView`, `UITextField`, `UIWebView` and `WKWebView`.
+Note that for convenience, some classes are **blacklisted by default**: `UITextView`, `UITextField`, `UIWebView` and `WKWebView`. 
 
 To remove classes or protocols from the blacklisted list, call 
 
@@ -169,6 +168,17 @@ Smartlook.unregisterBlacklisted(object: SensitiveProtocol.self)
 ```objc
 [Smartlook unregisterBlacklistedObject:SensitiveView.class];          
 [Smartlook unregisterBlacklistedObject:@protocol(SensitiveProtocol)]; 
+```
+
+Smartlook also defines two convenience *empty* protocols that can be used to *flag* classes to make them blacklisted/whitelisted: 
+
+```swift
+protocol Smartlook.SensitiveData
+protocol Smartlook.NotSensitiveData
+```
+```objc
+@protocol SLSensitiveData          
+@protocol SLNonSensitiveData
 ```
 
 #### Whitelisting
@@ -205,9 +215,23 @@ let isSensitiveMode = Smartlook.isFullscreenSensitiveModeActive()
 BOOL isSensitiveMode = [Smartlook isFullscreenSensitiveModeActive];  
 ```
 
+#### Blacklisted overlay color
+
+The default colour of the sensitive data overlay is black. You can customized this color by calling:
+
+```swift
+Smartlook.setBlacklistedItem(color: UIColor) // changes default overlay colour
+sensitiveView.slOverlay = UIColor.darkGray // changes overlay colour of an UIView instance
+```
+```objc
+[Smartlook setBlacklistedItem:(UIColor *)color];  // changes default overlay colour
+sensitiveView.slOverlay = [UIColor darkGrayColor]; // changes overlay colour of an UIView instance
+```
+
+
 ### Add User ID
 
-You can speicfy your app's user identifier by calling
+You can specify your app's user identifier by calling
 ```swift
 Smartlook.setUserIdentifier("user-id-178bc")
 ```
@@ -227,6 +251,27 @@ Smartlook.setSessionProperty(value: "gold-user", forName: "user-category")
 ```
 
 You will see these properties in the Dashboard at Visitor details.
+
+To remove session property/properties
+
+```swift
+Smartlook.removeSessionProperty(forName: String)
+Smartlook.clearSessionProperties() // removes all session properties
+```
+```objc
+[Smartlook removeSessionPropertyForName:(nonnull NSString *)name];
+[Smartlook clearSessionProperties];  // removes all session properties
+``` 
+
+If you do want _locking_ a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set (it can be removes and set again, though).
+
+```swift
+Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+```
+```objc
+[Smartlook setSessionPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+```
+
 
 ### Analytics
 
@@ -279,6 +324,16 @@ Smartlook.clearGlobalEventProperties()
 [Smartlook removeGlobalEventPropertyForName:(nonnull NSString *)];
 [Smartlook clearGlobalEventProperties];
 ```
+
+Global event properties can be set `immutable` the same way session properties. Immutable property value cannot be changes once it is set (it can be removes and set again, though).
+
+```swift
+Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+```
+```objc
+[Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+```
+
 ### Shareable session URL
 
 You can obtain URL leading to the Dashboard player for the current Smartlook session:
