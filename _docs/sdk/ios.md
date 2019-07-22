@@ -39,7 +39,7 @@ import Smartlook
 ```objc
 #import <Smartlook/Smartlook.h>
 ```
-4. Run Smartlook by calling either `start` or `initialize` in your AppDelegate as described below.
+4. Setup Smartlook by calling `start(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
 
 ### Manual installation
 
@@ -52,7 +52,7 @@ import Smartlook
 ```objc
 #import <Smartlook/Smartlook.h>
 ```
-4. Run Smartlook by calling either `start` or `initialize` in your AppDelegate as described below.
+4. Setup Smartlook by calling `start(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
 
 ## API Reference
 
