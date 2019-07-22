@@ -351,7 +351,7 @@ this URL can be access by everyone with the access rights to the dashboard.
 
 If you use Crashlytics in your project, Smartlook can attach the current dashboard session URL to Crahlytics reports. **This is not by default**, and must be enabled by the `.enableCrashlytics`  option when setting up Smartlook. See [Run Smartlook with options](#run-smartlook-with-options).
 
-### Deprecated API
+## Deprecated API
 
 The previous API methods that are no longer documented here are all marked as **deprecated**. They still work, but might be removed in some future version.
 
