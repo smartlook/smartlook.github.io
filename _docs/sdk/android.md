@@ -23,7 +23,7 @@ Currently, we support API 18+ for recording.
 
 ## WiFi / mobile connection / offline
 
-Currently we are uploading session **only of WiFi** connection. If application is on mobile connection or offline we are storing sessions locally and will upload them as soon as application has WiFi conection.
+Currently we are uploading sessions **only of WiFi** connection. If application is on mobile connection or offline we are storing sessions locally and will upload them as soon as application has WiFi conection.
 
 ## Installation
 
