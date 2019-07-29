@@ -26,7 +26,7 @@ Currently, we support API 18+ for recording.
 Add cordova plugin to your project:
 
 ```
-cordova plugin add https://github.com/smartlook/cordova-smartlook-plugin.git
+cordova plugin add https://github.com/smartlook/cordova-smartlook.git
 ```
 
 ## API Reference
