@@ -52,19 +52,19 @@ You need to provide your **Smartlook SDK Key** which can be acquired in the [Sma
 If you want to setup SDK and start recording, use:
 
 ```typescript
-smartlook.setupAndStartRecording(new SmartlookSetupConfig("key"))
+smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookAPIKey: string))
 ```
 
 In case you want to configure recorded video framerate (allowed values between 2 and 10), use:
 
 ```typescript
-smartlook.setupAndStartRecording(new SmartlookSetupConfig("key", 2))
+smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookAPIKey: string, fps: number))
 ```
 
 If you want to start recording later use:
 
 ```typescript
-smartlook.setup({smartlookAPIKey: "key"});
+smartlook.setup(new SmartlookSetupConfig(smartlookAPIKey: string, fps?: number));
 ```
 
 Best place to call one of these functions is on Application initialization.
@@ -118,7 +118,7 @@ smartlook.isFullscreenSensitiveModeActive().then((isActive) => {
 You can specify your app’s user identifier by calling:
 
 ```typescript
-smartlook.setUserIdentifier(new SmartlookUserIdentifier("user_id"));
+smartlook.setUserIdentifier(new SmartlookUserIdentifier(identifier: string));
 ``` 
 
 You can then look up those identifiers in the Dashboard to find specific user’s recordings.
@@ -126,7 +126,7 @@ You can then look up those identifiers in the Dashboard to find specific user’
 Additional user information, such as name, email and other custom properties can be set by calling:
 
 ```typescript
-smartlook.setUserIdentifier(new SmartlookUserIdentifier("user_id", {name: "John", surname: "Smith"}));
+smartlook.setUserIdentifier(new SmartlookUserIdentifier(identifier: string, sessionProperties: {}));
 ``` 
 
 You’ll see those properties in the Dashboard in Visitor details.
@@ -149,13 +149,13 @@ Focus, click and more custom events can be tracked by using custom events.
 You can track custom event by calling:
 
 ```typescript
-smartlook.trackCustomEvent(new SmartlookCustomEvent("event_name"));
+smartlook.trackCustomEvent(new SmartlookCustomEvent(name: string));
 ``` 
 
 If you need to send some additional data with custom event use:
 
 ```typescript
-smartlook.trackCustomEvent(new SmartlookCustomEvent("event_name", {id: "button_id", text: "click me!"}));
+smartlook.trackCustomEvent(new SmartlookCustomEvent(name: string, eventProperties: {}));
 ``` 
 
 Additional data can be used in **funnels** or any additional **filtering**. 
@@ -166,7 +166,7 @@ In case you want to measure the duration of any time-sensitive or long-running a
 You can call:
 
 ```typescript
-smartlook.startTimedCustomEvent(new SmartlookCustomEvent("event_name"));
+smartlook.startTimedCustomEvent(new SmartlookCustomEvent(name: string));
 ```
 
 This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
@@ -174,7 +174,7 @@ This will not send out any event, but once `track(...)` with corresponding event
 You can set some aditional data by calling:
 
 ```typescript
-smartlook.startTimedCustomEvent(new SmartlookCustomEvent("event_name", {timestamp: "2019-01-10T11:00:00+00:00"}));
+smartlook.startTimedCustomEvent(new SmartlookCustomEvent(name: string, eventProperties: {}));
 ```
 
 Properties set in `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from `trackCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
@@ -193,15 +193,15 @@ In this case `download_finish` will have duration property set to circa `1000ms`
 Event super properties can be set by calling:
 
 ```typescript
-smartlook.setGlobalEventProperties(
-  new SmartlookGlobalEventProperties({global: "Property", second: "one"}, false});
+smartlook.setGlobalEventProperties(new SmartlookGlobalEventProperties(
+  globalEventProperties: {}, immutable: boolean));
 ```
 
 or
 
 ```typescript
-cordova.plugins.SmartlookPlugin.setGlobalEventProperty(
-    {key: "unique", value: "simple property", immutable: false})
+smartlook.setGlobalEventProperty(new SmartlookGlobalEventProperty(
+    key: string, value: string, immutable: boolean))
 ```
 
 Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
@@ -212,13 +212,13 @@ Properties set to be `immutable` have the highest priority and once set they can
 If you want to remove some global property with a given key call:
 
 ```typescript
-cordova.plugins.SmartlookPlugin.removeGlobalEventProperty({key: "property_to_remove"})
+smartlook.removeGlobalEventProperty(SmartlookGlobalEventPropertyKey(key: string))
 ```
 
 Or you can remove all global event properties:
 
 ```typescript
-cordova.plugins.SmartlookPlugin.removeAllGlobalEventProperties()
+smartlook.removeAllGlobalEventProperties()
 ```
 
 Note that global event properties are stored until they are not removed or the app is uninstalled.
