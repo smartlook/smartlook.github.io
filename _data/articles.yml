@@ -47,7 +47,10 @@ sdk:
   url: /docs/sdk/cocos/
 - title: Cordova
   subtitle: SDK for screen recording and analytics of Cordova Android applications.
-  url: /docs/sdk/cordova-android/
+  url: /docs/sdk/cordova-android/  
+- title: Ionic
+  subtitle: SDK for screen recording and analytics of Ionic Android applications.
+  url: /docs/sdk/ionic-android/
 - title: Support
   subtitle: Support for Smartlook SDK
   url: /docs/sdk/support/
