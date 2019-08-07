@@ -25,6 +25,9 @@ web:
 - title: Recording information
   subtitle: Get recording information such as URL.
   url: /docs/web/recording-information/
+- title: Error logging
+  subtitle: Automatic and manual error logging.
+  url: /docs/web/error-logging/
 
 ## SDK
 docs_list_title: Sdk
