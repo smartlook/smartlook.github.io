@@ -22,7 +22,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for Android
 
-1. Download [Smartlook Android Unity SDK v1.0.3](https://sdk.smartlook.com/android/app-1.0.3-unity.aar).
+1. Download [Smartlook Android Unity SDK v1.1.0](https://sdk.smartlook.com/android/app-1.1.0-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
 
@@ -52,7 +52,7 @@ allprojects {
 Add the following dependency in your app's build.gradle:
 
 ```Gradle
-implementation('com.smartlook.recording:app:1.0.3-unity-lite')
+implementation('com.smartlook.recording:app:1.1.0-unity-lite')
 ```
 
 
@@ -79,53 +79,4 @@ implementation('com.squareup.retrofit2:converter-gson:2.4.0') {
 
 ## API Reference
 
-Applications can interact with the SDK using public SDK methods.
-
-You need to provide your **SDK Key** which can be found in [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects){:target="_blank"}.
-{: .alert .alert-warning }
-
-### Initialize Smartlook
-
-This method initializes the SDK, frames per second value is set to 1.
-
-```cs
-  Smartlook.Init(string key);
-```
-
-You can raise the framerate by passing in the second argument. This should mainly be used for testing purposes, higher framerates may affect performance of your application significantly.
-
-```cs
-  Smartlook.Init(string key, int framerate);
-```
-
-### Record custom events
-
-```cs
-  Smartlook.RecordEvent(string eventName);
-```
-
-Custom events are being propagated to the Smartlook Events dashboard automatically. You can then create playlists of sessions with this event.
-
-```cs
-  Smartlook. RecordEvent(string eventName, string properties);
-```
-
-You can also pass in `properties` in form of stringified JSON object.
-
-### Add user identifier
-
-```cs
-  Smartlook.SetUserIdentifier(string userIdentifier);
-```
-
-You can specify your app's user identifier. You can then look up those identifiers in the Dashboard to find specific user's recordings.
-
-### Pause and resume recording
-
-```cs
-  Smartlook.PauseRecording();
-```
-
-```cs
-  Smartlook.ResumeRecording();
-```
+Additional info regarding the documentation can be found in <a href="https://smartlook.github.io/docs/sdk/android/"> Android documentation for native SDK</a>
