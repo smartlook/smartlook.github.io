@@ -32,7 +32,8 @@ You can use Smartlook’s Custom Errors API (see below) if you cant fix the CORS
 ## Custom errors
 
 With the Custom Errors API, you can customize how Smartlook log errors that had been handled in your application in any way you wish. 
-You can then use these logs in Smartlook analytics and session replay to visualize and understand where the errors you’ve logged happen.
+
+You can then use these logs in Smartlook analytics and session replay to visualize and understand where the errors you’ve logged occured.
 
 Custom Errors API is used as follows:
 
