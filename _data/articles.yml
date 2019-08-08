@@ -42,6 +42,9 @@ sdk:
 - title: Unity
   subtitle: SDK for screen recording and analytics of Unity games.
   url: /docs/sdk/unity/
+- title: Flutter
+  subtitle: SDK for screen recording and analytics for Flutter.
+  url: /docs/sdk/flutter/
 - title: Cocos
   subtitle: SDK for screen recording and analytics of Cocos games.
   url: /docs/sdk/cocos/

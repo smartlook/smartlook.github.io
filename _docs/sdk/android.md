@@ -30,7 +30,7 @@ Currently we are uploading sessions **only of WiFi** connection. If application 
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:1.0.1-native')
+implementation('com.smartlook.recording:app:1.1.0-native')
 ```
 
 And add the following in your project's build.gradle:
@@ -222,7 +222,13 @@ Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties)
 Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, String value)
 ```
 
-Additional data can be used in **funnels** or any additional **filtering**. 
+Additional data can be used in **funnels** or any additional **filtering**.
+
+Since we are not able to detect screen transitions i.e. for Unity games or Flutter out of the box, you can add these events manually, where ViewState can be start or stop:
+
+```java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState)
+```
 
 #### Timed event
 
