@@ -53,6 +53,8 @@ ___
 |:--------------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |  [![React Native Icon](https://img.icons8.com/color/96/000000/react-native.png)](https://smartlook.github.io/docs/sdk/react-native/#android) | [![Unity Icon](https://img.icons8.com/ios-filled/96/000000/unity.png)](https://smartlook.github.io/docs/sdk/unity/#installation-for-android)  | [<img src="https://www.gamefromscratch.com/image.axd?picture=cocos2dx_portrait_thumb%5B2%5D.png" width="96">](https://smartlook.github.io/docs/sdk/cocos/#android)| [<img src="https://avatars1.githubusercontent.com/u/14101776?s=200&v=4" width="96">](https://smartlook.github.io/docs/sdk/flutter/#android--ios) |  [<img src="https://cordova.apache.org/static/img/cordova_256.png" width="96"> ](https://smartlook.github.io/docs/sdk/cordova-android/#installation) | [<img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/324/square_256/ioniclogo.png" width="96">](https://smartlook.github.io/docs/sdk/ionic-android/) | 
 |  [Installation Guide](https://smartlook.github.io/docs/sdk/react-native/#android) | [Installation Guide](https://smartlook.github.io/docs/sdk/unity/#installation-for-android) |[Installation Guide](https://smartlook.github.io/docs/sdk/cocos/#android)|[Installation Guide](https://smartlook.github.io/docs/sdk/flutter/#android--ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/cordova-android/#installation) | [Installation Guide](https://smartlook.github.io/docs/sdk/ionic-android/)
+| [Changelog](https://github.com/smartlook/smartlook-react-native-sdk) | | [Changelog](https://github.com/smartlook/smartlook-cocos-android-sdk)
+
 
 
 
@@ -71,7 +73,8 @@ ___
 |    React Native   | Unity | Cocos (Coming Soon for iOS) | Flutter |     
 |:--------------:|:--------:|:--------:|:--------:|
 |  [![React Native Icon](https://img.icons8.com/color/96/000000/react-native.png)](https://smartlook.github.io/docs/sdk/react-native/#ios) | [![Unity Icon](https://img.icons8.com/ios-filled/96/000000/unity.png)](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [<img src="https://www.gamefromscratch.com/image.axd?picture=cocos2dx_portrait_thumb%5B2%5D.png" width="96">](https://smartlook.github.io/docs/sdk/cocos/#ios) | [<img src="https://avatars1.githubusercontent.com/u/14101776?s=200&v=4" width="96">](https://smartlook.github.io/docs/sdk/flutter/#android--ios) 
-|  [Installation Guide](https://smartlook.github.io/docs/sdk/react-native/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [Comming soon for iOS](https://smartlook.github.io/docs/sdk/cocos/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/flutter/#android--ios)
+|  [Installation Guide](https://smartlook.github.io/docs/sdk/react-native/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [Coming soon for iOS](https://smartlook.github.io/docs/sdk/cocos/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/flutter/#android--ios)
+| [Changelog](https://github.com/smartlook/smartlook-react-native-sdk) | | [Changelog](https://github.com/smartlook/smartlook-cocos-android-sdk)
 
 
 
