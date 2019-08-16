@@ -1,13 +1,12 @@
 ---
 title: "Smartlook SDK Installation Guide"
 subtitle: "A handy guide to find the best installation details for your project."
-description: "Installation guide for Smartlook SDK."
+description: ""
 ---
 
-# Smartlook SDK Installation Guide
 
 
-To start please select your mobile OS: 
+## To start please select your mobile OS: 
 
 
 |    Android   | iOS |   
