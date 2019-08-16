@@ -30,6 +30,9 @@ web:
 docs_list_title: Sdk
 sdk:
 
+- title: SDK Installation Guide
+  subtitle: Handy guide to navigate through installation of supported frameworks. 
+  url: /docs/sdk/sdk-installation-guide/
 - title: Android
   subtitle: SDK for screen recording and analytics for Android devices.
   url: /docs/sdk/android/
