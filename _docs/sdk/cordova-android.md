@@ -112,6 +112,16 @@ cordova.plugins.SmartlookPlugin.isFullscreenSensitiveModeActive(
 )
 ```
 
+### Sensitive Elements
+
+If you want to hide a specific element, you can add the 'smartlook-hide' class:
+
+```
+class="smartlook-hide"
+```
+
+Note that Smartlook **automatically hides text input elements**.
+
 ### Add user id & properties
 
 You can specify your app’s user identifier by calling:
