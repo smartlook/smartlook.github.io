@@ -264,7 +264,7 @@ Sdk detects click events automatically. Name of the event constists of `Activity
 
 Instead of `id` you can set your custom value by providing the `View` with `@id/smartlook_custom_name` `tag`, like this:
 
-```
+```xml
 <View>
     <tag android:id="@id/smartlook_custom_name" android:value="Custom name"/>
 </View>
