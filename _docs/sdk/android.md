@@ -30,7 +30,7 @@ Currently we are uploading sessions **only of WiFi** connection. If application 
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:1.1.0-native')
+implementation('com.smartlook.recording:app:1.1.1-native')
 ```
 
 And add the following in your project's build.gradle:
@@ -258,11 +258,11 @@ Smartlook.trackCustomEvent("duration_event")
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
-#### Custom name for clicked events
+#### Custom name for click events
 
-Sdk detects click events automatically. Name of the event constists of `Activity` name, `View` type (`Button`, etc.) and `id`.
+SDK detects click events automatically. The event name consists of `Activity` name, `View` type (`Button`, etc.) and `id`.
 
-Instead of `id` you can set your custom value by providing the `View` with `@id/smartlook_custom_name` `tag`, like this:
+Instead of `id` you can set your custom value by providing the `View` with `@id/smartlook_custom_name` `tag`:
 
 ```xml
 <View>
