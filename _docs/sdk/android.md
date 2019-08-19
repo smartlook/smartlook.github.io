@@ -258,6 +258,18 @@ Smartlook.trackCustomEvent("duration_event")
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
+### Custom name for clicked events
+
+Sdk detects click events automatically. Name of the event constists of `Activity` name, `View` type (`Button`, etc.) and `id`.
+
+Instead of `id` you can set your custom value by providing the `View` with `@id/smartlook_custom_name` `tag`, like this:
+
+```
+<View>
+    <tag android:id="@id/smartlook_custom_name" android:value="Custom name"/>
+</View>
+```
+
 #### Global event properties
 
 Event super properties can be set by calling:
