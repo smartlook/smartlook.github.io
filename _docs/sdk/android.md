@@ -258,7 +258,7 @@ Smartlook.trackCustomEvent("duration_event")
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
-### Custom name for clicked events
+#### Custom name for clicked events
 
 Sdk detects click events automatically. Name of the event constists of `Activity` name, `View` type (`Button`, etc.) and `id`.
 
