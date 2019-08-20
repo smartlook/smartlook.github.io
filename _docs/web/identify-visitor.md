@@ -59,6 +59,19 @@ Feel free to modify the code and expand it to your needs as you can see in an ex
 </script>
 ```
 
+## Anonymize user
+
+You can anonymize previously identified user by calling
+
+```js
+<script>
+  smartlook('anonymize');
+</script>
+```
+
+New visitor with new session will be created.
+This method is useful to call when multiple people are using the same browser (typically after logout).
+
 ## Final notes
 
 Following section is applicable to those using Smartlook within static website.
