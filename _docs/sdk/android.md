@@ -30,7 +30,7 @@ Currently we are uploading sessions **only of WiFi** connection. If application 
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:1.1.1-native')
+implementation('com.smartlook.recording:app:1.1.2-native')
 ```
 
 And add the following in your project's build.gradle:
