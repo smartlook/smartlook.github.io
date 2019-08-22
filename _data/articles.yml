@@ -22,9 +22,9 @@ web:
 - title: Custom click props
   subtitle: Log your own specific data for click tracking.
   url: /docs/web/custom-click-props/
-- title: Recording information
-  subtitle: Get recording information such as URL.
-  url: /docs/web/recording-information/
+- title: Recording API
+  subtitle: Get information such as URL, pause & resume recording, ...
+  url: /docs/web/recording-api/
 - title: Error logging
   subtitle: Automatic and custom error logging.
   url: /docs/web/error-logging/
