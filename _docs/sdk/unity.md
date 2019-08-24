@@ -73,9 +73,11 @@ implementation('com.squareup.retrofit2:converter-gson:2.4.0') {
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unity SDK v1.1.0](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.1.0.zip).
-2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
-3. `Smartlook.cs` Unity bridge is part of the archive
+1. Download [Smartlook iOS Unity SDK v1.1.1](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.1.1.zip).
+2. Unzip the archive and put `Smartlook` to `Assets/Plugins` in your Unity project.
+3. Add `using SmartlookUnity;` in scripts in which you want to use Smartlook.
+4. Start Smartlook with `Smartlook.SetupAndStartRecording("your-app-sdk-key");`
+5. Public SDK methods are located in `Smartlook.cs`.
 
 ## API Reference
 
