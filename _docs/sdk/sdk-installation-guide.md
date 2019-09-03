@@ -6,7 +6,7 @@ description: ""
 
 
 
-## To start please select your mobile OS: 
+## For installation details, first select your mobile OS: 
 
 
 |    Android   | iOS |   
