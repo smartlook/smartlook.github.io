@@ -18,12 +18,15 @@ description: "This SDK offers several options to developers and/or companies."
 
 ### iOS
 
-1. In your Xcode project file, find the **Header search path** in **Build settings tab** of the *application target*.
-2. Expand the **Header search path** settings, and copy the line that contains `smartlook-react-native-wrapper/ios`, e.g., `$(SRCROOT)/../node_modules/smartlook-react-native-wrapper/ios`
-3. Copy the line to **Framework search patch** (this settings is most likely just above the **Header search path**)
-4. Repeat for all relevant targets in your app project file.
+1. In your Xcode project, navigate to `Libraries/RNSmartlook.xcodeproj/Frameworks`.
+1. From there, drag the `Smartlook.framework` into your project. Make sure 
+    - `Copy if needed` is checked
+    - the framework is included in your app target
+1. In the case you experience compile errors related to Smartlook (e.g., that Smartlook framework or some headers are missing), try
+    - cleaning caches: `watchman watch-del-all; rm -rf ~/Library/Developer/Xcode/DerivedData`
+    - relinking the bridge: `react-native unlink smartlook-react-native-wrapper; react-native link smartlook-react-native-wrapper`
 
-![iOS Framework Search Path](https://sdk.smartlook.com/android/docs/iOS-Framework-Search-Path.jpg)
+![iOS React Native Installation](https://smartlook.github.io/docs/sdk/ios-react-native-installation.png)
 
 ### Android
 
