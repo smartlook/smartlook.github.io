@@ -47,7 +47,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.1.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.1.0.zip) directly.
+1. Download [Smartlook iOS SDK v1.2.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.0.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -316,7 +316,7 @@ Properties set in the `startTimedCustomEvent` will be merged with properties set
 
 #### Custom navigation events
 
-Since we are not able to detect screen transitions i.e. for Unity games or Flutter out of the box, you can add these events manually:
+Since we are not able to detect all screen transitions (or none e.g. for Unity games or Flutter) out of the box, you can track these events manually:
 
 ```swift
 Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
