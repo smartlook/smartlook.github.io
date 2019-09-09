@@ -314,6 +314,19 @@ This will not send out any event, but once the `track(...)` with the correspondi
 
 Properties set in the `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from the  `trackCustomEvent` will have higher priority and will override conflicting properties from `startTimedCustomEvent` call.
 
+#### Custom navigation events
+
+Since we are not able to detect screen transitions i.e. for Unity games or Flutter out of the box, you can add these events manually:
+
+```swift
+Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
+```
+```objc
+[Smartlook trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type];
+```
+
+where the _type_ is either `enter` or `exit`. The `exit` event also records the duration from the previous corresponding `enter` event.
+
 #### Global event properties
 
 Global event properties are sent with every event. To set or remove a global event property, use the following calls:
