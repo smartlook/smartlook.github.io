@@ -119,6 +119,14 @@ Smartlook.unregisterBlacklistedView(View view)
 Smartlook.unregisterBlacklistedViews(List<View> views)
 ```
 
+You can also set view as blacklisted directly in `xml` layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_blacklisted_view" android:value="true"/>
+</View>
+```
+
 ### Blacklisted classes
 
 You can blacklist view(s) of certain Class (typicaly custom views):
@@ -149,6 +157,14 @@ You can remove view(s) from whitelist:
 ```java
 Smartlook.unregisterWhitelistedView(View view)
 Smartlook.unregisterWhitelistedViews(List<View> views)
+```
+
+You can also set view as whitelisted directly in `xml` layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_whitelisted_view" android:value="true"/>
+</View>
 ```
 
 ### Sensitive mode
