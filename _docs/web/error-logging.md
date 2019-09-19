@@ -15,7 +15,7 @@ When a CORS error occurs in Smartlook’s Javascript console you’ll see a mess
 
 ## Fixing the CORS errors
 
-To fix the CORS error you can:
+To fix the CORS error you have to:
 
 1) Add a `crossorigin="anonymous"` script attribute
 ```
