@@ -21,7 +21,7 @@ description: "This SDK offers several options to developers and/or companies."
 1. In your Xcode project, navigate to `Libraries/RNSmartlook.xcodeproj/Frameworks`.
 1. From there, drag the `Smartlook.framework` into your project. Make sure 
     - `Copy if needed` is checked
-    - the framework is included in your app target
+    - the framework is included in all project targets
 1. In the case you experience compile errors related to Smartlook (e.g., that Smartlook framework or some headers are missing), try
     - cleaning caches: `watchman watch-del-all; rm -rf ~/Library/Developer/Xcode/DerivedData`
     - relinking the bridge: `react-native unlink smartlook-react-native-wrapper; react-native link smartlook-react-native-wrapper`
