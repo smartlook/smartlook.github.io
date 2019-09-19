@@ -23,14 +23,14 @@ Currently, we support API 18+ for recording.
 
 ## WiFi / mobile connection / offline
 
-Currently we are uploading sessions **only of WiFi** connection. If application is on mobile connection or offline we are storing sessions locally and will upload them as soon as application has WiFi conection.
+By default SDK uploads sessions only on **WiFi** if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. 
 
 ## Installation
 
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:1.1.2-native')
+implementation('com.smartlook.recording:app:1.1.5-native')
 ```
 
 And add the following in your project's build.gradle:
