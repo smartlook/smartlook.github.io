@@ -47,7 +47,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.2.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.0.zip) directly.
+1. Download [Smartlook iOS SDK v1.2.1](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.1.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -304,15 +304,32 @@ Smartlook.trackCustomEvent(name: String, props: [String : String]?)
 In the case you want to measure the duration of any time-sensitive or long-running actions in the app, you can first call
 
 ```swift
-Smartlook.startTimedCustomEvent(name: String, props: [String : String]?)
+Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
 ```
 ```objc
-[Smartlook startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props];
++ (id _Nonnull)startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
 ```
 
-This will not send out any event, but once the `track(...)` with the corresponding event gets called it will have extra **duration** property with the time interval between the `start...` and `track...` calls.
+and store the returned opaque object that represents the timed event instance.
 
-Properties set in the `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from the  `trackCustomEvent` will have higher priority and will override conflicting properties from `startTimedCustomEvent` call.
+This will not send out any event, but once the `track(...)` with the corresponding event id gets called it will track the evemt and store the time interval between `start...` and `track...` in its **duration** property.
+
+In the case you want to track unsuccessfull event, you can also use the `trackTimedCustomEventCancel` and provide the reason for cancellation in an extra paramter of the function.
+
+```swift
+// to track successfull events
+Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
+// to track event cancellation
+Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
+```
+```objc
+// to track successfull events
++ (void)trackTimedCustomEventWithEventId:(id _Nonnull)eventId props:(nullable NSDictionary<NSString*, NSString*>*)props;
+// to track event cancellation
++ (void)trackTimedCustomEventCancelWithEventId:(id _Nonnull)eventId reason:(NSString *_Nullable)reason props:(nullable NSDictionary<NSString*, NSString*>*)props;
+```
+
+Properties set in the `startTimedCustomEvent` will be merged with properties set in `trackTimedCustomEvent*`. Properties from the  `trackTimedCustomEvent*` will have higher priority and will override conflicting properties from `startTimedCustomEvent` call.
 
 #### Custom navigation events
 
