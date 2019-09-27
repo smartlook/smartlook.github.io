@@ -9,6 +9,8 @@ The Smartlook Unity SDK is currently available for iOS and Android devices. Both
 
 If you are not using Unity, check out our [Android](https://smartlook.github.io/docs/sdk/android/) and [iOS](https://smartlook.github.io/docs/sdk/ios/) builds for normal apps.
 
+Smartlook Unity iOS SDK works with Metal graphics API only. OpenGL is not supported at the moment.
+
 ## What you can do
 
 * Replay session recordings in our web player
