@@ -69,10 +69,10 @@ ___
 
 ## Supported Frameworks for iOS
 
-|    React Native   | Unity | Cocos (Coming Soon for iOS) | Flutter |     
-|:--------------:|:--------:|:--------:|:--------:|
-|  [![React Native Icon](/assets/img/icons/react-native.png)](https://smartlook.github.io/docs/sdk/react-native/#ios) | [![Unity Icon](/assets/img/icons/unity.png)](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [<img src="/assets/img/icons/cocos.png">](https://smartlook.github.io/docs/sdk/cocos/#ios) | [<img src="/assets/img/icons/flutter.png" width="96">](https://smartlook.github.io/docs/sdk/flutter/#android--ios) 
-|  [Installation Guide](https://smartlook.github.io/docs/sdk/react-native/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [Coming soon for iOS](https://smartlook.github.io/docs/sdk/cocos/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/flutter/#android--ios)
+|    React Native   | Unity | Cocos (Coming Soon for iOS) | Flutter |  Cordova   |
+|:--------------:|:--------:|:--------:|:--------:|:--------:|
+|  [![React Native Icon](/assets/img/icons/react-native.png)](https://smartlook.github.io/docs/sdk/react-native/#ios) | [![Unity Icon](/assets/img/icons/unity.png)](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [<img src="/assets/img/icons/cocos.png">](https://smartlook.github.io/docs/sdk/cocos/#ios) | [<img src="/assets/img/icons/flutter.png" width="96">](https://smartlook.github.io/docs/sdk/flutter/#android--ios)|[<img src="/assets/img/icons/cordova.png">](https://smartlook.github.io/docs/sdk/cordova-android/#installation) | 
+|  [Installation Guide](https://smartlook.github.io/docs/sdk/react-native/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/unity/#installation-for-ios) | [Coming soon for iOS](https://smartlook.github.io/docs/sdk/cocos/#ios) | [Installation Guide](https://smartlook.github.io/docs/sdk/flutter/#android--ios)|[Installation Guide](https://smartlook.github.io/docs/sdk/cordova-android/#installation) |
 | [Changelog](https://github.com/smartlook/smartlook-react-native-sdk) | | [Changelog](https://github.com/smartlook/smartlook-cocos-android-sdk)
 
 
