@@ -69,7 +69,7 @@ It may aways help to reset the environment by
 
 The native `Smartlook.framework` is no longer part of the installed bridge. 
 
-If you need it for creating your own bridge, or if the traditional `react-native link` works for you, [download the latest version here](https://smartlook.github.io/docs/sdk/ios/#manual-installation) and add it manually to your iOS Xcode project.
+If you need it for creating your own bridge, or if the traditional `react-native link` works for you, [download the latest version here](https://smartlook.github.io/docs/sdk/ios/#manual-installation) and add it manually to your iOS Xcode project. This makes you also responsible for its updates to latest versions.
 
 The RN bridge files that proxy the native SDK into React Native and the native framework header files are still distributed as part of the installed bridge.
 
