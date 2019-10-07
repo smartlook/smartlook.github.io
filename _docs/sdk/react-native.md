@@ -13,26 +13,16 @@ description: "This SDK offers several options to developers and/or companies."
 
 ## Getting started
 
-1. `$ npm install smartlook-react-native-wrapper --save`
-2. `$ react-native link smartlook-react-native-wrapper`
+Install the Smartlook RN wrapper:
 
-### iOS
-
-1. In your Xcode project, navigate to `Libraries/RNSmartlook.xcodeproj/Frameworks`.
-1. From there, drag the `Smartlook.framework` into your project. Make sure 
-    - `Copy if needed` is checked
-    - the framework is included in all project targets
-1. In the case you experience compile errors related to Smartlook (e.g., that Smartlook framework or some headers are missing), try
-    - cleaning caches: `watchman watch-del-all; rm -rf ~/Library/Developer/Xcode/DerivedData`
-    - relinking the bridge: `react-native unlink smartlook-react-native-wrapper; react-native link smartlook-react-native-wrapper`
-
-![iOS React Native Installation](https://smartlook.github.io/docs/sdk/ios-react-native-installation.png)
+`$ npm install smartlook-react-native-wrapper --save`
 
 ### Android
 
-1. Open `android/build.gradle`
-2. Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using older React native version
-3. Add our maven repository:
+1. `$ react-native link smartlook-react-native-wrapper`
+2. Open `android/build.gradle`
+3. Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using older React native version
+4. Add our maven repository:
 
 ```android
 allprojects {
@@ -45,6 +35,45 @@ allprojects {
 ```
 
 Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> This step is not needed in newer React native versions. 
+
+### iOS
+
+#### Cocoapods
+
+Cocoapods seems to be preferred way to integrate third party modules with native iOS components into React Native apps:
+
+1. in your app `Podfile` add the following line:
+
+```
+pod 'smartlook-react-native-bridge', :podspec => '../node_modules/smartlook-react-native-wrapper/ios/smartlook-react-native-bridge.podspec'
+```
+2. run `pod install` in your app `ios` directory
+
+This way, Smartlook is linked to your app now.
+
+#### Troubleshooting
+
+When you are using Cocoapods, do **not** use ~`react-native link`~. To make sure the module is not linked, call `react-native unlink smartlook-react-native-wrapper`
+
+When upgrading from an older, non-cocoapods version, make sure there is no older version of `Smartlook.framework` bundled in your app. To check it out, 
+1. remove the smartlook-related line from your Podfile
+2. run `pod install` in your app `ios` directory to remove smartlook wrapper from your app
+3. manually remove any `Smartlook.framework` that you find in your app Xcode project.
+4. clear all caches as described below and add the smartlook reference to your `Podfile` again
+
+It may aways help to reset the environment by
+- cleaning caches: `watchman watch-del-all; rm -rf ~/Library/Developer/Xcode/DerivedData`
+- killing the Metro Bundler
+
+#### Manual iOS framework linking
+
+The native `Smartlook.framework` is no longer part of the installed bridge wrapper. 
+
+If you need it for creating your own bridge, or if the traditional `react-native link` works for you, [download the latest version here](https://smartlook.github.io/docs/sdk/ios/#manual-installation) and add it manually to your iOS Xcode project.
+
+The RN bridge files that proxy the native SDK into React Native and the native framework header files are still distributed as part of the installed wrapper.
+
+Please note that `react-native link` may or may not work depending on many factors like React Native version etc. and may require some additional Xcode project tweaking which depends on your particular toolchain setup.
 
 ## Usage
 
