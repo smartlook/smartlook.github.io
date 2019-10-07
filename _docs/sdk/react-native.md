@@ -40,7 +40,7 @@ Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> 
 
 #### Cocoapods
 
-Cocoapods seems to be preferred way to integrate third party modules with native iOS components into React Native apps:
+Cocoapods seems to be preferred way to integrate third party modules with native iOS components into React Native apps now. After installing the `npm` module:
 
 1. in your app `Podfile` add the following line:
 
