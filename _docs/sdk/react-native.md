@@ -53,7 +53,8 @@ This way, Smartlook is linked to your app now.
 
 #### Troubleshooting
 
-When you are using Cocoapods, do **not** use ~`react-native link`~. To make sure the module is not linked, call `react-native unlink smartlook-react-native-wrapper`
+When you are using Cocoapods, **do not use ~`react-native link`~**. 
+To make sure the module is not linked, call `react-native unlink smartlook-react-native-wrapper`
 
 When upgrading from an older, non-cocoapods version, make sure there is no older version of `Smartlook.framework` bundled in your app. To check it out, 
 1. remove the smartlook-related line from your Podfile
