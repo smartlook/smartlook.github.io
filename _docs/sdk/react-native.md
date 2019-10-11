@@ -16,9 +16,9 @@ description: "This SDK offers several options to developers and/or companies."
 Install the Smartlook RN bridge:
 
 1. `$ npm install smartlook-react-native-wrapper --save`
-2. only for RN before version 0.6.0: `$ react-native link smartlook-react-native-wrapper`
+2. only for RN before version 0.60.0: `$ react-native link smartlook-react-native-wrapper`
 
-### First upgrade to RN 0.6.0 or higher
+### First upgrade to RN 0.60.0 or higher
 
 1. Make sure to make way to [autolinking](https://facebook.github.io/react-native/blog/2019/07/03/version-60#native-modules-are-now-autolinked) by calling `$ react-native unlink smartlook-react-native-wrapper`
 2. on iOS, change Smartlook bridge linking to Cocoapods (see below)
@@ -43,7 +43,7 @@ Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> 
 
 ## iOS
 
-### Cocoapods (RN 0.6.0 and higher)
+### Cocoapods (RN 0.60.0 and higher)
 
 Cocoapods seems to be [the way to integrate third party modules with native iOS components](https://facebook.github.io/react-native/blog/2019/07/03/version-60#cocoapods-by-default) into React Native apps now. After installing the `npm` module:
 
@@ -56,7 +56,7 @@ pod 'smartlook-react-native-bridge', :podspec => '../node_modules/smartlook-reac
 ```
 3. run `$ pod install` in your app `ios` directory
 
-#### Cocoapods troubleshooting (RN 0.6.0 and higher)
+#### Cocoapods troubleshooting (RN 0.60.0 and higher)
 
 When you are using Cocoapods, you cannot use ~`react-native link`~. 
 
@@ -72,7 +72,7 @@ It aways helps to reset the environment by
 - cleaning caches: `$ watchman watch-del-all; rm -rf ~/Library/Developer/Xcode/DerivedData`
 - killing the Metro Bundler
 
-### Legacy iOS framework linking (RN before 0.6.0)
+### Legacy iOS framework linking (RN before 0.60.0)
 
 The native `Smartlook.framework` is no longer part of the installed bridge. 
 
