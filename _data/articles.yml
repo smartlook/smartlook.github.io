@@ -60,8 +60,9 @@ sdk:
 - title: Ionic
   subtitle: SDK for screen recording and analytics of Ionic Android applications.
   url: /docs/sdk/ionic-android/
-  - title: Unreal
+- title: Unreal
   subtitle: SDK for screen recording and analytics of Unreal games.
+  url: /docs/sdk/unreal/
 - title: Support
   subtitle: Support for Smartlook SDK
   url: /docs/sdk/support/
