@@ -17,9 +17,11 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 [Smartlook iOS SDK Changelog](https://github.com/smartlook/smartlook-ios-sdk) records all notable improvements, changes and fixes in SDK releases.
 
-### A note to _Main Thread Checker_ warning
+### A note to _Main Thread Checker_ and _unable to open object file_ warnings
 
 When debugging your app with Smartlook, you will encounter a **Main Thread Checker** warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see [this technical note](#a-technical-note-main-thread-checker-warning).
+
+When compiling your app with Smartlook for debugging, you may encounter list of **unable to open object file** warnings. These warnings appear when debug information format is set to `DWARF with dSYM file` . For details, see [this technical note](#a-technical-note-unable-to-open-object-file-warning).
 
 ## WiFi / mobile connection / offline
 
@@ -47,7 +49,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.2.1](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.1.zip) directly.
+1. Download [Smartlook iOS SDK v1.2.2](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.2.18.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -400,3 +402,14 @@ The warning is harmless, and is caused by capturing screen on background. The al
 This warning also might be accompanied by a short freeze of the app during debugging. This freeze does not happen in production builds, and is caused by an [Xcode debug option](https://developer.apple.com/documentation/code_diagnostics/main_thread_checker){:target="_blank"}. This option can be switched off in the respective run scheme diagnostic options:
 
 ![Setting pause on issue off](https://raw.githubusercontent.com/smartlook/smartlook.github.io/master/_docs/sdk/ios-main-thread-checker.png)
+
+## A technical note: "unable to open object file" warning
+
+When compiling your app with Smartlook for debugging, you may encounter list of **harmless warnings** with this pattern:
+
+` (....) /Users/...../SLSnapshotRenderer.o unable to open object file: No such file or directory`
+
+These warnings appear when  `Target -> Build Settings -> Build Options -> Debug Information Format` is set to `DWARF with dSYM file`. This debug information format is not a default one, and is set manually e.g., when some crash analytics tools (e.g., Fabric.io Crashlytics) are used. 
+
+We are continuously trying to suppress the warnings by tweaking our release build process, so far with no avail.
+
