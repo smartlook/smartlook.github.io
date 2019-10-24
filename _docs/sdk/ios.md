@@ -144,7 +144,7 @@ If a view no longer shows sensitive data, it can be removed from the list again 
 
 ```swift
 self.emailLabel.slSensitive = false                             
-Smartlook.registerBlacklisted(object: someView)         
+Smartlook.unregisterBlacklisted(object: someView)         
 ```
 ```objc
 self.emailLabel.slSensitive = NO;                             
