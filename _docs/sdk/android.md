@@ -80,7 +80,7 @@ Smartlook.setup(String YOUR_API_KEY, Activity activity, int fps, boolean experim
 |    Parameter   | Required |                                                                         Description                                                                         | Default value |
 |:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
 |    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in the dashboard).                                                                                   | ""            |
-|      `fps`     |    no    | Recorded video framerate (allowed values between 2 and 10).                                                                                                 | 2             |
+|      `fps`     |    no    | Recorded video framerate (allowed values between 2 and 10). Note that by setting this value you will **override** framerate settings from Dashboard!                                                                                                 | 2             |
 | `experimental` |    no    | Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.                                                         | false         |
 |   `activity`   |    no    | In case you need to setup SDK later i.e. fetching your API key or in the middle of the activity lifecycle, call setup with activity reference as parameter. | null          |
 
