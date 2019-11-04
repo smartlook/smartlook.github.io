@@ -73,8 +73,8 @@ Best place to call one of these methods is in Application class or any entry poi
 Both methods `setup` and `setupAndStartRecording` can be further customized with parameters.
 
 ```java
-Smartlook.setupAndStartRecording(String YOUR_API_KEY, int fps, boolean experimental)
-Smartlook.setup(String YOUR_API_KEY, Activity activity, int fps, boolean experimental)
+Smartlook.setupAndStartRecording(String YOUR_API_KEY, boolean experimental, int fps)
+Smartlook.setup(String YOUR_API_KEY, Activity activity, boolean experimental, int fps)
 ```
 
 |    Parameter   | Required |                                                                         Description                                                                         | Default value |
