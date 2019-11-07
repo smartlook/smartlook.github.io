@@ -1,6 +1,6 @@
 ---
-title: "Recording information"
-subtitle: "Get recording information such as URL."
+title: "Recording API"
+subtitle: "Get information such as URL, pause & resume recording, ..."
 description: "Our API offers options to display even more information about your recordings."
 ---
 
@@ -34,5 +34,21 @@ Now let's say you want to save a recording URL (`playUrl`) in your own service.
       MyServiceToLogUrl.sendToApi(smartlook.playUrl);
     }
   );
+</script>
+```
+
+## Pause & resume
+
+Use `pause` and `resume` methods to control recording.
+
+```js
+<script>
+  smartlook('pause');
+</script>
+```
+
+```js
+<script>
+  smartlook('resume');
 </script>
 ```
