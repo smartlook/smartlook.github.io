@@ -60,6 +60,11 @@ import Smartlook
 ```
 4. Setup Smartlook by calling `start(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
 
+## Metal
+If you have an app that uses Metal as its main rendering method (instead of UIKit), you can try our [Metal SDK](https://sdk.smartlook.com/ios/smartlook-metal-ios-sdk-1.2.4.zip).
+
+The Metal SDK has much better performance for Metal enabled apps than the standard SDK, meaning you can experiment with much higher framerate, with lower battery usage. Some API methods (UIKit related) do not work with Metal SDK (like blacklisted views).
+
 ## API Reference
 
 Applications can interact with the SDK using public SDK methods.
