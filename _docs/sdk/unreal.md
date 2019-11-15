@@ -22,7 +22,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unreal SDK v1.2.1](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.2.1.zip).
+1. Download [Smartlook iOS Unreal SDK v1.2.4](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.2.4.zip).
 2. Unzip the archive, create `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
 3. Close and reopen your Unreal project to load the Smartlook plugin.
 4. Open Plugins settings (Edit - Plugins), make sure Smartlook plugin is enabled. Smartlook plugin can be found in Installed section under Analytics.
