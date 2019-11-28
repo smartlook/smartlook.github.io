@@ -55,11 +55,11 @@ sdk:
   subtitle: SDK for screen recording and analytics of Cocos games.
   url: /docs/sdk/cocos/
 - title: Cordova
-  subtitle: SDK for screen recording and analytics of Cordova Android applications.
-  url: /docs/sdk/cordova-android/  
+  subtitle: SDK for screen recording and analytics of Cordova applications.
+  url: /docs/sdk/cordova/  
 - title: Ionic
-  subtitle: SDK for screen recording and analytics of Ionic Android applications.
-  url: /docs/sdk/ionic-android/
+  subtitle: SDK for screen recording and analytics of Ionic applications.
+  url: /docs/sdk/ionic/
 - title: Unreal
   subtitle: SDK for screen recording and analytics of Unreal games.
   url: /docs/sdk/unreal/
