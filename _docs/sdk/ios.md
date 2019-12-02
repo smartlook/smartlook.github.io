@@ -211,6 +211,14 @@ self.emailLabel.slSensitive = NO;                                    // whitelis
 
 Also here, objects can be removed from the whitelist by calling the respective `unregisterWhitelisted(object:)` or toggling the `slSensitive` property.
 
+#### Sensitive data in embedded web views
+
+Embedded web views are blacklisted by default, i.e., their content is not visible in the recordings at all. If an embedded web view is whitelisted, its content is recorded and its behaviour depends on its class
+
+- **UIWebView** shows their content unrestricted. UIWebView is a deprecated class and calling its interface programatically (which is necessary to hide sensitive data) leads to serious App Store warnings. Thus, there is no way to hide selected elements in UIWebView.
+
+- **WKWebView** hiddes fileds where user enters data by default. Any other HTML element that should be hidden can be flagged by assiging `smartlook-hide` CSS class to it. Fields hidden by default can be on the other hand whitelisted by assigning them `smartlook-show` CSS class. 
+
 #### Sensitive mode
 
 In the case you don't want SDK to record video at all, but still want to get analytics events, use fullscreen sensitive mode:
