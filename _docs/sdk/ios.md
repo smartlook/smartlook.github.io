@@ -49,7 +49,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.2.5](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip) directly.
+1. Download [Smartlook iOS SDK v1.2.6](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.6.114.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -210,6 +210,14 @@ self.emailLabel.slSensitive = NO;                                    // whitelis
 ```
 
 Also here, objects can be removed from the whitelist by calling the respective `unregisterWhitelisted(object:)` or toggling the `slSensitive` property.
+
+#### Sensitive data in embedded web views
+
+Embedded web views are blacklisted by default, i.e., their content is not visible in the recordings at all. If an embedded web view is whitelisted, its content is recorded and its behaviour depends on its class
+
+- **UIWebView** shows their content unrestricted. UIWebView is a deprecated class and calling its interface programatically (which is necessary to hide sensitive data) leads to serious App Store warnings. Thus, there is no way to hide selected elements in UIWebView.
+
+- **WKWebView** hiddes fileds where user enters data by default. Any other HTML element that should be hidden can be flagged by assiging `smartlook-hide` CSS class to it. Fields hidden by default can be on the other hand whitelisted by assigning them `smartlook-show` CSS class. 
 
 #### Sensitive mode
 
