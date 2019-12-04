@@ -116,12 +116,12 @@ It is always possible to pause/resume the recording, and check if the recording 
 
 ```swift
 Smartlook.startRecording() // start or resume paused recording
-Smartlook.stopRecording()  // pause recorging
+Smartlook.stopRecording()  // pause recording
 Smartlook.isRecording()    // returns true/false
 ```
 ```objc
 [Smartlook startRecording] // start or resume paused recording
-[Smartlook stopRecording]  // pause recorging
+[Smartlook stopRecording]  // pause recording
 [Smartlook isrecording]    // returns true/false
 ```
 
@@ -282,7 +282,7 @@ Smartlook.clearSessionProperties() // removes all session properties
 [Smartlook clearSessionProperties];  // removes all session properties
 ``` 
 
-If you do want _locking_ a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set (it can be removes and set again, though).
+If you do want _locking_ a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set (it can be removed and set again, though).
 
 ```swift
 Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", options: .immutable)
