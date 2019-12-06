@@ -66,3 +66,10 @@ sdk:
 - title: Support
   subtitle: Support for Smartlook SDK
   url: /docs/sdk/support/
+- title: Cordova (Depracated)
+  subtitle: SDK for screen recording and analytics of Cordova applications.
+  url: /docs/sdk/cordova-android/  
+  - title: Ionic (Deprecated)
+  subtitle: SDK for screen recording and analytics of Ionic applications.
+  url: /docs/sdk/ionic-android/
+  
