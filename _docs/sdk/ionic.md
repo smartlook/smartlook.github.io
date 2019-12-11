@@ -2,6 +2,8 @@
 title: "Ionic"
 subtitle: "SDK for screen recording and analytics for Ionic applications."
 description: "This SDK offers several options to developers and/or companies."
+redirect_from:
+  - /docs/sdk/ionic-android/
 ---
 
 ## What you can do
