@@ -2,7 +2,7 @@
 title: "Cordova"
 subtitle: "SDK for screen recording and analytics for Cordova applications."
 description: "This SDK offers several options to developers and/or companies."
-redirect-from:
+redirect_from:
   - /docs/sdk/cordova-android/
 ---
 
