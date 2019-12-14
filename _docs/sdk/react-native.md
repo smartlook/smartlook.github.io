@@ -45,16 +45,53 @@ Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> 
 
 ### Cocoapods (RN 0.60.0 and higher)
 
-Cocoapods seems to be [the way to integrate third party modules with native iOS components](https://facebook.github.io/react-native/blog/2019/07/03/version-60#cocoapods-by-default) into React Native apps now. After installing the `npm` module:
+Cocoapods seems to be [the way to integrate third party modules with native iOS components](https://facebook.github.io/react-native/blog/2019/07/03/version-60#cocoapods-by-default) into React Native apps now. 
 
-1. make sure Smartlook bridge is not linked the old way `$ react-native unlink smartlook-react-native-wrapper`
+The following steps create a test app with integrated Smartlook:
 
-2. in your app `Podfile` add the following line:
+```bash
+# create test app
+npx react-native init SLTest01
+cd SLTest01/
 
+# install Smartlook plugin
+npm install smartlook-react-native-wrapper --save
+```
+
+Now edit the Podfile by adding the following line
 ```
 pod 'smartlook-react-native-bridge', :podspec => '../node_modules/smartlook-react-native-wrapper/ios/smartlook-react-native-bridge.podspec'
 ```
-3. run `$ pod install` in your app `ios` directory
+
+```bash
+# change dir to your ios project, open Podfile and add the line above
+cd ios
+open Podfile
+
+# install the pods
+pod install
+# should print out:
+#    Installing Smartlook (x.y.z)
+#    Installing smartlook-react-native-bridge (x.y.z)
+```
+
+Then add Smartlook initialization to the `App.js` and run the app
+```js
+// Smartlook initialization
+var Smartlook = require("smartlook-react-native-wrapper"); 
+Smartlook.setupAndStartRecording("API_KEY");
+```
+
+using these commands
+```bash
+# open App.js and add Smartlook initialisation there
+open ../App.js
+
+# open the Xcode workspace 
+open SLTest01.xcworkspace
+
+# finally run the Xcode project
+```
 
 #### Cocoapods troubleshooting (RN 0.60.0 and higher)
 
@@ -86,7 +123,7 @@ Please note that `$ react-native link  smartlook-react-native-wrapper` may or ma
 
 ```js
 var Smartlook = require('smartlook-react-native-wrapper');
-Smartlook.init("KEY");
+Smartlook.setupAndStartRecording("KEY");
 ```
 
 Description of additional public SDK methods can be found in <a href="https://smartlook.github.io/docs/sdk/android/">Android</a> and <a href="https://smartlook.github.io/docs/sdk/ios/">iOS</a> docs section. Please note that `initIrregular` methods **are not available** in React native Android version.
