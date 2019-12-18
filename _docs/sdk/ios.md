@@ -25,7 +25,9 @@ When compiling your app with Smartlook for debugging, you may encounter list of 
 
 ## WiFi / mobile connection / offline
 
-Currently we are uploading sessions **only of WiFi** connection. If application is on mobile connection or offline we are storing sessions locally and will upload them as soon as application has WiFi conection.
+By default, we are uploading sessions **only of WiFi** connection. This settings can could be changed in your app dashboard.
+
+If the application is offline (or on mobile network with mobile upload not enabled) we store sessions locally and upload them as soon as application has WiFi conection.
 
 ## Installation
 
@@ -49,7 +51,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.2.6](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.6.114.zip) directly.
+1. Download [Smartlook iOS SDK v1.2.7](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.7.339.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -168,7 +170,7 @@ Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)]; 
 ```
 
-Note that for convenience, some classes are **blacklisted by default**: `UITextView`, `UITextField`, `UIWebView` and `WKWebView`. 
+Note that for convenience, some classes are **blacklisted by default**: `UITextView`, `UITextField` and `WKWebView`. 
 
 To remove classes or protocols from the blacklisted list, call 
 
@@ -215,7 +217,7 @@ Also here, objects can be removed from the whitelist by calling the respective `
 
 Embedded web views are blacklisted by default, i.e., their content is not visible in the recordings at all. If an embedded web view is whitelisted, its content is recorded and its behaviour depends on its class
 
-- **UIWebView** shows their content unrestricted. UIWebView is a deprecated class and calling its interface programatically (which is necessary to hide sensitive data) leads to serious App Store warnings. Thus, there is no way to hide selected elements in UIWebView.
+- **UIWebView** shows their content unrestricted. UIWebView is a deprecated class and apps that use it will soon not allowed in App Store. Thus, there is no way to hide selected elements in UIWebView other than overlaying the whole view programatically. See also [v1.2.7 changelog](https://github.com/smartlook/smartlook-ios-sdk#127---2019-12-18).
 
 - **WKWebView** hiddes fileds where user enters data by default. Any other HTML element that should be hidden can be flagged by assiging `smartlook-hide` CSS class to it. Fields hidden by default can be on the other hand whitelisted by assigning them `smartlook-show` CSS class. 
 
