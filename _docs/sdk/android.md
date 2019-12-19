@@ -233,28 +233,33 @@ Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState
 #### Timed event
 
 In case you want to measure the duration of any time-sensitive or long-running actions in the app.
-You can call:
+You can call one of:
 
 ```java
 Smartlook.startTimedCustomEvent(@NotNull String eventName)
-```
-
-This will not send out any event, but once `track(...)` with corresponding event name gets called it will have extra **duration** property. 
-
-You can set some aditional data by calling:
-
-```java
 Smartlook.startTimedCustomEvent(@NotNull String eventName, JSONObject eventProperties)
 Smartlook.startTimedCustomEvent(@NotNull String eventName, Bundle eventProperties)
 ```
 
-Properties set in `startTimedCustomEvent` will be merged with properties set in `trackCustomEvent`. Properties from `trackCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
+This will **not send** out any events but returns **unique eventId** that can be used to further identify the event.
+
+To send out event with **duration** you need to call one of:
+
+```java
+Smartlook.stopTimedCustomEvent(@NotNull String eventId)
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, JSONObject eventProperties)
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, Bundle eventProperties)
+```
+
+with coresponding `eventId`.
+
+Properties set in `startTimedCustomEvent` will be merged with properties set in `stopTimedCustomEvent`. Properties from `stopTimedCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
 
 Typical use of timed event might look like this:
 ```java
-Smartlook.startTimedCustomEvent("duration_event")
+String eventID = Smartlook.startTimedCustomEvent("duration_event")
 Thread.sleep(1000) //long running operation
-Smartlook.trackCustomEvent("duration_event")
+Smartlook.stopTimedCustomEvent(eventId)
 ```
 In this case `duration_event` will have duration property set to circa `1000ms`.
 
