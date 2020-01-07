@@ -40,10 +40,39 @@ Applications can interact with the SDK using public SDK functions.
 
 You can inject Smartlook SDK like this:
 
+- `app.module.ts`:
+
 ```typescript
 import { Smartlook } from '@ionic-native/smartlook/ngx';
 
-constructor(private smartlook: Smartlook) { }
+...
+
+@NgModule({
+
+    ...
+
+    providers: [Smartlook, ...]
+
+    ...
+})
+export class AppModule {}
+```
+
+- `app.component.ts`
+
+```typescript
+import { Smartlook, SmartlookSetupConfig } from '@ionic-native/smartlook/ngx';
+
+...
+
+@Component( ... )
+export class AppComponent {
+    constructor(private smartlook: Smartlook) {
+        this.platform.ready().then(() => {
+            this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+        }
+    }
+}
 ```
 
 ### Setup
