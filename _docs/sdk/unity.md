@@ -69,7 +69,7 @@ implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31'
 
 4. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
 
-**Note: For stability/performance goals, currently we support Android 23+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
+**Note: For stability/performance goals, currently we support Android 24+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
 
 ## Installation for iOS
 
