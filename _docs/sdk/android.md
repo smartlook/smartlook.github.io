@@ -306,6 +306,36 @@ Instead of `id` you can set your custom value by providing the `View` with `@id/
 </View>
 ```
 
+#### Custom name for navigation events
+
+For automatically detected navigation events (activity change/fragment transaction) we are using activity/fragment name as the name of the event. You can change that by implementing `SmartlookNamedController` interface of by using `smartlook_custom_controller_name` tag in your layout XML like this:
+
+```java
+class SampleActivity extends Activity implements SmartlookNamedController {
+    
+    @NotNull
+    @Override
+    public String getCustomName() {
+        return "SampleActivityCustomName";
+    }
+}
+
+```
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <tag android:id="@+id/smartlook_custom_controller_name" android:value="CustomActivityName" />
+
+    ...
+
+</LinearLayout>
+```
+
 #### Global event properties
 
 Event super properties can be set by calling:
