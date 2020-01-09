@@ -192,6 +192,7 @@ Additional user information, such as name, email and other custom properties can
 ```java 
 Smartlook.setUserIdentifier(@NonNull String identifier, JSONObject sessionProperties)
 Smartlook.setUserIdentifier(@NonNull String identifier, Bundle sessionProperties)
+Smartlook.setUserIdentifier(@NonNull String identifier, String sessionPropertiesJsonString)
 ``` 
 You’ll see those properties in the Dashboard at Visitor details.
 
