@@ -233,11 +233,23 @@ Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, Strin
 
 Additional data can be used in **funnels** or any additional **filtering**.
 
-Since we are not able to detect screen transitions i.e. for Unity games or Flutter out of the box, you can add these events manually, where ViewState can be start or stop:
+#### Navigation event
+
+Sometimes we are not able to detect screen trasitions (i.e. for Unity games or Flutter, etc.), you can add these events manually by calling:
 
 ```java
 Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState)
 ```
+
+where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
+
+You can also explicitly tell the SDK if the navigation event happened between `Activities` of `Fragments`:
+
+```java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewType String type, @ViewState String viewState)
+```
+
+where viewType is one of `ViewType.ACTIVITY` or `ViewType.Fragment`. 
 
 #### Timed event
 
