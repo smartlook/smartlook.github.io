@@ -313,6 +313,7 @@ Event super properties can be set by calling:
 ```java
 Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
 Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
 ```
 
