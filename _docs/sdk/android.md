@@ -103,7 +103,7 @@ Smartlook.isRecording()
 ```
 
 ### Blacklisted views
-SDK contains a list of blacklisted/sensitive views. These views won't be recorded (only black rectangle instead of the view).
+SDK contains a list of blacklisted/sensitive views. These views won't be recorded (only single color rectangle is drawn instead of the view).
 
 You can mark view(s) as blacklisted by calling:
 
@@ -149,6 +149,14 @@ You can remove view(s) from whitelist:
 ```java
 Smartlook.unregisterWhitelistedView(View view)
 Smartlook.unregisterWhitelistedViews(List<View> views)
+```
+
+### Blacklisted items color
+
+You can configure the color of the rectangles that are drawn instead of sensitive *items* (views/classes):
+
+```java
+Smartlook.setBlacklistedItemsColor(@ColorInt int color);
 ```
 
 ### Sensitive mode
