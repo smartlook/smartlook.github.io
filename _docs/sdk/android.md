@@ -276,6 +276,16 @@ with coresponding `eventId`.
 
 Properties set in `startTimedCustomEvent` will be merged with properties set in `stopTimedCustomEvent`. Properties from `stopTimedCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
 
+In case the event fails call `cancelTimedCustomEvent` instead of `stopTimedCustomEvent` and provide a `reason` of failure:
+
+```java
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason,)
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, JSONObject eventProperties)
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, Bundle eventProperties)
+```
+
+The behaviour of stop and cancel is the same regarding `eventProperties`.
+
 Typical use of timed event might look like this:
 ```java
 String eventID = Smartlook.startTimedCustomEvent("duration_event")
