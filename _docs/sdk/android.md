@@ -112,6 +112,14 @@ Smartlook.registerBlacklistedView(View view)
 Smartlook.registerBlacklistedViews(List<View> views)
 ```
 
+Or you can tag them directly in xml layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_blacklisted_view"/>
+</View>
+```
+
 If view(s) is no longer sensitive you can remove it from blacklist:
 
 ```java
@@ -142,6 +150,14 @@ In case you need some view(s) to be recorded even if it is instance of a blackli
 ```java
 Smartlook.registerWhitelistedView(View view)
 Smartlook.registerWhitelistedViews(List<View> views)
+```
+
+Or you can tag them directly in xml layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_whitelisted_view"/>
+</View>
 ```
 
 You can remove view(s) from whitelist:
