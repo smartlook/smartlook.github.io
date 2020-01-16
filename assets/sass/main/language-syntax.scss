@@ -118,6 +118,14 @@ pre[class*="language-java"]::before {
   content: "JAVA";
 }
 
+pre[class*="language-xml"]::before {
+  background: $o_orange_500;
+}
+
+pre[class*="language-xml"]::before {
+  content: "XML";
+}
+
 // CODE
 code {
   -webkit-box-flex: 1;
