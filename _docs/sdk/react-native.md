@@ -49,27 +49,19 @@ Cocoapods seems to be [the way to integrate third party modules with native iOS 
 
 The following steps create a test app with integrated Smartlook:
 
-```bash
+```shell
 # create test app
 npx react-native init SLTest01
 cd SLTest01/
 
 # install Smartlook plugin
 npm install smartlook-react-native-wrapper --save
-```
 
-Now edit the Podfile by adding the following line
-```
-pod 'smartlook-react-native-bridge', :podspec => '../node_modules/smartlook-react-native-wrapper/ios/smartlook-react-native-bridge.podspec'
-```
-
-```bash
 # change dir to your ios project, open Podfile and add the line above
-cd ios
-open Podfile
-
 # install the pods
+cd ios
 pod install
+
 # should print out:
 #    Installing Smartlook (x.y.z)
 #    Installing smartlook-react-native-bridge (x.y.z)
@@ -83,7 +75,7 @@ Smartlook.setupAndStartRecording("API_KEY");
 ```
 
 using these commands
-```bash
+```shell
 # open App.js and add Smartlook initialisation there
 open ../App.js
 
