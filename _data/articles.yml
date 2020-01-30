@@ -22,6 +22,9 @@ web:
 - title: Custom click props
   subtitle: Log your own specific data for click tracking.
   url: /docs/web/custom-click-props/
+- title: Custom navigation event
+  subtitle: Log your own specific navigation event.
+  url: /docs/web/custom-navigation-event/
 - title: Recording API
   subtitle: Get information such as URL, pause & resume recording, ...
   url: /docs/web/recording-api/
