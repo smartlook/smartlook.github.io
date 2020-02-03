@@ -1,3 +1,5 @@
+# on Linux, 'sudo chmod 777 -R vendor'
+
 version: '2'
 services:
   site:
