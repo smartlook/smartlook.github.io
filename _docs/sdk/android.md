@@ -211,7 +211,188 @@ Smartlook.setUserIdentifier(@NonNull String identifier)
 
 You can then lookup those identifiers in the Dashboard to find specific user’s recordings.
 
-Additional user information, such 
+Additional user information, such as name, email and other custom properties can be set by calling:
+
+```java 
+Smartlook.setUserIdentifier(@NonNull String identifier, JSONObject sessionProperties)
+Smartlook.setUserIdentifier(@NonNull String identifier, Bundle sessionProperties)
+Smartlook.setUserIdentifier(@NonNull String identifier, String sessionPropertiesJsonString)
+``` 
+You’ll see those properties in the Dashboard at Visitor details.
+
+### Analytics
+
+SDK records several analytic events by default:
+* Activity changes
+* Fragment changes
+* Focus events
+* Orientation events
+* Clicked Views
+
+But you can track whatever you want by using custom events.
+
+#### Custom events
+
+You can track custom event by calling:
+
+```java
+Smartlook.trackCustomEvent(@NonNull String eventName)
+```
+
+If you need to send some additional data with custom event use:
+
+```java
+Smartlook.trackCustomEvent(@NonNull String eventName, JSONObject eventProperties)
+Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties)
+Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, String value)
+```
+
+Additional data can be used in **funnels** or any additional **filtering**.
+
+#### Navigation event
+
+Sometimes we are not able to detect screen trasitions (i.e. for Unity games or Flutter, etc.), you can add these events manually by calling:
+
+```java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState)
+```
+
+where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
+
+You can also explicitly tell the SDK if the navigation event happened between `Activities` of `Fragments`:
+
+```java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewType String type, @ViewState String viewState)
+```
+
+where viewType is one of `ViewType.ACTIVITY` or `ViewType.Fragment`. 
+
+#### Timed event
+
+In case you want to measure the duration of any time-sensitive or long-running actions in the app.
+You can call one of:
+
+```java
+Smartlook.startTimedCustomEvent(@NotNull String eventName)
+Smartlook.startTimedCustomEvent(@NotNull String eventName, JSONObject eventProperties)
+Smartlook.startTimedCustomEvent(@NotNull String eventName, Bundle eventProperties)
+```
+
+This will **not send** out any events but returns **unique eventId** that can be used to further identify the event.
+
+To send out event with **duration** you need to call one of:
+
+```java
+Smartlook.stopTimedCustomEvent(@NotNull String eventId)
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, JSONObject eventProperties)
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, Bundle eventProperties)
+```
+
+with coresponding `eventId`.
+
+Properties set in `startTimedCustomEvent` will be merged with properties set in `stopTimedCustomEvent`. Properties from `stopTimedCustomEvent` have higher priority and will rewrite conflicting properties from `startTimedCustomEvent`.
+
+In case the event fails call `cancelTimedCustomEvent` instead of `stopTimedCustomEvent` and provide a `reason` of failure:
+
+```java
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason,)
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, JSONObject eventProperties)
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, Bundle eventProperties)
+```
+
+The behaviour of stop and cancel is the same regarding `eventProperties`.
+
+Typical use of timed event might look like this:
+```java
+String eventID = Smartlook.startTimedCustomEvent("duration_event")
+Thread.sleep(1000) //long running operation
+Smartlook.stopTimedCustomEvent(eventId)
+```
+In this case `duration_event` will have duration property set to circa `1000ms`.
+
+#### Custom name for click events
+
+SDK detects click events automatically. The event name consists of `Activity` name, `View` type (`Button`, etc.) and `id`.
+
+Instead of `id` you can set your custom value by providing the `View` with `@id/smartlook_custom_name` `tag`:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_custom_name" android:value="Custom name"/>
+</View>
+```
+
+#### Global event properties
+
+Event super properties can be set by calling:
+
+```java
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+```
+
+Such properties are added to any event sent from the client in the future. Properties in global scope have higher priority so in merging process those from global scope will **override** custom properties with the same key.
+
+Properties set to be `immutable` have the highest priority and once set they cannot be overridden (only removed).
+
+### Remove global event property
+If you want to remove some global property with a given key call:
+
+```java
+Smartlook.removeGlobalEventProperty(String propertyKey)
+```
+
+Or you can remove all global event properties:
+
+```java
+Smartlook.removeAllGlobalEventProperties()
+```
+
+Note that global event properties are stored until they are not removed or the app is uninstalled.
+
+## Crash reporting
+
+In case developer did not handle any exception SDK will automatically report stack trace. This works out of the box and is sent to our servers in case analytics/errors are applicable.
+
+Because the app process is killed by the crash, video is going to be rendered and sent to the server once a new session is started (next application start).
+
+Proguard mapping file still not available -> Beta functionality.
+
+## Crashlytics
+
+In case you are using Crashlytics in your project, once Crashlytics setup is done, you can call:
+```java
+Smartlook.enableCrashlytics(boolean enable)
+```
+
+![New key-value pair](https://sdk.smartlook.com/android/docs/crash_docs_pair.png)
+
+Then in Crashlytics dashboard, there should be a new `SMARTLOOK SESSION URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
+
+## Referrer
+
+SDK automatically collects referrer value and source of installation per visitor and displays it in Dashboard. 
+In some cases you might want to set custom referrer by yourself, you can do this by calling:
+
+```java
+Smartlook.setReferrer(String referrer, String source)
+```
+
+## Shareable session URL
+
+You can obtain URL leading to the dashboard for a currently recorded session:
+
+```java
+Smartlook.getDashboardSessionUrl()
+```
+
+This URL can then be shared to everyone who has access to the dashboard.
 
 ### Network Interceptor
 comming soon (if you want to beta test contact us on [Discord server](https://discord.gg/SbEt98m))
+
+## Deprecated/beta API
+
+If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. Old ones are now **deprecated**. They should still work, but this might change in the future.
