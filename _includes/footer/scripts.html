@@ -16,13 +16,11 @@
 </script>
 
 <!-- Smartlook -->
-<script type="text/javascript">
+<script type='text/javascript'>
   window.smartlook||(function(d) {
-  var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-  var c=d.createElement('script');o.api=new Array();c.async=true;c.crossOrigin='anonymous';c.type='text/javascript';
-  c.charset='utf-8';c.src='https://rec.beta.smartlook.com/recorder.js';h.appendChild(c);
-  })(document);
-  smartlook('init', '{{ site.smartlook_id }}', {
-  'host': 'manager.beta.smartlook.com'
-  });
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.crossOrigin='anonymous';c.type='text/javascript';
+    c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', 'a0357a43579f8edbcafeba7eeafcba5ca3d3dbe9');
 </script>

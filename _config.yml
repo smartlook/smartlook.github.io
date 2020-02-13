@@ -79,7 +79,6 @@ plugins:
 ## Site variables
 title: "Smartlook API"
 google_analytics_id: "UA-73723446-2"
-smartlook_id: "ef403acd5310ade56cc28cf3c9f6f2ee1580b5de"
 github_username: smartlook
 git_repo: smartlook.github.io
 
