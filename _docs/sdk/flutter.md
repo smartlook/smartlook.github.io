@@ -27,7 +27,7 @@ dependencies:
 
 ### Start Smartlook
 
-To start recording, call the following as eraly as possible in the app life cycle (e.g., when initializing your app state):
+To start recording, call the following as early as possible in the app lifecycle (e.g., when initializing your app state):
 
 ```dart
 Smartlook.setupAndStartRecording('YOUR_API_KEY');
