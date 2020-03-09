@@ -393,6 +393,18 @@ This URL can then be shared to everyone who has access to the dashboard.
 ### Network Interceptor
 comming soon (if you want to beta test contact us on [Discord server](https://discord.gg/SbEt98m))
 
-## Deprecated/beta API
+## Rendering mode [BETA]
 
-If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. Old ones are now **deprecated**. They should still work, but this might change in the future.
+You can configure the way SDK captures/creates screen image for recording. There are two main rendering modes:
+
+| Italic             |  Block letters |
+:-------------------------:|:-------------------------:
+![](outputs/output_Biotouch/18-15_02-02-2018/Identification/ITALIC/ITALIC_movementPoints_cmc.png)  |  ![](outputs/output_Biotouch/18-15_02-02-2018/Identification/BLOCK_LETTERS/BLOCK_LETTERS_movementPoints_cmc.png)
+
+
+```
+Smartlook.setupAndStartRecording(String apiKey, @RenderingMode String renderingMode)
+```
+
+or directly on setup:
+
