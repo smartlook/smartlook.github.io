@@ -397,14 +397,37 @@ comming soon (if you want to beta test contact us on [Discord server](https://di
 
 You can configure the way SDK captures/creates screen image for recording. There are two main rendering modes:
 
-| Italic             |  Block letters |
+| NATIVE |  WIREFRAME |
 :-------------------------:|:-------------------------:
-![](outputs/output_Biotouch/18-15_02-02-2018/Identification/ITALIC/ITALIC_movementPoints_cmc.png)  |  ![](outputs/output_Biotouch/18-15_02-02-2018/Identification/BLOCK_LETTERS/BLOCK_LETTERS_movementPoints_cmc.png)
+<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/>
 
+Rendering mode can be set on SDK setup:
 
-```
+```java
 Smartlook.setupAndStartRecording(String apiKey, @RenderingMode String renderingMode)
 ```
 
-or directly on setup:
+or can be changed when SDK already runs:
 
+```java
+Smartlook.setRenderingMode(@RenderingMode String renderingMode)
+```
+
+**Wireframe** rendering mode can be further configured by setting `RenderingModeOption`:
+
+| WIREFRAME | BLUEPRINT | ICON_BLUEPRINT |
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode native" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_blueprint.png" alt="rendering mode wireframe" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_icon_blueprint.png" alt="rendering mode native" width="250"/>
+
+You can set RenderingModeOption in setup or on run like this:
+
+```java
+Smartlook.setupAndStartRecording(String apiKey, 
+                                 @RenderingMode String renderingMode,
+                                 @RenderingModeOption String renderingModeOption)
+```
+or
+```java
+Smartlook.setRenderingMode(@RenderingMode String renderingMode,
+                           @RenderingModeOption String renderingModeOption)
+```
