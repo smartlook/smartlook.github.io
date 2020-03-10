@@ -395,7 +395,7 @@ comming soon (if you want to beta test contact us on [Discord server](https://di
 
 ## Rendering mode [BETA]
 
-You can configure the way SDK captures/creates screen image for recording. There are two main rendering modes:
+You can configure the way of how the SDK captures/creates screen image for recording. There are two main rendering modes:
 
 | NATIVE |  WIREFRAME |
 :-------------------------:|:-------------------------:
