@@ -25,7 +25,7 @@ When compiling your app with Smartlook for debugging, you may encounter list of 
 
 ## WiFi / mobile connection / offline
 
-By default, we are uploading sessions **only of WiFi** connection. This settings can could be changed in your app dashboard.
+By default, we are uploading sessions **only of WiFi** connection. This setting can can be changed in your app dashboard.
 
 If the application is offline (or on mobile network with mobile upload not enabled) we store sessions locally and upload them as soon as application has WiFi conection.
 
@@ -47,7 +47,7 @@ import Smartlook
 ```objc
 #import <Smartlook/Smartlook.h>
 ```
-4. Setup Smartlook by calling `start(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
+4. Setup Smartlook by calling `setup(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
 
 ### Manual installation
 
@@ -60,7 +60,7 @@ import Smartlook
 ```objc
 #import <Smartlook/Smartlook.h>
 ```
-4. Setup Smartlook by calling `start(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
+4. Setup Smartlook by calling `setup(key:)` and then start recording by `startRecording()` in your AppDelegate as described below.
 
 ## Metal
 If you have an app that uses Metal as its main rendering method (instead of UIKit), you can try our [Metal SDK](https://sdk.smartlook.com/ios/smartlook-metal-ios-sdk-1.2.4.zip).
