@@ -393,6 +393,41 @@ This URL can then be shared to everyone who has access to the dashboard.
 ### Network Interceptor
 comming soon (if you want to beta test contact us on [Discord server](https://discord.gg/SbEt98m))
 
-## Deprecated/beta API
+## Rendering mode [BETA]
 
-If you were using Smartlook SDK beta (version lower than 1.0.0) and you want to update, please migrate to new API methods. Old ones are now **deprecated**. They should still work, but this might change in the future.
+You can configure the way of how the SDK captures/creates screen image for recording. There are two main rendering modes:
+
+| NATIVE |  WIREFRAME |
+:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/>
+
+Rendering mode can be set on SDK setup:
+
+```java
+Smartlook.setupAndStartRecording(String apiKey, @RenderingMode String renderingMode)
+```
+
+or can be changed when SDK already runs:
+
+```java
+Smartlook.setRenderingMode(@RenderingMode String renderingMode)
+```
+
+**Wireframe** rendering mode can be further configured by setting `RenderingModeOption`:
+
+| WIREFRAME | BLUEPRINT | ICON_BLUEPRINT |
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode native" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_blueprint.png" alt="rendering mode wireframe" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_icon_blueprint.png" alt="rendering mode native" width="250"/>
+
+You can set RenderingModeOption in setup or on run like this:
+
+```java
+Smartlook.setupAndStartRecording(String apiKey, 
+                                 @RenderingMode String renderingMode,
+                                 @RenderingModeOption String renderingModeOption)
+```
+or
+```java
+Smartlook.setRenderingMode(@RenderingMode String renderingMode,
+                           @RenderingModeOption String renderingModeOption)
+```
