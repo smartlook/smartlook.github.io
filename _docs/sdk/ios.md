@@ -473,7 +473,7 @@ Smartlook.setRenderingMethod(to: Smartlook.RenderingMode)
 You can set RenderingModeOption in setup or on run like this:
 
 ```swift
-        Smartlook.setup(key: "beta_a76b285a70ecfb2b2cc13a13b0be2de6b60acf99",
+        Smartlook.setup(key: YOUR_API_KEY,
                         options: [.renderingMode: Smartlook.RenderingMode.wireframe,
                                   .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
         );
