@@ -223,7 +223,7 @@ Embedded web views are blacklisted by default, i.e., their content is not visibl
 
 #### Sensitive mode
 
-In the case you don't want SDK to record video at all, but still want to get analytics events, use fullscreen sensitive mode:
+In the case you don't want SDK to record screen video, but still want to see user interaction events (e.g., touches), use fullscreen sensitive mode:
 
 ```swift
 Smartlook.beginFullscreenSensitiveMode()
@@ -234,6 +234,21 @@ let isSensitiveMode = Smartlook.isFullscreenSensitiveModeActive()
 [Smartlook beginFullscreenSensitiveMode];
 [Smartlook endFullscreenSensitiveMode];
 BOOL isSensitiveMode = [Smartlook isFullscreenSensitiveModeActive];  
+```
+
+#### Analytics-only mode
+
+In the case you don't want SDK not visualising any user interaction with the app (e.g., touches), but still want to get analytics events, use analytics-only sensitive mode:
+
+```swift
+Smartlook.beginAnalyticsOnlyMode()
+Smartlook.endAnalyticsOnlyMode()
+let isSensitiveMode = Smartlook.isFullscreenSensitiveModeActive()  
+```
+```objc
+[Smartlook beginFullscreenSensitiveMode];
+[Smartlook endFullscreenSensitiveMode];
+BOOL isSensitiveMode = [Smartlook isAnalyticsOnlyModeActive];  
 ```
 
 #### Blacklisted overlay color
