@@ -223,7 +223,7 @@ Embedded web views are blacklisted by default, i.e., their content is not visibl
 
 #### Sensitive mode
 
-In the case you don't want SDK to record video at all, but still want to get analytics events, use fullscreen sensitive mode:
+In the case you don't want SDK to record screen video, but still want to see user interaction events (e.g., touches), use fullscreen sensitive mode:
 
 ```swift
 Smartlook.beginFullscreenSensitiveMode()
@@ -234,6 +234,21 @@ let isSensitiveMode = Smartlook.isFullscreenSensitiveModeActive()
 [Smartlook beginFullscreenSensitiveMode];
 [Smartlook endFullscreenSensitiveMode];
 BOOL isSensitiveMode = [Smartlook isFullscreenSensitiveModeActive];  
+```
+
+#### Analytics-only mode
+
+In the case you don't want SDK not visualising any user interaction with the app (e.g., touches), but still want to get analytics events, use analytics-only sensitive mode:
+
+```swift
+Smartlook.beginAnalyticsOnlyMode()
+Smartlook.endAnalyticsOnlyMode()
+let isSensitiveMode = Smartlook.isFullscreenSensitiveModeActive()  
+```
+```objc
+[Smartlook beginFullscreenSensitiveMode];
+[Smartlook endFullscreenSensitiveMode];
+BOOL isSensitiveMode = [Smartlook isAnalyticsOnlyModeActive];  
 ```
 
 #### Blacklisted overlay color
@@ -427,4 +442,46 @@ When compiling your app with Smartlook for debugging, you may encounter list of 
 These warnings appear when  `Target -> Build Settings -> Build Options -> Debug Information Format` is set to `DWARF with dSYM file`. This debug information format is not a default one, and is set manually e.g., when some crash analytics tools (e.g., Fabric.io Crashlytics) are used. 
 
 We are continuously trying to suppress the warnings by tweaking our release build process, so far with no avail.
+
+## Rendering mode [BETA]
+
+You can configure the way of how the SDK captures/creates screen image for recording. There are two main rendering modes:
+
+| NATIVE |  WIREFRAME |
+:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/>
+
+Rendering mode can be set on SDK setup:
+
+```swift
+Smartlook.setup(key: YOUR_API_KEY, options: [.renderingMode: Smartlook.RenderingMode.wireframe]);
+Smartlook.startRecording()
+```
+
+or can be changed when SDK already runs:
+
+```swift
+Smartlook.setRenderingMethod(to: Smartlook.RenderingMode)
+```
+
+**Wireframe** rendering mode can be further configured by setting `RenderingModeOption`:
+
+| .wireframe | .blueprintWireframe | .annotatedBlueprintWireframe |
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode native" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_blueprint.png" alt="rendering mode wireframe" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_icon_blueprint.png" alt="rendering mode native" width="250"/>
+
+You can set RenderingModeOption in setup or on run like this:
+
+```swift
+        Smartlook.setup(key: YOUR_API_KEY,
+                        options: [.renderingMode: Smartlook.RenderingMode.wireframe,
+                                  .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
+        );
+Smartlook.startRecording()
+```
+or
+```swift
+Smartlook.setRenderingMethod(to: Smartlook.RenderingMode, option: Smartlook.RenderingModeOption?)
+```
+
 
