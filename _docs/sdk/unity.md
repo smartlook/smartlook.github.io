@@ -24,7 +24,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for Android
 
-1. Download [Smartlook Android Unity SDK v1.3.0](https://sdk.smartlook.com/android/app-1.3.0-unity.aar).
+1. Download [Smartlook Android Unity SDK v1.4.0](https://sdk.smartlook.com/android/app-1.4.0-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
 
@@ -54,7 +54,7 @@ allprojects {
 Add the following dependency in your app's build.gradle:
 
 ```Gradle
-implementation('com.smartlook.recording:app:1.3.0-unity-lite')
+implementation('com.smartlook.recording:app:1.4.0-unity-lite')
 ```
 
 
@@ -73,7 +73,7 @@ implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31'
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unity SDK v1.2.8](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.2.8.zip).
+1. Download [Smartlook iOS Unity SDK v1.2.9](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.2.9.zip).
 2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
 3. `Smartlook.cs` Unity bridge is part of the archive
 
