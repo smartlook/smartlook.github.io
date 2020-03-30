@@ -25,7 +25,7 @@ When compiling your app with Smartlook for debugging, you may encounter list of 
 
 ## WiFi / mobile connection / offline
 
-By default, we are uploading sessions **only of WiFi** connection. This setting can be changed in your apps dashboard.
+By default, we are uploading sessions **only of WiFi** connection. This setting can be changed in your Smartlook dashboard.
 
 If the application is offline (or on mobile network with mobile upload not enabled) we store sessions locally and upload them as soon as application has WiFi conection.
 
