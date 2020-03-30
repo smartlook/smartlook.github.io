@@ -13,7 +13,7 @@ description: "This SDK offers several options to developers and/or companies."
 
 ### Managed Expo projects
 
-**Managed Expo apps can't be supported** due to the explicite technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "How do I add custom native code to my Expo project?". Smartlook functionality must be implemented in the native code.
+**Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "How do I add custom native code to my Expo project?". Smartlook functionality must be implemented in the native code.
 
 ## Getting started
 
