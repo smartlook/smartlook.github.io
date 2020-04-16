@@ -24,7 +24,7 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 
 ## Installation for Android
 
-1. Download [Smartlook Android Unity SDK v1.4.0](https://sdk.smartlook.com/android/app-1.4.0-unity.aar).
+1. Download [Smartlook Android Unity SDK v1.4.2](https://sdk.smartlook.com/android/app-1.4.2-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge)
 
@@ -54,7 +54,7 @@ allprojects {
 Add the following dependency in your app's build.gradle:
 
 ```Gradle
-implementation('com.smartlook.recording:app:1.4.0-unity-lite')
+implementation('com.smartlook.recording:app:1.4.2-unity-lite')
 ```
 
 
@@ -63,7 +63,7 @@ implementation('com.smartlook.recording:app:1.4.0-unity-lite')
 In case you are missing some of the dependencies, feel free to add:
 
 ```Gradle
-implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31'
+implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
 ```
 
 
