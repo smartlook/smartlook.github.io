@@ -105,6 +105,8 @@ Smartlook.setup(key: "your-app-sdk-key", options:[.enableCrashytics: true, .fram
 |   `.enableCrashlytics`   |   `bool`   | When this option is set to `true`, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to Crashlytics reports. Its value is URL of the recording made by Smartlook during or before the crash.                                                                                   |  `false`           |
 |      `.framerate`        |    `Int`  | Framerate of screen capturing in frames per second (ftp)                                                                                                |  `1`             |
 
+Other startup options are described in the respective sections.
+
 #### Framerate Option
 
 By our experience, default 1 fps framerate is quite sufficient for capturing user behaviour for analytics purposes. Increase the framerate if you need *smoother* recordings.
@@ -221,7 +223,24 @@ Embedded web views are blacklisted by default, i.e., their content is not visibl
 
 - **WKWebView** hiddes fileds where user enters data by default. Any other HTML element that should be hidden can be flagged by assiging `smartlook-hide` CSS class to it. Fields hidden by default can be on the other hand whitelisted by assigning them `smartlook-show` CSS class. 
 
+#### Tracking events
+
+The app may fine-tune the level of tracked events. 
+
+Typically, the default `fullTracking` mode is desired, as it gives a detailed picture of user activities. 
+
+On the other hand, on some screens event location of touches on otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to `ignoreUserInteractionEvents` mode temporarily. 
+
+Some apps that handle complex private informations on some screens, may prefer stopping events recording altogether there, by switching to `noTracking` mode for the screens.
+
+```swift
+Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
+let currentEventTrackingMode = Smartlook.currentEventTrackingMode()
+```
+
 #### Sensitive mode
+
+Note: Fullscreen sensitive mode is deprecated. Choose suitable combination of rendering and event tracting mode to achieve the desired level of user privacy.{: .alert .alert-warning }
 
 In the case you don't want SDK to record screen video, but still want to see user interaction events (e.g., touches), use fullscreen sensitive mode:
 
@@ -237,6 +256,8 @@ BOOL isSensitiveMode = [Smartlook isFullscreenSensitiveModeActive];
 ```
 
 #### Analytics-only mode
+
+Note: Analytics-only mode is deprecated. Choose suitable combination of rendering and event tracting mode to achieve the desired level of user privacy.{: .alert .alert-warning }
 
 In the case you don't want SDK not visualising any user interaction with the app (e.g., touches), but still want to get analytics events, use analytics-only sensitive mode:
 
