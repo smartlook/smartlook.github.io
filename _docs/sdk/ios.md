@@ -51,7 +51,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.2.9](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.9.1846.zip) directly.
+1. Download [Smartlook iOS SDK v1.3.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.3.0.2158.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -105,6 +105,8 @@ Smartlook.setup(key: "your-app-sdk-key", options:[.enableCrashytics: true, .fram
 |   `.enableCrashlytics`   |   `bool`   | When this option is set to `true`, Smartlook automatically adds a custom `SMARTLOOK SESSION URL` key to Crashlytics reports. Its value is URL of the recording made by Smartlook during or before the crash.                                                                                   |  `false`           |
 |      `.framerate`        |    `Int`  | Framerate of screen capturing in frames per second (ftp)                                                                                                |  `1`             |
 
+Other startup options are described in the respective sections.
+
 #### Framerate Option
 
 By our experience, default 1 fps framerate is quite sufficient for capturing user behaviour for analytics purposes. Increase the framerate if you need *smoother* recordings.
@@ -130,6 +132,36 @@ Smartlook.isRecording()    // returns true/false
 It is harmless to call the methods in unruly order (e.g., to _start_ while already recording).
 
 There is no need to manually stop recording when the app gets suspended by the user by pressing Home button or by switching to another app, or restart recording when the app wakes up. This happens automatically.
+
+### Recording session and user lifecycle
+
+User activities are recorded in sessions. Typical session starts with the app launch, and ends after user leaves the app (thchnically, the app gets in background). 
+
+However, to cover a scenario when user activity in the app is interrupted for a minute by incomming call or message, Smartlook attempts to continue in the session even after the app re/launches after some short time in background.
+
+Also, user is tied to the session. In other words, each session has only one user. Changing user id in the middle of session replaces the previous user of the whole session. New are sessions implicitly associated with the previous session user.
+
+For some apps, this continual sessions are not desired, or they need to change user in middle of the app lifecycle (e.g., on shared tablet in factory where various users log in/out to the running app). Here is a set of method how to control the session and user lifecycle explicitly from the app.
+
+If you want the app always starts with fresh session (and optionally fresh user, too), use this setup options
+
+```swift
+// start with a fresh session
+Smartlook.setup(key: "YOUR_API_KEY", options: [.startNewSession: true]);
+
+// start with a fresh session and user
+Smartlook.setup(key: "YOUR_API_KEY", options: [.startNewSessionAndUser: true]);
+```
+
+When session or user should be reset while the app is running, there is a handy method for it too:
+
+```swift
+Smartlook.resetSession(resetUser: Bool)
+```
+
+The `resetUser` attribute indicates, whether the user identity should be also reset, or whether the new session should retain it.
+
+It is not recommended to call this method when the app gets to background. Smartlook is busy with cleaning up when the app is going to background, and calling this method may create some ephemeral session as an unwanted consequence. When you wish that sessions in no case continue with the next app launch, use the setup reset options.
 
 ### Working with sensitive data
 
@@ -221,7 +253,24 @@ Embedded web views are blacklisted by default, i.e., their content is not visibl
 
 - **WKWebView** hiddes fileds where user enters data by default. Any other HTML element that should be hidden can be flagged by assiging `smartlook-hide` CSS class to it. Fields hidden by default can be on the other hand whitelisted by assigning them `smartlook-show` CSS class. 
 
+#### Tracking events
+
+The app may fine-tune the level of tracked events. 
+
+Typically, the default `fullTracking` mode is desired, as it gives a detailed picture of user activities. 
+
+On the other hand, on some screens event location of touches on otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to `ignoreUserInteractionEvents` mode temporarily. 
+
+Some apps that handle complex private informations on some screens, may prefer stopping events recording altogether there, by switching to `noTracking` mode for the screens.
+
+```swift
+Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
+let currentEventTrackingMode = Smartlook.currentEventTrackingMode()
+```
+
 #### Sensitive mode
+
+Note: Fullscreen sensitive mode is deprecated. Choose suitable combination of rendering and event tracting mode to achieve the desired level of user privacy.{: .alert .alert-warning }
 
 In the case you don't want SDK to record screen video, but still want to see user interaction events (e.g., touches), use fullscreen sensitive mode:
 
@@ -237,6 +286,8 @@ BOOL isSensitiveMode = [Smartlook isFullscreenSensitiveModeActive];
 ```
 
 #### Analytics-only mode
+
+Note: Analytics-only mode is deprecated. Choose suitable combination of rendering and event tracting mode to achieve the desired level of user privacy.{: .alert .alert-warning }
 
 In the case you don't want SDK not visualising any user interaction with the app (e.g., touches), but still want to get analytics events, use analytics-only sensitive mode:
 
@@ -447,9 +498,9 @@ We are continuously trying to suppress the warnings by tweaking our release buil
 
 You can configure the way of how the SDK captures/creates screen image for recording. There are two main rendering modes:
 
-| NATIVE |  WIREFRAME |
-:-------------------------:|:-------------------------:
-<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/>
+| native |  wireframe | noRendering
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_no_rendering.png" alt="rendering mode wireframe" width="300"/>
 
 Rendering mode can be set on SDK setup:
 
@@ -466,16 +517,16 @@ Smartlook.setRenderingMethod(to: Smartlook.RenderingMode)
 
 **Wireframe** rendering mode can be further configured by setting `RenderingModeOption`:
 
-| .wireframe | .blueprintWireframe | .annotatedBlueprintWireframe |
+| wireframe | blueprintWireframe | iconBlueprintWireframe |
 :-------------------------:|:-------------------------:|:-------------------------:
 <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode native" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_blueprint.png" alt="rendering mode wireframe" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_icon_blueprint.png" alt="rendering mode native" width="250"/>
 
 You can set RenderingModeOption in setup or on run like this:
 
 ```swift
-        Smartlook.setup(key: YOUR_API_KEY,
-                        options: [.renderingMode: Smartlook.RenderingMode.wireframe,
-                                  .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
+Smartlook.setup(key: YOUR_API_KEY,
+                options: [.renderingMode: Smartlook.RenderingMode.wireframe,
+                          .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
         );
 Smartlook.startRecording()
 ```
