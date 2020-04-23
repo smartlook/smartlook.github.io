@@ -498,9 +498,9 @@ We are continuously trying to suppress the warnings by tweaking our release buil
 
 You can configure the way of how the SDK captures/creates screen image for recording. There are two main rendering modes:
 
-| NATIVE |  WIREFRAME |
-:-------------------------:|:-------------------------:
-<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/>
+| native |  wireframe | noRendering
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="/assets/img/docs/sdk/renderingMode/rendering_native.png" alt="rendering mode native" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode wireframe" width="300"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_no_rendering.png" alt="rendering mode wireframe" width="300"/>
 
 Rendering mode can be set on SDK setup:
 
@@ -517,16 +517,16 @@ Smartlook.setRenderingMethod(to: Smartlook.RenderingMode)
 
 **Wireframe** rendering mode can be further configured by setting `RenderingModeOption`:
 
-| .wireframe | .blueprintWireframe | .annotatedBlueprintWireframe |
+| wireframe | blueprintWireframe | iconBlueprintWireframe |
 :-------------------------:|:-------------------------:|:-------------------------:
 <img src="/assets/img/docs/sdk/renderingMode/rendering_wireframe.png" alt="rendering mode native" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_blueprint.png" alt="rendering mode wireframe" width="250"/> | <img src="/assets/img/docs/sdk/renderingMode/rendering_icon_blueprint.png" alt="rendering mode native" width="250"/>
 
 You can set RenderingModeOption in setup or on run like this:
 
 ```swift
-        Smartlook.setup(key: YOUR_API_KEY,
-                        options: [.renderingMode: Smartlook.RenderingMode.wireframe,
-                                  .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
+Smartlook.setup(key: YOUR_API_KEY,
+                options: [.renderingMode: Smartlook.RenderingMode.wireframe,
+                          .renderingModeOption: Smartlook.RenderingModeOption.blueprintWireframe]
         );
 Smartlook.startRecording()
 ```
