@@ -139,9 +139,9 @@ User activities are recorded in sessions. Typical session starts with the app la
 
 However, to cover a scenario when user activity in the app is interrupted for a minute by incomming call or message, Smartlook attempts to continue in the session even after the app re/launches after some short time in background.
 
-Also, user is tied to the session. In other words, each session has only one user. Changing user id in the middle of session replaces the previous user of the whole session. New are sessions implicitelly associated with the previous session user.
+Also, user is tied to the session. In other words, each session has only one user. Changing user id in the middle of session replaces the previous user of the whole session. New are sessions implicitly associated with the previous session user.
 
-For some apps, this continual sessions are not desired, or they need to change user in middle of the app lifecycle (e.g., on shared tablet in factory where various users log in/out to the running app). Here is a set of method how to control the session and user lifecycle explicitelly from the app.
+For some apps, this continual sessions are not desired, or they need to change user in middle of the app lifecycle (e.g., on shared tablet in factory where various users log in/out to the running app). Here is a set of method how to control the session and user lifecycle explicitly from the app.
 
 If you want the app always starts with fresh session (and optionally fresh user, too), use this setup options
 
