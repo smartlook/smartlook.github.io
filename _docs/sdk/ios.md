@@ -51,7 +51,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.3.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.3.0.2158.zip) directly.
+1. Download [Smartlook iOS SDK v1.3.1](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.3.1.2166.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
