@@ -1,21 +1,21 @@
 ---
 title: "GDPR"
-subtitle: "Record user information of EU visitors."
+subtitle: "Record user information about EU visitors."
 description: "Depending on content you record you need your user’s consent."
 ---
 
-Make sure you enabled required project settings before using this API.
+Make sure you enabled the corresponding project settings before using this API.
 {: .callout .callout-warning }
 
 ## Verify user consent
 
-Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once user gave you his consent use this API. The code below needs to be adjusted based on what answer you received.
+Read more about [GDPR](https://www.smartlook.com/help/gdpr/){:target="_blank"} in our HELP section. Once the user gave consent, you can use this API. The code below needs to be adjusted based on the user's answer.
 
-At Smartlook we use pop up window to ask for user consent. You should implement similar solution on your site.
+At Smartlook we use a pop-up window to ask for user consent. You should implement a similar solution on your site.
 
 ![user consent](/assets/img/docs/web/gdpr/consent.png)
 
-Verify if a visitor gave his consent or not by using this code.
+Verify if a visitor gave their consent or not:
 
 ```js
 <script>
@@ -35,7 +35,7 @@ There are 3 possible values that you can see in the console:
 
 ## Form inputs
 
-User consented to have his form inputs recorded.
+User consented to have their form inputs recorded.
 
 ```js
 <script>
@@ -52,7 +52,7 @@ User consented to have his form inputs recorded.
 
 ## IP address
 
-User consented to have his IP address recorded.
+User consented to have their IP address recorded.
 
 ```js
 <script>
