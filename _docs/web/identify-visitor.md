@@ -1,15 +1,15 @@
 ---
 title: "Identify visitor"
-subtitle: "Display detailed visitor information in dashboard."
-description: "In addition to basic info shown in dashboard you can also identify your users with their email, name or any other property."
+subtitle: "Display detailed visitor information in the bdashboard."
+description: "In addition to basic info shown in dashboard, you can also identify your users with their email, name or any other property."
 ---
 
-**Developer needed:** The `identify` method requires you or *your developer* to propagate the information from your service. This method is called from the browser of your visitor, therefore any information you want to associate with your visitor needs to be part of your webpage.
+**Developer needed:** The `identify` method requires you or *your developer* to propagate information from your service. This method is called from your visitor's browser, therefore any information you want to associate with your visitor needs to be part of your webpage.
 {: .callout .callout-warning }
 
 ## Visitor information
 
-Following example presents the simplest usage of `identify` method. The example expects there is an `user_id` variable that is identifying your visitor. Code you need to insert in your site has a following format in **JavaScript**:
+Below is the simplest usage of the `identify` method. The example assumes there is a `user_id` variable identifying your visitor. The JavaScript code you need to insert in your is simply,
 
 ```js
 <script>
@@ -17,9 +17,9 @@ Following example presents the simplest usage of `identify` method. The example 
 </script>
 ```
 
-**User ID** is unique number or string used to identify your user.
+**`user_id`** is a unique number or string used to identify your user.
 
-Following example assumes you are using a template used for rendering the final HTML in which you can pass in the information of current visitor. Pairing your visitor with your internal identifier enables you to find this user in Smartlook by this identifier.
+The next example assumes you are using a template used for rendering the final HTML in which you can pass information about the current visitor. Pairing your visitor with your internal identifier enables you to find this user in Smartlook by this identifier.
 
 {% include component/tables/docs/{{ page.title | slugify }}/visitor-information.html %}
 
@@ -31,7 +31,7 @@ echo "smartlook('identify', '{$user->id}');";
 echo "</script>";
 ```
 
-In your site following code will be generated in **JavaScript**.
+That will generate the following JavaScript code on the page:
 
 ```js
 <script> 
@@ -41,11 +41,11 @@ In your site following code will be generated in **JavaScript**.
 
 ## More visitor details
 
-There is no limit on what you display in dashboard. It can be **name** or **email**, but also what **package** user paid for, in what **currency** and what is the **cost**.
+There is no limit to what you can display in the dashboard. It can be the user's **name** or **email**, or also what **package** the user paid for, in what **currency**, and what the **price** was.
 
 The third parameter of the `identify` method is optional. It is expected to be an object. The keys of this object are entirely up to you, as well as all of the values.
 
-Feel free to modify the code and expand it to your needs as you can see in an example below.
+Feel free to modify the code and expand it to your needs as you can see in the example below.
 
 ```js
 <script>
@@ -54,14 +54,14 @@ Feel free to modify the code and expand it to your needs as you can see in an ex
     "email": "john.doe@example.com",
     "package": "Premium",
     "currency": "USD",
-    "cost": 150
+    "price": 150
   });
 </script>
 ```
 
 ## Anonymize user
 
-You can anonymize previously identified user by calling
+You can anonymize the previously identified user by calling
 
 ```js
 <script>
@@ -69,15 +69,13 @@ You can anonymize previously identified user by calling
 </script>
 ```
 
-New visitor with new session will be created.
+A new visitor with a new session will be created.
 This method is useful to call when multiple people are using the same browser (typically after logout).
 
-## Final notes
+## Static site usage
 
-Following section is applicable to those using Smartlook within static website.
+The `identify` method should always be called *after* the Smartlook Web SDK is initialized.
 
-The `identify` method should always be called after Smartlook Web SDK is initialized.
+If you are integrating the Smartlook Web SDK within the `<head></head>` section of your static site, the actual `identify` call should be just before the closing `</body>` tag.
 
-If you are integrating your Smartlook Web SDK within the `<head></head>` section of your site, the actual `identify` call should just before the closing `</body>` tag.
-
-You need to propagate your data into the HTML that is sent to your client. The `identify` call is done on the client and your data can only be passed to Smartlook when they are part of your HTML.
+You need to propagate your data into the HTML that is sent to your client. `identify` is called on the client and your data can only be passed to Smartlook when it's part of the HTML.
