@@ -1,6 +1,6 @@
 ---
 title: "Identify visitor"
-subtitle: "Display detailed visitor information in the bdashboard."
+subtitle: "Display detailed visitor information in the dashboard."
 description: "In addition to basic info shown in dashboard, you can also identify your users with their email, name or any other property."
 ---
 
@@ -26,7 +26,7 @@ The next example assumes you are using a template used for rendering the final H
 Here is an example in **PHP**.
 
 ```php
-echo "<script>"; 
+echo "<script>";
 echo "smartlook('identify', '{$user->id}');";
 echo "</script>";
 ```
@@ -34,7 +34,7 @@ echo "</script>";
 That will generate the following JavaScript code on the page:
 
 ```js
-<script> 
+<script>
   smartlook('identify', '123');
 </script>
 ```
