@@ -73,7 +73,7 @@ implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unity SDK v1.3.0](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.3.0.46.zip).
+1. Download [Smartlook iOS Unity SDK v1.3.1](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.3.1.50.zip).
 2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
 3. `Smartlook.cs` Unity bridge is part of the archive
 
