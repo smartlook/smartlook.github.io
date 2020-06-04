@@ -1,0 +1,47 @@
+---
+name: Android Integration
+menu: Integrations
+route: /android
+---
+
+# Android Integration
+
+1. Add Smartlook in your app’s build.gradle:
+2. i-mplementation('com. smartlook.recording:app:1.4.2-native')
+3. Add Smartlook Maven repository in your projects build.gradle:
+allprojects {
+  repositories {
+    maven {
+      url "https://sdk.smartlook.com/android/release"
+    }
+  }
+}
+
+Setup and start Smartlook in onCreate() of your Application class:
+Smartlook.setupAndStartRecording(String YOUR_API_KEY)
+NOTE: You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+
+NOTE: SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+
+After this basic setup SDK will:
+- record your application.
+- stop itself automatically on application closure.
+- automatically hide some default sensitive views.
+- detect basic user gestures and touches.
+- records install referrer if present.
+- and much more!
+
+For any SDK customization please refer to our api reference.
+
+EXAMPLE: Application class with example call of Smartlook SDK setupAndStart:
+
+i-mport android.app.Application;
+
+public class MyCustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+    }
+}
+
