@@ -1,0 +1,810 @@
+---
+name: API reference
+route: /api_reference
+---
+
+# Lifecycle & recording
+
+## SDK setup (on application start)
+Smartlook SDK **setup** needs to be called only **once during application lifetime** and it should be called **on application startup**. There is **no need to stop** recording explicitly **on application closure**, SDK stops itself automatically.
+
+The best place to setup the SDK is in `onCreate()` method of your `Application` class:
+
+```Java
+import android.app.Application;
+
+public class MyCustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+    }
+}
+```
+
+```Kotlin
+import android.app.Application;
+
+class MyCustomApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+    }
+}
+```
+
+TIP: If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
+
+The easiest way of setting up the SDK is with `setupAndStart()` method:
+
+```Java
+Smartlook.setupAndStart(@NotNull String apiKey);
+```
+
+```Kotlin
+Smartlook.setupAndStart(@NotNull apiKey: String)
+```
+
+It will set the SDK up and also start the recording. If you want to start recording later you can just use:
+
+```Java
+Smartlook.setup(@NotNull String apiKey);
+```
+
+```Kotlin
+Smartlook.setup(@NotNull apiKey: String)
+```
+
+NOTE: You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+
+And then when you want to start the recording call:
+
+```Java
+Smartlook.startRecording();
+```
+
+```Kotlin
+Smartlook.startRecording()
+```
+
+### Setup configuration
+
+Some recording parameters can be configured on setup:
+
+| Parameter           | Required | Description                                                                                                                                        | Default value        |
+|---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
+| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| experimental        | no       | Set this to true to enable some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
+| activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
+| renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
+| renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
+
+Full SDK setup configuration can be done with `SetupOptionsBuilder`, that lets you set any of above shown setup parameters with ease:
+
+```Java
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNull String apiKey)
+        .setFps(int fps)
+        .setExperimental(boolean experimental)
+        .setActivity(@NonNull Activity activity)
+        .setRenderingMode(@RenderingMode String renderingMode)
+        .setRenderingMode(@RenderingModeOption String renderingModeOption);
+
+Smartlook.setupAndStartRecording(builder.build());
+```
+
+```Kotlin
+val builder = new Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
+        .setFps(fps: Int)
+        .setExperimental(experimental: Boolean)
+        .setActivity(@NonNull activity: Activity)
+        .setRenderingMode(@RenderingMode renderingMode: String)
+        .setRenderingMode(@RenderingModeOption renderingModeOption: String)
+
+Smartlook.setupAndStartRecording(builder.build())
+```
+
+TIP: You can replace the last line with `Smartlook.setup()` and start the recording later.
+
+## Start and stop recording
+Recording can be **started** or **stopped** at any time, the only requirement is that the SDK is set up (see setup).
+
+```Java
+Smartlook.startRecording();
+Smartlook.stopRecording();
+```
+
+```Kotlin
+Smartlook.startRecording()
+Smartlook.stopRecording()
+```
+
+NOTE: You **don't need to call** `stopRecording()` on application closure. Recording is stopped automatically.
+
+## Check if SDK is recording
+If you are using `startRecording()` and `stopRecording()` methods it might be handy to know if SDK is currently recording or not. Simply call:
+
+```Java
+Smartlook.isRecording();
+```
+
+```Kotlin
+Smartlook.isRecording()
+```
+
+# Sensitive data hiding
+When using **native** rendering mode, **SDK can record sensitive data in your application**. You can configure recording using methods listed below so sensitive data is not recorded, or you can simply use one of **Wireframe** rendering mode that does not record sensitive data by default.
+
+TIP: Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
+
+## Blacklisted views
+You can hide any view in the recording by marking it as a **blacklisted** view. 
+
+View can be marked as blacklisted by calling:
+
+```Java
+Smartlook.registerBlacklistedView(View view);
+Smartlook.registerBlacklistedViews(List<View> views);
+```
+
+```Kotlin
+Smartlook.registerBlacklistedView(view: View)
+Smartlook.registerBlacklistedViews(views: List<View>)
+```
+
+Or can be tagged directly in xml layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_blacklisted_view"/>
+</View>
+```
+
+If view no longer needs to be blacklisted call:
+
+```Java
+Smartlook.unregisterBlacklistedView(View view);
+Smartlook.unregisterBlacklistedViews(List<View> views);
+```
+
+```Kotlin
+Smartlook.unregisterBlacklistedView(view: View)
+Smartlook.unregisterBlacklistedViews(views: List<View>)
+```
+
+TIP: Blacklisted view is hidden on recording by single color rectangle. You can configure color of this rectangle by calling:
+
+```Java
+Smartlook.setBlacklistedItemsColor(@ColorInt int color);
+```
+
+```Kotlin
+Smartlook.setBlacklistedItemsColor(@ColorInt color: Int);
+```
+
+This works for all blacklisted views and classes.
+
+## Blacklisted classes
+If you dont want to blacklist specific views and rather blacklist all views of given `Class`, use:
+
+```Java
+Smartlook.registerBlacklistedClass(Class class);
+Smartlook.registerBlacklistedClasses(List<Class> classes);
+```
+
+```Kotlin
+Smartlook.registerBlacklistedClass(Class class);
+Smartlook.registerBlacklistedClasses(List<Class> classes);
+```
+
+Note: Note that `EditText` and `WebView` are **blacklisted by default** and can be removed using `Smartlook.unregisterBlacklistedClass()`.
+
+You can remove any of blacklisted classes:
+
+```Java
+Smartlook.unregisterBlacklistedClass(Class class)
+Smartlook.unregisterBlacklistedClasses(List<Class> classes)
+```
+
+```Kotlin
+Smartlook.unregisterBlacklistedClass(class: Class)
+Smartlook.unregisterBlacklistedClasses(classes: List<Class>)
+```
+
+## Whitelisted views
+In case you need some view to be recorded even if its instance of a blacklisted class, you can whitelist it:
+
+```Java
+Smartlook.registerWhitelistedView(View view);
+Smartlook.registerWhitelistedViews(List<View> views);
+```
+
+```Kotlin
+Smartlook.registerWhitelistedView(view: View)
+Smartlook.registerWhitelistedViews(views: List<View>)
+```
+
+Or you can tag them directly in `xml` layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_whitelisted_view"/>
+</View>
+```
+
+You can remove view from whitelist by calling:
+
+```Java
+Smartlook.unregisterWhitelistedView(View view);
+Smartlook.unregisterWhitelistedViews(List<View> views);
+```
+
+```Kotlin
+Smartlook.unregisterWhitelistedView(view: View)
+Smartlook.unregisterWhitelistedViews(views: List<View>)
+```
+
+## No Rendering
+In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into `NO_RENDERING` rendering mode:
+
+```Java
+Smartlook.setRenderingMode(RenderingMode.NO_RENDERING);
+```
+
+```Kotlin
+Smartlook.setRenderingMode(RenderingMode.NO_RENDERING)
+```
+
+TIP: SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
+
+When your application is no longer displaying sensitive screen you can set your rendering mode to preferred variant:
+
+```Java
+Smartlook.setRenderingMode(RenderingMode.NATIVE);
+```
+
+```Kotlin
+Smartlook.setRenderingMode(RenderingMode.NATIVE)
+```
+
+## WebView blacklisting/whitelisting
+If your application has some parts displayed using `WebView` and you want to record those parts you need to enable `WebView` recording by removing `WebView` from list of blacklisted classes:
+
+```Java
+Smartlook.unregisterBlacklistedClass(WebView.class);
+```
+
+```Kotlin
+Smartlook.registerBlacklistedClass(WebView::class.java)
+```
+
+Now that you are recording all `WebView`s please **make sure that all sensitive elements** on the displayed web page **are hidden**. This can be done by marking sensitive html elements with `.smartlook-hide` css class:
+
+```html
+<div class='smartlook-hide'>
+   This will be hidden.
+</div>
+```
+
+All input inputs are hidden by default except `button` and `submit` types. If you need to record some hidden inputs you can mark these views with `.smartlook-show` css class:
+
+```html
+<input type="text" class='smartlook-show'>
+```
+
+# User Identification
+You can specify user identifier by calling:
+
+```Java
+Smartlook.setUserIdentifier(@NonNull String identifier);
+```
+
+```Kotlin
+Smartlook.setUserIdentifier(@NonNull identifier: String)
+```
+
+TIP: You can then lookup identifiers in the Dashboard to find specific user’s recordings.
+
+Additional user information such as name, email, etc. serialized as `JSONObject`, `Bundle`, `String` with valid json format, can be set by calling:
+
+```Java
+Smartlook.setUserIdentifier(@NonNull String identifier, JSONObject sessionProperties);
+Smartlook.setUserIdentifier(@NonNull String identifier, Bundle sessionProperties);
+Smartlook.setUserIdentifier(@NonNull String identifier, String sessionPropertiesJsonString);
+```
+
+```Kotlin
+Smartlook.setUserIdentifier(@NonNull identifier: String, sessionProperties: JSONObject)
+Smartlook.setUserIdentifier(@NonNull identifier: String, sessionProperties: Bundle)
+Smartlook.setUserIdentifier(@NonNull identifier: String, sessionPropertiesJsonString: String)
+```
+
+NOTE: If you set `email` or `name` property it will be displayed in the list of visitors in the Smartlook dashboard. Otherwise `identifier` is used.
+
+NOTE: If you struggle with serialization of your data take a look here.
+
+# Analytics
+Some analytic events are recorded out-of-box:
+* Activity/Fragment changes
+* Focus changes
+* Clicked views
+* Application crashes
+* For everything else you can use custom events.
+
+TIP: On platforms based on `WebView` like Cordova, Ionic, we cannot automatically track activity/fragment changes. You can use `Smartlook.trackNavigationEvent()` explained here.
+
+TIP: Names of some automatically detected events can be customized.
+
+## Custom event
+You can track simple custom event by calling:
+
+```Java
+Smartlook.trackCustomEvent(@NonNull String eventName);
+```
+
+```Kotlin
+Smartlook.trackCustomEvent(@NonNull eventName: String)
+```
+
+Additional data serialized as `JSONObject`, `Bundle`, `String` with valid json format or key/value pair can be added to custom event:
+
+```Java
+Smartlook.trackCustomEvent(@NonNull String eventName, JSONObject eventProperties);
+Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties);
+Smartlook.trackCustomEvent(@NonNull String eventName, String validJsonString);
+Smartlook.trackCustomEvent(@NonNull String eventName, @NotNull String key, String value);
+```
+
+```Kotlin
+Smartlook.trackCustomEvent(@NonNull eventName: String, eventProperties: JSONObject);
+Smartlook.trackCustomEvent(@NonNull eventName: String, eventProperties: Bundle);
+Smartlook.trackCustomEvent(@NonNull eventName: String, validJsonString: String);
+Smartlook.trackCustomEvent(@NonNull eventName: String, @NotNull key: String, value: String);
+```
+
+NOTE: If you struggle with serialization of your data take a look here.
+
+## Navigation event
+You can track screen/navigation transitions manually by calling: 
+
+```Java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState);
+```
+
+```Kotlin
+Smartlook.trackNavigationEvent(@NotNull name: String, @ViewState viewState: String)
+```
+
+where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
+
+NOTE: In case of native applications navigation events are tracked out-of-box but on frameworks based on WebView (Cordova, Ionic, etc.) you need to track navigation events manually, because these apps typically consist of single activity.
+
+You can also explicitly tell the SDK if the navigation event happened between `Activities` of `Fragments`:
+
+```Java
+Smartlook.trackNavigationEvent(@NotNull String name, @ViewType String type, @ViewState String viewState);
+```
+
+```Kotlin
+Smartlook.trackNavigationEvent(@NotNull name: String, @ViewType type: String, @ViewState viewState: String)
+```
+
+where `viewType` is one of `ViewType.ACTIVITY` or `ViewType.FRAGMENT`.
+
+## Timed event
+In case you want to measure the duration of any time-sensitive or long-running actions in the app (for example download/upload). You can call one of:
+
+```Java
+Smartlook.startTimedCustomEvent(@NotNull String eventName);
+Smartlook.startTimedCustomEvent(@NotNull String eventName, JSONObject eventProperties);
+Smartlook.startTimedCustomEvent(@NotNull String eventName, Bundle eventProperties);
+Smartlook.startTimedCustomEvent(@NotNull String eventName, String eventPropertiesJson);
+```
+
+```Kotlin
+Smartlook.startTimedCustomEvent(@NotNull eventName: String)
+Smartlook.startTimedCustomEvent(@NotNull eventName: String, eventProperties: JSONObject)
+Smartlook.startTimedCustomEvent(@NotNull eventName: String, eventProperties: Bundle)
+Smartlook.startTimedCustomEvent(@NotNull eventName: String, eventPropertiesJson: String)
+```
+
+This will not send out any event but returns a unique `eventId` that **needs to be stored** and its used to stop/cancel custom timed event.
+
+To send out event with duration you need to call one of:
+
+```Java
+Smartlook.stopTimedCustomEvent(@NotNull String eventId);
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, JSONObject eventProperties);
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, Bundle eventProperties);
+Smartlook.stopTimedCustomEvent(@NotNull String eventId, String eventPropertiesJson);
+```
+
+```Kotlin
+Smartlook.stopTimedCustomEvent(@NotNull eventId: String)
+Smartlook.stopTimedCustomEvent(@NotNull eventId: String, eventProperties: JSONObject)
+Smartlook.stopTimedCustomEvent(@NotNull eventId: String, eventProperties: Bundle)
+Smartlook.stopTimedCustomEvent(@NotNull eventId: String, eventPropertiesJson: String)
+```
+
+with corresponding `eventId` obtained from startTimedCustomEvent.
+
+NOTE: Properties set in start will be **merged** with properties set in stop/cancel. Properties from stop/cancel have higher priority and will rewrite conflicting properties from start.
+
+In case given action failed you can call `cancelTimedCustomEvent()` instead of `stopTimedCustomEvent()` and provide a **reason** of failure:
+
+```Java
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason);
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, JSONObject eventProperties);
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, Bundle eventProperties);
+Smartlook.cancelTimedCustomEvent(@NotNull String eventId, String reason, String eventPropertiesJson);
+```
+
+```Kotlin
+Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String)
+Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String, eventProperties: JSONObject)
+Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String, eventProperties: Bundle)
+Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String, eventPropertiesJson: String)
+```
+
+EXAMPLE: Typical use of timed event might look like this:
+
+```Java
+String eventID = Smartlook.startTimedCustomEvent("duration_event");
+Thread.sleep(1000); //long running operation
+Smartlook.stopTimedCustomEvent(eventId);
+```
+
+```Kotlin
+val eventID = Smartlook.startTimedCustomEvent("duration_event")
+Thread.sleep(1000) //long running operation
+Smartlook.stopTimedCustomEvent(eventId)
+```
+
+In this case `duration_event` will have duration property set to circa 1000ms.
+
+## Customize automatic event detection
+For some automatically detected events SDK tries to figure out the name from application context:
+* **click event** - Event name consists of `Activity` name, `View` class (Button, etc.) and `id`.
+* **navigation event** - Event name is set as `Activity`/`Fragment` name.
+
+But sometimes it's impossible to name an event with an easy to read and descriptive name. Because of this SDK provides you with an option to personalize event names.
+
+### Name click events
+So a click on a given view has a custom event name instead of id it can be tagged directly in the XML layout file:
+
+```xml
+<View>
+    <tag android:id="@id/smartlook_custom_name" android:value="custom_name"/>
+</View>
+```
+
+NOTE: If View has `smartlook_custom_name` set, clicking on this view will trigger an event with name consisting of `Activity` name, `View` class (`Button`, etc.) and `smartlook_custom_name`.
+
+### Name navigation events
+Custom names for navigation events can be set in two different ways. `Activity`/`Fragment` can implement `SmartlookNamedController` interface:
+
+```Java
+public class SettingsActivity extends AppCompatActivity implements SmartlookNamedController {
+    @NotNull
+    @Override
+    public String getCustomName() {
+        return "custom_activity_name";
+    }
+}
+```
+
+```Kotlin
+class SettingsActivity : AppCompatActivity(), SmartlookNamedController {
+    @NotNull
+    override fun getCustomName(): String {
+        return "custom_activity_name";
+    }
+}
+```
+
+Or `Activity`/`Fragment` root view can be tagged directly in `XML` layout file:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<View>
+	<tag android:id="@id/smartlook_custom_controller_name" android:value="custom_name"/>
+
+	<!-- child views -->
+</View>
+```
+
+## Global event properties
+SDK lets you set data that will be attached to every event. We call these **global event properties**. 
+You can set global event properties:
+
+```Java
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable);
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable);
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJson, boolean immutable);
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable);
+```
+
+```Kotlin
+Smartlook.setGlobalEventProperties(globalEventProperties: JSONObject, immutable: Boolean)
+Smartlook.setGlobalEventProperties(globalEventProperties: Bundle, immutable: Boolean)
+Smartlook.setGlobalEventProperties(globalEventPropertiesJson: String, immutable: Boolean)
+Smartlook.setGlobalEventProperty(@NotNull key: String, @NotNull value: String, immutable: Boolean)
+```
+
+Properties set to be **immutable** have the **highest** priority and once set they **cannot be overridden** (only removed).
+
+NOTE: Global event properties have higher priority so in the merging process they will override custom properties with the same key.
+
+## Remove global event properties
+If you want to remove global property with a given key call:
+
+```Java
+Smartlook.removeGlobalEventProperty(String propertyKey);
+```
+
+```Kotlin
+Smartlook.removeGlobalEventProperty(propertyKey: String)
+```
+
+Or you can remove all global event properties at once:
+
+```Java
+Smartlook.removeAllGlobalEventProperties();
+```
+
+```Kotlin
+Smartlook.removeAllGlobalEventProperties()
+```
+
+NOTE: Global event properties are stored until they are not removed or the app is uninstalled.
+
+## Event tracking modes
+Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
+* **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **IGNORE_USER_INTERACTION** automatically detected events will not be tracked. User defined events are still enabled.
+* **NO_TRACKING** no analytic events are enabled.
+
+Event tracking mode can changed **anytime** during the application run:
+
+```Java
+Smartlook.setEventTrackingMode(@EventTrackingMode String eventTrackingMode);
+```
+
+```Kotlin
+Smartlook.setEventTrackingMode(@EventTrackingMode eventTrackingMode: String);
+```
+
+TIP: Take a look at pin code keyboard sample, demonstrating usage of analytic event modes.
+
+# Rendering
+SDK can use different methods of capturing screen image data. We call these rendering modes. 
+
+## Set rendering mode
+You can change rendering mode on SDK setup using builder:
+
+```Java
+Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
+        .setRenderingMode(@RenderingMode String renderingMode);
+
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+```
+
+```Kotlin
+val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
+        .setRenderingMode(@RenderingMode String renderingMode)
+
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
+```
+
+Or at anytime during application run using:
+
+```Java
+Smartlook.setRenderingMode(@RenderingMode String renderingMode);
+```
+
+```Kotlin
+Smartlook.setRenderingMode(@RenderingMode renderingMode: String)
+```
+
+Rendering modes available:
+* `RenderingMode.NATIVE`
+* `RenderingMode.WIREFRAME`
+* `RenderingMode.NO_RENDERING`
+
+NOTE: `NO_RENDERING` mode does not record any screen data, this is beneficial on screens that include sensitive data, read more.
+
+## Rendering mode option
+`WIREFRAME` rendering mode can be further configured by `renderingModeOption`:
+
+Rendering mode option can be set on setup:
+
+```Java
+Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
+        .setRenderingMode(RenderingMode.WIREFRAME)
+        .setRenderingModeOption(@RenderingModeOption String renderingModeOption);
+
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+```
+
+```Kotlin
+val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
+        .setRenderingMode(RenderingMode.WIREFRAME)
+        .setRenderingModeOption(@RenderingModeOption renderingModeOption: String);
+
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+```
+
+Or at anytime during application run using:
+
+```Java
+Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption String renderingModeOption);
+```
+
+```Kotlin
+Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption renderingModeOption: String)
+```
+
+Rendering mode options for `WIREFRAME` rendering mode:
+* `RenderingMode.WIREFRAME`
+* `RenderingMode.BLUEPRINT`
+* `RenderingMode.ICON_BLUEPRINT`
+
+# Crash reporting
+todo 
+
+# Network intercepting
+You can track your apps' HTTP traffic using the network inceptor provided by the SDK. This feature is available to you if you are using **OkHttp** for your HTTP/REST communication. 
+
+NOTE: If you are using another HTTP library that allows intercepting, please feel free to submit a feature request here.
+
+## OkHttp interceptor
+If you are using `OkHttp` you can add Smartlook interceptor as a another `NetworkInterceptor` when creating a `OkHttpClient` like this:
+
+```Java
+OkHttpClient client = new OkHttpClient.Builder()
+    .addNetworkInterceptor(new SmartlookOkHttpInterceptor())
+    .build();
+```
+
+```Kotlin
+val client = OkHttpClient.Builder()
+    .addNetworkInterceptor(SmartlookOkHttpInterceptor())
+    .build()
+```
+
+We will **not read or send out any body data**, we are reading and sending only these request metadata:
+* **Request url** that can be stripped of any sensitive data -> read more.
+* **Http method** used for this request.
+* **Request headers** that can be filtered out so they do not leak any sensitive data.
+* **Response headers** that are filtered out so they do not leak any sensitive data.
+* **Protocol** negotiated by this connection.
+* **Duration** between request and response/failure.
+* **Request status** stating if the request was successful or eventually how it failed, can be one of:
+⋅⋅* Ok
+⋅⋅* Error
+⋅⋅* Abort
+⋅⋅* Timeout
+* **Status code** of http response.
+* Flag stating if response was received from **cache**.
+
+NOTE: All intercepted requests can be displayed in **dev tools** on every recording.
+
+### Url masks
+You can hide sensitive parts of request URLs using `UrlMask`:
+
+```Java
+new UrlMask(String regex);
+new UrlMask(String regex, String replaceWith);
+```
+
+```Kotlin
+UrlMask(regex: String)
+UrlMask(regex: String, replaceWith: String)
+```
+
+NOTE: If you don't specify `replaceWith` `String` explicitly the default replace `String` is used.
+
+You need to initialize `SmartlookOkHttpInterceptor` using `Builder` to define used `UrlMask`s:
+
+```Java
+new SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(UrlMask urlMask)
+                .build();
+```                
+
+```Kotlin
+SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(urlMask: UrlMask)
+                .build()
+```   
+
+EXAMPLE: We are intercepting request with URL containing sensitive query named `secret`:
+
+```
+https://example.com/page?secret=password&second=query
+```
+
+The content of sensitive query can be hidden for intercepting using `UrlMask`:
+
+```Java
+SmartlookOkHttpInterceptor interceptor = new SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(new UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build();
+
+OkHttpClient client = new OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build();
+```
+
+```Kotlin
+val interceptor = SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build()
+
+val client = OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build()
+```   
+
+With above shown `UrlMask` intercepted request will have following URL stored:
+
+```
+https://example.com/page?secret=<sensitive>&second=query
+```
+
+### Sensitive headers
+Intercepted headers can contain sensitive data, so they need to be filtered out by their name. This can be done using `sensitiveHeaderNameRegexps`, this list of sensitive header names contains these regular expressions by default:
+* `“.*csrf.*”`
+* `".*token.*"`
+* `".*auth.*"`
+* `“.*key.*"`
+* `".*cookie.*"`
+
+You can define your custom list of sensitive header name regular expressions:
+
+```Java
+new SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(String headerRegex)
+        .build();
+```
+
+```Kotlin
+SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(headerRegex: String)
+        .build()
+```
+
+NOTE: When you add at least one sensitive header name regex default ones (shown above) are **not going to be used**. 
+
+# Utility methods
+
+## Instal referrer
+When your application is installed from the **Google Play Store** Smartlook SDK **automatically** tracks install referrer.
+
+You can also set your custom referrer using:
+
+```Java
+Smartlook.setReferrer(String referrer, String source);
+```
+
+```Kotlin
+Smartlook.setReferrer(referrer: String, source: String)
+```
+
+NOTE: Referrer value and source of installation is stored per visitor and can be viewed in Dashboard.
+
+## Sharable session URL
+URL leading to Smartlook Dashboard can be obtained for currently recorded session:
+
+```Java
+Smartlook.getDashboardSessionUrl();
+```
+
+```Kotlin
+Smartlook.getDashboardSessionUrl()
+```
+
+NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
+
+
+# Integrations
