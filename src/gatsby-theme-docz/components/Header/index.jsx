@@ -4,15 +4,16 @@ import { jsx, Box, Flex } from "theme-ui";
 import * as styles from "./styles";
 import { Logo } from "../Logo";
 
-import { usePlatforms, useSetPlatform } from "context/PlatformsContext";
+import { usePlatforms, useQueryString } from "hooks";
 
 export const Header = (props) => {
-  const { platforms, currentPlatform } = usePlatforms();
-  const onSetPlatform = useSetPlatform();
+  const { platforms, currentPlatform, handleSetPlatform } = usePlatforms();
+  const [qs, handleSetQs] = useQueryString("platform");
 
   const handleChange = (event) => {
     const nextPlatform = event.target.value;
-    onSetPlatform(nextPlatform);
+    handleSetPlatform(nextPlatform);
+    handleSetQs(nextPlatform);
   };
 
   return (
@@ -22,10 +23,10 @@ export const Header = (props) => {
         <Flex>
           <Box sx={{ mr: 2 }}>
             <select value={currentPlatform} onChange={handleChange}>
-              {platforms.map((o, i) => {
+              {platforms.map((platform, index) => {
                 return (
-                  <option key={`platform-${i}`} value={o}>
-                    {o}
+                  <option key={`platform-${index}`} value={platform}>
+                    {platform}
                   </option>
                 );
               })}

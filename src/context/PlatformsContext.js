@@ -1,49 +1,33 @@
 import React from "react";
 
-import { PLATFORMS } from "config/constants";
+import { PLATFORMS, DEFAULT_PLATFORM } from "config/constants";
 
-const PlatformsContext = React.createContext();
-const SetPlatformContext = React.createContext();
-
-export const usePlatforms = () => {
-  const context = React.useContext(PlatformsContext);
-
-  if (context === undefined) {
-    throw new Error("usePlatforms must be used within a PlatformsProvider");
-  }
-
-  return context;
-};
-
-export const useSetPlatform = () => {
-  const context = React.useContext(SetPlatformContext);
-
-  if (context === undefined) {
-    throw new Error("useSetPlatform must be used within a SetPlatformProvider");
-  }
-
-  return context;
-};
+export const PlatformsContext = React.createContext();
 
 export const PlatformsProvider = ({ children }) => {
-  const [platformsState, setPlatformsState] = React.useState({
+  const [state, dispatch] = React.useState({
     platforms: PLATFORMS,
-    currentPlatform: PLATFORMS[0],
+    currentPlatform: DEFAULT_PLATFORM,
   });
 
-  const setCurrentPlatform = (currentPlatform) =>
-    setPlatformsState((s) => {
+  const handleSetPlatform = (currentPlatform) => {
+    dispatch((prevState) => {
       return {
-        ...s,
+        ...prevState,
         currentPlatform,
       };
     });
+  };
+
+  const contextValue = {
+    platforms: state.platforms,
+    currentPlatform: state.currentPlatform,
+    handleSetPlatform,
+  };
 
   return (
-    <PlatformsContext.Provider value={platformsState}>
-      <SetPlatformContext.Provider value={setCurrentPlatform}>
-        {children}
-      </SetPlatformContext.Provider>
+    <PlatformsContext.Provider value={contextValue}>
+      {children}
     </PlatformsContext.Provider>
   );
 };

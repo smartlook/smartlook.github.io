@@ -1,6 +1,21 @@
 import React from "react";
 
-import { usePlatforms } from "context/PlatformsContext";
+import { Code } from "gatsby-theme-docz/src/components/Code";
+
+import { usePlatforms } from "hooks";
+
+const snippetAndroid = `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+`;
+
+const snippetIos = `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
+`;
 
 export const CodeBlock = () => {
   const { currentPlatform } = usePlatforms();
@@ -8,9 +23,9 @@ export const CodeBlock = () => {
   return (
     <div>
       {currentPlatform === "Android" ? (
-        <p>current platform is Android</p>
+        <Code className="java">{snippetAndroid}</Code>
       ) : (
-        <p>current platform is iOS</p>
+        <Code className="swift">{snippetIos}</Code>
       )}
     </div>
   );
