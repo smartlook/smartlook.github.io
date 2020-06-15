@@ -1,7 +1,7 @@
 import React from "react";
 import qs from "query-string";
 
-const setQueryStringWithoutPageReload = (qsValue) => {
+const setQueryString = (qsValue) => {
   const nextUrl =
     window.location.protocol +
     "//" +
@@ -21,9 +21,9 @@ const setQueryStringValue = (
   queryString = window.location.search
 ) => {
   const values = qs.parse(queryString);
-  const newQsValue = qs.stringify({ ...values, [key]: value });
+  const nextQsValue = qs.stringify({ ...values, [key]: value });
 
-  setQueryStringWithoutPageReload(`?${newQsValue}`);
+  setQueryString(`?${nextQsValue}`);
 };
 
 export const useQueryString = (key, initialValue) => {

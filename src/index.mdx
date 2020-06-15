@@ -7,7 +7,27 @@ import { CodeBlock } from "components/CodeBlock";
 
 # CodeBlock example
 
-<CodeBlock />
+<CodeBlock
+  snippets={{
+    android: {
+      code: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+      `,
+      language: "java",
+    },
+    ios: {
+      code: `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
+      `,
+      language: "objective-c", // nebo objective-c
+    },
+  }}
+/>
 
 # Getting Started
 

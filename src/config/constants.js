@@ -1,2 +1,14 @@
-export const PLATFORMS = ["Android", "iOS"];
-export const DEFAULT_PLATFORM = "Android";
+export const PLATFORMS = [
+  {
+    value: "android",
+    displayName: "Android",
+    defaultLanguage: "java",
+  },
+  {
+    value: "ios",
+    displayName: "iOS",
+    defaultLanguage: "objective-c",
+  },
+];
+
+export const DEFAULT_PLATFORM = "android";
