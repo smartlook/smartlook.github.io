@@ -1,3 +1,5 @@
+import { CodeBlock } from "components/CodeBlock"
+
 ---
 name: iOS Integration
 menu: Integrations
@@ -16,9 +18,7 @@ Note: if you integrate Smartlook SDK using Segment, please follow these instruct
 
 ### Cocoapods
 
-```ruby
-pod 'Smartlook'
-```
+pod Smartlook
 
 More about Cocoapods https://cocoapods.org.
 
@@ -35,9 +35,12 @@ To start recording, you need your unique API key. This can be found in your apps
 
 In your `AppDelegate.swift` add among other imports
 
-```swift
-import Smartlook
-```
+<CodeBlock language="swift">
+  {`
+    import Smartlook
+  `}
+</CodeBlock>
+
 
 then in `application(_,didLaunchWithOptions:)`
 
