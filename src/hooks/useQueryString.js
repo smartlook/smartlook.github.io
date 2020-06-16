@@ -1,40 +1,26 @@
 import React from "react";
-import qs from "query-string";
+import { navigate } from "@reach/router";
+import queryString from "query-string";
 
-const setQueryString = (qsValue) => {
-  const nextUrl =
-    window.location.protocol +
-    "//" +
-    window.location.host +
-    window.location.pathname +
-    qsValue;
+const getQueryStringValue = (key, url = window.location.search) =>
+  queryString.parse(url)[key];
 
-  window.history.pushState({ path: nextUrl }, "", nextUrl);
-};
+const setQueryStringValue = (key, value, url = window.location.search) => {
+  const values = queryString.parse(url);
+  const nextQsValue = queryString.stringify({ ...values, [key]: value });
 
-const getQueryStringValue = (key, queryString = window.location.search) =>
-  qs.parse(queryString)[key];
+  const { pathname, hash } = window.location;
 
-const setQueryStringValue = (
-  key,
-  value,
-  queryString = window.location.search
-) => {
-  const values = qs.parse(queryString);
-  const nextQsValue = qs.stringify({ ...values, [key]: value });
-
-  setQueryString(`?${nextQsValue}`);
+  navigate(pathname + `?${nextQsValue}` + hash);
 };
 
 export const useQueryString = (key, initialValue) => {
-  const [value, setValue] = React.useState(
-    getQueryStringValue(key) || initialValue
-  );
+  const [qs, setQs] = React.useState(getQueryStringValue(key) || initialValue);
 
-  const handleSetValue = (nextValue) => {
-    setValue(nextValue);
+  const handleSetQs = (nextValue) => {
+    setQs(nextValue);
     setQueryStringValue(key, nextValue);
   };
 
-  return [value, handleSetValue];
+  return { qs, handleSetQs };
 };

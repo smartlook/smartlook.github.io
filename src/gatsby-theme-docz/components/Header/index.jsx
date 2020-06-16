@@ -9,7 +9,7 @@ import { usePlatforms, useQueryString } from "hooks";
 
 export const Header = (props) => {
   const { currentPlatform, handleSetPlatform } = usePlatforms();
-  const [, handleSetQs] = useQueryString("platform");
+  const { handleSetQs } = useQueryString("platform");
 
   const handleChange = (event) => {
     const nextPlatform = event.target.value;
