@@ -12,7 +12,7 @@ export const PlatformsProvider = ({ children }) => {
     currentPlatform: DEFAULT_PLATFORM,
   });
 
-  const [qs] = useQueryString("platform");
+  const { qs } = useQueryString("platform");
 
   React.useEffect(() => {
     if (state.platforms.includes(qs) && state.currentPlatform !== qs) {

@@ -3,7 +3,7 @@ import React from "react";
 import { jsx } from "theme-ui";
 import { Link } from "gatsby";
 import { useDocs, useCurrentDoc } from "docz";
-import { useQueryString } from "hooks";
+import { usePlatforms } from "hooks";
 import { get } from "lodash/fp";
 
 import * as styles from "./styles";
@@ -24,7 +24,7 @@ const getCurrentHash = () => {
 export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
   const docs = useDocs();
   const current = useCurrentDoc();
-  const { qs } = useQueryString("platform");
+  const { currentPlatform } = usePlatforms();
 
   if (item.hidden) {
     return null;
@@ -39,7 +39,7 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
     <React.Fragment>
       <Link
         {...props}
-        to={`${to}?platform=${qs}`}
+        to={`${to}?platform=${currentPlatform}`}
         sx={styles.link}
         activeClassName="active"
         ref={ref}
@@ -48,7 +48,7 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
         headings.map((heading) => (
           <Link
             key={heading.slug}
-            to={`${to}?platform=${qs}#${heading.slug}`}
+            to={`${to}?platform=${currentPlatform}#${heading.slug}`}
             sx={styles.smallLink}
             className={currentHash === `#${heading.slug}` ? "active" : ""}
           >
