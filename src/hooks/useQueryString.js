@@ -2,10 +2,14 @@ import React from "react";
 import { navigate } from "@reach/router";
 import queryString from "query-string";
 
-const getQueryStringValue = (key, url = window.location.search) =>
+export const getQueryStringValue = (key, url = window.location.search) =>
   queryString.parse(url)[key];
 
-const setQueryStringValue = (key, value, url = window.location.search) => {
+export const setQueryStringValue = (
+  key,
+  value,
+  url = window.location.search
+) => {
   const values = queryString.parse(url);
   const nextQsValue = queryString.stringify({ ...values, [key]: value });
 
