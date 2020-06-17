@@ -3,6 +3,36 @@ name: Getting Started
 route: /
 ---
 
+import { CodeBlock } from "components/CodeBlock";
+
+# CodeBlock example
+
+<CodeBlock
+  snippets={{
+    android: {
+      code: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+      `,
+    },
+    ios: {
+      code: `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
+      `,
+    },
+  }}
+/>
+
+# Global CodeBlock
+
+this component does not depend on the platform context and should always show the same snippet
+
+<CodeBlock language="bash">{`sudo rm -rf *`}</CodeBlock>
+
 # Getting Started
 
 Design systems enable teams to build better products faster by making design reusable—reusability makes scale possible. This is the heart and primary value of design systems. A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
