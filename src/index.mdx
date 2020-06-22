@@ -16,7 +16,6 @@ Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutab
 Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
 Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
       `,
-      language: "java",
     },
     ios: {
       code: `
@@ -24,10 +23,15 @@ Smartlook.startRecording() // start or resume paused recording
 Smartlook.stopRecording()  // pause recording
 Smartlook.isRecording()    // returns true/false
       `,
-      language: "objective-c", // nebo objective-c
     },
   }}
 />
+
+# Global CodeBlock
+
+this component does not depend on the platform context and should always show the same snippet
+
+<CodeBlock language="bash">{`sudo rm -rf *`}</CodeBlock>
 
 # Getting Started
 

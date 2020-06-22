@@ -7,7 +7,7 @@ export const PLATFORMS = [
   {
     value: "ios",
     displayName: "iOS",
-    defaultLanguage: "objective-c",
+    defaultLanguage: "swift",
   },
 ];
 

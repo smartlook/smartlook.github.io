@@ -1,8 +1,10 @@
 import React from "react";
 
+import { globalHistory } from "@reach/router";
+
 import { PLATFORMS, DEFAULT_PLATFORM } from "config/constants";
 
-import { useQueryString } from "hooks";
+import { useQueryString, getQueryStringValue } from "hooks";
 
 export const PlatformsContext = React.createContext();
 
@@ -12,13 +14,34 @@ export const PlatformsProvider = ({ children }) => {
     currentPlatform: DEFAULT_PLATFORM,
   });
 
-  const [qs] = useQueryString("platform");
+  const { qs } = useQueryString("platform");
 
   React.useEffect(() => {
-    if (state.platforms.includes(qs) && state.currentPlatform !== qs) {
+    if (handleCheckPlatforms(qs)) {
       handleSetPlatform(qs);
     }
+
+    const removeListener = globalHistory.listen((params) => {
+      const {
+        location: { search },
+      } = params;
+
+      const platform =
+        getQueryStringValue("platform", search) ?? DEFAULT_PLATFORM;
+
+      handleSetPlatform(platform);
+    });
+
+    return () => {
+      removeListener();
+    };
   }, []);
+
+  const handleCheckPlatforms = (platform) => {
+    return (
+      state.platforms.includes(platform) && state.currentPlatform !== platform
+    );
+  };
 
   const handleSetPlatform = (currentPlatform) => {
     dispatch((prevState) => {
