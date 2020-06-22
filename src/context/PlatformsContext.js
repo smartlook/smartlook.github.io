@@ -26,7 +26,10 @@ export const PlatformsProvider = ({ children }) => {
         location: { search },
       } = params;
 
-      handleSetPlatform(getQueryStringValue("platform", search));
+      const platform =
+        getQueryStringValue("platform", search) ?? DEFAULT_PLATFORM;
+
+      handleSetPlatform(platform);
     });
 
     return () => {
