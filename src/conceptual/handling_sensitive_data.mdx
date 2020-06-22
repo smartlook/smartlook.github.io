@@ -1,0 +1,183 @@
+---
+name: Handling Sensitive Data
+menu: Conceptual
+route: /conceptual/handling_sensitive_data
+---
+
+import { CodeBlock } from "components/CodeBlock";
+
+# Handling Sensitive Data
+
+TODO: what are sensitive data, why not recording them 
+
+- App Store rules
+- regional rules (GDPR…)
+- our open-source solutions (ConsentSDKs…)
+
+# UI Elements Not Recorded by Default
+
+In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The app author must take active steps to whitelist these elements in order to record their content.
+
+# Handling UI with Sensitive Data
+
+Potentially any UI element may contain sensitive information that should not be recorded. On the other hand, some elements that are not recorded by default may contain harmless data vital for analytics. Smartlook offers a comprehensive set of methods to handle various scenarios.
+
+Terminology: in Smartlook, disabling UI element recording is done by blacklisting it. Enabling UI element recording is done by whitelisting it. Blacklisted UI elements are also called sensitive.
+
+Most UI elements are whitelisted by default. Some types of UI elements (text edits, web views) are blacklisted by default.
+
+There are three levels of granularity of handling the sensitive data recording:
+- individual UI elements recording
+- UI element types recording
+- the whole screen recording 
+
+### Handling Sensitivity of Individual UI Elements
+
+In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it 
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+Smartlook.registerBlacklisted(object: self.portraitImageView)
+self.portraitImageView.slSensitive = true
+```
+
+When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+// whitelisting a Web View instance that is otherwise not recorded by default
+Smartlook.unregisterBlacklisted(object: self.introWebView)
+// or another method with the same effect
+Smartlook.registerWhitelisted(object: self.introWebView)
+
+self.introWebView.slSensitive = false
+```
+
+Note also, that the slSensitive property of UIView can be set in Xcode interface builder as well, i.e., it is not necessary creating an @IBOutlet for a view that is designed in the Interface Builder just in order to set its sensitivity.
+
+### Handling Sensitivity of View Classes
+
+In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an app that heavily uses web views for presenting some insensitive content, or if the app defines its own UIView subclasses that present sensitive user data.
+
+To cover this use-case, Smartlook offers a convenient way how to blacklist or whitelist all descendants of some UIView subclass or all UIView subclasses that conform some protocol:
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+Smartlook.unregisterBlacklisted(object: WKWebView.self)
+Smartlook.registerBlacklisted(object: MySensitiveDataView.self)
+
+Smartlook.registerWhitelisted(object: WhitelistedTextEditsProtocol.self)
+```
+
+This method also works in combination with blacklisting/whitelisting of individual views, the individual setting of a view instance takes precedence over the class or protocol setting.
+
+For your convenience, Smartlook also predefined two protocols that could be used for flagging sensitivity of your UIView subclasses:
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+protocol Smartlook.SensitiveData
+protocol Smartlook.NotSensitiveData
+ 
+class NonSensitiveTextEdit : UITextEdit, Smartlook.NotSensitiveData {
+    ...
+}
+```
+
+### Handling Content Presented in WebViews
+
+WKWebView class is blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
+
+In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning smartlook-show CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning smartlook-hide CSS class to it. 
+
+### Recording Modes: Handling Sensitive Data at Whole Screen Level
+
+There can be scenarios when direct recording of the screen in order to understand the user behaviour is not appropriate or necessary. In such a case, Smartlook can be instructed to use, permanently or just temporarily, one of its wireframe recording modes.
+
+When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements, and user interaction with them, are still clearly distinguishable, but their actual look and content (texts, images) are replaced by their abstract representation. 
+
+TODO:screenshots
+
+#### Setting Recording Mode
+
+Default recording mode for an app is set in the dashboard (link here). 
+
+Recording mode can be also set in setup options. This is useful when debugging or experimenting to find the best suitable one for a particular app. In production releases, this option should not be used.
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+let renderingMode = Smartlook.RenderingMode.wireframe
+let renderingModeOption = Smartlook.RenderingModeOption.blueprintWireframe
+ 
+Smartlook.setup(key: "YOUR_API_KEY",
+            options: [.renderingMode: renderingMode,
+                      .renderingModeOption: renderingModeOption] )
+```
+
+The app can change the rendering mode anytime, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+Smartlook.setRenderingMode(to: Smartlook.RenderingMode, 
+                       option: Smartlook.RenderingModeOption?)
+ 
+let currentRenderingMode = Smartlook.currentRenderingMode()
+let currentRenderingModeOption = Smartlook.currentRenderingModeOption()
+```
+
+The following table gives an overview of the available rendering modes:
+
+Dashboard option
+Swift enumerations
+Smartlook.RenderingMode
+Smartlook.RenderingModeOption
+Native
+.native
+ignored
+Wireframe
+.wireframe
+.colorWireframe
+Blueprint
+.blueprintWireframe
+Icon blueprint
+.iconBlueprintWireframe
+No rendering
+.noRendering
+ignored
+
+## Event Tracking Modes
+
+The default setting is to track all events (with the exception of events on the keyboard, for obvious user privacy reasons). When this is not desired, the app may fine-tune the level of tracked events.
+
+Typically, the default fullTracking mode is desired, as it gives a detailed picture of user activities.
+
+On the other hand, on some screens event location of touches on otherwise blacklisted views can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to ignoreUserInteractionEvents mode temporarily.
+
+Some apps that handle complex private information on some screens, may prefer stopping events recording altogether there, by switching to noTracking mode for the screens.
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
+let currentEventTrackingMode = Smartlook.currentEventTrackingMode()
+```
+
+Event tracking mode is also one of the Smartlook setup options:
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+Smartlook.setup(key: "YOUR_API_KEY",
+            options: [.eventTrackingMode: Smartlook.EventTrackingMode.noTracking] )
+``` 
+
+Mode
+Description
+fullTracking
+
+
+tracks all analytics and record events
+ignoreUserInteractionEvents
+
+
+does not track neither for analytics nor record these events: click, focus_start, focus_exit, focus, touch, all gesture and keyboard events
+noTracking
+tracks no events
+

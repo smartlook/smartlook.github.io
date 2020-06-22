@@ -1,0 +1,29 @@
+---
+name: Integrating with Other Tools
+menu: Conceptual
+route: /conceptual/integrating_with_other_tools
+---
+
+import { CodeBlock } from "components/CodeBlock";
+
+# Integrating with Other Tools
+
+It is a typical use-case that an app uses several specialized 3rd party libraries to cover various parts of the analytics, and it is an advantage when it is possible to integrate these tools together.
+
+Integrated Smartlook into other Tools
+
+Smartlook publishes the URL of the dashboard player where the currently recorded session will be available for the registered users.
+ 
+[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+```
+let smartlookSessionURL = Smartlook.getDashboardSessionURL()
+```
+
+This URL can be handy for programmatic integrategration of Smartlook to other tools.
+
+Automatic integration is also available for selected well-known third party tools. The automatic integration, when enabled, automatically injects this URL to the 3rd party APIs.
+
+TODO: visitorURL
+
+[INTEGRATION COOKBOOKS LINKS]
+
