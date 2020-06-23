@@ -2,13 +2,15 @@
 name: Life Cycle, Session, User
 menu: Conceptual
 route: /conceptual/life_cycle_session_user
+order: 200
 ---
 
 import { CodeBlock } from "components/CodeBlock";
 
 # Life Cycle
 
-This section covers the way Smartlook automatically follows app lifecycle, and introduces the concept of recording sessions and users.
+*This section covers the way Smartlook automatically follows app lifecycle, and introduces the concept of recording sessions and users.*
+
 Apart from the initial Smartlook setup when a new instance of an app starts, Smartlook follows the life-cycle of the app automatically. When the app is suspended to the background, recording is paused automatically. When the app resumes to the frontend again, so resumes the recording. There is no need to call  API methods to achieve this basic behaviour.
 
 ## Session 
