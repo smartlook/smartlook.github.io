@@ -4,6 +4,25 @@ menu: Integrations
 route: /ios
 ---
 
+import { CodeBlock } from "components/CodeBlock";
+
+<CodeBlock
+  snippets={{
+    ios: {
+      code: `
+#import <Smartlook/Smartlook.h>
+      `,
+      language: "objective-c", // nebo objective-c
+    },
+    ios: {
+      code: `
+import Smartlook
+      `,
+      language: "swift", // nebo objective-c
+    },
+  }}
+/>
+
 # iOS Integration
 
 There are several possible ways how to integrate Smartlook SKD into a native iOS (Swift or ObjC project).
@@ -16,9 +35,7 @@ Note: if you integrate Smartlook SDK using Segment, please follow these instruct
 
 ### Cocoapods
 
-```ruby
-pod 'Smartlook'
-```
+pod Smartlook
 
 More about Cocoapods https://cocoapods.org.
 
@@ -35,9 +52,38 @@ To start recording, you need your unique API key. This can be found in your apps
 
 In your `AppDelegate.swift` add among other imports
 
-```swift
-import Smartlook
-```
+
+# iOS Integration
+
+There are several possible ways how to integrate Smartlook SKD into a native iOS (Swift or ObjC project).
+
+Note: if you integrate Smartlook SDK using Segment, please follow these instructions: [link] instead this document.
+
+## Installing
+
+*Note: the following should be tabbed options*
+
+### Cocoapods
+
+pod Smartlook
+
+More about Cocoapods https://cocoapods.org.
+
+### Manual Integration
+
+1. Download the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip) directly.
+2. Unzip the file and add Smartlook.framework to your Xcode project.
+
+## Quick Start 
+
+To start recording, you need your unique API key. This can be found in your apps settings in Smartlook Dashboard: https://app.smartlook.com/settings/projects
+
+### Swift
+
+In your `AppDelegate.swift` add among other imports
+
+    import Smartlook
+
 
 then in `application(_,didLaunchWithOptions:)`
 
@@ -80,6 +126,3 @@ After this basic setup SDK will:
 - and much more!
 
 For any SDK customization please refer to our api reference.
-
-
-
