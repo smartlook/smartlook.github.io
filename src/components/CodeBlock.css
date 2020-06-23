@@ -1,0 +1,36 @@
+.codeblock-tabs {
+  position: relative;
+  top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.codeblock-tab {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: #495057;
+}
+
+.codeblock-tab:focus,
+.codeblock-tab:hover {
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.codeblock-tab-active {
+  color: #007bff;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.codeblock-tab-active:focus,
+.codeblock-tab-active:hover {
+  border-color: #dee2e6 #dee2e6 #fff;
+}
