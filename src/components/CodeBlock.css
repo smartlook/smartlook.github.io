@@ -24,13 +24,13 @@
   border-color: #e9ecef #e9ecef #dee2e6;
 }
 
-.codeblock-tab-active {
+.codeblock-tab--active {
   color: #007bff;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
 }
 
-.codeblock-tab-active:focus,
-.codeblock-tab-active:hover {
+.codeblock-tab--active:focus,
+.codeblock-tab--active:hover {
   border-color: #dee2e6 #dee2e6 #fff;
 }
