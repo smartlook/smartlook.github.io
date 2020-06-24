@@ -1,0 +1,28 @@
+
+---
+name: Cocos
+menu: SDK Installation
+route: /sdk-installation/cocos
+---
+
+
+### Android
+
+In case you want to use SDK in Android project add these lines to your gradle project file:
+
+```android
+allprojects {
+  repositories {
+    maven {
+      url "https://sdk.smartlook.com/android/release"
+    }
+  }
+}
+```
+
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:1.4.2-cocos')`
+
+
+### iOS
+
+Coming soon
