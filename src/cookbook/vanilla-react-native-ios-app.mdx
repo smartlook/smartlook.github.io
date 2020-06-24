@@ -1,0 +1,45 @@
+---
+name: Vanilla  React Native iOS App
+menu: Cookbooks
+route: /cookbooks/vanilla-react-native-ios-app
+---
+
+import { CodeBlock } from "components/CodeBlock";
+
+# Create a vanilla React Native App with Smartlook
+
+```shell
+# create test app
+npx react-native init SLTest01
+cd SLTest01/
+
+# install Smartlook plugin
+npm install smartlook-react-native-wrapper --save
+
+# change dir to your ios project, open Podfile and add the line above
+# install the pods
+cd ios
+pod install
+
+# should print out:
+#    Installing Smartlook (x.y.z)
+#    Installing smartlook-react-native-bridge (x.y.z)
+```
+
+Then add Smartlook initialization to the `App.js` and run the app
+```js
+// Smartlook initialization
+var Smartlook = require("smartlook-react-native-wrapper"); 
+Smartlook.setupAndStartRecording("API_KEY");
+```
+
+using these commands
+```shell
+# open App.js and add Smartlook initialisation there
+open ../App.js
+
+# open the Xcode workspace 
+open SLTest01.xcworkspace
+
+# finally run the Xcode project
+```
