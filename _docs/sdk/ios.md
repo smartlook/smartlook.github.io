@@ -51,7 +51,7 @@ import Smartlook
 
 ### Manual installation
 
-1. Download [Smartlook iOS SDK v1.3.1](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.3.1.2166.zip) directly.
+1. Download [Smartlook iOS SDK v1.4.0](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.4.0.2322.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 3. Import Smartlook SDK in your app's App Delegate class:
 ```swift
@@ -451,18 +451,36 @@ Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-property
 [Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
 ```
 
-### Shareable session URL
+### Dashboard URLs
+
+#### Session URL
 
 You can obtain URL leading to the Dashboard player for the current Smartlook session:
 
 ```swift
-Smartlook.dashboardSessionURL()
+Smartlook.dashboardSessionURL(withCurrentTimestamp: bool)
 ```
 ```objc
-[Smartlook dashboardSessionURL];
++ (nullable NSURL *)getDashboardSessionURLWithCurrentTimestamp:(BOOL)withTimestamp;
 ```
 
-this URL can be access by everyone with the access rights to the dashboard.
+this URL can be access by everyone with the access rights to the dashboard. The timestamp attribute causes the player starting at the given moment.
+
+Note: the URL may change during the app lifecycle. Observe the respective `Smartlook.dashboardSessionURLChanged` (ObjC: `SLDashboardSessionURLChangedNotification`) notification to always have the current session URL.
+
+
+#### Visitor URL
+
+To get a Smartlook dasbhoard page for the current user, you can use this methods. You can use the URL to e.g., connect Smartlook visitor info with your internal user info.
+
+```swift
+let visitorUrl = Smartlook.getDashboardVisitorURL()
+```
+```objc
+NSURL *visitorURL = [Smartlook getDashboardVisitorURL];
+```
+
+Note: this URL may change when you call `setUserIdentifier` method. Observe the respective `Smartlook.dashboardVisitorURLChanged` (ObjC: `SLDashboardVisitorURLChangedNotification`) notification to always have the proper visitoru URL.
 
 ### Crashlytics
 
