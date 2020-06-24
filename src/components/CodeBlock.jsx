@@ -5,26 +5,47 @@ import { Code } from "gatsby-theme-docz/src/components/Code";
 import { PLATFORMS } from "config/constants";
 import { usePlatforms } from "hooks";
 
-export const CodeBlock = ({ snippets, ...props }) => {
-  const { currentPlatform } = usePlatforms();
+import "./CodeBlock.css";
 
-  if (React.Children.count(props.children) > 0) {
-    return <Code className={props.language}>{props.children}</Code>;
-  }
+export const CodeBlock = ({ snippets }) => {
+  const { currentPlatform } = usePlatforms();
 
   const snippet = snippets[currentPlatform];
 
-  if (!snippet) {
-    return (
-      <div>
-        it seems you misspelled the name of the platform, sorry ¯\_(ツ)_/¯
-      </div>
-    );
-  }
-
-  const language =
-    snippet.language ??
+  const findDefaultLanguage = () =>
     PLATFORMS.find((p) => p.value === currentPlatform).defaultLanguage;
 
-  return <Code className={language}>{snippet.code}</Code>;
+  const [currentTab, setCurrentTab] = React.useState();
+
+  React.useEffect(() => {
+    setCurrentTab(findDefaultLanguage());
+  }, [currentPlatform]);
+
+  if (
+    typeof snippet === "undefined" ||
+    typeof snippet[currentTab] === "undefined"
+  ) {
+    return null;
+  }
+
+  return (
+    <React.Fragment>
+      <div className="codeblock-tabs">
+        {Object.keys(snippet).map((s, index) => {
+          return (
+            <span
+              key={`tab-${s}`}
+              className={`codeblock-tab ${
+                s === currentTab ? "codeblock-tab-active" : ""
+              }`}
+              onClick={() => setCurrentTab(s)}
+            >
+              {s}
+            </span>
+          );
+        })}
+      </div>
+      <Code className={currentTab}>{snippet[currentTab]}</Code>
+    </React.Fragment>
+  );
 };
