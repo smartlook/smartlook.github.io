@@ -12,18 +12,33 @@ export const CodeBlock = ({ snippets }) => {
 
   const snippet = snippets[currentPlatform];
 
-  const findDefaultLanguage = () =>
-    PLATFORMS.find((p) => p.value === currentPlatform).defaultLanguage;
+  const findSnippet = () => {
+    const platformDefaultLanguage = PLATFORMS.find(
+      (platform) => platform.value === currentPlatform
+    ).defaultLanguage;
 
-  const [currentTab, setCurrentTab] = React.useState();
+    if (!snippet) {
+      return platformDefaultLanguage;
+    }
+
+    const snippetLanguages = Object.keys(snippets[currentPlatform]);
+
+    if (!snippetLanguages.includes(platformDefaultLanguage)) {
+      return snippetLanguages[0];
+    }
+
+    return platformDefaultLanguage;
+  };
+
+  const [shownSnippet, setShownSnippet] = React.useState();
 
   React.useEffect(() => {
-    setCurrentTab(findDefaultLanguage());
+    setShownSnippet(findSnippet());
   }, [currentPlatform]);
 
   if (
     typeof snippet === "undefined" ||
-    typeof snippet[currentTab] === "undefined"
+    typeof snippet[shownSnippet] === "undefined"
   ) {
     return null;
   }
@@ -31,21 +46,21 @@ export const CodeBlock = ({ snippets }) => {
   return (
     <React.Fragment>
       <div className="codeblock-tabs">
-        {Object.keys(snippet).map((s, index) => {
+        {Object.keys(snippet).map((lang, index) => {
           return (
             <span
-              key={`tab-${s}`}
+              key={`tab-${lang}`}
               className={`codeblock-tab ${
-                s === currentTab ? "codeblock-tab-active" : ""
+                lang === shownSnippet ? "codeblock-tab--active" : ""
               }`}
-              onClick={() => setCurrentTab(s)}
+              onClick={() => setShownSnippet(lang)}
             >
-              {s}
+              {lang}
             </span>
           );
         })}
       </div>
-      <Code className={currentTab}>{snippet[currentTab]}</Code>
+      <Code className={shownSnippet}>{snippet[shownSnippet]}</Code>
     </React.Fragment>
   );
 };
