@@ -2,12 +2,18 @@ import React from "react";
 
 import { usePlatforms } from "hooks";
 
-export const TextBlock = ({ visibleOn, children }) => {
+export const TextBlock = ({ visibleOn, invisibleOn, children }) => {
   const { currentPlatform } = usePlatforms();
 
-  const visible = visibleOn.split(",");
+  var isMatch = false;
 
-  const isMatch = visible.includes(currentPlatform);
+  if (visibleOn != null) {
+    isMatch = visibleOn.split(",").includes(currentPlatform);
+  }
+
+  if (invisibleOn != null) {
+    isMatch = !invisibleOn.split(",").includes(currentPlatform);
+  }
 
   if (!isMatch) {
     return null;
