@@ -35,3 +35,35 @@ To start recording, call the following as early as possible in the app lifecycle
 ```dart
 Smartlook.setupAndStartRecording('YOUR_API_KEY');
 ```
+
+
+## Platform notes
+
+does not automatically record events and navigation, this this is important
+
+with links to the reference
+
+### Record Navigation
+
+On Flutter, Smartlook cannot record user navigation in the app automatically, you have to add navigation events (when user enters and exits distinct parts of the app) in the code yourself:
+
+```dart
+// the first argument identifies the app section, the second the event type
+Smartlook.trackNavigationEvent("shopping_cart", SmartlookNavigationEventType.enter);
+Smartlook.trackNavigationEvent("shopping_cart", SmartlookNavigationEventType.exit);
+```
+
+### Record Other Events
+
+Recording is not limited to navigation events, you can record any event and its properties in the app by calling
+```dart
+Smartlook.trackCustomEvent("custom_event_name", { "property_1" : "value_1"} );
+```
+
+### Masking Sensitive Data
+
+Somethimes, you don't want to record the screen as user enters sensitive data, e.g., passwords. In such a situation, screen recoring can be obfuscated by calling
+```dart
+Smartlook.startFullscreenSensitiveMode();
+Smartlook.stopFullscreenSensitiveMode();
+```
