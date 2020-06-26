@@ -19,5 +19,5 @@ export const TextBlock = ({ visibleOn, invisibleOn, children }) => {
     return null;
   }
 
-  return <div>{children(currentPlatform)}</div>;
+  return <span>{children(currentPlatform)}</span>;
 };
