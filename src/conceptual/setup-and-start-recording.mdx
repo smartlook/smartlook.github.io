@@ -2,10 +2,10 @@
 name: Setup & Start Recording
 menu: Conceptual
 route: /conceptual/setup-and-start-recording
-order: 100
 ---
 
 import { CodeBlock } from "components/CodeBlock";
+import { TextBlock } from "components/TextBlock";
 
 # Setup & Start Recording
 
@@ -15,11 +15,24 @@ To start recording, just put the following code into your application. Once you 
 
 In order to function properly, the setup should happen as soon as possible in the app life cycle:
 
-[TABS PER PLATFORM & LANGUAGE, MANUALLY SWITCHABLE?]
-
-In AppDelegate.swift:
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.setupAndStartRecording(String YOUR_API_KEY)
  
-```
+// TODO: notes when using this other method 
+Smartlook.setup(String YOUR_API_KEY, Activity activity)
+      `,
+      kotlin: `
+android kotlin snippet
+      `,
+      kotlin: `
+android kotlin snippet
+      `,
+    },
+    ios: {
+      swift: `
 include Smartlook
  
 ...
@@ -29,8 +42,71 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
    Smartlook.setup(key: "YOUR_API_KEY")
    Smartlook.startRecording()
 }
-```
-
+      `,
+      objc: `
+#include Smartlook
+ 
+...
+ 
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+ 
+   Smartlook.setup(key: "YOUR_API_KEY")
+   Smartlook.startRecording()
+}      `,
+    },
+    react: {
+      js: `
+// Smartlook initialization
+var Smartlook = require("smartlook-react-native-wrapper"); 
+Smartlook.setupAndStartRecording("API_KEY");
+      `,
+    },
+    ionic: {
+      js: `
+Ionic javascript
+      `,
+      typescript: `
+Ionic typescript
+      `,
+    },
+    cordova: {
+      js: `
+Cordova javascript
+      `,
+      typescript: `
+Cordova typescript
+      `,
+    },
+    xamarin: {
+      csharp: `
+Xamarin C#
+      `,
+    },
+    unity: {
+      csharp: `
+Unity C#
+      `,
+    },
+    unreal: {
+      csharp: `
+Unreal C#
+      `,
+    },
+    cocos: {
+      cpp: `
+Cocos C++
+      `,
+      lua: `
+Cocos lua
+   `
+   },
+   flutter: {
+      dart: `
+      Smartlook.setupAndStartRecording('YOUR_API_KEY');
+   `,
+   }
+  }}
+/>
 
 This is basically all you need to record your sessions. All other events in the app life cycle are handled by Smartlook automatically.
 
@@ -39,10 +115,20 @@ Note: common startup issues:
 - it may take several minutes before the recordings appear in the Dashboard. The recording is not streamed, it is uploaded in chunks and then processed on the server. 
 - in the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, please make sure the device is on WiFi (link to documentation & dashboard). 
 
+<TextBlock visibleOn="ios">
+  {(platform) => {
+    return (
+      <div>
+         NOTE: When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this <a href="/cookbook/ios-main-thread-check-warning">technical note</a>.
+      </div>
+    );
+  }}
+</TextBlock>
+
 ## Setup Options Overview
 Smartlook recording could be customized by several parameters. Some of the recording customization options could be set by dedicated methods, some others can be only/also set as startup options.
  
 Not all options are available on all platforms. For most options, there is also a dedicated method or property that can set it later in the app life-cycle.
 
-For comprehensive list of all options and other details, consult your platform documentation [LINK TO SETUP METHOD IN API REFERENCE]
+For comprehensive list of all options and other details, consult [API reference](http://localhost:3000/api_reference/#setup-configuration).
 

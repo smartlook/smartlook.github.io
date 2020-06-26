@@ -10,6 +10,16 @@ export const PLATFORMS = [
     defaultLanguage: "swift",
   },
   {
+    value: "react",
+    displayName: "React Native",
+    defaultLanguage: "",
+  },
+  {
+    value: "flutter",
+    displayName: "Flutter",
+    defaultLanguage: "",
+  },
+  {
     value: "ionic",
     displayName: "Ionic",
     defaultLanguage: "",
@@ -30,8 +40,8 @@ export const PLATFORMS = [
     defaultLanguage: "",
   },
   {
-    value: "react",
-    displayName: "React Native",
+    value: "unreal",
+    displayName: "Unreal",
     defaultLanguage: "",
   },
   {

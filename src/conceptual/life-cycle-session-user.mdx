@@ -6,6 +6,7 @@ order: 200
 ---
 
 import { CodeBlock } from "components/CodeBlock";
+import { TextBlock } from "components/TextBlock";
 
 # Life Cycle
 
@@ -29,6 +30,34 @@ Every session has a single user. A user can have more sessions.
 You can uniquely identify the user across your projects by associating an unique identifier with it by calling:
 
 [CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+      `,
+      javascript: `
+js snippet
+      `,
+      c: `
+c snippet
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
+      `,
+      "objective-c": `
+objective-c snippet
+      `,
+    },
+  }}
+/>
 ```
 Smartlook.setUserIdentifier(“unique-user-id”)
 ```
