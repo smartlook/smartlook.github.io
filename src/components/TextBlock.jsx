@@ -2,20 +2,26 @@ import React from "react";
 
 import { usePlatforms } from "hooks";
 
-export const TextBlock = ({ visibleOn, className, children }) => {
+export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
   const { currentPlatform } = usePlatforms();
 
-  const visible = visibleOn.split(",");
+  let isMatch = false;
 
-  const isMatch = visible.includes(currentPlatform);
+  if (visibleOn !== undefined) {
+    isMatch = visibleOn.split(",").includes(currentPlatform);
+  }
+
+  if (invisibleOn !== undefined) {
+    isMatch = !invisibleOn.split(",").includes(currentPlatform);
+  }
 
   if (!isMatch) {
     return null;
   }
 
   if (typeof children === "function") {
-    return <div className={className}>{children(currentPlatform)}</div>;
+    return <span className={className}>{children(currentPlatform)}</div>;
   }
 
-  return <div className={className}>{children}</div>;
+  return <span className={className}>{children}</div>;
 };
