@@ -8,6 +8,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "docz": "latest",
     "gatsby-theme-docz": "^2.3.1",
     "prop-types": "^15.7.2",

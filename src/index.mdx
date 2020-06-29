@@ -3,15 +3,14 @@ name: Getting Started
 route: /
 ---
 
-import { CodeBlock } from "components/CodeBlock";
-import { TextBlock } from "components/TextBlock";
+import { CodeBlock, TextBlock, Alert } from "components";
 
-# CodeBlock example
+# CodeBlock Example
 
 <CodeBlock
   snippets={{
     android: {
-      java: `
+      xml: `
 Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
@@ -37,6 +36,8 @@ objective-c snippet
   }}
 />
 
+# TextBlock Example
+
 <TextBlock visibleOn="ios,android,cordova">
   {(platform) => {
     return (
@@ -50,6 +51,12 @@ objective-c snippet
     );
   }}
 </TextBlock>
+
+# Alert Example
+
+<Alert kind="info">info here</Alert>
+<Alert kind="important">important here</Alert>
+<Alert kind="warning">warning here</Alert>
 
 # Getting Started
 

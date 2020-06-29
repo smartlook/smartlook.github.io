@@ -2,7 +2,7 @@ import React from "react";
 
 import { usePlatforms } from "hooks";
 
-export const TextBlock = ({ visibleOn, children }) => {
+export const TextBlock = ({ visibleOn, className, children }) => {
   const { currentPlatform } = usePlatforms();
 
   const visible = visibleOn.split(",");
@@ -13,5 +13,5 @@ export const TextBlock = ({ visibleOn, children }) => {
     return null;
   }
 
-  return <div>{children(currentPlatform)}</div>;
+  return <div className={className}>{children(currentPlatform)}</div>;
 };
