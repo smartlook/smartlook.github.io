@@ -14,9 +14,9 @@
 }
 
 .component-alert--important {
-  background-color: #ff4757;
+  background-color: #ffa502;
 }
 
 .component-alert--warning {
-  background-color: #ffa502;
+  background-color: #ff4757;
 }

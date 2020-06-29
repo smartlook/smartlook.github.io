@@ -13,5 +13,9 @@ export const TextBlock = ({ visibleOn, className, children }) => {
     return null;
   }
 
-  return <div className={className}>{children(currentPlatform)}</div>;
+  if (typeof children === "function") {
+    return <div className={className}>{children(currentPlatform)}</div>;
+  }
+
+  return <div className={className}>{children}</div>;
 };
