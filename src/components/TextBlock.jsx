@@ -20,8 +20,8 @@ export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
   }
 
   if (typeof children === "function") {
-    return <span className={className}>{children(currentPlatform)}</div>;
+    return <span className={className}>{children(currentPlatform)}</span>;
   }
 
-  return <span className={className}>{children}</div>;
+  return <span className={className}>{children}</span>;
 };

@@ -3,7 +3,12 @@ name: Getting Started
 route: /
 ---
 
-import { CodeBlock, TextBlock, Alert } from "components";
+import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { usePlatforms } from 'hooks'
+
+import smartlook from 'assets/smartlook_logo.svg'
+
+export const currentPlatform = 'test'
 
 # CodeBlock Example
 
@@ -54,9 +59,33 @@ objective-c snippet
 
 # Alert Example
 
-<Alert kind="info" visibleOn="android">info here</Alert>
-<Alert kind="important" visibleOn="android">important here</Alert>
-<Alert kind="warning" visibleOn="android">warning here</Alert>
+<Alert kind="info" visibleOn="android">
+  info here
+</Alert>
+<Alert kind="important" visibleOn="android">
+  important here
+</Alert>
+<Alert kind="warning" visibleOn="android">
+  warning here
+</Alert>
+
+# Code independent of platform
+
+<Code language="bash">sudo rm -rf *</Code>
+
+# Link
+
+<Link to="/playground?platform=ios#test">Playground</Link>
+
+# Image
+
+<img src={smartlook} />
+
+# Test
+
+<React.Fragment>
+  {currentPlatform}
+</React.Fragment>
 
 # Getting Started
 

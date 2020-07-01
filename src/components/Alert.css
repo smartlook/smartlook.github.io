@@ -1,4 +1,5 @@
 .component-alert {
+  display: block;
   padding: 15px 20px;
   background: white;
   border-radius: 3px;

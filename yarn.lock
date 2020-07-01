@@ -9129,7 +9129,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-mime@^2.0.3, mime@^2.4.4, mime@^2.4.6:
+mime@^2.0.3, mime@^2.3.1, mime@^2.4.4, mime@^2.4.6:
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.6.tgz#e5b407c90db442f2beb5b162373d07b69affa4d1"
   integrity sha512-RZKhC3EmpBchfTGBVb8fb+RL2cWyw/32lshnsETttkBAyAUXSGHxbEJWWRXc751DrIxG1q04b8QwMbAwkRPpUA==
@@ -11521,6 +11521,14 @@ remark-docz@^2.1.0:
     "@babel/types" "^7.5.5"
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
+
+remark-embed-images@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/remark-embed-images/-/remark-embed-images-2.0.0.tgz#75ec6da6cf654ad2c3df8dfeb0a7b1ac6da607da"
+  integrity sha512-0B1insfcOtvOM0n3KbYeemt3Dm82f89vglD05f3lDwlvXhBRg+sANgx1aOfeEFUUEaQuzK7Qo62GrZD7HuYwSw==
+  dependencies:
+    mime "^2.3.1"
+    unist-util-visit "^2.0.0"
 
 remark-footnotes@1.0.0:
   version "1.0.0"
