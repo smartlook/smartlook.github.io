@@ -4,6 +4,8 @@ import cx from "classnames";
 
 import { Code as PrismRenderer } from "gatsby-theme-docz/src/components/Code";
 
+import "./Code.css";
+
 export const Code = ({ snippets }) => {
   const [languageTab, setLanguageTab] = React.useState(
     Object.keys(snippets)[0]
