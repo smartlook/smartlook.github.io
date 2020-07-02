@@ -71,7 +71,22 @@ objective-c snippet
 
 # Code independent of platform
 
-<Code language="bash">sudo rm -rf *</Code>
+<Code
+  snippets={{
+    xml: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+`,
+    javascript: `
+js snippet
+`,
+    c: `
+c snippet
+`,
+  }}
+/>
 
 # Link
 

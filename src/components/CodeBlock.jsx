@@ -5,7 +5,7 @@ import { Code } from "gatsby-theme-docz/src/components/Code";
 import { PLATFORMS } from "config/constants";
 import { usePlatforms } from "hooks";
 
-import "./CodeBlock.css";
+import "./Code.css";
 
 export const CodeBlock = ({ snippets }) => {
   const { currentPlatform } = usePlatforms();
