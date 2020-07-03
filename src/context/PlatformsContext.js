@@ -12,6 +12,7 @@ export const PlatformsProvider = ({ children }) => {
   const [state, dispatch] = React.useState({
     platforms: PLATFORMS.map((p) => p.value),
     currentPlatform: DEFAULT_PLATFORM,
+    selectedLanguages: null,
   });
 
   const { qs } = useQueryString("platform");
@@ -52,10 +53,24 @@ export const PlatformsProvider = ({ children }) => {
     });
   };
 
+  const handleSetSelectedLanguages = (lang) => {
+    dispatch((prevState) => {
+      return {
+        ...prevState,
+        selectedLanguages: {
+          ...prevState.selectedLanguages,
+          ...lang,
+        },
+      };
+    });
+  };
+
   const contextValue = {
     platforms: state.platforms,
     currentPlatform: state.currentPlatform,
+    selectedLanguages: state.selectedLanguages,
     handleSetPlatform,
+    handleSetSelectedLanguages,
   };
 
   return (
