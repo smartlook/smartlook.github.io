@@ -1,51 +1,65 @@
 import React from "react";
 
-import { Code } from "gatsby-theme-docz/src/components/Code";
+import cx from "classnames";
+
+import { Code } from "./Code";
 
 import { PLATFORMS } from "config/constants";
 import { usePlatforms } from "hooks";
 
-import "./CodeBlock.css";
-
 export const CodeBlock = ({ snippets }) => {
-  const { currentPlatform } = usePlatforms();
+  const {
+    currentPlatform,
+    selectedLanguages,
+    handleSetSelectedLanguages,
+  } = usePlatforms();
 
   const snippet = snippets[currentPlatform];
 
-  const findDefaultLanguage = () =>
-    PLATFORMS.find((p) => p.value === currentPlatform).defaultLanguage;
-
-  const [currentTab, setCurrentTab] = React.useState();
+  const [shownTab, setShownTab] = React.useState();
 
   React.useEffect(() => {
-    setCurrentTab(findDefaultLanguage());
-  }, [currentPlatform]);
+    if (selectedLanguages && selectedLanguages[currentPlatform]) {
+      setShownTab(selectedLanguages[currentPlatform]);
+      return;
+    }
 
-  if (
-    typeof snippet === "undefined" ||
-    typeof snippet[currentTab] === "undefined"
-  ) {
+    setShownTab(findTab());
+  }, [currentPlatform, selectedLanguages]);
+
+  const findTab = () => {
+    const platformDefaultLanguage = PLATFORMS.find(
+      (platform) => platform.value === currentPlatform
+    ).defaultLanguage;
+
+    if (!snippet) {
+      return platformDefaultLanguage;
+    }
+
+    const snippetLanguages = Object.keys(snippets[currentPlatform]);
+
+    if (!snippetLanguages.includes(platformDefaultLanguage)) {
+      return snippetLanguages[0];
+    }
+
+    return platformDefaultLanguage;
+  };
+
+  const handleTabChange = (tab) => {
+    handleSetSelectedLanguages({
+      [currentPlatform]: tab,
+    });
+  };
+
+  if (!snippet || !snippet[shownTab]) {
     return null;
   }
 
   return (
-    <React.Fragment>
-      <div className="codeblock-tabs">
-        {Object.keys(snippet).map((s, index) => {
-          return (
-            <span
-              key={`tab-${s}`}
-              className={`codeblock-tab ${
-                s === currentTab ? "codeblock-tab-active" : ""
-              }`}
-              onClick={() => setCurrentTab(s)}
-            >
-              {s}
-            </span>
-          );
-        })}
-      </div>
-      <Code className={currentTab}>{snippet[currentTab]}</Code>
-    </React.Fragment>
+    <Code
+      snippets={snippet}
+      shownTab={shownTab}
+      onTabChange={handleTabChange}
+    />
   );
 };

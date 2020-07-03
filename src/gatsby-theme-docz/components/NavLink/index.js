@@ -11,7 +11,7 @@ import * as styles from "./styles";
 const getHeadings = (route, docs) => {
   const doc = docs.find((doc) => doc.route === route);
   const headings = get("headings", doc);
-  return headings ? headings.filter((heading) => heading.depth === 2) : [];
+  return headings ?? [];
 };
 
 const getCurrentHash = () => {

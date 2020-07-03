@@ -1,13 +1,18 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx, Box, Flex } from "theme-ui";
 
 import * as styles from "./styles";
 import { Logo } from "../Logo";
 
+import Menu from "react-feather/dist/icons/menu";
+
 import { PLATFORMS } from "config/constants";
 import { usePlatforms, useQueryString } from "hooks";
 
 export const Header = (props) => {
+  const { onOpen } = props;
+
   const { currentPlatform, handleSetPlatform } = usePlatforms();
   const { handleSetQs } = useQueryString("platform");
 
@@ -19,6 +24,11 @@ export const Header = (props) => {
 
   return (
     <div sx={styles.wrapper}>
+      <Box sx={styles.menuIcon}>
+        <button sx={styles.menuButton} onClick={onOpen}>
+          <Menu size={25} />
+        </button>
+      </Box>
       <div sx={styles.innerContainer}>
         <Logo />
         <Flex>
