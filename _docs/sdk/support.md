@@ -14,10 +14,6 @@ Please report all issues to
 - [iOS SDK issue tracker](https://github.com/smartlook/smartlook-ios-sdk/issues)
 - [Android SDK issue tracker](https://github.com/smartlook/smartlook-android-sdk/issues)
 
-## Realtime support
-
-You can also contact our developers directly on our [Discord server](https://discord.gg/SbEt98m).
-
 ## How to submit an issue
 
 To resolve your issue more quickly, please provide following information:
