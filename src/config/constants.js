@@ -12,12 +12,12 @@ export const PLATFORMS = [
   {
     value: "ionic",
     displayName: "Ionic",
-    defaultLanguage: "",
+    defaultLanguage: "typescript",
   },
   {
     value: "cordova",
     displayName: "Cordova",
-    defaultLanguage: "",
+    defaultLanguage: "javascript",
   },
   {
     value: "xamarin",
