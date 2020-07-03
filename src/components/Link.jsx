@@ -6,13 +6,19 @@ import { Link as GatsbyRouterLink } from "gatsby";
 
 import { usePlatforms, getQueryStringValue } from "hooks";
 
-export const Link = ({ to, children, ...props }) => {
+export const Link = ({ to, platform, children, ...props }) => {
   const { currentPlatform } = usePlatforms();
 
-  const nextUrl = to;
+  let nextPlatform;
+
+  if (!platform) {
+    nextPlatform = currentPlatform;
+  } else {
+    nextPlatform = platform;
+  }
 
   return (
-    <GatsbyRouterLink to={nextUrl} {...props}>
+    <GatsbyRouterLink to={`${to}?platform=${nextPlatform}`} {...props}>
       {children}
     </GatsbyRouterLink>
   );

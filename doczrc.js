@@ -4,4 +4,5 @@ export default {
   dest: "/docs",
   base: "/nextgen-docs",
   // mdPlugins: [embed],
+  menu: ["SDK Installation", "Cookbooks", "Conceptual"],
 };

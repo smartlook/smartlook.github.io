@@ -1,5 +1,7 @@
 import React from "react";
 
+import cx from "classnames";
+
 import { Code } from "gatsby-theme-docz/src/components/Code";
 
 import { PLATFORMS } from "config/constants";
@@ -43,23 +45,41 @@ export const CodeBlock = ({ snippets }) => {
     return null;
   }
 
-  return (
-    <React.Fragment>
-      <div className="codeblock-tabs">
-        {Object.keys(snippet).map((lang, index) => {
+  const handleSetLanguageTab = (e) => {
+    setShownSnippet(e.target.getAttribute("data-language"));
+  };
+
+  const renderTabs = () => {
+    if (Object.keys(snippets).length === 1) {
+      return null;
+    }
+
+    return (
+      <div className="component-code-tabs">
+        {Object.keys(snippet).map((snippetLanguage) => {
+          const classNames = cx("component-code-tabs__tab", {
+            "component-code-tabs__tab--active":
+              shownSnippet === snippetLanguage,
+          });
+
           return (
             <span
-              key={`tab-${lang}`}
-              className={`codeblock-tab ${
-                lang === shownSnippet ? "codeblock-tab--active" : ""
-              }`}
-              onClick={() => setShownSnippet(lang)}
+              key={`code-tab-${snippetLanguage}`}
+              data-language={snippetLanguage}
+              className={classNames}
+              onClick={handleSetLanguageTab}
             >
-              {lang}
+              {snippetLanguage}
             </span>
           );
         })}
       </div>
+    );
+  };
+
+  return (
+    <React.Fragment>
+      {renderTabs()}
       <Code className={shownSnippet}>{snippet[shownSnippet]}</Code>
     </React.Fragment>
   );
