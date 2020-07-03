@@ -21,7 +21,7 @@ Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutab
 Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
 Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
       `,
-      javascript: `
+      java: `
 js snippet
       `,
       c: `
@@ -29,13 +29,42 @@ c snippet
       `,
     },
     ios: {
+      "objective-c": `
+objective-c snippet
+      `,
       swift: `
 Smartlook.startRecording() // start or resume paused recording
 Smartlook.stopRecording()  // pause recording
 Smartlook.isRecording()    // returns true/false
       `,
+    },
+  }}
+/>
+
+<CodeBlock
+  snippets={{
+    android: {
+      xml: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+      `,
+      java: `
+js snippet
+      `,
+      c: `
+c snippet
+      `,
+    },
+    ios: {
       "objective-c": `
 objective-c snippet
+      `,
+      swift: `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
       `,
     },
   }}

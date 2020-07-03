@@ -9,12 +9,10 @@ import { usePlatforms, getQueryStringValue } from "hooks";
 export const Link = ({ to, platform, children, ...props }) => {
   const { currentPlatform } = usePlatforms();
 
-  let nextPlatform;
+  let nextPlatform = platform;
 
   if (!platform) {
     nextPlatform = currentPlatform;
-  } else {
-    nextPlatform = platform;
   }
 
   return (

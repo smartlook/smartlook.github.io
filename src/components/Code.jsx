@@ -6,13 +6,24 @@ import { Code as PrismRenderer } from "gatsby-theme-docz/src/components/Code";
 
 import "./Code.css";
 
-export const Code = ({ snippets }) => {
+export const Code = ({ snippets, shownTab, onTabChange }) => {
   const [languageTab, setLanguageTab] = React.useState(
-    Object.keys(snippets)[0]
+    shownTab ?? Object.keys(snippets)[0]
   );
 
+  React.useEffect(() => {
+    if (shownTab) {
+      setLanguageTab(shownTab);
+    }
+  }, [shownTab]);
+
   const handleSetLanguageTab = (e) => {
-    setLanguageTab(e.target.getAttribute("data-language"));
+    const nextLanguageTab = e.target.getAttribute("data-language");
+    setLanguageTab(nextLanguageTab);
+
+    if (onTabChange) {
+      onTabChange(nextLanguageTab);
+    }
   };
 
   const renderTabs = () => {
