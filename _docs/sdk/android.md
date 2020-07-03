@@ -391,7 +391,7 @@ Smartlook.getDashboardSessionUrl()
 This URL can then be shared to everyone who has access to the dashboard.
 
 ### Network Interceptor
-comming soon (if you want to beta test contact us on [Discord server](https://discord.gg/SbEt98m))
+comming soon
 
 ## Rendering mode [BETA]
 
