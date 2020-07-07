@@ -1,18 +1,33 @@
 import React from "react";
 
-import { Code } from "gatsby-theme-docz/src/components/Code";
+import cx from "classnames";
+
+import { Code } from "./Code";
 
 import { PLATFORMS } from "config/constants";
 import { usePlatforms } from "hooks";
 
-import "./CodeBlock.css";
-
 export const CodeBlock = ({ snippets }) => {
-  const { currentPlatform } = usePlatforms();
+  const {
+    currentPlatform,
+    selectedLanguages,
+    handleSetSelectedLanguages,
+  } = usePlatforms();
 
   const snippet = snippets[currentPlatform];
 
-  const findSnippet = () => {
+  const [shownTab, setShownTab] = React.useState();
+
+  React.useEffect(() => {
+    if (selectedLanguages && selectedLanguages[currentPlatform]) {
+      setShownTab(selectedLanguages[currentPlatform]);
+      return;
+    }
+
+    setShownTab(findTab());
+  }, [currentPlatform, selectedLanguages]);
+
+  const findTab = () => {
     const platformDefaultLanguage = PLATFORMS.find(
       (platform) => platform.value === currentPlatform
     ).defaultLanguage;
@@ -30,37 +45,21 @@ export const CodeBlock = ({ snippets }) => {
     return platformDefaultLanguage;
   };
 
-  const [shownSnippet, setShownSnippet] = React.useState();
+  const handleTabChange = (tab) => {
+    handleSetSelectedLanguages({
+      [currentPlatform]: tab,
+    });
+  };
 
-  React.useEffect(() => {
-    setShownSnippet(findSnippet());
-  }, [currentPlatform]);
-
-  if (
-    typeof snippet === "undefined" ||
-    typeof snippet[shownSnippet] === "undefined"
-  ) {
+  if (!snippet || !snippet[shownTab]) {
     return null;
   }
 
   return (
-    <React.Fragment>
-      <div className="codeblock-tabs">
-        {Object.keys(snippet).map((lang, index) => {
-          return (
-            <span
-              key={`tab-${lang}`}
-              className={`codeblock-tab ${
-                lang === shownSnippet ? "codeblock-tab--active" : ""
-              }`}
-              onClick={() => setShownSnippet(lang)}
-            >
-              {lang}
-            </span>
-          );
-        })}
-      </div>
-      <Code className={shownSnippet}>{snippet[shownSnippet]}</Code>
-    </React.Fragment>
+    <Code
+      snippets={snippet}
+      shownTab={shownTab}
+      onTabChange={handleTabChange}
+    />
   );
 };

@@ -1,0 +1,23 @@
+.component-alert {
+  display: block;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 3px;
+  color: white;
+}
+
+.component-alert + .component-alert {
+  margin-top: 32px;
+}
+
+.component-alert--info {
+  background-color: #5352ed;
+}
+
+.component-alert--important {
+  background-color: #ffa502;
+}
+
+.component-alert--warning {
+  background-color: #ff4757;
+}

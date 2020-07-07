@@ -3,21 +3,25 @@ name: Getting Started
 route: /
 ---
 
-import { CodeBlock } from "components/CodeBlock";
-import { TextBlock } from "components/TextBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { usePlatforms } from 'hooks'
 
-# CodeBlock example
+import smartlook from 'assets/smartlook_logo.svg'
+
+export const currentPlatform = 'test'
+
+# CodeBlock Example
 
 <CodeBlock
   snippets={{
     android: {
-      java: `
+      xml: `
 Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
 Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
       `,
-      javascript: `
+      java: `
 js snippet
       `,
       c: `
@@ -25,17 +29,48 @@ c snippet
       `,
     },
     ios: {
+      "objective-c": `
+objective-c snippet
+      `,
       swift: `
 Smartlook.startRecording() // start or resume paused recording
 Smartlook.stopRecording()  // pause recording
 Smartlook.isRecording()    // returns true/false
       `,
+    },
+  }}
+/>
+
+<CodeBlock
+  snippets={{
+    android: {
+      xml: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+      `,
+      java: `
+js snippet
+      `,
+      c: `
+c snippet
+      `,
+    },
+    ios: {
       "objective-c": `
 objective-c snippet
+      `,
+      swift: `
+Smartlook.startRecording() // start or resume paused recording
+Smartlook.stopRecording()  // pause recording
+Smartlook.isRecording()    // returns true/false
       `,
     },
   }}
 />
+
+# TextBlock Example
 
 <TextBlock visibleOn="ios,android,cordova">
   {(platform) => {
@@ -50,6 +85,57 @@ objective-c snippet
     );
   }}
 </TextBlock>
+
+# Alert Example
+
+<Alert kind="info" visibleOn="android">
+  info here
+</Alert>
+<Alert kind="important" visibleOn="android">
+  important here
+</Alert>
+<Alert kind="warning" visibleOn="android">
+  warning here
+</Alert>
+
+# Code independent of platform
+
+<Code
+  snippets={{
+    xml: `
+Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+`,
+    javascript: `
+js snippet
+`,
+    c: `
+c snippet
+`,
+  }}
+/>
+
+# Link
+
+keeps the selected platform
+
+<Link to="/">Keep platform</Link>
+
+switch the platform
+
+<Link to="/" platform="ios">Switch platform</Link>
+
+# Image
+
+<img src={smartlook} />
+
+# Test
+
+<React.Fragment>
+  {currentPlatform}
+</React.Fragment>
 
 # Getting Started
 

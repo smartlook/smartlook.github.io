@@ -5,115 +5,76 @@ route: /sdk-installation/ios
 ---
 
 import { CodeBlock } from "components/CodeBlock";
-
-<CodeBlock
-  snippets={{
-    ios: {
-      code: `
-#import <Smartlook/Smartlook.h>
-      `,
-      language: "objective-c", // nebo objective-c
-    },
-    ios: {
-      code: `
-import Smartlook
-      `,
-      language: "swift", // nebo objective-c
-    },
-  }}
-/>
+import { TextBlock } from "components/TextBlock";
 
 # iOS SDK Installation
 
 There are several possible ways how to integrate Smartlook SKD into a native iOS (Swift or ObjC project).
 
-Note: if you integrate Smartlook SDK using Segment, please follow these instructions: [link] instead this document.
+Note: if you integrate Smartlook SDK using Segment, please follow these instead [this document](/sdk-installation/segment).
 
-## Installing
+## Cocoapods
 
-*Note: the following should be tabbed options*
-
-### Cocoapods
-
+<CodeBlock
+  snippets={{
+    ios: {
+      ruby: `
 pod Smartlook
+      `,
+    },
+  }}
+/>
 
 More about Cocoapods https://cocoapods.org.
 
-### Manual Integration
+## Manual Integration
 
 1. Download the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 
 ## Quick Start 
 
-To start recording, you need your unique API key. This can be found in your apps settings in Smartlook Dashboard: https://app.smartlook.com/settings/projects
+To start recording, you need your unique API key. This can be found in your apps settings in [Smartlook Dashboard](https://app.smartlook.com/settings/projects).
 
-### Swift
-
-In your `AppDelegate.swift` add among other imports
-
-
-# iOS Integration
-
-There are several possible ways how to integrate Smartlook SKD into a native iOS (Swift or ObjC project).
-
-Note: if you integrate Smartlook SDK using Segment, please follow these instructions: [link] instead this document.
-
-## Installing
-
-*Note: the following should be tabbed options*
-
-### Cocoapods
-
-pod Smartlook
-
-More about Cocoapods https://cocoapods.org.
-
-### Manual Integration
-
-1. Download the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip) directly.
-2. Unzip the file and add Smartlook.framework to your Xcode project.
-
-## Quick Start 
-
-To start recording, you need your unique API key. This can be found in your apps settings in Smartlook Dashboard: https://app.smartlook.com/settings/projects
-
-### Swift
-
-In your `AppDelegate.swift` add among other imports
-
-    import Smartlook
-
-
-then in `application(_,didLaunchWithOptions:)`
-
-```swift
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-    Smartlook.setup(key: "YOUR_API_KEY")
-    Smartlook.startRecording()`
-```
-
-### ObjC
-
-In your `AppDelegate.m` add among other imports
-
-```objc
+In your `AppDelegate` add among other imports
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+import Smartlook
+      `,
+      objc: `
 #import <Smartlook/Smartlook.h>
-```
+      `,
+    },
+  }}
+/>
 
-then in `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions`
+and then in the application launch method 
 
-```objc
-  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-        
-    [Smartlook setupWithKey:@"YOUR_API_KEY"];
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    Smartlook.setup(key: "YOUR_API_KEY")
+    Smartlook.startRecording()
+      `,
+      objc: `
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+      
+    [Smartlook setupWithKey:];
     [Smartlook startRecording];
-```
+      `,
+    },
+  }}
+/>
 
-*Note: the following should be in common text included into all integrations*
 
-Thats all you need for a quck start.
+Note: the following should be in common text included into all integrations
+
+Thats all you need for a quick start.
 
 NOTE: SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
 
@@ -125,4 +86,5 @@ After this basic setup SDK will:
 - records install referrer if present.
 - and much more!
 
-For any SDK customization please refer to our api reference.
+For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=iOS).
+
