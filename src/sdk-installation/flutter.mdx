@@ -5,65 +5,48 @@ menu: SDK Installation
 route: /sdk-installation/flutter
 ---
 
+import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { usePlatforms } from 'hooks'
 
-## Reporting issues
+# Flutter
 
-For more information on how to report issues please check our [Smartlook SDK Support section](https://smartlook.github.io/docs/sdk/support/#how-to-submit-an-issue).
+To add Smartlook into your Flutter project, app id as another dependency to your public `pubspec.yaml`
 
-## Project build
-
-### Android / iOS
-
-Plugin integration is described on official <a href="https://pub.dev/packages/smartlook"> pub.dev site</a>.
+<Code
+  snippets={{
+    yaml: `
+dependencies:
+  smartlook:
+`,
+  }}
+/>
 
 ## Quick Start
 
-For full documentation, see <a href="https://smartlook.github.io/docs/sdk/android/"> Android documentation for native SDK</a>. Note that not all native SDK API methods are available on Flutter.
-
-### Add Smartlook to your Project
-
-You can integrate Smartlook to you flutter app by adding it as another dependency to your public `pubspec.yaml`
-```yaml
-dependencies:
-  smartlook:
-```
-
-### Start Smartlook
-
 To start recording, call the following as early as possible in the app lifecycle (e.g., when initializing your app state):
 
-```dart
+<Code
+  snippets={{
+    dart: `
 Smartlook.setupAndStartRecording('YOUR_API_KEY');
-```
+`,
+  }}
+/>
 
+[Note: the following should be in common text included into all SDK installtation docs]
 
-## Platform notes
+Thats all you need for a quick start.
 
-does not automatically record events and navigation, this this is important
+<Alert kind="info" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+</Alert>
 
-with links to the reference
+After this basic setup SDK will:
+- record your application.
+- stop itself automatically on application closure.
+- automatically hide some default sensitive views.
+- detect basic user gestures and touches.
+- records install referrer if present.
+- and much more!
 
-### Record Navigation
-
-On Flutter, Smartlook cannot record user navigation in the app automatically, you have to add navigation events (when user enters and exits distinct parts of the app) in the code yourself:
-
-```dart
-// the first argument identifies the app section, the second the event type
-Smartlook.trackNavigationEvent("shopping_cart", SmartlookNavigationEventType.enter);
-Smartlook.trackNavigationEvent("shopping_cart", SmartlookNavigationEventType.exit);
-```
-
-### Record Other Events
-
-Recording is not limited to navigation events, you can record any event and its properties in the app by calling
-```dart
-Smartlook.trackCustomEvent("custom_event_name", { "property_1" : "value_1"} );
-```
-
-### Masking Sensitive Data
-
-Somethimes, you don't want to record the screen as user enters sensitive data, e.g., passwords. In such a situation, screen recoring can be obfuscated by calling
-```dart
-Smartlook.startFullscreenSensitiveMode();
-Smartlook.stopFullscreenSensitiveMode();
-```
+For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=flutter).
