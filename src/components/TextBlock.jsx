@@ -5,7 +5,11 @@ import { usePlatforms } from "hooks";
 export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
   const { currentPlatform } = usePlatforms();
 
-  let isMatch = false;
+  const showOn = (platform, text) => {
+    return platform === currentPlatform ? text : "";
+  };
+
+  let isMatch = true;
 
   if (visibleOn !== undefined) {
     isMatch = visibleOn.split(",").includes(currentPlatform);
@@ -20,8 +24,8 @@ export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
   }
 
   if (typeof children === "function") {
-    return <span className={className}>{children(currentPlatform)}</span>;
+    return <p className={className}>{children(showOn)}</p>;
   }
 
-  return <span className={className}>{children}</span>;
+  return <p className={className}>{children}</p>;
 };
