@@ -4,4 +4,47 @@ menu: SDK Installation
 route: /sdk-installation/xamarin
 ---
 
+import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { usePlatforms } from 'hooks'
+
 # Xamarin
+
+Smartlook SDK is provided in the form of a [NuGet](https://www.nuget.org/packages/Smartlook/), and is currently in the prerelease state.
+
+## Quick Start 
+
+To start recording, you need your unique API key. This can be found in your apps settings in [Smartlook Dashboard](https://app.smartlook.com/settings/projects).
+
+To access Smartlook API, use static methods exposed by `Smartlook.Analytics` class. The methods are the same for multi-platform, Android or iOS projects.
+
+The most straightforward way to run Smartlook is by calling the following method at the very begin of the app life-cycle (e.g., iOS: `AppDelegates`’s `FinishedLaunching`, Android: `Application` class `OnCreate`):
+
+<Code
+  snippets={{
+    csharp: `
+using Smartlook;
+  
+...
+  
+Smartlook.Analytics.SetupAndStart("your-app-sdk-key");
+      `,
+  }}
+/>
+
+[Note: the following should be in common text included into all SDK installtation docs]
+
+Thats all you need for a quick start.
+
+<Alert kind="info" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+</Alert>
+
+After this basic setup SDK will:
+- record your application.
+- stop itself automatically on application closure.
+- automatically hide some default sensitive views.
+- detect basic user gestures and touches.
+- records install referrer if present.
+- and much more!
+
+For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=xamarin).
