@@ -10,14 +10,14 @@
   margin-top: 32px;
 }
 
-.component-alert--info {
+.component-alert--note {
   background-color: #5352ed;
 }
 
-.component-alert--important {
-  background-color: #ffa502;
+.component-alert--example {
+  background-color: #f7ca18;
 }
 
-.component-alert--warning {
-  background-color: #ff4757;
+.component-alert--important {
+  background-color: #ffa400;
 }
