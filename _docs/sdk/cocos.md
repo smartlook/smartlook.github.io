@@ -23,7 +23,7 @@ allprojects {
 }
 ```
 
-Also add this line to your module gradle: `implementation('com.smartlook.recording:app:1.4.2-cocos')`
+Also add this line to your module gradle: `implementation('com.smartlook.recording:app:1.5.0-cocos')`
 
 
 ### iOS

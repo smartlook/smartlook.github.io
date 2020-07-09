@@ -30,7 +30,7 @@ By default SDK uploads sessions only on **WiFi** if you want to upload sessions 
 Add the following dependency in your app's build.gradle:
 
 ```gradle
-implementation('com.smartlook.recording:app:1.4.2-native')
+implementation('com.smartlook.recording:app:1.5.0-native')
 ```
 
 And add the following in your project's build.gradle:
@@ -101,6 +101,16 @@ Simply call:
 ```java
 Smartlook.isRecording()
 ```
+
+### Session/Visitor reset
+
+When session or user should be reset while the app is running, there is a handy method for it too:
+
+```java
+Smartlook.resetSession(boolean resetUser)
+```
+
+The `resetUser` attribute indicates, whether the user identity should be also reset, or whether the new session should retain it.
 
 ### Blacklisted views
 SDK contains a list of blacklisted/sensitive views. These views won't be recorded (only single color rectangle is drawn instead of the view).
@@ -385,7 +395,15 @@ Smartlook.setReferrer(String referrer, String source)
 You can obtain URL leading to the dashboard for a currently recorded session:
 
 ```java
-Smartlook.getDashboardSessionUrl()
+Smartlook.getDashboardSessionUrl(boolean withCurrentTimestamp)
+```
+
+## Shareable visitor URL
+
+You can obtain URL leading to the visitor overview in dashboard:
+
+```java
+Smartlook.getDashboardVisitorUrl()
 ```
 
 This URL can then be shared to everyone who has access to the dashboard.
