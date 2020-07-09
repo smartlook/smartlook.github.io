@@ -2,7 +2,8 @@
 name: API reference
 route: /api_reference
 ---
-import {CodeBlock} from "components/CodeBlock"
+import { CodeBlock, MD } from "components"
+import { networkIntercepting } from 'markups/api_reference'
 
 # Lifecycle & recording
 
@@ -41,7 +42,7 @@ class MyCustomApplication : Application() {
     cordova: {
       javascript: `
 if(document.readyState === "complete") {
-  document.addEventListener("deviceready", onDeviceReady, false); 
+  document.addEventListener("deviceready", onDeviceReady, false);
 }\n
 function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
@@ -215,7 +216,7 @@ Smartlook.isRecording()
       javascript: `
 cordova.plugins.SmartlookPlugin.isRecording(
     function(isRecording){
-        //check here 
+        //check here
     }
 )
       `,
@@ -230,7 +231,7 @@ When using **native** rendering mode, **SDK can record sensitive data in your ap
 
 ## Blacklisted views
 
-You can hide any view in the recording by marking it as a **blacklisted** view. 
+You can hide any view in the recording by marking it as a **blacklisted** view.
 
 View can be marked as blacklisted by calling:
 
@@ -384,7 +385,7 @@ Smartlook.unregisterWhitelistedViews(views: List<View>)
 />
 
 Cordova, Ionic
-Some elements in your application cannot be recorded because of security (posibly GDPR) reasons. 
+Some elements in your application cannot be recorded because of security (posibly GDPR) reasons.
 All of theese can be marked and will be hidden on the recording.
 
 NOTE: Sensitive elements are **hidden locally** on the device, no sentive data is transfered over network and stored in our dashboard.
@@ -452,7 +453,7 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING}
   }}
 />
 
-Android, iOS 
+Android, iOS
 TIP: SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
 
 TIP: Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
@@ -610,7 +611,7 @@ TIP: Names of some automatically detected events can be customized.
 
 Cordova
 
-On web based frameworks we are not able to autodetect all events like on native frameworks. With that said we are still able to detect Application crashes. 
+On web based frameworks we are not able to autodetect all events like on native frameworks. With that said we are still able to detect Application crashes.
 For everything else you need to use custom events.
 
 ## Custom event
@@ -665,14 +666,14 @@ Smartlook.trackCustomEvent(
   }}
 />
 
-NOTE: Event properties will effectively use only flat json object. 
+NOTE: Event properties will effectively use only flat json object.
 This means that if you pass json object that includes objects or arrays as a child elements these elements are goint to be ignored.
 
 Android
 NOTE: If you struggle with serialization of your data take a look here.
 
 ## Navigation event
-You can track screen/navigation transitions manually by calling: 
+You can track screen/navigation transitions manually by calling:
 
 <CodeBlock
   snippets={{
@@ -897,7 +898,7 @@ Or `Activity`/`Fragment` root view can be tagged directly in `XML` layout file:
 />
 
 ## Global event properties
-SDK lets you set data that will be attached to every event. We call these **global event properties**. 
+SDK lets you set data that will be attached to every event. We call these **global event properties**.
 You can set global event properties:
 
 <CodeBlock
@@ -1000,7 +1001,7 @@ Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode.F
 TIP: Take a look at pin code keyboard sample, demonstrating usage of analytic event modes.
 
 # Rendering
-SDK can use different methods of capturing screen image data. We call these rendering modes. 
+SDK can use different methods of capturing screen image data. We call these rendering modes.
 
 ## Set rendering mode
 You can change rendering mode on SDK setup using builder:
@@ -1100,155 +1101,11 @@ Rendering mode options for `WIREFRAME` rendering mode:
 * `RenderingMode.ICON_BLUEPRINT`
 
 # Crash reporting
-todo 
+todo
 
 Android
-# Network intercepting
-You can track your apps' HTTP traffic using the network inceptor provided by the SDK. This feature is available to you if you are using **OkHttp** for your HTTP/REST communication. 
 
-NOTE: If you are using another HTTP library that allows intercepting, please feel free to submit a feature request here.
-
-## OkHttp interceptor
-If you are using `OkHttp` you can add Smartlook interceptor as a another `NetworkInterceptor` when creating a `OkHttpClient` like this:
-
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
-OkHttpClient client = new OkHttpClient.Builder()
-    .addNetworkInterceptor(new SmartlookOkHttpInterceptor())
-    .build();
-      `,
-      kotlin: `
-val client = OkHttpClient.Builder()
-    .addNetworkInterceptor(SmartlookOkHttpInterceptor())
-    .build()
-      `,
-    },
-  }}
-/>
-
-We will **not read or send out any body data**, we are reading and sending only these request metadata:
-* **Request url** that can be stripped of any sensitive data -> read more.
-* **Http method** used for this request.
-* **Request headers** that can be filtered out so they do not leak any sensitive data.
-* **Response headers** that are filtered out so they do not leak any sensitive data.
-* **Protocol** negotiated by this connection.
-* **Duration** between request and response/failure.
-* **Request status** stating if the request was successful or eventually how it failed, can be one of:
-  * Ok
-  * Error
-  * Abort
-  * Timeout
-* **Status code** of http response.
-* Flag stating if response was received from **cache**.
-
-NOTE: All intercepted requests can be displayed in **dev tools** on every recording.
-
-### Url masks
-You can hide sensitive parts of request URLs using `UrlMask`:
-
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
-new UrlMask(String regex);
-new UrlMask(String regex, String replaceWith);
-      `,
-      kotlin: `
-UrlMask(regex: String)
-UrlMask(regex: String, replaceWith: String)
-      `,
-    },
-  }}
-/>
-
-NOTE: If you don't specify `replaceWith` `String` explicitly the default replace `String` is used.
-
-You need to initialize `SmartlookOkHttpInterceptor` using `Builder` to define used `UrlMask`s:
-
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
-new SmartlookOkHttpInterceptor.Builder()
-                .addUrlMask(UrlMask urlMask)
-                .build();
-      `,
-      kotlin: `
-SmartlookOkHttpInterceptor.Builder()
-                .addUrlMask(urlMask: UrlMask)
-                .build()
-      `,
-    },
-  }}
-/>
-
-EXAMPLE: We are intercepting request with URL containing sensitive query named `secret`:
-
-```
-https://example.com/page?secret=password&second=query
-```
-
-The content of sensitive query can be hidden for intercepting using `UrlMask`:
-
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
-SmartlookOkHttpInterceptor interceptor = new SmartlookOkHttpInterceptor.Builder()
-        .addUrlMask(new UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
-        .build();\n
-OkHttpClient client = new OkHttpClient.Builder()
-        .addNetworkInterceptor(interceptor)
-        .build();
-      `,
-      kotlin: `
-val interceptor = SmartlookOkHttpInterceptor.Builder()
-        .addUrlMask(UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
-        .build()\n
-val client = OkHttpClient.Builder()
-        .addNetworkInterceptor(interceptor)
-        .build()
-      `,
-    },
-  }}
-/>
-
-With above shown `UrlMask` intercepted request will have following URL stored:
-
-```
-https://example.com/page?secret=<sensitive>&second=query
-```
-
-### Sensitive headers
-Intercepted headers can contain sensitive data, so they need to be filtered out by their name. This can be done using `sensitiveHeaderNameRegexps`, this list of sensitive header names contains these regular expressions by default:
-* `“.*csrf.*”`
-* `".*token.*"`
-* `".*auth.*"`
-* `“.*key.*"`
-* `".*cookie.*"`
-
-You can define your custom list of sensitive header name regular expressions:
-
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
-new SmartlookOkHttpInterceptor.Builder()
-        .addSensitiveHeaderNameRegex(String headerRegex)
-        .build();
-      `,
-      kotlin: `
-SmartlookOkHttpInterceptor.Builder()
-        .addSensitiveHeaderNameRegex(headerRegex: String)
-        .build()
-      `,
-    },
-  }}
-/>
-
-NOTE: When you add at least one sensitive header name regex default ones (shown above) are **not going to be used**. 
+<MD markup={networkIntercepting} visibleOn="android" />
 
 # Utility methods
 

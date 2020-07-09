@@ -9,7 +9,7 @@ export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
     return platform === currentPlatform ? text : "";
   };
 
-  let isMatch = false;
+  let isMatch = true;
 
   if (visibleOn !== undefined) {
     isMatch = visibleOn.split(",").includes(currentPlatform);

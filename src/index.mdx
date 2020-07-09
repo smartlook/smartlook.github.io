@@ -6,8 +6,6 @@ route: /
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-import {testMdx} from 'mdx/test'
-
 import smartlook from 'assets/smartlook_logo.svg'
 
 # CodeBlock Example
@@ -94,7 +92,7 @@ prop ${showOn("ios", "also you have access to the current platofrm, so somehow u
   Example Alert
 </Alert>
 
-<Alert kind="example" visibleOn="android">
+<Alert kind="example">
   Example Alert with CodeBlock inside
 
   <CodeBlock
@@ -159,7 +157,3 @@ switch the platform
 # Image
 
 <img src={smartlook} />
-
-# Test
-
-<MD markup={testMdx}/>
