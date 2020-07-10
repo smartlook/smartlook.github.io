@@ -3,7 +3,14 @@ name: API reference
 route: /api_reference
 ---
 import { CodeBlock, MD } from "components"
-import { networkIntercepting } from 'markups/api_reference'
+
+import {
+  networkIntercepting1,
+  networkIntercepting2,
+  networkIntercepting3,
+  networkIntercepting4,
+  networkIntercepting5
+} from 'markups/api_reference'
 
 # Lifecycle & recording
 
@@ -1103,9 +1110,104 @@ Rendering mode options for `WIREFRAME` rendering mode:
 # Crash reporting
 todo
 
-Android
+<MD markup={networkIntercepting1} visibleOn="android" />
 
-<MD markup={networkIntercepting} visibleOn="android" />
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+OkHttpClient client = new OkHttpClient.Builder()
+    .addNetworkInterceptor(new SmartlookOkHttpInterceptor())
+    .build();
+      `,
+      kotlin: `
+val client = OkHttpClient.Builder()
+    .addNetworkInterceptor(SmartlookOkHttpInterceptor())
+    .build()
+      `,
+    },
+  }}
+/>
+
+<MD markup={networkIntercepting2} visibleOn="android" />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new UrlMask(String regex);
+new UrlMask(String regex, String replaceWith);
+      `,
+      kotlin: `
+UrlMask(regex: String)
+UrlMask(regex: String, replaceWith: String)
+      `,
+    },
+  }}
+/>
+
+<MD markup={networkIntercepting3} visibleOn="android" />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(UrlMask urlMask)
+                .build();
+      `,
+      kotlin: `
+SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(urlMask: UrlMask)
+                .build()
+      `,
+    },
+  }}
+/>
+
+<MD markup={networkIntercepting4} visibleOn="android" />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+SmartlookOkHttpInterceptor interceptor = new SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(new UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build();\n
+OkHttpClient client = new OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build();
+      `,
+      kotlin: `
+val interceptor = SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build()\n
+val client = OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build()
+      `,
+    },
+  }}
+/>
+
+<MD markup={networkIntercepting5} visibleOn="android" />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(String headerRegex)
+        .build();
+      `,
+      kotlin: `
+SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(headerRegex: String)
+        .build()
+      `,
+    },
+  }}
+/>
 
 # Utility methods
 

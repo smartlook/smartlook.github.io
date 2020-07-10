@@ -54,11 +54,11 @@ export const Code = ({ snippets, shownTab, onTabChange }) => {
   };
 
   return (
-    <React.Fragment>
+    <div>
       {renderTabs()}
       <PrismRenderer className={languageTab}>
         {snippets[languageTab]}
       </PrismRenderer>
-    </React.Fragment>
+    </div>
   );
 };
