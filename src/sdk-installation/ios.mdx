@@ -9,11 +9,17 @@ import { usePlatforms } from 'hooks'
 
 # iOS SDK Installation
 
-There are several possible ways how to integrate Smartlook SKD into a native iOS (Swift or ObjC project).
+Smartlook SDK is distributted as a binary iOS framework. It is compatible with iOS 10+.
 
-Note: if you integrate Smartlook SDK using Segment, please please follow this [LINK]
+There are several possible ways how to install Smartlook SDK and integrate it to a native iOS (Swift or ObjC) project.
 
-## Cocoapods
+<Alert kind="note" invisibleOn="">
+This installation guide refers to the case, when Smartlook is installed in a nativelly created iOS app. If you use some 3rd party framework, like React Native, Cordova, Flutter, Unity etc. to create your app, see the respective SDK installation documentation instead.
+</Alert>
+
+## Installing using Cocoapods
+
+Add the Smartlok Pod to your `Podfile`.
 
 <Code
   snippets={{
@@ -25,16 +31,17 @@ pod Smartlook
 
 More about Cocoapods https://cocoapods.org.
 
-## Manual Integration
+## Manual SDK Installation
 
 1. Download the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip) directly.
 2. Unzip the file and add Smartlook.framework to your Xcode project.
 
-## Quick Start 
+# Start Recording 
 
-To start recording, you need your unique API key. This can be found in your apps settings in [Smartlook Dashboard](https://app.smartlook.com/settings/projects).
+First, add `Smartlook` to your `AppDelegate` among other imports, then *setup* and *start* recording in the application launch method.
 
-In your `AppDelegate` add among other imports
+**1. Import Smartlook**
+
 <Code
   snippets={{
     swift: `
@@ -46,7 +53,11 @@ import Smartlook
   }}
 />
 
-and then in the application launch method 
+**2. Setup Smartlook and start recording**
+
+<Alert kind="important">
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
+</Alert>
 
 <CodeBlock
   snippets={{
@@ -83,21 +94,30 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   }}
 />
 
-[Note: the following should be in common text included into all SDK installtation docs]
+
+---
+---
+---
+---
+
+_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
+
+<Alert kind="note" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
+</Alert>
 
 Thats all you need for a quick start.
 
-<Alert kind="info" invisibleOn="">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
-</Alert>
-
-After this basic setup SDK will:
+**After this basic setup SDK will:**
 - record your application.
 - stop itself automatically on application closure.
-- automatically hide some default sensitive views.
+<TextBlock invisibleOn="unity,unreal,cocos"><li />automatically hide some default sensitive views.</TextBlock>
 - detect basic user gestures and touches.
-- records install referrer if present.
+<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
 - and much more!
 
-For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=ios).
+For more advanced recording customization please refer to 
+<Link to="/api_reference" platform="ios">Smartlook API reference</Link>
+
+
 

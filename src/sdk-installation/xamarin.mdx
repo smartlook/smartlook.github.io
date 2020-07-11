@@ -9,42 +9,66 @@ import { usePlatforms } from 'hooks'
 
 # Xamarin
 
-Smartlook SDK is provided in the form of a [NuGet](https://www.nuget.org/packages/Smartlook/), and is currently in the prerelease state.
+## Smartlook NuGet
 
-## Quick Start 
+Smartlook SKD for Xamarin is provided in the form of a [NuGet](https://www.nuget.org/packages/Smartlook/) that wrapps up Smartlook iOS and Android native libraries into one universal interface.
 
-To start recording, you need your unique API key. This can be found in your apps settings in [Smartlook Dashboard](https://app.smartlook.com/settings/projects).
+The official Smartlook NuGet could be found here: [Smartlook Xamarin NuGet](https://www.nuget.org/packages/Smartlook/).
+
+Reasonable recent versions of iOS and Android are supported. For detailed info see the respective SDK installation documents here: [iOS](/sdk-installation/ios), [Android](/sdk-installation/android).
+
+## Setup and start recording 
+
+<Alert kind="important">
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
+</Alert>
 
 To access Smartlook API, use static methods exposed by `Smartlook.Analytics` class. The methods are the same for multi-platform, Android or iOS projects.
 
-The most straightforward way to run Smartlook is by calling the following method at the very begin of the app life-cycle (e.g., iOS: `AppDelegates`’s `FinishedLaunching`, Android: `Application` class `OnCreate`):
+The most straightforward way to run Smartlook is by setting and starting it up at the very begin of the app life-cycle 
+
+- **iOS**: `didFinishLaunchingWithOptions` of your `AppDelegates` class
+- **Android**: `onCreate()` of your `Application` class
+
+First, **include** Smartlook into the respective source code
 
 <Code
   snippets={{
     csharp: `
 using Smartlook;
-  
-...
-  
-Smartlook.Analytics.SetupAndStart("your-app-sdk-key");
+  `,
+  }}
+/>
+
+then **setup** and **start** it with 
+<Code
+  snippets={{
+    csharp: `
+Smartlook.Analytics.SetupAndStart("YOR_API_KEY");
       `,
   }}
 />
 
-[Note: the following should be in common text included into all SDK installtation docs]
+---
+---
+---
+---
+
+_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
+
+<Alert kind="note" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
+</Alert>
 
 Thats all you need for a quick start.
 
-<Alert kind="info" invisibleOn="">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
-</Alert>
-
-After this basic setup SDK will:
+**After this basic setup SDK will:**
 - record your application.
 - stop itself automatically on application closure.
-- automatically hide some default sensitive views.
+<TextBlock invisibleOn="unity,unreal,cocos"><li />automatically hide some default sensitive views.</TextBlock>
 - detect basic user gestures and touches.
-- records install referrer if present.
+<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
 - and much more!
 
-For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=xamarin).
+For more advanced recording customization please refer to 
+<Link to="/api_reference" platform="ios">Smartlook API reference</Link>
