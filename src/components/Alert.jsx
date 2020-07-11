@@ -5,7 +5,7 @@ import { TextBlock } from "./TextBlock";
 
 import "./Alert.css";
 
-export const Alert = ({ kind = "info", visibleOn, invisibleOn, children }) => {
+export const Alert = ({ kind = "note", visibleOn, invisibleOn, children }) => {
   const classnames = cx("component-alert", {
     [`component-alert--${kind}`]: true,
   });

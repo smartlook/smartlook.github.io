@@ -3,12 +3,10 @@ name: Getting Started
 route: /
 ---
 
-import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
 import smartlook from 'assets/smartlook_logo.svg'
-
-export const currentPlatform = 'test'
 
 # CodeBlock Example
 
@@ -73,29 +71,58 @@ Smartlook.isRecording()    // returns true/false
 # TextBlock Example
 
 <TextBlock visibleOn="ios,android,cordova">
-  {(platform) => {
-    return (
-      <span>
-        example block that is rendered only on defined platforms in the
-        'visibleOn' prop{" "}
-        {platform === "ios" &&
-          "also you have access to the current platofrm, so somehow use it"}
-        <h2>and it supports HTML</h2>
-      </span>
-    );
-  }}
+  {(showOn) => `
+example block that is rendered only on defined platforms in the 'visibleOn'
+prop ${showOn("ios", "also you have access to the current platofrm, so somehow use it")}
+`
+  }
 </TextBlock>
 
 # Alert Example
 
-<Alert kind="info" visibleOn="android">
-  info here
+<Alert kind="note" visibleOn="android">
+  Note Alert
 </Alert>
+
 <Alert kind="important" visibleOn="android">
-  important here
+  Important Alert
 </Alert>
-<Alert kind="warning" visibleOn="android">
-  warning here
+
+<Alert kind="example" visibleOn="android">
+  Example Alert
+</Alert>
+
+<Alert kind="example">
+  Example Alert with CodeBlock inside
+
+  <CodeBlock
+    snippets={{
+      android: {
+        xml: `
+  Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
+  Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
+  Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
+  Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
+        `,
+        java: `
+  js snippet
+        `,
+        c: `
+  c snippet
+        `,
+      },
+      ios: {
+        "objective-c": `
+  objective-c snippet
+        `,
+        swift: `
+  Smartlook.startRecording() // start or resume paused recording
+  Smartlook.stopRecording()  // pause recording
+  Smartlook.isRecording()    // returns true/false
+        `,
+      },
+    }}
+  />
 </Alert>
 
 # Code independent of platform
@@ -130,25 +157,3 @@ switch the platform
 # Image
 
 <img src={smartlook} />
-
-# Test
-
-<React.Fragment>
-  {currentPlatform}
-</React.Fragment>
-
-# Getting Started
-
-Design systems enable teams to build better products faster by making design reusable—reusability makes scale possible. This is the heart and primary value of design systems. A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
-
-Regardless of the technologies and tools behind them, a successful design system follows these guiding principles:
-
-- **It’s consistent**. The way components are built and managed follows a predictable pattern.
-- **It’s self-contained**. Your design system is treated as a standalone dependency.
-- **It’s reusable**. You’ve built components so they can be reused in many contexts.
-- **It’s accessible**. Applications built with your design system are usable by as many people as possible, no matter how they access the web.
-- **It’s robust**. No matter the product or platform to which your design system is applied, it should perform with grace and minimal bugs.
-
-## Consistency
-
-Your first, most important task when starting out is to define the rules of your system, document them, and ensure that everyone follows them. When you have clearly documented code standards and best practices in place, designers and developers from across your organization can easily use and, more importantly, contribute to your design system.

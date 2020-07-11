@@ -3,18 +3,26 @@ name: Android
 menu: SDK Installation
 route: /sdk-installation/android
 ---
+import {Code} from "components/Code"
+import {Alert} from "components/Alert"
 
 # Android SDK Installation
 
 1. Add Smartlook in your **app’s** `build.gradle`:
 
-```gradle
-implementation('com.smartlook.recording:app:1.4.2-native')
-```
+<Code
+  snippets={{
+    gradle: `
+implementation('com.smartlook.recording:app:1.5.0-native')
+`,
+  }}
+/>
 
 2. Add Smartlook Maven repository in your **projects** `build.gradle`:
 
-```gradle
+<Code
+  snippets={{
+    gradle: `
 allprojects {
   repositories {
     maven {
@@ -22,37 +30,15 @@ allprojects {
     }
   }
 }
-```
+`,
+  }}
+/>
 
 3.Setup and start Smartlook in **onCreate()** of your **Application** class:
 
-```Java
-Smartlook.setupAndStartRecording(String YOUR_API_KEY)
-```
-
-```Kotlin
-Smartlook.setupAndStartRecording(YOUR_API_KEY: String)
-```
-
-NOTE: You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
-
-NOTE: SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
-
-After this basic setup SDK will:
-* record your application.
-* stop itself automatically on application closure.
-* automatically hide some default sensitive views.
-* detect basic user gestures and touches.
-* records install referrer if present.
-* and much more!
-
-For any SDK customization please refer to our api reference.
-
-EXAMPLE: Application class with example call of `Smartlook.setupAndStart()`:
-
-```Java
-import android.app.Application;
-
+<Code
+  snippets={{
+      java: `
 public class MyCustomApplication extends Application {
     @Override
     public void onCreate() {
@@ -60,16 +46,41 @@ public class MyCustomApplication extends Application {
         Smartlook.setupAndStartRecording(YOUR_API_KEY);
     }
 }
-```
-
-```Kotlin
+      `,
+      kotlin: `
 class MyCustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Smartlook.setupAndStartRecording(YOUR_API_KEY)
     }
 }
-```
+      `,
+  }}
+/>
+
+<Alert kind="important">
+You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+</Alert>
+
+<Alert kind="note">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+</Alert>
+
+# What will SDK do?
+
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide some default sensitive views.
+* detect basic user gestures and touches.
+* records install referrer if present.
+* and much more!
+
+# Supported versions
+Currently **minimal** supported Android version is **Jelly Bean (API 18)**.
+
+# Issue tracker
+If you are experiencing any technical difficulties with opur SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/smartlook-android-sdk/issues).
 
 
 
