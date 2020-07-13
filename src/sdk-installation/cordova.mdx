@@ -1,18 +1,10 @@
---
+---
 name: Cordova
 menu: SDK Installation
 route: /sdk-installation/cordova
 ---
-
-## Reporting issues and changelog
-
-For more information on how to report issues please check our [Smartlook SDK Support section](https://smartlook.github.io/docs/sdk/support/#how-to-submit-an-issue).
-
-Smartlook [Android SDK changelog](https://github.com/smartlook/smartlook-android-sdk) and [iOS SDK changelog](https://github.com/smartlook/smartlook-ios-sdk) report all notable improvements, changes and fixes in SDK releases.
-
-## Supported versions
-
-Currently, we support Android API 18+ and iOS 10+ for recording.
+import {Code} from "components/Code"
+import {Alert} from "components/Alert"
 
 ## Installation
 
@@ -21,4 +13,54 @@ Add cordova plugin to your project:
 ```
 cordova plugin add https://github.com/smartlook/cordova-smartlook.git
 ```
+
+# Installation
+
+1. Add cordova plugin to your project using this command:
+
+<Code
+  snippets={{
+    cli: `
+cordova plugin add https://github.com/smartlook/cordova-smartlook.git
+`,
+  }}
+/>
+
+2. Setup and start Smartlook on [deviceready](https://cordova.apache.org/docs/en/5.1.1/cordova/events/events.deviceready.html) callback:
+
+<Code
+  snippets={{
+      javascript: `
+if(document.readyState === "complete") {
+  document.addEventListener("deviceready", onDeviceReady, false);
+}\n
+function onDeviceReady() {
+    Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
+}
+      `,
+  }}
+/>
+
+<Alert kind="important">
+You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+</Alert>
+
+<Alert kind="note">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+</Alert>
+
+# What will SDK do?
+
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide all input elements (besides `button` and `submit` types).
+* detect basic user gestures and touches.
+* and much more!
+
+# Supported versions
+Current **minimal** supported version is **Jelly Bean (API 18)** for Android and **10** for iOS.
+
+# Issue tracker
+If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/cordova-smartlook).
 
