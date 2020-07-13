@@ -8,7 +8,27 @@ import { usePlatforms } from 'hooks'
 
 import smartlook from 'assets/smartlook_logo.svg'
 
+
+# Runtime markdown
+<MD visibleOn="android" markup={`
+## andorid
+\n
+string
+\n
+__string__
+`} />
+
+
+<MD visibleOn="ios" markup={`
+## ios
+\n
+string
+\n
+__string__
+`} />
+
 # CodeBlock Example
+
 
 <CodeBlock
   snippets={{
