@@ -773,7 +773,18 @@ This means it cannot be set again (new value will **not overrride** the old one)
 
 Cordova
 
-todo
+Additional user information, such as `name`, `email` and other custom properties can be set by calling:
+
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+cordova.plugins.SmartlookPlugin.setUserIdentifier(
+    {identifier: "CordovaUser", sessionProperties: {name: "Cordova", email: "cordova@example.com"}})
+      `,
+    },
+  }}
+/>
 
 # Analytics
 
@@ -876,7 +887,7 @@ where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
 NOTE: You need to track navigation events manually, because web technology based apps typically consist of single activity.
 
 Android
-You can also explicitly tell the SDK if the navigation event happened between `Activities` of `Fragments`:
+You can also explicitly tell the SDK if the navigation event happened between `Activities` or `Fragments`:
 
 <CodeBlock
   snippets={{
@@ -1278,9 +1289,6 @@ Rendering mode options for `WIREFRAME` rendering mode:
 * `RenderingMode.BLUEPRINT`
 * `RenderingMode.ICON_BLUEPRINT`
 
-# Crash reporting
-todo
-
 <MD visibleOn="android" markup={`
 # Network intercepting
 You can track your apps' HTTP traffic using the network inceptor provided by the SDK. This feature is available to you if you are using **OkHttp** for your HTTP/REST communication.
@@ -1462,25 +1470,54 @@ Smartlook.setReferrer({referrer: "sample referrer", source: "sample source"});
 
 NOTE: Referrer value and source of installation is stored per visitor and can be viewed in Dashboard.
 
-## Sharable session URL
-URL leading to Smartlook Dashboard can be obtained for currently recorded session:
+## Dashboard session URL
+You can obtain URL leading to Smartlook Dashboard for currently recorded session:
 
 <CodeBlock
   snippets={{
     android: {
       java: `
-Smartlook.getDashboardSessionUrl();
+Smartlook.getDashboardSessionUrl(boolean withCurrentTimestamp);
       `,
       kotlin: `
-Smartlook.getDashboardSessionUrl()
+Smartlook.getDashboardSessionUrl(withCurrentTimestamp: Boolean)
       `,
     },
     cordova: {
       javascript: `
-Smartlook.getDashboardSessionUrl(
-    function(dasboardSessionUrl){ \n
-    }
-);
+ Smartlook.getDashboardSessionUrl({withCurrentTimestamp: true}, successCallback, ...);\n
+ function successCallback(dashboardSessionUrl) {
+  alert('Dashboard session URL: ' + dashboardSessionUrl);
+ }
+      `,
+    },
+  }}
+/>
+
+If `withCurrentTimestamp` is set to `TRUE` link will include information about current recording timestamp. 
+This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
+
+NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
+
+## Dashboard visitor URL
+You can obtain URL leading to Smartlook Dashboard for currently recorded visitor:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.getDashboardVisitorUrl();
+      `,
+      kotlin: `
+Smartlook.getDashboardVisitorUrl()
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.getDashboardSessionUrl(successCallback, ...);\n
+ function successCallback(dashboardVisitorUrl) {
+  alert('Dashboard visitor URL: ' + dashboardVisitorUrl);
+ }
       `,
     },
   }}
@@ -1488,5 +1525,72 @@ Smartlook.getDashboardSessionUrl(
 
 NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
 
-
 # Integrations
+
+## Manual integration
+
+You can manually integrate Smartlook info various analytic frameworks using our `IntegrationListener`. 
+
+You can register the listener like this:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        AnalyticsTool.trackSession(dashboardSessionUrl);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        AnalyticsTool.trackVisitor(dashboardSessionUrl);
+    }
+});
+      `,
+      kotlin: `
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+      AnalyticsTool.trackSession(dashboardSessionUrl)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+      AnalyticsTool.trackVisitor(dashboardSessionUrl)
+    }
+})
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.registerIntegrationListener({
+  onSessionReady: function (dashboardSessionUrl) { alert("Session: " + dashboardSessionUrl); },
+  onVisitorReady: function (dashboardVisitorUrl) { alert("Visitor: " + dashboardVisitorUrl); }
+});
+      `,
+    },
+  }}
+/>
+
+NOTE: You can find samples of integrations into most popular frameworks here.
+
+If you want to uregister the listener simply call:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.unregisterIntegrationListener();
+      `,
+      kotlin: `
+Smartlook.unregisterIntegrationListener()
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.unregisterIntegrationListener();
+      `,
+    },
+  }}
+/>
+
+## Automatic integrations
+Smartlook SDK automatic integrations into mopst popular frameworks are in progress.
