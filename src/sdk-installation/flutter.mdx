@@ -1,4 +1,3 @@
-
 ---
 name: Flutter
 menu: SDK Installation
@@ -8,9 +7,9 @@ route: /sdk-installation/flutter
 import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
 import { usePlatforms } from 'hooks'
 
-# Flutter
+# Flutter SDK Installation
 
-To add Smartlook into your Flutter project, app id as another dependency to your public `pubspec.yaml`
+To add Smartlook into your Flutter project, add our wrapper as another dependency to your public `pubspec.yaml`
 
 <Code
   snippets={{
@@ -21,32 +20,56 @@ dependencies:
   }}
 />
 
-## Quick Start
+# Start Recording
 
-To start recording, call the following as early as possible in the app lifecycle (e.g., when initializing your app state):
+<Alert kind="important">
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
+</Alert>
+
+To start recording (or just to setup the SDK), best place is  :
 
 <Code
   snippets={{
     dart: `
-Smartlook.setupAndStartRecording('YOUR_API_KEY');
+import 'package:smartlook/smartlook.dart';
+\n
+class _MyAppState extends State<MyApp> {
+	@override
+	void initState() {
+		super.initState();
+		...
+		Smartlook.setupAndStartRecording('API_KEY');
+		...
+	  }
+}
 `,
   }}
 />
 
-[Note: the following should be in common text included into all SDK installtation docs]
+More info about the wrapper with additional examples can be found at [pub.dev site.](https://pub.dev/packages/smartlook#-readme-tab-)
+
+
+
+---
+---
+---
+---
+
+_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
+
+<Alert kind="note" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
+</Alert>
 
 Thats all you need for a quick start.
 
-<Alert kind="info" invisibleOn="">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
-</Alert>
-
-After this basic setup SDK will:
+**After this basic setup SDK will:**
 - record your application.
 - stop itself automatically on application closure.
-- automatically hide some default sensitive views.
+<TextBlock invisibleOn="unity,unreal,cocos,flutter"><li />automatically hide some default sensitive views.</TextBlock>
 - detect basic user gestures and touches.
-- records install referrer if present.
+<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
 - and much more!
 
-For any SDK customization please refer to [Smartlook API reference](/api_reference?platform=flutter).
+
+For more advanced recording customization please refer to [Smartlook API reference](/api_reference?platform=flutter).

@@ -1,4 +1,3 @@
-
 ---
 name: Cocos
 menu: SDK Installation
@@ -6,11 +5,18 @@ route: /sdk-installation/cocos
 ---
 
 
-### Android
+import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { usePlatforms } from 'hooks'
+
+# Cocos SDK Installation
+
+## Android
 
 In case you want to use SDK in Android project add these lines to your gradle project file:
 
-```android
+<Code
+  snippets={{
+    gradle: `
 allprojects {
   repositories {
     maven {
@@ -18,11 +24,74 @@ allprojects {
     }
   }
 }
-```
+`,
+  }}
+/>
 
 Also add this line to your module gradle: `implementation('com.smartlook.recording:app:1.4.2-cocos')`
 
+<Code
+  snippets={{
+    gradle: `
+implementation('com.smartlook.recording:app:1.5.0-native')
+`,
+  }}
+/>
 
-### iOS
+### Start Recording
+
+<Alert kind="important">
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
+</Alert>
+
+<Code
+  snippets={{
+      java: `
+public class AppActivity extends Cocos2dxActivity {
+    @Override
+    public void onCreate() {
+        ...
+        // DO OTHER INITIALIZATION BELOW
+        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+    }
+}
+      `,
+      kotlin: `
+class AppActivity : Cocos2dxActivity() {
+    override fun onCreate() {
+        ...
+        // DO OTHER INITIALIZATION BELOW
+        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+    }
+}
+      `,
+  }}
+/>
+
+## iOS
 
 Coming soon
+
+---
+---
+---
+---
+
+_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
+
+<Alert kind="note" invisibleOn="">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
+</Alert>
+
+Thats all you need for a quick start.
+
+**After this basic setup SDK will:**
+- record your application.
+- stop itself automatically on application closure.
+<TextBlock invisibleOn="unity,unreal,cocos,flutter"><li />automatically hide some default sensitive views.</TextBlock>
+- detect basic user gestures and touches.
+<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
+- and much more!
+
+
+For more advanced recording customization please refer to [Smartlook API reference](/api_reference?platform=cocos).
