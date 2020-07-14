@@ -186,7 +186,7 @@ The following table describes all available optional parameters. Most of them ca
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 `}/>
 <MD visibleOn="ios"  markup={`
-Full SDK setup configuration can be done with optional \`setupWithKey\` method parameter, e.g.:
+Full SDK setup configuration can be done with optional \`setup\` method parameter, e.g.:
 `}/>
 <CodeBlock
   snippets={{
@@ -257,6 +257,16 @@ Smartlook.startRecording();
 Smartlook.stopRecording();
       `,
     },
+    ios: {
+      swift: `
+Smartlook.startRecording()
+Smartlook.stopRecording()
+`,
+      objc: `
+[Smartlook startRecording];
+[Smartlook stopRecording];
+      `,
+    },
   }}
 />
 
@@ -282,6 +292,14 @@ cordova.plugins.SmartlookPlugin.isRecording(
         //check here
     }
 )
+      `,
+    },
+    ios: {
+      swift: `
+let isSmartlookRecording = Smartlook.isRecording()
+`,
+      objc: `
+BOOL isSmartlookRecording = [Smartlook isRecording];
       `,
     },
   }}
@@ -310,10 +328,23 @@ Smartlook.registerBlacklistedView(view: View)
 Smartlook.registerBlacklistedViews(views: List<View>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerBlacklisted(object: someView)
+`,
+      objc: `
+[Smartlook registerBlacklistedObject:someView];
+      `,
+    },
   }}
 />
 
+<TextBlock visibleOn="android">
 Or can be tagged directly in xml layout file:
+</TextBlock>
+<TextBlock visibleOn="ios">
+Or can be tagged directly by an UIView property added by Smartlook:
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -322,6 +353,14 @@ Or can be tagged directly in xml layout file:
 <View>
     <tag android:id="@id/smartlook_blacklisted_view"/>
 </View>
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = true
+`,
+      objc: `
+self.someView.slSensitive = YES;
       `,
     },
   }}
@@ -339,6 +378,16 @@ Smartlook.unregisterBlacklistedViews(List<View> views);
       kotlin: `
 Smartlook.unregisterBlacklistedView(view: View)
 Smartlook.unregisterBlacklistedViews(views: List<View>)
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = false                             
+Smartlook.unregisterBlacklisted(object: someView) 
+`,
+      objc: `
+someView.slSensitive = NO;                             
+[Smartlook unregisterBlacklistedObject:someView];
       `,
     },
   }}
@@ -362,8 +411,12 @@ Smartlook.setBlacklistedItemsColor(@ColorInt color: Int);
 This works for all blacklisted views and classes.
 
 ## Blacklisted classes
-If you dont want to blacklist specific views and rather blacklist all views of given `Class`, use:
-
+<MD visobleOn="android"  markup={`
+If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
+`}/>
+<MD visibleOn="ios"  markup={`
+You can also blacklist all instances of a \`UIView\` subclass or all \`UIView\` subclasses that conform some protocol:
+`}/>
 <CodeBlock
   snippets={{
     android: {
@@ -376,10 +429,25 @@ Smartlook.registerBlacklistedClass(class: Class)
 Smartlook.registerBlacklistedClasses(classes: List<Class>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerBlacklisted(object: SensitiveView.self)      
+Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
+`,
+      objc: `
+[Smartlook registerBlacklistedObject:SensitiveView.class];          
+[Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
+      `,
+    },
   }}
 />
 
-Note: Note that `EditText` and `WebView` are **blacklisted by default** and can be removed using `Smartlook.unregisterBlacklistedClass()`.
+<MD visobleOn="android"  markup={`
+Note: Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
+`}/>
+<MD visibleOn="ios"  markup={`
+Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
+`}/>
 
 You can remove any of blacklisted classes:
 
@@ -395,10 +463,23 @@ Smartlook.unregisterBlacklistedClass(class: Class)
 Smartlook.unregisterBlacklistedClasses(classes: List<Class>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.unregisterBlacklisted(object: SensitiveView.self)      
+Smartlook.unregisterBlacklisted(object: SensitiveProtocol.self)
+`,
+      objc: `
+[Smartlook unregisterBlacklistedObject:SensitiveView.class];          
+[Smartlook unregisterBlacklistedObject:@protocol(SensitiveProtocol)];
+      `,
+    },
   }}
 />
 
 ## Whitelisted views
+
+¿*NOTE: let us perhaps consider a bit denser documentation of whitelisting (as the methods are equivalent of blacklistig, similar of how it is now in current iOS documentation? https://smartlook.github.io/docs/sdk/ios/#whitelisting)*?
+
 In case you need some view to be recorded even if its instance of a blacklisted class, you can whitelist it:
 
 <CodeBlock
@@ -413,11 +494,23 @@ Smartlook.registerWhitelistedView(view: View)
 Smartlook.registerWhitelistedViews(views: List<View>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerWhitelisted(object: someView)
+`,
+      objc: `
+[Smartlook registerWhitelistedObject:someView];
+      `,
+    },
   }}
 />
 
-Or you can tag them directly in `xml` layout file:
-
+<TextBlock visibleOn="android">
+Or you can tag them directly in \`xml\` layout file:
+</TextBlock>
+<TextBlock visibleOn="ios">
+Or can be tagged directly by an UIView property added by Smartlook:
+</TextBlock>
 <CodeBlock
   snippets={{
     android: {
@@ -425,6 +518,14 @@ Or you can tag them directly in `xml` layout file:
 <View>
     <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = false
+`,
+      objc: `
+self.someView.slSensitive = NO;
       `,
     },
   }}
@@ -442,6 +543,14 @@ Smartlook.unregisterWhitelistedViews(List<View> views);
       kotlin: `
 Smartlook.unregisterWhitelistedView(view: View)
 Smartlook.unregisterWhitelistedViews(views: List<View>)
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.unregisterWhitelisted(object: someView)
+`,
+      objc: `
+[Smartlook unregisterWhitelistedObject:someView];
       `,
     },
   }}
@@ -511,6 +620,12 @@ Smartlook.setRenderingMode(RenderingMode.NO_RENDERING)
     cordova: {
       javascript: `
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING})
+      `,
+    },   
+    ios: {
+      swift: `
+`,
+      objc: `
       `,
     },
   }}
