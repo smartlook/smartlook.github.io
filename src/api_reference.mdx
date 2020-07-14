@@ -2,19 +2,21 @@
 name: API reference
 route: /api_reference
 ---
-import { CodeBlock, MD } from "components"
-import { networkIntercepting } from 'markups/api_reference'
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
+
 
 # Lifecycle & recording
 
 ## SDK setup (on application start)
 Smartlook SDK **setup** needs to be called only **once during application lifetime** and it should be called **on application startup**. There is **no need to stop** recording explicitly **on application closure**, SDK stops itself automatically.
 
-Android
-The best place to setup the SDK is in `onCreate()` method of your `Application` class:
-
 Cordova
 The best place to setup the SDK is in `onDeviceReady`:
+
+<TextBlock visibleOn="ios">
+The best place to setup the SDK is in `didFinishLaunchingWithOptions` method of the `ApplicationDelegate`:
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -47,6 +49,24 @@ if(document.readyState === "complete") {
 function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
 }
+      `,
+    },
+    ios: {
+      swift: `
+import Smartlook
+ 
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+ 
+    Smartlook.setup(key: "YOUR_API_KEY")
+    Smartlook.startRecording()
+      `,
+      objc: `
+#import <Smartlook/Smartlook.h>
+  
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+      
+    [Smartlook setupWithKey: @"YOUR_API_KEY"];
+    [Smartlook startRecording];
       `,
     },
   }}
@@ -92,6 +112,14 @@ Smartlook.setup(@NotNull apiKey: String)
 Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY"});
       `,
     },
+    ios: {
+      swift: `
+    Smartlook.setup(key: "YOUR_API_KEY")
+      `,
+      objc: `
+    [Smartlook setupWithKey: @"YOUR_API_KEY"];
+      `,
+    },
   }}
 />
 
@@ -114,6 +142,14 @@ Smartlook.startRecording()
 Smartlook.startRecording();
       `,
     },
+    ios: {
+      swift: `
+Smartlook.startRecording()
+      `,
+      objc: `
+[Smartlook startRecording];
+`,
+    },
   }}
 />
 
@@ -122,6 +158,7 @@ Smartlook.startRecording();
 Android,iOS ??
 Some recording parameters can be configured on setup:
 
+<MD visibleOn="android" markup={`
 | Parameter           | Required | Description                                                                                                                                        | Default value        |
 |---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
@@ -130,9 +167,27 @@ Some recording parameters can be configured on setup:
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
 | renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
 | renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
+`}/>
+<MD visibleOn="ios" markup={`
+ 
+The following table describes all available optional parameters. Most of them can be also set by a dedicated method. See the respective documentation section for details.
+ 
+| Parameter           | Type                   | Default value | Description                                                                                                                                 
+|---------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| .enableCrashlytics  | bool                   | false         | Enables Firebase Crashlytics integration              |
+| framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
+| renderingMode       | RenderingMode          | native        | Define the way SDK is going to capture screen image data. Full documentation [here](#rendering).   |
+| renderingModeOption | RenderingModeOption    | none          | Further customize rendering mode. Full documentation [here](#rendering).  |
+| startNewSession     | bool                   | false         | Always start new session with Smartlook setup. Full documentation [FIXME here]().  |
+| startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME here]().  |
+`}/>
 
-Full SDK setup configuration can be done with `SetupOptionsBuilder`, that lets you set any of above shown setup parameters with ease:
-
+<MD visobleOn="android"  markup={`
+Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
+`}/>
+<MD visibleOn="ios"  markup={`
+Full SDK setup configuration can be done with optional \`setup\` method parameter, e.g.:
+`}/>
 <CodeBlock
   snippets={{
     android: {
@@ -153,6 +208,14 @@ val builder = Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
         .setRenderingMode(@RenderingMode renderingMode: String)
         .setRenderingMode(@RenderingModeOption renderingModeOption: String)\n
 Smartlook.setupAndStartRecording(builder.build())
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.setup(key: @"YOUR_API_KEY", options:[.enableCrashytics: true, .framerate: 1])
+`,
+      objc: `
+[Smartlook setupWithKey:@"YOUR_API_KEY" options:@{ SLSetupOptionEnableCrashyticsKey : @YES, SLSetupOptionFramerateKey : @1 }];
       `,
     },
   }}
@@ -194,6 +257,16 @@ Smartlook.startRecording();
 Smartlook.stopRecording();
       `,
     },
+    ios: {
+      swift: `
+Smartlook.startRecording()
+Smartlook.stopRecording()
+`,
+      objc: `
+[Smartlook startRecording];
+[Smartlook stopRecording];
+      `,
+    },
   }}
 />
 
@@ -219,6 +292,14 @@ cordova.plugins.SmartlookPlugin.isRecording(
         //check here
     }
 )
+      `,
+    },
+    ios: {
+      swift: `
+let isSmartlookRecording = Smartlook.isRecording()
+`,
+      objc: `
+BOOL isSmartlookRecording = [Smartlook isRecording];
       `,
     },
   }}
@@ -247,10 +328,23 @@ Smartlook.registerBlacklistedView(view: View)
 Smartlook.registerBlacklistedViews(views: List<View>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerBlacklisted(object: someView)
+`,
+      objc: `
+[Smartlook registerBlacklistedObject:someView];
+      `,
+    },
   }}
 />
 
+<TextBlock visibleOn="android">
 Or can be tagged directly in xml layout file:
+</TextBlock>
+<TextBlock visibleOn="ios">
+Or can be tagged directly by an UIView property added by Smartlook:
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -259,6 +353,14 @@ Or can be tagged directly in xml layout file:
 <View>
     <tag android:id="@id/smartlook_blacklisted_view"/>
 </View>
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = true
+`,
+      objc: `
+self.someView.slSensitive = YES;
       `,
     },
   }}
@@ -276,6 +378,16 @@ Smartlook.unregisterBlacklistedViews(List<View> views);
       kotlin: `
 Smartlook.unregisterBlacklistedView(view: View)
 Smartlook.unregisterBlacklistedViews(views: List<View>)
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = false                             
+Smartlook.unregisterBlacklisted(object: someView) 
+`,
+      objc: `
+someView.slSensitive = NO;                             
+[Smartlook unregisterBlacklistedObject:someView];
       `,
     },
   }}
@@ -299,8 +411,12 @@ Smartlook.setBlacklistedItemsColor(@ColorInt color: Int);
 This works for all blacklisted views and classes.
 
 ## Blacklisted classes
-If you dont want to blacklist specific views and rather blacklist all views of given `Class`, use:
-
+<MD visobleOn="android"  markup={`
+If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
+`}/>
+<MD visibleOn="ios"  markup={`
+You can also blacklist all instances of a \`UIView\` subclass or all \`UIView\` subclasses that conform some protocol:
+`}/>
 <CodeBlock
   snippets={{
     android: {
@@ -313,10 +429,25 @@ Smartlook.registerBlacklistedClass(class: Class)
 Smartlook.registerBlacklistedClasses(classes: List<Class>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerBlacklisted(object: SensitiveView.self)      
+Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
+`,
+      objc: `
+[Smartlook registerBlacklistedObject:SensitiveView.class];          
+[Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
+      `,
+    },
   }}
 />
 
-Note: Note that `EditText` and `WebView` are **blacklisted by default** and can be removed using `Smartlook.unregisterBlacklistedClass()`.
+<MD visobleOn="android"  markup={`
+Note: Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
+`}/>
+<MD visibleOn="ios"  markup={`
+Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
+`}/>
 
 You can remove any of blacklisted classes:
 
@@ -332,10 +463,23 @@ Smartlook.unregisterBlacklistedClass(class: Class)
 Smartlook.unregisterBlacklistedClasses(classes: List<Class>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.unregisterBlacklisted(object: SensitiveView.self)      
+Smartlook.unregisterBlacklisted(object: SensitiveProtocol.self)
+`,
+      objc: `
+[Smartlook unregisterBlacklistedObject:SensitiveView.class];          
+[Smartlook unregisterBlacklistedObject:@protocol(SensitiveProtocol)];
+      `,
+    },
   }}
 />
 
 ## Whitelisted views
+
+¿*NOTE: let us perhaps consider a bit denser documentation of whitelisting (as the methods are equivalent of blacklistig, similar of how it is now in current iOS documentation? https://smartlook.github.io/docs/sdk/ios/#whitelisting)*?
+
 In case you need some view to be recorded even if its instance of a blacklisted class, you can whitelist it:
 
 <CodeBlock
@@ -350,11 +494,23 @@ Smartlook.registerWhitelistedView(view: View)
 Smartlook.registerWhitelistedViews(views: List<View>)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.registerWhitelisted(object: someView)
+`,
+      objc: `
+[Smartlook registerWhitelistedObject:someView];
+      `,
+    },
   }}
 />
 
-Or you can tag them directly in `xml` layout file:
-
+<TextBlock visibleOn="android">
+Or you can tag them directly in \`xml\` layout file:
+</TextBlock>
+<TextBlock visibleOn="ios">
+Or can be tagged directly by an UIView property added by Smartlook:
+</TextBlock>
 <CodeBlock
   snippets={{
     android: {
@@ -362,6 +518,14 @@ Or you can tag them directly in `xml` layout file:
 <View>
     <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
+      `,
+    },   
+    ios: {
+      swift: `
+someView.slSensitive = false
+`,
+      objc: `
+self.someView.slSensitive = NO;
       `,
     },
   }}
@@ -379,6 +543,14 @@ Smartlook.unregisterWhitelistedViews(List<View> views);
       kotlin: `
 Smartlook.unregisterWhitelistedView(view: View)
 Smartlook.unregisterWhitelistedViews(views: List<View>)
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.unregisterWhitelisted(object: someView)
+`,
+      objc: `
+[Smartlook unregisterWhitelistedObject:someView];
       `,
     },
   }}
@@ -448,6 +620,12 @@ Smartlook.setRenderingMode(RenderingMode.NO_RENDERING)
     cordova: {
       javascript: `
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING})
+      `,
+    },   
+    ios: {
+      swift: `
+`,
+      objc: `
       `,
     },
   }}
@@ -595,7 +773,18 @@ This means it cannot be set again (new value will **not overrride** the old one)
 
 Cordova
 
-todo
+Additional user information, such as `name`, `email` and other custom properties can be set by calling:
+
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+cordova.plugins.SmartlookPlugin.setUserIdentifier(
+    {identifier: "CordovaUser", sessionProperties: {name: "Cordova", email: "cordova@example.com"}})
+      `,
+    },
+  }}
+/>
 
 # Analytics
 
@@ -698,7 +887,7 @@ where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
 NOTE: You need to track navigation events manually, because web technology based apps typically consist of single activity.
 
 Android
-You can also explicitly tell the SDK if the navigation event happened between `Activities` of `Fragments`:
+You can also explicitly tell the SDK if the navigation event happened between `Activities` or `Fragments`:
 
 <CodeBlock
   snippets={{
@@ -1100,12 +1289,159 @@ Rendering mode options for `WIREFRAME` rendering mode:
 * `RenderingMode.BLUEPRINT`
 * `RenderingMode.ICON_BLUEPRINT`
 
-# Crash reporting
-todo
+<MD visibleOn="android" markup={`
+# Network intercepting
+You can track your apps' HTTP traffic using the network inceptor provided by the SDK. This feature is available to you if you are using **OkHttp** for your HTTP/REST communication.
+\n
+NOTE: If you are using another HTTP library that allows intercepting, please feel free to submit a feature request here.
+\n
+## OkHttp interceptor
+If you are using \`OkHttp\` you can add Smartlook interceptor as a another \`NetworkInterceptor\` when creating a \`OkHttpClient\` like this:
+`} />
 
-Android
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+OkHttpClient client = new OkHttpClient.Builder()
+    .addNetworkInterceptor(new SmartlookOkHttpInterceptor())
+    .build();
+      `,
+      kotlin: `
+val client = OkHttpClient.Builder()
+    .addNetworkInterceptor(SmartlookOkHttpInterceptor())
+    .build()
+      `,
+    },
+  }}
+/>
 
-<MD markup={networkIntercepting} visibleOn="android" />
+<MD visibleOn="android" markup={`
+We will **not read or send out any body data**, we are reading and sending only these request metadata:
+* **Request url** that can be stripped of any sensitive data -> read more.
+* **Http method** used for this request.
+* **Request headers** that can be filtered out so they do not leak any sensitive data.
+* **Response headers** that are filtered out so they do not leak any sensitive data.
+* **Protocol** negotiated by this connection.
+* **Duration** between request and response/failure.
+* **Request status** stating if the request was successful or eventually how it failed, can be one of:
+  * Ok
+  * Error
+  * Abort
+  * Timeout
+* **Status code** of http response.
+* Flag stating if response was received from **cache**.
+\n
+NOTE: All intercepted requests can be displayed in **dev tools** on every recording.
+\n
+### Url masks
+You can hide sensitive parts of request URLs using \`UrlMask\`:
+`} />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new UrlMask(String regex);
+new UrlMask(String regex, String replaceWith);
+      `,
+      kotlin: `
+UrlMask(regex: String)
+UrlMask(regex: String, replaceWith: String)
+      `,
+    },
+  }}
+/>
+
+<MD visibleOn="android" markup={`
+NOTE: If you don't specify \`replaceWith\` \`String\` explicitly the default replace \`String\` is used.
+You need to initialize \`SmartlookOkHttpInterceptor\` using \`Builder\` to define used \`UrlMask\`s:
+`} />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(UrlMask urlMask)
+                .build();
+      `,
+      kotlin: `
+SmartlookOkHttpInterceptor.Builder()
+                .addUrlMask(urlMask: UrlMask)
+                .build()
+      `,
+    },
+  }}
+/>
+
+<MD visibleOn="android" markup={`
+EXAMPLE: We are intercepting request with URL containing sensitive query named \`secret\`:
+\`\`\`
+https://example.com/page?secret=password&second=query
+\`\`\`
+\n
+The content of sensitive query can be hidden for intercepting using \`UrlMask\`:
+`} />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+SmartlookOkHttpInterceptor interceptor = new SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(new UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build();\n
+OkHttpClient client = new OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build();
+      `,
+      kotlin: `
+val interceptor = SmartlookOkHttpInterceptor.Builder()
+        .addUrlMask(UrlMask("(name=)[^&]+(&*)", "$1<sensitive>$2"))
+        .build()\n
+val client = OkHttpClient.Builder()
+        .addNetworkInterceptor(interceptor)
+        .build()
+      `,
+    },
+  }}
+/>
+
+<MD visibleOn="android" markup={`
+With above shown \`UrlMask\` intercepted request will have following URL stored:
+\n
+\`\`\`
+https://example.com/page?secret=<sensitive>&second=query
+\`\`\`
+\n
+### Sensitive headers
+\n
+Intercepted headers can contain sensitive data, so they need to be filtered out by their name. This can be done using \`sensitiveHeaderNameRegexps\`, this list of sensitive header names contains these regular expressions by default:
+* \`".*csrf.*"\`
+* \`".*token.*"\`
+* \`".*auth.*"\`
+* \`".*key.*"\`
+* \`".*cookie.*"\`
+\n
+You can define your custom list of sensitive header name regular expressions:
+`} />
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+new SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(String headerRegex)
+        .build();
+      `,
+      kotlin: `
+SmartlookOkHttpInterceptor.Builder()
+        .addSensitiveHeaderNameRegex(headerRegex: String)
+        .build()
+      `,
+    },
+  }}
+/>
 
 # Utility methods
 
@@ -1134,25 +1470,54 @@ Smartlook.setReferrer({referrer: "sample referrer", source: "sample source"});
 
 NOTE: Referrer value and source of installation is stored per visitor and can be viewed in Dashboard.
 
-## Sharable session URL
-URL leading to Smartlook Dashboard can be obtained for currently recorded session:
+## Dashboard session URL
+You can obtain URL leading to Smartlook Dashboard for currently recorded session:
 
 <CodeBlock
   snippets={{
     android: {
       java: `
-Smartlook.getDashboardSessionUrl();
+Smartlook.getDashboardSessionUrl(boolean withCurrentTimestamp);
       `,
       kotlin: `
-Smartlook.getDashboardSessionUrl()
+Smartlook.getDashboardSessionUrl(withCurrentTimestamp: Boolean)
       `,
     },
     cordova: {
       javascript: `
-Smartlook.getDashboardSessionUrl(
-    function(dasboardSessionUrl){ \n
-    }
-);
+ Smartlook.getDashboardSessionUrl({withCurrentTimestamp: true}, successCallback, ...);\n
+ function successCallback(dashboardSessionUrl) {
+  alert('Dashboard session URL: ' + dashboardSessionUrl);
+ }
+      `,
+    },
+  }}
+/>
+
+If `withCurrentTimestamp` is set to `TRUE` link will include information about current recording timestamp. 
+This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
+
+NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
+
+## Dashboard visitor URL
+You can obtain URL leading to Smartlook Dashboard for currently recorded visitor:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.getDashboardVisitorUrl();
+      `,
+      kotlin: `
+Smartlook.getDashboardVisitorUrl()
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.getDashboardSessionUrl(successCallback, ...);\n
+ function successCallback(dashboardVisitorUrl) {
+  alert('Dashboard visitor URL: ' + dashboardVisitorUrl);
+ }
       `,
     },
   }}
@@ -1160,5 +1525,72 @@ Smartlook.getDashboardSessionUrl(
 
 NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
 
-
 # Integrations
+
+## Manual integration
+
+You can manually integrate Smartlook info various analytic frameworks using our `IntegrationListener`. 
+
+You can register the listener like this:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        AnalyticsTool.trackSession(dashboardSessionUrl);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        AnalyticsTool.trackVisitor(dashboardSessionUrl);
+    }
+});
+      `,
+      kotlin: `
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+      AnalyticsTool.trackSession(dashboardSessionUrl)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+      AnalyticsTool.trackVisitor(dashboardSessionUrl)
+    }
+})
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.registerIntegrationListener({
+  onSessionReady: function (dashboardSessionUrl) { alert("Session: " + dashboardSessionUrl); },
+  onVisitorReady: function (dashboardVisitorUrl) { alert("Visitor: " + dashboardVisitorUrl); }
+});
+      `,
+    },
+  }}
+/>
+
+NOTE: You can find samples of integrations into most popular frameworks here.
+
+If you want to uregister the listener simply call:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.unregisterIntegrationListener();
+      `,
+      kotlin: `
+Smartlook.unregisterIntegrationListener()
+      `,
+    },
+    cordova: {
+      javascript: `
+ Smartlook.unregisterIntegrationListener();
+      `,
+    },
+  }}
+/>
+
+## Automatic integrations
+Smartlook SDK automatic integrations into mopst popular frameworks are in progress.

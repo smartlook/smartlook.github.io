@@ -63,14 +63,14 @@ To setup Smartlook, you need your unique API key. This can be found in your mobi
   snippets={{
       swift: `
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    
+\n
     Smartlook.setup(key: "YOUR_API_KEY")
     Smartlook.startRecording()
       `,
       objc: `
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      
-    [Smartlook setupWithKey:];
+\n    
+    [Smartlook setupWithKey: @"YOUR_API_KEY"];
     [Smartlook startRecording];
       `,
     }
