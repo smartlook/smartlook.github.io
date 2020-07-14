@@ -3,18 +3,90 @@ name: Ionic
 menu: SDK Installation
 route: /sdk-installation/ionic
 ---
+import {Code} from "components/Code"
+import {Alert} from "components/Alert"
 
+# Installation
 
-## Supported versions
+1. Install Smartlook Ionic native plugin:
 
-Currently, we support Android API 18+ and iOS 10+ for recording.
-
-## Installation
-
-Add Ionic plugin to your project:
-
-```
+<Code
+  snippets={{
+    cli: `
 npm install @ionic-native/smartlook --save
+`,
+  }}
+/>
+
+2. Add Cordova plugin plugin to your project:
+
+<Code
+  snippets={{
+    cli: `
 ionic cordova plugin add https://github.com/smartlook/cordova-smartlook.git
-```
+`,
+  }}
+/>
+
+3. Inject Smartlook SDK into `app.module.ts`:
+
+<Code
+  snippets={{
+      typescript: `
+import { Smartlook } from '@ionic-native/smartlook/ngx';\n
+...\n
+@NgModule({\n
+    ...\n
+    providers: [Smartlook, ...]\n
+    ...
+})
+export class AppModule {}
+      `,
+  }}
+/>
+
+4. Import `Smartlook` and `SmartlookSetupConfig` in you `app.component.ts` and setup the SDK in [platform ready](https://ionicframework.com/docs/v3/api/platform/Platform/#ready) callback:
+
+<Code
+  snippets={{
+      typescript: `
+import { Smartlook, SmartlookSetupConfig } from '@ionic-native/smartlook/ngx';\n
+...\n
+@Component( ... )
+export class AppComponent {
+    constructor(private smartlook: Smartlook) {
+        this.platform.ready().then(() => {
+            this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+        }
+    }
+}
+      `,
+  }}
+/>
+
+<Alert kind="important">
+You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+</Alert>
+
+<Alert kind="note">
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
+</Alert>
+
+# What will SDK do?
+
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide all input elements (besides `button` and `submit` types).
+* detect basic user gestures and touches.
+* and much more!
+
+# Supported versions
+Current **minimal** supported version is **Jelly Bean (API 18)** for Android and **10** for iOS.
+
+**Ionic framework 4.0 is needed** to support Ionic native plugins such as this one. 
+If you are using older versions of Ionic framework and want to use Smartlook SDK, you can use our [Cordova SDK](/sdk-installation/cordova) directly.
+
+# Issue tracker
+If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/cordova-smartlook).
 
