@@ -57,16 +57,26 @@ import Smartlook
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-    Smartlook.setup(key: "YOUR_API_KEY")
-    Smartlook.startRecording()
-      `,
-      objc: `
-#import <Smartlook/Smartlook.h>
+  Smartlook.setup(key: "YOUR_API_KEY")
+  Smartlook.startRecording()
   
+  // other initialization stuff
+    
+  return true
+}
+      `,
+      'objective-c': `
+#import <Smartlook/Smartlook.h>
+    
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      
+        
     [Smartlook setupWithKey: @"YOUR_API_KEY"];
     [Smartlook startRecording];
+  
+    // other initialization stuff
+  
+    return YES;
+}
       `,
     },
   }}
@@ -114,10 +124,10 @@ Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY"});
     },
     ios: {
       swift: `
-    Smartlook.setup(key: "YOUR_API_KEY")
+class func setup(withKey key: String)
       `,
-      objc: `
-    [Smartlook setupWithKey: @"YOUR_API_KEY"];
+      'objective-c': `
++(void)setupWithKey:(nonnull NSString *)key;
       `,
     },
   }}
@@ -144,10 +154,10 @@ Smartlook.startRecording();
     },
     ios: {
       swift: `
-Smartlook.startRecording()
+class func startRecording()
       `,
-      objc: `
-[Smartlook startRecording];
+      'objective-c': `
++ (void)startRecording;
 `,
     },
   }}
@@ -169,24 +179,27 @@ Some recording parameters can be configured on setup:
 | renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
 `}/>
 <MD visibleOn="ios" markup={`
- 
+\n
 The following table describes all available optional parameters. Most of them can be also set by a dedicated method. See the respective documentation section for details.
- 
-| Parameter           | Type                   | Default value | Description                                                                                                                                 
-|---------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| .enableCrashlytics  | bool                   | false         | Enables Firebase Crashlytics integration              |
-| framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
-| renderingMode       | RenderingMode          | native        | Define the way SDK is going to capture screen image data. Full documentation [here](#rendering).   |
-| renderingModeOption | RenderingModeOption    | none          | Further customize rendering mode. Full documentation [here](#rendering).  |
-| startNewSession     | bool                   | false         | Always start new session with Smartlook setup. Full documentation [FIXME here]().  |
-| startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME here]().  |
+\n
+The options dictionary keys are constants defined as members of \`SetupOptionKey\` enumeration.
+\n
+| Parameter            | Type                   | Default value | Description                                                                                                                                 
+|----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
+| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
+| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see FIXME LINK -> <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| .renderingMode       | RenderingMode          | native        | Define the way SDK is going to capture screen image data. Full documentation [here](#rendering).   |
+| .renderingModeOption | RenderingModeOption    | none          | Further customize rendering mode. Full documentation [here](#rendering).  |
+| .startNewSession     | bool                   | false         | Always start new session with Smartlook setup. Full documentation [FIXME LINK here]().  |
+| .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME LINK shere]().  |
 `}/>
 
 <MD visobleOn="android"  markup={`
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 `}/>
 <MD visibleOn="ios"  markup={`
-Full SDK setup configuration can be done with optional \`setup\` method parameter, e.g.:
+Full SDK setup configuration can be done with optional \`setup\` method parameter:
 `}/>
 <CodeBlock
   snippets={{
@@ -212,17 +225,21 @@ Smartlook.setupAndStartRecording(builder.build())
     },
     ios: {
       swift: `
-Smartlook.setup(key: @"YOUR_API_KEY", options:[.enableCrashytics: true, .framerate: 1])
+class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
 `,
-      objc: `
-[Smartlook setupWithKey:@"YOUR_API_KEY" options:@{ SLSetupOptionEnableCrashyticsKey : @YES, SLSetupOptionFramerateKey : @1 }];
+      'objective-c': `
++(void)setupWithKey:(nonnull NSString *)key options:(nullable NSDictionary<SLSetupOptionKey,id> *)options;
+    
+// values in the options dictionary must be objects, e.g.,
+[Smartlook setupWithKey:@"SOME_API_KEY" options:@{ SLSetupOptionFramerateKey: @3 }];
       `,
     },
   }}
 />
 
+Android
 TIP: You can replace the last line with `Smartlook.setup()` and start the recording later.
-
+ 
 Cordova
 Recording **framerate** can be set during setup. Allowed values are from a range from 2 to 10 fps.
 
@@ -259,12 +276,12 @@ Smartlook.stopRecording();
     },
     ios: {
       swift: `
-Smartlook.startRecording()
-Smartlook.stopRecording()
+class func startRecording()
+class func stopRecording()
 `,
-      objc: `
-[Smartlook startRecording];
-[Smartlook stopRecording];
+      'objective-c': `
++ (void)startRecording;
++ (void)stopRecording;
       `,
     },
   }}
@@ -296,10 +313,10 @@ cordova.plugins.SmartlookPlugin.isRecording(
     },
     ios: {
       swift: `
-let isSmartlookRecording = Smartlook.isRecording()
+class func isRecording() -> Bool
 `,
-      objc: `
-BOOL isSmartlookRecording = [Smartlook isRecording];
+      'objective-c': `
++ (BOOL)isRecording;
       `,
     },
   }}
@@ -330,14 +347,28 @@ Smartlook.registerBlacklistedViews(views: List<View>)
     },
     ios: {
       swift: `
-Smartlook.registerBlacklisted(object: someView)
+class func registerBlacklisted(object: Any)
 `,
-      objc: `
-[Smartlook registerBlacklistedObject:someView];
+      'objective-c': `
++ (void)registerBlacklistedObject:(nonnull id)object;
       `,
     },
   }}
 />
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+Smartlook.registerBlacklisted(object: someView)
+`,
+        'objective-c': `
+[Smartlook registerBlacklistedObject:self.someView];
+      `,
+    },
+  }}
+/>
+</Alert>
 
 <TextBlock visibleOn="android">
 Or can be tagged directly in xml layout file:
@@ -357,14 +388,28 @@ Or can be tagged directly by an UIView property added by Smartlook:
     },   
     ios: {
       swift: `
+var slSensitive: Bool
+`,
+      'objective-c': `
+@property (nonatomic, assign) IBInspectable BOOL slSensitive;
+      `,
+    },
+  }}
+/>
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
 someView.slSensitive = true
 `,
-      objc: `
+        'objective-c': `
 self.someView.slSensitive = YES;
       `,
     },
   }}
 />
+</Alert>
 
 If view no longer needs to be blacklisted call:
 
@@ -382,12 +427,10 @@ Smartlook.unregisterBlacklistedViews(views: List<View>)
     },   
     ios: {
       swift: `
-someView.slSensitive = false                             
-Smartlook.unregisterBlacklisted(object: someView) 
+class func registerBlacklisted(object: Any)
 `,
-      objc: `
-someView.slSensitive = NO;                             
-[Smartlook unregisterBlacklistedObject:someView];
+      'objective-c': `
++ (void)unregisterBlacklistedObject:(nonnull id)object
       `,
     },
   }}
@@ -405,12 +448,23 @@ Smartlook.setBlacklistedItemsColor(@ColorInt int color);
 Smartlook.setBlacklistedItemsColor(@ColorInt color: Int);
       `,
     },
+    ios: {
+      swift: `
+class func setBlacklistedItem(color: UIColor)
+`,
+      'objective-c': `
++ (void)setBlacklistedItemsColor:(nonnull UIColor *)color;
+      `,
+    },
   }}
 />
 
-This works for all blacklisted views and classes.
+
+
+This works for all blacklisted objects.
 
 ## Blacklisted classes
+
 <MD visobleOn="android"  markup={`
 If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
 `}/>
@@ -431,16 +485,40 @@ Smartlook.registerBlacklistedClasses(classes: List<Class>)
     },
     ios: {
       swift: `
+// Note: the object can be UIView instance, UIView subclass or a Protocol,
+// see examples below
+class func registerBlacklisted(object: Any)
+`,
+      'objective-c': `
+// Note: the object can be UIView instance, UIView subclass or a Protocol 
+// see examples below
++ (void)registerBlacklistedObject:(nonnull id)object;
+      `,
+    },
+  }}
+/>
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+// Note: the object can be UIView instance, UIView subclass or a Protocol 
+someView.slSensitive = true
+Smartlook.registerBlacklisted(object: someView)      
 Smartlook.registerBlacklisted(object: SensitiveView.self)      
 Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 `,
-      objc: `
+        'objective-c': `
+// Note: the object can be UIView instance, UIView subclass or a Protocol 
+self.someView.slSensitive = true
+[Smartlook registerBlacklistedObject:self.someView];          
 [Smartlook registerBlacklistedObject:SensitiveView.class];          
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
       `,
     },
   }}
 />
+</Alert>
 
 <MD visobleOn="android"  markup={`
 Note: Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
@@ -465,12 +543,10 @@ Smartlook.unregisterBlacklistedClasses(classes: List<Class>)
     },
     ios: {
       swift: `
-Smartlook.unregisterBlacklisted(object: SensitiveView.self)      
-Smartlook.unregisterBlacklisted(object: SensitiveProtocol.self)
+class func unregisterBlacklisted(object: Any)
 `,
-      objc: `
-[Smartlook unregisterBlacklistedObject:SensitiveView.class];          
-[Smartlook unregisterBlacklistedObject:@protocol(SensitiveProtocol)];
+      'objective-c': `
++ (void)unregisterBlacklistedObject:(nonnull id)object
       `,
     },
   }}
@@ -496,40 +572,42 @@ Smartlook.registerWhitelistedViews(views: List<View>)
     },
     ios: {
       swift: `
-Smartlook.registerWhitelisted(object: someView)
+class func registerWhitelisted(object: Any)
 `,
-      objc: `
-[Smartlook registerWhitelistedObject:someView];
+      'objective-c': `
++ (void)registerWhitelistedObject:(nonnull id)object;
       `,
     },
   }}
 />
 
-<TextBlock visibleOn="android">
-Or you can tag them directly in \`xml\` layout file:
-</TextBlock>
-<TextBlock visibleOn="ios">
-Or can be tagged directly by an UIView property added by Smartlook:
-</TextBlock>
-<CodeBlock
-  snippets={{
-    android: {
-      xml: `
+<MD visibleOn="android" markup={`
+Or you can tag them directly in \`xml\` layout file:`} 
+/>
+<MD visibleOn="ios" markup={`
+Or can be tagged directly by an \`UIView\` property added by Smartlook:
+`} />
+<Alert kind="example" visibleOn="ios,android">
+  <CodeBlock
+    snippets={{
+      android: {
+        xml: `
 <View>
     <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
       `,
-    },   
-    ios: {
-      swift: `
+      },   
+      ios: {
+        swift: `
 someView.slSensitive = false
 `,
-      objc: `
+      'objective-c': `
 self.someView.slSensitive = NO;
       `,
-    },
-  }}
-/>
+      },
+    }}
+  />
+</Alert>
 
 You can remove view from whitelist by calling:
 
@@ -549,7 +627,7 @@ Smartlook.unregisterWhitelistedViews(views: List<View>)
       swift: `
 Smartlook.unregisterWhitelisted(object: someView)
 `,
-      objc: `
+      'objective-c': `
 [Smartlook unregisterWhitelistedObject:someView];
       `,
     },
@@ -624,8 +702,10 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING}
     },   
     ios: {
       swift: `
+Smartlook.setRenderingMode(to: .noRendering)
 `,
-      objc: `
+      'objective-c': `
+[Smartlook setRenderingModeTo:SLRenderingModeNoRendering];
       `,
     },
   }}
@@ -652,13 +732,29 @@ Smartlook.setRenderingMode(RenderingMode.NATIVE)
       javascript: `
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE})
       `,
+    },   
+    ios: {
+      swift: `
+Smartlook.setRenderingMode(to: .native)
+`,
+      'objective-c': `
+[Smartlook setRenderingModeTo:SLRenderingModeNative];
+      `,
     },
   }}
 />
 
 Android
 ## WebView blacklisting/whitelisting
-If your application has some parts displayed using `WebView` and you want to record those parts you need to enable `WebView` recording by removing `WebView` from list of blacklisted classes:
+<MD visibleOn="android" markup={`
+If your application has some parts displayed using \`WebView\` and you want to record those parts you need to enable \`WebView\` recording by removing \`WebView\` from list of blacklisted classes:
+`} />
+<MD visibleOn="ios" markup={`
+If your application has some parts displayed using \`WKWebView\` and you want to record those parts you need to enable \`WKWebView\` recording by removing \`WKWebView\` from list of blacklisted classes:
+`} />
+<Alert kind="note" visibleOn="ios">
+`UIWebView` class is obsolete and no longer supported by Apple. Thus, its instances and their content are not specifically handled by Smartlook from the *sensitivity* point of view.
+</Alert>
 
 <CodeBlock
   snippets={{
@@ -670,32 +766,36 @@ Smartlook.unregisterBlacklistedClass(WebView.class);
 Smartlook.registerBlacklistedClass(WebView::class.java)
       `,
     },
+    ios: {
+      swift: `
+Smartlook.unregisterBlacklisted(object: WKWebView.class)
+`,
+      'objective-c': `
+[Smartlook unregisterBlacklistedObject:WKWebView.class];
+      `,
+    },
   }}
 />
 
 Now that you are recording all `WebView`s please **make sure that all sensitive elements** on the displayed web page **are hidden**. This can be done by marking sensitive html elements with `.smartlook-hide` css class:
 
-<CodeBlock
+<Code
   snippets={{
-    android: {
-      html: `
+    html: `
 <div class='smartlook-hide'>
    This will be hidden.
 </div>
-      `,
-    },
+`,
   }}
 />
 
 All input inputs are hidden by default except for `button` and `submit` types. If you need to record some hidden inputs you can mark these views with `.smartlook-show` css class:
 
-<CodeBlock
+<Code
   snippets={{
-    android: {
-      html: `
+    html: `
 <input type="text" class='smartlook-show'>
-      `,
-    },
+`,
   }}
 />
 
@@ -719,10 +819,10 @@ Smartlook.setUserIdentifier({identifier: "sample_identifier"})
     },   
     ios: {
       swift: `
- Smartlook.setUserIdentifier("sample_identifier")
+class func setUserIdentifier(_ userIdentifier: String?)
 `,
-      objc: `
-[Smartlook setUserIdentifier:@"sample_identifier");
+      'objective-c': `
++ (void)setUserIdentifier:(nullable NSString*)userIdentifier;
       `,
     },
   }}
@@ -803,10 +903,10 @@ Additional custom properties can be added to each recording session by calling:
   snippets={{
     ios: {
       swift: `
-Smartlook.setSessionProperty(value: "value", forName: "property-name")
+class func setSessionProperty(value: String, forName name: String)
 `,
-      objc: `
-[Smartlook setSessionPropertyValue:@"value" forName:@"property-name"];
+      'objective-c': `
++ (void)setSessionPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name;
 `,
     },
   }}
@@ -820,14 +920,34 @@ If you do want locking a session property value to protect it against accidental
   snippets={{
     ios: {
       swift: `
-Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+static var immutable: SLPropertyOption
+ 
+class func setSessionProperty(value: String, forName name: String, options: SLPropertyOption)
 `,
-      objc: `
-[Smartlook setSessionPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+      'objective-c': `
+typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
+    SLPropertyOptionDefaults    = 0,
+    SLPropertyOptionImmutable   = 1 << 0
+};
++ (void)setSessionPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name withOptions:(SLPropertyOption)options;
 `,
     },
   }}
 />  
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+`,
+        'objective-c': `
+[Smartlook setSessionPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+      `,
+    },
+  }}
+/>
+</Alert>
 
 # Analytics
 
@@ -866,10 +986,10 @@ Smartlook.trackCustomEvent({name: "sample_event"})
     },
     ios: {
       swift: `
-Smartlook.trackCustomEvent(name: String)
+class func trackCustomEvent(name eventName: String)
 `,
-      objc: `
-[Smartlook trackCustomEventWithName:(nonnull NSString*)eventName];
+      'objective-c': `
++ (void)trackCustomEventWithName:(nonnull NSString*)eventName;
       `,
     },
   }}
@@ -910,8 +1030,8 @@ Smartlook.trackCustomEvent(
       swift: `
 Smartlook.trackCustomEvent(name: String, props: [String : String]?)
 `,
-      objc: `
-[Smartlook trackCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props];
+      'objective-c': `
++ (void)trackCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
   }}
@@ -943,10 +1063,16 @@ Smartlook.trackNavigationEvent({name: "sample_screen", viewState: Smartlook.View
     },
     ios: {
       swift: `
+static let enter: Smartlook.NavigationEventType
+static let exit: Smartlook.NavigationEventType
+ 
 Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
 `,
-      objc: `
-[Smartlook trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type];
+      'objective-c': `
+SLNavigationType const _Nonnull SLNavigationTypeEnter;
+SLNavigationType const _Nonnull SLNavigationTypeExit;
+ 
++ (void)trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type;
       `,
     },
   }}
@@ -955,7 +1081,7 @@ Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smar
 where \`viewState\` can be either \`ViewState.START\` or \`ViewState.STOP\`.
 `} />
 <MD visibleOn="ios" markup={`
-where the \`state\` could flag the event as either \`enter\` or \`exit\` of the navigation controller.
+where the \`type\` could flag the event as either \`enter\` or \`exit\` of the navigation controller.
 `} />
 
 
@@ -1007,7 +1133,7 @@ Smartlook.startTimedCustomEvent({name: "sample_timed_event", eventProperties: {s
       swift: `
 Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
 `,
-      objc: `
+      'objective-c': `
 + (id _Nonnull)startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
@@ -1076,7 +1202,7 @@ Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
 // to track event cancellation
 Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
 `,
-      objc: `
+      'objective-c': `
 // to track successfull events
 + (void)trackTimedCustomEventWithEventId:(id _Nonnull)eventId props:(nullable NSDictionary<NSString*, NSString*>*)props;
 // to track event cancellation
@@ -1116,7 +1242,7 @@ let eventRef = Smartlook.startTimedCustomEvent("duration_event");
 // some lenghty operation
 Smartlook.trackTimedCustomEvent(eventRef);
 `,
-      objc: `
+      'objective-c': `
 id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event"];
 // some lenghty operation
 [Smartlook trackTimedCustomEventCancelWithEventId:eventRef];
@@ -1222,16 +1348,39 @@ Smartlook.setGlobalEventProperties({globalEventProperties: {sample: "property"},
     },
     ios: {
       swift: `
-Smartlook.setGlobalEventProperty(value: String, forName: String)
-Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+class func setGlobalEventProperty(value: String, forName name: String)
+  
+static var immutable: SLPropertyOption 
+class func setGlobalEventProperty(value: String, forName name: String, options: SLPropertyOption)
 `,
-      objc: `
-[Smartlook setGlobalEventPropertyValue:(nonnull NSString *) forName:(nonnull NSString *)];
-[Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+      'objective-c': `
++ (void)setGlobalEventPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name;
+  
+typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
+    SLPropertyOptionDefaults    = 0,
+    SLPropertyOptionImmutable   = 1 << 0
+};
++ (void)setGlobalEventPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name withOptions:(SLPropertyOption)options;
       `,
     },
   }}
 />
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+Smartlook.setGlobalEventProperty(value: "value", forName: "my-property");
+Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-immutable-property", options: .immutable)
+`,
+        'objective-c': `
+[Smartlook setGlobalEventPropertyValue:@"value" forName:@"my-property"];
+[Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-immutable-property" withOptions:SLPropertyOptionImmutable];
+      `,
+    },
+  }}
+/>
+</Alert>
 
 Properties set to be **immutable** have the **highest** priority and once set they **cannot be overridden** (only removed).
 
@@ -1259,8 +1408,8 @@ Smartlook.removeGlobalEventProperty({key: "property_key"});
       swift: `
 Smartlook.removeGlobalEventProperty(forName: String)
 `,
-      objc: `
-[Smartlook removeGlobalEventPropertyForName:(nonnull NSString *)];
+      'objective-c': `
++ (void)removeGlobalEventPropertyForName:(nonnull NSString *)name;
       `,
     },
   }}
@@ -1287,8 +1436,8 @@ Smartlook.removeAllGlobalEventProperties();
       swift: `
 Smartlook.clearGlobalEventProperties()
 `,
-      objc: `
-[Smartlook clearGlobalEventProperties];
+      'objective-c': `
++ (void)clearGlobalEventProperties;
       `,
     },
   }}
@@ -1298,9 +1447,16 @@ NOTE: Global event properties are stored until they are not removed or the app i
 
 ## Event tracking modes
 Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
+<MD invisibleOn="ios" markup={`
 * **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
 * **IGNORE_USER_INTERACTION** automatically detected events will not be tracked. User defined events are still enabled.
 * **NO_TRACKING** no analytic events are enabled.
+`} />
+<MD visibleOn="ios" markup={`
+* \`fullTracking\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
+* \`ignoreUserInteractionEvents\`: automatically detected events will not be tracked. User defined events are still enabled.
+* \`noTracking\`: no analytic events are enabled.
+`} />
 
 Event tracking mode can changed **anytime** during the application run:
 
@@ -1321,12 +1477,20 @@ Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode.F
     },
     ios: {
       swift: `
-Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
-let currentEventTrackingMode = Smartlook.currentEventTrackingMode()
+static let fullTracking: Smartlook.EventTrackingMode
+static let ignoreUserInteractionEvents: Smartlook.EventTrackingMode
+static let noTracking: Smartlook.EventTrackingMode
+  
+class func setEventTrackingMode(to eventTrackingMode: Smartlook.EventTrackingMode)
+class func currentEventTrackingMode() -> Smartlook.EventTrackingMode
 `,
-      objc: `
-[Smartlook setEventTrackingModeTo:SLEventTrackingModeIgnoreUserInteractionEvents];
-SLEventTrackingMode eventTrackingMode = [Smartlook currentEventTrackingMode];
+      'objective-c': `
+SLEventTrackingMode const SLEventTrackingModeFullTracking;
+SLEventTrackingMode const SLEventTrackingModeIgnoreUserInteractionEvents;
+SLEventTrackingMode const SLEventTrackingModeNoTracking;
+  
++ (void)setEventTrackingModeTo:(nonnull SLEventTrackingMode)eventTrackingMode;
++ (nonnull SLEventTrackingMode)currentEventTrackingMode;
       `,
     },
   }}
@@ -1339,42 +1503,43 @@ SDK can use different methods of capturing screen image data. We call these rend
 
 ## Set rendering mode
 
-
 <MD visibleOn="android" markup={`
 You can change rendering mode on SDK setup using builder:
 `} />
 <MD visibleOn="ios" markup={`
 Rendering mode can be set on SDK setup, e.g.:
 `} />
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      android: {
+        java: `
 Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(@RenderingMode String renderingMode);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
-      kotlin: `
+        kotlin: `
 val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(@RenderingMode String renderingMode)\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
       `,
-    },
-    cordova: {
-      javascript: `
+      },
+      cordova: {
+       javascript: `
 Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY", renderingMode: Smartlook.RenderingMode.NATIVE});
       `,
-    },
-    ios: {
-      swift: `
+      },
+      ios: {
+        swift: `
 Smartlook.setup(key: YOUR_API_KEY, options: [.renderingMode: Smartlook.RenderingMode.wireframe]);
 `,
-      objc: `
+      'objective-c': `
 [Smartlook setupWithKey:@"YOUR_API_KEY" options:@{ SLSetupOptionRenderingModeOptionsKey: SLRenderingModeOptionBlueprintWireframe }];
       `,
-    },
-  }}
-/>
+      },
+    }}
+  />
+</Alert>
 
 Or at anytime during application run using:
 
@@ -1397,7 +1562,7 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE});
       swift: `
 class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
 `,
-      objc: `
+      'objective-c': `
 + (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode;
       `,
     },
@@ -1418,7 +1583,7 @@ Smartlook.RenderingMode.native
 Smartlook.RenderingMode.wireframe
 Smartlook.RenderingMode.noRendering
 `,
-      objc: `
+      'objective-c': `
 SLRenderingMode const SLRenderingModeNative;
 SLRenderingMode const SLRenderingModeWireframe;
 SLRenderingMode const SLRenderingModeNoRendering;
@@ -1435,40 +1600,42 @@ Android, iOS
 
 Rendering mode option can be set on setup:
 
-<CodeBlock
-  snippets={{
-    android: {
-      java: `
+<Alert kind="example">
+  <CodeBlock
+   snippets={{
+      android: {
+        java: `
 Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(RenderingMode.WIREFRAME)
         .setRenderingModeOption(@RenderingModeOption String renderingModeOption);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
-      kotlin: `
+        kotlin: `
 val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(RenderingMode.WIREFRAME)
         .setRenderingModeOption(@RenderingModeOption renderingModeOption: String);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
-      `,
-    },
-    ios: {
-      swift: `
+        `,
+      },
+      ios: {
+        swift: `
 class func  Smartlook.setup(key: String,
                         options: [
                           .renderingMode:Smartlook.RenderingMode,
                           .renderingModeOption:Smartlook.RenderingModeOption
                         ])
-`,
-      objc: `
+          `,
+        'objective-c': `
 +(void)setupWithKey:(nonnull NSString *)key 
             options:@{
               SLSetupOptionRenderingModeKey:SLRenderingMode,
               SLSetupOptionRenderingModeOptionsKey:SLRenderingModeOption
             };
-      `,
-    },
-  }}
-/>
+        `,
+      },
+    }}
+  />
+</Alert>
 
 Or at anytime during application run using:
 
@@ -1485,7 +1652,7 @@ Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption renderi
       swift: `
 class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option renderingModeOption: Smartlook.RenderingModeOption?)
 `,
-      objc: `
+      'objective-c': `
 + (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode withOption:(nullable SLRenderingModeOption)renderingModeOption
       `,
     },
@@ -1508,7 +1675,7 @@ Smartlook.RenderingModeOption.colorWireframe
 Smartlook.RenderingModeOption.blueprintWireframe
 Smartlook.RenderingModeOption.iconBlueprintWireframe
 `,
-      objc: `
+      'objective-c': `
 SLRenderingModeOption const SLRenderingModeOptionNone;
 SLRenderingModeOption const SLRenderingModeOptionColorWireframe;
 SLRenderingModeOption const SLRenderingModeOptionBlueprintWireframe;
@@ -1724,7 +1891,7 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp: Boolean)
       swift: `
 class func getDashboardSessionURL(withCurrentTimestamp withTimestamp: Bool) -> URL?
 `,
-      objc: `
+      'objective-c': `
 + (nullable NSURL *)getDashboardSessionURLWithCurrentTimestamp:(BOOL)withTimestamp;
       `,
     },
@@ -1766,7 +1933,7 @@ Smartlook.getDashboardVisitorUrl()
     ios: {
       swift: `
 class func getDashboardVisitorURL() -> URL?`,
-      objc: `
+      'objective-c': `
 + (nullable NSURL *)getDashboardVisitorURL;
       `,
     },
@@ -1829,7 +1996,7 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
 public class let dashboardSessionURLChanged: NSNotification.Name
 public class let dashboardVisitorURLChanged: NSNotification.Name
 `,
-      objc: `
+      'objective-c': `
 NSNotificationName const SLDashboardSessionURLChangedNotification;
 NSNotificationName const SLDashboardVisitorURLChangedNotification;
       `,
