@@ -1720,11 +1720,25 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp: Boolean)
  }
       `,
     },
+    ios: {
+      swift: `
+class func getDashboardSessionURL(withCurrentTimestamp withTimestamp: Bool) -> URL?
+`,
+      objc: `
++ (nullable NSURL *)getDashboardSessionURLWithCurrentTimestamp:(BOOL)withTimestamp;
+      `,
+    },
   }}
 />
 
-If `withCurrentTimestamp` is set to `TRUE` link will include information about current recording timestamp. 
-This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
+<MD visibleOn="android,cordova" markup={`
+If \`withCurrentTimestamp\` is set to \`TRUE\` link will include information about current recording timestamp. 
+This will ensure that the player will start playing the session at the moment when \`getDashboardSessionUrl\` was called.
+`} />
+<MD visibleOn="ios" markup={`
+If \`withCurrentTimestamp\` is set to \`true\` link will include information about current recording timestamp. 
+This will ensure that the player will start playing the session at the moment when \`getDashboardSessionUrl\` was called.
+`} />
 
 NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
 
@@ -1749,6 +1763,13 @@ Smartlook.getDashboardVisitorUrl()
  }
       `,
     },
+    ios: {
+      swift: `
+class func getDashboardVisitorURL() -> URL?`,
+      objc: `
++ (nullable NSURL *)getDashboardVisitorURL;
+      `,
+    },
   }}
 />
 
@@ -1758,9 +1779,16 @@ NOTE: This URL can be opened only by someone who has access to your dashboard. T
 
 ## Manual integration
 
-You can manually integrate Smartlook info various analytic frameworks using our `IntegrationListener`. 
-
+<MD visibleOn="android" markup={`
+You can manually integrate Smartlook info various analytic frameworks using our \`IntegrationListener\`.
+\n
 You can register the listener like this:
+`} />
+<MD visibleOn="ios" markup={`
+You can register to dashboard URL change notifications to integrate them programmatically into other 3rd party analytics frameworks.
+\n
+The notifications are:
+`} />
 
 <CodeBlock
   snippets={{
@@ -1795,14 +1823,25 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
   onVisitorReady: function (dashboardVisitorUrl) { alert("Visitor: " + dashboardVisitorUrl); }
 });
       `,
+    }, 
+    ios: {
+      swift: `
+public class let dashboardSessionURLChanged: NSNotification.Name
+public class let dashboardVisitorURLChanged: NSNotification.Name
+`,
+      objc: `
+NSNotificationName const SLDashboardSessionURLChangedNotification;
+NSNotificationName const SLDashboardVisitorURLChangedNotification;
+      `,
     },
   }}
 />
 
 NOTE: You can find samples of integrations into most popular frameworks here.
 
+<MD visibleOn="android" markup={`
 If you want to uregister the listener simply call:
-
+`} />
 <CodeBlock
   snippets={{
     android: {
