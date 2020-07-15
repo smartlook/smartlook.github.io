@@ -505,14 +505,14 @@ class func registerBlacklisted(object: Any)
 // Note: the object can be UIView instance, UIView subclass or a Protocol 
 someView.slSensitive = true
 Smartlook.registerBlacklisted(object: someView)      
-Smartlook.registerBlacklisted(object: SensitiveView.self)      
+Smartlook.registerBlacklisted(object: SensitiveViewClass.self)      
 Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 `,
         'objective-c': `
 // Note: the object can be UIView instance, UIView subclass or a Protocol 
 self.someView.slSensitive = true
 [Smartlook registerBlacklistedObject:self.someView];          
-[Smartlook registerBlacklistedObject:SensitiveView.class];          
+[Smartlook registerBlacklistedObject:SensitiveViewClass.class];          
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
       `,
     },
@@ -522,12 +522,15 @@ self.someView.slSensitive = true
 
 <MD visobleOn="android"  markup={`
 Note: Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
+ 
+You can remove any of blacklisted classes:
 `}/>
 <MD visibleOn="ios"  markup={`
 Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
+ 
+You can remove any of the blacklisted objects:
 `}/>
 
-You can remove any of blacklisted classes:
 
 <CodeBlock
   snippets={{
@@ -683,8 +686,9 @@ If you need to record some input that is hidden by default you can mark it with 
 />
 
 ## No Rendering
-In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into `NO_RENDERING` rendering mode:
+In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into "no‑rendering" rendering mode:
 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -710,6 +714,7 @@ Smartlook.setRenderingMode(to: .noRendering)
     },
   }}
 />
+</Alert>
 
 Android, iOS
 TIP: SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
@@ -718,6 +723,7 @@ TIP: Some screens can leak sensitive data even through automatically detected to
 
 When your application is no longer displaying sensitive screen you can set your rendering mode to preferred variant:
 
+<Alert kind="example" visibleOn="ios,android">
 <CodeBlock
   snippets={{
     android: {
@@ -743,6 +749,7 @@ Smartlook.setRenderingMode(to: .native)
     },
   }}
 />
+</Alert>
 
 Android
 ## WebView blacklisting/whitelisting
@@ -756,6 +763,7 @@ If your application has some parts displayed using \`WKWebView\` and you want to
 `UIWebView` class is obsolete and no longer supported by Apple. Thus, its instances and their content are not specifically handled by Smartlook from the *sensitivity* point of view.
 </Alert>
 
+<Alert kind="example" visibleOn="ios,android">
 <CodeBlock
   snippets={{
     android: {
@@ -776,6 +784,7 @@ Smartlook.unregisterBlacklisted(object: WKWebView.class)
     },
   }}
 />
+</Alert>
 
 Now that you are recording all `WebView`s please **make sure that all sensitive elements** on the displayed web page **are hidden**. This can be done by marking sensitive html elements with `.smartlook-hide` css class:
 
