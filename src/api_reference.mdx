@@ -415,7 +415,7 @@ This works for all blacklisted views and classes.
 If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
 `}/>
 <MD visibleOn="ios"  markup={`
-You can also blacklist all instances of a \`UIView\` subclass or all \`UIView\` subclasses that conform some protocol:
+You can also blacklist all instances of a **\`UIView\` subclass** or all \`UIView\` subclasses that conform some **protocol**:
 `}/>
 <CodeBlock
   snippets={{
@@ -716,6 +716,14 @@ Smartlook.setUserIdentifier(@NonNull identifier: String)
       javascript: `
 Smartlook.setUserIdentifier({identifier: "sample_identifier"})
       `,
+    },   
+    ios: {
+      swift: `
+ Smartlook.setUserIdentifier("sample_identifier")
+`,
+      objc: `
+[Smartlook setUserIdentifier:@"sample_identifier");
+      `,
     },
   }}
 />
@@ -786,6 +794,41 @@ cordova.plugins.SmartlookPlugin.setUserIdentifier(
   }}
 />
 
+[//]: # (The following is iOS - specific documentation)
+iOS
+<MD visibleOn="ios" markup={`
+Additional custom properties can be added to each recording session by calling:
+`} />
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+Smartlook.setSessionProperty(value: "value", forName: "property-name")
+`,
+      objc: `
+[Smartlook setSessionPropertyValue:@"value" forName:@"property-name"];
+`,
+    },
+  }}
+/>
+<MD visibleOn="ios" markup={`
+You will see these properties in the Dashboard at Visitor details.
+\n    
+If you do want locking a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set.
+`} />
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+`,
+      objc: `
+[Smartlook setSessionPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+`,
+    },
+  }}
+/>  
+
 # Analytics
 
 Android, iOS
@@ -821,6 +864,14 @@ Smartlook.trackCustomEvent(@NonNull eventName: String)
 Smartlook.trackCustomEvent({name: "sample_event"})
       `,
     },
+    ios: {
+      swift: `
+Smartlook.trackCustomEvent(name: String)
+`,
+      objc: `
+[Smartlook trackCustomEventWithName:(nonnull NSString*)eventName];
+      `,
+    },
   }}
 />
 
@@ -830,6 +881,9 @@ Additional data serialized as `JSONObject`, `Bundle`, `String` with valid json f
 Cordova
 Addition data passed as a `object` can be added to custom event:
 
+<MD visibleOn="ios" markup={`
+Custom event also accepts a dictionary of string key/values as event properties.
+`} />
 <CodeBlock
   snippets={{
     android: {
@@ -850,6 +904,14 @@ Smartlook.trackCustomEvent(@NonNull eventName: String, @NotNull key: String, val
       javascript: `
 Smartlook.trackCustomEvent(
     {name: "sample_event", eventProperties: {id: "sample_id", text: "sample text"}})
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.trackCustomEvent(name: String, props: [String : String]?)
+`,
+      objc: `
+[Smartlook trackCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props];
       `,
     },
   }}
@@ -879,10 +941,23 @@ Smartlook.trackNavigationEvent(@NotNull name: String, @ViewState viewState: Stri
 Smartlook.trackNavigationEvent({name: "sample_screen", viewState: Smartlook.ViewState.START})
       `,
     },
+    ios: {
+      swift: `
+Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
+`,
+      objc: `
+[Smartlook trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type];
+      `,
+    },
   }}
 />
+<MD visibleOn="android" markup={`
+where \`viewState\` can be either \`ViewState.START\` or \`ViewState.STOP\`.
+`} />
+<MD visibleOn="ios" markup={`
+where the \`state\` could flag the event as either \`enter\` or \`exit\` of the navigation controller.
+`} />
 
-where `viewState` can be either `ViewState.START` or `ViewState.STOP`.
 
 NOTE: You need to track navigation events manually, because web technology based apps typically consist of single activity.
 
@@ -926,6 +1001,14 @@ Smartlook.startTimedCustomEvent(@NotNull eventName: String, eventPropertiesJson:
     cordova: {
       javascript: `
 Smartlook.startTimedCustomEvent({name: "sample_timed_event", eventProperties: {sample: "object"}});
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
+`,
+      objc: `
++ (id _Nonnull)startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
   }}
@@ -986,6 +1069,20 @@ Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String, event
 Smartlook.cancelTimedCustomEvent({eventId: "event_id", reason: "cancel reason" eventProperties: {sample: "object"}});
       `,
     },
+    ios: {
+      swift: `
+// to track successfull events
+Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
+// to track event cancellation
+Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
+`,
+      objc: `
+// to track successfull events
++ (void)trackTimedCustomEventWithEventId:(id _Nonnull)eventId props:(nullable NSDictionary<NSString*, NSString*>*)props;
+// to track event cancellation
++ (void)trackTimedCustomEventCancelWithEventId:(id _Nonnull)eventId reason:(NSString *_Nullable)reason props:(nullable NSDictionary<NSString*, NSString*>*)props;
+      `,
+    },
   }}
 />
 
@@ -1011,6 +1108,18 @@ var eventID = Smartlook.startTimedCustomEvent({name: "duration_event"});
 setTimeout(function() {
     Smartlook.stopTimedCustomEvent({eventId: eventId})
 }, 1000);
+      `,
+    },
+    ios: {
+      swift: `
+let eventRef = Smartlook.startTimedCustomEvent("duration_event");
+// some lenghty operation
+Smartlook.trackTimedCustomEvent(eventRef);
+`,
+      objc: `
+id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event"];
+// some lenghty operation
+[Smartlook trackTimedCustomEventCancelWithEventId:eventRef];
       `,
     },
   }}
