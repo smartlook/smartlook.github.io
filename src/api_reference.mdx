@@ -1106,7 +1106,7 @@ Smartlook.stopTimedCustomEvent(eventId)
       javascript: `
 var eventID = Smartlook.startTimedCustomEvent({name: "duration_event"});
 setTimeout(function() {
-    Smartlook.stopTimedCustomEvent({eventId: eventId})
+Smartlook.stopTimedCustomEvent({eventId: eventId})
 }, 1000);
       `,
     },
@@ -1220,6 +1220,16 @@ Smartlook.setGlobalEventProperty(@NotNull key: String, @NotNull value: String, i
 Smartlook.setGlobalEventProperties({globalEventProperties: {sample: "property"}, immutable: true/false});
       `,
     },
+    ios: {
+      swift: `
+Smartlook.setGlobalEventProperty(value: String, forName: String)
+Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-property", options: .immutable)
+`,
+      objc: `
+[Smartlook setGlobalEventPropertyValue:(nonnull NSString *) forName:(nonnull NSString *)];
+[Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
+      `,
+    },
   }}
 />
 
@@ -1245,6 +1255,14 @@ Smartlook.removeGlobalEventProperty(propertyKey: String)
 Smartlook.removeGlobalEventProperty({key: "property_key"});
       `,
     },
+    ios: {
+      swift: `
+Smartlook.removeGlobalEventProperty(forName: String)
+`,
+      objc: `
+[Smartlook removeGlobalEventPropertyForName:(nonnull NSString *)];
+      `,
+    },
   }}
 />
 
@@ -1263,6 +1281,14 @@ Smartlook.removeAllGlobalEventProperties()
     cordova: {
       javascript: `
 Smartlook.removeAllGlobalEventProperties();
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.clearGlobalEventProperties()
+`,
+      objc: `
+[Smartlook clearGlobalEventProperties];
       `,
     },
   }}
@@ -1293,6 +1319,16 @@ Smartlook.setEventTrackingMode(@EventTrackingMode eventTrackingMode: String);
 Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode.FULL_TRACKING});
       `,
     },
+    ios: {
+      swift: `
+Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
+let currentEventTrackingMode = Smartlook.currentEventTrackingMode()
+`,
+      objc: `
+[Smartlook setEventTrackingModeTo:SLEventTrackingModeIgnoreUserInteractionEvents];
+SLEventTrackingMode eventTrackingMode = [Smartlook currentEventTrackingMode];
+      `,
+    },
   }}
 />
 
@@ -1302,8 +1338,14 @@ TIP: Take a look at pin code keyboard sample, demonstrating usage of analytic ev
 SDK can use different methods of capturing screen image data. We call these rendering modes.
 
 ## Set rendering mode
-You can change rendering mode on SDK setup using builder:
 
+
+<MD visibleOn="android" markup={`
+You can change rendering mode on SDK setup using builder:
+`} />
+<MD visibleOn="ios" markup={`
+Rendering mode can be set on SDK setup, e.g.:
+`} />
 <CodeBlock
   snippets={{
     android: {
@@ -1321,6 +1363,14 @@ Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
     cordova: {
       javascript: `
 Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY", renderingMode: Smartlook.RenderingMode.NATIVE});
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.setup(key: YOUR_API_KEY, options: [.renderingMode: Smartlook.RenderingMode.wireframe]);
+`,
+      objc: `
+[Smartlook setupWithKey:@"YOUR_API_KEY" options:@{ SLSetupOptionRenderingModeOptionsKey: SLRenderingModeOptionBlueprintWireframe }];
       `,
     },
   }}
@@ -1343,13 +1393,39 @@ Smartlook.setRenderingMode(@RenderingMode renderingMode: String)
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE});
       `,
     },
+    ios: {
+      swift: `
+class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
+`,
+      objc: `
++ (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode;
+      `,
+    },
   }}
 />
 
 Rendering modes available:
-* `RenderingMode.NATIVE`
-* `RenderingMode.WIREFRAME`
-* `RenderingMode.NO_RENDERING`
+<MD visibleOn="android" markup={`
+* \`RenderingMode.NATIVE\`
+* \`RenderingMode.WIREFRAME\`
+* \`RenderingMode.NO_RENDERING\`
+`} />
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+Smartlook.RenderingMode.native
+Smartlook.RenderingMode.wireframe
+Smartlook.RenderingMode.noRendering
+`,
+      objc: `
+SLRenderingMode const SLRenderingModeNative;
+SLRenderingMode const SLRenderingModeWireframe;
+SLRenderingMode const SLRenderingModeNoRendering;
+      `,
+    },
+  }}
+/>
 
 NOTE: `NO_RENDERING` mode does not record any screen data, this is beneficial on screens that include sensitive data, read more.
 
@@ -1375,6 +1451,22 @@ val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
     },
+    ios: {
+      swift: `
+class func  Smartlook.setup(key: String,
+                        options: [
+                          .renderingMode:Smartlook.RenderingMode,
+                          .renderingModeOption:Smartlook.RenderingModeOption
+                        ])
+`,
+      objc: `
++(void)setupWithKey:(nonnull NSString *)key 
+            options:@{
+              SLSetupOptionRenderingModeKey:SLRenderingMode,
+              SLSetupOptionRenderingModeOptionsKey:SLRenderingModeOption
+            };
+      `,
+    },
   }}
 />
 
@@ -1389,14 +1481,42 @@ Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption String 
       kotlin: `
 Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption renderingModeOption: String)
       `,
+    ios: {
+      swift: `
+class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option renderingModeOption: Smartlook.RenderingModeOption?)
+`,
+      objc: `
++ (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode withOption:(nullable SLRenderingModeOption)renderingModeOption
+      `,
+    },
     },
   }}
 />
 
 Rendering mode options for `WIREFRAME` rendering mode:
-* `RenderingMode.WIREFRAME`
-* `RenderingMode.BLUEPRINT`
-* `RenderingMode.ICON_BLUEPRINT`
+<MD visibleOn="android" markup={`
+* \`RenderingMode.WIREFRAME\`
+* \`RenderingMode.BLUEPRINT\`
+* \`RenderingMode.ICON_BLUEPRINT\`
+`} />
+<CodeBlock
+  snippets={{
+    ios: {
+      swift: `
+Smartlook.RenderingModeOption.none
+Smartlook.RenderingModeOption.colorWireframe
+Smartlook.RenderingModeOption.blueprintWireframe
+Smartlook.RenderingModeOption.iconBlueprintWireframe
+`,
+      objc: `
+SLRenderingModeOption const SLRenderingModeOptionNone;
+SLRenderingModeOption const SLRenderingModeOptionColorWireframe;
+SLRenderingModeOption const SLRenderingModeOptionBlueprintWireframe;
+SLRenderingModeOption const SLRenderingModeOptionIconBlueprintWireframe;
+      `,
+    },
+  }}
+/>
 
 <MD visibleOn="android" markup={`
 # Network intercepting
