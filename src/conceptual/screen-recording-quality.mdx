@@ -5,7 +5,8 @@ route: /conceptual/screen-recording-quality
 order: 400
 ---
 
-import { CodeBlock } from "components/CodeBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
 
 # Screen Recording Quality
 
@@ -35,7 +36,7 @@ We recommend setting the framerate for your project on the dashboard [link here]
 
 Alternatively, it can also be set as one of Smartlook setup options. This is particularly useful for debugging and finding the optimal value for the app. In production releases, this option should not be used.
 
-The given framerate, however, is the maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. This kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with all kinds of technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results in these edge cases, it can be switched off by the respective Smartlook setup option. 
+The given framerate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with all kinds of technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results in these edge cases, it can be switched off by the respective Smartlook setup option. 
 
 ## Rendering Mode
 

@@ -626,14 +626,14 @@ class func registerBlacklisted(object: Any)
 // Note: the object can be UIView instance, UIView subclass or a Protocol 
 someView.slSensitive = true
 Smartlook.registerBlacklisted(object: someView)      
-Smartlook.registerBlacklisted(object: SensitiveViewClass.self)      
+Smartlook.registerBlacklisted(object: SensitiveDataViewClass.self)      
 Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 `,
         'objective-c': `
 // Note: the object can be UIView instance, UIView subclass or a Protocol 
 self.someView.slSensitive = true
 [Smartlook registerBlacklistedObject:self.someView];          
-[Smartlook registerBlacklistedObject:SensitiveViewClass.class];          
+[Smartlook registerBlacklistedObject:SensitiveDataViewClass.class];          
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
       `,
     },
