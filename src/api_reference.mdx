@@ -79,6 +79,45 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
       `,
     },
+    flutter: {
+    dart: `
+import 'package:smartlook/smartlook.dart';
+\n
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    ...
+    Smartlook.setupAndStartRecording('YOUR_API_KEY');
+    ...
+    }
+}
+`,
+  },
+  unity: {
+    csharp: `
+public class NewBehaviourScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        SmartlookUnity.Smartlook.SetupAndStartRecording("YOUR_API_KEY");
+    }
+\n
+    // Update is called once per frame
+    void Update()
+    {
+        ...
+    }
+}
+`,
+  },
+  react: {
+    javascript: `
+var Smartlook = require('smartlook-react-native-wrapper');
+Smartlook.setupAndStartRecording("YOUR_API_KEY");
+`,
+  }
   }}
 />
 
@@ -130,6 +169,22 @@ class func setup(withKey key: String)
 +(void)setupWithKey:(nonnull NSString *)key;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setup(String key, [int fps = 2]);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.Setup("YOUR_API_KEY");
+SmartlookUnity.Smartlook.Setup("YOUR_API_KEY", fps);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setup("YOUR_API_KEY", fps);
+`,
+  }
   }}
 />
 
@@ -160,6 +215,21 @@ class func startRecording()
 + (void)startRecording;
 `,
     },
+    flutter: {
+    dart: `
+Smartlook.startRecording();
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.StartRecording();
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.startRecording();
+`,
+  }
   }}
 />
 
@@ -284,6 +354,24 @@ class func stopRecording()
 + (void)stopRecording;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.startRecording();
+Smartlook.stopRecording();
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.StartRecording();
+SmartlookUnity.Smartlook.StopRecording();
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.startRecording();
+Smartlook.stopRecording();
+`,
+  }
   }}
 />
 
@@ -319,6 +407,21 @@ class func isRecording() -> Bool
 + (BOOL)isRecording;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.isRecording();
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.IsRecording();
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.isRecording();
+`,
+  }
   }}
 />
 
@@ -328,6 +431,10 @@ Android
 When using **native** rendering mode, **SDK can record sensitive data in your application**. You can configure recording using methods listed below so sensitive data is not recorded, or you can simply use one of **Wireframe** rendering mode that does not record sensitive data by default.
 
 ## Blacklisted views
+
+<TextBlock visibleOn="flutter,unity">
+This functionality is not available yet.
+</TextBlock>
 
 You can hide any view in the recording by marking it as a **blacklisted** view.
 
@@ -353,6 +460,11 @@ class func registerBlacklisted(object: Any)
 + (void)registerBlacklistedObject:(nonnull id)object;
       `,
     },
+    react: {
+    javascript: `
+Smartlook.registerBlacklistedView(ref);
+`,
+  }
   }}
 />
 <Alert kind="example" visibleOn="ios">
@@ -433,6 +545,11 @@ class func registerBlacklisted(object: Any)
 + (void)unregisterBlacklistedObject:(nonnull id)object
       `,
     },
+    react: {
+    javascript: `
+Smartlook.unregisterBlacklistedView(ref);
+`,
+  }
   }}
 />
 
@@ -464,6 +581,10 @@ class func setBlacklistedItem(color: UIColor)
 This works for all blacklisted objects.
 
 ## Blacklisted classes
+
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
 
 <MD visobleOn="android"  markup={`
 If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
@@ -554,6 +675,10 @@ class func unregisterBlacklisted(object: Any)
 
 ## Whitelisted views
 
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
+
 ¿*NOTE: let us perhaps consider a bit denser documentation of whitelisting (as the methods are equivalent of blacklistig, similar of how it is now in current iOS documentation? https://smartlook.github.io/docs/sdk/ios/#whitelisting)*?
 
 In case you need some view to be recorded even if its instance of a blacklisted class, you can whitelist it:
@@ -643,6 +768,10 @@ NOTE: Sensitive elements are **hidden locally** on the device, no sentive data i
 ## Hidden elements
 Sensitive elements can be blacklisted by marking them with `.smartlook-hide` css class:
 
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
+
 <CodeBlock
   snippets={{
     cordova: {
@@ -666,6 +795,10 @@ NOTE: **All inputs** are **hidden** by default except for `button` and `submit` 
 
 ## Shown elements
 If you need to record some input that is hidden by default you can mark it with `.smartlook-show` css class:
+
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -708,6 +841,21 @@ Smartlook.setRenderingMode(to: .noRendering)
 [Smartlook setRenderingModeTo:SLRenderingModeNoRendering];
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setRenderingMode(SmartlookRenderingMode.no_rendering);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.no_rendering);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setRenderingMode("no_rendering");
+`,
+  }
   }}
 />
 
@@ -741,11 +889,31 @@ Smartlook.setRenderingMode(to: .native)
 [Smartlook setRenderingModeTo:SLRenderingModeNative];
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setRenderingMode(SmartlookRenderingMode.native);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.native);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setRenderingMode("native");
+`,
+  }
   }}
 />
 
 Android
 ## WebView blacklisting/whitelisting
+
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
+
 <MD visibleOn="android" markup={`
 If your application has some parts displayed using \`WebView\` and you want to record those parts you need to enable \`WebView\` recording by removing \`WebView\` from list of blacklisted classes:
 `} />
@@ -825,6 +993,23 @@ class func setUserIdentifier(_ userIdentifier: String?)
 + (void)setUserIdentifier:(nullable NSString*)userIdentifier;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setUserIdentifier(String key, [Object map = null]);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetUserIdentifier(string userIdentifier);
+//json string, obtained for example with JsonUtility.ToJson(param)
+SmartlookUnity.Smartlook.SetUserIdentifier(string userIdentifier, string properties);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setUserIdentifier(idKey, map);
+`,
+  }
   }}
 />
 
@@ -832,6 +1017,11 @@ TIP: You can then lookup identifiers in the Dashboard to find specific user’s 
 
 Android
 ## User properties
+
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is described in <b>User Identification</b> section.
+</TextBlock>
+
 
 Additional user information such as `name`, `email`, etc. can be set using `UserProperties` helper class and its methods:
 
@@ -992,6 +1182,21 @@ class func trackCustomEvent(name eventName: String)
 + (void)trackCustomEventWithName:(nonnull NSString*)eventName;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.trackCustomEvent(String eventName);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.TrackCustomEvent(string eventName);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.trackCustomEvent(key);
+`,
+  }
   }}
 />
 
@@ -1034,6 +1239,22 @@ Smartlook.trackCustomEvent(name: String, props: [String : String]?)
 + (void)trackCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.trackCustomEvent(String eventName, [Object map = null]);
+`,
+  },
+  unity: {
+    csharp: `
+    //json string, obtained for example with JsonUtility.ToJson(param)
+SmartlookUnity.TrackCustomEvent(string eventName, string properties);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.trackCustomEvent(key, map);
+`,
+  }
   }}
 />
 
@@ -1075,6 +1296,21 @@ SLNavigationType const _Nonnull SLNavigationTypeExit;
 + (void)trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.trackNavigationEvent(String key, SmartlookNavigationEventType type);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.TrackNavigationEvent(string screenName, NavigationEventType direction);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.trackNavigationEvent(screenName, "enter"/"exit");
+`,
+  }
   }}
 />
 <MD visibleOn="android" markup={`
@@ -1085,7 +1321,7 @@ where the \`type\` could flag the event as either \`enter\` or \`exit\` of the n
 `} />
 
 
-NOTE: You need to track navigation events manually, because web technology based apps typically consist of single activity.
+NOTE: You need to track navigation events manually, because i.e. Unity or web technology based apps typically consist of single activity.
 
 Android
 You can also explicitly tell the SDK if the navigation event happened between `Activities` or `Fragments`:
@@ -1137,6 +1373,22 @@ Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
 + (id _Nonnull)startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.startTimedCustomEvent(String eventName, [Object map = null]);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.StartTimedCustomEvent(string eventName);
+SmartlookUnity.Smartlook.StartTimedCustomEvent(string eventName, string properties)
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.startTimedCustomEvent("sample_timed_event", {prop: "propValue"});
+`,
+  }
   }}
 />
 
@@ -1165,6 +1417,22 @@ Smartlook.stopTimedCustomEvent(@NotNull eventId: String, eventPropertiesJson: St
 Smartlook.stopTimedCustomEvent({eventId: "event_id", eventProperties: {sample: "object"}});
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.stopTimedCustomEvent(String key, [Object map = null]);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.StopTimedCustomEvent(string eventId);
+SmartlookUnity.Smartlook.StopTimedCustomEvent(string eventId, string properties);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.stopTimedCustomEvent("event_id", {prop: "propValue"});
+`,
+  }
   }}
 />
 
@@ -1209,6 +1477,22 @@ Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [Str
 + (void)trackTimedCustomEventCancelWithEventId:(id _Nonnull)eventId reason:(NSString *_Nullable)reason props:(nullable NSDictionary<NSString*, NSString*>*)props;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.cancelTimedCustomEvent(String key, String reason, [Object map = null]);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.CancelTimedCustomEvent(string eventId, string reason);
+SmartlookUnity.Smartlook.CancelTimedCustomEvent(string eventId, string reason, string properties);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.stopTimedCustomEvent("event_id", "reason", {prop: "propValue"});
+`,
+  }
   }}
 />
 
@@ -1363,6 +1647,23 @@ typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
 + (void)setGlobalEventPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name withOptions:(SLPropertyOption)options;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setGlobalEventProperty(String key, String value, bool immutable)
+Smartlook.setGlobalEventProperties(Object map, bool immutable)
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetGlobalEventProperty(string key, string value, bool immutable);
+SmartlookUnity.Smartlook.SetGlobalEventProperties(string properties, bool immutable);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setGlobalEventProperty(key, value, immutable);
+`,
+  }
   }}
 />
 <Alert kind="example" visibleOn="ios">
@@ -1412,6 +1713,21 @@ Smartlook.removeGlobalEventProperty(forName: String)
 + (void)removeGlobalEventPropertyForName:(nonnull NSString *)name;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.removeGlobalEventProperty(String key)
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.RemoveGlobalEventProperty(string key);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.removeGlobalEventProperty(key);
+`,
+  }
   }}
 />
 
@@ -1440,6 +1756,21 @@ Smartlook.clearGlobalEventProperties()
 + (void)clearGlobalEventProperties;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.removeAllGlobalEventProperties()
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.RemoveAllGlobalEventProperties();
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.removeAllGlobalEventProperties();
+`,
+  }
   }}
 />
 
@@ -1447,6 +1778,11 @@ NOTE: Global event properties are stored until they are not removed or the app i
 
 ## Event tracking modes
 Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
+
+<TextBlock visibleOn="flutter,unity,react">
+This functionality is not available yet.
+</TextBlock>
+
 <MD invisibleOn="ios" markup={`
 * **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
 * **IGNORE_USER_INTERACTION** automatically detected events will not be tracked. User defined events are still enabled.
@@ -1566,6 +1902,21 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
 + (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setRenderingMode(SmartlookRenderingMode renderingMode);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType renderingMode);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.SetRenderingMode("native"/"no_rendering"/"wireframe");
+`,
+  }
   }}
 />
 
@@ -1861,6 +2212,21 @@ Smartlook.setReferrer(referrer: String, source: String)
 Smartlook.setReferrer({referrer: "sample referrer", source: "sample source"});
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.setReferrer(String referrer, String source);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.SetReferrer(string referrer, string source);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.setReferrer("referrer", "source");
+`,
+  }
   }}
 />
 
@@ -1895,6 +2261,21 @@ class func getDashboardSessionURL(withCurrentTimestamp withTimestamp: Bool) -> U
 + (nullable NSURL *)getDashboardSessionURLWithCurrentTimestamp:(BOOL)withTimestamp;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.getDashboardSessionUrl(bool withCurrentTimestamp);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.GetDashboardSessionUrl(bool withCurrentTimestamp);
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
+`,
+  }
   }}
 />
 
@@ -1907,7 +2288,7 @@ If \`withCurrentTimestamp\` is set to \`true\` link will include information abo
 This will ensure that the player will start playing the session at the moment when \`getDashboardSessionUrl\` was called.
 `} />
 
-NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
+NOTE: This URL can be opened only by someone who has access to your dashboard. This is **not a public shareable link**.
 
 ## Dashboard visitor URL
 You can obtain URL leading to Smartlook Dashboard for currently recorded visitor:
@@ -1937,6 +2318,21 @@ class func getDashboardVisitorURL() -> URL?`,
 + (nullable NSURL *)getDashboardVisitorURL;
       `,
     },
+    flutter: {
+    dart: `
+Smartlook.getDashboardVisitorUrl();
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.getDashboardVisitorUrl();
+`,
+  }
   }}
 />
 
@@ -2001,6 +2397,51 @@ NSNotificationName const SLDashboardSessionURLChangedNotification;
 NSNotificationName const SLDashboardVisitorURLChangedNotification;
       `,
     },
+    flutter: {
+    dart: `
+    class CustomIntegrationListener implements IntegrationListener {
+  void onSessionReady(String dashboardSessionUrl) {
+    print(dashboardSessionUrl);
+  }
+\n
+  void onVisitorReady(String dashboardVisitorUrl) {
+    print(dashboardVisitorUrl);
+  }
+}
+\n
+Smartlook.registerIntegrationListener(new CustomIntegrationListener());
+`,
+  },
+  unity: {
+    csharp: `
+    public class IntegrationListener : SmartlookUnity.IntegrationListener
+{
+    public override void onSessionReady(string dashboardSessionUrl)
+    {
+        Debug.Log("dashboardSessionUrl : " + dashboardSessionUrl);
+    }
+\n
+    public override void onVisitorReady(string dashboardVisitorUrl)
+    {
+        Debug.Log("dashboardVisitorUrl : " + dashboardVisitorUrl);
+    }
+}
+\n
+SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
+`,
+  },
+  react: {
+    javascript: `
+Smartlook.registerIntegrationListener(
+    (visitor) => {
+      console.log("app visitor", visitorUrl)
+    },
+    (dash) => {
+      console.log("app dash", dashboardUrl)
+    }
+  );
+`,
+  }
   }}
 />
 
