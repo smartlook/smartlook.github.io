@@ -161,6 +161,9 @@ There are several use-cases when automated event capturing by Smartlook may not 
 * On some platforms, automated events capturing is technically not possible
 * Some parameters that make the event important for analytics can only be provided programatically by the app author
 * Some events are not directly caused by user interaction with UI (i.e., detectable automatically as user _clicks_)
+* Some events are result of a lenghty, oft assynchronous operation which duration is also important.
+
+For these use-cases, tracking events programatically could be handy.
 
 In the common case, when the event has no duration, the method call is straigthforward:
 
