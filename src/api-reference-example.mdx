@@ -37,8 +37,8 @@ Smartlook.trackCustomEvent( {name: "sample_event", eventProperties: {id: "sample
     },
     ios: {
       swift: `
-class func trackCustomEvent(name eventName: String)
-class func Smartlook.trackCustomEvent(name: String, props: [String : String]?)
+Smartlook.trackCustomEvent(name eventName: String)
+Smartlook.trackCustomEvent(name: String, props: [String : String]?)
 `,
       'objective-c': `
 + (void)trackCustomEventWithName:(nonnull NSString*)eventName;
@@ -110,9 +110,9 @@ Smartlook.cancelTimedCustomEvent({eventId: "event_id", reason: "cancel reason" e
     },
     ios: {
       swift: `
-class func Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
-class func Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
-class func Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
+Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
+Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
+Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
 `,
       'objective-c': `
  + (id _Nonnull)startTimedCustomEventWithName:(nonnull NSString*)eventName props:(nullable NSDictionary<NSString*, NSString*>*)props;
@@ -191,6 +191,21 @@ Smartlook.trackCustomEvent("custom_event", props: [ "some_property" : someProper
 [Smartlook trackCustomEventWithName:@"duration_event" props:@{ @"some_property" : somePropertyValue }];
       `,
     },
+    flutter: {
+    dart: `
+an example here
+`,
+  },
+  unity: {
+    csharp: `
+an example here
+`,
+  },
+  react: {
+    javascript: `
+an example here
+`,
+  }
   }}
 />
 </Alert>
@@ -238,8 +253,8 @@ Smartlook.stopTimedCustomEvent({eventId: eventId})
 let eventRef = Smartlook.startTimedCustomEvent("duration_event", props: [ "some_property" : somePropertyValue ]);\n
 // some lenghty operation...\n
 // event ends as expected
-Smartlook.trackTimedCustomEvent(eventRef, [ "result" : success ? "success" : "failure", "some_result_rpoperty" : someResultValue ]);\n
-// opetation is cancelled by user
+Smartlook.trackTimedCustomEvent(eventRef, [ "result" : success ? "success" : "failure", "some_result_property" : someResultValue ]);\n
+// opetation is cancelled, e.g. by user
 Smartlook.trackTimedCustomEventCancel(eventId: eventRef, reason: "cancelled by user")
 `,
       'objective-c': `
@@ -248,10 +263,25 @@ id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event" props:@
 // some lenghty operation...\n
 // event ends as expected
 [Smartlook trackTimedCustomEventWithEventId:eventRef props:@{ @"result" : success ? @"success" : @"failure", @"some_result_property" : someResultValue } ];\n
-// opetation is cancelled by user
+// opetation is cancelled, e.g. by user
 [Smartlook trackTimedCustomEventCancelWithEventId:eventRef reason:@"cancelled by user" props:nil];
       `,
     },
+    flutter: {
+    dart: `
+an example here
+`,
+  },
+  unity: {
+    csharp: `
+an example here
+`,
+  },
+  react: {
+    javascript: `
+an example here
+`,
+  }
   }}
 />
 </Alert>
