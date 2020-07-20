@@ -17,7 +17,11 @@ The best place to setup the SDK is in \`onCreate()\` method of your \`Applicatio
 `}/>
 
 <MD visibleOn="cordova" markup={`
-The best place to setup the SDK is in \`onDeviceReady\`:
+The best place to setup the SDK is in [deviceready](https://cordova.apache.org/docs/en/5.1.1/cordova/events/events.deviceready.html) callback:
+`}/>
+
+<MD visibleOn="ionic" markup={`
+The best place to setup the SDK is in [platform ready](https://ionicframework.com/docs/v3/api/platform/Platform/#ready) callback:
 `}/>
 
 <MD visibleOn="ios" markup={`
@@ -54,6 +58,13 @@ if(document.readyState === "complete") {
 }\n
 function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
+}
+      `,
+    },
+    ionic: {
+      typescript: `
+this.platform.ready().then(() => {
+    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
 }
       `,
     },
@@ -131,7 +142,13 @@ Smartlook.setupAndStartRecording("YOUR_API_KEY");
   If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
 </Alert>
 
-The easiest way of setting up the SDK is with `setupAndStart()` method:
+<MD visibleOn="android,cordova,ionic,flutter,unity,react" markup={`
+The easiest way of setting up the SDK is with \`setupAndStart()\` method:
+`}/>
+
+<MD visibleOn="ios" markup={`
+The easiest way of setting up the SDK is with \`setup()\` method:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -148,10 +165,32 @@ Smartlook.setupAndStart(@NotNull apiKey: String)
 Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
       `,
     },
+    ionic: {
+      typescript: `
+smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+      `,
+    },
+    flutter: {
+      dart: `
+Smartlook.setupAndStartRecording('YOUR_API_KEY');
+      `,
+    },
+    unity: {
+      csharp: `
+SmartlookUnity.Smartlook.SetupAndStartRecording("YOUR_API_KEY");
+      `,
+    },
+    react: {
+      javascript: `
+Smartlook.setupAndStartRecording("YOUR_API_KEY");
+    `,
+    },
   }}
 />
 
+<MD visibleOn="android,cordova,ionic,flutter,unity,react" markup={`
 It will set the SDK up and also start the recording. If you want to start recording later you can just use:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -166,6 +205,11 @@ Smartlook.setup(@NotNull apiKey: String)
     cordova: {
       javascript: `
 Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY"});
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.setup(new SmartlookSetupConfig("YOUR API KEY"));
       `,
     },
     ios: {
@@ -214,6 +258,11 @@ Smartlook.startRecording()
     cordova: {
       javascript: `
 Smartlook.startRecording();
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.startRecording();
       `,
     },
     ios: {
@@ -277,11 +326,11 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME LINK shere]().  |
 `}/>
 
-<MD visobleOn="android"  markup={`
+<MD visibleOn="android" markup={`
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 `}/>
 
-<MD visibleOn="ios"  markup={`
+<MD visibleOn="ios" markup={`
 Full SDK setup configuration can be done with optional \`setup\` method parameter:
 `}/>
 
@@ -321,24 +370,33 @@ class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
   }}
 />
 
-Android
-TIP: You can replace the last line with `Smartlook.setup()` and start the recording later.
- 
-Cordova
+<MD visibleOn="android" markup={`
+You can replace the last line with \`Smartlook.setup()\` and start the recording later.
+`}/> 
+
+<MD visibleOn="cordova,ionic" markup={`
 Recording **framerate** can be set during setup. Allowed values are from a range from 2 to 10 fps.
+`}/> 
 
 <CodeBlock
   snippets={{
     cordova: {
       javascript: `
+Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY", fps: 2});
 Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY", fps: 2});
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.setup(new SmartlookSetupConfig(smartlookAPIKey: "YOUR_API_KEY", fps: number))
+smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookAPIKey: "YOUR_API_KEY", fps: number))
       `,
     },
   }}
 />
 
 ## Start and stop recording
-Recording can be **started** or **stopped** at any time, the only requirement is that the SDK is set up (see setup).
+Recording can be **started** or **stopped** at any time, the only requirement is that the SDK is set up.
 
 <CodeBlock
   snippets={{
@@ -358,12 +416,18 @@ Smartlook.startRecording();
 Smartlook.stopRecording();
       `,
     },
+    ionic: {
+      typescript: `
+smartlook.startRecording();
+smartlook.stopRecording();
+      `,
+    },
     ios: {
       swift: `
 class func startRecording()
 class func stopRecording()
 `,
-      'objective-c': `
+    'objective-c': `
 + (void)startRecording;
 + (void)stopRecording;
       `,
@@ -389,7 +453,9 @@ Smartlook.stopRecording();
   }}
 />
 
-NOTE: You **don't need to call** `stopRecording()` on application closure. **Recording is stopped automatically**.
+<Alert kind="note">
+You <b>don't need to call</b> <i>stopRecording()</i> on application closure. <b>Recording is stopped automatically</b>.
+</Alert>
 
 ## Check if SDK is recording
 If you are using `startRecording()` and `stopRecording()` methods it might be handy to know if SDK is currently recording or not. Simply call:
@@ -411,6 +477,13 @@ cordova.plugins.SmartlookPlugin.isRecording(
         //check here
     }
 )
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.isRecording().then((isRecording) => {
+  alert(isRecording)
+});
       `,
     },
     ios: {
@@ -441,18 +514,26 @@ Smartlook.isRecording();
 
 # Sensitive data hiding
 
-Android
+<MD visibleOn="android,ios,react" markup={`
 When using **native** rendering mode, **SDK can record sensitive data in your application**. You can configure recording using methods listed below so sensitive data is not recorded, or you can simply use one of **Wireframe** rendering mode that does not record sensitive data by default.
+`}/>
 
+<Alert kind="important" visibleOn="android,ios,react">
+Sensitive elements are <b>hidden locally</b> on the device, no sentive data is transfered over network and stored in our dashboard.
+</Alert>
+
+<MD visibleOn="android,ios,react,flutter,unity" markup={`
 ## Blacklisted views
+`}/>
 
-<TextBlock visibleOn="flutter,unity">
+<MD visibleOn="flutter, unity" markup={`
 This functionality is not available yet.
-</TextBlock>
+`}/>
 
-You can hide any view in the recording by marking it as a **blacklisted** view.
-
+<MD visibleOn="android,ios,react" markup={`
+You can hide any view in the recording by marking it as a **blacklisted** view.\n
 View can be marked as blacklisted by calling:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -481,6 +562,7 @@ Smartlook.registerBlacklistedView(ref);
   }
   }}
 />
+
 <Alert kind="example" visibleOn="ios">
   <CodeBlock
     snippets={{
@@ -496,12 +578,13 @@ Smartlook.registerBlacklisted(object: someView)
 />
 </Alert>
 
-<TextBlock visibleOn="android">
-Or can be tagged directly in xml layout file:
-</TextBlock>
-<TextBlock visibleOn="ios">
-Or can be tagged directly by an UIView property added by Smartlook:
-</TextBlock>
+<MD visibleOn="android" markup={`
+Or can be tagged directly in \`xml\` layout file:
+`}/>
+
+<MD visibleOn="ios" markup={`
+Or can be tagged directly by an \`UIView\` property added by Smartlook:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -537,7 +620,9 @@ self.someView.slSensitive = YES;
 />
 </Alert>
 
+<MD visibleOn="android,ios,react" markup={`
 If view no longer needs to be blacklisted call:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -567,8 +652,8 @@ Smartlook.unregisterBlacklistedView(ref);
   }}
 />
 
-TIP: Blacklisted view is hidden on recording by single color rectangle. You can configure color of this rectangle by calling:
-
+<Alert kind="note" visibleOn="android,ios,react">
+Blacklisted view is hidden on recording by single color rectangle. You can configure color of this rectangle by calling:
 <CodeBlock
   snippets={{
     android: {
@@ -589,12 +674,12 @@ class func setBlacklistedItem(color: UIColor)
     },
   }}
 />
+This is applied for all blacklisted objects.
+</Alert>
 
-
-
-This works for all blacklisted objects.
-
+<MD visibleOn="android,ios,react,flutter,unity" markup={`
 ## Blacklisted classes
+`}/>
 
 <TextBlock visibleOn="flutter,unity,react">
 This functionality is not available yet.
@@ -603,9 +688,11 @@ This functionality is not available yet.
 <MD visobleOn="android"  markup={`
 If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
 `}/>
+
 <MD visibleOn="ios"  markup={`
 You can also blacklist all instances of a **\`UIView\` subclass** or all \`UIView\` subclasses that conform some **protocol**:
 `}/>
+
 <CodeBlock
   snippets={{
     android: {
@@ -655,17 +742,22 @@ self.someView.slSensitive = true
 />
 </Alert>
 
+
+<Alert kind="note" visibleOn="ios">
+Note that <i>EditText</i> and <i>WebView</i> are <b>blacklisted by default</b> and can be removed using <i>Smartlook.unregisterBlacklistedClass()</i>.
+</Alert> 
+
 <MD visobleOn="android"  markup={`
-Note: Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
- 
 You can remove any of blacklisted classes:
 `}/>
-<MD visibleOn="ios"  markup={`
-Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
- 
+
+<Alert kind="note" visibleOn="ios">
+Note that for convenience, <b>some classes are blacklisted by default</b>: <i>UITextView</i>, <i>UITextField</i> and <i>WKWebView</i>.
+</Alert>
+
+<MD visibleOn="ios"  markup={` 
 You can remove any of the blacklisted objects:
 `}/>
-
 
 <CodeBlock
   snippets={{
@@ -690,7 +782,9 @@ class func unregisterBlacklisted(object: Any)
   }}
 />
 
+<MD visibleOn="android,ios,react,flutter,unity" markup={`
 ## Whitelisted views
+`}/>
 
 <TextBlock visibleOn="flutter,unity,react">
 This functionality is not available yet.
@@ -698,7 +792,9 @@ This functionality is not available yet.
 
 ¿*NOTE: let us perhaps consider a bit denser documentation of whitelisting (as the methods are equivalent of blacklistig, similar of how it is now in current iOS documentation? https://smartlook.github.io/docs/sdk/ios/#whitelisting)*?
 
+<TextBlock visibleOn="android,ios">
 In case you need some view to be recorded even if its instance of a blacklisted class, you can whitelist it:
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -724,11 +820,13 @@ class func registerWhitelisted(object: Any)
 />
 
 <MD visibleOn="android" markup={`
-Or you can tag them directly in \`xml\` layout file:`} 
-/>
+Or you can tag them directly in \`xml\` layout file:
+`} />
+
 <MD visibleOn="ios" markup={`
 Or can be tagged directly by an \`UIView\` property added by Smartlook:
 `} />
+
 <Alert kind="example" visibleOn="ios,android">
   <CodeBlock
     snippets={{
@@ -751,7 +849,9 @@ self.someView.slSensitive = NO;
   />
 </Alert>
 
+<TextBlock visibleOn="android,ios">
 You can remove view from whitelist by calling:
+</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -776,18 +876,19 @@ Smartlook.unregisterWhitelisted(object: someView)
   }}
 />
 
-Cordova, Ionic
+<MD visibleOn="cordova,ionic" markup={`
 Some elements in your application cannot be recorded because of security (posibly GDPR) reasons.
 All of theese can be marked and will be hidden on the recording.
+`} />
 
-NOTE: Sensitive elements are **hidden locally** on the device, no sentive data is transfered over network and stored in our dashboard.
+<Alert kind="important" visibleOn="cordova,ionic">
+Sensitive elements are <b>hidden locally</b> on the device, no sentive data is transfered over network and stored in our dashboard.
+</Alert>
 
+<MD visibleOn="cordova,ionic" markup={`
 ## Hidden elements
-Sensitive elements can be blacklisted by marking them with `.smartlook-hide` css class:
-
-<TextBlock visibleOn="flutter,unity,react">
-This functionality is not available yet.
-</TextBlock>
+Sensitive elements can be blacklisted by marking them with \`.smartlook-hide\` css class:
+`} />
 
 <CodeBlock
   snippets={{
@@ -808,14 +909,14 @@ This functionality is not available yet.
   }}
 />
 
-NOTE: **All inputs** are **hidden** by default except for `button` and `submit` types.
+<Alert kind="note" visibleOn="cordova,ionic">
+<b>All inputs</b> are <b>hidden</b> by default except for <i>button</i> and <i>submit</i> types.
+</Alert>
 
+<MD visibleOn="cordova,ionic" markup={`
 ## Shown elements
-If you need to record some input that is hidden by default you can mark it with `.smartlook-show` css class:
-
-<TextBlock visibleOn="flutter,unity,react">
-This functionality is not available yet.
-</TextBlock>
+If you need to record some input that is hidden by default you can mark it with \`.smartlook-show\` css class:
+`} />
 
 <CodeBlock
   snippets={{
@@ -850,7 +951,12 @@ Smartlook.setRenderingMode(RenderingMode.NO_RENDERING)
       javascript: `
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING})
       `,
-    },   
+    },
+    ionic: {
+      typescript: `
+smartlook.setRenderingMode(SmartlookRenderingMode.NO_RENDERING());
+      `,
+    },    
     ios: {
       swift: `
 Smartlook.setRenderingMode(to: .noRendering)
@@ -878,10 +984,13 @@ Smartlook.setRenderingMode("no_rendering");
 />
 </Alert>
 
-Android, iOS
-TIP: SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
+<Alert kind="note" visibleOn="android,ios,react">
+SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
+</Alert>
 
-TIP: Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
+<Alert kind="important">
+Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
+</Alert>
 
 When your application is no longer displaying sensitive screen you can set your rendering mode to preferred variant:
 
@@ -900,7 +1009,12 @@ Smartlook.setRenderingMode(RenderingMode.NATIVE)
       javascript: `
 Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE})
       `,
-    },   
+    },
+    ionic: {
+      typescript: `
+smartlook.setRenderingMode(SmartlookRenderingMode.NATIVE());
+      `,
+    },    
     ios: {
       swift: `
 Smartlook.setRenderingMode(to: .native)
@@ -928,8 +1042,9 @@ Smartlook.setRenderingMode("native");
 />
 </Alert>
 
-Android
+<MD visibleOn="android,ios,flutter,unity,react" markup={`
 ## WebView blacklisting/whitelisting
+`} />
 
 <TextBlock visibleOn="flutter,unity,react">
 This functionality is not available yet.
@@ -938,11 +1053,13 @@ This functionality is not available yet.
 <MD visibleOn="android" markup={`
 If your application has some parts displayed using \`WebView\` and you want to record those parts you need to enable \`WebView\` recording by removing \`WebView\` from list of blacklisted classes:
 `} />
+
 <MD visibleOn="ios" markup={`
 If your application has some parts displayed using \`WKWebView\` and you want to record those parts you need to enable \`WKWebView\` recording by removing \`WKWebView\` from list of blacklisted classes:
 `} />
+
 <Alert kind="note" visibleOn="ios">
-`UIWebView` class is obsolete and no longer supported by Apple. Thus, its instances and their content are not specifically handled by Smartlook from the *sensitivity* point of view.
+<i>UIWebView</i> class is obsolete and no longer supported by Apple. Thus, its instances and their content are not specifically handled by Smartlook from the <i>sensitivity</i> point of view.
 </Alert>
 
 <Alert kind="example" visibleOn="ios,android">
@@ -968,25 +1085,45 @@ Smartlook.unregisterBlacklisted(object: WKWebView.class)
 />
 </Alert>
 
-Now that you are recording all `WebView`s please **make sure that all sensitive elements** on the displayed web page **are hidden**. This can be done by marking sensitive html elements with `.smartlook-hide` css class:
+<MD visibleOn="android,ios" markup={`
+Now that you are recording all \`WebView\`s please **make sure that all sensitive elements** on the displayed web page **are hidden**. This can be done by marking sensitive html elements with \`.smartlook-hide\` css class:
+`} />
 
-<Code
+<CodeBlock
   snippets={{
-    html: `
+    android: {
+      html: `
 <div class='smartlook-hide'>
    This will be hidden.
 </div>
-`,
+      `,
+    },
+    ios: {
+      html: `
+<div class='smartlook-hide'>
+   This will be hidden.
+</div>
+      `,
+    },
   }}
 />
 
-All input inputs are hidden by default except for `button` and `submit` types. If you need to record some hidden inputs you can mark these views with `.smartlook-show` css class:
+<MD visibleOn="android,ios" markup={`
+All input inputs are hidden by default except for \`button\` and \`submit\` types. If you need to record some hidden inputs you can mark these views with \`.smartlook-show\` css class:
+`} />
 
-<Code
+<CodeBlock
   snippets={{
-    html: `
+    android: {
+      html: `
 <input type="text" class='smartlook-show'>
-`,
+      `,
+    },
+    ios: {
+      html: `
+<input type="text" class='smartlook-show'>
+      `,
+    },
   }}
 />
 
