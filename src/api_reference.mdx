@@ -11,12 +11,18 @@ import { usePlatforms } from 'hooks'
 ## SDK setup (on application start)
 Smartlook SDK **setup** needs to be called only **once during application lifetime** and it should be called **on application startup**. There is **no need to stop** recording explicitly **on application closure**, SDK stops itself automatically.
 
-Cordova
-The best place to setup the SDK is in `onDeviceReady`:
 
-<TextBlock visibleOn="ios">
-The best place to setup the SDK is in `didFinishLaunchingWithOptions` method of the `ApplicationDelegate`:
-</TextBlock>
+<MD visibleOn="android" markup={`
+The best place to setup the SDK is in \`onCreate()\` method of your \`Application\` class:
+`}/>
+
+<MD visibleOn="cordova" markup={`
+The best place to setup the SDK is in \`onDeviceReady\`:
+`}/>
+
+<MD visibleOn="ios" markup={`
+The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\`:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -72,8 +78,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   }}
 />
 
-Android
-TIP: If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
+<Alert kind="note" visibleOn="android">
+  If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
+</Alert>
 
 The easiest way of setting up the SDK is with `setupAndStart()` method:
 
@@ -123,7 +130,9 @@ Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY"});
   }}
 />
 
-NOTE: You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+<Alert kind="note" visibleOn="android">
+  You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+</Alert>
 
 And then when you want to start the recording call:
 
@@ -155,8 +164,10 @@ Smartlook.startRecording()
 
 ### Setup configuration
 
-Android,iOS ??
+<TextBlock visibleOn="ios,android">
 Some recording parameters can be configured on setup:
+</TextBlock>
+
 
 <MD visibleOn="android" markup={`
 | Parameter           | Required | Description                                                                                                                                        | Default value        |
@@ -168,6 +179,7 @@ Some recording parameters can be configured on setup:
 | renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
 | renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
 `}/>
+
 <MD visibleOn="ios" markup={`
  
 The following table describes all available optional parameters. Most of them can be also set by a dedicated method. See the respective documentation section for details.
@@ -185,9 +197,11 @@ The following table describes all available optional parameters. Most of them ca
 <MD visobleOn="android"  markup={`
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 `}/>
+
 <MD visibleOn="ios"  markup={`
 Full SDK setup configuration can be done with optional \`setup\` method parameter, e.g.:
 `}/>
+
 <CodeBlock
   snippets={{
     android: {
