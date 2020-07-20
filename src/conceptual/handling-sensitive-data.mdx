@@ -5,7 +5,8 @@ route: /conceptual/handling-sensitive-data
 order: 600
 ---
 
-import { CodeBlock } from "components/CodeBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
 
 # Handling Sensitive Data
 
@@ -34,59 +35,126 @@ There are three levels of granularity of handling the sensitive data recording:
 
 ### Handling Sensitivity of Individual UI Elements
 
-In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it 
+In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
 Smartlook.registerBlacklisted(object: self.portraitImageView)
-self.portraitImageView.slSensitive = true
-```
+self.portraitImageView.slSensitive = true`,
+      'objective-c': `
+[Smartlook registerBlacklistedObject: self.portraitImageView];
+self.portraitImageView.slSensitive = YES;`
+    },
+  }}
+/>
+</Alert>
 
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
 // whitelisting a Web View instance that is otherwise not recorded by default
-Smartlook.unregisterBlacklisted(object: self.introWebView)
+Smartlook.unregisterBlacklisted(object: self.introWebView)\n
 // or another method with the same effect
-Smartlook.registerWhitelisted(object: self.introWebView)
+Smartlook.registerWhitelisted(object: self.introWebView)\n
+// or direct flag setting
+self.introWebView.slSensitive = false`,
+      'objective-c': `
+// whitelisting a Web View instance that is otherwise not recorded by default
+[Smartlook unregisterBlacklistedObject:self.introWebView]\n
+// or another method with the same effect
+Smartlook [registerWhitelistedObject:self.introWebView];\n
+// or direct flag setting
+self.introWebView.slSensitive = false`
+    },
+  }}
+/>
+</Alert>
 
-self.introWebView.slSensitive = false
-```
+<Alert kind="note" visibleOn="ios">
+Note also, that the `slSensitive` property of `UIView` can be set in Xcode Interface Builder as well, i.e., it is not necessary creating an `@IBOutlet` for a view that is designed in the Interface Builder just in order to set its sensitivity.
+</Alert>
 
-Note also, that the slSensitive property of UIView can be set in Xcode interface builder as well, i.e., it is not necessary creating an @IBOutlet for a view that is designed in the Interface Builder just in order to set its sensitivity.
-
-### Handling Sensitivity of View Classes
+### Handling Sensitivity of Classes
 
 In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an app that heavily uses web views for presenting some insensitive content, or if the app defines its own UIView subclasses that present sensitive user data.
 
-To cover this use-case, Smartlook offers a convenient way how to blacklist or whitelist all descendants of some UIView subclass or all UIView subclasses that conform some protocol:
+To cover this use-case, Smartlook offers **on some platforms** a convenient way how to blacklist or whitelist all descendants of some class or visual elements that conform some protocol. 
+
+<MD visibleOn="ios" markup={`
+On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` subclasses that conform some **protocol**:
+`} />
+<Alert kind="important" invisibleOn="ios,android">
+On the selected platform this feature is not available.
+</Alert>
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
 Smartlook.unregisterBlacklisted(object: WKWebView.self)
-Smartlook.registerBlacklisted(object: MySensitiveDataView.self)
-
+Smartlook.registerBlacklisted(object: SensitiveDataView.self)
 Smartlook.registerWhitelisted(object: WhitelistedTextEditsProtocol.self)
-```
+`,
+        'objective-c': `
+[Smartlook unregisterBlacklistedObject:WKWebView.self];
+[Smartlook registerBlacklistedObject:SensitiveDataViewClass.class];          
+[Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
+      `,
+    },
+  }}
+/>
+</Alert>
 
-This method also works in combination with blacklisting/whitelisting of individual views, the individual setting of a view instance takes precedence over the class or protocol setting.
-
-For your convenience, Smartlook also predefined two protocols that could be used for flagging sensitivity of your UIView subclasses:
+<MD visibleOn="ios" markup={`
+This method also works in combination with blacklisting/whitelisting of individual views, the individual setting of a view instance takes precedence over the class or protocol setting.\n
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
+For your convenience, Smartlook also predefined two protocols that could be used for flagging sensitivity of your UIView subclasses:
+`} />
+
+<CodeBlock
+  snippets={{
+      ios: {
+      swift: `
 protocol Smartlook.SensitiveData
 protocol Smartlook.NotSensitiveData
- 
-class NonSensitiveTextEdit : UITextEdit, Smartlook.NotSensitiveData {
+`,
+      'objective-c': `
+@protocol SLSensitiveData
+@protocol SLNonSensitiveData
+      `,
+    },
+  }}
+/>
+<Alert kind="example" visibleOn="ios">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+class NonSensitiveTextField : UITextField, Smartlook.NotSensitiveData {
     ...
 }
-```
+`,
+        'objective-c': `
+@interface NonSensitiveTextField : UITextField <SLNonSensitiveData>
+   ...
+@end
+      `,
+    },
+  }}
+/>
+</Alert>
 
 ### Handling Content Presented in WebViews
 
-WKWebView class is blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
+Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
 In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning smartlook-show CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning smartlook-hide CSS class to it. 
 

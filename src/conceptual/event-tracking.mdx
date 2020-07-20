@@ -5,7 +5,8 @@ route: /conceptual/event-tracking
 order: 500
 ---
 
-import { CodeBlock } from "components/CodeBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
 
 # Event Tracking
 
@@ -21,7 +22,9 @@ Smartlook tracks user interactions with the app UI, like taps and gestures, in o
 
 To protect user privacy, user interaction with virtual keyboards (i.e., events in the area where the keyboard is on the screen) is not recorded. When your app uses a custom input views (e.g., a custom PIN-pad) that the system does not recognize as a virtual keyboard (and thus Smartlook records interaction events in the area), you should consider using one of the event tracking modes to suppress user interaction tracking temporarily.
 
-Note: Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. To see how to handle events that could reveal sensitive user information, see Handling Sensitive Data, Event Tracking Modes
+<Alert kind="important">
+Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. To see how to handle events that could reveal sensitive user information, see Handling Sensitive Data, Event Tracking Modes
+</Alert>
 
 ## Analytics Events
 
@@ -39,41 +42,85 @@ The events created by these methods are treated by Smartlook exactly the way aut
 
 Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.
  
-Smartlook.trackCustomEvent(name: String, props: [String : String]?)
- 
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+        swift: `
+Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
+`,
+        'objective-c': `
+[Smartlook trackCustomEventWithName:@"CUSTOM EVENT" props:@{ @"PROP 1": @"record value" }];
+      `,
+    },
+  }}
+/>
+</Alert>
+
 ### Timed event
 
-In the case you want to measure the duration of some time-sensitive or long-running actions in the app, you can first call
- 
-Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
- 
-and store the returned opaque object that represents the timed event instance.
+In the case you want to measure the duration of some time-sensitive or long-running actions in the app, you can first call `start...` method and store the returned opaque object that represents the timed event instance.
 
-This will not send out any event, but once the track(...) with the corresponding event id gets called it will track the event and store the time interval between start... and track... in its duration property.
+This call will not send out any event, but once the `track...` method with the corresponding event reference gets called Smartlook will track the event and store the time interval between the corresponding `start...` and `track...` calls in its duration property.
 
-In the case you want to track an unsuccessful event, you can also use the trackTimedCustomEventCancel and provide the reason for cancellation in an extra parameter of the function.
+In the case you want to track an unsuccessful event, you can also use the `cancel` variant of the end method and provide the reason for cancellation in an extra parameter of the function.
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
-// to track successful events
-Smartlook.trackTimedCustomEvent(eventId: Any, props: [String : String]?)
-
-// to track event cancellation
-Smartlook.trackTimedCustomEventCancel(eventId: Any, reason: String?, props: [String : String]?)
-```
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
+let eventRef = Smartlook.startTimedCustomEvent("duration_event", props: [ "start_option" : startOption ]);
+...
+// some lenghty operation
+...
+if success {
+    // in the case of a successfull outcome
+    Smartlook.trackTimedCustomEvent(eventRef);
+} else {
+    // in the case of a unsucessfull outcome
+    Smartlook.trackTimedCustomEvent(eventRef);
+    Smartlook.trackTimedCustomEventCancel(eventId: eventRef, reason: "network failure", props: ["error" : error.description])
+}
+`,
+      'objective-c': `
+id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event" props:@{ @"startOption" : startOption }];
+...
+// some lenghty operation
+...
+if (success) {
+    [Smartlook trackTimedCustomEventWithEventId:eventRef props:@{ @"result" : resultValue } ];
+} else {
+    [Smartlook trackTimedCustomEventCancelWithEventId:eventRef reason:@"network failure" props:@{ @"error" : error.description }];
+}
+      `,
+    },
+  }}
+/>
+</Alert>
 
 Properties set in the startTimedCustomEvent will be merged with properties set in trackTimedCustomEvent. Properties from the trackTimedCustomEvent will have higher priority and will override conflicting properties from startTimedCustomEvent call.
 
-### Custom navigation events
+### Navigation events tracking
 
-Since we are not able to detect all screen transitions (or none e.g. for Unity games or Flutter) out of the box, you can track these events manually:
+On some platforms, Smartlook is not able to detect all screen transitions (or none e.g. for Unity games or Flutter) out of the box, you can track these events manually:
  
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
-Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
-```
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
+Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
+`,
+      'objective-c': `
+[Smartlook trackNavigationEventWithControllerId:@"LOGIN_SCREEN" type:SLNavigationTypeEnter];`,
+    },
+  }}
+/>
+</Alert>
 
 where the type is either enter or exit. The exit event also records the duration from the previous corresponding enter event.
 
-## Global Event Properties
-TODO
+<Alert kind="note">
+Properly dividing the user flow into individual screens is also important for correct heatmap generation, as each heatmap is generated for a particular screen, i.e., interval between two navigation events.
+</Alert>

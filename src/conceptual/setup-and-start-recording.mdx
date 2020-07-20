@@ -4,8 +4,8 @@ menu: Conceptual
 route: /conceptual/setup-and-start-recording
 ---
 
-import { CodeBlock } from "components/CodeBlock";
-import { TextBlock } from "components/TextBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
 
 # Setup & Start Recording
 
@@ -15,6 +15,7 @@ To start recording, just put the following code into your application. Once you 
 
 In order to function properly, the setup should happen as soon as possible in the app life cycle:
 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -107,23 +108,17 @@ Cocos lua
    }
   }}
 />
+</Alert>
 
 This is basically all you need to record your sessions. All other events in the app life cycle are handled by Smartlook automatically.
 
-Note: common startup issues: 
+<Alert kind="important">
+  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, please make sure the device is on WiFi (link to documentation & dashboard). The recording is not streamed, it is uploaded in chunks and then processed on the server. To understand when your recordings will be availabe in the project dashboard, see FIXME LINK
+</Alert>
 
-- it may take several minutes before the recordings appear in the Dashboard. The recording is not streamed, it is uploaded in chunks and then processed on the server. 
-- in the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, please make sure the device is on WiFi (link to documentation & dashboard). 
-
-<TextBlock visibleOn="ios">
-  {(platform) => {
-    return (
-      <div>
-         NOTE: When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this <a href="/cookbook/ios-main-thread-check-warning">technical note</a>.
-      </div>
-    );
-  }}
-</TextBlock>
+<Alert kind="note" visibleOn="ios">
+  When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this <a href="/cookbook/ios-main-thread-check-warning">technical note</a>.
+</Alert>
 
 ## Setup Options Overview
 Smartlook recording could be customized by several parameters. Some of the recording customization options could be set by dedicated methods, some others can be only/also set as startup options.
