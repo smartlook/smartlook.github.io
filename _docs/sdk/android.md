@@ -81,7 +81,7 @@ Some recording parameters can be configured on setup:
 | renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
 | renderingModeOption | no       | Further customization of rendering mode.                                                                                                                  | null                 |
 
-Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
+Full SDK setup configuration can be done with `SetupOptionsBuilder`, this allows you to set any of setup parameters shown above:
 
 ```java
 Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNull String apiKey)
