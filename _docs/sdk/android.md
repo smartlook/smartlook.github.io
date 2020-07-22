@@ -70,19 +70,30 @@ Best place to call one of these methods is in Application class or any entry poi
 
 ### Setup parameters
 
-Both methods `setup` and `setupAndStartRecording` can be further customized with parameters.
+Some recording parameters can be configured on setup:
+
+| Parameter           | Required | Description                                                                                                                                        | Default value        |
+|---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
+| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| experimental        | no       | Set this to true to enable some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
+| activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
+| renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
+| renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
+
+Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 
 ```java
-Smartlook.setupAndStartRecording(String YOUR_API_KEY, boolean experimental, int fps)
-Smartlook.setup(String YOUR_API_KEY, Activity activity, boolean experimental, int fps)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNull String apiKey)
+        .setFps(int fps)
+        .setExperimental(boolean experimental)
+        .setActivity(@NonNull Activity activity)
+        .setRenderingMode(@RenderingMode String renderingMode)
+        .setRenderingMode(@RenderingModeOption String renderingModeOption);\n
+Smartlook.setupAndStartRecording(builder.build());
 ```
 
-|    Parameter   | Required |                                                                         Description                                                                         | Default value |
-|:--------------:|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|---------------|
-|    `apiKey`    |    yes   | Unique 40 character key identifying your app (can be found in the dashboard).                                                                                   | ""            |
-|      `fps`     |    no    | Recorded video framerate (allowed values between 2 and 10). Note that by setting this value you will **override** framerate settings from Dashboard!                                                                                                 | 2             |
-| `experimental` |    no    | Set this to true to enable some experimental features as **TextureView/Maps/MapBox** recording etc.                                                         | false         |
-|   `activity`   |    no    | In case you need to setup SDK later i.e. fetching your API key or in the middle of the activity lifecycle, call setup with activity reference as parameter. | null          |
+You can replace the last line with \`Smartlook.setup()\` and start the recording later.
 
 ### Start and stop recording
 
