@@ -75,11 +75,11 @@ Some recording parameters can be configured on setup:
 | Parameter           | Required | Description                                                                                                                                        | Default value        |
 |---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note: Changing this value will override frame rate set in the Dashboard. | 2                    |
 | experimental        | no       | Set this to true to enable some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
 | renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
-| renderingModeOption | no       | Further customize rendering mode.                                                                                                                  | null                 |
+| renderingModeOption | no       | Further customization of rendering mode.                                                                                                                  | null                 |
 
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that lets you set any of above shown setup parameters with ease:
 
