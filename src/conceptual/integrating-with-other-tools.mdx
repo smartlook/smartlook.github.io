@@ -4,26 +4,69 @@ menu: Conceptual
 route: /conceptual/integrating-with-other-tools
 ---
 
-import { CodeBlock } from "components/CodeBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
+
 
 # Integrating with Other Tools
 
-It is a typical use-case that an app uses several specialized 3rd party libraries to cover various parts of the analytics, and it is an advantage when it is possible to integrate these tools together.
+*This section shows how integrated Smartlook with other analytics tools.*
 
-Integrated Smartlook into other Tools
+It is a typical use-case that an app uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
 
-Smartlook publishes the URL of the dashboard player where the currently recorded session will be available for the registered users.
- 
-[CURRENT PLATFORM/LANGUAGE DEPENDAND CODE BLOCK]
-```
-let smartlookSessionURL = Smartlook.getDashboardSessionURL()
-```
+In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting app whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform, details are provided in the respective 
 
-This URL can be handy for programmatic integrategration of Smartlook to other tools.
+<Link to="/api_reference#integrations">API Reference</Link>.
 
-Automatic integration is also available for selected well-known third party tools. The automatic integration, when enabled, automatically injects this URL to the 3rd party APIs.
+<Alert kind="important">
+The integration URLs are accessible only to the authorized Smartlook users. 
+</Alert>
 
-TODO: visitorURL
+The integration is then done by sending these URLs to the other tools, e.g., as custom paramters of their own objects.
 
-[INTEGRATION COOKBOOKS LINKS]
+## Current Session URL
+
+The Smartlook method that publishes dashboard session URL takes a boolean flag whether the current timestamp should be included in the the URL. With this paramterer, Smartlook playes start replying the session at the current moment. This could be handy when the URL is attached to some event.
+
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
+let currentSmartlookSessionURL = Smartlook.getDashboardSessionURL(withCurrentTimestamp: true)
+anotherToolEvent.setParameter("SmartlookURL", currentSmartlookSessionURL)
+`,
+      'objective-c': `
+NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:YES];
+[anotherToolEvent setParamValue:currentSmartlookSessionURL forKey:@"SmartlookURL"];
+`
+    },
+  }}
+/>
+</Alert>
+
+<Link to="/api_reference#dashboard-session-url">API Reference</Link>.
+
+## Current Visitor URL
+
+Visitor URL points to a Dashboard page that wrapps the visitor info (their sessions &c.). This URL may change during the app run are result of user identification via Smartlook SDK.
+
+<Alert kind="example">
+  <CodeBlock
+    snippets={{
+      ios: {
+      swift: `
+let currentSmartlookVisitorURL = Smartlook.getDashboardVisitorURL()
+AnotherTool.setUserProperty("SmartlookURL", currentSmartlookVisitorURL)
+`,
+      'objective-c': `
+NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
+[AnotherTool setUserParamValue:currentSmartlookVisitorURL forKey:@"SmartlookURL"];
+`
+    },
+  }}
+/>
+</Alert>
+
+<Link to="/api_reference#dashboard-visitor-url">API Reference</Link>.
 
