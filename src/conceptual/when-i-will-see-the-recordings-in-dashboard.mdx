@@ -4,15 +4,41 @@ menu: Conceptual
 route: /conceptual/when-i-will-see-the-recordings-in-dashboard
 ---
 
-import { CodeBlock } from "components/CodeBlock";
+import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { usePlatforms } from 'hooks'
 
 # When I Will See The Recordings in Dashboard?
 
 *This section conserns with the algoritms the controll recording data upload to Smartlook servers.*
 
-- how is video recorded and uploaded 
-  - segments
-  - wifi upload
-  - offline
-- how is analytics data gatered and uploaded
-- how is user identify/properties stored and uploaded
+<Alert kind="important">
+All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers assynchronously in batches.
+</Alert>
+
+Smartlook uses various techniques to acquire analytcs data from the app. It stores them in an intermediate cache inside your app first, and then sent them in batches to Smartlook servers, when suitable network connection is available.
+
+## Understanding Active Sessions
+
+In the dashboard, you can see currently active sessions in the **Active sessions** tab. If the device is online, the session appears there immediatelly after the app starts. I then can take several minutes before the data related to the session are uploded, processed and available for repleay. Also, when the app is closed on the device, the active session lives for few more minutes before the data is processed. We also wait for a short period of time to be sure the app is really suspended for good, that it was not just a short interruption of the app by an incomming call or notification. In such a case of just short interruption, Smartlook continues with recording into the active session once the app is active again.
+
+Once the session is wrapped up, it moves to the **All visitors** tab. 
+
+## Data Uploading
+
+The frequency in which the data is gathered and sent depends on several factors. 
+
+Events data are recorded almost synchronously as they happen. Then they are sent in batches every few minutes to the server.
+
+Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequncy down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on mobile network, and the video data wait in a cache till the app runs with wifi connection available. This defaut setting can be changed in the [project settings](https://app.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
+
+More about 
+
+<Link to="/conceptual/screen-recording.quality/">Screen Recording Quality</Link>.
+
+## Offline recording
+
+When the device has no or not suitable network connection, the recorded data is cached. Cached data size is limited, and the cached data is sent the next time the app is running with the suitable network connection.
+
+### Cache Size
+
+The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. Currently, the overal size of data in Smartlook cache are limited to 200 MB or maximal 1/5 of the free storage space, and all data older 30 days are deleted regardless to the cache size.
