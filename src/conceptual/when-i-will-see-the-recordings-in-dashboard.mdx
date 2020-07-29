@@ -9,13 +9,13 @@ import { usePlatforms } from 'hooks'
 
 # When I Will See The Recordings in Dashboard?
 
-*This section conserns with the algoritms the controll recording data upload to Smartlook servers.*
+*This section conserns with the algoritms that controll recording data upload to Smartlook servers.*
 
 <Alert kind="important">
 All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers assynchronously in batches.
 </Alert>
 
-Smartlook uses various techniques to acquire analytcs data from the app. It stores them in an intermediate cache inside your app first, and then sent them in batches to Smartlook servers, when suitable network connection is available.
+Smartlook uses various techniques to acquire analytcs data from the app. It stores them in an intermediate cache inside your app first, and then sent them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allows it.
 
 ## Understanding Active Sessions
 
@@ -41,4 +41,17 @@ When the device has no or not suitable network connection, the recorded data is 
 
 ### Cache Size
 
-The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. Currently, the overal size of data in Smartlook cache are limited to 200 MB or maximal 1/5 of the free storage space if it is less than 200 MB, and all data older 30 days are deleted regardless to the cache size.
+The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. Currently, the overal size of data in Smartlook cache are limited to 200 MB or maximal 1/5 of the free storage space if it is less than 200 MB, and all data older 30 days are deleted regardless the cache size.
+
+
+## Recording limitations
+
+There are some circumstances under which is SDK not recording:
+
+Parallel limit defines a given number of active sessions (session that is being actively processed by our backend is called "active") that are allowed to be recorded at the same time. If this limit gets surpassed, new recordings will NOT be recorded until the number of active sessions is no longer surpassing the limit.
+
+There is a maximal number of sessions that you can record a month. If this limit is surpassed SDK will not record until next month.
+
+<Alert kind="important">
+Both parallel limit and number of sessions is given by the package you have purchased. If you are hitting these limits please feel free to contact our sales team or upgrade your package.
+</Alert>
