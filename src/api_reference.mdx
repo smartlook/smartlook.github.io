@@ -28,6 +28,7 @@ The best place to setup the SDK is in [platform ready](https://ionicframework.co
 The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\`:
 `}/>
 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -137,6 +138,7 @@ Smartlook.setupAndStartRecording("YOUR_API_KEY");
   }
   }}
 />
+</Alert>
 
 <Alert kind="note" visibleOn="android">
   If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
@@ -326,14 +328,8 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME LINK shere]().  |
 `}/>
 
-<MD visibleOn="android" markup={`
-Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, this allows you to set any of setup parameters shown above:
-`}/>
-
-<MD visibleOn="ios" markup={`
-Full SDK setup configuration can be done with optional \`setup\` method parameter:
-`}/>
-
+<Alert kind="example" visibleOn="android">
+Full SDK setup configuration can be done with <i>SetupOptionsBuilder</i>, this allows you to set any of setup parameters shown above.
 <CodeBlock
   snippets={{
     android: {
@@ -356,6 +352,17 @@ val builder = Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
 Smartlook.setupAndStartRecording(builder.build())
       `,
     },
+  }}
+/>
+You can replace the last line with <i>Smartlook.setup()</i> and start the recording later.
+</Alert>
+
+<MD visibleOn="ios" markup={`
+Full SDK setup configuration can be done with optional \`setup\` method parameter.
+`}/>
+
+<CodeBlock
+  snippets={{
     ios: {
       swift: `
 class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
@@ -369,10 +376,6 @@ class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
     },
   }}
 />
-
-<MD visibleOn="android" markup={`
-You can replace the last line with \`Smartlook.setup()\` and start the recording later.
-`}/> 
 
 <MD visibleOn="cordova,ionic" markup={`
 Recording **framerate** can be set during setup. Allowed values are from a range from 2 to 10 fps.
@@ -515,7 +518,7 @@ Smartlook.isRecording();
 # Sensitive data hiding
 
 <MD visibleOn="android,ios,react" markup={`
-When using **native** rendering mode, **SDK can record sensitive data in your application**. You can configure recording using methods listed below so sensitive data is not recorded, or you can simply use one of **Wireframe** rendering mode that does not record sensitive data by default.
+When using **native** rendering mode, **SDK can record sensitive data in your application**. You can configure recording using methods listed below so sensitive data is not recorded, or you can simply use one of **Wireframe** rendering modes that does not record sensitive data by design.
 `}/>
 
 <Alert kind="important" visibleOn="android,ios,react">
@@ -531,8 +534,7 @@ This functionality is not available yet.
 `}/>
 
 <MD visibleOn="android,ios,react" markup={`
-You can hide any view in the recording by marking it as a **blacklisted** view.\n
-View can be marked as blacklisted by calling:
+You can hide any view in the recording by marking it as a **blacklisted** view. View can be marked as blacklisted by calling:
 `}/>
 
 <CodeBlock
@@ -589,7 +591,7 @@ Or can be tagged directly by an \`UIView\` property added by Smartlook:
 <CodeBlock
   snippets={{
     android: {
-      xml: `
+      java: `
 <View>
     <tag android:id="@id/smartlook_blacklisted_view"/>
 </View>
@@ -652,7 +654,7 @@ Smartlook.unregisterBlacklistedView(ref);
   }}
 />
 
-<Alert kind="note" visibleOn="android,ios,react">
+<Alert kind="note" visibleOn="android,ios">
 Blacklisted view is hidden on recording by single color rectangle. You can configure color of this rectangle by calling:
 <CodeBlock
   snippets={{
@@ -685,11 +687,11 @@ This is applied for all blacklisted objects.
 This functionality is not available yet.
 </TextBlock>
 
-<MD visobleOn="android"  markup={`
-If you dont want to blacklist specific views and rather blacklist all views of given \`Class\`, use:
+<MD visibleOn="android" markup={`
+If you dont want to blacklist specific \`views\` and rather blacklist all \`views\` of given \`Class\`, use:
 `}/>
 
-<MD visibleOn="ios"  markup={`
+<MD visibleOn="ios" markup={`
 You can also blacklist all instances of a **\`UIView\` subclass** or all \`UIView\` subclasses that conform some **protocol**:
 `}/>
 
@@ -719,6 +721,7 @@ class func registerBlacklisted(object: Any)
     },
   }}
 />
+
 <Alert kind="example" visibleOn="ios">
   <CodeBlock
     snippets={{
@@ -739,15 +742,10 @@ self.someView.slSensitive = true
       `,
     },
   }}
-/>
+  />
 </Alert>
 
-
-<Alert kind="note" visibleOn="ios">
-Note that <i>EditText</i> and <i>WebView</i> are <b>blacklisted by default</b> and can be removed using <i>Smartlook.unregisterBlacklistedClass()</i>.
-</Alert> 
-
-<MD visobleOn="android"  markup={`
+<MD visibleOn="android" markup={`
 You can remove any of blacklisted classes:
 `}/>
 
@@ -781,6 +779,10 @@ class func unregisterBlacklisted(object: Any)
     },
   }}
 />
+
+<Alert kind="note" visibleOn="android">
+Note that <i>EditText</i> and <i>WebView</i> are <b>blacklisted by default</b> and can be removed using <i>Smartlook.unregisterBlacklistedClass()</i>.
+</Alert>
 
 <MD visibleOn="android,ios,react,flutter,unity" markup={`
 ## Whitelisted views
@@ -831,7 +833,7 @@ Or can be tagged directly by an \`UIView\` property added by Smartlook:
   <CodeBlock
     snippets={{
       android: {
-        xml: `
+        java: `
 <View>
     <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
@@ -934,9 +936,8 @@ If you need to record some input that is hidden by default you can mark it with 
 />
 
 ## No Rendering
-In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into "no‑rendering" rendering mode:
+In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into "no rendering" rendering mode:
 
-<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -982,7 +983,6 @@ Smartlook.setRenderingMode("no_rendering");
   }
   }}
 />
-</Alert>
 
 <Alert kind="note" visibleOn="android,ios,react">
 SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
@@ -992,9 +992,8 @@ SDK provides rendering modes that hide sensitive information by simplifying the 
 Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
 </Alert>
 
-When your application is no longer displaying sensitive screen you can set your rendering mode to preferred variant:
+When your application is no longer displaying sensitive screen you can set your rendering mode back to preferred variant:
 
-<Alert kind="example" visibleOn="ios,android">
 <CodeBlock
   snippets={{
     android: {
@@ -1040,7 +1039,6 @@ Smartlook.setRenderingMode("native");
   }
   }}
 />
-</Alert>
 
 <MD visibleOn="android,ios,flutter,unity,react" markup={`
 ## WebView blacklisting/whitelisting
@@ -1092,7 +1090,7 @@ Now that you are recording all \`WebView\`s please **make sure that all sensitiv
 <CodeBlock
   snippets={{
     android: {
-      html: `
+      java: `
 <div class='smartlook-hide'>
    This will be hidden.
 </div>
@@ -1190,9 +1188,10 @@ This functionality is described in <b>User Identification</b> section.
 
 [//]: # (The following is android - specific documentation)
 <MD visibleOn="android" markup={`
-Additional user information such as \`name\`, \`email\`, etc. can be set using \`UserProperties\` helper class and its methods:
+Additional user information such as \`name\`, \`email\`, etc. can be set using \`UserProperties\` helper class and its methods.
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -1212,6 +1211,7 @@ Smartlook.setUserProperties(userProperties)
     },
   }}
 />
+</Alert>
 
 <Alert kind="note" visibleOn="android">
 If you set <i>email</i> or <i>name</i> property it will be displayed in the list of visitors in the Smartlook dashboard. Otherwise <i>identifier</i> is used.
@@ -1221,6 +1221,7 @@ If you set <i>email</i> or <i>name</i> property it will be displayed in the list
 If there is no helper method for the data you want to set to user properties use \`put()\` method that accepts combination of \`key\` and \`value\`.
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -1237,6 +1238,7 @@ Smartlook.setUserProperties(userProperties)
     },
   }}
 />
+</Alert>
 
 <MD visibleOn="android" markup={`
 All helper and \`put()\` method have optional parameter \`immutable\` if set to **true**, the value that has been set for the key is going to be immutable.
@@ -1330,7 +1332,7 @@ Some analytic events are recorded out-of-box:
 `} />
 
 <Alert kind="note" visibleOn="android">
-TIP: Names of some automatically detected events can be customized.
+Names of some automatically detected events can be customized.
 </Alert>
 
 <MD visibleOn="cordova, ionic" markup={`
@@ -1456,10 +1458,6 @@ Smartlook.trackCustomEvent(key, map);
 <Alert kind="note" visibleOn="android,cordova,ionic">
 Event properties will effectively use only flat object.
 This means that if you pass object that includes objects or arrays as a child elements these elements are goint to be ignored.
-</Alert>
-
-<Alert kind="note" visibleOn="android">
-If you struggle with serialization of your data take a look here.
 </Alert>
 
 ## Navigation event
@@ -1664,7 +1662,7 @@ Smartlook.stopTimedCustomEvent("event_id", {prop: "propValue"});
 with corresponding `eventId` obtained from startTimedCustomEvent.
 
 <Alert kind="note">
-NOTE: Properties set in start will be <b>merged</b> with properties set in stop/cancel. Properties from stop/cancel have higher priority and will rewrite conflicting properties from start.
+Properties set in start will be <b>merged</b> with properties set in stop/cancel. Properties from stop/cancel have higher priority and will rewrite conflicting properties from start.
 </Alert>
 
 In case given action failed you can call `cancelTimedCustomEvent()` instead of `stopTimedCustomEvent()` and provide a **reason** of failure:
@@ -1780,6 +1778,7 @@ But sometimes it's impossible to name an event with an easy to read and descript
 So a click on a given view has a custom event name instead of id it can be tagged directly in the XML layout file:
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -1791,8 +1790,9 @@ So a click on a given view has a custom event name instead of id it can be tagge
     },
   }}
 />
+</Alert>
 
-<Alert kind="example" visibleOn="android">
+<Alert kind="note" visibleOn="android">
 If View has <i>smartlook_custom_name</i> set, clicking on this view will trigger an event with name consisting of <i>Activity</i> name, <i>View</i> class (<i>Button</i>, etc.) and <i>smartlook_custom_name</i>.
 </Alert>
 
@@ -1801,6 +1801,7 @@ If View has <i>smartlook_custom_name</i> set, clicking on this view will trigger
 Custom names for navigation events can be set in two different ways. \`Activity\`/\`Fragment\` can implement \`SmartlookNamedController\` interface:
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -1824,11 +1825,13 @@ class SettingsActivity : AppCompatActivity(), SmartlookNamedController {
     },
   }}
 />
+</Alert>
 
 <MD visibleOn="android" markup={`
 Or \`Activity\`/\`Fragment\` root view can be tagged directly in \`XML\` layout file:
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -1842,6 +1845,7 @@ Or \`Activity\`/\`Fragment\` root view can be tagged directly in \`XML\` layout 
     },
   }}
 />
+</Alert>
 
 ## Global event properties
 SDK lets you set data that will be attached to every event. We call these **global event properties**.
@@ -2036,7 +2040,7 @@ Global event properties are stored until they are not removed or the app is unin
 
 ## Event tracking modes
 
-<MD invisibleOn="android,ios,cordova,ionic" markup={`
+<MD visibleOn="android,ios,cordova,ionic" markup={`
 Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
 `} />
 
@@ -2044,7 +2048,7 @@ Sometimes it can be beneficial to disable automatically detected or all events d
 This functionality is not available yet.
 </TextBlock>
 
-<MD invisibleOn="android" markup={`
+<MD visibleOn="android" markup={`
 * **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
 * **IGNORE_USER_INTERACTION** automatically detected events will not be tracked. User defined events are still enabled.
 * **NO_TRACKING** no analytic events are enabled.
@@ -2068,7 +2072,7 @@ This functionality is not available yet.
 * \`SmartlookEventTrackingMode.NO_TRACKING()\`: no analytic events are enabled.
 `} />
 
-<MD invisibleOn="android,ios,cordova,ionic" markup={`
+<MD visibleOn="android,ios,cordova,ionic" markup={`
 Event tracking mode can changed **anytime** during the application run:
 `} />
 
@@ -2119,7 +2123,7 @@ Take a look at pin code keyboard sample, demonstrating usage of analytic event m
 
 <MD visibleOn="android,ios,cordova,ionic" markup={`
 # Rendering
-SDK can use different methods of capturing screen image data. We call these rendering modes.
+SDK can use different methods of capturing screen image data. We call these **rendering modes**.
 ## Set rendering mode
 `} />
 
@@ -2312,6 +2316,7 @@ Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption String 
       kotlin: `
 Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption renderingModeOption: String)
       `,
+    },
     ios: {
       swift: `
 class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option renderingModeOption: Smartlook.RenderingModeOption?)
@@ -2319,7 +2324,6 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option re
       'objective-c': `
 + (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode withOption:(nullable SLRenderingModeOption)renderingModeOption
       `,
-    },
     },
   }}
 />
@@ -2367,6 +2371,7 @@ If you are using another HTTP library that allows intercepting, please feel free
 If you are using \`OkHttp\` you can add Smartlook interceptor as a another \`NetworkInterceptor\` when creating a \`OkHttpClient\` like this:
 `} />
 
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -2383,6 +2388,7 @@ val client = OkHttpClient.Builder()
     },
   }}
 />
+</Alert>
 
 <MD visibleOn="android" markup={`
 We will **not read or send out any body data**, we are reading and sending only these request metadata:
@@ -2430,6 +2436,10 @@ If you don't specify <i>replaceWith</i> <i>String</i> explicitly the default rep
 You need to initialize <i>SmartlookOkHttpInterceptor</i> using <i>Builder</i> to define used <i>UrlMask</i>s:
 </Alert>
 
+<MD visibleOn="android" markup={`
+You can add \`UrlMask\`s using \`SmartlookOkHttpInterceptor.Builder\`:
+`} />
+
 <CodeBlock
   snippets={{
     android: {
@@ -2453,8 +2463,6 @@ We are intercepting request with URL containing sensitive query named <i>secret<
 <i>https://example.com/page?secret=password&second=query</i>
 <br/>
 The content of sensitive query can be hidden for intercepting using <i>UrlMask</i>:
-</Alert>
-
 <CodeBlock
   snippets={{
     android: {
@@ -2477,14 +2485,13 @@ val client = OkHttpClient.Builder()
     },
   }}
 />
+With above shown <i>UrlMask</i> intercepted request will have following URL stored:
+<br/>
+<i>https://example.com/page?secret=&lt;sensitive>&second=query</i>
+<br/>
+</Alert>
 
 <MD visibleOn="android" markup={`
-With above shown \`UrlMask\` intercepted request will have following URL stored:
-\n
-\`\`\`
-https://example.com/page?secret=<sensitive>&second=query
-\`\`\`
-\n
 ### Sensitive headers
 \n
 Intercepted headers can contain sensitive data, so they need to be filtered out by their name. This can be done using \`sensitiveHeaderNameRegexps\`, this list of sensitive header names contains these regular expressions by default:
@@ -2513,6 +2520,10 @@ SmartlookOkHttpInterceptor.Builder()
     },
   }}
 />
+
+<Alert kind="important" visibleOn="android">
+When you add at least one sensitive header name regex, default ones (shown above) are not going to be used. 
+</Alert>
 
 # Utility methods
 
@@ -2674,7 +2685,7 @@ Smartlook.getDashboardVisitorUrl();
 />
 
 <Alert kind="note">
-This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
+This URL can be opened only by someone who has access to your dashboard. This is <b>not a public sharing link</b>.
 </Alert>
 
 # Integrations
@@ -2693,6 +2704,7 @@ You can register to dashboard URL change notifications to integrate them program
 The notifications are:
 `} />
 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -2784,6 +2796,7 @@ Smartlook.registerIntegrationListener(
   }
   }}
 />
+</Alert>
 
 <MD visibleOn="android" markup={`
 If you want to uregister the listener simply call:
