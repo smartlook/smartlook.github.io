@@ -2,13 +2,12 @@
 name: Life Cycle, Session, User
 menu: Conceptual
 route: /conceptual/life-cycle-session-user
-order: 200
 ---
 
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Life Cycle
+# Life Cycle, Session, User
 
 *This section covers the way Smartlook automatically follows app lifecycle, and introduces the concept of recording sessions and users.*
 
@@ -19,7 +18,7 @@ Sessions roughly correspond to individual app “runs”.
 
 This does not mean, however, that each interval when the app is on screen is always recorded as a separate session. When an app is suspended to the background just for a short period of time (e.g., it is interrupted by an incoming call, notification), the original session continues when the app is resumed. When the app is closed for several minutes, a new session starts on the next app opening.
 
-To change this default behaviour, an API method that resets the session must be called when appropriate.
+To change this default behaviour, an API method that resets the session must be called when appropriate, as described later in this document.
 
 ## User
 
@@ -29,7 +28,8 @@ Every session has a single user. A user can have more sessions.
 
 You can uniquely identify the user across by associating an unique identifier with it by calling:
 
-<CodeBlock
+<Alert kind="example">
+  <CodeBlock
   snippets={{
     android: {
       java: `
@@ -39,14 +39,15 @@ You can uniquely identify the user across by associating an unique identifier wi
     },
     ios: {
       swift: `
-class func setUserIdentifier(_ userIdentifier: String?)
+Smartlook.setUserIdentifier(someInternalUserID)
       `,
       "objective-c": `
-+ (void)setUserIdentifier:(nullable NSString*)userIdentifier;
+[Smartlook setUserIdentifier:someInternalUserID];
       `,
     },
   }}
 />
+</Alert>
 
 This call associates the current user with the provided id. If a user with such an id already exists in one of your Smartlook projects, the session is automatically assigned to him.
 
@@ -56,13 +57,16 @@ When you call this method again with a different user identifier, it does not cr
 
 The app remembers the last user id and reuses it as the default user id with each new session (i.e., when the app is launched again on the device). This happens even when you do not identify the user explicitly. This  implicit user also ensures that the app runs on the same device are by default associated together.
 
+<Link to="/api_reference#user-identification">API Reference</Link>
+
+
 ## Explicit Control of Sessions and Users 
 
 In some use cases, e.g. an app that will typically run on a tablet shared among colleagues, it makes sense to explicitly control the session and users flow.
 
 When the app should always start with a fresh session (or user), use one of the following setup option:
 
-<Alert kind="example" visibleOn="ios">
+<Alert kind="example">
   <CodeBlock
     snippets={{
       ios: {
@@ -112,12 +116,14 @@ class func resetSession(resetUser: Bool)
   }}
 />
 
-<Alert kind="example">It is not recommended to call this method when the app gets to background. Smartlook is busy with cleaning up when the app is going to background, and calling this method may create ephemeral sessions as an unwanted consequence. When you wish that sessions in no case continue with the next app launch, use the setup resetSession options when initializing Smartlook instead.
+<Alert kind="important">It is not recommended to call this method when the app gets to background. Smartlook is busy with cleaning up when the app is going to background, and calling this method may create ephemeral sessions as an unwanted consequence. When you wish that sessions in no case continue with the next app launch, use the setup resetSession options when initializing Smartlook instead.
 </Alert>
 
 ## Explicit Recording Stopping and Starting
 
-Under normal circumstances, once the recording first starts, Smartlook follows the app life-cycle automatically and it is not necessary to to stop and restart recording explicitly. 
+<Alert kind="important">
+**Smartlook follows the app life-cycle automatically** and it is not necessary, under normal circumstances, to stop and restart recording programmatically. 
+</Alert>
 
 However, for the use-cases when you e.g., want recording just a small part of your application, it is still possible to stop and start recording programmatically. To control and check whether Smartlook is active in your app, use th following methods:
  
@@ -144,8 +150,74 @@ class func isRecording() -> Bool
   }}
 />
 
-Note: when you control recording programmatically, the time the user spent in the rest of the app is not visible on the timeline. Thus, for just a short recording interruption (e.g., when use fills in some form full of sensitive data), consider switching to some combination of rendering and event tracking modes. This way, you will see the time the user spent incognito on the timeline.
+<Link to="/api_reference#start-and-stop-recording">API reference</Link>
 
-## User (Session) Properties*✝
+<Alert kind="note">
+When you control recording programmatically, the time the user spent in the rest of the app is not visible on the timeline. Thus, for just a short recording interruption (e.g., when use fills in some form full of sensitive data), consider switching to some combination of rendering and event tracking modes. This way, you will see the time the user spent incognito on the timeline. More about it in <Link to="/conceptual/handling-sensitive-data">Handling Sensitive Data</Link>.
+</Alert>
 
-*This part of our API and both client and server implementation is currently a bit messy. Perhaps it is time to clean it up and define what we want when formulating the documentation?*
+## Session and User properties
+
+In many cases, it is convenient to associate some custom properties to the current session or app user. Smartlook offers a set of straigthforward methods to do it. 
+
+<Alert kind="note">
+Currently, only string values are accepted both as property keys and values.
+</Alert>
+
+### User Properties
+
+User properties are set to the user and do not change across sessions.
+
+<Alert kind="example">
+  <CodeBlock
+  snippets={{
+    android: {
+      java: `
+      `,
+      kotlin: `
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.setUserIdentifier(someInternalUserID, ["ZIP" : userZIP])
+...
+Smartlook.setSessionProperty(value: userZIPCode, forName: "ZIP")
+      `,
+      "objective-c": `
+[Smartlook setUserIdentifier:someInternalUserID withProperties:@{ @"ZIP" : userZIPCode }];
+...
+[Smartlook setUserPropertyValue:someZIPCode forName:@"ZIP"];
+      `,
+    },
+  }}
+/>
+</Alert>
+
+<Link to="/api_reference#user-properties">API Reference</Link>
+
+### Session Properties
+
+User properties are set to the current session and are not copied to the next session (where session roughly corresponds to "an app run", as described above).
+
+<Alert kind="example">
+  <CodeBlock
+  snippets={{
+    android: {
+      java: `
+      `,
+      kotlin: `
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.setSessionProperty(value: "\\(topAchievedLevel)", forName: "TOP_LEVEL")
+      `,
+      "objective-c": `
+[Smartlook setSessionPropertyValue:[NSString stringWithFormat:@"%d", topAchievedLevel] forName:@"TOP_LEVEL"];
+      `,
+    },
+  }}
+/>
+</Alert>
+
+<Link to="/api_reference#session-properties">API Reference</Link>

@@ -11,7 +11,7 @@ import { usePlatforms } from 'hooks'
 
 *This section deals with how to setup Smartlook SDK and start recording your app.*
 
-To start recording, just put the following code into your application. Once you run your app on a device or in a simulator, recording will appear in your dashboard (link to the dashboard).
+To start recording, just put the following code into your application. Once you run your app on a device or in a simulator, recording will appear [in your dashboard](https://app.smartlook.com/settings/projects).
 
 In order to function properly, the setup should happen as soon as possible in the app life cycle:
 
@@ -113,17 +113,17 @@ Cocos lua
 This is basically all you need to record your sessions. All other events in the app life cycle are handled by Smartlook automatically.
 
 <Alert kind="important">
-  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, please make sure the device is on WiFi (link to documentation & dashboard). The recording is not streamed, it is uploaded in chunks and then processed on the server. To understand when your recordings will be availabe in the project dashboard, see FIXME LINK
+  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, make sure the device is on WiFi, or that mobile uploads are enabled in [your project dashboard](https://app.smartlook.com/settings/projects). The recording is not streamed, it is uploaded in chunks and then processed on the server. To understand when your recordings will be availabe in the project dashboard, see <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this document</Link>.
 </Alert>
 
 <Alert kind="note" visibleOn="ios">
-  When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this <a href="/cookbook/ios-main-thread-check-warning">technical note</a>.
+  When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this [technical note](/cookbook/ios-main-thread-check-warning").
 </Alert>
 
-## Setup Options Overview
+## Setup Options
 Smartlook recording could be customized by several parameters. Some of the recording customization options could be set by dedicated methods, some others can be only/also set as startup options.
  
-Not all options are available on all platforms. For most options, there is also a dedicated method or property that can set it later in the app life-cycle.
+Not all options are available on all platforms. For comprehensive list of setup options and related details, consult 
 
-For comprehensive list of all options and other details, consult [API reference](http://localhost:3000/api_reference/#setup-configuration).
+<Link to="/api_reference/#setup-configuration">API reference</Link>.
 

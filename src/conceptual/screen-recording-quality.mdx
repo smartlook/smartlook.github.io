@@ -2,7 +2,6 @@
 name: Screen Recording Quality
 menu: Conceptual
 route: /conceptual/screen-recording-quality
-order: 400
 ---
 
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
@@ -18,25 +17,35 @@ Although everyone wants the best video quality for the app recording, setting th
 
 The higher the quality, the more demanding the recording in terms of CPU load, memory footprint, energy consumption (battery life) and network traffic is.
 
-The primary way to set the video quality is by selecting one of the presets available in the app dashboard. Dashboard settings affect all new recordings in all app instances. 
+The primary way to set the video quality is by selecting one of the presets available in the app dashboard. Dashboard settings affect all new recordings. 
 
 ## Recording Quality
 
-There are three preset values of Low/Medium/High (link to the dashboard). Technically, this option sets primarily the video bitrate, which affects the video image quality and size of the video data. For most projects, Medium has a best price-performance ratio. When the app is used in an environment where data size that is sent from the app matters, Low might be the best option. For apps where the high image quality of the recordings is important, and data size does not matter much, High can be used.
+There are three preset values of **Low/Medium/High** (see your project [settings](https://app.smartlook.com/settings/projects)). Technically, this option sets primarily the video bitrate, which affects the video image quality and size of the video data. For most projects, **Medium** has a best price-performance ratio. When the app is used in an environment where data size that is sent from the app matters, **Low** might be the best option. For apps where the high image quality of the recordings is important, and data size does not matter much, **High** can be used.
 
-With each quality, an estimated size of the data is quoted. The real data size depends on many factors (how complex the UI is, how often it changes significantly) and tends to be a fraction (½ or ⅓ ) of the maximal size.
+Current settings are:
+
+| Preset           | Bitrate         | Max bandwidth         |
+|------------------|-----------------|-----------------------|
+| Low              |  80 000 bits/s  | ~ 0.5 MB per minute   |
+| Medium           | 160 000 bits/s  | ~ 1 MB per minute     |
+| High             | 320 000 bits/s  | ~ 2 MB per minute     |
+
+The real data size depends on many factors (how complex the UI is, how often it changes significantly) and tends to be a fraction (½ or ⅓) of the maximal size.
 
 Technologically, this setting affects the memory footprint of the SDK, its CPU load and primarily the size of the data that the SDK sends over the network.
 
 ## Framerate
 
-Framerate (in frames per second, or fps) says how often Smartlook takes a snapshot of the screen. The higher the framerate, the “smoother” the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common app, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
+Framerate (in frames per second, or fps) says how often Smartlook takes a snapshot of the screen. The higher the framerate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common app, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
 
 We recommend setting the framerate for your project on the dashboard [link here]. 
 
 Alternatively, it can also be set as one of Smartlook setup options. This is particularly useful for debugging and finding the optimal value for the app. In production releases, this option should not be used.
 
-The given framerate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with all kinds of technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results in these edge cases, it can be switched off by the respective Smartlook setup option. 
+The configured framerate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results, it can be switched off by the respective Smartlook setup option (see 
+
+<Link to="/api_reference#setup-configuration">API reference</Link>).
 
 ## Rendering Mode
 
@@ -44,4 +53,6 @@ On top of taking snapshots of the screens for the video recording, Smartlook can
 
 Different rendering modes use different amounts of CPU, memory and produce video data of different sizes. The difference is individual for each app and depends on the way the app UI is structured. There is not always a direct relation between the simplicity of the visual presentation and resources load.
 
-Read more about rendering modes in the “Handling Sensitive Data” section.
+Read more about rendering modes in the 
+
+<Link to="/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level">Recording Modes: Handling Sensitive Data at the Whole Screen Level</Link>.
