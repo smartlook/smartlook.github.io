@@ -1,31 +1,56 @@
 import React from "react";
+import MDX from "@mdx-js/runtime";
+import cx from "classnames";
 
+import { useComponents } from "docz";
 import { usePlatforms } from "hooks";
 
-export const TextBlock = ({ visibleOn, invisibleOn, className, children }) => {
-  const { currentPlatform } = usePlatforms();
+import { Code } from "./Code";
+import { CodeBlock } from "./CodeBlock";
+import { Link } from "./Link";
 
-  const showOn = (platform, text) => {
-    return platform === currentPlatform ? text : "";
-  };
+import "./Alert.css";
+
+const getMatch = (items, matchTo) =>
+  items
+    .split(",")
+    .map((i) => i.trim())
+    .includes(matchTo);
+
+export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
+  const { currentPlatform } = usePlatforms();
+  const themeComponents = useComponents();
 
   let isMatch = true;
 
   if (visibleOn !== undefined) {
-    isMatch = visibleOn.split(",").includes(currentPlatform);
+    isMatch = getMatch(visibleOn, currentPlatform);
   }
 
   if (invisibleOn !== undefined) {
-    isMatch = !invisibleOn.split(",").includes(currentPlatform);
+    isMatch = !getMatch(invisibleOn, currentPlatform);
   }
 
   if (!isMatch) {
     return null;
   }
 
-  if (typeof children === "function") {
-    return <p className={className}>{children(showOn)}</p>;
-  }
+  const classnames = kind
+    ? cx("component-alert", {
+        [`component-alert--${kind}`]: true,
+      })
+    : undefined;
 
-  return <p className={className}>{children}</p>;
+  const components = {
+    ...themeComponents,
+    Link,
+    Code,
+    CodeBlock,
+  };
+
+  return (
+    <div className={classnames}>
+      <MDX components={components}>{children}</MDX>
+    </div>
+  );
 };
