@@ -164,12 +164,12 @@ Smartlook.setupAndStart(@NotNull apiKey: String)
     },
     cordova: {
       javascript: `
-Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
+Smartlook.setupAndStartRecording({smartlookAPIKey: string});
       `,
     },
     ionic: {
       typescript: `
-smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookApiKey: string));
       `,
     },
     flutter: {
@@ -206,12 +206,12 @@ Smartlook.setup(@NotNull apiKey: String)
     },
     cordova: {
       javascript: `
-Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY"});
+Smartlook.setup({smartlookAPIKey: string});
       `,
     },
     ionic: {
       typescript: `
-smartlook.setup(new SmartlookSetupConfig("YOUR API KEY"));
+smartlook.setup(new SmartlookSetupConfig(smartlookAPIKey: string));
       `,
     },
     ios: {
@@ -295,7 +295,7 @@ Smartlook.startRecording();
 
 ### Setup configuration
 
-<TextBlock visibleOn="ios,android">
+<TextBlock visibleOn="ios,android,cordova,ionic">
 Some recording parameters can be configured on setup:
 </TextBlock>
 
@@ -308,7 +308,7 @@ Some recording parameters can be configured on setup:
 | experimental        | no       | Set this to true to enable some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
 | renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
-| renderingModeOption | no       | Further customization of rendering mode.                                                                                                                  | null                 |
+| renderingModeOption | no       | Further customization of rendering mode.                                                                                                           | null                 |
 `}/>
 
 <MD visibleOn="ios" markup={`
@@ -326,6 +326,16 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | .renderingModeOption | RenderingModeOption    | none          | Further customize rendering mode. Full documentation [here](#rendering).  |
 | .startNewSession     | bool                   | false         | Always start new session with Smartlook setup. Full documentation [FIXME LINK here]().  |
 | .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME LINK shere]().  |
+`}/>
+
+<MD visibleOn="cordova,ionic" markup={`
+| Parameter              | Required | Description                                                                                                                                        | Default value        |
+|------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| renderingMode          | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
+| startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
+| startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}/>
 
 <Alert kind="example" visibleOn="android">
@@ -377,26 +387,44 @@ class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
   }}
 />
 
-<MD visibleOn="cordova,ionic" markup={`
-Recording **framerate** can be set during setup. Allowed values are from a range from 2 to 10 fps.
-`}/> 
-
+<Alert kind="example" visibleOn="cordova">
 <CodeBlock
   snippets={{
     cordova: {
       javascript: `
-Smartlook.setup({smartlookAPIKey: "YOUR_API_KEY", fps: 2});
-Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY", fps: 2});
+Smartlook.setup({
+  smartlookAPIKey: "YOUR_API_KEY",
+  fps: 2,
+  renderingMode: Smartlook.RenderingMode.NATIVE,
+  startNewSession: true
+});\n
+Smartlook.setupAndStartRecording({
+  smartlookAPIKey: "YOUR_API_KEY",
+  fps: 2,
+  renderingMode: Smartlook.RenderingMode.NATIVE,
+  startNewSessionAndUser: true
+});
       `,
     },
-    ionic: {
+  ionic: {
       typescript: `
-smartlook.setup(new SmartlookSetupConfig(smartlookAPIKey: "YOUR_API_KEY", fps: number))
-smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookAPIKey: "YOUR_API_KEY", fps: number))
+smartlook.setup(new SmartlookSetupConfig(
+  smartlookAPIkey: "YOUR_API_KEY",
+  fps: 2,
+  renderingMode: Smartlook.RenderingMode.NATIVE,
+  startNewSession: true,
+))
+smartlook.setupAndStartRecording(new SmartlookSetupConfig(
+  smartlookAPIkey: "YOUR_API_KEY",
+  fps: 2,
+  renderingMode: Smartlook.RenderingMode.NATIVE,
+  startNewSessionAndUser: true,
+))
       `,
     },
   }}
 />
+</Alert>
 
 ## Start and stop recording
 Recording can be **started** or **stopped** at any time, the only requirement is that the SDK is set up.
@@ -474,19 +502,13 @@ Smartlook.isRecording()
       `,
     },
     cordova: {
-      javascript: `
-cordova.plugins.SmartlookPlugin.isRecording(
-    function(isRecording){
-        //check here
-    }
-)
+      typescript: `
+Smartlook.isRecording(isRecording: function(isRecording: string))
       `,
     },
     ionic: {
       typescript: `
-smartlook.isRecording().then((isRecording) => {
-  alert(isRecording)
-});
+smartlook.isRecording(): promise<boolean>;
       `,
     },
     ios: {
@@ -515,8 +537,40 @@ Smartlook.isRecording();
   }}
 />
 
+<Alert kind="example" visibleOn="cordova">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+Smartlook.isRecording(
+    function(isRecording){
+        //check here
+    }
+)
+      `,
+    },
+  }}
+/>
+</Alert>
+
+<Alert kind="example" visibleOn="ionic">
+<CodeBlock
+  snippets={{
+    ionic: {
+      typescript: `
+smartlook.isRecording().then((isRecording) => {
+  alert(isRecording)
+});
+      `,
+    },
+  }}
+/>
+</Alert>
+
+<MD visibleOn="android" markup={`
 ## Reset session
 You can end current session and start new one by calling:
+`}/>
 
 <CodeBlock
   snippets={{
@@ -531,11 +585,12 @@ Smartlook.resetSession(resetUser: Boolean)
   }}
 />
 
-Set `resetUser` to `true` if you want SDK to create new visitor. This is especially beneficial if you want to identify new user (typically after logout).
-
+<MD visibleOn="android" markup={`
+Set \`resetUser\` to \`true\` if you want SDK to create new visitor. This is especially beneficial if you want to identify new user (typically after logout).\n
 You can ensure that new session is created on SDK setup:
+`}/>
 
-<Alert kind="example">
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -554,9 +609,11 @@ Smartlook.setupAndStartRecording(builder.build())
 />
 </Alert>
 
+<MD visibleOn="android" markup={`
 If you also want to create new visitor on SDK setup use:
+`}/>
 
-<Alert kind="example">
+<Alert kind="example" visibleOn="android">
 <CodeBlock
   snippets={{
     android: {
@@ -952,6 +1009,7 @@ Sensitive elements are <b>hidden locally</b> on the device, no sentive data is t
 Sensitive elements can be blacklisted by marking them with \`.smartlook-hide\` css class:
 `} />
 
+<Alert kind="example" visibleOn="cordova,ionic">
 <CodeBlock
   snippets={{
     cordova: {
@@ -970,6 +1028,7 @@ Sensitive elements can be blacklisted by marking them with \`.smartlook-hide\` c
     },
   }}
 />
+</Alert>
 
 <Alert kind="note" visibleOn="cordova,ionic">
 <b>All inputs</b> are <b>hidden</b> by default except for <i>button</i> and <i>submit</i> types.
@@ -980,6 +1039,7 @@ Sensitive elements can be blacklisted by marking them with \`.smartlook-hide\` c
 If you need to record some input that is hidden by default you can mark it with \`.smartlook-show\` css class:
 `} />
 
+<Alert kind="example" visibleOn="cordova,ionic">
 <CodeBlock
   snippets={{
     cordova: {
@@ -994,10 +1054,12 @@ If you need to record some input that is hidden by default you can mark it with 
     },
   }}
 />
+</Alert>
 
 ## No Rendering
-In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into "no rendering" rendering mode:
+In case your whole screen consists of sensitive data you can tell SDK to not record any screen data. This can be done by switching into `no rendering` rendering mode:
 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -1043,6 +1105,7 @@ Smartlook.setRenderingMode("no_rendering");
   }
   }}
 />
+</Alert>
 
 <Alert kind="note" visibleOn="android,ios,react">
 SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
@@ -1054,6 +1117,7 @@ Some screens can leak sensitive data even through automatically detected touch e
 
 When your application is no longer displaying sensitive screen you can set your rendering mode back to preferred variant:
 
+<Alert kind="example" visibleOn="cordova,ionic">
 <CodeBlock
   snippets={{
     android: {
@@ -1099,6 +1163,7 @@ Smartlook.setRenderingMode("native");
   }
   }}
 />
+</Alert>
 
 <MD visibleOn="android,ios,flutter,unity,react" markup={`
 ## WebView blacklisting/whitelisting
@@ -1200,7 +1265,7 @@ Smartlook.setUserIdentifier(@NonNull identifier: String)
     },
     cordova: {
       javascript: `
-Smartlook.setUserIdentifier({identifier: "sample_identifier"})
+Smartlook.setUserIdentifier({identifier: string})
       `,
     },
     ionic: {
@@ -1314,8 +1379,10 @@ Additional user information, such as \`name\`, \`email\` and other custom proper
   snippets={{
     cordova: {
       javascript: `
-cordova.plugins.SmartlookPlugin.setUserIdentifier(
-    {identifier: "CordovaUser", sessionProperties: {name: "Cordova", email: "cordova@example.com"}})
+Smartlook.setUserIdentifier({
+  identifier: string,
+  sessionProperties: object
+})
       `,
     },
     ionic: {
@@ -1325,6 +1392,29 @@ smartlook.setUserIdentifier(new SmartlookUserIdentifier(identifier: string, sess
     },    
   }}
 />
+
+<Alert kind="example" visibleOn="cordova,ionic">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+Smartlook.setUserIdentifier({
+  identifier: "sample_identifier",
+  sessionProperties: {
+    name: "John",
+    email: "john@example.com"
+  }
+})
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.setUserIdentifier(new SmartlookUserIdentifier("sample_identifier", {name: "John" email: "john@example.com"}));
+      `,
+    },    
+  }}
+/>
+</Alert>
 
 [//]: # (The following is iOS - specific documentation)
 <MD visibleOn="ios" markup={`
@@ -1415,7 +1505,7 @@ Smartlook.trackCustomEvent(@NonNull eventName: String)
     },
     cordova: {
       javascript: `
-Smartlook.trackCustomEvent({name: "sample_event"})
+Smartlook.trackCustomEvent({name: string})
       `,
     },
     ionic: {
@@ -1445,7 +1535,7 @@ SmartlookUnity.Smartlook.TrackCustomEvent(string eventName);
     javascript: `
 Smartlook.trackCustomEvent(key);
 `,
-  }
+  },
   }}
 />
 
@@ -1479,8 +1569,7 @@ Smartlook.trackCustomEvent(@NonNull eventName: String, @NotNull key: String, val
     },
     cordova: {
       javascript: `
-Smartlook.trackCustomEvent(
-    {name: "sample_event", eventProperties: {id: "sample_id", text: "sample text"}})
+Smartlook.trackCustomEvent({name: string, eventProperties: object})
       `,
     },
     ionic: {
@@ -1511,9 +1600,36 @@ SmartlookUnity.TrackCustomEvent(string eventName, string properties);
     javascript: `
 Smartlook.trackCustomEvent(key, map);
 `,
-  }
+  },
   }}
 />
+
+<Alert kind="example" visibleOn="cordova,ionic">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+Smartlook.trackCustomEvent({
+  name: "sample_event",
+  eventProperties: {
+    id: "sample_id",
+    text: "sample text"
+  }
+})
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.trackCustomEvent(new SmartlookCustomEvent("sample_event", eventProperties: {
+    id: "sample_id",
+    text: "sample text"
+  }
+));
+      `,
+    }, 
+  }}
+/>
+</Alert>
 
 <Alert kind="note" visibleOn="android,cordova,ionic">
 Event properties will effectively use only flat object.
@@ -1535,7 +1651,7 @@ Smartlook.trackNavigationEvent(@NotNull name: String, @ViewState viewState: Stri
     },
     cordova: {
       javascript: `
-Smartlook.trackNavigationEvent({name: "sample_screen", viewState: Smartlook.ViewState.START})
+Smartlook.trackNavigationEvent({name: string, viewState: Smartlook.ViewState})
       `,
     },
     ionic: {
@@ -1575,8 +1691,12 @@ Smartlook.trackNavigationEvent(screenName, "enter"/"exit");
   }}
 />
 
-<MD visibleOn="android,cordova,ionic" markup={`
+<MD visibleOn="android,ionic" markup={`
 where \`viewState\` can be either \`ViewState.START\` or \`ViewState.STOP\`.
+`} />
+
+<MD visibleOn="cordova" markup={`
+where \`viewState\` can be either \`Smartlook.ViewState.START\` or \`Smartlook.ViewState.STOP\`.
 `} />
 
 <MD visibleOn="ios" markup={`
@@ -1633,8 +1753,8 @@ Smartlook.startTimedCustomEvent(@NotNull eventName: String, eventPropertiesJson:
     },
     cordova: {
       javascript: `
-Smartlook.startTimedCustomEvent({name: "sample_timed_event"});
-Smartlook.startTimedCustomEvent({name: "sample_timed_event", eventProperties: {sample: "object"}});
+Smartlook.startTimedCustomEvent({name: string}, successCallback: function(eventId: string));
+Smartlook.startTimedCustomEvent({name: string, eventProperties: object}, successCallback: function(eventId: string));
       `,
     },
     ionic: {
@@ -1692,7 +1812,7 @@ Smartlook.stopTimedCustomEvent(@NotNull eventId: String, eventPropertiesJson: St
     },
     cordova: {
       javascript: `
-Smartlook.stopTimedCustomEvent({eventId: "event_id", eventProperties: {sample: "object"}});
+Smartlook.stopTimedCustomEvent({eventId: string, eventProperties: object});
       `,
     },
     ionic: {
@@ -1719,7 +1839,7 @@ Smartlook.stopTimedCustomEvent("event_id", {prop: "propValue"});
   }}
 />
 
-with corresponding `eventId` obtained from startTimedCustomEvent.
+with corresponding `eventId` obtained from `startTimedCustomEvent`.
 
 <Alert kind="note">
 Properties set in start will be <b>merged</b> with properties set in stop/cancel. Properties from stop/cancel have higher priority and will rewrite conflicting properties from start.
@@ -1745,7 +1865,7 @@ Smartlook.cancelTimedCustomEvent(@NotNull eventId: String, reason: String, event
     },
     cordova: {
       javascript: `
-Smartlook.cancelTimedCustomEvent({eventId: "event_id", reason: "cancel reason" eventProperties: {sample: "object"}});
+Smartlook.cancelTimedCustomEvent({eventId: string, reason: string, eventProperties: object});
       `,
     },
     ionic: {
@@ -1804,10 +1924,11 @@ Smartlook.stopTimedCustomEvent(eventId)
     },
     cordova: {
       javascript: `
-var eventID = Smartlook.startTimedCustomEvent({name: "duration_event"});
-setTimeout(function() {
-Smartlook.stopTimedCustomEvent({eventId: eventId})
-}, 1000);
+Smartlook.startTimedCustomEvent({name: "duration_event"}, function(eventId) {
+  setTimeout(function() {
+    Smartlook.stopTimedCustomEvent({eventId: eventId})
+  }, 1000);
+});
       `,
     },
     ios: {
@@ -1929,12 +2050,12 @@ Smartlook.setGlobalEventProperty(@NotNull key: String, @NotNull value: String, i
     },
     cordova: {
       javascript: `
-Smartlook.setGlobalEventProperties({globalEventProperties: {sample: "property"}, immutable: true/false});
+Smartlook.setGlobalEventProperties({globalEventProperties: object, immutable: boolean});
       `,
     },
     ionic: {
       typescript: `
-smartlook.setGlobalEventProperties({globalEventProperties: {sample: "property"}, immutable: true/false});
+smartlook.setGlobalEventProperties({globalEventProperties: object, immutable: boolean});
       `,
     },
     ios: {
@@ -1974,6 +2095,29 @@ Smartlook.setGlobalEventProperty(key, value, immutable);
   }}
 />
 
+<Alert kind="example" visibleOn="cordova,ionic">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+Smartlook.setGlobalEventProperties({
+  globalEventProperties: {
+    global: "property",
+    sample: "test"
+  },
+  immutable: true
+});
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.setGlobalEventProperties({globalEventProperties: {sample: "property"}, immutable: true/false});
+      `,
+    },
+  }}
+/>
+</Alert>
+
 <Alert kind="example" visibleOn="ios">
   <CodeBlock
     snippets={{
@@ -2012,7 +2156,7 @@ Smartlook.removeGlobalEventProperty(propertyKey: String)
     },
     cordova: {
       javascript: `
-Smartlook.removeGlobalEventProperty({key: "property_key"});
+Smartlook.removeGlobalEventProperty({key: string});
       `,
     },
     ionic: {
@@ -2148,12 +2292,12 @@ Smartlook.setEventTrackingMode(@EventTrackingMode eventTrackingMode: String);
     },
     cordova: {
       javascript: `
-Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode.FULL_TRACKING});
+Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode});
       `,
     },
-    cordova: {
-      javascript: `
-Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
+    ionic: {
+      typescript: `
+Smartlook.setEventTrackingMode(eventTrackingMode: SmartlookEventTrackingMode);
       `,
     },
     ios: {
@@ -2211,12 +2355,12 @@ Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
       },
       cordova: {
        javascript: `
-Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY", renderingMode: Smartlook.RenderingMode.NATIVE});
+Smartlook.setupAndStartRecording({smartlookAPIKey: string, renderingMode: Smartlook.RenderingMode});
       `,
       },
       ionic: {
        typescript: `
-Smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR_API_KEY", null, SmartlookRenderingMode.NATIVE()));
+Smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookAPIKey: string, fps: number, SmartlookRenderingMode.NATIVE()));
       `,
       },
       ios: {
@@ -2246,7 +2390,7 @@ Smartlook.setRenderingMode(@RenderingMode renderingMode: String)
     },
     cordova: {
       javascript: `
-Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE});
+Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode});
       `,
     },
     ionic: {
@@ -2604,12 +2748,12 @@ Smartlook.setReferrer(referrer: String, source: String)
     },
     cordova: {
       javascript: `
-Smartlook.setReferrer({referrer: "sample referrer", source: "sample source"});
+Smartlook.setReferrer({referrer: string, source: string});
       `,
     },
     ionic: {
       typescript: `
-smartlook.setReferrer(smartlookReferrer: SmartlookReferrer);
+smartlook.setReferrer(new SmartlookReferrer(referrer: string, source: string));
       `,
     },
     flutter: {
@@ -2649,10 +2793,7 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp: Boolean)
     },
     cordova: {
       javascript: `
- Smartlook.getDashboardSessionUrl({withCurrentTimestamp: true}, successCallback, ...);\n
- function successCallback(dashboardSessionUrl) {
-  alert('Dashboard session URL: ' + dashboardSessionUrl);
- }
+ Smartlook.getDashboardSessionUrl({withCurrentTimestamp: boolean}, successCallback: function(dashboardSessionUrl: string));
       `,
     },
     ionic: {
@@ -2686,6 +2827,29 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
   }}
 />
 
+<Alert kind="example" visibleOn="cordova,ionic">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+ Smartlook.getDashboardSessionUrl(
+  {withCurrentTimestamp: true},
+  function (dashboardSessionUrl) {
+    alert('Dashboard session URL: ' + dashboardSessionUrl);
+  }
+)
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.getDashboardSessionUrl(): Promise<string>
+      `,
+    },
+  }}
+/>
+</Alert>
+
+
 If `withCurrentTimestamp` is set to `true` link will include information about current recording timestamp. 
 This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
 
@@ -2708,14 +2872,11 @@ Smartlook.getDashboardVisitorUrl()
     },
     cordova: {
       javascript: `
- Smartlook.getDashboardVisitorUrl(successCallback, ...);\n
- function successCallback(dashboardVisitorUrl) {
-  alert('Dashboard visitor URL: ' + dashboardVisitorUrl);
- }
+ Smartlook.getDashboardVisitorUrl(successCallback: function(dashboardSessionUrl: string));
       `,
     },
     ionic: {
-      typecript: `
+      typescript: `
 smartlook.getDashboardVisitorUrl(): Promise<string>
       `,
     },
@@ -2743,6 +2904,27 @@ Smartlook.getDashboardVisitorUrl();
   }
   }}
 />
+
+<Alert kind="example" visibleOn="cordova,ionic">
+<CodeBlock
+  snippets={{
+    cordova: {
+      javascript: `
+ Smartlook.getDashboardVisitorUrl(
+  function(dashboardVisitorUrl) {
+    alert('Dashboard visitor URL: ' + dashboardVisitorUrl);
+  }
+)
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.getDashboardVisitorUrl(): Promise<string>
+      `,
+    },
+  }}
+/>
+</Alert>
 
 <Alert kind="note">
 This URL can be opened only by someone who has access to your dashboard. This is <b>not a public sharing link</b>.
@@ -2794,8 +2976,12 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     cordova: {
       javascript: `
  Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { alert("Session: " + dashboardSessionUrl); },
-  onVisitorReady: function (dashboardVisitorUrl) { alert("Visitor: " + dashboardVisitorUrl); }
+  onSessionReady: function (dashboardSessionUrl) { 
+    alert("Session: " + dashboardSessionUrl); 
+  },
+  onVisitorReady: function (dashboardVisitorUrl) { 
+    alert("Visitor: " + dashboardVisitorUrl); 
+  }
 });
       `,
     }, 
@@ -2858,7 +3044,7 @@ Smartlook.registerIntegrationListener(
 />
 </Alert>
 
-<MD visibleOn="android" markup={`
+<MD visibleOn="android,cordova,ionic" markup={`
 If you want to uregister the listener simply call:
 `} />
 
