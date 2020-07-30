@@ -1,50 +1,50 @@
 /** @jsx jsx */
-import React from "react";
-import { jsx, Box, Flex } from "theme-ui";
+import React from 'react'
+import { jsx, Box, Flex } from 'theme-ui'
 
-import * as styles from "./styles";
-import { Logo } from "../Logo";
+import * as styles from './styles'
+import { Logo } from '../Logo'
 
-import Menu from "react-feather/dist/icons/menu";
+import Menu from 'react-feather/dist/icons/menu'
 
-import { PLATFORMS } from "config/constants";
-import { usePlatforms, useQueryString } from "hooks";
+import { PLATFORMS } from 'config/constants'
+import { usePlatforms, useQueryString } from 'hooks'
 
 export const Header = (props) => {
-  const { onOpen } = props;
+	const { onOpen } = props
 
-  const { currentPlatform, handleSetPlatform } = usePlatforms();
-  const { handleSetQs } = useQueryString("platform");
+	const { currentPlatform, handleSetPlatform } = usePlatforms()
+	const { handleSetQs } = useQueryString('platform')
 
-  const handleChange = (event) => {
-    const nextPlatform = event.target.value;
-    handleSetPlatform(nextPlatform);
-    handleSetQs(nextPlatform);
-  };
+	const handleChange = (event) => {
+		const nextPlatform = event.target.value
+		handleSetPlatform(nextPlatform)
+		handleSetQs(nextPlatform)
+	}
 
-  return (
-    <div sx={styles.wrapper}>
-      <Box sx={styles.menuIcon}>
-        <button sx={styles.menuButton} onClick={onOpen}>
-          <Menu size={25} />
-        </button>
-      </Box>
-      <div sx={styles.innerContainer}>
-        <Logo />
-        <Flex>
-          <Box sx={{ mr: 2 }}>
-            <select value={currentPlatform} onChange={handleChange}>
-              {PLATFORMS.map((p, i) => {
-                return (
-                  <option key={`platform-${p.value}`} value={p.value}>
-                    {p.displayName}
-                  </option>
-                );
-              })}
-            </select>
-          </Box>
-        </Flex>
-      </div>
-    </div>
-  );
-};
+	return (
+		<div sx={styles.wrapper}>
+			<Box sx={styles.menuIcon}>
+				<button sx={styles.menuButton} onClick={onOpen}>
+					<Menu size={25} />
+				</button>
+			</Box>
+			<div sx={styles.innerContainer}>
+				<Logo />
+				<Flex>
+					<Box sx={{ mr: 2 }}>
+						<select value={currentPlatform} onChange={handleChange}>
+							{PLATFORMS.map((p, i) => {
+								return (
+									<option key={`platform-${p.value}`} value={p.value}>
+										{p.displayName}
+									</option>
+								)
+							})}
+						</select>
+					</Box>
+				</Flex>
+			</div>
+		</div>
+	)
+}

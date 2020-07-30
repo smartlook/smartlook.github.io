@@ -1,1 +1,1 @@
-export * from "./PlatformsContext";
+export * from './PlatformsContext'

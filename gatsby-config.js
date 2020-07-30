@@ -1,12 +1,12 @@
 module.exports = {
-  plugins: [
-    {
-      resolve: "gatsby-theme-docz",
-      options: {
-        themeConfig: {
-          showDarkModeSwitch: false,
-        },
-      },
-    },
-  ],
-};
+	plugins: [
+		{
+			resolve: 'gatsby-theme-docz',
+			options: {
+				themeConfig: {
+					showDarkModeSwitch: false,
+				},
+			},
+		},
+	],
+}

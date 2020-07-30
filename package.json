@@ -1,21 +1,39 @@
 {
-  "name": "docz-example-basic",
-  "version": "2.0.0",
-  "license": "MIT",
-  "scripts": {
-    "dev": "docz dev",
-    "build": "docz build",
-    "serve": "docz serve"
-  },
-  "dependencies": {
-    "@mdx-js/runtime": "^1.6.6",
-    "classnames": "^2.2.6",
-    "docz": "latest",
-    "gatsby-theme-docz": "^2.3.1",
-    "prop-types": "^15.7.2",
-    "query-string": "^6.13.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "remark-embed-images": "^2.0.0"
-  }
+	"name": "smartlook-nextgen-docs",
+	"version": "0.1.0",
+	"license": "UNLICENSED",
+	"scripts": {
+		"lint": "eslint --ext \".js,.jsx\" src/",
+		"lint:fix": "yarn lint --fix --quiet",
+		"prettier": "prettier \"src/**/*.{js,jsx,css}\"",
+		"prettier:check": "yarn prettier --check",
+		"prettier:write": "yarn prettier --write",
+		"dev": "docz dev",
+		"build": "docz build",
+		"serve": "docz serve"
+	},
+	"dependencies": {
+		"@mdx-js/runtime": "^1.6.6",
+		"classnames": "^2.2.6",
+		"docz": "latest",
+		"gatsby-theme-docz": "^2.3.1",
+		"prop-types": "^15.7.2",
+		"query-string": "^6.13.1",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
+		"remark-embed-images": "^2.0.0"
+	},
+	"devDependencies": {
+		"babel-eslint": "^10.1.0",
+		"eslint": "^7.5.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-config-react-app": "^5.2.1",
+		"eslint-plugin-flowtype": "^5.2.0",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-prettier": "^3.1.4",
+		"eslint-plugin-react": "^7.20.5",
+		"eslint-plugin-react-hooks": "^4.0.8",
+		"prettier": "^2.0.5"
+	}
 }

@@ -1,23 +1,23 @@
 .component-alert {
-  display: block;
-  padding: 15px 20px;
-  background: white;
-  border-radius: 3px;
-  color: white;
+	display: block;
+	padding: 15px 20px;
+	background: white;
+	border-radius: 3px;
+	color: white;
 }
 
 .component-alert + .component-alert {
-  margin-top: 32px;
+	margin-top: 32px;
 }
 
 .component-alert--note {
-  background-color: #5352ed;
+	background-color: #5352ed;
 }
 
 .component-alert--example {
-  background-color: #f7ca18;
+	background-color: #f7ca18;
 }
 
 .component-alert--important {
-  background-color: #ffa400;
+	background-color: #ffa400;
 }

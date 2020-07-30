@@ -1,42 +1,42 @@
 // TODO: delete
 
-import React from "react";
-import cx from "classnames";
+import React from 'react'
+import cx from 'classnames'
 
-import { usePlatforms } from "hooks";
+import { usePlatforms } from 'hooks'
 
-import "./Alert.css";
+import './Alert.css'
 
 const getMatch = (items, matchTo) =>
-  items
-    .split(",")
-    .map((i) => i.trim())
-    .includes(matchTo);
+	items
+		.split(',')
+		.map((i) => i.trim())
+		.includes(matchTo)
 
-export const Alert = ({ kind = "note", visibleOn, invisibleOn, children }) => {
-  const { currentPlatform } = usePlatforms();
+export const Alert = ({ kind = 'note', visibleOn, invisibleOn, children }) => {
+	const { currentPlatform } = usePlatforms()
 
-  const classnames = cx("component-alert", {
-    [`component-alert--${kind}`]: true,
-  });
+	const classnames = cx('component-alert', {
+		[`component-alert--${kind}`]: true,
+	})
 
-  let isMatch = true;
+	let isMatch = true
 
-  if (visibleOn !== undefined) {
-    isMatch = getMatch(visibleOn, currentPlatform);
-  }
+	if (visibleOn !== undefined) {
+		isMatch = getMatch(visibleOn, currentPlatform)
+	}
 
-  if (invisibleOn !== undefined) {
-    isMatch = !getMatch(invisibleOn, currentPlatform);
-  }
+	if (invisibleOn !== undefined) {
+		isMatch = !getMatch(invisibleOn, currentPlatform)
+	}
 
-  if (!isMatch) {
-    return null;
-  }
+	if (!isMatch) {
+		return null
+	}
 
-  return (
-    <p className={classnames} visibleOn={visibleOn} invisibleOn={invisibleOn}>
-      {children}
-    </p>
-  );
-};
+	return (
+		<p className={classnames} visibleOn={visibleOn} invisibleOn={invisibleOn}>
+			{children}
+		</p>
+	)
+}
