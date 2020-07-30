@@ -515,6 +515,66 @@ Smartlook.isRecording();
   }}
 />
 
+## Reset session
+You can end current session and start new one by calling:
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.resetSession(boolean resetUser);
+      `,
+      kotlin: `
+Smartlook.resetSession(resetUser: Boolean)
+      `,
+    },
+  }}
+/>
+
+Set `resetUser` to `true` if you want SDK to create new visitor. This is especially beneficial if you want to identify new user (typically after logout).
+
+You can ensure that new session is created on SDK setup:
+
+<Alert kind="example">
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession();\n
+Smartlook.setupAndStartRecording(builder.build());
+      `,
+      kotlin: `
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession()\n
+Smartlook.setupAndStartRecording(builder.build())
+      `,
+    },
+  }}
+/>
+</Alert>
+
+If you also want to create new visitor on SDK setup use:
+
+<Alert kind="example">
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser();\n
+Smartlook.setupAndStartRecording(builder.build());
+      `,
+      kotlin: `
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser()\n
+Smartlook.setupAndStartRecording(builder.build())
+      `,
+    },
+  }}
+/>
+</Alert>
+
 # Sensitive data hiding
 
 <MD visibleOn="android,ios,react" markup={`
