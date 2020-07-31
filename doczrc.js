@@ -1,8 +1,5 @@
-// import embed from "remark-embed-images";
-
-export default {
+module.exports = {
 	dest: '/docs',
 	base: '/nextgen-docs',
-	// mdPlugins: [embed],
 	menu: ['SDK Installation', 'Cookbooks', 'Conceptual'],
 }
