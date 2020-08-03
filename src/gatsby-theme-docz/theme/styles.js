@@ -5,7 +5,7 @@ export const styles = {
 	},
 	root: {
 		fontSize: 3,
-		color: 'text',
+		color: 'white',
 		bg: 'background',
 	},
 	a: {
