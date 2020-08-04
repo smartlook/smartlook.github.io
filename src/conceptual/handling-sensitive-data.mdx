@@ -9,11 +9,13 @@ import { usePlatforms } from 'hooks'
 
 # Handling Sensitive Data
 
-The goal of analytic is to understand user journey in the app and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what uses sees on the screen. This indeed represents a challenge for protecting user privacy - out of decency, and law requirements too, and also because the data itself is rarely needed for the analytics purposes. What analytics uses is the metadata.
+The goal of analytic is to understand the user journey in the app and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
 
-There are several ways how Smartlook protects user privacy whne gathering the informatin it needs for its purposes. Smartlook obfuscates out of the box the native visual elements that typically contain private information. The data are replaced by neutral colour boxes during the recording process, they never make it to our systems. Moreover, Smartlook offers a set of methods that enable app developers to avoid recording unnecessary information.
+What analytics uses is the metadata.
 
-Also, Smartlook provides an open-source [Consent SDK for iOS](https://github.com/smartlook/ios-consent-sdk) and [Consent SDK for Android](https://github.com/smartlook/android-consent-sdk), that allow app authors getting user consent with the analytics data gathering.
+There are several ways how Smartlook protects user privacy when gathering the information it needs for its purposes. Smartlook obfuscates out of the box the native visual elements that typically contain private information. The data are replaced by neutral colour boxes during the recording process, they never make it to our systems. Moreover, Smartlook offers a set of methods that enable app developers to avoid recording unnecessary information.
+
+Also, Smartlook provides an open-source [Consent SDK for iOS](https://github.com/smartlook/ios-consent-sdk) and [Consent SDK for Android](https://github.com/smartlook/android-consent-sdk), that allows app authors to get user consent to gather the data for analytical purposes.
 
 # Handling UI with Sensitive Data
 
@@ -25,7 +27,7 @@ Terminology: in Smartlook, disabling UI element recording is done by blacklistin
 
 Most UI elements are whitelisted by default. Some types of UI elements (text edits, web views) are blacklisted by default.
 
-There are three levels of granularity of handling the sensitive data recording:
+There are three levels of granularity established for handling the sensitive data recording:
 - individual UI elements recording
 - UI element types recording
 - the whole screen recording 
@@ -82,10 +84,10 @@ This functionality is available only on all platforms. Please consult the <Link 
 
 In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an app that heavily uses web views for presenting some insensitive content, or if the app defines its own subclasses of visual components that present sensitive user data.
 
-To cover this use-case, Smartlook offers **on some platforms** a convenient way how to blacklist or whitelist all descendants of some class or visual elements that conform some protocol. 
+To cover this use-case, Smartlook offers **on some platforms** a convenient way to blacklist or whitelist all descendants of some class or visual elements that conform to a protocol.
 
 <MD visibleOn="ios" markup={`
-On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` subclasses that conform some **protocol**.
+On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**.
 `} />
 
 More on the topic in 
@@ -101,9 +103,9 @@ In order to change the default behaviour, HTML elements that are not recorded by
 
 ### Recording Modes: Handling Sensitive Data at the Whole Screen Level
 
-There can be scenarios when direct recording of the screen in order to understand the user behaviour is not appropriate or necessary. In such a case, Smartlook can be instructed to use, permanently or just temporarily, one of its wireframe recording modes.
+There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behaviour. In such  cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe recording modes.
 
-When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements, and user interaction with them, are still clearly distinguishable, but their actual look and content (texts, images) are replaced by their abstract representation. 
+When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements and user interaction with them are still clearly distinguishable, but their actual look and content (texts, images) are replaced by an abstract representation.
 
 *i do not understand how to link images, the example in index.mdx is useless*
 ```<img src={rendering_native.png} />```
@@ -111,11 +113,11 @@ When a wireframe mode is on, Smartlook draws a sketch of the screens instead of 
 
 #### Setting Recording Mode
 
-Default recording mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
+The default recording mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
 
-When debugging or experimenting to find the best suitable one for a particular appRecording mode, the default rendering mode can be also set a a setup options. In production releases, this option should not be used.
+When debugging or experimenting to find the most suitable one for a particular appRecording mode, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
 
-The app can change the rendering mode anytime, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
+The app can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
 
 More about rendering modes could be found 
 
@@ -123,19 +125,19 @@ More about rendering modes could be found
 
 # Handling Sensitive Events
 
-It is not just the visual elements that can contain sensitive information. Sometimes, clue to sensitive user data can be found in user interaction event. Consider that , e.g. location of *click* events on in  keyboard area could be used to guess user password event wenn the keyboard itself is obfuscated.
+It is not just the visual elements that can contain sensitive information. Sometimes, a clue to sensitive user data can be found in user interaction events. Consider that, e.g. location of click events on a keyboard area could be used to guess user password even when the keyboard itself is obfuscated.
 
 <Alert kind="important">
-Click events in the area of the system keyboard are never recorded by Smartlook. User interaction with custom input elements, e.g., custom PIN-Pad, must be filtered out programatically by the app developer. 
+Click events in the area of the system keyboard are never recorded by Smartlook. User interaction with custom input elements, e.g., custom PIN-Pad, must be filtered out programatically by the app developer.
 </Alert>
 
-The default setting is to track all events (with the exception of events on the keyboard, for obvious user privacy reasons). When this is not desired, the app may fine-tune the level of tracked events. 
+The default setting is to track all events (with the exception of events on the keyboard, for obvious user privacy reasons). When this is not desired, the app may fine-tune the level of tracked events.
 
 Typically, the default **Full Tracking** mode is desired, as it gives a detailed picture of user activities.
 
-On the other hand, on some screens event location of touches on otherwise blacklisted views can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to **Ignore User Interaction Events** mode temporarily.
+OOn the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to the **Ignore User Interaction Events** mode temporarily.
 
-Some apps that handle complex private information on some screens, may prefer stopping events recording altogether there, by switching to **No Tracking** mode for the screens.
+In specific cases, some apps that handle complex private information on particular screens may prefer stopping event recording altogether, by switching to the **No Tracking** mode for the screens.
 
 <Alert kind="note">
 Event tracking mode cannot be set on per-UI-element basis, only for the whole app.
