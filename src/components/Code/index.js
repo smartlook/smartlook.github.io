@@ -3,11 +3,10 @@ import { jsx } from 'theme-ui'
 
 import React from 'react'
 
-import cx from 'classnames'
-
 import { Code as PrismRenderer } from 'gatsby-theme-docz/src/components/Code'
 
-import './Code.css'
+// import './Code.css'
+import * as styles from './styles'
 
 export const Code = ({ snippets, shownTab, onTabChange }) => {
 	const [languageTab, setLanguageTab] = React.useState(
@@ -35,17 +34,15 @@ export const Code = ({ snippets, shownTab, onTabChange }) => {
 		}
 
 		return (
-			<div className="component-code-tabs">
+			<div sx={styles.main}>
 				{Object.keys(snippets).map((snippetLanguage) => {
-					const classNames = cx('component-code-tabs__tab', {
-						'component-code-tabs__tab--active': languageTab === snippetLanguage,
-					})
-
 					return (
 						<span
+							sx={
+								languageTab === snippetLanguage ? styles.tabActive : styles.tab
+							}
 							key={`code-tab-${snippetLanguage}`}
 							data-language={snippetLanguage}
-							className={classNames}
 							onClick={handleSetLanguageTab}
 						>
 							{snippetLanguage}
