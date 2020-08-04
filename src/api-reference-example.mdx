@@ -1,5 +1,6 @@
 ---
 name: API reference EXAMPLE
+menu: API reference EXAMPLE
 route: /api-reference-example
 ---
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
@@ -15,7 +16,7 @@ To track app events programatically, Smartlook provides two groups of methods:
   snippets={{
     android: {
       java: `
-Smartlook.trackCustomEvent(@NonNull String eventName);\n 
+Smartlook.trackCustomEvent(@NonNull String eventName);\n
 Smartlook.trackCustomEvent(@NonNull String eventName, JSONObject eventProperties);
 Smartlook.trackCustomEvent(@NonNull String eventName, Bundle eventProperties);
 Smartlook.trackCustomEvent(@NonNull String eventName, String validJsonString);
@@ -150,13 +151,13 @@ Smartlook.stopTimedCustomEvent("event_id", "reason", {prop: "propValue"});
 />
 
 <Alert kind="important" visibleOn="cordova,react,flutter">
-Event properties will effectively use only flat object. 
+Event properties will effectively use only flat object.
 This means that if you pass json object that includes objects or arrays as a child elements these elements are goint to be ignored.
 </Alert>
 
 ## Dicussion
 
-There are several use-cases when automated event capturing by Smartlook may not be suficcient for detailed analytics: 
+There are several use-cases when automated event capturing by Smartlook may not be suficcient for detailed analytics:
 
 * On some platforms, automated events capturing is technically not possible
 * Some parameters that make the event important for analytics can only be provided programatically by the app author
@@ -167,7 +168,7 @@ For these use-cases, tracking events programatically could be handy.
 
 In the common case, when the event has no duration, the method call is straigthforward:
 
-<Alert kind="example"> 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {
@@ -218,13 +219,13 @@ When, however, the app want to track result of some leghty process, e.g., a resu
 
 * **Start timed event**: set its name and optional start properties, store the event reference returned by Smartlook. Nothing is tracked at this moment.
 
-* When event ends, **track the event**. Identify the event with the stored event reference. You can also provide additional properties to it. 
+* When event ends, **track the event**. Identify the event with the stored event reference. You can also provide additional properties to it.
 
-* Or, when you want to cancel the event, **track the event canceling**. Identify the event with the stored event reference. You can also provide optional **reason** for the canceling and other additional properties to it. 
+* Or, when you want to cancel the event, **track the event canceling**. Identify the event with the stored event reference. You can also provide optional **reason** for the canceling and other additional properties to it.
 
 By tracking or canceling the event its duration is recorded automatically.
 
-<Alert kind="example"> 
+<Alert kind="example">
 <CodeBlock
   snippets={{
     android: {

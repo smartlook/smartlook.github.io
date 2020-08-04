@@ -36,12 +36,13 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 	const isCurrent = item.route === current.route
 	const showHeadings = isCurrent && headings && headings.length > 0
 	const currentHash = getCurrentHash()
+
 	return (
 		<React.Fragment>
 			<Link
 				{...props}
 				to={`${to}?platform=${currentPlatform}`}
-				sx={styles.link}
+				sx={styles.link({ isCurrent })}
 				activeClassName="active"
 				ref={ref}
 			/>

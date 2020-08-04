@@ -23,17 +23,16 @@ export const overlay = ({ open }) => ({
 
 export const wrapper = ({ open }) => ({
 	py: 4,
-	px: 4,
 	flexDirection: 'column',
 	position: 'sticky',
 	top: HEADER_HEIGHT,
 	zIndex: 1,
 	minWidth: 0,
-	maxHeight: '100vh',
-	borderRight: (t) => `1px solid ${t.colors.border}`,
+	maxHeight: 'calc(100vh - 81px)',
+	borderRight: (t) => `1px solid ${t.colors.poloBlue}`,
 	overflow: 'auto',
 	WebkitOverflowScrolling: 'touch',
-	bg: 'sidebar.bg',
+	bg: 'colors.white',
 
 	[media.tablet]: {
 		zIndex: 9999,
@@ -44,7 +43,7 @@ export const wrapper = ({ open }) => ({
 		bottom: 0,
 		width: 256,
 		px: 4,
-		bg: 'background',
+		bg: 'colors.white',
 		transition: 'transform .2s ease-out',
 		transform: open ? 'translateX(0)' : 'translateX(-100%)',
 	},

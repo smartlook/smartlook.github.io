@@ -33,11 +33,13 @@ export const Sidebar = React.forwardRef((props, ref) => {
 				{props.open && <Global styles={styles.global} />}
 			</Box>
 			<Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
-				<NavSearch
-					placeholder="Type to search..."
-					value={query}
-					onChange={handleChange}
-				/>
+				<div sx={{ px: 3 }}>
+					<NavSearch
+						placeholder="Type to search..."
+						value={query}
+						onChange={handleChange}
+					/>
+				</div>
 				{menus &&
 					menus.map((menu) => {
 						if (!menu.route)
