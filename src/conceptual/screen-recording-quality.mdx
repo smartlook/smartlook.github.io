@@ -9,15 +9,15 @@ import { usePlatforms } from 'hooks'
 
 # Screen Recording Quality
 
-*This section discusses the recording quality settings, their tweaking and trade-offs.*
+*This section discusses the recording quality settings, optional tweaks and trade-offs.*
 
 ## Understanding Video Recording Quality
 
-Although everyone wants the best video quality for the app recording, setting the appropriate video quality requires careful consideration and understanding trade-offs of different settings.
+Although everyone wants the best video quality for the app recording, setting the appropriate video quality requires careful consideration and understanding the trade-offs of different settings.
 
 The higher the quality, the more demanding the recording in terms of CPU load, memory footprint, energy consumption (battery life) and network traffic is.
 
-The primary way to set the video quality is by selecting one of the presets available in the app dashboard. Dashboard settings affect all new recordings. 
+The primary way to set the video quality is by selecting one of the presets available in the app dashboard. Dashboard settings affect all new recordings.
 
 ## Recording Quality
 
@@ -25,7 +25,7 @@ There are three preset values of **Low/Medium/High** (see your project [settings
 
 Current settings are:
 
-| Preset           | Bitrate         | Max bandwidth         |
+| Preset           | Bitrate         | Maximal bandwidth         |
 |------------------|-----------------|-----------------------|
 | Low              |  80 000 bits/s  | ~ 0.5 MB per minute   |
 | Medium           | 160 000 bits/s  | ~ 1 MB per minute     |
@@ -37,22 +37,22 @@ Technologically, this setting affects the memory footprint of the SDK, its CPU l
 
 ## Framerate
 
-Framerate (in frames per second, or fps) says how often Smartlook takes a snapshot of the screen. The higher the framerate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common app, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
+Framerate (in frames per second, or fps) states how often Smartlook takes a snapshot of the screen. The higher the framerate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common app, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
 
-We recommend setting the framerate for your project on the dashboard [link here]. 
+We recommend setting the framerate for your project on the dashboard [link here].
 
 Alternatively, it can also be set as one of Smartlook setup options. This is particularly useful for debugging and finding the optimal value for the app. In production releases, this option should not be used.
 
 The configured framerate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results, it can be switched off by the respective Smartlook setup option (see 
-
+ 
 <Link to="/api_reference#setup-configuration">API reference</Link>).
 
 ## Rendering Mode
 
-On top of taking snapshots of the screens for the video recording, Smartlook can also present the UI in the form of several types of wireframe sketches. 
+On top of taking snapshots of the screens for the video recording, Smartlook can also present the UI in the form of several types of wireframe sketches.
 
 Different rendering modes use different amounts of CPU, memory and produce video data of different sizes. The difference is individual for each app and depends on the way the app UI is structured. There is not always a direct relation between the simplicity of the visual presentation and resources load.
 
-Read more about rendering modes in the 
+Read more about rendering modes in the
 
 <Link to="/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level">Recording Modes: Handling Sensitive Data at the Whole Screen Level</Link>.
