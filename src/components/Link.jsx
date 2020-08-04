@@ -1,10 +1,8 @@
 import React from 'react'
 
-import qs from 'query-string'
-
 import { Link as GatsbyRouterLink } from 'gatsby'
 
-import { usePlatforms, getQueryStringValue } from 'hooks'
+import { usePlatforms } from 'hooks'
 
 export const Link = ({ to, platform, children, ...props }) => {
 	const { currentPlatform } = usePlatforms()
@@ -16,7 +14,11 @@ export const Link = ({ to, platform, children, ...props }) => {
 	}
 
 	return (
-		<GatsbyRouterLink to={`${to}?platform=${nextPlatform}`} {...props}>
+		<GatsbyRouterLink
+			className="link"
+			to={`${to}?platform=${nextPlatform}`}
+			{...props}
+		>
 			{children}
 		</GatsbyRouterLink>
 	)
