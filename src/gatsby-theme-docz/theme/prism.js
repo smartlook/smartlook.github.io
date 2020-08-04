@@ -1,8 +1,8 @@
 export const prismLight = {
 	plain: {
 		fontFamily: 'Inconsolata',
-		color: '#393A34',
-		backgroundColor: '#f6f8fa',
+		color: '#224670',
+		backgroundColor: '#e6f2ff',
 	},
 	styles: [
 		{

@@ -5,15 +5,13 @@ export const styles = {
 	},
 	root: {
 		fontSize: 3,
-		color: 'white',
-		bg: 'background',
+		color: 'lightBlue',
 	},
 	a: {
-		color: 'primary',
-		textDecoration: 'none',
+		color: 'persianGreen',
+		textDecoration: 'underline',
 		'&:hover': {
-			color: 'secondary',
-			textDecoration: 'underline',
+			color: 'aquaBlue',
 		},
 	},
 	h1: {
@@ -52,17 +50,21 @@ export const styles = {
 	},
 	code: {
 		fontFamily: 'monospace',
+		color: 'pink',
 	},
 	inlineCode: {
 		fontFamily: 'monospace',
+		color: 'pink',
 	},
 	pre: {
-		my: 4,
-		p: 3,
+		p: 4,
 		variant: 'prism',
 		textAlign: 'left',
 		fontFamily: 'monospace',
-		borderRadius: 'radius',
+		fontSize: 16,
+		lineHeight: '24px',
+		border: (t) => `solid 1px ${t.colors.onahau}`,
+		borderRadius: '3px',
 	},
 	table: {
 		width: '100%',

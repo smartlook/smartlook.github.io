@@ -3,7 +3,7 @@ import { media } from '~theme/breakpoints'
 
 export const wrapper = {
 	...mixins.centerAlign,
-	bg: 'onahau',
+	backgroundColor: '#fafcff',
 	position: 'fixed',
 	top: 0,
 	right: 0,

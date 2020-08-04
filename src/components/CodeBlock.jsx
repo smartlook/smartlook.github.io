@@ -1,7 +1,5 @@
 import React from 'react'
 
-import cx from 'classnames'
-
 import { Code } from './Code'
 
 import { PLATFORMS } from 'config/constants'
