@@ -4,7 +4,7 @@ menu: Conceptual
 route: /conceptual/integrating-with-other-tools
 ---
 
-import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
 
@@ -18,9 +18,9 @@ In order to integrate Smartlook recordings with other tools, Smartlook publishes
  
 <Link to="/api_reference#integrations">API Reference</Link>).
 
-<Alert kind="important">
+<TextBlock kind="important">{`
 The integration URLs are accessible only to the authorized Smartlook users.
-</Alert>
+`}</TextBlock>
 
 The integration is then made by sending these URLs to the other tools, e.g., as custom parameters of their own objects.
 
@@ -28,22 +28,22 @@ The integration is then made by sending these URLs to the other tools, e.g., as 
 
 The Smartlook method that publishes dashboard session URL takes a boolean flag if the current timestamp should be included in the URL. With this parameter, Smartlook begins playback of the session at the indicated moment. This comes in handy when the URL is attached to a particular event.
 
-<Alert kind="example">
+<TextBlock kind="example">{`
   <CodeBlock
     snippets={{
       ios: {
-      swift: `
+      swift: \`
 let currentSmartlookSessionURL = Smartlook.getDashboardSessionURL(withCurrentTimestamp: true)
 anotherToolEvent.setParameter("SmartlookURL", currentSmartlookSessionURL)
-`,
-      'objective-c': `
+\`,
+      'objective-c': \`
 NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:YES];
 [anotherToolEvent setParamValue:currentSmartlookSessionURL forKey:@"SmartlookURL"];
-`
+\`
     },
   }}
 />
-</Alert>
+`}</TextBlock>
 
 <Link to="/api_reference#dashboard-session-url">API Reference</Link>.
 
@@ -51,22 +51,22 @@ NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrent
 
 Visitor URL points to a Dashboard page that wrapps the visitor info (their sessions &c.). This URL may change during the app run are result of user identification via Smartlook SDK.
 
-<Alert kind="example">
+<TextBlock kind="example">{`
   <CodeBlock
     snippets={{
       ios: {
-      swift: `
+      swift: \`
 let currentSmartlookVisitorURL = Smartlook.getDashboardVisitorURL()
 AnotherTool.setUserProperty("SmartlookURL", currentSmartlookVisitorURL)
-`,
-      'objective-c': `
+\`,
+      'objective-c':\`
 NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
 [AnotherTool setUserParamValue:currentSmartlookVisitorURL forKey:@"SmartlookURL"];
-`
+\`
     },
   }}
 />
-</Alert>
+`}</TextBlock>
 
 <Link to="/api_reference#dashboard-visitor-url">API Reference</Link>.
 
