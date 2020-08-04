@@ -1,0 +1,41 @@
+---
+name: Android setup outside Application class
+menu: Cookbooks
+route: /cookbooks/android_setup_outside_application_class
+---
+
+import { Code, CodeBlock, TextBlock, Link } from "components";
+import { usePlatforms } from 'hooks'
+
+# SDK setup outside Application class
+
+Sometimes it is not possible to initialize SDK at the start of the application.
+Typical example is when you need to fetch your api key so you don't have your api key at the application start.
+
+If this is your case you need to provide SDK setup with actual `Activity` reference so the SDK can “catch up” with applications lifecycle.
+
+<Code
+  snippets={{
+    java: `
+public class MainActivity extends AppCompatActivity {\n
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate();\n
+        Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+                .setActivity(this);\n
+        Smartlook.setupAndStartRecording(builder.build());
+    }
+}
+`,
+    kotlin: `
+class MainActivity : AppCompatActivity() {\n
+    override fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate();\n
+        val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+                .setActivity(this)\n
+        Smartlook.setupAndStartRecording(builder.build())
+    }
+}
+`,
+  }}
+/>

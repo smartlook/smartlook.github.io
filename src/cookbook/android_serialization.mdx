@@ -1,0 +1,108 @@
+---
+name: Android serialization guide
+menu: Cookbooks
+route: /cookbooks/android_serialization_guide
+---
+
+import { Code, CodeBlock, TextBlock, Link } from "components";
+import { usePlatforms } from 'hooks'
+
+# Data serialization
+
+When using custom events and global event properties you may need to serialize data to one of SDK supported formats:
+* `JSONObject`
+* `Bundle`
+* json `String`
+
+For all examples we gonna use this data class as an input to the serialization:
+
+<Code
+  snippets={{
+    java: `
+public class Employee {
+    private String name;
+    private String id;
+    private double salary;\n
+    public Employee(String name, String id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }\n
+    public String getName() {
+        return name;
+    }\n
+    public String getId() {
+        return id;
+    }\n
+    public double getSalary() {
+        return salary;
+    }
+}
+`,
+    kotlin: `
+data class Employee(val name: String,
+                    val id: String,
+                    salary: Double)
+`,
+  }}
+/>
+
+## Serialize as JSONObject
+
+<Code
+  snippets={{
+    java: `
+Employee employee = new Employee("John Dough", "#123456", 1000);
+JSONObject serializedEmployee = new JSONObject();\n
+try {
+    serializedEmployee.put("name", employee.name);
+    serializedEmployee.put("id", employee.id);
+    serializedEmployee.put("salary", employee.salary);
+} catch (JSONException e) {
+    e.printStackTrace();
+}
+`,
+    kotlin: `
+data class Employee(val name: String,
+                    val id: String,
+                    salary: Double)
+`,
+  }}
+/>
+
+## Serialize as Bundle
+
+<Code
+  snippets={{
+    java: `
+Employee employee = new Employee("John Dough", "#123456", 1000);
+Bundle serializedEmployee = new Bundle();
+serializedEmployee.putString("name", employee.name);
+serializedEmployee.putString("id", employee.id);
+serializedEmployee.putDouble("salary", employee.salary);
+`,
+    kotlin: `
+data class Employee(val name: String,
+                    val id: String,
+                    salary: Double)
+`,
+  }}
+/>
+
+## Serialize as json String
+
+If you are using `Gson` (or any other similar library) you might prefer this way of serializing data for SDK API methods. 
+
+<Code
+  snippets={{
+    java: `
+Employee employee = new Employee("John Dough", "#123456", 1000);
+String serializedEmployee = gson.toJson(employee);
+`,
+    kotlin: `
+data class Employee(val name: String,
+                    val id: String,
+                    salary: Double)
+`,
+  }}
+/>
