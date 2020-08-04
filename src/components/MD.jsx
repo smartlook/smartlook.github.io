@@ -6,8 +6,6 @@ import MDX from '@mdx-js/runtime'
 import { useComponents } from 'docz'
 import { usePlatforms } from 'hooks'
 
-import { CodeBlock } from './CodeBlock'
-
 export const MD = ({ markup, visibleOn, invisibleOn }) => {
 	const { currentPlatform } = usePlatforms()
 	const components = useComponents()

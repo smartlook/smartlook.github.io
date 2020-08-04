@@ -1,11 +1,10 @@
-// TODO: delete
+/** @jsx jsx*/
 
-import React from 'react'
-import cx from 'classnames'
+import { jsx } from 'theme-ui'
 
 import { usePlatforms } from 'hooks'
 
-import './Alert.css'
+import * as styles from './TextBlock/styles'
 
 const getMatch = (items, matchTo) =>
 	items
@@ -16,9 +15,21 @@ const getMatch = (items, matchTo) =>
 export const Alert = ({ kind = 'note', visibleOn, invisibleOn, children }) => {
 	const { currentPlatform } = usePlatforms()
 
-	const classnames = cx('component-alert', {
-		[`component-alert--${kind}`]: true,
-	})
+	const getStyles = (kind) => {
+		switch (kind) {
+			case 'note':
+				return styles.note
+
+			case 'important':
+				return styles.important
+
+			case 'example':
+				return styles.example
+
+			default:
+				return undefined
+		}
+	}
 
 	let isMatch = true
 
@@ -35,7 +46,7 @@ export const Alert = ({ kind = 'note', visibleOn, invisibleOn, children }) => {
 	}
 
 	return (
-		<p className={classnames} visibleOn={visibleOn} invisibleOn={invisibleOn}>
+		<p sx={getStyles(kind)} visibleOn={visibleOn} invisibleOn={invisibleOn}>
 			{children}
 		</p>
 	)

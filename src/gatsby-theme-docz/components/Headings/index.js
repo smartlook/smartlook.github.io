@@ -4,7 +4,7 @@ import { jsx } from 'theme-ui'
 const heading = (Tag) => {
 	const Component = (props) => {
 		return (
-			<Tag {...props}>
+			<Tag sx={{ mt: 0, mb: 3 }} {...props}>
 				<a
 					href={`#${props.id}`}
 					sx={{

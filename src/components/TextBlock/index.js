@@ -1,15 +1,16 @@
-import React from 'react'
+/** @jsx jsx*/
+
+import { jsx } from 'theme-ui'
 import MDX from '@mdx-js/runtime'
-import cx from 'classnames'
 
 import { useComponents } from 'docz'
 import { usePlatforms } from 'hooks'
 
-import { Code } from './Code'
-import { CodeBlock } from './CodeBlock'
-import { Link } from './Link'
+import { Code } from '../Code'
+import { CodeBlock } from '../CodeBlock'
+import { Link } from '../Link'
 
-import './Alert.css'
+import * as styles from './styles'
 
 const getMatch = (items, matchTo) =>
 	items
@@ -35,11 +36,21 @@ export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
 		return null
 	}
 
-	const classnames = kind
-		? cx('component-alert', {
-				[`component-alert--${kind}`]: true,
-		  })
-		: undefined
+	const getStyles = (kind) => {
+		switch (kind) {
+			case 'note':
+				return styles.note
+
+			case 'important':
+				return styles.important
+
+			case 'example':
+				return styles.example
+
+			default:
+				return undefined
+		}
+	}
 
 	const components = {
 		...themeComponents,
@@ -49,7 +60,7 @@ export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
 	}
 
 	return (
-		<div className={classnames}>
+		<div sx={getStyles(kind)}>
 			<MDX components={components}>{children}</MDX>
 		</div>
 	)
