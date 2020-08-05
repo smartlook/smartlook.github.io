@@ -33,3 +33,29 @@ For more information on how to report issues please check our [Smartlook SDK Sup
 6. Obtain your SDK Key from [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects) and enter it into Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
 7. Enable recording by ticking the `Start Recording` switch in Smartlook Plugin settings, or by using Unreal analytics' `FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();`, or by using `Start Session` analytics blueprint node.
 8. You can record events with `FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();`, or by using `Record Event` analytics blueprint node.
+
+<TextBlock kind="note">
+{`
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
+`}
+</TextBlock>
+
+# What will SDK do?
+
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide some default sensitive views.
+* detect basic user gestures and touches.
+* records install referrer if present.
+* and much more!
+
+For more advanced recording customization please refer to 
+
+<Link to="/api_reference">Smartlook API reference</Link>
+
+# Supported versions
+TODO
+
+# Issue tracker
+If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [FIXME issue tracker]().
