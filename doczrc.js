@@ -6,8 +6,6 @@ module.exports = {
 		'Cookbooks',
 		'Conceptual',
 		'API reference',
-		'API reference EXAMPLE',
-		'Playground',
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',

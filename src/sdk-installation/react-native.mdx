@@ -4,24 +4,36 @@ menu: SDK Installation
 route: /sdk-installation/react-native
 ---
 
+import { Code, TextBlock, Link } from "components";
+
 # Smartlook SDK React Native Installation
 
-[NOTE BLOCK]
-### Managed Expo projects
+<TextBlock kind="important">
+{`
+**Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "_How do I add custom native code to my Expo project?_". Smartlook functionality must be implemented in the native code.
+`}
+</TextBlock>
 
-**Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "How do I add custom native code to my Expo project?". Smartlook functionality must be implemented in the native code.
+## Installation
 
 Install the Smartlook RN bridge:
 
-`$ npm install smartlook-react-native-wrapper --save`
+<Code
+  snippets={{
+      bash: `$ npm install smartlook-react-native-wrapper --save`,
+    }
+  }
+/>
 
-[ANDROID]
+### Android
 
 1. Open `android/build.gradle`
 2. Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using older React native version
 3. Add our maven repository:
 
-```android
+<Code
+  snippets={{
+      gradle: `
 allprojects {
   repositories {
     maven {
@@ -29,21 +41,55 @@ allprojects {
     }
   }
 }
-```
+`,
+    }
+  }
+/>
+
 Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip` -> This step is not needed in newer React native versions. 
 
-[iOS]
+### iOS
 
-Smartlook native library is installed as a Cocoapods dependency. See hwo you could create a vanilla React Native iOS app with Smartlook running in our cookbooks here [/coockbooks/vanilla-react-native-ios-app]
+Smartlook native library is installed as a Cocoapods dependency. See how you could create a vanilla React Native iOS app with Smartlook running in our cookbooks here <Link to="/coockbooks/vanilla-react-native-ios-app">iOS React Native App</Link>.
 
+<!--
 For React Native before v 0.60, the installation was different. If you install Smartlook into a RN app version lesser than 0.60, or upgrade RN from version 0.60 to current version, see our tips in [/cookbooks/ios-react-native-0.60-issues-troubleshooting].
-
+-->
 
 # Smartlook SDK Quick Start
 
-```js
+<Code
+  snippets={{
+      javascript: `
 var Smartlook = require('smartlook-react-native-wrapper');
 Smartlook.setupAndStartRecording("KEY");
-```
+`,
+    }
+  }
+/>
 
-Detailed documentation could be found here [/api_reference]
+Detailed Smartlook API documentation could be found here <Link to="/api_reference">API Reference</Link>.
+
+<TextBlock kind="note">
+{`
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>
+`}
+</TextBlock>
+
+# What will SDK do?
+
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide some default sensitive views.
+* detect basic user gestures and touches.
+* records install referrer if present.
+* and much more!
+
+For more advanced recording customization please refer to 
+
+# Supported versions
+TODO
+
+# Issue tracker
+If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [FIXME issue tracker]().

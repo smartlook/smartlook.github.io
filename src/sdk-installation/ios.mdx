@@ -4,7 +4,7 @@ menu: SDK Installation
 route: /sdk-installation/ios
 ---
 
-import { Code, CodeBlock, TextBlock, Alert, Link } from "components";
+import { Code, CodeBlock, TextBlock, Link } from "components";
 import { usePlatforms } from 'hooks'
 
 # iOS SDK Installation
@@ -13,9 +13,11 @@ Smartlook SDK is distributted as a binary iOS framework. It is compatible with i
 
 There are several possible ways how to install Smartlook SDK and integrate it to a native iOS (Swift or ObjC) project.
 
-<Alert kind="note" invisibleOn="">
+<TextBlock kind="note">
+{`
 This installation guide refers to the case, when Smartlook is installed in a nativelly created iOS app. If you use some 3rd party framework, like React Native, Cordova, Flutter, Unity etc. to create your app, see the respective SDK installation documentation instead.
-</Alert>
+`}
+</TextBlock>
 
 ## Installing using Cocoapods
 
@@ -55,21 +57,21 @@ import Smartlook
 
 **2. Setup Smartlook and start recording**
 
-<Alert kind="important">
-To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
-</Alert>
+<TextBlock kind="important">
+{`
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <Link to="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</Link>.
+`}
+</TextBlock>
 
-<CodeBlock
+<Code
   snippets={{
       swift: `
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-\n
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n
     Smartlook.setup(key: "YOUR_API_KEY")
     Smartlook.startRecording()
       `,
       objc: `
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-\n    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {\n    
     [Smartlook setupWithKey: @"YOUR_API_KEY"];
     [Smartlook startRecording];
       `,
@@ -77,29 +79,27 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   }
 />
 
----
----
----
----
+<TextBlock kind="note">
+{`
+SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
+`}
+</TextBlock>
 
-_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
+# What will SDK do?
 
-<Alert kind="note" invisibleOn="">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
-</Alert>
-
-Thats all you need for a quick start.
-
-**After this basic setup SDK will:**
-- record your application.
-- stop itself automatically on application closure.
-<TextBlock invisibleOn="unity,unreal,cocos"><li />automatically hide some default sensitive views.</TextBlock>
-- detect basic user gestures and touches.
-<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
-- and much more!
+After this basic setup SDK will:
+* record your application.
+* **stop itself automatically on application closure**.
+* automatically hide some default sensitive views.
+* detect basic user gestures and touches.
+* and much more!
 
 For more advanced recording customization please refer to 
-<Link to="/api_reference" platform="ios">Smartlook API reference</Link>
 
+<Link to="/api_reference">Smartlook API reference</Link>
 
+# Supported versions
+Current **minimal** supported version is **iOS 10**.
 
+# Issue tracker
+If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/smartlook-ios-sdk).

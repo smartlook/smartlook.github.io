@@ -108,9 +108,9 @@ In order to change the default behaviour, HTML elements that are not recorded by
 
 <Link to="/api_reference">API reference</Link>.
 
-### Recording Modes: Handling Sensitive Data at the Whole Screen Level
+### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
 
-There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behaviour. In such  cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe recording modes.
+There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behaviour. In such  cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe rendering modes.
 
 When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements and user interaction with them are still clearly distinguishable, but their actual look and content (texts, images) are replaced by an abstract representation.
 
@@ -118,11 +118,11 @@ When a wireframe mode is on, Smartlook draws a sketch of the screens instead of 
 ```<img src={rendering_native.png} />```
 ```<img src={rendering_wireframe.png} />```
 
-#### Setting Recording Mode
+#### Setting Rendering Mode
 
-The default recording mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
+The default rendering mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
 
-When debugging or experimenting to find the most suitable one for a particular appRecording mode, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
+When debugging or experimenting to find the most suitable one for a particular app, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
 
 The app can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
 
