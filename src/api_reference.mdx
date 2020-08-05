@@ -6,6 +6,11 @@ route: /api_reference
 import { Code, CodeBlock, TextBlock, Link } from "components";
 import { usePlatforms } from 'hooks'
 
+import native_rendering_mode from 'assets/rendering_native.png'
+import wireframe_rendering_mode from 'assets/rendering_wireframe.png'
+import no_rendering_mode from 'assets/rendering_no_rendering.png'
+import blueprint_rendering_mode from 'assets/rendering_blueprint.png'
+import icon_blueprint_rendering_mode from 'assets/rendering_icon_blueprint.png'
 
 # Lifecycle & recording
 
@@ -141,7 +146,7 @@ Smartlook.setupAndStartRecording("YOUR_API_KEY");
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
-If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.
+If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look [here](/cookbooks/android_setup_outside_application_class).
 `}</TextBlock>
 
 <TextBlock visibleOn="android,cordova,ionic,flutter,unity,react">{`
@@ -305,26 +310,25 @@ Some recording parameters can be configured on setup:
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
 | fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
 | experimental        | no       | Set this to true to enable some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
-| activity            | no       | Actual activity reference is required when setting the SDK outside of Application class. Full example shown here.                                  | null                 |
-| renderingMode       | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
-| renderingModeOption | no       | Further customization of rendering mode.                                                                                                           | null                 |
+| activity            | no       | Actual activity reference is required when setting the SDK outside of Application class.                                                           | null                 |
+| [renderingMode](#rendering)       | no       | Define the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
+| [renderingModeOption](#rendering) | no       | Further customization of rendering mode.                                                                                                           | null                 |
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
-\\n
 The following table describes all available optional parameters. Most of them can be also set by a dedicated method. See the respective documentation section for details.
-\\n
+\n
 The options dictionary keys are constants defined as members of \`SetupOptionKey\` enumeration.
-\\n
+\n
 | Parameter            | Type                   | Default value | Description                                                                                                                                 
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
 | .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
 | .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see FIXME LINK -> <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
-| .renderingMode       | RenderingMode          | native        | Define the way SDK is going to capture screen image data. Full documentation [here](#rendering).   |
-| .renderingModeOption | RenderingModeOption    | none          | Further customize rendering mode. Full documentation [here](#rendering).  |
-| .startNewSession     | bool                   | false         | Always start new session with Smartlook setup. Full documentation [FIXME LINK here]().  |
-| .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup. Full documentation [FIXME LINK shere]().  |
+| [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
+| [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
+| .startNewSession     | bool                   | false         | Always start new session with Smartlook setup.   |
+| .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup.  |
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova">{`
@@ -332,7 +336,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
 | fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
-| renderingMode          | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | RenderingMode.NATIVE |
+| [.renderingMode](#rendering)         | no       | Define the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
 | startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
 | startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
@@ -342,7 +346,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
 | fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
-| renderingMode          | no       | Define the way SDK is going to capture screen image data. Full documentation here.                                                                 | SmartlookRenderingMode.NATIVE |
+| [.renderingMode](#rendering)         | no       | Define the way SDK is going to capture screen image data.                                                                                          | SmartlookRenderingMode.NATIVE |
 | startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
 | startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
@@ -1113,11 +1117,11 @@ Smartlook.setRenderingMode("no_rendering");
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android,ios,react">{`
-SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes here.
+SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because you can see what is the user doing and be safe in sensitive data regard. You can read more about rendering modes [in conceptual documentation](/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
 `}</TextBlock>
 
 <TextBlock kind="important">{`
-Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue here.
+Some screens can leak sensitive data even through automatically detected touch events. You can read more about this issue in [secure custom keyboard example](/cookbooks/secure_custom_keyboard).
 `}</TextBlock>
 
 When your application is no longer displaying sensitive screen you can set your rendering mode back to preferred variant:
@@ -1438,8 +1442,8 @@ class func setSessionProperty(value: String, forName name: String)
 
 <TextBlock visibleOn="ios">{`
 You will see these properties in the Dashboard at Visitor details.
-\\n    
-If you do want locking a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set.
+\n    
+If you want to lock a session property value to protect it against accidental further changes. Immutable property value cannot be changes once it is set.
 `}</TextBlock>
 
 <CodeBlock
@@ -2362,7 +2366,7 @@ Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android,ios,cordova,ionic">{`
-Take a look at pin code keyboard sample, demonstrating usage of analytic event modes.
+Take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,cordova,ionic">{`
@@ -2370,6 +2374,10 @@ Take a look at pin code keyboard sample, demonstrating usage of analytic event m
 SDK can use different methods of capturing screen image data. We call these **rendering modes**.
 ## Set rendering mode
 `}</TextBlock>
+
+| NATIVE | WIREFRAME | NO_RENDERING |
+|:--:|:-:|:-:|
+|<img src={native_rendering_mode}/> | <img src={wireframe_rendering_mode}/> | <img src={no_rendering_mode}/> |
 
 <TextBlock visibleOn="android">{`
 You can change rendering mode on SDK setup using builder:
@@ -2516,15 +2524,19 @@ SLRenderingMode const SLRenderingModeNoRendering;
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android,ios,cordova,ionic">{`
-\`NO_RENDERING\` mode does not record any screen data, this is beneficial on screens that include sensitive data, read more.
+\`NO_RENDERING\` mode does not record any screen data, this is beneficial on screens that include sensitive data, [read more](#no-rendering).
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios">{`
 ## Rendering mode option
-\`WIREFRAME\` rendering mode can be further configured by \`renderingModeOption\`:
+\`WIREFRAME\` rendering mode can be further configured by \`renderingModeOption\`.
 \n
 Rendering mode option can be set on setup:
 `}</TextBlock>
+
+| WIREFRAME | BLUEPRINT | ICON_BLUEPRINT |
+|:--:|:-:|:-:|
+|<img src={wireframe_rendering_mode}/> | <img src={blueprint_rendering_mode}/> | <img src={icon_blueprint_rendering_mode}/> |
 
 <CodeBlock
    snippets={{
@@ -2587,7 +2599,7 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option re
   }}
 />
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Rendering mode options for \`WIREFRAME\` rendering mode:
 `}</TextBlock>
 
@@ -2786,10 +2798,12 @@ When you add at least one sensitive header name regex, default ones (shown above
 
 # Utility methods
 
+<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react">{`
 ## Instal referrer
 When your application is installed from the **Google Play Store** Smartlook SDK **automatically** tracks install referrer.
-
+\n
 You can also set your custom referrer using:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
