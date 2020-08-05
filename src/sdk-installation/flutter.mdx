@@ -9,7 +9,8 @@ import { usePlatforms } from 'hooks'
 
 # Flutter SDK Installation
 
-To add Smartlook into your Flutter project, add our wrapper as another dependency to your public `pubspec.yaml`
+
+1. Add Smartlook among other dependecies into the `pubspec.yaml`
 
 <Code
   snippets={{
@@ -20,15 +21,7 @@ dependencies:
   }}
 />
 
-# Start Recording
-
-<TextBlock kind="important">
-{`
-To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <Link to="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</Link>.
-`}
-</TextBlock>
-
-To start recording (or just to setup the SDK), best place is  :
+2. Setup Smartlook and start recording, e.g., in your app state initiacization
 
 <Code
   snippets={{
@@ -42,34 +35,22 @@ class _MyAppState extends State<MyApp> {
 		Smartlook.setupAndStartRecording('API_KEY');
 		...
 	  }
-}
-`,
+}`,
   }}
 />
 
 More info about the wrapper with additional examples can be found at [pub.dev site.](https://pub.dev/packages/smartlook#-readme-tab-)
 
-<TextBlock kind="note">
-{`
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
-`}
-</TextBlock>
-
-# What will SDK do?
-
-After this basic setup SDK will:
-* record your application.
-* **stop itself automatically on application closure**.
-* detect basic user gestures and touches.
-* records install referrer if present.
-* and much more!
-
-For more advanced recording customization please refer to 
-
-<Link to="/api_reference">Smartlook API reference</Link>
-
 # Supported versions
 TODO
 
-# Issue tracker
-If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [FIXME issue tracker]().
+# Important things to know
+
+<TextBlock kind="important">
+{`
+- To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <Link to="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</Link>.
+- SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
+- Full API reference: <Link to="/api_reference">Smartlook API reference</Link>
+- If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/smartlook-ios-sdk).
+`}
+</TextBlock>
