@@ -1,5 +1,6 @@
 ---
 name: Getting Started
+menu: Getting Started
 route: /
 ---
 
@@ -33,13 +34,13 @@ __string__
 <CodeBlock
   snippets={{
     android: {
-      xml: `
+      java: `
 Smartlook.setGlobalEventProperties(JSONObject globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(Bundle globalEventProperties, boolean immutable)
 Smartlook.setGlobalEventProperties(String globalEventPropertiesJsonString, boolean immutable)
 Smartlook.setGlobalEventProperty(@NotNull String key, @NotNull String value, boolean immutable)
       `,
-      java: `
+      xml: `
 js snippet
       `,
       c: `
@@ -90,9 +91,9 @@ Smartlook.isRecording()    // returns true/false
 
 # TextBlock Example
 
-<TextBlock visibleOn="android">
+<TextBlock kind="important" visibleOn="android">
 {`
-  # Heading
+  ## Heading
   \n
   Paragraph
   \n
@@ -111,7 +112,7 @@ Smartlook.isRecording()    // returns true/false
 `}
 </TextBlock>
 
-<TextBlock kind="note" visibleOn="android, ios">
+<TextBlock kind="example" visibleOn="android, ios">
 {`
   # Heading
   \n
