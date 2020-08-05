@@ -1,0 +1,11 @@
+// smartlook
+export const white = '#ffffff'
+export const onahau = '#cee6ff'
+export const mariner = '#3677d1'
+export const smalt = '#023189'
+export const lightBlue = '#01409e'
+export const poloBlue = '#9cb6d4'
+export const pink = '#ea69d3'
+export const indigo = '#7904a3'
+export const persianGreen = '#039ea4'
+export const aquaBlue = '#00eaf3'

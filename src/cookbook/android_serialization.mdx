@@ -52,7 +52,7 @@ data class Employee(val name: String,
 <Code
   snippets={{
     java: `
-Employee employee = new Employee("John Dough", "#123456", 1000);
+Employee employee = new Employee("John Dough", "#123456", 1000);\n
 JSONObject serializedEmployee = new JSONObject();\n
 try {
     serializedEmployee.put("name", employee.name);
@@ -63,9 +63,15 @@ try {
 }
 `,
     kotlin: `
-data class Employee(val name: String,
-                    val id: String,
-                    salary: Double)
+val employee = Employee("John Dough", "#123456", 1000)\n
+val serializedEmployee = JSONObject()\n
+try {
+    serializedEmployee.put("name", employee.name)
+    serializedEmployee.put("id", employee.id)
+    serializedEmployee.put("salary", employee.salary)
+} catch (e: JSONException) {
+    e.printStackTrace()
+}
 `,
   }}
 />
@@ -75,16 +81,19 @@ data class Employee(val name: String,
 <Code
   snippets={{
     java: `
-Employee employee = new Employee("John Dough", "#123456", 1000);
+Employee employee = new Employee("John Dough", "#123456", 1000);\n
 Bundle serializedEmployee = new Bundle();
 serializedEmployee.putString("name", employee.name);
 serializedEmployee.putString("id", employee.id);
 serializedEmployee.putDouble("salary", employee.salary);
 `,
     kotlin: `
-data class Employee(val name: String,
-                    val id: String,
-                    salary: Double)
+val employee = Employee("John Dough", "#123456", 1000)\n
+val serializedEmployee = new Bundle().apply{
+    putString("name", employee.name)
+    putString("id", employee.id)
+    putDouble("salary", employee.salary)
+}
 `,
   }}
 />
@@ -100,9 +109,8 @@ Employee employee = new Employee("John Dough", "#123456", 1000);
 String serializedEmployee = gson.toJson(employee);
 `,
     kotlin: `
-data class Employee(val name: String,
-                    val id: String,
-                    salary: Double)
+val employee = Employee("John Dough", "#123456", 1000)
+val serializedEmployee = gson.toJson(employee)
 `,
   }}
 />
