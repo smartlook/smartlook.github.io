@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import { PlatformsProvider } from "context";
+import { PlatformsProvider } from 'context'
 
 export const wrapRootElement = ({ element }) => {
-  return <PlatformsProvider>{element}</PlatformsProvider>;
-};
+	return <PlatformsProvider>{element}</PlatformsProvider>
+}

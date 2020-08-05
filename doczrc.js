@@ -1,8 +1,14 @@
-// import embed from "remark-embed-images";
-
-export default {
-  dest: "/docs",
-  base: "/nextgen-docs",
-  // mdPlugins: [embed],
-  menu: ["SDK Installation", "Cookbooks", "Conceptual"],
-};
+module.exports = {
+	dest: '/docs',
+	base: '/nextgen-docs',
+	menu: [
+		'SDK Installation',
+		'Cookbooks',
+		'Conceptual',
+		'API reference',
+		'API reference EXAMPLE',
+		'Playground',
+	],
+	title: 'Smartlook',
+	files: 'src/**/*.{md,mdx}',
+}
