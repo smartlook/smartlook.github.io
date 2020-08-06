@@ -9,7 +9,8 @@ export const main = {
 
 export const tab = {
 	display: 'block',
-	padding: 3,
+	py: 2,
+	px: 3,
 	color: 'smalt',
 	textDecoration: 'none',
 	cursor: 'pointer',
