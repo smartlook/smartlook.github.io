@@ -22,19 +22,20 @@ export const styles = {
 		fontFamily: 'monospace',
 		color: 'pink',
 	},
-	pre: {
+	pre: ({ kind }) => ({
 		p: 3,
+		mt: 0,
 		variant: 'prism',
 		textAlign: 'left',
 		fontFamily: 'monospace',
 		fontSize: 16,
 		lineHeight: '24px',
-		border: (t) => `solid 1px ${t.colors.onahau}`,
+		border: 'solid 1px transparent',
 		borderTop: 'none',
 		borderRadius: '3px',
 		borderTopLeftRadius: 0,
 		borderTopRightRadius: 0,
-	},
+	}),
 	table: {
 		width: '100%',
 		my: 4,

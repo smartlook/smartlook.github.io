@@ -28,11 +28,11 @@ The best place to setup the SDK is in [platform ready](https://ionicframework.co
 The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\`:
 `}</TextBlock>
 
-<TextBlock kind="example">{`
 <CodeBlock
+	kind="example"
   snippets={{
     android: {
-      java: \`
+      java: `
 import android.app.Application;\\n
 public class MyCustomApplication extends Application {
     @Override
@@ -41,8 +41,8 @@ public class MyCustomApplication extends Application {
         Smartlook.setupAndStartRecording(YOUR_API_KEY);
     }
 }
-      \`,
-      kotlin: \`
+      `,
+      kotlin: `
 import android.app.Application;\\n
 class MyCustomApplication : Application() {
     override fun onCreate() {
@@ -50,27 +50,27 @@ class MyCustomApplication : Application() {
         Smartlook.setupAndStartRecording(YOUR_API_KEY)
     }
 }
-      \`,
+      `,
     },
     cordova: {
-      javascript: \`
+      javascript: `
 if(document.readyState === "complete") {
   document.addEventListener("deviceready", onDeviceReady, false);
 }\\n
 function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
 }
-      \`,
+      `,
     },
     ionic: {
-      typescript: \`
+      typescript: `
 this.platform.ready().then(() => {
     this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
 }
-      \`,
+      `,
     },
     ios: {
-      swift: \`
+      swift: `
 import Smartlook
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -82,8 +82,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     
   return true
 }
-      \`,
-      'objective-c': \`
+      `,
+      'objective-c': `
 #import <Smartlook/Smartlook.h>
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -95,10 +95,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   
     return YES;
 }
-      \`,
+      `,
     },
     flutter: {
-    dart: \`
+    dart: `
 import 'package:smartlook/smartlook.dart';
 \\n
 class _MyAppState extends State<MyApp> {
@@ -110,10 +110,10 @@ class _MyAppState extends State<MyApp> {
     ...
     }
 }
-\`,
+`,
   },
   unity: {
-    csharp: \`
+    csharp: `
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -128,17 +128,16 @@ public class NewBehaviourScript : MonoBehaviour
         ...
     }
 }
-\`,
+`,
   },
   react: {
-    javascript: \`
+    javascript: `
 var Smartlook = require('smartlook-react-native-wrapper');
 Smartlook.setupAndStartRecording("YOUR_API_KEY");
-\`,
+`,
   }
   }}
 />
-`}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
 If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look here.

@@ -5,7 +5,7 @@ import { Code } from './Code'
 import { PLATFORMS } from 'config/constants'
 import { usePlatforms } from 'hooks'
 
-export const CodeBlock = ({ snippets }) => {
+export const CodeBlock = ({ kind, snippets }) => {
 	const {
 		currentPlatform,
 		selectedLanguages,
@@ -55,6 +55,7 @@ export const CodeBlock = ({ snippets }) => {
 
 	return (
 		<Code
+			kind={kind}
 			snippets={snippet}
 			shownTab={shownTab}
 			onTabChange={handleTabChange}

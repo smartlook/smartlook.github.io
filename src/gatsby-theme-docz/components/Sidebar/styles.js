@@ -22,7 +22,6 @@ export const overlay = ({ open }) => ({
 })
 
 export const wrapper = ({ open }) => ({
-	py: 4,
 	flexDirection: 'column',
 	position: 'sticky',
 	top: HEADER_HEIGHT,
