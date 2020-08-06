@@ -4,48 +4,14 @@ export const styles = {
 		maxWidth: 1280,
 	},
 	root: {
-		fontSize: 3,
+		fontSize: 2,
 		color: 'lightBlue',
 	},
 	a: {
 		color: 'persianGreen',
 		textDecoration: 'underline',
 		'&:hover': {
-			color: 'aquaBlue',
-		},
-	},
-	h1: {
-		fontSize: 6,
-	},
-	h2: {
-		fontSize: 5,
-	},
-	h3: {
-		fontSize: 4,
-	},
-	h4: {
-		fontSize: 3,
-	},
-	h5: {
-		fontSize: 2,
-	},
-	h6: {
-		fontSize: 1,
-	},
-	li: {
-		marginBottom: 1,
-	},
-	blockquote: {
-		my: 4,
-		mx: 0,
-		py: 3,
-		px: 4,
-		bg: 'blockquote.bg',
-		borderLeft: (t) => `5px solid ${t.colors.blockquote.border}`,
-		color: 'blockquote.color',
-		fontStyle: 'italic',
-		'> p': {
-			m: 0,
+			color: '#26CBD4',
 		},
 	},
 	code: {
@@ -56,19 +22,20 @@ export const styles = {
 		fontFamily: 'monospace',
 		color: 'pink',
 	},
-	pre: {
-		p: 4,
+	pre: ({ kind }) => ({
+		p: 3,
+		mt: 0,
 		variant: 'prism',
 		textAlign: 'left',
 		fontFamily: 'monospace',
 		fontSize: 16,
 		lineHeight: '24px',
-		border: (t) => `solid 1px ${t.colors.onahau}`,
+		border: 'solid 1px transparent',
 		borderTop: 'none',
 		borderRadius: '3px',
 		borderTopLeftRadius: 0,
 		borderTopRightRadius: 0,
-	},
+	}),
 	table: {
 		width: '100%',
 		my: 4,

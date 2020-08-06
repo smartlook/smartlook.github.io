@@ -8,7 +8,7 @@ import { Code as PrismRenderer } from 'gatsby-theme-docz/src/components/Code'
 // import './Code.css'
 import * as styles from './styles'
 
-export const Code = ({ snippets, shownTab, onTabChange }) => {
+export const Code = ({ kind, snippets, shownTab, onTabChange }) => {
 	const [languageTab, setLanguageTab] = React.useState(
 		shownTab ?? Object.keys(snippets)[0],
 	)
@@ -34,12 +34,14 @@ export const Code = ({ snippets, shownTab, onTabChange }) => {
 		}
 
 		return (
-			<div sx={styles.main}>
+			<div sx={styles.main({ kind })}>
 				{Object.keys(snippets).map((snippetLanguage) => {
 					return (
 						<span
 							sx={
-								languageTab === snippetLanguage ? styles.tabActive : styles.tab
+								languageTab === snippetLanguage
+									? styles.tabActive({ kind })
+									: styles.tab({ kind })
 							}
 							key={`code-tab-${snippetLanguage}`}
 							data-language={snippetLanguage}
@@ -56,7 +58,7 @@ export const Code = ({ snippets, shownTab, onTabChange }) => {
 	return (
 		<div>
 			{renderTabs()}
-			<PrismRenderer className={languageTab}>
+			<PrismRenderer kind={kind} className={languageTab}>
 				{snippets[languageTab]}
 			</PrismRenderer>
 		</div>
