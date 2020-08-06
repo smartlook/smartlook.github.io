@@ -9,8 +9,7 @@ import { useMenus, useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
 import { NavLink } from '../NavLink'
-import { NavSearch } from 'gatsby-theme-docz/src/components/NavSearch'
-import { NavGroup } from 'gatsby-theme-docz/src/components/NavGroup'
+import { NavGroup } from '../NavGroup'
 
 export const Sidebar = React.forwardRef((props, ref) => {
 	const [query, setQuery] = useState('')
@@ -33,13 +32,6 @@ export const Sidebar = React.forwardRef((props, ref) => {
 				{props.open && <Global styles={styles.global} />}
 			</Box>
 			<Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
-				<div sx={{ px: 3 }}>
-					<NavSearch
-						placeholder="Type to search..."
-						value={query}
-						onChange={handleChange}
-					/>
-				</div>
 				{menus &&
 					menus.map((menu) => {
 						if (!menu.route)

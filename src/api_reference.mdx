@@ -33,11 +33,11 @@ The best place to setup the SDK is in [platform ready](https://ionicframework.co
 The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\`:
 `}</TextBlock>
 
-<TextBlock kind="example">{`
 <CodeBlock
+	kind="example"
   snippets={{
     android: {
-      java: \`
+      java: `
 import android.app.Application;\\n
 public class MyCustomApplication extends Application {
     @Override
@@ -46,8 +46,8 @@ public class MyCustomApplication extends Application {
         Smartlook.setupAndStartRecording(YOUR_API_KEY);
     }
 }
-      \`,
-      kotlin: \`
+      `,
+      kotlin: `
 import android.app.Application;\\n
 class MyCustomApplication : Application() {
     override fun onCreate() {
@@ -55,27 +55,27 @@ class MyCustomApplication : Application() {
         Smartlook.setupAndStartRecording(YOUR_API_KEY)
     }
 }
-      \`,
+      `,
     },
     cordova: {
-      javascript: \`
+      javascript: `
 if(document.readyState === "complete") {
   document.addEventListener("deviceready", onDeviceReady, false);
 }\\n
 function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
 }
-      \`,
+      `,
     },
     ionic: {
-      typescript: \`
+      typescript: `
 this.platform.ready().then(() => {
     this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
 }
-      \`,
+      `,
     },
     ios: {
-      swift: \`
+      swift: `
 import Smartlook
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -87,8 +87,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     
   return true
 }
-      \`,
-      'objective-c': \`
+      `,
+      'objective-c': `
 #import <Smartlook/Smartlook.h>
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -100,10 +100,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   
     return YES;
 }
-      \`,
+      `,
     },
     flutter: {
-    dart: \`
+    dart: `
 import 'package:smartlook/smartlook.dart';
 \\n
 class _MyAppState extends State<MyApp> {
@@ -115,10 +115,10 @@ class _MyAppState extends State<MyApp> {
     ...
     }
 }
-\`,
+`,
   },
   unity: {
-    csharp: \`
+    csharp: `
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -133,17 +133,16 @@ public class NewBehaviourScript : MonoBehaviour
         ...
     }
 }
-\`,
+`,
   },
   react: {
-    javascript: \`
+    javascript: `
 var Smartlook = require('smartlook-react-native-wrapper');
 Smartlook.setupAndStartRecording("YOUR_API_KEY");
-\`,
+`,
   }
   }}
 />
-`}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
 If you need to setup SDK later than in Application class, typically if you are fetching your API key, please take a look [here](/cookbooks/android_setup_outside_application_class).
@@ -300,7 +299,7 @@ Smartlook.startRecording();
 
 ### Setup configuration
 
-<TextBlock visibleOn="ios,android,cordova,ionic">{`
+<TextBlock visibleOn="ios,android,cordova,ionic,react,flutter">{`
 Some recording parameters can be configured on setup:
 `}</TextBlock>
 
@@ -324,7 +323,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
 | .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
-| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see FIXME LINK -> <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
 | [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
 | .startNewSession     | bool                   | false         | Always start new session with Smartlook setup.   |
@@ -349,6 +348,13 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | [.renderingMode](#rendering)         | no       | Define the way SDK is going to capture screen image data.                                                                                          | SmartlookRenderingMode.NATIVE |
 | startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
 | startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
+`}</TextBlock>
+
+<TextBlock visibleOn="react,flutter">{`
+| Parameter              | Required | Description                                                                                                                                        | Default value        |
+|------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
 `}</TextBlock>
 
 <TextBlock kind="example" visibleOn="android">{`
@@ -687,7 +693,7 @@ class func registerBlacklisted(object: Any)
     },
     react: {
     javascript: `
-Smartlook.registerBlacklistedView(ref);
+Smartlook.registerBlacklistedView(ref.current);
 `,
   }
   }}
@@ -776,7 +782,7 @@ class func registerBlacklisted(object: Any)
     },
     react: {
     javascript: `
-Smartlook.unregisterBlacklistedView(ref);
+Smartlook.unregisterBlacklistedView(ref.current);
 `,
   }
   }}
@@ -904,7 +910,7 @@ class func unregisterBlacklisted(object: Any)
       'objective-c': `
 + (void)unregisterBlacklistedObject:(nonnull id)object
       `,
-    },
+    }
   }}
 />
 
@@ -916,7 +922,7 @@ Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be
 ## Whitelisted views
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,react">{`
+<TextBlock visibleOn="flutter,unity">{`
 This functionality is not available yet.
 `}</TextBlock>
 
@@ -944,6 +950,11 @@ class func registerWhitelisted(object: Any)
 + (void)registerWhitelistedObject:(nonnull id)object;
       `,
     },
+    react: {
+      javascript: `
+Smartlook.unregisterBlacklistedView(ref.current);
+    `,
+    }
   }}
 />
 
@@ -2369,10 +2380,16 @@ Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
 Take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,cordova,ionic">{`
 # Rendering
+<TextBlock visibleOn="android,ios,cordova,ionic,react,flutter">{`
 SDK can use different methods of capturing screen image data. We call these **rendering modes**.
+\n
 ## Set rendering mode
+\n
+`}</TextBlock>
+
+<TextBlock kind="important" visibleOn="flutter">{`
+Not all rendering modes are available on this platform.
 `}</TextBlock>
 
 | NATIVE | WIREFRAME | NO_RENDERING |
@@ -2427,6 +2444,9 @@ Smartlook.setup(key: YOUR_API_KEY, options: [.renderingMode: Smartlook.Rendering
 <TextBlock visibleOn="android,ios,cordova,ionic">{`
 Or at anytime during application run using:
 `}</TextBlock>
+<TextBlock visibleOn="flutter">{`
+Rendering mode can be set anytime during application run using:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2458,6 +2478,8 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
     },
     flutter: {
     dart: `
+enum SmartlookRenderingMode { native, no_rendering }
+  
 Smartlook.setRenderingMode(SmartlookRenderingMode renderingMode);
 `,
   },
@@ -3156,4 +3178,4 @@ Smartlook.unregisterIntegrationListener()
 />
 
 ## Automatic integrations
-Smartlook SDK automatic integrations into mopst popular frameworks are in progress.
+Smartlook SDK automatic integrations into most popular frameworks are in progress.

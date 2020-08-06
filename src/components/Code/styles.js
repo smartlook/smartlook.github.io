@@ -1,26 +1,32 @@
-export const main = {
+export const main = ({ kind }) => ({
 	display: 'flex',
 	flexWrap: 'wrap',
 	pl: 0,
 	mb: 0,
 	listStyle: 'none',
-	bg: 'onahau',
-}
+	// bg: 'onahau',
+	bg: `${kind === 'example' ? '#ffe5ce' : 'onahau'}`,
+})
 
-export const tab = {
+const tabBase = {
 	display: 'block',
-	padding: 3,
-	color: 'smalt',
+	py: 2,
+	px: 3,
 	textDecoration: 'none',
 	cursor: 'pointer',
+}
+
+export const tab = ({ kind }) => ({
+	...tabBase,
+	color: `${kind === 'example' ? '#95681c' : 'smalt'}`,
 
 	'&:hover': {
-		bg: '#e6f2ff',
+		bg: `${kind === 'example' ? '#ffefe2' : '#e6f2ff'}`,
 	},
-}
+})
 
-export const tabActive = {
-	...tab,
-	color: 'pink',
-	bg: '#e6f2ff',
-}
+export const tabActive = ({ kind }) => ({
+	...tabBase,
+	color: `${kind === 'example' ? 'smalt' : 'pink'}`,
+	bg: `${kind === 'example' ? '#ffefe2' : '#e6f2ff'}`,
+})
