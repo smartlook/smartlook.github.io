@@ -47,6 +47,9 @@ export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
 			case 'example':
 				return styles.example
 
+			case 'title':
+				return styles.title
+
 			default:
 				return undefined
 		}

@@ -7,7 +7,7 @@ route: /conceptual/recording-navigation
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Recording Navigation
+<TextBlock kind='title'>{`Recording Navigation`}</TextBlock>
 
 *This section discusses how is the user navigation in the app recorded*
 
@@ -29,8 +29,7 @@ In such a case, in orded to get useful navigation data, navigation events must b
 The navigation event recorded by this method is indistinguishable from the auto-detected navigation events.
 </Alert>
  
-<Alert kind="example">
-  <CodeBlock
+<CodeBlock  kind="example"
     snippets={{
       ios: {
       swift: `
@@ -41,7 +40,6 @@ Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
     },
   }}
 />
-</Alert>
 
 where the type value is either of `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
 
