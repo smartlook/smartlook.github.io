@@ -45,20 +45,18 @@ The events created by these methods are treated by Smartlook exactly the way aut
 
 Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.
  
-<TextBlock kind="example">{`
-  <CodeBlock
+<CodeBlock kind="example"
     snippets={{
       ios: {
-        swift: \`
+        swift: `
 Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
-\`,
-        'objective-c': \`
+`,
+        'objective-c': `
 [Smartlook trackCustomEventWithName:@"CUSTOM EVENT" props:@{ @"PROP 1": @"record value" }];
-      \`,
+      `,
     },
   }}
 />
-`}</TextBlock>
 
 <Link to="/api_reference#custom-event">API Reference</Link>
 

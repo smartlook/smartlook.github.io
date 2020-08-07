@@ -40,41 +40,37 @@ In order to provide robust user privacy protection by default, some UI elements,
 
 In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
  
-<TextBlock kind="example">{`
-  <CodeBlock
+<CodeBlock  kind="example"
     snippets={{
       ios: {
-      swift: \`
+      swift: `
 Smartlook.registerBlacklisted(object: self.portraitImageView)
 self.portraitImageView.slSensitive = true
-\`,
-      'objective-c': \`
+`,
+      'objective-c': `
 [Smartlook registerBlacklistedObject: self.portraitImageView];
 self.portraitImageView.slSensitive = YES;
-\`
+`
     },
   }}
 />
-`}</TextBlock>
 
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
  
-<TextBlock kind="example">{`
-  <CodeBlock
+<CodeBlock  kind="example"
     snippets={{
       ios: {
-      swift: \`
+      swift: `
 Smartlook.unregisterBlacklisted(object: self.introWebView)
 self.introWebView.slSensitive = false
-\`,
-      'objective-c': \`
+`,
+      'objective-c': `
 [Smartlook unregisterBlacklistedObject: self.self.introWebView];
 self.self.introWebView.slSensitive = NO;
-\`
+`
     },
   }}
 />
-`}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
 Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode Interface Builder as well, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity.
