@@ -7,15 +7,15 @@ route: /conceptual/integrating-with-other-tools
 import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-<TextBlock kind='title'>{`Integrating with Other Tools`}</TextBlock>
+<TextBlock kind='title'>Integrating with Other Tools</TextBlock>
 
 *This section shows how to integrate Smartlook with other analytical tools.*
 
 It is a typical use-case that an app uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
 
-In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting app whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform (see 
- 
-<Link to="/api_reference#integrations">API Reference</Link>).
+<TextBlock>{`
+In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting app whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform (see <Link to="/api_reference#integrations">API Reference</Link>).
+`}</TextBlock>
 
 <TextBlock kind="important">{`
 The integration URLs are accessible only to the authorized Smartlook users.
@@ -42,7 +42,7 @@ NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrent
   }}
 />
 
-<Link to="/api_reference#dashboard-session-url">API Reference</Link>.
+<Link to="/api_reference#dashboard-session-url">Session URL API Reference</Link>.
 
 # Current Visitor URL
 
@@ -63,5 +63,5 @@ NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
   }}
 />
 
-<Link to="/api_reference#dashboard-visitor-url">API Reference</Link>.
+<Link to="/api_reference#dashboard-visitor-url">Visitor URL API Reference</Link>.
 

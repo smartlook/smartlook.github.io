@@ -7,7 +7,7 @@ route: /conceptual/handling-sensitive-data
 import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-<TextBlock kind='title'>{`Handling Sensitive Data`}</TextBlock>
+<TextBlock kind='title'>Handling Sensitive Data</TextBlock>
 
 The goal of analytic is to understand the user journey in the app and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
 
@@ -76,8 +76,9 @@ self.self.introWebView.slSensitive = NO;
 Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode Interface Builder as well, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity.
 `}</TextBlock>
 
-More on the topic in 
-<Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+<TextBlock>{`
+More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+`}</TextBlock>
 
 ## Handling Sensitivity of Classes
 
@@ -93,16 +94,17 @@ To cover this use-case, Smartlook offers **on some platforms** a convenient way 
 On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**.
 `} />
 
-More on the topic in 
-<Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+<TextBlock>{`
+More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+`}</TextBlock>
 
 ## Handling Content Presented in WebViews
 
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
-In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning smartlook-show CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning smartlook-hide CSS class to it. 
+In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it. 
 
-<Link to="/api_reference">API reference</Link>.
+<Link to="/api_reference">FIXME API reference</Link>.
 
 ### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
 
@@ -122,9 +124,9 @@ When debugging or experimenting to find the most suitable one for a particular a
 
 The app can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
 
-More about rendering modes could be found 
-
-<Link to="/api_reference#rendering">in the API reference.</Link>
+<TextBlock>{`
+More about rendering modes could be found <Link to="/api_reference#rendering">in the API reference.</Link>
+`}</TextBlock>
 
 # Handling Sensitive Events
 
@@ -146,5 +148,6 @@ In specific cases, some apps that handle complex private information on particul
 Event tracking mode cannot be set on per-UI-element basis, only for the whole app.
 `}</TextBlock>
 
-More about rendering modes could be found 
-<Link to="/api_reference#event-tracking-modes">in the API reference.</Link> 
+<TextBlock>{`
+More about rendering modes could be found <Link to="/api_reference#event-tracking-modes">in the API reference.</Link> 
+`}</TextBlock>
