@@ -43,7 +43,9 @@ The events created by these methods are treated by Smartlook exactly the way aut
 
 ## Custom events
 
-Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.
+<TextBlock>{`
+Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.  For details, see the <Link to="/api_reference#custom-event">API Reference</Link>.
+`}</TextBlock>
  
 <CodeBlock kind="example"
     snippets={{
@@ -58,10 +60,9 @@ Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
   }}
 />
 
-<Link to="/api_reference#custom-event">API Reference</Link>
 
 ## Timed event
 
-In the case that you want to measure the duration of some time-sensitive or long-running actions in the app, Smartlook offers timed events. Nothing is tracked upon starting such an event, the app just remembers the event reference and uses it once the event is finished or cancelled. For details, see the
-
-<Link to="/api_reference#timed-event">API Reference</Link>
+<TextBlock>{`
+In the case that you want to measure the duration of some time-sensitive or long-running actions in the app, Smartlook offers timed events. Nothing is tracked upon starting such an event, the app just remembers the event reference and uses it once the event is finished or cancelled. For details and example use, see the <Link to="/api_reference#timed-event">API Reference</Link>.
+`}</TextBlock>

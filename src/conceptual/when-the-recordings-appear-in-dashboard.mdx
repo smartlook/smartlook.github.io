@@ -1,19 +1,19 @@
 ---
-name: When I Will See The Recordings in Dashboard?
+name: When The Recordings Appear in Dashboard?
 menu: Conceptual
-route: /conceptual/when-i-will-see-the-recordings-in-dashboard
+route: /conceptual/when-the-recordings-appear-in-dashboard
 ---
 
-import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-<TextBlock kind='title'>{`When I Will See The Recordings in Dashboard?`}</TextBlock>
+<TextBlock kind='title'>When The Recordings Appear in Dashboard?</TextBlock>
 
 *This section conserns with the algoritms that controll recording data upload to Smartlook servers.*
 
-<Alert kind="important">
+<TextBlock kind="important">
 All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers assynchronously in batches.
-</Alert>
+</TextBlock>
 
 Smartlook uses various techniques to acquire analytcs data from the app. It stores them in an intermediate cache inside your app first, and then sent them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allows it.
 
@@ -31,9 +31,10 @@ Events data are recorded almost synchronously as they happen. Then they are sent
 
 Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequncy down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on mobile network, and the video data wait in a cache till the app runs with wifi connection available. This defaut setting can be changed in the [project settings](https://app.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
 
-More about 
 
-<Link to="/conceptual/screen-recording.quality/">Screen Recording Quality</Link>.
+<TextBlock>{`
+More about <Link to="/conceptual/screen-recording.quality/">Screen Recording Quality</Link>.
+`}</TextBlock>
 
 # Offline recording
 
@@ -52,6 +53,6 @@ Parallel limit defines a given number of active sessions (session that is being 
 
 There is a maximal number of sessions that you can record a month. If this limit is surpassed SDK will not record until next month.
 
-<Alert kind="important">
+<TextBlock kind="important">
 Both parallel limit and number of sessions is given by the package you have purchased. If you are hitting these limits please feel free to contact our sales team or upgrade your package.
-</Alert>
+</TextBlock>
