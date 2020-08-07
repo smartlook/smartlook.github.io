@@ -7,7 +7,7 @@ route: /conceptual/handling-sensitive-data
 import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Handling Sensitive Data
+<TextBlock kind='title'>{`Handling Sensitive Data`}</TextBlock>
 
 The goal of analytic is to understand the user journey in the app and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
 
@@ -36,7 +36,7 @@ There are three levels of granularity established for handling the sensitive dat
 In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The app author must take active steps to whitelist these elements in order to record their content.
 `}</TextBlock>
 
-### Handling Sensitivity of Individual UI Elements
+## Handling Sensitivity of Individual UI Elements
 
 In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
  
@@ -83,7 +83,7 @@ Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode I
 More on the topic in 
 <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
 
-### Handling Sensitivity of Classes
+## Handling Sensitivity of Classes
 
 <TextBlock kind="important">{`
 This functionality is available only on all platforms. Please consult the <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link> to see if they are available for your development tollchain.
@@ -100,7 +100,7 @@ On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass*
 More on the topic in 
 <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
 
-### Handling Content Presented in WebViews
+## Handling Content Presented in WebViews
 
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
@@ -118,7 +118,7 @@ When a wireframe mode is on, Smartlook draws a sketch of the screens instead of 
 ```<img src={rendering_native.png} />```
 ```<img src={rendering_wireframe.png} />```
 
-#### Setting Rendering Mode
+### Setting Rendering Mode
 
 The default rendering mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
 

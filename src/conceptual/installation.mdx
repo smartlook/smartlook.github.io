@@ -4,25 +4,12 @@ menu: Conceptual
 route: /conceptual/installation
 ---
 
-# SDK Installation
+import { PlatformsGrid, TextBlock } from 'components'
+
+<TextBlock kind='title'>{`SDK Installation`}</TextBlock>
 
 Smartlook SDK is a native software library. It could be either installed as such, or packaged for easy integration with various development platforms.
 
 The installation thus depends on the toolkit with which is your app developed, and on packaging system your project uses to maintain external dependencies:
 
-[NOTE: this could be a fancy table with platform icons]
-
-- [native iOS app](/sdk-installation/ios?platform=ios)
-- [native Android app](/sdk-installation/android?platform=android)
-- [Unity](/sdk-installation/unity?platform=unity)
-- [Unreal](/sdk-installation/unreal?platform=unreal)
-- [Cocos](/sdk-installation/cocos?platform=cocos)
-- [React Native](/sdk-installation/react-native?platform=react)
-- [Xamarin](/sdk-installation/xamarin?platform=xamarin)
-- [Cordova](/sdk-installation/cordova?platform=cordova)
-- [Ionic](/sdk-installation/ionic?platform=ionic)
-- [Flutter](/sdk-installation/flutter?platform=flutter)
-
-[NOTE: perhaps another macro to generate next/previous in the sections?]
-
-[Next chapter >> Setup and Start Recording](/conceptual/setup-and-start-recording)
+<PlatformsGrid />

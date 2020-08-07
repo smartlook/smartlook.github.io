@@ -7,7 +7,7 @@ route: /conceptual/event-tracking
 import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Event Tracking
+<TextBlock kind='title'>{`Event Tracking`}</TextBlock>
 
 *This section discusses what kinds of events are tracked by Smartlook, how they are made available in the dashboard, how they relate to user privacy, and how to control the level of tracked events.*
 
@@ -19,7 +19,7 @@ More info about how user navigation is tracked could be found in <Link to="/conc
 
 There are no known performance issues related to event tracking. Tracked events, however, especially those that are visualised during the session playback, can compromise sensitive user data.
 
-## User Interaction Events
+# User Interaction Events
 
 Smartlook tracks user interactions with the app UI, like taps and gestures, in order to visualise them during recording playback. These records are also the data for creating user interaction heatmaps.
 
@@ -29,19 +29,19 @@ To protect user privacy, user interaction with virtual keyboards (i.e., events i
 Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. To see how to handle events that could reveal sensitive user information, see <Link to="/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link>.
 `}</TextBlock>
 
-## Analytics Events
+# Analytics Events
 
 Besides direct tracking user interaction at the basic level of touches and gestures, Smartlook also tracks how these events are understood by your app code. These events track what UI element has been tapped and how the app reacted to it. All these events are visible in the player timeline. If an analytic event is related to a UI element, the element is highlighted in the screen recording.
 
 Most importantly, these analytics events could be used with Smartlook analytics (link here).
 
-## Tracking Custom Events
+# Tracking Custom Events
 
 Smartlook aims to track the relevant events automatically. It is, however, not fully possible on all platforms. Also, there are use cases when the automated tracking might not provide enough information for your analytics purposes. If this is the case in your app, here are some handy methods for manual event tracking.
 
 The events created by these methods are treated by Smartlook exactly the way automatically acquired events of the corresponding type.
 
-### Custom events
+## Custom events
 
 Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.
  
@@ -62,7 +62,7 @@ Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
 
 <Link to="/api_reference#custom-event">API Reference</Link>
 
-### Timed event
+## Timed event
 
 In the case that you want to measure the duration of some time-sensitive or long-running actions in the app, Smartlook offers timed events. Nothing is tracked upon starting such an event, the app just remembers the event reference and uses it once the event is finished or cancelled. For details, see the
 

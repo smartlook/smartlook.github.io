@@ -7,11 +7,11 @@ route: /conceptual/screen-recording-quality
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Screen Recording Quality
+<TextBlock kind='title'>{`Screen Recording Quality`}</TextBlock>
 
 *This section discusses the recording quality settings, optional tweaks and trade-offs.*
 
-## Understanding Video Recording Quality
+# Understanding Video Recording Quality
 
 Although everyone wants the best video quality for the app recording, setting the appropriate video quality requires careful consideration and understanding the trade-offs of different settings.
 
@@ -19,7 +19,7 @@ The higher the quality, the more demanding the recording in terms of CPU load, m
 
 The primary way to set the video quality is by selecting one of the presets available in the app dashboard. Dashboard settings affect all new recordings.
 
-## Recording Quality
+# Recording Quality
 
 There are three preset values of **Low/Medium/High** (see your project [settings](https://app.smartlook.com/settings/projects)). Technically, this option sets primarily the video bitrate, which affects the video image quality and size of the video data. For most projects, **Medium** has a best price-performance ratio. When the app is used in an environment where data size that is sent from the app matters, **Low** might be the best option. For apps where the high image quality of the recordings is important, and data size does not matter much, **High** can be used.
 
@@ -35,7 +35,7 @@ The real data size depends on many factors (how complex the UI is, how often it 
 
 Technologically, this setting affects the memory footprint of the SDK, its CPU load and primarily the size of the data that the SDK sends over the network.
 
-## Framerate
+# Framerate
 
 Framerate (in frames per second, or fps) states how often Smartlook takes a snapshot of the screen. The higher the framerate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common app, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
 
@@ -47,7 +47,7 @@ The configured framerate, however, is its maximal value. In order to reduce the 
  
 <Link to="/api_reference#setup-configuration">API reference</Link>).
 
-## Rendering Mode
+# Rendering Mode
 
 On top of taking snapshots of the screens for the video recording, Smartlook can also present the UI in the form of several types of wireframe sketches.
 

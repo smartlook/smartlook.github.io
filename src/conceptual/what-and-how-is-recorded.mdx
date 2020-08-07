@@ -7,7 +7,7 @@ route: /conceptual/what-and-how-is-recorded
 import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# What is recorded and how: Screen Recording and Event Tracking
+<TextBlock kind='title'>{`What is recorded and how: Screen Recording and Event Tracking`}</TextBlock>
 
 *This section describes what different kinds of data Smartlook SDK records and how the level of recorded data details can be controlled.*
 
@@ -23,7 +23,7 @@ While it may seem that more data is always better, there are trade-offs between 
 
 Smartlook defaults offer a balanced setting and a robust protection of user privacy that are suitable for a typical mobile app. To tweak the settings to be best suited for your particular app, there are several areas to look after.
 
-## Screen Recording
+# Screen Recording
 
 Screen recording quality is primarily a technologic decision, with an obvious trade-off. The crisper and smoother the video, the higher the Smartlook footprint in terms of CPU, battery and memory usage, and the more data is generated and transported over the network. For details, see
 
@@ -33,7 +33,7 @@ The level of recorded visual details is given by the rendering mode. The default
 
 [TODO - LINK TO RENDERING MODE DOCUMENTATION]
 
-## Event Tracking
+# Event Tracking
 
 Smartlook tracks two interconnected types of events. User interaction events, i.e., finger touches, gestures and such, and analytics events, by which Smartlook understands button clicks, navigation between screens and similar events that initialize an action in the app.
 
