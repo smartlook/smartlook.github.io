@@ -1,7 +1,11 @@
 export const mainBase = {
 	borderRadius: '3px',
-	p: 4,
+	p: 3,
 	mb: 4,
+
+	'*:last-child': {
+		mb: 0,
+	},
 }
 
 export const note = {
@@ -10,7 +14,7 @@ export const note = {
 	bg: 'rgba(54, 119, 209, 0.2)',
 	color: '#0149a8',
 
-	['.heading > a']: {
+	'.heading > a': {
 		color: '#0149a8',
 	},
 }
@@ -21,7 +25,7 @@ export const important = {
 	bg: 'rgba(255, 91, 108, 0.3)',
 	color: '#562328',
 
-	['.heading > a']: {
+	'.heading > a': {
 		color: '#562328',
 	},
 }
@@ -32,7 +36,7 @@ export const example = {
 	bg: 'rgba(255, 174, 109, 0.2)',
 	color: '#562328',
 
-	['.heading > a']: {
+	'.heading > a': {
 		color: '#562328',
 	},
 }

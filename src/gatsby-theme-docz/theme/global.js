@@ -7,7 +7,7 @@ export default {
 		color: '#039ea4',
 		textDecoration: 'underline',
 		'&:hover': {
-			color: '#00eaf3',
+			color: '#26CBD4',
 		},
 	},
 }
