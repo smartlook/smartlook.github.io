@@ -57,6 +57,36 @@ Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
 [Smartlook trackCustomEventWithName:@"CUSTOM EVENT" props:@{ @"PROP 1": @"record value" }];
       `,
     },
+    android: {
+      java: `
+JSONObject props = new JSONObject();\n
+try {
+    props.put("PROP_1", "value 1");
+} catch (JSONException e) {
+    e.printStackTrace();
+}\n
+Smartlook.trackCustomEvent("CUSTOM EVENT", props);
+      `,
+      kotlin: `
+val props = JSONObject()\n
+try {
+  props.put("PROP_1", "value 1")
+} catch (e: JSONException) {
+    e.printStackTrace()
+}\n
+Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
+      `,
+    },
+    cordova: {
+      javascript: `
+Smartlook.trackCustomEvent({name: "CUSTOM EVENT", eventProperties: {PROP_1: "value 1"}})
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventProperties: {PROP_1: "value 1"});
+      `,
+    },
   }}
 />
 
