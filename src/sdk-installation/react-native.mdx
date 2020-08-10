@@ -15,7 +15,7 @@ import { Code, TextBlock, Link } from "components";
 </TextBlock>
 
 
-**1. Install the Smartlook RN bridge**
+1. Install the Smartlook RN bridge
 
 <Code
   snippets={{
@@ -29,7 +29,7 @@ yarn add smartlook-react-native-wrapper
   }
 />
 
-**2. Add dependency on native Smartlook SDK**
+2. Add dependency on native Smartlook SDK
 
 *Android* 
 
@@ -60,7 +60,7 @@ Smartlook native library is installed as a **Cocoapods dependency**.
 
 There are no manual steps required, just make sure your Cocoapod dependecies are up-to-date after Smartlook RN installation dependecy.
 
-**3. Import Smartlook, setup it and start recording**
+3. Import Smartlook, setup it and start recording
 
 <Code
   snippets={{
@@ -72,7 +72,19 @@ Smartlook.setupAndStartRecording("KEY");
   }
 />
 
-<Link to="/api_reference" platform="react">The full Smartlook API reference</Link>.
+<TextBlock kind="important">
+{`
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+`}
+</TextBlock>
+
+4. Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.  
+
+<TextBlock kind="important">
+{`
+SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+`}
+</TextBlock>
 
 # Supported versions
 
@@ -87,3 +99,24 @@ React Native version 0.60+ on iOS 10+ and Android Jelly Bean (API 18).
 - If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/smartlook-ios-sdk).
 `}
 </TextBlock>
+
+# Further Steps
+
+<TextBlock>{`
+All Smartlook SDK methods are documented in the <Link to="/api_reference" platform="react">Smartlook API reference</Link>.
+\n
+Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
+\n
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-android-sdk/issues">issue tracker</Link>.
+\n
+**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
+* <Link to="/conceptual/setup-and-start-recording" platform="react">Setup & Start Recording</Link>
+* <Link to="/conceptual/when-the-recordings-appear-in-dashboard" platform="react">How are the data recorded and uploaded to be visible in player and dashboard</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="react">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/what-and-how-is-recorded" platform="react">What is recorded be Smartlook, and how</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="react">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/handling-sensitive-data" platform="react">Handling Sensitive Data</Link>
+* <Link to="/conceptual/screen-recording-quality" platform="react">Screen Recording Quality</Link>
+* Tracking <Link to="/conceptual/event-tracking" platform="react">Events</Link> and <Link to="/conceptual/recording-navigation" platform="react">Navigation</Link> in the App
+* <Link to="/conceptual/integrating-with-other-tools" platform="react">Smartlook integration with other tools</Link>
+`}</TextBlock>

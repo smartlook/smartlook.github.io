@@ -3,8 +3,7 @@ name: Ionic
 menu: SDK Installation
 route: /sdk-installation/ionic
 ---
-import {Code} from "components/Code"
-import {Alert} from "components/Alert"
+import { Code, CodeBlock, TextBlock, Link } from "components";
 
 # Installation
 
@@ -45,7 +44,7 @@ export class AppModule {}
   }}
 />
 
-4. Import `Smartlook` and `SmartlookSetupConfig` in you `app.component.ts` and setup the SDK in [platform ready](https://ionicframework.com/docs/v3/api/platform/Platform/#ready) callback:
+4. Import `Smartlook` and `SmartlookSetupConfig` into `app.component.ts` and setup the SDK in [platform ready](https://ionicframework.com/docs/v3/api/platform/Platform/#ready) callback:
 
 <Code
   snippets={{
@@ -64,22 +63,19 @@ export class AppComponent {
   }}
 />
 
-<Alert kind="important">
-You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
-</Alert>
+<TextBlock kind="important">
+{`
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+`}
+</TextBlock>
 
-<Alert kind="note">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard.
-</Alert>
+5. Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.  
 
-# What will SDK do?
-
-After this basic setup SDK will:
-* record your application.
-* **stop itself automatically on application closure**.
-* automatically hide all input elements (besides `button` and `submit` types).
-* detect basic user gestures and touches.
-* and much more!
+<TextBlock kind="important">
+{`
+SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+`}
+</TextBlock>
 
 # Supported versions
 Current **minimal** supported version is **Jelly Bean (API 18)** for Android and **10** for iOS.
@@ -87,6 +83,23 @@ Current **minimal** supported version is **Jelly Bean (API 18)** for Android and
 **Ionic framework 4.0 is needed** to support Ionic native plugins such as this one. 
 If you are using older versions of Ionic framework and want to use Smartlook SDK, you can use our [Cordova SDK](/sdk-installation/cordova) directly.
 
-# Issue tracker
-If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/cordova-smartlook).
+# Further Steps
+<TextBlock>{`
+All Smartlook SDK methods are documented in the <Link to="/api_reference" platform="ionic">Smartlook API reference</Link>.
+\n
+Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
+\n
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/cordova-smartlook)">issue tracker</Link>.
+\n
+**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
+* <Link to="/conceptual/setup-and-start-recording" platform="ionic">Setup & Start Recording</Link>
+* <Link to="/conceptual/when-the-recordings-appear-in-dashboard" platform="ionic">How are the data recorded and uploaded to be visible in player and dashboard</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="ionic">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/what-and-how-is-recorded" platform="ionic">What is recorded be Smartlook, and how</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="ionic">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/handling-sensitive-data" platform="ionic">Handling Sensitive Data</Link>
+* <Link to="/conceptual/screen-recording-quality" platform="ionic">Screen Recording Quality</Link>
+* Tracking <Link to="/conceptual/event-tracking" platform="ionic">Events</Link> and <Link to="/conceptual/recording-navigation" platform="ionic">Navigation</Link> in the App
+* <Link to="/conceptual/integrating-with-other-tools" platform="ionic">Smartlook integration with other tools</Link>
+`}</TextBlock>
 
