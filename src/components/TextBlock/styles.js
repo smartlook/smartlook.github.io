@@ -40,3 +40,8 @@ export const example = {
 		color: '#562328',
 	},
 }
+
+export const title = {
+	fontSize: '2.2em',
+    fontWeight: 'bold',
+}

@@ -4,10 +4,10 @@ menu: Conceptual
 route: /conceptual/recording-navigation
 ---
 
-import { Code, CodeBlock, TextBlock, Alert, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
-# Recording Navigation
+<TextBlock kind='title'>Recording Navigation</TextBlock>
 
 *This section discusses how is the user navigation in the app recorded*
 
@@ -17,20 +17,19 @@ Smartlook attempts to track the transitions automaticallt and record them as **n
 
 To generate a meaningfull heatmap, a portion of the app UI with stable structure must be used. Smartlook assumes that a *screen*, i.e., interval between two subsequent navigation events is such a *UI unit*.
 
-<Alert kind="important">
+<TextBlock kind="important">
 Properly dividing the user flow into individual screens important for correct heatmap generation, as each heatmap is generated for a particular screen, i.e., interval between two navigation events.
-</Alert>
+</TextBlock>
 
 However, the accuracy and usefulness of these auto-tracked navigation events depends heavily on the way the app UI is composed. Smartlook understands well apps that use standard UI kits a paradigms for each platform. If you app is, however, made using a 3rd party frameworks, e.g., a gaming framework, that Smartlook SDK cannot detect the navigation logic of the app. Consult the API reference for the extent auto-detection of navigation events is available on your platform.
 
 In such a case, in orded to get useful navigation data, navigation events must be tracked programatically, using this method:
 
-<Alert kind="note">
+<TextBlock kind="note">
 The navigation event recorded by this method is indistinguishable from the auto-detected navigation events.
-</Alert>
+</TextBlock>
  
-<Alert kind="example">
-  <CodeBlock
+<CodeBlock  kind="example"
     snippets={{
       ios: {
       swift: `
@@ -41,9 +40,9 @@ Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
     },
   }}
 />
-</Alert>
 
 where the type value is either of `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
 
-More details about the navigation events, consult 
-<Link to="/api_reference#navigation-even">the API reference</Link>
+<TextBlock>{`
+More details about the navigation events, consult <Link to="/api_reference#navigation-even">the API reference</Link>.
+`}</TextBlock>

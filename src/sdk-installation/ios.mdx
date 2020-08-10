@@ -9,7 +9,7 @@ import { usePlatforms } from 'hooks'
 
 # iOS SDK Installation
 
-1. When using **Cocoapods**, add the Smartlok Pod to your `Podfile`.
+1. In projects that use **Cocoapods**, Smartlook can be installed by adding the respective pod into `Podfile`:
 
 <Code
   snippets={{
@@ -19,9 +19,9 @@ pod Smartlook
   }}
 />
 
-otherwise, download the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip), unzip the file and add `Smartlook.framework` to your Xcode project.
+Smartlook can be also added directly to the app project by **downloading** the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.2.5.59.zip), unzipping the file and adding `Smartlook.framework` to the Xcode project.
 
-2. Add `Smartlook` to your `AppDelegate` among other imports, then *setup* and *start* recording in the application's `didFinishLaunching` method:
+2. To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
 
 <Code
   snippets={{
@@ -43,17 +43,43 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   }
 />
 
-# Supported versions
+<TextBlock kind="important">
+{`
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+`}
+</TextBlock>
 
-Current **minimal** supported version is **iOS 10**.
-
-# Important things to know
+3. Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.  
 
 <TextBlock kind="important">
 {`
-- To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <Link to="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</Link>.
-- SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
-- Full API reference: <Link to="/api_reference">Smartlook API reference</Link>
-- If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [issue tracker](https://github.com/smartlook/smartlook-ios-sdk).
+SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, too, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
+
+# Supported versions
+
+Current **minimal** supported iOS version is **10**.
+
+# Further Steps
+
+<TextBlock>{`
+All methods of Smartlook SDK are documented in the <Link to="/api_reference" platform="ios">Smartlook API reference</Link>.
+\n
+Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
+\n
+**Issues and bugs** can be reported in the [FIXME LINK Smartlook issue tracker]().
+\n
+**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
+* <Link to="/conceptual/setup-and-start-recording" platform="ios">Setup & Start Recording</Link>
+* <Link to="/conceptual/when-the-recordings-appear-in-dashboard" platform="ios">How are the data recorded and uploaded to be visible in player and dashboard</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/what-and-how-is-recorded" platform="ios">What is recorded be Smartlook, and how</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/handling-sensitive-data" platform="ios">Handling Sensitive Data</Link>
+* <Link to="/conceptual/screen-recording-quality" platform="ios">Screen Recording Quality</Link>
+* Tracking <Link to="/conceptual/event-tracking" platform="ios">Events</Link> and <Link to="/conceptual/recording-navigation" platform="ios">Navigation</Link> in the App
+* <Link to="/conceptual/integrating-with-other-tools" platform="ios">Smartlook integration with other tools</Link>
+`}</TextBlock>
+
+
