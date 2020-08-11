@@ -31,6 +31,24 @@ The navigation event recorded by this method is indistinguishable from the auto-
  
 <CodeBlock  kind="example"
     snippets={{
+      android: {
+      java: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START);
+      `,
+      kotlin: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
+      `,
+    },
+    cordova: {
+      javascript: `
+Smartlook.trackNavigationEvent({name: "LOGIN_SCREEN", viewState: Smartlook.ViewState.START})
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.trackNavigationEvent(new SmartlookNavigationEvent("LOGIN_SCREEN", SmartlookViewState.START));
+      `,
+    },   
       ios: {
       swift: `
 Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)

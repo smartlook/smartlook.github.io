@@ -50,6 +50,32 @@ Visitor URL points to a Dashboard page that wrapps the visitor info (their sessi
 
 <CodeBlock  kind="example"
     snippets={{
+      android: {
+      java: `
+String dashboardVisitorURL = Smartlook.getDashboardVisitorUrl();
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
+      `,
+      kotlin: `
+val dashboardVisitorURL = Smartlook.getDashboardVisitorUrl()
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
+      `,
+    },
+      cordova: {
+      javascript: `
+ Smartlook.getDashboardVisitorUrl(
+  function(dashboardVisitorUrl) {
+    AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
+  }
+)
+      `,
+    },
+    ionic: {
+      typescript: `
+smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
+  AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
+});
+      `,
+    },
       ios: {
       swift: `
 let currentSmartlookVisitorURL = Smartlook.getDashboardVisitorURL()

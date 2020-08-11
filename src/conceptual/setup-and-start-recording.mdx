@@ -17,18 +17,42 @@ In order to function properly, the setup should happen as soon as possible in th
 
 <CodeBlock  kind="example"
   snippets={{
-    android: {
+   android: {
       java: `
-Smartlook.setupAndStartRecording(String YOUR_API_KEY)
- 
-// TODO: notes when using this other method 
-Smartlook.setup(String YOUR_API_KEY, Activity activity)
+import android.app.Application;\n
+public class MyCustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+    }
+}
       `,
       kotlin: `
-android kotlin snippet
+import android.app.Application;\n
+class MyCustomApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+    }
+}
       `,
-      kotlin: `
-android kotlin snippet
+    },
+    cordova: {
+      javascript: `
+if(document.readyState === "complete") {
+  document.addEventListener("deviceready", onDeviceReady, false);
+}\n
+function onDeviceReady() {
+    Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
+}
+      `,
+    },
+    ionic: {
+      typescript: `
+this.platform.ready().then(() => {
+    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+}
       `,
     },
     ios: {
@@ -59,22 +83,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 // Smartlook initialization
 var Smartlook = require("smartlook-react-native-wrapper"); 
 Smartlook.setupAndStartRecording("API_KEY");
-      `,
-    },
-    ionic: {
-      js: `
-Ionic javascript
-      `,
-      typescript: `
-Ionic typescript
-      `,
-    },
-    cordova: {
-      js: `
-Cordova javascript
-      `,
-      typescript: `
-Cordova typescript
       `,
     },
     xamarin: {

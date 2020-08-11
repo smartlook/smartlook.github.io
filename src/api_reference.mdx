@@ -1669,7 +1669,7 @@ Smartlook.trackNavigationEvent({name: string, viewState: Smartlook.ViewState})
     },
     ionic: {
       typescript: `
-smartlook.trackNavigationEvent(new SmartlookNavigationEvent(name: string, viewState: SmartlookViewState))
+smartlook.trackNavigationEvent(new SmartlookNavigationEvent(name: string, viewState: SmartlookViewState));
       `,
     },    
     ios: {
@@ -2821,7 +2821,7 @@ Smartlook.setReferrer({referrer: string, source: string});
     },
     ionic: {
       typescript: `
-smartlook.setReferrer(new SmartlookReferrer(referrer: string, source: string));
+smartlook.setReferrer(new SmartlookReferrer(referrer: string, source: string))
       `,
     },
     flutter: {
@@ -2903,7 +2903,7 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
  Smartlook.getDashboardSessionUrl(
   {withCurrentTimestamp: true},
   function (dashboardSessionUrl) {
-    TextBlock('Dashboard session URL: ' + dashboardSessionUrl);
+    alert('Dashboard session URL: ' + dashboardSessionUrl);
   }
 )
       `,
@@ -2911,7 +2911,7 @@ Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
     ionic: {
       typescript: `
 smartlook.getDashboardSessionUrl(new SmartlookDashboardSessionUrl(false))).then((dashboardSessionUrl) => {
-  TextBlock(dashboardSessionUrl)
+  alert(dashboardSessionUrl)
 });
       `,
     },
@@ -2980,7 +2980,7 @@ Smartlook.getDashboardVisitorUrl();
       javascript: `
  Smartlook.getDashboardVisitorUrl(
   function(dashboardVisitorUrl) {
-    TextBlock('Dashboard visitor URL: ' + dashboardVisitorUrl);
+    alert('Dashboard visitor URL: ' + dashboardVisitorUrl);
   }
 )
       `,
@@ -2988,7 +2988,7 @@ Smartlook.getDashboardVisitorUrl();
     ionic: {
       typescript: `
 smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
-  TextBlock(dashboardVisitorUrl)
+  alert(dashboardVisitorUrl)
 });
       `,
     },
