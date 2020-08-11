@@ -13,6 +13,10 @@ import { usePlatforms } from 'hooks'
 
 To start recording, just put the following code into your application. Once you run your app on a device or in a simulator, recording will appear [in your dashboard](https://app.smartlook.com/settings/projects).
 
+<TextBlock kind="important">
+Some Android simulators are not very reliable when running low-level libraries like Smartlook. Testing on real devices is preferred when debugging an app that utilizes Smartlook.
+</TextBlock>
+
 In order to function properly, the setup should happen as soon as possible in the app life cycle:
 
 <CodeBlock  kind="example"
@@ -67,7 +71,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
    Smartlook.startRecording()
 }
       `,
-      objc: `
+      'objective-c': `
 #include Smartlook
  
 ...
