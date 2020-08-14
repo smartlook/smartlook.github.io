@@ -77,6 +77,31 @@ try {
 Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
       `,
     },
+    cocos: {
+      java: `
+JSONObject props = new JSONObject();\n
+try {
+    props.put("PROP_1", "value 1");
+} catch (JSONException e) {
+    e.printStackTrace();
+}\n
+Smartlook.trackCustomEvent("CUSTOM EVENT", props);
+      `,
+      kotlin: `
+val props = JSONObject()\n
+try {
+  props.put("PROP_1", "value 1")
+} catch (e: JSONException) {
+    e.printStackTrace()
+}\n
+Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
+      `,
+    },
+    unity: {
+      csharp: `
+SmartlookUnity.Smartlook.TrackCustomEvent("CustomEvent", JsonUtility.ToJson(player));
+      `
+    },
     cordova: {
       javascript: `
 Smartlook.trackCustomEvent({name: "CUSTOM EVENT", eventProperties: {PROP_1: "value 1"}})

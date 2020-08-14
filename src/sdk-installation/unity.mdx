@@ -11,19 +11,29 @@ import { usePlatforms } from 'hooks'
 
 ## Installation for Android - aar
 
-1. Download [Smartlook Android Unity SDK v1.5.0](https://sdk.smartlook.com/android/app-1.5.0-unity.aar).
+1. Download [Smartlook Android Unity SDK v1.5.2](https://sdk.smartlook.com/android/app-1.5.2-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
 3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
-
-**Note: For stability/performance goals, currently we support Android 23+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
 
 ## Installation for Android - Gradle
 
 In case there is a conflict with other libraries, we also released lite version of the SDK. This solution however needs to be implemented via gradle of the app itself. Steps are described below. Flow is similar to integration of our native SDK.
 
-- 1: Add the following in your project's build.gradle:
+1. Add Smartlook in your **app’s** `build.gradle`:
 
-```Gradle
+<Code
+  snippets={{
+    gradle: `
+implementation('com.smartlook.recording:app:1.5.2-unity-lite')
+`,
+  }}
+/>
+
+2. Add Smartlook Maven repository in your **projects** `build.gradle`:
+
+<Code
+  snippets={{
+    gradle: `
 allprojects {
   repositories {
     maven {
@@ -31,26 +41,17 @@ allprojects {
     }
   }
 }
-```
+`,
+  }}
+/>
 
-
-- 2: Add the following dependency in your app's build.gradle:
-
-```Gradle
-implementation('com.smartlook.recording:app:1.5.0-unity-lite')
-```
-
-
-- 3: In case you are missing some of the dependencies, feel free to add:
+3. In case you are missing some of the dependencies, feel free to add:
 
 ```Gradle
 implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
 ```
 
-
 4. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
-
-**Note: For stability/performance goals, currently we support Android 24+ Soon we will introduce new SDK version with broader API range, probably Android 18+**
 
 ## Installation for iOS
 
@@ -58,18 +59,16 @@ implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
 2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
 3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
 
-**Smartlook Unity iOS SDK works with Metal graphics API only. OpenGL is not supported at the moment.**
-
 ## Unity Jar Resolver
 
 Currently this option is still in progress - Please let us know if this is somehow blocking issue to you.
 
+# Supported versions
+Currently **minimal** supported Android version is **Jelly Bean (API 18)**, however **video is recorded only for API 24+**, analytics events and other functionality is not limited.
+
+Smartlook Unity iOS SDK works with Metal graphics API only. OpenGL is not supported at the moment.
 
 # Start Recording
-
-<Alert kind="important">
-To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
-</Alert>
 
 To start recording (or just to setup the SDK), you can use i.e.  :
 
@@ -94,27 +93,31 @@ public class NewBehaviourScript : MonoBehaviour
   }}
 />
 
----
----
----
+
 ---
 
-
-_[Note: the following should be IMHO a in common text included into all SDK installtation docs]_
-
-<Alert kind="note" invisibleOn="">
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <a href="/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</a>.
+<Alert kind="important">
+To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
 </Alert>
 
-Thats all you need for a quick start.
 
-**After this basic setup SDK will:**
-- record your application.
-- stop itself automatically on application closure.
-<TextBlock invisibleOn="unity,unreal,cocos,flutter"><li />automatically hide some default sensitive views.</TextBlock>
-- detect basic user gestures and touches.
-<TextBlock invisibleOn="ios"><li />records install referrer if present.</TextBlock>
-- and much more!
+# Further Steps
 
-
-For more advanced recording customization please refer to [Smartlook API reference](/api_reference?platform=unity).
+<TextBlock>{`
+All Smartlook SDK methods are documented in the <Link to="/api_reference" platform="unity">Smartlook API reference</Link>.
+\n
+Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
+\n
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-android-sdk/issues">issue tracker</Link>.
+\n
+**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
+* <Link to="/conceptual/setup-and-start-recording" platform="unity">Setup & Start Recording</Link>
+* <Link to="/conceptual/when-the-recordings-appear-in-dashboard" platform="unity">How are the data recorded and uploaded to be visible in player and dashboard</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="unity">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/what-and-how-is-recorded" platform="unity">What is recorded be Smartlook, and how</Link>
+* <Link to="/conceptual/life-cycle-session-user" platform="unity">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/conceptual/handling-sensitive-data" platform="unity">Handling Sensitive Data</Link>
+* <Link to="/conceptual/screen-recording-quality" platform="unity">Screen Recording Quality</Link>
+* Tracking <Link to="/conceptual/event-tracking" platform="unity">Events</Link> and <Link to="/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/conceptual/integrating-with-other-tools" platform="unity">Smartlook integration with other tools</Link>
+`}</TextBlock>

@@ -47,7 +47,7 @@ export const PLATFORMS = [
 	{
 		value: 'cocos',
 		displayName: 'Cocos',
-		defaultLanguage: '',
+		defaultLanguage: 'java',
 	},
 ]
 

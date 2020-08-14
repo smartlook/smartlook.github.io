@@ -96,8 +96,21 @@ Xamarin C#
     },
     unity: {
       csharp: `
-Unity C#
-      `,
+public class NewBehaviourScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        SmartlookUnity.Smartlook.SetupAndStartRecording("API_KEY");
+    }
+\n
+    // Update is called once per frame
+    void Update()
+    {
+        ...
+    }
+}
+`,
     },
     unreal: {
       csharp: `
@@ -105,12 +118,25 @@ Unreal C#
       `,
     },
     cocos: {
-      cpp: `
-Cocos C++
+      java: `
+public class AppActivity extends Cocos2dxActivity {
+    @Override
+    public void onCreate() {
+        ...
+        // DO OTHER INITIALIZATION BELOW
+        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+    }
+}
       `,
-      lua: `
-Cocos lua
-   `
+      kotlin: `
+class AppActivity : Cocos2dxActivity() {
+    override fun onCreate() {
+        ...
+        // DO OTHER INITIALIZATION BELOW
+        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+    }
+}
+      `
    },
    flutter: {
       dart: `

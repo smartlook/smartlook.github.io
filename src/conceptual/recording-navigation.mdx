@@ -56,6 +56,19 @@ Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
       'objective-c': `
 [Smartlook trackNavigationEventWithControllerId:@"LOGIN_SCREEN" type:SLNavigationTypeEnter];`,
     },
+      unity: {
+        csharp: `
+SmartlookUnity.Smartlook.TrackNavigationEvent("TestScreen", SmartlookUnity.Smartlook.NavigationEventType.enter);
+        `
+      },
+      cocos: {
+        java: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START);
+      `,
+      kotlin: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
+      `,
+      }
   }}
 />
 

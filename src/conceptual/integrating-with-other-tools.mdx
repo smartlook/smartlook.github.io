@@ -60,6 +60,22 @@ val dashboardVisitorURL = Smartlook.getDashboardVisitorUrl()
 AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
       `,
     },
+    cocos: {
+      java: `
+String dashboardVisitorURL = Smartlook.getDashboardVisitorUrl();
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
+      `,
+      kotlin: `
+val dashboardVisitorURL = Smartlook.getDashboardVisitorUrl()
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
+      `,
+    },
+    unity: {
+      csharp: `
+      string dashboardVisitorURL = SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
+      `
+    },
       cordova: {
       javascript: `
  Smartlook.getDashboardVisitorUrl(
