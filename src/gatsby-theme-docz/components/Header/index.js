@@ -23,9 +23,9 @@ export const Header = (props) => {
 
 	return (
 		<div sx={styles.wrapper}>
-			<Box sx={styles.menuIcon}>
-				<button sx={{}} onClick={onOpen}>
-					<Menu size={25} />
+			<Box>
+				<button sx={styles.menuIcon} onClick={onOpen}>
+					<Menu size={25} color="#023189" />
 				</button>
 			</Box>
 			<div sx={styles.innerContainer}>

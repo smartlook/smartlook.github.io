@@ -24,8 +24,14 @@ export const innerContainer = {
 
 export const menuIcon = {
 	display: 'none',
+	outline: 'none',
+	border: '1px solid rgba(39, 65, 136, 0.2)',
+	borderRadius: 3,
+	boxShadow: '0 2px 9px 0 rgba(39, 65, 136, 0.2)',
+	bg: 'white',
 	[media.tablet]: {
 		...mixins.centerAlign,
-		paddingLeft: 32,
+		marginLeft: 32,
+		p: 2,
 	},
 }
