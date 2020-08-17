@@ -2,7 +2,7 @@
 
 /** @jsxFrag React.Fragment */
 
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { Global } from '@emotion/core'
 import { jsx, Box } from 'theme-ui'
 import { useMenus, useCurrentDoc } from 'docz'
@@ -12,15 +12,11 @@ import { NavLink } from '../NavLink'
 import { NavGroup } from '../NavGroup'
 
 export const Sidebar = React.forwardRef((props, ref) => {
-	const [query, setQuery] = useState('')
-	const menus = useMenus({ query })
+	const menus = useMenus()
 	const currentDoc = useCurrentDoc()
-	const currentDocRef = useRef()
-	const handleChange = (ev) => {
-		setQuery(ev.target.value)
-	}
+	const currentDocRef = React.useRef()
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (ref.current && currentDocRef.current) {
 			ref.current.scrollTo(0, currentDocRef.current.offsetTop)
 		}
@@ -31,7 +27,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
 			<Box onClick={props.onClick} sx={styles.overlay(props)}>
 				{props.open && <Global styles={styles.global} />}
 			</Box>
-			<Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
+			<Box ref={ref} sx={styles.wrapper(props)}>
 				{menus &&
 					menus.map((menu) => {
 						if (!menu.route)
