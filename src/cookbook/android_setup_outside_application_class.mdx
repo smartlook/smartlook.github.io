@@ -4,10 +4,9 @@ menu: Cookbooks
 route: /cookbooks/android_setup_outside_application_class
 ---
 
-import { Code, CodeBlock, TextBlock, Link } from "components";
-import { usePlatforms } from 'hooks'
+import { Code, Title } from 'components'
 
-<TextBlock kind="title">SDK setup outside Application class</TextBlock>
+<Title>SDK setup outside Application class</Title>
 
 Sometimes it is not possible to initialize SDK at the start of the application.
 Typical example is when you need to fetch your api key so you don't have your api key at the application start.
@@ -15,8 +14,8 @@ Typical example is when you need to fetch your api key so you don't have your ap
 If this is your case you need to provide SDK setup with actual `Activity` reference so the SDK can “catch up” with applications lifecycle.
 
 <Code
-  snippets={{
-    java: `
+	snippets={{
+		java: `
 public class MainActivity extends AppCompatActivity {\n
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {\n
     }
 }
 `,
-    kotlin: `
+		kotlin: `
 class MainActivity : AppCompatActivity() {\n
     override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate();\n
@@ -37,5 +36,5 @@ class MainActivity : AppCompatActivity() {\n
     }
 }
 `,
-  }}
+	}}
 />
