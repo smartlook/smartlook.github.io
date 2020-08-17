@@ -93,13 +93,15 @@ public class NewBehaviourScript : MonoBehaviour
   }}
 />
 
-
----
-
 <Alert kind="important">
 To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
 </Alert>
 
+<TextBlock kind="important">
+{`
+SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, too, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+`}
+</TextBlock>
 
 # Further Steps
 

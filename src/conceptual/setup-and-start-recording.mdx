@@ -9,53 +9,36 @@ import { usePlatforms } from 'hooks'
 
 <TextBlock kind='title'>Setup & Start Recording</TextBlock>
 
-*This section deals with how to setup Smartlook SDK and start recording your app.*
+*This section deals with how to setup Smartlook SDK and start recording the application.*
 
-To start recording, just put the following code into your application. Once you run your app on a device or in a simulator, recording will appear [in your dashboard](https://app.smartlook.com/settings/projects).
+To start recording, just put the following code into the application. Once the application runs on a device or in a simulator, recording will appear [in the dashboard](https://application.smartlook.com/settings/projects).
 
 <TextBlock kind="important">
-Some Android simulators are not very reliable when running low-level libraries like Smartlook. Testing on real devices is preferred when debugging an app that utilizes Smartlook.
+Some Android simulators are not very reliable when running low-level libraries like Smartlook. Testing on real devices is preferred when debugging an application that utilizes Smartlook.
 </TextBlock>
 
-In order to function properly, the setup should happen as soon as possible in the app life cycle:
+In order to function properly, the setup should happen as soon as possible in the application life cycle:
 
-<CodeBlock  kind="example"
+<CodeBlock kind="example"
   snippets={{
-   android: {
+    android: {
       java: `
-import android.app.Application;\n
+import android.application.Application;\n
 public class MyCustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+        Smartlook.setupAndStartRecording(THE_API_KEY);
     }
 }
       `,
-      kotlin: `
-import android.app.Application;\n
+    kotlin: `
+import android.application.Application;\n
 class MyCustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+        Smartlook.setupAndStartRecording(THE_API_KEY)
     }
-}
-      `,
-    },
-    cordova: {
-      javascript: `
-if(document.readyState === "complete") {
-  document.addEventListener("deviceready", onDeviceReady, false);
-}\n
-function onDeviceReady() {
-    Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
-}
-      `,
-    },
-    ionic: {
-      typescript: `
-this.platform.ready().then(() => {
-    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
 }
       `,
     },
@@ -67,7 +50,7 @@ include Smartlook
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-   Smartlook.setup(key: "YOUR_API_KEY")
+   Smartlook.setup(key: "THE_API_KEY")
    Smartlook.startRecording()
 }
       `,
@@ -78,21 +61,16 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-   Smartlook.setup(key: "YOUR_API_KEY")
+   Smartlook.setup(key: "THE_API_KEY")
    Smartlook.startRecording()
-}      `,
+}      
+      `,
     },
     react: {
       js: `
-// Smartlook initialization
 var Smartlook = require("smartlook-react-native-wrapper"); 
 Smartlook.setupAndStartRecording("API_KEY");
-      `,
-    },
-    xamarin: {
-      csharp: `
-Xamarin C#
-      `,
+`,
     },
     unity: {
       csharp: `
@@ -109,12 +87,11 @@ public class NewBehaviourScript : MonoBehaviour
     {
         ...
     }
-}
-`,
+}`,
     },
     unreal: {
       csharp: `
-Unreal C#
+UNREAL - C#
       `,
     },
     cocos: {
@@ -124,7 +101,7 @@ public class AppActivity extends Cocos2dxActivity {
     public void onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+        Smartlook.setupAndStartRecording(THE_API_KEY);
     }
 }
       `,
@@ -133,27 +110,49 @@ class AppActivity : Cocos2dxActivity() {
     override fun onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+        Smartlook.setupAndStartRecording(THE_API_KEY)
     }
 }
       `
    },
+   cordova: {
+      javascript: `
+if(document.readyState === "complete") {
+  document.addEventListener("deviceready", onDeviceReady, false);
+}\n
+function onDeviceReady() {
+    Smartlook.setupAndStartRecording({smartlookAPIKey: "THE_API_KEY"});
+}    `,
+    },
+    ionic: { 
+      typescrit: `
+this.platform.ready().then(() => {
+    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("THE_API_KEY"));
+}
+      `,
+    },
    flutter: {
       dart: `
-      Smartlook.setupAndStartRecording('YOUR_API_KEY');
+Smartlook.setupAndStartRecording('THE_API_KEY');
    `,
-   }
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
+      `,
+    },
   }}
 />
 
-This is basically all you need to record your sessions. All other events in the app life cycle are handled by Smartlook automatically.
 
-<TextBlock kind="important">
-  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. In order to see the recordings immediately, make sure the device is on WiFi, or that mobile uploads are enabled in [your project dashboard](https://app.smartlook.com/settings/projects). The recording is not streamed, it is uploaded in chunks and then processed on the server. To understand when your recordings will be availabe in the project dashboard, see <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this document</Link>.
-</TextBlock>
+This is basically all that is needed to record the sessions. All other events in the application life cycle are handled by Smartlook automatically.
+
+<TextBlock kind="important">{`
+  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. For the recordings being available immediately, the device must be on WiFi, or mobile uploads must be enabled in [the project dashboard](https://application.smartlook.com/settings/projects). The recording is not streamed, it is uploaded in chunks and then processed on the server. In depth description when the recordings will be availabe in the project dashboard provides <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this document</Link>.
+`}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
-  When debugging your app with Smartlook, you will encounter a Main Thread Checker warning which might be accompanied by a short app freeze during the app start. The freeze does not happen in production builds. For details, see this <Link to="/cookbooks/ios-main-thread-check-warning">technical note</Link>.
+  When debugging an application with Smartlook, a Main Thread Checker warning which might be accompanied by a short application freeze during the application start is encountered. The freeze does not happen in production builds. Details of how to solve this situation provides this <Link to="/cookbooks/ios-main-thread-check-warning">technical note</Link>.
 `}</TextBlock>
 
 ## Setup Options

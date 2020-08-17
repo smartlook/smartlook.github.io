@@ -11,7 +11,7 @@ import { usePlatforms } from 'hooks'
 
 *This section discusses what kinds of events are tracked by Smartlook, how they are made available in the dashboard, how they relate to user privacy, and how to control the level of tracked events.*
 
-Smartlook tracks two interconnected types of events. User interaction events, i.e., finger touches, gestures, UI element focus and such, and analytics events, by which Smartlook understands button clicks, navigation between screens and similar events that initialize an action in the app.
+Smartlook tracks two interconnected types of events. User interaction events, i.e., finger touches, gestures, UI element focus and such, and analytics events, by which Smartlook understands button clicks, navigation between screens and similar events that initialize an action in the application.
 
 <TextBlock kind="note">{`
 More info about how user navigation is tracked could be found in <Link to="/conceptual/recording-navigation">Recording Navigation</Link>.
@@ -21,42 +21,36 @@ There are no known performance issues related to event tracking. Tracked events,
 
 # User Interaction Events
 
-Smartlook tracks user interactions with the app UI, like taps and gestures, in order to visualise them during recording playback. These records are also the data for creating user interaction heatmaps.
+Smartlook tracks user interactions with the application UI, like taps and gestures, in order to visualise them during recording playback. These records are also the data for creating user interaction heatmaps.
 
-To protect user privacy, user interaction with virtual keyboards (i.e., events in the area where the keyboard is on the screen) is not recorded. When your app uses a custom input views (e.g., a custom PIN-pad) that the system does not recognize as a virtual keyboard (and thus Smartlook records interaction events in the area), you should consider using one of the event tracking modes to suppress user interaction tracking temporarily.
+<TextBlock>
+To protect user privacy, user interaction with virtual keyboards (i.e., events in the area where the keyboard is on the screen) is not recorded. When the application uses a custom input views (e.g., a custom PIN-pad) that the system does not recognize as a system virtual keyboard (and thus Smartlook records interaction events in the area), using one of the event tracking modes to suppress user interaction tracking temporarily should be considered. An example is provided in <Link to="cookbook/secure_custom_keyboard">Secure Custom Keyboard</Link> cookbook.
+</TextBlock>
 
 <TextBlock kind="important">{`
-Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. To see how to handle events that could reveal sensitive user information, see <Link to="/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link>.
+Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. <Link to="/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link> chapter offers mode in-depth text on how to handle events that could reveal sensitive user information.
 `}</TextBlock>
 
 # Analytics Events
 
-Besides direct tracking user interaction at the basic level of touches and gestures, Smartlook also tracks how these events are understood by your app code. These events track what UI element has been tapped and how the app reacted to it. All these events are visible in the player timeline. If an analytic event is related to a UI element, the element is highlighted in the screen recording.
+Besides direct tracking user interaction at the basic level of touches and gestures, Smartlook also tracks how these events are understood by the application code. These events track what UI element has been tapped and how the application reacted to it. All these events are visible in the player timeline. If an analytic event is related to a UI element, the element is highlighted in the screen recording.
 
-Most importantly, these analytics events could be used with Smartlook analytics (link here).
+Most importantly, these analytics events could be used with Smartlook analytics.
 
 # Tracking Custom Events
 
-Smartlook aims to track the relevant events automatically. It is, however, not fully possible on all platforms. Also, there are use cases when the automated tracking might not provide enough information for your analytics purposes. If this is the case in your app, here are some handy methods for manual event tracking.
+Smartlook aims to track the relevant events automatically. It is, however, not fully possible on all platforms. Also, there are use cases when the automated tracking might not provide enough information for analytics purposes. If this is the case in your application, Smartlook offers are some handy methods for manual event tracking.
 
 The events created by these methods are treated by Smartlook exactly the way automatically acquired events of the corresponding type.
 
 ## Custom events
 
 <TextBlock>{`
-Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering.  For details, see the <Link to="/api_reference#custom-event">API Reference</Link>.
+Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering. Technical details could be found in <Link to="/api_reference#custom-event">the API Reference</Link>.
 `}</TextBlock>
- 
+
 <CodeBlock kind="example"
-    snippets={{
-      ios: {
-        swift: `
-Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
-`,
-        'objective-c': `
-[Smartlook trackCustomEventWithName:@"CUSTOM EVENT" props:@{ @"PROP 1": @"record value" }];
-      `,
-    },
+  snippets={{
     android: {
       java: `
 JSONObject props = new JSONObject();\n
@@ -67,7 +61,7 @@ try {
 }\n
 Smartlook.trackCustomEvent("CUSTOM EVENT", props);
       `,
-      kotlin: `
+    kotlin: `
 val props = JSONObject()\n
 try {
   props.put("PROP_1", "value 1")
@@ -75,6 +69,29 @@ try {
     e.printStackTrace()
 }\n
 Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
+      `,
+      'objective-c': `
+[Smartlook trackCustomEventWithName:@"CUSTOM EVENT" props:@{ @"PROP 1": @"record value" }];
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+SmartlookUnity.Smartlook.TrackCustomEvent("CustomEvent", JsonUtility.ToJson(player));
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
       `,
     },
     cocos: {
@@ -95,21 +112,26 @@ try {
     e.printStackTrace()
 }\n
 Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
-      `,
-    },
-    unity: {
-      csharp: `
-SmartlookUnity.Smartlook.TrackCustomEvent("CustomEvent", JsonUtility.ToJson(player));
       `
-    },
-    cordova: {
+   },
+   cordova: {
       javascript: `
 Smartlook.trackCustomEvent({name: "CUSTOM EVENT", eventProperties: {PROP_1: "value 1"}})
+    `,
+    },
+    ionic: { 
+      typescrit: `
+smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventProperties: {PROP_1: "value 1"});
       `,
     },
-    ionic: {
-      typescript: `
-smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventProperties: {PROP_1: "value 1"});
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
       `,
     },
   }}
@@ -119,5 +141,5 @@ smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventPropert
 ## Timed event
 
 <TextBlock>{`
-In the case that you want to measure the duration of some time-sensitive or long-running actions in the app, Smartlook offers timed events. Nothing is tracked upon starting such an event, the app just remembers the event reference and uses it once the event is finished or cancelled. For details and example use, see the <Link to="/api_reference#timed-event">API Reference</Link>.
+For use-cases where duration of some time-sensitive or long-running actions in the application is an important metrics, Smartlook offers timed events. Nothing is tracked upon starting such an event, the application just remembers the event reference and uses it once the event is finished or cancelled. Technical details could be found in <Link to="/api_reference#timed-event">the API Reference</Link>.
 `}</TextBlock>

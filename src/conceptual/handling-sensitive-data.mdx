@@ -7,15 +7,17 @@ route: /conceptual/handling-sensitive-data
 import { Code, CodeBlock, TextBlock, Link, MD } from "components";
 import { usePlatforms } from 'hooks'
 
+import rendering_modes from 'assets/rendering_modes.png'
+
 <TextBlock kind='title'>Handling Sensitive Data</TextBlock>
 
-The goal of analytic is to understand the user journey in the app and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
+The goal of analytic is to understand the user journey in the application and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
 
 What analytics uses is the metadata.
 
-There are several ways how Smartlook protects user privacy when gathering the information it needs for its purposes. Smartlook obfuscates out of the box the native visual elements that typically contain private information. The data are replaced by neutral colour boxes during the recording process, they never make it to our systems. Moreover, Smartlook offers a set of methods that enable app developers to avoid recording unnecessary information.
+There are several ways how Smartlook protects user privacy when gathering the information it needs for its purposes. Smartlook obfuscates out of the box the native visual elements that typically contain private information. The data are replaced by neutral colour boxes during the recording process, they never make it to our systems. Moreover, Smartlook offers a set of methods that enable application developers to avoid recording unnecessary information.
 
-Also, Smartlook provides an open-source [Consent SDK for iOS](https://github.com/smartlook/ios-consent-sdk) and [Consent SDK for Android](https://github.com/smartlook/android-consent-sdk), that allows app authors to get user consent to gather the data for analytical purposes.
+Also, Smartlook provides an open-source [Consent SDK for iOS](https://github.com/smartlook/ios-consent-sdk) and [Consent SDK for Android](https://github.com/smartlook/android-consent-sdk), that allows application authors to get user consent to gather the data for analytical purposes.
 
 # Handling UI with Sensitive Data
 
@@ -33,12 +35,12 @@ There are three levels of granularity established for handling the sensitive dat
 - the whole screen recording 
 
 <TextBlock kind="important">{`
-In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The app author must take active steps to whitelist these elements in order to record their content.
+In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The application author must take active steps to whitelist these elements in order to record their content.
 `}</TextBlock>
 
 ## Handling Sensitivity of Individual UI Elements
-
-<TextBlock visibleOn="android,ios">{`
+ 
+<TextBlock invisibleOn="cordova,ionic">{`
 In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
 `}</TextBlock>
 
@@ -62,11 +64,54 @@ Smartlook.registerBlacklistedView(portraitImageView)
       swift: `
 Smartlook.registerBlacklisted(object: self.portraitImageView)
 self.portraitImageView.slSensitive = true
-`,
+      `,
       'objective-c': `
 [Smartlook registerBlacklistedObject: self.portraitImageView];
 self.portraitImageView.slSensitive = YES;
-`
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+UNITY - C#
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
+      `,
+    },
+    cocos: {
+      java: `
+COCOS - java
+      `,
+      kotlin: `
+COCOS - kotlin
+      `
+   },
+   cordova: {
+      javascript: `
+CORDOVA - javascript
+    `,
+    },
+    ionic: { 
+      typescrit: `
+IONIC - typescript
+      `,
+    },
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
+      `,
     },
     cordova: {
       html: `
@@ -81,7 +126,7 @@ self.portraitImageView.slSensitive = YES;
   }}
 />
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock invisibleOn="cordova,ionic">{`
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
 `}</TextBlock>
 
@@ -105,11 +150,54 @@ Smartlook.registerWhitelistedView(webView)
       swift: `
 Smartlook.unregisterBlacklisted(object: self.introWebView)
 self.introWebView.slSensitive = false
-`,
+      `,
       'objective-c': `
 [Smartlook unregisterBlacklistedObject: self.self.introWebView];
 self.self.introWebView.slSensitive = NO;
-`
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+UNITY - C#
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
+      `,
+    },
+    cocos: {
+      java: `
+COCOS - java
+      `,
+      kotlin: `
+COCOS - kotlin
+      `
+   },
+   cordova: {
+      javascript: `
+CORDOVA - javascript
+    `,
+    },
+    ionic: { 
+      typescrit: `
+IONIC - typescript
+      `,
+    },
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
+      `,
     },
     cordova: {
       html: `
@@ -124,6 +212,7 @@ self.self.introWebView.slSensitive = NO;
   }}
 />
 
+
 <TextBlock kind="note" visibleOn="ios">{`
 Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode Interface Builder as well, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity.
 `}</TextBlock>
@@ -135,46 +224,40 @@ More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding
 ## Handling Sensitivity of Classes
 
 <TextBlock kind="important">{`
-This functionality is available only on some platforms. Please consult the <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link> to see if it is available for your development toolchain.
+This functionality is available only on some platforms. Please consult the <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link> if it is available for a particular development toolchain.
 `}</TextBlock>
 
-In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an app that heavily uses web views for presenting some insensitive content, or if the app defines its own subclasses of visual components that present sensitive user data.
+In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an application that heavily uses web views for presenting some insensitive content, or if the application defines its own subclasses of visual components that present sensitive user data.
 
 To cover this use-case, Smartlook offers **on some platforms** a convenient way to blacklist or whitelist all descendants of some class or visual elements that conform to a protocol.
 
-<MD visibleOn="ios" markup={`
-On iOS, you can blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**.
-`} />
-
-<TextBlock>{`
-More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+<TextBlock kind="note" visibleOn="ios">{`
+On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Content Presented in WebViews
 
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
-In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it. 
-
-<Link to="/api_reference">FIXME API reference</Link>.
+<TextBlock>
+In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/api_reference#sensitive-data-hiding">API reference</Link>. 
+</TextBlock>
 
 ### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
 
-There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behaviour. In such  cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe rendering modes.
+There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behaviour. In such cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe rendering modes.
 
 When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements and user interaction with them are still clearly distinguishable, but their actual look and content (texts, images) are replaced by an abstract representation.
 
-*i do not understand how to link images, the example in index.mdx is useless*
-```<img src={rendering_native.png} />```
-```<img src={rendering_wireframe.png} />```
+<img src={rendering_modes} />
 
 ### Setting Rendering Mode
 
-The default rendering mode for an app is set in [the dashboard](https://app.smartlook.com/settings/projects). 
+The default rendering mode for an application is set in [the dashboard](https://application.smartlook.com/settings/projects). 
 
-When debugging or experimenting to find the most suitable one for a particular app, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
+When debugging or experimenting to find the most suitable one for a particular application, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
 
-The app can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
+The application can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
 
 <TextBlock>{`
 More about rendering modes could be found <Link to="/api_reference#rendering">in the API reference.</Link>
@@ -185,19 +268,19 @@ More about rendering modes could be found <Link to="/api_reference#rendering">in
 It is not just the visual elements that can contain sensitive information. Sometimes, a clue to sensitive user data can be found in user interaction events. Consider that, e.g. location of click events on a keyboard area could be used to guess user password even when the keyboard itself is obfuscated.
 
 <TextBlock kind="important">{`
-Click events in the area of the system keyboard are never recorded by Smartlook. User interaction with custom input elements, e.g., custom PIN-Pad, must be filtered out programatically by the app developer.
+Click events in the area of the system keyboard are never recorded by Smartlook. User interaction with custom input elements, e.g., custom PIN-Pad, must be filtered out programatically by the application developer.
 `}</TextBlock>
 
-The default setting is to track all events (with the exception of events on the keyboard, for obvious user privacy reasons). When this is not desired, the app may fine-tune the level of tracked events.
+The default setting is to track all events (with the exception of events on the keyboard, for obvious user privacy reasons). When this is not desired, the application may fine-tune the level of tracked events.
 
-Typically, the default **Full Tracking** mode is desired, as it gives a detailed picture of user activities.
+Typically, the default **`Full Tracking`** mode is desired, as it gives a detailed picture of user activities.
 
-OOn the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the app should switch to the **Ignore User Interaction Events** mode temporarily.
+OOn the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the application should switch to the **`Ignore User Interaction Events`** mode temporarily.
 
-In specific cases, some apps that handle complex private information on particular screens may prefer stopping event recording altogether, by switching to the **No Tracking** mode for the screens.
+In specific cases, some apps that handle complex private information on particular screens may prefer stopping event recording altogether, by switching to the **`No Tracking`** mode for the screens.
 
 <TextBlock kind="note">{`
-Event tracking mode cannot be set on per-UI-element basis, only for the whole app.
+Event tracking mode cannot be set on per-UI-element basis, only for the whole application.
 `}</TextBlock>
 
 <TextBlock>{`
