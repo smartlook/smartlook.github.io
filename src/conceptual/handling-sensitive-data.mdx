@@ -38,10 +38,26 @@ In order to provide robust user privacy protection by default, some UI elements,
 
 ## Handling Sensitivity of Individual UI Elements
 
+<TextBlock visibleOn="android,ios">{`
 In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
- 
-<CodeBlock  kind="example"
+`}</TextBlock>
+
+<TextBlock visibleOn="cordova,ionic">{`
+In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one, 
+`}</TextBlock>
+
+<CodeBlock kind="example"
     snippets={{
+      android: {
+      java: `
+ImageView portraitImageView = (ImageView) findViewById(R.id.portrait_image_view);
+Smartlook.registerBlacklistedView(portraitImageView);
+`,
+      kotlin: `
+val portraitImageView = findViewById(R.id.portrait_image_view) as ImageView
+Smartlook.registerBlacklistedView(portraitImageView)
+`
+    },
       ios: {
       swift: `
 Smartlook.registerBlacklisted(object: self.portraitImageView)
@@ -52,13 +68,39 @@ self.portraitImageView.slSensitive = true
 self.portraitImageView.slSensitive = YES;
 `
     },
+    cordova: {
+      html: `
+<img class='smartlook-hide'>
+      `,
+    },
+    ionic: {
+      html: `
+<img class='smartlook-hide'>
+      `,
+    },
   }}
 />
 
+<TextBlock visibleOn="android,ios">{`
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
+`}</TextBlock>
+
+<TextBlock visibleOn="cordova,ionic">{`
+When, on the other hand, an otherwise blacklisted \`html\` element (in our example a text input) should be recorded, follow this example code:
+`}</TextBlock>
  
-<CodeBlock  kind="example"
+<CodeBlock kind="example"
     snippets={{
+      android: {
+      java: `
+WebView webView = (WebView) findViewById(R.id.web_view);
+Smartlook.registerWhitelistedView(webView);
+`,
+      kotlin: `
+val webView = findViewById(R.id.web_view) as WebView
+Smartlook.registerWhitelistedView(webView)
+`
+    },
       ios: {
       swift: `
 Smartlook.unregisterBlacklisted(object: self.introWebView)
@@ -68,6 +110,16 @@ self.introWebView.slSensitive = false
 [Smartlook unregisterBlacklistedObject: self.self.introWebView];
 self.self.introWebView.slSensitive = NO;
 `
+    },
+    cordova: {
+      html: `
+<input type="text" class='smartlook-show'>
+      `,
+    },
+    ionic: {
+      html: `
+<input type="text" class='smartlook-show'>
+      `,
     },
   }}
 />
