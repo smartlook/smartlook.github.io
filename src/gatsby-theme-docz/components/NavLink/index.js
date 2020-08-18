@@ -7,6 +7,8 @@ import { useDocs, useCurrentDoc } from 'docz'
 import { usePlatforms } from 'hooks'
 import { get } from 'lodash/fp'
 
+import scrollTo from 'scroll-to-element'
+
 import * as styles from './styles'
 
 const getHeadings = (route, docs) => {
@@ -22,10 +24,14 @@ const getCurrentHash = () => {
 	return window.location ? decodeURI(window.location.hash) : ''
 }
 
+const SCROLL_TO_OFFSET = -100
+
 export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 	const docs = useDocs()
 	const current = useCurrentDoc()
 	const { currentPlatform } = usePlatforms()
+
+	const [currentHash, setCurrentHash] = React.useState(getCurrentHash())
 
 	if (item.hidden) {
 		return null
@@ -35,7 +41,25 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 	const headings = docs && getHeadings(to, docs)
 	const isCurrent = item.route === current.route
 	const showHeadings = isCurrent && headings && headings.length > 0
-	const currentHash = getCurrentHash()
+
+	const handleHeadingClick = (e) => {
+		const slug = e.target.dataset.slug
+		const elem = document.querySelector(`#${slug}`)
+
+		if (typeof window !== 'undefined') {
+			const { location } = window
+
+			const path = `${location.protocol}//${location.host}${location.pathname}?platfrom=${currentPlatform}#${slug}`
+
+			window.history.pushState({ path }, '', path)
+		}
+
+		setCurrentHash(getCurrentHash())
+
+		scrollTo(elem, {
+			offset: SCROLL_TO_OFFSET,
+		})
+	}
 
 	return (
 		<React.Fragment>
@@ -48,14 +72,16 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 			/>
 			{showHeadings &&
 				headings.map((heading) => (
-					<Link
+					<span
 						key={heading.slug}
 						to={`${to}?platform=${currentPlatform}#${heading.slug}`}
 						sx={styles.smallLink}
+						data-slug={heading.slug}
 						className={currentHash === `#${heading.slug}` ? 'active' : ''}
+						onClick={handleHeadingClick}
 					>
 						{heading.value}
-					</Link>
+					</span>
 				))}
 		</React.Fragment>
 	)

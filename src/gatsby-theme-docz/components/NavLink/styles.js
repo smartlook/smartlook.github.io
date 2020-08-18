@@ -28,6 +28,7 @@ export const smallLink = {
 	position: 'relative',
 	color: 'smalt',
 	textDecoration: 'none',
+	cursor: 'pointer',
 	'&.active': {
 		color: 'indigo',
 	},
