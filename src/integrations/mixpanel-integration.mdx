@@ -10,7 +10,13 @@ import { CodeBlock, TextBlock } from "components";
 
 ## Manual integration
 
+<TextBlock invisibleOn='ios'>
 Smartlook can be easily integrated into Mixpanel using `IntegrationListener`:
+</TextBlock>
+
+<TextBlock visibleOn='ios'>
+Smartlook can be easily integrated into Mixpanel using `Notifications`:
+</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -118,12 +124,30 @@ smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
     }, 
     ios: {
       swift: `
-public class let dashboardSessionURLChanged: NSNotification.Name
-public class let dashboardVisitorURLChanged: NSNotification.Name
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
+    if let currentSessionUrl = Smartlook.getDashboardSessionURL(withCurrentTimestamp: false) {
+        mixpanel?.track(event: "Smartlook session URL", properties: [ "session_url" : currentSessionUrl])
+    }
+};
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLChanged, object: nil, queue: nil) { (note) in
+    if let currentVisitorUrl = Smartlook.getDashboardVisitorURL() {
+        mixpanel?.people.set(property: "smartlook_visitor_url", to: currentVisitorUrl)
+    }
+};
       `,
       'objective-c': `
-NSNotificationName const SLDashboardSessionURLChangedNotification;
-NSNotificationName const SLDashboardVisitorURLChangedNotification;
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardSessionURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO];
+    if (currentSessionURL != nil) {
+      [mixpanel track:@"Smartlook session URL" properties:@{ @"session_url" : currentSessionURL}];
+    }
+}];\n
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardVisitorURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentVisitorURL = [Smartlook getDashboardVisitorURL];
+    if (currentVisitorURL != nil) {
+      [mixpanel.people set:@"smartlook_visitor_url" to:currentVisitorURL.absoluteString];
+    }
+}];
       `,
     },
     flutter: {

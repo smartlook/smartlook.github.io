@@ -43,10 +43,10 @@ Not available on this platform.
     }, 
     ios: {
       swift: `
-//todo
+Smartlook.setup(key:"THE_API_KEY", options:[.enableCrashytics: true])
       `,
       'objective-c': `
-//todo
+[Smartlook startWithKey:@"THE_API_KEY" withOptions:@{ SLSetupOptionEnableCrashyticsKey:@YES } ];
       `,
     },
     flutter: {
@@ -71,7 +71,13 @@ Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key
 
 ## Manual integration
 
+<TextBlock invisibleOn='ios'>
 Smartlook can be easily integrated into Crashlytics using `IntegrationListener`:
+</TextBlock>
+
+<TextBlock visibleOn='ios'>
+Smartlook can be easily integrated into Crashlytics using `Notifications`:
+</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -120,10 +126,30 @@ Not available on this platform.
     }, 
     ios: {
       swift: `
-//todo
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
+  if let currentSessionUrl = Smartlook.getDashboardSessionURL(withCurrentTimestamp: false) {
+        Crashlytics.crashlytics().setCustomValue(currentSessionUrl, forKey: "Smartlook session URL")
+  }
+};\n
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLChanged, object: nil, queue: nil) { (note) in
+  if let currentVisitorUrl = Smartlook.getDashboardVisitorURL() {
+    Crashlytics.crashlytics().setCustomValue(currentVisitorUrl, forKey: "Smartlook visitor URL")
+  }
+}
       `,
       'objective-c': `
-//todo
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardSessionURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO];
+    if (currentSessionURL != nil) {
+        [[FIRCrashlytics crashlytics] setCustomValue:currentSessionURL forKey:@"session_url"];
+    }
+}];\n
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardVisitorURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentVisitorURL = [Smartlook getDashboardVisitorURL];
+    if (currentVisitorURL != nil) {
+        [[FIRCrashlytics crashlytics] setCustomValue:currentVisitorURL forKey:@"smartlook_visitor_url"];
+    }
+}];
       `,
     },
     flutter: {
@@ -140,7 +166,7 @@ Not available on this platform.
       javascript: `
 //todo
       `,
-  }
+  },
   }}
 />
 
