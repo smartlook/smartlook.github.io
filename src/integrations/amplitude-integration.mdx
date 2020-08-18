@@ -10,7 +10,13 @@ import { CodeBlock, TextBlock } from "components";
 
 ## Manual integration
 
+<TextBlock invisibleOn="ios">
 Smartlook can be easily integrated into Amplitude using `IntegrationListener`:
+</TextBlock>
+
+<TextBlock visibleOn="ios">
+Smartlook can be easily integrated into Amplitude using `Notifications`:
+</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -123,13 +129,33 @@ smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
     }, 
     ios: {
       swift: `
-public class let dashboardSessionURLChanged: NSNotification.Name
-public class let dashboardVisitorURLChanged: NSNotification.Name
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
+  if let currentSessionUrl = Smartlook.getDashboardSessionURL(withCurrentTimestamp: false) {
+    Amplitude.instance()?.logEvent("Smartlook session URL", withEventProperties: [ "session_url" : currentSessionUrl]);
+  }
+};\n
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLChanged, object: nil, queue: nil) { (note) in
+  if let currentVisitorUrlString = Smartlook.getDashboardVisitorURL()?.absoluteString {
+    let identify = AMPIdentify().add("smartlook_visitor_url", value: currentVisitorUrlString as NSString)
+    Amplitude.instance()?.identify(identify)
+  }
+};
       `,
       'objective-c': `
-NSNotificationName const SLDashboardSessionURLChangedNotification;
-NSNotificationName const SLDashboardVisitorURLChangedNotification;
-      `,
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardSessionURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+  NSURL *currentSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO];
+  if (currentSessionURL != nil) {
+      [[Amplitude instance] logEvent:@"Smartlook session URL" withEventProperties:@{ @"session_url" : currentSessionURL}];
+  }
+}];\n
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardVisitorURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+  NSURL *currentVisitorURL = [Smartlook getDashboardVisitorURL];
+  if (currentVisitorURL != nil) {
+    AMPIdentify *identify = [[AMPIdentify identify] add:@"smartlook_visitor_url" value:currentVisitorURL];
+    [[Amplitude instance] identify:identify];
+  }
+}];
+`,
     },
     flutter: {
       dart: `
