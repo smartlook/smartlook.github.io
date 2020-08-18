@@ -10,7 +10,13 @@ import { CodeBlock, TextBlock } from "components";
 
 ## Manual integration
 
+<TextBlock invisibleOn="ios">
 Smartlook can be easily integrated into Heap using `IntegrationListener`:
+</TextBlock>
+
+<TextBlock visibleOn="ios">
+Smartlook can be easily integrated into Heap using `Notifications`:
+</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -109,12 +115,30 @@ smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
     }, 
     ios: {
       swift: `
-public class let dashboardSessionURLChanged: NSNotification.Name
-public class let dashboardVisitorURLChanged: NSNotification.Name
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
+    if let currentSessionUrl = Smartlook.getDashboardSessionURL(withCurrentTimestamp: false) {
+        Heap.track("Smartlook session URL", withProperties: [ "session_url" : currentSessionUrl.absoluteString ])
+    }
+};\n
+NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLChanged, object: nil, queue: nil) { (note) in
+    if let currentVisitorUrl = Smartlook.getDashboardVisitorURL() {
+        Heap.addUserProperties([ "smartlook_visitor_url" : currentVisitorUrl.absoluteString ])
+    }
+};
       `,
       'objective-c': `
-NSNotificationName const SLDashboardSessionURLChangedNotification;
-NSNotificationName const SLDashboardVisitorURLChangedNotification;
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardSessionURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:NO];
+    if (currentSessionURL != nil) {
+        [Heap track:@"Smartlook session URL" withProperties:@{ @"session_url" : currentSessionURL.absoluteString}];
+    }
+}];\n
+[[NSNotificationCenter defaultCenter] addObserverForName:SLDashboardVisitorURLChangedNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSURL *currentVisitorURL = [Smartlook getDashboardVisitorURL];
+    if (currentVisitorURL != nil) {
+        [Heap addUserProperties:@{ @"smartlook_visitor_url" : currentVisitorURL.absoluteString}];
+    }
+}];
       `,
     },
     flutter: {
