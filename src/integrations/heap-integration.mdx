@@ -1,0 +1,176 @@
+---
+name: Heap
+menu: Integrations
+route: /integrations/heap
+---
+
+import { CodeBlock, TextBlock } from "components";
+
+<TextBlock kind="title">Heap integration</TextBlock>
+
+## Manual integration
+
+Smartlook can be easily integrated into Heap using `IntegrationListener`:
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        Map<String, String> props = new HashMap<>();
+        props.put("Session url", dashboardSessionUrl);\n
+        Heap.track("Smartlook session URL", props);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        Map<String, String> props = new HashMap<>();
+        props.put("Smartlook visitor URL", dashboardVisitorUrl);\n
+        Heap.addUserProperties(props);
+    }
+});
+      `,
+      kotlin: `
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+        val props = HashMap<String, String>();
+        props.put("Session url", dashboardSessionUrl)\n
+        Heap.track("Smartlook session URL", props)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+        val props = new HashMap<String,String>()
+        props.put("Smartlook visitor URL", dashboardVisitorUrl)\n
+        Heap.addUserProperties(props)
+    }
+})
+      `,
+    },
+    cocos: {
+      java: `
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        Map<String, String> props = new HashMap<>();
+        props.put("Session url", dashboardSessionUrl);\n
+        Heap.track("Smartlook session URL", props);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        Map<String, String> props = new HashMap<>();
+        props.put("Smartlook visitor URL", dashboardVisitorUrl);\n
+        Heap.addUserProperties(props);
+    }
+});
+      `,
+      kotlin: `
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+        val props = HashMap<String, String>();
+        props.put("Session url", dashboardSessionUrl)\n
+        Heap.track("Smartlook session URL", props)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+        val props = new HashMap<String,String>()
+        props.put("Smartlook visitor URL", dashboardVisitorUrl)\n
+        Heap.addUserProperties(props)
+    }
+})
+      `,
+    },
+    cordova: {
+      javascript: `
+Smartlook.registerIntegrationListener({
+  onSessionReady: function (dashboardSessionUrl) { 
+    heap.track(
+        "Smartlook session URL",
+        {"session_url": dashboardSessionUrl});
+  },
+  onVisitorReady: function (dashboardVisitorUrl) { 
+    heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl});
+  }
+});
+      `,
+    }, 
+    ionic: {
+      typescript: `
+smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
+  function (dashboardSessionUrl) { 
+    heap.track(
+        "Smartlook session URL",
+        {"session_url": dashboardSessionUrl})
+  },
+  function (dashboardVisitorUrl) { 
+    heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl})
+  }
+));
+      `,
+    }, 
+    ios: {
+      swift: `
+public class let dashboardSessionURLChanged: NSNotification.Name
+public class let dashboardVisitorURLChanged: NSNotification.Name
+      `,
+      'objective-c': `
+NSNotificationName const SLDashboardSessionURLChangedNotification;
+NSNotificationName const SLDashboardVisitorURLChangedNotification;
+      `,
+    },
+    flutter: {
+      dart: `
+class CustomIntegrationListener implements IntegrationListener {
+  void onSessionReady(String dashboardSessionUrl) {
+      //todo
+  }
+\n
+  void onVisitorReady(String dashboardVisitorUrl) {
+    //todo
+  }
+}
+\n
+Smartlook.registerIntegrationListener(new CustomIntegrationListener());
+      `,
+  },
+  unity: {
+    csharp: `
+public class IntegrationListener : SmartlookUnity.IntegrationListener
+{
+    public override void onSessionReady(string dashboardSessionUrl)
+    {
+        //todo
+    }
+\n
+    public override void onVisitorReady(string dashboardVisitorUrl)
+    {
+        //todo
+    }
+}
+\n
+SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
+`,
+  },
+  react: {
+      javascript: `
+Smartlook.registerIntegrationListener({
+  onSessionReady: function (dashboardSessionUrl) { 
+    heap.track(
+        "Smartlook session URL",
+        {"session_url": dashboardSessionUrl});
+);
+  },
+  onVisitorReady: function (dashboardVisitorUrl) { 
+    heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl});
+  }
+});
+      `,
+  }
+  }}
+/>
+
+<TextBlock kind="note">{`
+Full Heap API documentation can be found on the [official website](https://developers.heap.io/reference).
+`}</TextBlock>
+
+## Automatic integration
+Automatic Heap integration comming soon.

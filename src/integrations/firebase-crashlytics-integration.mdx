@@ -1,0 +1,149 @@
+---
+name: Firebase Crashlytics
+menu: Integrations
+route: /integrations/firebase_crashlytics
+---
+
+import { CodeBlock, TextBlock } from "components";
+
+<TextBlock kind="title">Firebase Crahslytics integration</TextBlock>
+
+## Automatic integration
+
+Smartlook can be auto-integrated into you project’s crashlytics simply by calling:
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+Smartlook.enableCrashlytics(true);
+      `,
+      kotlin: `
+Smartlook.enableCrashlytics(true)
+      `,
+    },
+    cocos: {
+      java: `
+//todo
+      `,
+      kotlin: `
+//todo
+      `,
+    },
+    cordova: {
+      javascript: `
+Not available on this platform.
+      `,
+    }, 
+    ionic: {
+      typescript: `
+Not available on this platform.
+      `,
+    }, 
+    ios: {
+      swift: `
+//todo
+      `,
+      'objective-c': `
+//todo
+      `,
+    },
+    flutter: {
+      dart: `
+//todo
+      `,
+  },
+  unity: {
+    csharp: `
+//todo
+`,
+  },
+  react: {
+      javascript: `
+//todo
+      `,
+  }
+  }}
+/>
+
+Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
+
+## Manual integration
+
+Smartlook can be easily integrated into Crashlytics using `IntegrationListener`:
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook session URL", dashboardSessionUrl);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook visitor URL", dashboardVisitorUrl);
+    }
+});
+      `,
+      kotlin: `
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook session URL", dashboardSessionUrl)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook visitor URL", dashboardVisitorUrl)
+    }
+})
+      `,
+    },
+    cocos: {
+      java: `
+//todo
+      `,
+      kotlin: `
+//todo
+      `,
+    },
+    cordova: {
+      javascript: `
+Not available on this platform.
+      `,
+    }, 
+    ionic: {
+      typescript: `
+Not available on this platform.
+      `,
+    }, 
+    ios: {
+      swift: `
+//todo
+      `,
+      'objective-c': `
+//todo
+      `,
+    },
+    flutter: {
+      dart: `
+//todo
+      `,
+  },
+  unity: {
+    csharp: `
+//todo
+`,
+  },
+  react: {
+      javascript: `
+//todo
+      `,
+  }
+  }}
+/>
+
+<TextBlock kind="note">{`
+Full Firebase Crashlytics documentation can be found on the [official website](https://firebase.google.com/docs/crashlytics).
+`}</TextBlock>
