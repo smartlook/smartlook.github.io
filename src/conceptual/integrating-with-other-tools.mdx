@@ -35,10 +35,12 @@ The Smartlook method that publishes dashboard session URL takes a boolean flag i
   snippets={{
     android: {
       java: `
-ANDROID - java
+String dashboardSessionURL = Smartlook.getDashboardSessionUrl();
+AnotherTool.setParameter("SmartlookURL", dashboardSessionURL);
       `,
     kotlin: `
-ANDROID - kotlin
+val dashboardSessionURL = Smartlook.getDashboardSessionUrl()
+AnotherTool.setParamater("SmartlookURL", dashboardSessionURL)
       `,
     },
     ios: {
@@ -76,12 +78,18 @@ COCOS - kotlin
    },
    cordova: {
       javascript: `
-CORDOVA - javascript
+ Smartlook.getDashboardSessionUrl(
+  function(dashboardSessionUrl) {
+    AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl);
+  }
+)
     `,
     },
     ionic: { 
       typescrit: `
-IONIC - typescript
+smartlook.getDashboardSessionUrl().then((dashboardSessionUrl) => {
+  AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl)
+});
       `,
     },
    flutter: {

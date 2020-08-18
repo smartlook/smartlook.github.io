@@ -36,10 +36,10 @@ User can be uniquely identified by a respective identifier:
   snippets={{
     android: {
       java: `
-ANDROID - java
+Smartlook.setUserIdentifier("sample_user_identifier");
       `,
     kotlin: `
-ANDROID - kotlin
+Smartlook.setUserIdentifier("sample_user_identifier")
       `,
     },
     ios: {
@@ -75,12 +75,12 @@ COCOS - kotlin
    },
    cordova: {
       javascript: `
-CORDOVA - javascript
+Smartlook.setUserIdentifier({identifier: "sample_user_identifier"});
     `,
     },
     ionic: { 
       typescrit: `
-IONIC - typescript
+smartlook.setUserIdentifier(new SmartlookUserIdentifier("sample_user_identifier"))
       `,
     },
    flutter: {
@@ -119,10 +119,24 @@ In some use cases it makes sense to explicitly control the session and users flo
   snippets={{
     android: {
       java: `
-ANDROID - java
+// to always setup with new session
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession();
+Smartlook.setupAndStartRecording(builder.build());\n
+// to start with new session and user
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser();
+Smartlook.setupAndStartRecording(builder.build());
       `,
     kotlin: `
-ANDROID - kotlin
+// to always setup with new session
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession()
+Smartlook.setupAndStartRecording(builder.build());\n
+// to start with new session and user
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser()
+Smartlook.setupAndStartRecording(builder.build())
       `,
     },
     ios: {
@@ -172,12 +186,28 @@ COCOS - kotlin
    },
    cordova: {
       javascript: `
-CORDOVA - javascript
+// to always setup with new session
+Smartlook.setupAndStartRecording({
+  smartlookAPIKey: "YOUR_API_KEY",
+  startNewSession: true
+});\n
+// to always setup with new session and user
+Smartlook.setupAndStartRecording({
+  smartlookAPIKey: "YOUR_API_KEY",
+  startNewSessionAndUser: true
+});
     `,
     },
     ionic: { 
       typescrit: `
-IONIC - typescript
+// to always setup with new session
+var builder = new SmartlookSetupConfigBuilder(YOUR_API_KEY)
+        .startNewSession(true);\n
+Smartlook.setupAndStartRecording(builder.build());\n
+// to always setup with new session and user
+var builder = new SmartlookSetupConfigBuilder(YOUR_API_KEY)
+        .startNewSessionAnduser(true);\n
+Smartlook.setupAndStartRecording(builder.build());\n
       `,
     },
    flutter: {
