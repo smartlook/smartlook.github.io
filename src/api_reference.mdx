@@ -270,7 +270,7 @@ Smartlook.setup(string apiKey);
 />
 
 <TextBlock kind="note" visibleOn="android">{`
-You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+Smartlook SDK needs to be intialized with API key that can be acquired in the Smartlook Dashboard.
 `}</TextBlock>
 
 And then the recording can be started by calling:
@@ -336,7 +336,7 @@ Some recording parameters can be configured on setup:
 | Parameter           | Required | Description                                                                                                                                        | Default value        |
 |---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | experimental        | no       | If set to true it enables some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class.                                                           | null                 |
 | [renderingMode](#rendering)       | no       | Defines the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
@@ -351,7 +351,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter            | Type                   | Default value | Description                                                                                                                                 
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
-| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
+| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
 | .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
 | [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
@@ -363,17 +363,17 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | [renderingMode](#rendering)         | no       | Defines the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
-| startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
-| startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
+| startNewSession        | no       | Set this to true to force start of new session on setup.                                                                               | false                |
+| startNewSessionAndUser | no       | Set this to true to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
 
 <TextBlock visibleOn="ionic">{`
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | [renderingMode](#rendering)         | no       | Define the way SDK is going to capture screen image data.                                                                                          | SmartlookRenderingMode.NATIVE |
 | startNewSession        | no       | If set to true SDK forces start of new session on setup.                                                                               | false                |
 | startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
@@ -383,7 +383,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 `}</TextBlock>
 
 <TextBlock kind="example" visibleOn="android">{`
@@ -2724,7 +2724,7 @@ Not all rendering modes are available on this platform. Only RenderingMode.NO_RE
 `}</TextBlock>
 
 <TextBlock visibleOn="android,cocos">{`
-You can change rendering mode on SDK setup using builder:
+Rendering mode can be changed on SDK setup using \`builder\`:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios,cordova,ionic">{`
