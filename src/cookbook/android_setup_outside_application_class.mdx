@@ -7,6 +7,10 @@ route: /cookbooks/android_setup_outside_application_class
 import { Code, CodeBlock, TextBlock, Link } from "components";
 import { usePlatforms } from 'hooks'
 
+<TextBlock kind="important" invisibleOn="android">{`
+This guide is focused on Android (Java/Kotlin).
+`}</TextBlock>
+
 <TextBlock kind="title">SDK setup outside Application class</TextBlock>
 
 Sometimes it is not possible to initialize SDK at the start of the application.
