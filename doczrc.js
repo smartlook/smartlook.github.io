@@ -21,7 +21,11 @@ module.exports = {
 				'Integrating with Other Tools',
 			],
 		},
-		'API reference',
+		'SDK API reference',
+		{
+			name: 'REST API',
+			menu: ['Introduction', 'API Reference'],
+		},
 		'Cookbooks',
 	],
 	title: 'Smartlook',

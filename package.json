@@ -20,7 +20,8 @@
 		"query-string": "^6.13.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"scroll-to-element": "^2.0.3"
+		"scroll-to-element": "^2.0.3",
+		"swagger-ui-react": "^3.32.2"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.1.0",
