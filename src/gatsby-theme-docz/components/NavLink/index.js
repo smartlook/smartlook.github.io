@@ -33,21 +33,23 @@ const getHeadings = () => {
 const SCROLL_TO_OFFSET = -100
 
 export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
-	const docs = useDocs()
 	const current = useCurrentDoc()
 	const { currentPlatform } = usePlatforms()
 
 	const [currentHash, setCurrentHash] = React.useState(getCurrentHash())
-	const [isLoading, setIsLoading] = React.useState(false)
-
-	const handleGetHeadings = () => {
-		return getHeadings()
-	}
+	const [headings, setHeadings] = React.useState([])
 
 	const to = item.route
-	const headings = docs && handleGetHeadings()
 	const isCurrent = item.route === current.route
 	const showHeadings = isCurrent && headings && headings.length > 0
+
+	React.useEffect(() => {
+		setHeadings(getHeadings())
+	}, [])
+
+	React.useEffect(() => {
+		setHeadings(getHeadings())
+	}, [isCurrent, currentPlatform])
 
 	const handleHeadingClick = (e) => {
 		const slug = e.target.dataset.slug
@@ -70,10 +72,6 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 
 	if (item.hidden) {
 		return null
-	}
-
-	if (isLoading) {
-		return <p>loading...</p>
 	}
 
 	return (
