@@ -30,18 +30,8 @@ export const PLATFORMS = [
 		defaultLanguage: 'javascript',
 	},
 	{
-		value: 'xamarin',
-		displayName: 'Xamarin',
-		defaultLanguage: '',
-	},
-	{
 		value: 'unity',
 		displayName: 'Unity',
-		defaultLanguage: '',
-	},
-	{
-		value: 'unreal',
-		displayName: 'Unreal',
 		defaultLanguage: '',
 	},
 	{
