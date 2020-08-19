@@ -11,17 +11,23 @@ import scrollTo from 'scroll-to-element'
 
 import * as styles from './styles'
 
-const getHeadings = (route, docs) => {
-	const doc = docs.find((doc) => doc.route === route)
-	const headings = get('headings', doc)
-	return headings ?? []
-}
-
 const getCurrentHash = () => {
 	if (typeof window === 'undefined') {
 		return ''
 	}
 	return window.location ? decodeURI(window.location.hash) : ''
+}
+
+const getHeadings = () => {
+	const nodeList = document.querySelectorAll('h1, h2')
+	const headings = [...nodeList].map((node) => {
+		return {
+			value: node.innerText,
+			slug: node.innerText.replace(/\s+/g, '-').toLowerCase(),
+		}
+	})
+
+	return headings
 }
 
 const SCROLL_TO_OFFSET = -100
@@ -32,13 +38,14 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 	const { currentPlatform } = usePlatforms()
 
 	const [currentHash, setCurrentHash] = React.useState(getCurrentHash())
+	const [isLoading, setIsLoading] = React.useState(false)
 
-	if (item.hidden) {
-		return null
+	const handleGetHeadings = () => {
+		return getHeadings()
 	}
 
 	const to = item.route
-	const headings = docs && getHeadings(to, docs)
+	const headings = docs && handleGetHeadings()
 	const isCurrent = item.route === current.route
 	const showHeadings = isCurrent && headings && headings.length > 0
 
@@ -49,7 +56,7 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 		if (typeof window !== 'undefined') {
 			const { location } = window
 
-			const path = `${location.protocol}//${location.host}${location.pathname}?platfrom=${currentPlatform}#${slug}`
+			const path = `${location.protocol}//${location.host}${location.pathname}?platform=${currentPlatform}#${slug}`
 
 			window.history.pushState({ path }, '', path)
 		}
@@ -59,6 +66,14 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 		scrollTo(elem, {
 			offset: SCROLL_TO_OFFSET,
 		})
+	}
+
+	if (item.hidden) {
+		return null
+	}
+
+	if (isLoading) {
+		return <p>loading...</p>
 	}
 
 	return (
@@ -74,7 +89,6 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
 				headings.map((heading) => (
 					<span
 						key={heading.slug}
-						to={`${to}?platform=${currentPlatform}#${heading.slug}`}
 						sx={styles.smallLink}
 						data-slug={heading.slug}
 						className={currentHash === `#${heading.slug}` ? 'active' : ''}

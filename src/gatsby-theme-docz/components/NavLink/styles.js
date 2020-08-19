@@ -29,6 +29,9 @@ export const smallLink = {
 	color: 'smalt',
 	textDecoration: 'none',
 	cursor: 'pointer',
+	'&:hover': {
+		color: 'indigo',
+	},
 	'&.active': {
 		color: 'indigo',
 	},
