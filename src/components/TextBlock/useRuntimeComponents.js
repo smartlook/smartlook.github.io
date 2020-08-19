@@ -1,12 +1,13 @@
 import React from 'react'
 
+import { slug } from 'github-slugger'
 import { useComponents } from 'docz'
 
 import { Code } from '../Code'
 import { CodeBlock } from '../CodeBlock'
 import { Link } from '../Link'
 
-const transformToLinkId = (link) => link.replace(/\s+/g, '-').toLowerCase()
+const transformToLinkId = (link) => slug(link)
 
 export function useRuntimeComponents() {
 	const themeComponents = useComponents()

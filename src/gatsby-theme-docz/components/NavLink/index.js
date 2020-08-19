@@ -3,9 +3,9 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { Link } from 'gatsby'
-import { useDocs, useCurrentDoc } from 'docz'
+import { useCurrentDoc } from 'docz'
 import { usePlatforms } from 'hooks'
-import { get } from 'lodash/fp'
+import { slug } from 'github-slugger'
 
 import scrollTo from 'scroll-to-element'
 
@@ -23,7 +23,7 @@ const getHeadings = () => {
 	const headings = [...nodeList].map((node) => {
 		return {
 			value: node.innerText,
-			slug: node.innerText.replace(/\s+/g, '-').toLowerCase(),
+			slug: slug(node.innerText),
 		}
 	})
 
