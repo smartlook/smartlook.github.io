@@ -28,6 +28,10 @@ export const smallLink = {
 	position: 'relative',
 	color: 'smalt',
 	textDecoration: 'none',
+	cursor: 'pointer',
+	'&:hover': {
+		color: 'indigo',
+	},
 	'&.active': {
 		color: 'indigo',
 	},

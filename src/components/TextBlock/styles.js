@@ -43,5 +43,5 @@ export const example = {
 
 export const title = {
 	fontSize: '2.2em',
-    fontWeight: 'bold',
+	fontWeight: 'bold',
 }

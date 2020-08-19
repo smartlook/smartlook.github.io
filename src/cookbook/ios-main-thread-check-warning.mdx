@@ -1,18 +1,18 @@
 ---
-name: iOS technical note on `Main Thread Checker` warning 
+name: iOS technical note on `Main Thread Checker` warning
 menu: Cookbooks
 route: /cookbooks/ios-main-thread-check-warning
 ---
 
-import { CodeBlock, TextBlock } from "components";
+import { Title, TextBlock } from 'components'
 
 <TextBlock kind="important" invisibleOn="android">{`
 This guide applies to all frameworks that create or generate iOS applications.
 `}</TextBlock>
 
-<TextBlock kind="title">iOS technical note: “Main Thread Checker” warning</TextBlock>
+<Title>iOS technical note: “Main Thread Checker” warning</Title>
 
-When debugging the iOS version of the app with Smartlook, a warning is encountered which title reads 
+When debugging the iOS version of the app with Smartlook, a warning is encountered which title reads
 
 `Main Thread Checker: UI API called on a background thread: -[UIView drawViewHierarchyInRect:afterScreenUpdates:]`
 

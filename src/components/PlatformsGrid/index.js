@@ -4,6 +4,7 @@ import { jsx } from 'theme-ui'
 import { navigate } from 'gatsby'
 
 // import { usePlatforms } from 'hooks'
+import { useConfig } from 'docz'
 
 import * as styles from './styles'
 
@@ -78,12 +79,14 @@ export const PlatformsGrid = () => {
 		// handleSetPlatform(platform)
 	}
 
+	console.log(useConfig())
+
 	return (
 		<div sx={styles.grid}>
 			<div sx={styles.box}>
 				<h3 sx={styles.boxName}>Web</h3>
 				<span sx={styles.boxType}>Website</span>
-				<p sx={{ fontSize: 2 }}>
+				<p sx={styles.webDesc}>
 					Smartlook JavaScript API offers a number of extra features to make
 					your recordings even better. Visitor info, GDPR, ...
 				</p>
