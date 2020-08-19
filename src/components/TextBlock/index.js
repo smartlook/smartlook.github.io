@@ -3,12 +3,8 @@
 import { jsx } from 'theme-ui'
 import MDX from '@mdx-js/runtime'
 
-import { useComponents } from 'docz'
 import { usePlatforms } from 'hooks'
-
-import { Code } from '../Code'
-import { CodeBlock } from '../CodeBlock'
-import { Link } from '../Link'
+import { useRuntimeComponents } from './useRuntimeComponents'
 
 import * as styles from './styles'
 
@@ -20,7 +16,7 @@ const getMatch = (items, matchTo) =>
 
 export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
 	const { currentPlatform } = usePlatforms()
-	const themeComponents = useComponents()
+	const components = useRuntimeComponents()
 
 	let isMatch = true
 
@@ -53,13 +49,6 @@ export const TextBlock = ({ visibleOn, invisibleOn, kind, children }) => {
 			default:
 				return undefined
 		}
-	}
-
-	const components = {
-		...themeComponents,
-		Link,
-		Code,
-		CodeBlock,
 	}
 
 	return (

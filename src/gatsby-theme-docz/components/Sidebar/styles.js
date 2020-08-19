@@ -42,7 +42,7 @@ export const wrapper = ({ open }) => ({
 		bottom: 0,
 		width: 256,
 		px: 4,
-		bg: 'colors.white',
+		bg: 'white',
 		transition: 'transform .2s ease-out',
 		transform: open ? 'translateX(0)' : 'translateX(-100%)',
 	},

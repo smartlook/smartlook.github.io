@@ -5,9 +5,9 @@ route: /cookbooks/vanilla-react-native-ios-app
 hidden: true
 ---
 
-import { CodeBlock, TextBlock } from "components";
+import { Title } from 'components'
 
-<TextBlock kind="title">Create a vanilla React Native App with Smartlook</TextBlock>
+<Title>Create a vanilla React Native App with Smartlook</Title>
 
 ```shell
 # create test app
@@ -28,18 +28,20 @@ pod install
 ```
 
 Then add Smartlook initialization to the `App.js` and run the app
+
 ```js
 // Smartlook initialization
-var Smartlook = require("smartlook-react-native-wrapper"); 
-Smartlook.setupAndStartRecording("API_KEY");
+var Smartlook = require('smartlook-react-native-wrapper')
+Smartlook.setupAndStartRecording('API_KEY')
 ```
 
 using these commands
+
 ```shell
 # open App.js and add Smartlook initialisation there
 open ../App.js
 
-# open the Xcode workspace 
+# open the Xcode workspace
 open SLTest01.xcworkspace
 
 # finally run the Xcode project
