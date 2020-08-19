@@ -9,68 +9,90 @@ import { usePlatforms } from 'hooks'
 
 <TextBlock kind='title'>Recording Navigation</TextBlock>
 
-*This section discusses how is the user navigation in the app recorded*
+*This section discusses how is the user navigation in the application recorded*
 
-Understanding the way user uses the app is the purpose of the analytics. A typical mobile app breaks into several *screens*, between them users navigates to achieve their goals. 
+Understanding the way user uses the application is the purpose of the analytics. A typical mobile application breaks into several *screens*, between them users navigates to achieve their goals. 
 
 Smartlook attempts to track the transitions automaticallt and record them as **navigation events**, that are then available in the Dashboard. Another usage of navigation events is generating **heatmpas**.
 
-To generate a meaningfull heatmap, a portion of the app UI with stable structure must be used. Smartlook assumes that a *screen*, i.e., interval between two subsequent navigation events is such a *UI unit*.
+To generate a meaningfull heatmap, a portion of the application UI with stable structure must be used. Smartlook assumes that a *screen*, i.e., interval between two subsequent navigation events is such a *UI unit*.
 
 <TextBlock kind="important">
 Properly dividing the user flow into individual screens important for correct heatmap generation, as each heatmap is generated for a particular screen, i.e., interval between two navigation events.
 </TextBlock>
 
-However, the accuracy and usefulness of these auto-tracked navigation events depends heavily on the way the app UI is composed. Smartlook understands well apps that use standard UI kits a paradigms for each platform. If you app is, however, made using a 3rd party frameworks, e.g., a gaming framework, that Smartlook SDK cannot detect the navigation logic of the app. Consult the API reference for the extent auto-detection of navigation events is available on your platform.
+However, the accuracy and usefulness of these auto-tracked navigation events depends heavily on the way the application UI is composed. Smartlook understands well apps that use standard UI kits a paradigms for each platform. If the application is, however, made using a 3rd party frameworks, e.g., a gaming framework, that Smartlook SDK cannot detect the navigation logic of the application. Details abount the extent auto-detection of navigation events on each particular platform are provided in the API Reference.
 
 In such a case, in orded to get useful navigation data, navigation events must be tracked programatically, using this method:
 
 <TextBlock kind="note">
 The navigation event recorded by this method is indistinguishable from the auto-detected navigation events.
 </TextBlock>
- 
-<CodeBlock  kind="example"
-    snippets={{
-      android: {
+
+<CodeBlock kind="example"
+  snippets={{
+    android: {
+      java: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START);
+      `,
+    kotlin: `
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
+      `,
+    },
+    ios: {
+      swift: `
+Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
+      `,
+      'objective-c': `
+[Smartlook trackNavigationEventWithControllerId:@"LOGIN_SCREEN" type:SLNavigationTypeEnter];
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+SmartlookUnity.Smartlook.TrackNavigationEvent("TestScreen", SmartlookUnity.Smartlook.NavigationEventType.enter);
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
+      `,
+    },
+    cocos: {
       java: `
 Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START);
       `,
       kotlin: `
 Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
-      `,
-    },
-    cordova: {
+      `
+   },
+   cordova: {
       javascript: `
 Smartlook.trackNavigationEvent({name: "LOGIN_SCREEN", viewState: Smartlook.ViewState.START})
-      `,
+    `,
     },
-    ionic: {
-      typescript: `
+    ionic: { 
+      typescrit: `
 smartlook.trackNavigationEvent(new SmartlookNavigationEvent("LOGIN_SCREEN", SmartlookViewState.START));
       `,
-    },   
-      ios: {
-      swift: `
-Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
-`,
-      'objective-c': `
-[Smartlook trackNavigationEventWithControllerId:@"LOGIN_SCREEN" type:SLNavigationTypeEnter];`,
     },
-      unity: {
-        csharp: `
-SmartlookUnity.Smartlook.TrackNavigationEvent("TestScreen", SmartlookUnity.Smartlook.NavigationEventType.enter);
-        `
-      },
-      cocos: {
-        java: `
-Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START);
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
       `,
-      kotlin: `
-Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
-      `,
-      }
+    },
   }}
 />
+
 
 where the type value is either of `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
 

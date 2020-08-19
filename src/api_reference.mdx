@@ -47,7 +47,7 @@ public class MyCustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+        Smartlook.setupAndStartRecording(API_KEY);
     }
 }
       `,
@@ -56,7 +56,7 @@ import android.app.Application;\n
 class MyCustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+        Smartlook.setupAndStartRecording(API_KEY)
     }
 }
       `,
@@ -67,14 +67,14 @@ if(document.readyState === "complete") {
   document.addEventListener("deviceready", onDeviceReady, false);
 }\n
 function onDeviceReady() {
-    Smartlook.setupAndStartRecording({smartlookAPIKey: "YOUR_API_KEY"});
+    Smartlook.setupAndStartRecording({smartlookAPIKey: "API_KEY"});
 }
       `,
     },
     ionic: {
       typescript: `
 this.platform.ready().then(() => {
-    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("YOUR API KEY"));
+    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("API_KEY"));
 }
       `,
     },
@@ -84,7 +84,7 @@ import Smartlook
  
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-  Smartlook.setup(key: "YOUR_API_KEY")
+  Smartlook.setup(key: "API_KEY")
   Smartlook.startRecording()
   
   // other initialization stuff
@@ -97,7 +97,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         
-    [Smartlook setupWithKey: @"YOUR_API_KEY"];
+    [Smartlook setupWithKey: @"API_KEY"];
     [Smartlook startRecording];
   
     // other initialization stuff
@@ -115,7 +115,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     ...
-    Smartlook.setupAndStartRecording('YOUR_API_KEY');
+    Smartlook.setupAndStartRecording('API_KEY');
     ...
     }
 }
@@ -128,7 +128,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SmartlookUnity.Smartlook.SetupAndStartRecording("YOUR_API_KEY");
+        SmartlookUnity.Smartlook.SetupAndStartRecording("API_KEY");
     }
 \n
     // Update is called once per frame
@@ -142,7 +142,7 @@ public class NewBehaviourScript : MonoBehaviour
   react: {
     javascript: `
 var Smartlook = require('smartlook-react-native-wrapper');
-Smartlook.setupAndStartRecording("YOUR_API_KEY");
+Smartlook.setupAndStartRecording("API_KEY");
 `,
   },
   cocos: {
@@ -152,7 +152,7 @@ public class AppActivity extends Cocos2dxActivity {
     public void onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(YOUR_API_KEY);
+        Smartlook.setupAndStartRecording(API_KEY);
     }
 }
       `,
@@ -161,7 +161,7 @@ class AppActivity : Cocos2dxActivity() {
     override fun onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(YOUR_API_KEY)
+        Smartlook.setupAndStartRecording(API_KEY)
     }
 }
       `
@@ -270,7 +270,7 @@ Smartlook.setup(string apiKey);
 />
 
 <TextBlock kind="note" visibleOn="android">{`
-You need to provide your Smartlook SDK API key which can be acquired in the Smartlook Dashboard.
+Smartlook SDK needs to be intialized with API key that can be acquired in the Smartlook Dashboard.
 `}</TextBlock>
 
 And then the recording can be started by calling:
@@ -336,7 +336,7 @@ Some recording parameters can be configured on setup:
 | Parameter           | Required | Description                                                                                                                                        | Default value        |
 |---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | experimental        | no       | If set to true it enables some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class.                                                           | null                 |
 | [renderingMode](#rendering)       | no       | Defines the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
@@ -351,7 +351,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter            | Type                   | Default value | Description                                                                                                                                 
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
-| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard!   |
+| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
 | .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
 | [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
@@ -363,17 +363,17 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | [renderingMode](#rendering)         | no       | Defines the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
-| startNewSession        | no       | Set this to true if you want to force start of new session on setup.                                                                               | false                |
-| startNewSessionAndUser | no       | Set this to true if you want to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
+| startNewSession        | no       | Set this to true to force start of new session on setup.                                                                               | false                |
+| startNewSessionAndUser | no       | Set this to true to force start of new session and create new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
 
 <TextBlock visibleOn="ionic">{`
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 | [renderingMode](#rendering)         | no       | Define the way SDK is going to capture screen image data.                                                                                          | SmartlookRenderingMode.NATIVE |
 | startNewSession        | no       | If set to true SDK forces start of new session on setup.                                                                               | false                |
 | startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
@@ -383,7 +383,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
-| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value you will override frame rate settings from Dashboard! | 2                    |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 `}</TextBlock>
 
 <TextBlock kind="example" visibleOn="android">{`
@@ -492,7 +492,7 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
   snippets={{
     react: {
       javascript: `
-Smartlook.setup("YOUR_API_KEY", fps);
+Smartlook.setup("API_KEY", fps);
 `
     },
   }}
@@ -504,13 +504,13 @@ Smartlook.setup("YOUR_API_KEY", fps);
     cordova: {
       javascript: `
 Smartlook.setup({
-  smartlookAPIKey: "YOUR_API_KEY",
+  smartlookAPIKey: "API_KEY",
   fps: 2,
   renderingMode: Smartlook.RenderingMode.NATIVE,
   startNewSession: true
 });\n
 Smartlook.setupAndStartRecording({
-  smartlookAPIKey: "YOUR_API_KEY",
+  smartlookAPIKey: "API_KEY",
   fps: 2,
   renderingMode: Smartlook.RenderingMode.NATIVE,
   startNewSessionAndUser: true
@@ -727,24 +727,24 @@ New session can be created on SDK setup:
   snippets={{
     android: {
       java: `
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession();\n
 Smartlook.setupAndStartRecording(builder.build());
       `,
       kotlin: `
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession()\n
 Smartlook.setupAndStartRecording(builder.build())
       `,
     },
     cocos: {
       java: `
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession();\n
 Smartlook.setupAndStartRecording(builder.build());
       `,
       kotlin: `
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession()\n
 Smartlook.setupAndStartRecording(builder.build())
       `,
@@ -761,24 +761,24 @@ New visitor can also be created on SDK setup:
   snippets={{
     android: {
       java: `
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser();\n
 Smartlook.setupAndStartRecording(builder.build());
       `,
       kotlin: `
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser()\n
 Smartlook.setupAndStartRecording(builder.build())
       `,
     },
     cocos: {
       java: `
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser();\n
 Smartlook.setupAndStartRecording(builder.build());
       `,
       kotlin: `
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser()\n
 Smartlook.setupAndStartRecording(builder.build())
       `,
@@ -2724,7 +2724,7 @@ Not all rendering modes are available on this platform. Only RenderingMode.NO_RE
 `}</TextBlock>
 
 <TextBlock visibleOn="android,cocos">{`
-You can change rendering mode on SDK setup using builder:
+Rendering mode can be changed on SDK setup using \`builder\`:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios,cordova,ionic">{`
@@ -2771,10 +2771,10 @@ Smartlook.setupAndStartRecording(builder.build());
       },
       ios: {
         swift: `
-Smartlook.setup(key: YOUR_API_KEY, options: [.renderingMode: Smartlook.RenderingMode.wireframe]);
+Smartlook.setup(key: API_KEY, options: [.renderingMode: Smartlook.RenderingMode.wireframe]);
 `,
       'objective-c': `
-[Smartlook setupWithKey:@"YOUR_API_KEY" options:@{ SLSetupOptionRenderingModeOptionsKey: SLRenderingModeOptionBlueprintWireframe }];
+[Smartlook setupWithKey:@"API_KEY" options:@{ SLSetupOptionRenderingModeOptionsKey: SLRenderingModeOptionBlueprintWireframe }];
       `,
       },
     }}
@@ -3477,16 +3477,6 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
   }
 ));
       `,
-    }, 
-    ios: {
-      swift: `
-public class let dashboardSessionURLChanged: NSNotification.Name
-public class let dashboardVisitorURLChanged: NSNotification.Name
-      `,
-      'objective-c': `
-NSNotificationName const SLDashboardSessionURLChangedNotification;
-NSNotificationName const SLDashboardVisitorURLChangedNotification;
-      `,
     },
     flutter: {
       dart: `
@@ -3536,6 +3526,21 @@ Smartlook.registerIntegrationListener(
   }}
 />
 
+<CodeBlock
+  snippets={{ 
+    ios: {
+      swift: `
+public class let dashboardSessionURLChanged: NSNotification.Name
+public class let dashboardVisitorURLChanged: NSNotification.Name
+      `,
+      'objective-c': `
+NSNotificationName const SLDashboardSessionURLChangedNotification;
+NSNotificationName const SLDashboardVisitorURLChangedNotification;
+      `,
+    },
+  }}
+/>
+
 <TextBlock visibleOn="android,cordova,ionic,cocos">{`
 Listener can be simply unregistered:
 `}</TextBlock>
@@ -3573,3 +3578,10 @@ Smartlook.unregisterIntegrationListener()
 
 ## Automatic integrations
 Smartlook SDK automatic integrations into most popular frameworks are in progress.
+
+## Integration samples
+Samples adjusted for specific analytic tools can be found in `Integrations documentation:`
+- <Link to="/integrations/amplitude">Amplitude</Link>
+- <Link to="/integrations/mixpanel">Mixpanel</Link>
+- <Link to="/integrations/heap">Heap</Link>
+- <Link to="/integrations/firebase_crashlytics">Firebase Crashlytics</Link>

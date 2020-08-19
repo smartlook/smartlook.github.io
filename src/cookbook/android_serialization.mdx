@@ -7,7 +7,11 @@ route: /cookbooks/android_serialization_guide
 import { Code, CodeBlock, TextBlock, Link } from "components";
 import { usePlatforms } from 'hooks'
 
-# Data serialization
+<TextBlock kind="important" invisibleOn="android">{`
+This guide is mainly focused on Android (Java/Kotlin).
+`}</TextBlock>
+
+<TextBlock kind="title">Data serialization</TextBlock>
 
 When using custom events and global event properties you may need to serialize data to one of SDK supported formats:
 * `JSONObject`

@@ -11,10 +11,10 @@ import { usePlatforms } from 'hooks'
 
 *This section shows how to integrate Smartlook with other analytical tools.*
 
-It is a typical use-case that an app uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
+It is a typical use-case that an application uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
 
 <TextBlock>{`
-In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting app whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform (see <Link to="/api_reference#integrations">API Reference</Link>).
+In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting application whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform, technical details are provided in <Link to="/api_reference#integrations">the API Reference</Link>.
 `}</TextBlock>
 
 <TextBlock kind="important">{`
@@ -23,41 +23,131 @@ The integration URLs are accessible only to the authorized Smartlook users.
 
 The integration is then made by sending these URLs to the other tools, e.g., as custom parameters of their own objects.
 
+<TextBlock kind="note">
+Some practical examples of integrating Smartlook into some popular 3rd party tools are provided in the **Cookbooks** section of the documentation.
+</TextBlock>
+
 # Current Session URL
 
 The Smartlook method that publishes dashboard session URL takes a boolean flag if the current timestamp should be included in the URL. With this parameter, Smartlook begins playback of the session at the indicated moment. This comes in handy when the URL is attached to a particular event.
 
 <CodeBlock kind="example"
-    snippets={{
-      ios: {
+  snippets={{
+    android: {
+      java: `
+String dashboardSessionURL = Smartlook.getDashboardSessionUrl();
+AnotherTool.setParameter("SmartlookURL", dashboardSessionURL);
+      `,
+    kotlin: `
+val dashboardSessionURL = Smartlook.getDashboardSessionUrl()
+AnotherTool.setParamater("SmartlookURL", dashboardSessionURL)
+      `,
+    },
+    ios: {
       swift: `
 let currentSmartlookSessionURL = Smartlook.getDashboardSessionURL(withCurrentTimestamp: true)
 anotherToolEvent.setParameter("SmartlookURL", currentSmartlookSessionURL)
-`,
+      `,
       'objective-c': `
 NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrentTimestamp:YES];
 [anotherToolEvent setParamValue:currentSmartlookSessionURL forKey:@"SmartlookURL"];
-`
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+UNITY - C#
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
+      `,
+    },
+    cocos: {
+      java: `
+COCOS - java
+      `,
+      kotlin: `
+COCOS - kotlin
+      `
+   },
+   cordova: {
+      javascript: `
+ Smartlook.getDashboardSessionUrl(
+  function(dashboardSessionUrl) {
+    AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl);
+  }
+)
+    `,
+    },
+    ionic: { 
+      typescrit: `
+smartlook.getDashboardSessionUrl().then((dashboardSessionUrl) => {
+  AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl)
+});
+      `,
+    },
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
+      `,
     },
   }}
 />
+
 
 <Link to="/api_reference#dashboard-session-url">Session URL API Reference</Link>.
 
 # Current Visitor URL
 
-Visitor URL points to a Dashboard page that wrapps the visitor info (their sessions &c.). This URL may change during the app run are result of user identification via Smartlook SDK.
+Visitor URL points to a Dashboard page that wrapps the visitor info (their sessions &c.). This URL may change during the application run are result of user identification via Smartlook SDK.
 
-<CodeBlock  kind="example"
-    snippets={{
-      android: {
+<CodeBlock kind="example"
+  snippets={{
+    android: {
       java: `
 String dashboardVisitorURL = Smartlook.getDashboardVisitorUrl();
 AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
       `,
-      kotlin: `
+    kotlin: `
 val dashboardVisitorURL = Smartlook.getDashboardVisitorUrl()
 AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
+      `,
+    },
+    ios: {
+      swift: `
+let currentSmartlookVisitorURL = Smartlook.getDashboardVisitorURL()
+AnotherTool.setUserProperty("SmartlookURL", currentSmartlookVisitorURL)
+      `,
+      'objective-c': `
+NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
+[AnotherTool setUserParamValue:currentSmartlookVisitorURL forKey:@"SmartlookURL"];
+      `,
+    },
+    react: {
+      js: `
+REACT NATIVE - javascript
+`,
+    },
+    unity: {
+      csharp: `
+string dashboardVisitorURL = SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
+AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
+`,
+    },
+    unreal: {
+      csharp: `
+UNREAL - C#
       `,
     },
     cocos: {
@@ -68,42 +158,37 @@ AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
       kotlin: `
 val dashboardVisitorURL = Smartlook.getDashboardVisitorUrl()
 AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
-      `,
-    },
-    unity: {
-      csharp: `
-      string dashboardVisitorURL = SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
-AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
       `
-    },
-      cordova: {
+   },
+   cordova: {
       javascript: `
  Smartlook.getDashboardVisitorUrl(
   function(dashboardVisitorUrl) {
     AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl);
   }
 )
-      `,
+    `,
     },
-    ionic: {
-      typescript: `
+    ionic: { 
+      typescrit: `
 smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
   AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
 });
       `,
     },
-      ios: {
-      swift: `
-let currentSmartlookVisitorURL = Smartlook.getDashboardVisitorURL()
-AnotherTool.setUserProperty("SmartlookURL", currentSmartlookVisitorURL)
-`,
-      'objective-c':`
-NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
-[AnotherTool setUserParamValue:currentSmartlookVisitorURL forKey:@"SmartlookURL"];
-`
+   flutter: {
+      dart: `
+FLUTTER - dart
+   `,
+   },
+xamarin: {
+      csharp: `
+XAMARIN - C#
+      `,
     },
   }}
 />
+
 
 <Link to="/api_reference#dashboard-visitor-url">Visitor URL API Reference</Link>.
 

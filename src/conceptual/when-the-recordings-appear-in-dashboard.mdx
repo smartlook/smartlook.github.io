@@ -15,11 +15,11 @@ import { usePlatforms } from 'hooks'
 All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers assynchronously in batches.
 </TextBlock>
 
-Smartlook uses various techniques to acquire analytics data from the app. It stores them in an intermediate cache inside your app first, and then sent them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allow it.
+Smartlook uses various techniques to acquire analytics data from the application. It stores them in an intermediate cache inside the application first, and then sent them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allow it.
 
 # Understanding Active Sessions
 
-In the dashboard, you can see currently active sessions in the **Active sessions** tab. If the device is online, the session appears there immediatelly after the app starts. I then can take several minutes before the data related to the session are uploded, processed and available for repleay. Also, when the app is closed on the device, the active session lives for few more minutes before the data is processed. We also wait for a short period of time to be sure the app is really suspended for good, that it was not just a short interruption of the app by an incomming call or notification. In such a case of just short interruption, Smartlook continues with recording into the active session once the app is active again.
+In the dashboard, currently active sessions are listed in the **Active sessions** tab. If the device is online, the session appears there immediatelly after the application starts. I then can take several minutes before the data related to the session are uploded, processed and available for repleay. Also, when the application is closed on the device, the active session lives for few more minutes before the data is processed. We also wait for a short period of time to be sure the application is really suspended for good, that it was not just a short interruption of the application by an incomming call or notification. In such a case of just short interruption, Smartlook continues with recording into the active session once the application is active again.
 
 Once the session is wrapped up, it moves to the **All visitors** tab. 
 
@@ -29,7 +29,7 @@ The frequency in which the data is gathered and sent depends on several factors.
 
 Events data are recorded almost synchronously as they happen. Then they are sent in batches every few minutes to the server.
 
-Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequncy down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on mobile network, and the video data wait in a cache till the app runs with wifi connection available. This defaut setting can be changed in the [project settings](https://app.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
+Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequncy down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on mobile network, and the video data wait in a cache till the application runs with wifi connection available. This defaut setting can be changed in the [project settings](https://application.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
 
 
 <TextBlock>{`
@@ -38,11 +38,13 @@ More about <Link to="/conceptual/screen-recording.quality/">Screen Recording Qua
 
 # Offline recording
 
-When the device has no or not suitable network connection, the recorded data is cached. Cached data size is limited, and the cached data is sent the next time the app is running with the suitable network connection.
+When the device has no or not suitable network connection, the recorded data is cached. Cached data size is limited, and the cached data is sent the next time the application is running with the suitable network connection.
 
 ## Cache Size
 
-The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. Currently, the overal size of data in Smartlook cache are limited to 200 MB or maximal 1/5 of the free storage space if it is less than 200 MB, and all data older 30 days are deleted regardless the cache size.
+The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. 
+
+Currently, the overal size of data in Smartlook cache are limited to **200 MB** or maximal **20% of the free storage space** if it is less than 200 MB, and all data **older 30 days** are deleted regardless the cache size.
 
 
 # Recording limitations
@@ -51,8 +53,8 @@ There are some circumstances under which is SDK not recording:
 
 Parallel limit defines a given number of active sessions (session that is being actively processed by our backend is called "active") that are allowed to be recorded at the same time. If this limit gets surpassed, new recordings will NOT be recorded until the number of active sessions is no longer surpassing the limit.
 
-There is a maximal number of sessions that you can record a month. If this limit is surpassed SDK will not record until next month.
+There is a maximal number of sessions that can be recorded a month. If this limit is surpassed SDK will not record until next month.
 
 <TextBlock kind="important">
-Both parallel limit and number of sessions is given by the package you have purchased. If you are hitting these limits please feel free to contact our sales team or upgrade your package.
+Both parallel limit and number of sessions is given by the purchased package. If the app is hitting these limits please feel free to contact our sales team or upgrade the package.
 </TextBlock>
