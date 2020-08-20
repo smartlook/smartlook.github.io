@@ -68,8 +68,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     },
     react: {
       js: `
-var Smartlook = require("smartlook-react-native-wrapper"); 
-Smartlook.setupAndStartRecording("API_KEY");
+//i.e.
+componentDidMount() {
+  Smartlook.setupAndStartRecording("API_KEY");
+  var Smartlook = require("smartlook-react-native-wrapper");
+  ...
+}
 `,
     },
     unity: {
@@ -133,7 +137,15 @@ this.platform.ready().then(() => {
     },
    flutter: {
       dart: `
-Smartlook.setupAndStartRecording('THE_API_KEY');
+      class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    ...
+    Smartlook.setupAndStartRecording('THE_API_KEY');
+    ...
+  }
+}
    `,
    },
 xamarin: {

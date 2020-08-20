@@ -55,12 +55,14 @@ NSURL *currentSmartlookSessionURL = [Smartlook getDashboardSessionURLWithCurrent
     },
     react: {
       js: `
-REACT NATIVE - javascript
+var dashboardSessionURL =  await Smartlook.getDashboardSessionUrl(true);
+AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl);
 `,
     },
     unity: {
       csharp: `
-UNITY - C#
+string dashboardSessionURL = SmartlookUnity.Smartlook.GetDashboardSessionUrl(true);
+AnotherTool.setUserProperty("SmartlookURL", dashboardSessionURL);
 `,
     },
     unreal: {
@@ -70,11 +72,13 @@ UNREAL - C#
     },
     cocos: {
       java: `
-COCOS - java
+String dashboardSessionURL = Smartlook.getDashboardSessionUrl();
+AnotherTool.setParameter("SmartlookURL", dashboardSessionURL);
       `,
-      kotlin: `
-COCOS - kotlin
-      `
+    kotlin: `
+val dashboardSessionURL = Smartlook.getDashboardSessionUrl()
+AnotherTool.setParamater("SmartlookURL", dashboardSessionURL)
+      `,
    },
    cordova: {
       javascript: `
@@ -94,7 +98,8 @@ smartlook.getDashboardSessionUrl().then((dashboardSessionUrl) => {
     },
    flutter: {
       dart: `
-FLUTTER - dart
+String dashboardSessionURL = Smartlook.getDashboardSessionUrl(true);
+AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl)
    `,
    },
 xamarin: {
@@ -136,7 +141,8 @@ NSURL *currentSmartlookVisitorURL = [Smartlook getDashboardVisitorURL];
     },
     react: {
       js: `
-REACT NATIVE - javascript
+var dashboardVisitorURL =  await Smartlook.getDashboardVisitorUrl();
+AnotherTool.setProperty("SmartlookURL", dashboardVisitorURL);
 `,
     },
     unity: {
@@ -178,7 +184,8 @@ smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
     },
    flutter: {
       dart: `
-FLUTTER - dart
+String dashboardVisitorURL = Smartlook.getDashboardVisitorUrl();
+AnotherTool.setProperty("SmartlookURL", dashboardVisitorURL)
    `,
    },
 xamarin: {

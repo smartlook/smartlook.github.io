@@ -145,11 +145,22 @@ NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLCha
       dart: `
 class CustomIntegrationListener implements IntegrationListener {
   void onSessionReady(String dashboardSessionUrl) {
-      //todo
+      heap.track(
+      identity: _identity,
+      event: 'dashboardSessionUrl', 
+      properties: {
+        'dashboardSessionUrl': dashboardSessionUrl
+      },
+    );
   }
 \n
   void onVisitorReady(String dashboardVisitorUrl) {
-    //todo
+    heap.userProperties(
+      identity: _identity,
+      properties: {
+        'dashboardVisitorUrl': dashboardVisitorUrl
+      },
+    );
   }
 }
 \n
@@ -162,12 +173,12 @@ public class IntegrationListener : SmartlookUnity.IntegrationListener
 {
     public override void onSessionReady(string dashboardSessionUrl)
     {
-        //todo
+        //Not available yet
     }
 \n
     public override void onVisitorReady(string dashboardVisitorUrl)
     {
-        //todo
+        //Not available yet
     }
 }
 \n
@@ -197,4 +208,4 @@ Full Heap API documentation can be found on the [official website](https://devel
 `}</TextBlock>
 
 ## Automatic integration
-Automatic Heap integration comming soon.
+Automatic Heap integration coming soon.

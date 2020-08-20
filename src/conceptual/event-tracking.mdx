@@ -81,7 +81,7 @@ Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
     },
     react: {
       js: `
-REACT NATIVE - javascript
+Smartlook.trackCustomEvent("CUSTOM EVENT", { "PROP_1" : "value_1"});
 `,
     },
     unity: {
@@ -126,7 +126,7 @@ smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventPropert
     },
    flutter: {
       dart: `
-FLUTTER - dart
+Smartlook.trackCustomEvent("CUSTOM EVENT", { "PROP_1" : "value1" });
    `,
    },
 xamarin: {

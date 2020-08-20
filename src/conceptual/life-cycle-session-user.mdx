@@ -52,12 +52,12 @@ Smartlook.setUserIdentifier(someInternalUserID)
     },
     react: {
       js: `
-REACT NATIVE - javascript
+Smartlook.setUserIdentifier("sample_user_identifier");
 `,
     },
     unity: {
       csharp: `
-UNITY - C#
+SmartlookUnity.Smartlook.SetUserIdentifier("sample_user_identifier");
 `,
     },
     unreal: {
@@ -67,10 +67,10 @@ UNREAL - C#
     },
     cocos: {
       java: `
-COCOS - java
+Smartlook.setUserIdentifier("sample_user_identifier");
       `,
       kotlin: `
-COCOS - kotlin
+Smartlook.setUserIdentifier("sample_user_identifier")
       `
    },
    cordova: {
@@ -85,7 +85,7 @@ smartlook.setUserIdentifier(new SmartlookUserIdentifier("sample_user_identifier"
     },
    flutter: {
       dart: `
-FLUTTER - dart
+Smartlook.setUserIdentifier('sample_user_identifier');
    `,
    },
 xamarin: {
@@ -114,6 +114,10 @@ The application remembers the last user id and reuses it as the default user id 
 # Explicit Control of Sessions and Users 
 
 In some use cases it makes sense to explicitly control the session and users flow. For example, when a device with an application is shared among many users. In these cases the application should always start with a fresh session (or user). To do so, use one of the following setup option:
+
+<TextBlock visibleOn="react,flutter,unity">{`
+Soon we will provide better setup options via builder mechanism, meanwhile please use:
+`}</TextBlock>
 
 <CodeBlock kind="example"
   snippets={{
@@ -163,12 +167,22 @@ Smartlook.setup(key: "THE_API_KEY",
     },
     react: {
       js: `
-REACT NATIVE - javascript
+// to always setup with new session
+Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.resetSession(false);\n
+// to start with new session and user
+Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.resetSession(true);
 `,
     },
     unity: {
       csharp: `
-UNITY - C#
+// to always setup with new session
+SmartlookUnity.Smartlook.SetupAndStartRecording(YOUR_API_KEY);
+SmartlookUnity.Smartlook.ResetSession(false);\n
+// to start with new session and user
+SmartlookUnity.Smartlook.SetupAndStartRecording(YOUR_API_KEY);
+SmartlookUnity.Smartlook.ResetSession(true);
 `,
     },
     unreal: {
@@ -178,11 +192,25 @@ UNREAL - C#
     },
     cocos: {
       java: `
-COCOS - java
+// to always setup with new session
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession();
+Smartlook.setupAndStartRecording(builder.build());\n
+// to start with new session and user
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser();
+Smartlook.setupAndStartRecording(builder.build());
       `,
-      kotlin: `
-COCOS - kotlin
-      `
+    kotlin: `
+// to always setup with new session
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSession()
+Smartlook.setupAndStartRecording(builder.build());\n
+// to start with new session and user
+val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+        .startNewSessionAndUser()
+Smartlook.setupAndStartRecording(builder.build())
+      `,
    },
    cordova: {
       javascript: `
@@ -212,7 +240,12 @@ Smartlook.setupAndStartRecording(builder.build());\n
     },
    flutter: {
       dart: `
-FLUTTER - dart
+// to always setup with new session
+Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.resetSession(false);\n
+// to start with new session and user
+Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.resetSession(true);
    `,
    },
 xamarin: {
