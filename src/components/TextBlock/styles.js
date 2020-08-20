@@ -10,24 +10,16 @@ export const mainBase = {
 
 export const note = {
 	...mainBase,
-	borderLeft: '4px solid #023189',
-	bg: 'rgba(54, 119, 209, 0.2)',
-	color: '#0149a8',
-
-	'.heading > a': {
-		color: '#0149a8',
-	},
+	border: (t) => `1px solid ${t.colors.mariner}`,
+	borderLeft: (t) => `4px solid ${t.colors.smalt}`,
+	bg: 'white',
 }
 
 export const important = {
 	...mainBase,
-	borderLeft: '4px solid #d14452',
-	bg: 'rgba(255, 91, 108, 0.3)',
-	color: '#562328',
-
-	'.heading > a': {
-		color: '#562328',
-	},
+	border: '1px solid #02b9f5',
+	borderLeft: '4px solid #02b9f5',
+	bg: 'white',
 }
 
 export const example = {
@@ -39,9 +31,4 @@ export const example = {
 	'.heading > a': {
 		color: '#562328',
 	},
-}
-
-export const title = {
-	fontSize: '2.2em',
-	fontWeight: 'bold',
 }
