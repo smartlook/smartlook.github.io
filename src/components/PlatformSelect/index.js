@@ -28,11 +28,7 @@ export const PlatformSelect = () => {
 			return null
 		}
 
-		return (
-			<p sx={{ position: 'relative', top: '2px', ...styles.popperItemText }}>
-				{platform.displayName}
-			</p>
-		)
+		return <p sx={styles.popperItemText}>{platform.displayName}</p>
 	}
 
 	const handleChange = (event) => {
@@ -43,9 +39,22 @@ export const PlatformSelect = () => {
 		setIsOpened(false)
 	}
 
-	React.useLayoutEffect(() => {
-		if (!isOpened) {
+	const handleClickOutside = (e) => {
+		if (
+			popper.current.contains(e.target) ||
+			reference.current.contains(e.target)
+		) {
 			return
+		}
+
+		setIsOpened(false)
+	}
+
+	React.useLayoutEffect(() => {
+		if (isOpened) {
+			document.addEventListener('mousedown', handleClickOutside)
+		} else {
+			document.removeEventListener('mousedown', handleClickOutside)
 		}
 
 		const _reference = reference.current
@@ -57,6 +66,10 @@ export const PlatformSelect = () => {
 		})
 
 		nanopop.update()
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
 	}, [isOpened])
 
 	return (
