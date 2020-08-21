@@ -1,18 +1,13 @@
-import React from 'react'
-import SwaggerUI from 'swagger-ui-react'
-
-import 'swagger-ui-react/swagger-ui.css'
-
-const spec = {
+export const spec = {
 	openapi: '3.0.0',
 	info: {
-		title: 'Public API',
+		title: 'Smartlook REST API',
 		version: '1.0.0',
 	},
 	servers: [
 		{
-			url: 'https://public-api.dev.smartlook.com',
-			description: 'Local development',
+			url: 'https://public-api.smartlook.com',
+			description: 'Smartlook REST API host',
 		},
 	],
 	paths: {
@@ -109,6 +104,7 @@ const spec = {
 						},
 						name: 'before',
 						required: false,
+						description: 'Used for the pagination of the results',
 					},
 					{
 						in: 'query',
@@ -117,6 +113,7 @@ const spec = {
 						},
 						name: 'after',
 						required: false,
+						description: 'Used for the pagination of the results',
 					},
 					{
 						in: 'query',
@@ -125,9 +122,15 @@ const spec = {
 						},
 						name: 'categoryId',
 						required: false,
+						description: 'The ID of the category of the events',
 					},
 				],
 				operationId: 'getEventsList',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 		'/api/v1/events/{eventOid}': {
@@ -213,6 +216,7 @@ const spec = {
 						},
 						name: 'eventOid',
 						required: true,
+						description: 'The ID of the event',
 					},
 					{
 						in: 'query',
@@ -221,6 +225,7 @@ const spec = {
 						},
 						name: 'dateFrom',
 						required: true,
+						description: 'Start date of the events window',
 					},
 					{
 						in: 'query',
@@ -229,6 +234,7 @@ const spec = {
 						},
 						name: 'dateTo',
 						required: true,
+						description: 'End date of the events window',
 					},
 					{
 						in: 'query',
@@ -237,9 +243,15 @@ const spec = {
 						},
 						name: 'occurenceHistogramInterval',
 						required: false,
+						description: 'Resolution of the event histogram',
 					},
 				],
 				operationId: 'getEventDetail',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 		'/api/v1/events/{eventOid}/visitors': {
@@ -304,6 +316,7 @@ const spec = {
 						},
 						name: 'eventOid',
 						required: true,
+						description: 'The ID of the event',
 					},
 					{
 						in: 'query',
@@ -312,6 +325,8 @@ const spec = {
 						},
 						name: 'dateFrom',
 						required: true,
+						description:
+							'Filters visitors that were first seen after this date',
 					},
 					{
 						in: 'query',
@@ -320,9 +335,267 @@ const spec = {
 						},
 						name: 'dateTo',
 						required: true,
+						description:
+							'Filters visitors that were first seen before this date',
 					},
 				],
 				operationId: 'getEventVisitors',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
+			},
+		},
+		'/api/v1/funnels': {
+			get: {
+				responses: {
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										totalCount: {
+											type: 'number',
+										},
+										funnels: {
+											type: 'array',
+											items: {
+												type: 'object',
+												properties: {
+													id: {
+														type: 'string',
+													},
+													name: {
+														type: 'string',
+													},
+													events: {
+														type: 'array',
+														items: {
+															type: 'object',
+															properties: {
+																id: {
+																	type: 'string',
+																},
+																name: {
+																	type: 'string',
+																},
+																_links: {
+																	type: 'object',
+																	properties: {
+																		detail: {
+																			type: 'string',
+																		},
+																	},
+																	additionalProperties: false,
+																},
+															},
+															additionalProperties: false,
+														},
+													},
+													_links: {
+														type: 'object',
+														properties: {
+															detail: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
+												},
+												additionalProperties: false,
+											},
+										},
+										pagination: {
+											type: 'object',
+											properties: {
+												before: {
+													type: 'string',
+												},
+												after: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+										_links: {
+											type: 'object',
+											properties: {
+												nextPage: {
+													type: 'string',
+												},
+												previousPage: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['funnel'],
+				parameters: [
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'before',
+						required: false,
+						description: 'Used for the pagination of the results',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'after',
+						required: false,
+						description: 'Used for the pagination of the results',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'number',
+						},
+						name: 'limit',
+						required: false,
+						description: 'Maximum number of funnels in the response',
+					},
+				],
+				operationId: 'getFunnelsList',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
+			},
+		},
+		'/api/v1/funnels/{funnelOid}': {
+			get: {
+				responses: {
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										computation: {
+											type: 'object',
+											properties: {
+												isFinished: {
+													type: 'boolean',
+												},
+												finishedProgress: {
+													type: 'number',
+												},
+												nextAttemptDelay: {
+													type: 'number',
+												},
+											},
+											additionalProperties: false,
+										},
+										funnel: {
+											type: 'object',
+											properties: {
+												id: {
+													type: 'string',
+												},
+												name: {
+													type: 'string',
+												},
+												createdAt: {
+													type: 'string',
+												},
+												updatedAt: {
+													type: 'string',
+												},
+												conversionRate: {
+													type: 'number',
+												},
+												steps: {
+													type: 'array',
+													items: {
+														type: 'object',
+														properties: {
+															visitorsCount: {
+																type: 'number',
+															},
+															event: {
+																type: 'object',
+																properties: {
+																	id: {
+																		type: 'string',
+																	},
+																	_links: {
+																		type: 'object',
+																		properties: {
+																			detail: {
+																				type: 'string',
+																			},
+																		},
+																		additionalProperties: false,
+																	},
+																},
+																additionalProperties: false,
+															},
+														},
+														additionalProperties: false,
+													},
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['funnel'],
+				parameters: [
+					{
+						in: 'path',
+						schema: {
+							type: 'string',
+						},
+						name: 'funnelOid',
+						required: true,
+						description: 'ID of the funnel',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'dateFrom',
+						required: true,
+						description: 'Start date of the funnel window',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'dateTo',
+						required: true,
+						description: 'End date of the funnel window',
+					},
+				],
+				operationId: 'getFunnelDetail',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 		'/api/v1/visitors/{visitorId}': {
@@ -402,6 +675,11 @@ const spec = {
 					},
 				],
 				operationId: 'getVisitorDetails',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 		'/api/v1/visitors/{visitorId}/sessions': {
@@ -625,6 +903,11 @@ const spec = {
 					},
 				],
 				operationId: 'getVisitorSessions',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 		'/api/v1/statistics': {
@@ -655,6 +938,11 @@ const spec = {
 				tags: ['system'],
 				parameters: [],
 				operationId: 'getApiStats',
+				security: [
+					{
+						BearerAuth: [],
+					},
+				],
 			},
 		},
 	},
@@ -671,11 +959,9 @@ const spec = {
 				type: 'http',
 				scheme: 'bearer',
 				bearerFormat: 'jwt',
+				description:
+					'API token for the project (you can create one in the Smartlook dashboard)',
 			},
 		},
 	},
-}
-
-export const RestReference = () => {
-	return <SwaggerUI spec={spec} showCommonExtensions={true} />
 }
