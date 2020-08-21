@@ -10,6 +10,7 @@ import { Code, CodeBlock, TextBlock, Link } from "components";
 1. Install Smartlook Ionic native plugin:
 
 <Code
+  kind="example"
   snippets={{
     cli: `
 npm install @ionic-native/smartlook --save
@@ -20,6 +21,7 @@ npm install @ionic-native/smartlook --save
 2. Add Cordova plugin plugin to your project:
 
 <Code
+  kind="example"
   snippets={{
     cli: `
 ionic cordova plugin add https://github.com/smartlook/cordova-smartlook.git
@@ -30,6 +32,7 @@ ionic cordova plugin add https://github.com/smartlook/cordova-smartlook.git
 3. Inject Smartlook SDK into `app.module.ts`:
 
 <Code
+  kind="example"
   snippets={{
       typescript: `
 import { Smartlook } from '@ionic-native/smartlook/ngx';\n
@@ -47,6 +50,7 @@ export class AppModule {}
 4. Import `Smartlook` and `SmartlookSetupConfig` into `app.component.ts` and setup the SDK in [platform ready](https://ionicframework.com/docs/v3/api/platform/Platform/#ready) callback:
 
 <Code
+  kind="example"
   snippets={{
       typescript: `
 import { Smartlook, SmartlookSetupConfig } from '@ionic-native/smartlook/ngx';\n
