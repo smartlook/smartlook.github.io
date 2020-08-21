@@ -19,7 +19,9 @@ const getCurrentHash = () => {
 }
 
 const getHeadings = () => {
-	const nodeList = document.querySelectorAll('h1, h2')
+	const nodeList = document.querySelectorAll(
+		'h1:not([data-ignore-menu="true"]), h2',
+	)
 	const headings = [...nodeList].map((node) => {
 		return {
 			value: node.innerText,
