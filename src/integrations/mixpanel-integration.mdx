@@ -4,9 +4,9 @@ menu: Integrations
 route: /integrations/mixpanel
 ---
 
-import { CodeBlock, TextBlock } from "components";
+import { CodeBlock, TextBlock, Title } from "components";
 
-<TextBlock kind="title">Mixpanel integration</TextBlock>
+<Title>Mixpanel integration</Title>
 
 ## Manual integration
 
@@ -154,11 +154,11 @@ NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLCha
       dart: `
 class CustomIntegrationListener implements IntegrationListener {
   void onSessionReady(String dashboardSessionUrl) {
-    //todo
+    //Only 3rd party plugins available
   }
 \n
   void onVisitorReady(String dashboardVisitorUrl) {
-    //todo
+    //Only 3rd party plugins available
   }
 }
 \n
@@ -227,4 +227,4 @@ Full mixpanel documentation with examples can be found on the [official website]
 `}</TextBlock>
 
 ## Automatic integration
-Automatic Mixpanel integration comming soon.
+Automatic Mixpanel integration coming soon.

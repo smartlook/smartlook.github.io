@@ -4,10 +4,10 @@ menu: Conceptual
 route: /conceptual/recording-navigation
 ---
 
-import { Code, CodeBlock, TextBlock, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
 import { usePlatforms } from 'hooks'
 
-<TextBlock kind='title'>Recording Navigation</TextBlock>
+<Title>Recording Navigation</Title>
 
 *This section discusses how is the user navigation in the application recorded*
 
@@ -49,12 +49,13 @@ Smartlook.trackNavigationEvent(withControllerId: "LOGIN_SCREEN", type: .enter)
     },
     react: {
       js: `
-REACT NATIVE - javascript
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", "enter");
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", "exit");
 `,
     },
     unity: {
       csharp: `
-SmartlookUnity.Smartlook.TrackNavigationEvent("TestScreen", SmartlookUnity.Smartlook.NavigationEventType.enter);
+SmartlookUnity.Smartlook.TrackNavigationEvent("LOGIN_SCREEN", SmartlookUnity.Smartlook.NavigationEventType.enter);
 `,
     },
     unreal: {
@@ -82,7 +83,7 @@ smartlook.trackNavigationEvent(new SmartlookNavigationEvent("LOGIN_SCREEN", Smar
     },
    flutter: {
       dart: `
-FLUTTER - dart
+Smartlook.trackNavigationEvent("LOGIN_SCREEN", SmartlookNavigationEventType.enter);
    `,
    },
 xamarin: {

@@ -4,12 +4,12 @@ menu: Conceptual
 route: /conceptual/handling-sensitive-data
 ---
 
-import { Code, CodeBlock, TextBlock, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
 import { usePlatforms } from 'hooks'
 
 import rendering_modes from 'assets/rendering_modes.png'
 
-<TextBlock kind='title'>Handling Sensitive Data</TextBlock>
+<Title>Handling Sensitive Data</Title>
 
 The goal of analytic is to understand the user journey in the application and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
 
@@ -40,12 +40,16 @@ In order to provide robust user privacy protection by default, some UI elements,
 
 ## Handling Sensitivity of Individual UI Elements
  
-<TextBlock invisibleOn="cordova,ionic">{`
+<TextBlock invisibleOn="cordova,ionic,unity,cocos,flutter">{`
 In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova,ionic">{`
 In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one, 
+`}</TextBlock>
+
+<TextBlock visibleOn="unity,cocos,flutter">{`
+Currently not available.
 `}</TextBlock>
 
 <CodeBlock kind="example"
@@ -72,12 +76,10 @@ self.portraitImageView.slSensitive = YES;
     },
     react: {
       js: `
-REACT NATIVE - javascript
-`,
-    },
-    unity: {
-      csharp: `
-UNITY - C#
+ref={ (ref) => { 
+    Smartlook.registerBlacklistedView(ref); 
+  }
+}
 `,
     },
     unreal: {
@@ -85,14 +87,6 @@ UNITY - C#
 UNREAL - C#
       `,
     },
-    cocos: {
-      java: `
-COCOS - java
-      `,
-      kotlin: `
-COCOS - kotlin
-      `
-   },
    cordova: {
       javascript: `
 CORDOVA - javascript
@@ -103,11 +97,6 @@ CORDOVA - javascript
 IONIC - typescript
       `,
     },
-   flutter: {
-      dart: `
-FLUTTER - dart
-   `,
-   },
 xamarin: {
       csharp: `
 XAMARIN - C#
@@ -126,7 +115,7 @@ XAMARIN - C#
   }}
 />
 
-<TextBlock invisibleOn="cordova,ionic">{`
+<TextBlock invisibleOn="cordova,ionic,unity,cocos,flutter">{`
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
 `}</TextBlock>
 
@@ -158,12 +147,10 @@ self.self.introWebView.slSensitive = NO;
     },
     react: {
       js: `
-REACT NATIVE - javascript
-`,
-    },
-    unity: {
-      csharp: `
-UNITY - C#
+ref={ (ref) => { 
+    Smartlook.unregisterBlacklistedView(ref); 
+  }
+}
 `,
     },
     unreal: {
@@ -171,14 +158,6 @@ UNITY - C#
 UNREAL - C#
       `,
     },
-    cocos: {
-      java: `
-COCOS - java
-      `,
-      kotlin: `
-COCOS - kotlin
-      `
-   },
    cordova: {
       javascript: `
 CORDOVA - javascript
@@ -189,11 +168,6 @@ CORDOVA - javascript
 IONIC - typescript
       `,
     },
-   flutter: {
-      dart: `
-FLUTTER - dart
-   `,
-   },
 xamarin: {
       csharp: `
 XAMARIN - C#

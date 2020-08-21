@@ -4,9 +4,9 @@ menu: Integrations
 route: /integrations/firebase_crashlytics
 ---
 
-import { CodeBlock, TextBlock } from "components";
+import { CodeBlock, TextBlock, Title } from "components";
 
-<TextBlock kind="title">Firebase Crahslytics integration</TextBlock>
+<Title>Firebase Crahslytics integration</Title>
 
 ## Automatic integration
 
@@ -25,10 +25,10 @@ Smartlook.enableCrashlytics(true)
     },
     cocos: {
       java: `
-//todo
+Smartlook.enableCrashlytics(true);
       `,
       kotlin: `
-//todo
+Smartlook.enableCrashlytics(true)
       `,
     },
     cordova: {
@@ -51,17 +51,17 @@ Smartlook.setup(key:"THE_API_KEY", options:[.enableCrashytics: true])
     },
     flutter: {
       dart: `
-//todo
+Smartlook.enableCrashlytics(true);
       `,
   },
   unity: {
     csharp: `
-//todo
+SmartlookUnity.Smartlook.EnableCrashlytics(true);
 `,
   },
   react: {
       javascript: `
-//todo
+Smartlook.enableCrashlytics(true);
       `,
   }
   }}
@@ -108,10 +108,26 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     },
     cocos: {
       java: `
-//todo
+Smartlook.registerIntegrationListener(new IntegrationListener() {
+    @Override
+    public void onSessionReady(@NotNull String dashboardSessionUrl) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook session URL", dashboardSessionUrl);
+    }\n
+    @Override
+    public void onVisitorReady(@NotNull String dashboardVisitorUrl) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook visitor URL", dashboardVisitorUrl);
+    }
+});
       `,
       kotlin: `
-//todo
+Smartlook.registerIntegrationListener(object : IntegrationListener {
+    override fun onSessionReady(dashboardSessionUrl: String) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook session URL", dashboardSessionUrl)
+    }\n
+    override fun onVisitorReady(dashboardVisitorUrl: String) {
+        FirebaseCrashlytics.getInstance().setCustomKey("Smartlook visitor URL", dashboardVisitorUrl)
+    }
+})
       `,
     },
     cordova: {
@@ -154,17 +170,50 @@ NotificationCenter.default.addObserver(forName: Smartlook.dashboardVisitorURLCha
     },
     flutter: {
       dart: `
-//todo
+class CustomIntegrationListener implements IntegrationListener {
+  void onSessionReady(String dashboardSessionUrl) {
+    // Flutter bridge is limited regarding the Crashlytics API so feel free to use whatever is the best choice for you
+  }
+\n
+  void onVisitorReady(String dashboardVisitorUrl) {
+    // Flutter bridge is limited regarding the Crashlytics API so feel free to use whatever is the best choice for you
+  }
+}
+\n
+Smartlook.registerIntegrationListener(new CustomIntegrationListener());
       `,
   },
   unity: {
     csharp: `
-//todo
+public class IntegrationListener : SmartlookUnity.IntegrationListener
+{
+    public override void onSessionReady(string dashboardSessionUrl)
+    {
+        Crashlytics.SetCustomKey('dashboardSessionUrl', dashboardSessionUrl);
+    }
+    public override void onVisitorReady(string dashboardVisitorUrl)
+    {
+        Crashlytics.SetCustomKey('dashboardVisitorUrl', dashboardVisitorUrl);
+    }
+}\n
+SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
 `,
   },
   react: {
       javascript: `
-//todo
+Smartlook.registerIntegrationListener({
+  onSessionReady: function (dashboardSessionUrl) { 
+    await Promise.all([
+      crashlytics().setAttribute('dashboardSessionUrl', dashboardSessionUrl)
+    ]);
+);
+  },
+  onVisitorReady: function (dashboardVisitorUrl) { 
+    await Promise.all([
+      crashlytics().setAttribute('dashboardVisitorUrl', dashboardVisitorUrl)
+    ]);
+  }
+});
       `,
   },
   }}

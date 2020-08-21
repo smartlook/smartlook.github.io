@@ -3,13 +3,14 @@ name: Cordova
 menu: SDK Installation
 route: /sdk-installation/cordova
 ---
-import { Code, CodeBlock, TextBlock, Link } from "components";
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 
-# Installation
+<Title>Cordova SDK Installation</Title>
 
 1. Add cordova plugin to your project using this command:
 
 <Code
+  kind="example"
   snippets={{
     cli: `
 cordova plugin add https://github.com/smartlook/cordova-smartlook.git
@@ -20,6 +21,7 @@ cordova plugin add https://github.com/smartlook/cordova-smartlook.git
 2. Setup and start Smartlook on [deviceready](https://cordova.apache.org/docs/en/5.1.1/cordova/events/events.deviceready.html) callback:
 
 <Code
+  kind="example"
   snippets={{
       javascript: `
 if(document.readyState === "complete") {

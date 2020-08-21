@@ -4,15 +4,15 @@ menu: SDK Installation
 route: /sdk-installation/flutter
 ---
 
-import { Code, CodeBlock, TextBlock, Link } from "components";
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 import { usePlatforms } from 'hooks'
 
-# Flutter SDK Installation
-
+<Title>Flutter SDK Installation</Title>
 
 1. Add Smartlook among other dependecies into the `pubspec.yaml`
 
 <Code
+  kind="example"
   snippets={{
     yaml: `
 dependencies:
@@ -24,6 +24,7 @@ dependencies:
 2. Setup Smartlook and start recording, e.g., in your app state initiacization
 
 <Code
+  kind="example"
   snippets={{
     dart: `
 import 'package:smartlook/smartlook.dart';\n

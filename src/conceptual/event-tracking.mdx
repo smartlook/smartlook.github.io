@@ -4,10 +4,10 @@ menu: Conceptual
 route: /conceptual/event-tracking
 ---
 
-import { Code, CodeBlock, TextBlock, Link, MD } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
 import { usePlatforms } from 'hooks'
 
-<TextBlock kind='title'>Event Tracking</TextBlock>
+<Title>Event Tracking</Title>
 
 *This section discusses what kinds of events are tracked by Smartlook, how they are made available in the dashboard, how they relate to user privacy, and how to control the level of tracked events.*
 
@@ -81,7 +81,7 @@ Smartlook.trackCustomEvent(name: "CUSTOM EVENT", props: [ "PROP_1" : "value 1"])
     },
     react: {
       js: `
-REACT NATIVE - javascript
+Smartlook.trackCustomEvent("CUSTOM EVENT", { "PROP_1" : "value_1"});
 `,
     },
     unity: {
@@ -126,7 +126,7 @@ smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventPropert
     },
    flutter: {
       dart: `
-FLUTTER - dart
+Smartlook.trackCustomEvent("CUSTOM EVENT", { "PROP_1" : "value1" });
    `,
    },
 xamarin: {

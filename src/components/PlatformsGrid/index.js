@@ -3,9 +3,6 @@ import { jsx } from 'theme-ui'
 
 import { navigate } from 'gatsby'
 
-// import { usePlatforms } from 'hooks'
-import { useConfig } from 'docz'
-
 import * as styles from './styles'
 
 const PLATFORMS = [
@@ -57,29 +54,12 @@ const PLATFORMS = [
 		image: 'platforms/ionic.svg',
 		link: '/sdk-installation/ionic?platform=ionic',
 	},
-	{
-		name: 'Unreal',
-		platform: 'unreal',
-		image: 'platforms/unreal.svg',
-		link: '/sdk-installation/unreal?platform=unreal',
-	},
-	{
-		name: 'Xamarin',
-		platform: 'xamarin',
-		image: 'platforms/xamarin.svg',
-		link: '/sdk-installation/xamarin?platform=xamarin',
-	},
 ]
 
 export const PlatformsGrid = () => {
-	// const { handleSetPlatform } = usePlatforms()
-
 	const handleNavigate = (platform, to) => {
 		navigate(to)
-		// handleSetPlatform(platform)
 	}
-
-	console.log(useConfig())
 
 	return (
 		<div sx={styles.grid}>

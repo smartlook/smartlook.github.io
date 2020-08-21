@@ -8,7 +8,7 @@ export const wrapper = {
 	top: 0,
 	right: 0,
 	left: 0,
-	zIndex: 2,
+	zIndex: 10,
 	borderBottom: (t) => `1px solid ${t.colors.onahau}`,
 	boxShadow: '0 2px 4px 0 rgba(39, 65, 136, 0.1)',
 }
