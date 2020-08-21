@@ -1,7 +1,7 @@
 export const mainBase = {
 	borderRadius: '3px',
 	p: 3,
-	mb: 4,
+	mb: 3,
 
 	'*:last-child': {
 		mb: 0,
