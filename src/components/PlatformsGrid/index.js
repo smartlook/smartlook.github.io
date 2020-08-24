@@ -63,7 +63,7 @@ export const PlatformsGrid = () => {
 
 	return (
 		<div sx={styles.grid}>
-			<div sx={styles.box}>
+			<div sx={styles.box} onClick={() => handleNavigate('web', '/web')}>
 				<h3 sx={styles.boxName}>Web</h3>
 				<span sx={styles.boxType}>Website</span>
 				<p sx={styles.webDesc}>
