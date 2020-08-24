@@ -1,0 +1,28 @@
+---
+name: "Custom navigation event"
+route: /web/custom-navigation-event
+menu: Web
+---
+
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
+
+**Custom navigation event** allows for easy tracking of navigation event that happens without actual URL in address bar changing.
+
+
+<TextBlock kind="important">
+{`
+Using this API when the url in address bar is changing can result in unwanted URLs duplication in recordings
+`}
+</TextBlock>
+
+Code you need to insert in your site has a following format in **JavaScript**.
+
+```js
+<script>
+  smartlook('navigation', url);
+</script>
+```
+
+The `url` parameter can be either:
+- full location (URL) of the page
+- path portion of a URL that should start with a slash (/) character

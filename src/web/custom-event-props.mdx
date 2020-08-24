@@ -1,0 +1,28 @@
+---
+name: "Custom event properties"
+route: /web/custom-event-props
+menu: Web
+---
+
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
+
+Pay attention on the format of the single and double quotes. Other format of quotes is not supported.
+
+You can add properties to every event that is being tracked using the `properties` call as shown below:
+
+```js
+<script>
+  smartlook('properties', { 'package': 'free', 'environment': 'production' });
+</script>
+```
+
+Properties `package` and `environment` will be added to every event that is being tracked (urls, clicks, ...) including the custom events.
+
+Can be called multiple times, all properties will be merged.
+To remove existing property, set its' value to `null` or `undefined`.
+
+<TextBlock kind="important">
+{`
+Useful for filtering or events breakdowns
+`}
+</TextBlock>
