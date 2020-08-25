@@ -6,12 +6,36 @@ menu: Web
 
 import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 
-## Getting started
+<Title>Getting started</Title>
 
-Put this code to your web...
+## Tracking code
+
+Copy the tracking code from your project settings and include it on your web. The code should be similar to this:
 
 ```js
-<script>
-  smartlook(function() {...});
+<script type='text/javascript'>
+  window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', 'YOUR_PROJECT_KEY');
 </script>
 ```
+
+Check the `GDPR compliant by design` section and adjust the settings if needed. If you plan to identify visitors from EU you have to sign our DPA, read more on that in the GDPR section.
+
+
+## Further Steps
+
+<TextBlock>{`
+* <Link to="/web/identify-visitor" platform="web">Identify visitor</Link>
+* <Link to="/web/gdpr" platform="web">GDPR</Link>
+* <Link to="/web/sensitive-data-protection" platform="web">Sensitive data protection</Link>
+* <Link to="/web/custom-events" platform="web">Custom events</Link>
+* <Link to="/web/custom-event-props" platform="web">Custom event properties</Link>
+* <Link to="/web/custom-click-props" platform="web">Custom click properties</Link>
+* <Link to="/web/custom-navigation-event" platform="web">Custom navigation event</Link>
+* <Link to="/web/recording-api" platform="web">Recording API</Link>
+* <Link to="/web/error-logging" platform="web">Error logging</Link>
+`}</TextBlock>

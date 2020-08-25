@@ -3,6 +3,21 @@ module.exports = {
 	base: '/nextgen-docs',
 	menu: [
 		{
+			name: 'Web',
+			menu: [
+				'Getting started',
+				'Identify visitor',
+				'GDPR',
+				'Sensitive data protection',
+				'Custom events',
+				'Custom event properties',
+				'Custom click properties',
+				'Custom navigation event',
+				'Recording API',
+				'Error logging',
+			],
+		},
+		{
 			name: 'SDK Installation',
 			menu: ['Android', 'iOS'],
 		},
@@ -23,6 +38,7 @@ module.exports = {
 		},
 		'API reference',
 		'Cookbooks',
+		'Integrations',
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',
