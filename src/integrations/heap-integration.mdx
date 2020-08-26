@@ -1,7 +1,7 @@
 ---
 name: Heap
 menu: SDK Integrations
-route: /integrations/heap
+route: /docs/sdk/integrations/heap
 ---
 
 import { CodeBlock, TextBlock, Title } from "components";
@@ -88,31 +88,31 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     cordova: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     heap.track(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl});
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl});
   }
 });
       `,
-    }, 
+    },
     ionic: {
       typescript: `
 smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
-  function (dashboardSessionUrl) { 
+  function (dashboardSessionUrl) {
     heap.track(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl})
   },
-  function (dashboardVisitorUrl) { 
+  function (dashboardVisitorUrl) {
     heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl})
   }
 ));
       `,
-    }, 
+    },
     ios: {
       swift: `
 NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
@@ -147,7 +147,7 @@ class CustomIntegrationListener implements IntegrationListener {
   void onSessionReady(String dashboardSessionUrl) {
       heap.track(
       identity: _identity,
-      event: 'dashboardSessionUrl', 
+      event: 'dashboardSessionUrl',
       properties: {
         'dashboardSessionUrl': dashboardSessionUrl
       },
@@ -188,13 +188,13 @@ SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
   react: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     heap.track(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl});
 );
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     heap.addUserProperties({'smartlook_visitor_url': dashboardVisitorUrl});
   }
 });

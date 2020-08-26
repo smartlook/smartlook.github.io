@@ -1,7 +1,7 @@
 ---
 name: Integrating with Other Tools
 menu: SDK Conceptual
-route: /conceptual/integrating-with-other-tools
+route: /docs/sdk/conceptual/integrating-with-other-tools
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -14,7 +14,7 @@ import { usePlatforms } from 'hooks'
 It is a typical use-case that an application uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
 
 <TextBlock>{`
-In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting application whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform, technical details are provided in <Link to="/api_reference#integrations">the API Reference</Link>.
+In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard. Smartlook also notifies the hosting application whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform, technical details are provided in <Link to="/docs/sdk/api-reference#integrations">the API Reference</Link>.
 `}</TextBlock>
 
 <TextBlock kind="important">{`
@@ -89,7 +89,7 @@ AnotherTool.setParamater("SmartlookURL", dashboardSessionURL)
 )
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 smartlook.getDashboardSessionUrl().then((dashboardSessionUrl) => {
   AnotherTool.setProperty("SmartlookURL", dashboardSessionUrl)
@@ -111,7 +111,7 @@ XAMARIN - C#
 />
 
 
-<Link to="/api_reference#dashboard-session-url">Session URL API Reference</Link>.
+<Link to="/docs/sdk/api-reference#dashboard-session-url">Session URL API Reference</Link>.
 
 # Current Visitor URL
 
@@ -175,7 +175,7 @@ AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
 )
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
   AnotherTool.setUserProperty("SmartlookURL", dashboardVisitorUrl)
@@ -197,5 +197,5 @@ XAMARIN - C#
 />
 
 
-<Link to="/api_reference#dashboard-visitor-url">Visitor URL API Reference</Link>.
+<Link to="/docs/sdk/api-reference#dashboard-visitor-url">Visitor URL API Reference</Link>.
 

@@ -1,7 +1,7 @@
 ---
 name: Event Tracking
 menu: SDK Conceptual
-route: /conceptual/event-tracking
+route: /docs/sdk/conceptual/event-tracking
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -14,7 +14,7 @@ import { usePlatforms } from 'hooks'
 Smartlook tracks two interconnected types of events. User interaction events, i.e., finger touches, gestures, UI element focus and such, and analytics events, by which Smartlook understands button clicks, navigation between screens and similar events that initialize an action in the application.
 
 <TextBlock kind="note">{`
-More info about how user navigation is tracked could be found in <Link to="/conceptual/recording-navigation">Recording Navigation</Link>.
+More info about how user navigation is tracked could be found in <Link to="/docs/sdk/conceptual/recording-navigation">Recording Navigation</Link>.
 `}</TextBlock>
 
 There are no known performance issues related to event tracking. Tracked events, however, especially those that are visualised during the session playback, can compromise sensitive user data.
@@ -28,7 +28,7 @@ To protect user privacy, user interaction with virtual keyboards (i.e., events i
 </TextBlock>
 
 <TextBlock kind="important">{`
-Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. <Link to="/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link> chapter offers mode in-depth text on how to handle events that could reveal sensitive user information.
+Blacklisting such a view is not enough, as user interaction is tracked on blacklisted views. Blacklisting and event tracking are controlled independently. <Link to="/docs/sdk/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link> chapter offers mode in-depth text on how to handle events that could reveal sensitive user information.
 `}</TextBlock>
 
 # Analytics Events
@@ -46,7 +46,7 @@ The events created by these methods are treated by Smartlook exactly the way aut
 ## Custom events
 
 <TextBlock>{`
-Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering. Technical details could be found in <Link to="/api_reference#custom-event">the API Reference</Link>.
+Custom events are identified by a name, and can also have additional optional properties. The additional properties can be used in funnels and any other filtering. Technical details could be found in <Link to="/docs/sdk/api-reference#custom-event">the API Reference</Link>.
 `}</TextBlock>
 
 <CodeBlock kind="example"
@@ -119,7 +119,7 @@ Smartlook.trackCustomEvent("CUSTOM EVENT, props)"
 Smartlook.trackCustomEvent({name: "CUSTOM EVENT", eventProperties: {PROP_1: "value 1"}})
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 smartlook.trackCustomEvent(new SmartlookCustomEvent("CUSTOM EVENT", eventProperties: {PROP_1: "value 1"});
       `,
@@ -141,5 +141,5 @@ XAMARIN - C#
 ## Timed event
 
 <TextBlock>{`
-For use-cases where duration of some time-sensitive or long-running actions in the application is an important metrics, Smartlook offers timed events. Nothing is tracked upon starting such an event, the application just remembers the event reference and uses it once the event is finished or cancelled. Technical details could be found in <Link to="/api_reference#timed-event">the API Reference</Link>.
+For use-cases where duration of some time-sensitive or long-running actions in the application is an important metrics, Smartlook offers timed events. Nothing is tracked upon starting such an event, the application just remembers the event reference and uses it once the event is finished or cancelled. Technical details could be found in <Link to="/docs/sdk/api-reference#timed-event">the API Reference</Link>.
 `}</TextBlock>

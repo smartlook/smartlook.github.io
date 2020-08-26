@@ -1,7 +1,7 @@
 ---
 name: API reference
 menu: SDK API reference
-route: /api_reference
+route: /docs/sdk/api-reference
 ---
 import { Code, CodeBlock, TextBlock, Link } from "components";
 import { usePlatforms } from 'hooks'
@@ -81,27 +81,27 @@ this.platform.ready().then(() => {
     ios: {
       swift: `
 import Smartlook
- 
+\n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
- 
+\n
   Smartlook.setup(key: "API_KEY")
   Smartlook.startRecording()
-  
+\n
   // other initialization stuff
-    
+\n
   return true
 }
       `,
       'objective-c': `
 #import <Smartlook/Smartlook.h>
-    
+\n
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-        
+\n
     [Smartlook setupWithKey: @"API_KEY"];
     [Smartlook startRecording];
-  
+\n
     // other initialization stuff
-  
+\n
     return YES;
 }
       `,
@@ -348,11 +348,11 @@ The following table describes all available optional parameters. Most of them ca
 \n
 The options dictionary keys are constants defined as members of \`SetupOptionKey\` enumeration.
 \n
-| Parameter            | Type                   | Default value | Description                                                                                                                                 
+| Parameter            | Type                   | Default value | Description
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
 | .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
-| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
 | [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
 | .startNewSession     | bool                   | false         | Always start new session with Smartlook setup.   |
@@ -450,7 +450,7 @@ class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
 `,
       'objective-c': `
 +(void)setupWithKey:(nonnull NSString *)key options:(nullable NSDictionary<SLSetupOptionKey,id> *)options;
-    
+\n
 // values in the options dictionary must be objects, e.g.,
 [Smartlook setupWithKey:@"SOME_API_KEY" options:@{ SLSetupOptionFramerateKey: @3 }];
       `,
@@ -916,7 +916,7 @@ Smartlook.unregisterBlacklistedViews(List<View> views);
 Smartlook.unregisterBlacklistedView(view: View)
 Smartlook.unregisterBlacklistedViews(views: List<View>)
       `,
-    },   
+    },
     ios: {
       swift: `
 class func registerBlacklisted(object: Any)
@@ -993,7 +993,7 @@ Smartlook.registerBlacklistedClasses(classes: List<Class>)
 class func registerBlacklisted(object: Any)
 `,
       'objective-c': `
-// Note: the object can be UIView instance, UIView subclass or a Protocol 
+// Note: the object can be UIView instance, UIView subclass or a Protocol
 // see examples below
 + (void)registerBlacklistedObject:(nonnull id)object;
       `,
@@ -1006,17 +1006,17 @@ class func registerBlacklisted(object: Any)
   snippets={{
     ios: {
       swift: `
-// Note: the object can be UIView instance, UIView subclass or a Protocol 
+// Note: the object can be UIView instance, UIView subclass or a Protocol
 someView.slSensitive = true
-Smartlook.registerBlacklisted(object: someView)      
-Smartlook.registerBlacklisted(object: SensitiveDataViewClass.self)      
+Smartlook.registerBlacklisted(object: someView)
+Smartlook.registerBlacklisted(object: SensitiveDataViewClass.self)
 Smartlook.registerBlacklisted(object: SensitiveProtocol.self)
 `,
       'objective-c': `
-// Note: the object can be UIView instance, UIView subclass or a Protocol 
+// Note: the object can be UIView instance, UIView subclass or a Protocol
 self.someView.slSensitive = true
-[Smartlook registerBlacklistedObject:self.someView];          
-[Smartlook registerBlacklistedObject:SensitiveDataViewClass.class];          
+[Smartlook registerBlacklistedObject:self.someView];
+[Smartlook registerBlacklistedObject:SensitiveDataViewClass.class];
 [Smartlook registerBlacklistedObject:@protocol(SensitiveProtocol)];
     `,
   },
@@ -1031,7 +1031,7 @@ Any of blacklisted classes can be removed:
 Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="ios" >{` 
+<TextBlock visibleOn="ios" >{`
 Any of the blacklisted objects can be removed:
 `}</TextBlock>
 
@@ -1119,7 +1119,7 @@ Or it can be tagged directly by an \`UIView\` property added by Smartlook:
   <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
     `,
-    },   
+    },
     ios: {
       swift: `
 someView.slSensitive = false
@@ -1250,7 +1250,7 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NO_RENDERING}
       typescript: `
 smartlook.setRenderingMode(SmartlookRenderingMode.NO_RENDERING());
       `,
-    },    
+    },
     ios: {
       swift: `
 Smartlook.setRenderingMode(to: .noRendering)
@@ -1315,7 +1315,7 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode.NATIVE})
       typescript: `
 smartlook.setRenderingMode(SmartlookRenderingMode.NATIVE());
       `,
-    },    
+    },
     ios: {
       swift: `
 Smartlook.setRenderingMode(to: .native)
@@ -1457,7 +1457,7 @@ Smartlook.setUserIdentifier({identifier: string})
       typescript: `
 smartlook.setUserIdentifier(new SmartlookUserIdentifier(identifier: string));
       `,
-    }, 
+    },
     ios: {
       swift: `
 class func setUserIdentifier(_ userIdentifier: String?)
@@ -1631,7 +1631,7 @@ Smartlook.setUserIdentifier({
       typescript: `
 smartlook.setUserIdentifier(new SmartlookUserIdentifier(identifier: string, sessionProperties: object));
       `,
-    },    
+    },
   }}
 />
 
@@ -1653,7 +1653,7 @@ Smartlook.setUserIdentifier({
       typescript: `
 smartlook.setUserIdentifier(new SmartlookUserIdentifier("sample_identifier", {name: "John" email: "john@example.com"}));
       `,
-    },    
+    },
   }}
 />
 
@@ -1676,7 +1676,7 @@ class func setSessionProperty(value: String, forName name: String)
 
 <TextBlock visibleOn="ios">{`
 These properties can be seen in the Dashboard at Visitor details.
-\n    
+\n
 If session property should be protected against accidental further changes it can be set as immutable. Immutable property value cannot be changed once it is set.
 `}</TextBlock>
 
@@ -1685,7 +1685,7 @@ If session property should be protected against accidental further changes it ca
     ios: {
       swift: `
 static var immutable: SLPropertyOption
- 
+\n
 class func setSessionProperty(value: String, forName name: String, options: SLPropertyOption)
 `,
       'objective-c': `
@@ -1697,7 +1697,7 @@ typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
 `,
     },
   }}
-/>  
+/>
 
 <CodeBlock
   kind="example"
@@ -1841,7 +1841,7 @@ Smartlook.trackCustomEvent({name: string, eventProperties: object})
       typescript: `
 smartlook.trackCustomEvent(new SmartlookCustomEvent(name: string, eventProperties: object));
       `,
-    },    
+    },
     ios: {
       swift: `
 Smartlook.trackCustomEvent(name: String, props: [String : String]?)
@@ -1891,7 +1891,7 @@ smartlook.trackCustomEvent(new SmartlookCustomEvent("sample_event", eventPropert
   }
 ));
       `,
-    }, 
+    },
   }}
 />
 
@@ -1930,18 +1930,18 @@ Smartlook.trackNavigationEvent({name: string, viewState: Smartlook.ViewState})
       typescript: `
 smartlook.trackNavigationEvent(new SmartlookNavigationEvent(name: string, viewState: SmartlookViewState));
       `,
-    },    
+    },
     ios: {
       swift: `
 static let enter: Smartlook.NavigationEventType
 static let exit: Smartlook.NavigationEventType
- 
+\n
 Smartlook.trackNavigationEvent(withControllerId controllerId: String, type: Smartlook.NavigationEventType)
 `,
       'objective-c': `
 SLNavigationType const _Nonnull SLNavigationTypeEnter;
 SLNavigationType const _Nonnull SLNavigationTypeExit;
- 
+\n
 + (void)trackNavigationEventWithControllerId:(nonnull NSString *)controllerId type:(nonnull SLNavigationType)type;
       `,
     },
@@ -2057,7 +2057,7 @@ Smartlook.startTimedCustomEvent({name: string, eventProperties: object}, success
 smartlook.startTimedCustomEvent(new SmartlookTimedCustomEventStart(name: string)): promise<string>;
 smartlook.startTimedCustomEvent(new SmartlookTimedCustomEventStart(name: string, eventProperties: object)): promise<string>;
       `,
-    },    
+    },
     ios: {
       swift: `
 Smartlook.startTimedCustomEvent(name: String, props: [String : String]?) -> Any
@@ -2198,7 +2198,7 @@ Smartlook.cancelTimedCustomEvent({eventId: string, reason: string, eventProperti
 smartlook.cancelTimedCustomEvent(new SmartlookTimedCustomEventCancel(eventId: string, reason: string));
 smartlook.cancelTimedCustomEvent(new SmartlookTimedCustomEventCancel(eventId: string, reason: string, eventProperties: object));
       `,
-    },    
+    },
     ios: {
       swift: `
 // to track successfull events
@@ -2293,7 +2293,7 @@ id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event"];
     },
   }}
 />
-\n 
+\n
 In this case \`duration_event\` will have duration property set to circa 1000ms.
 `}</TextBlock>
 
@@ -2424,13 +2424,13 @@ smartlook.setGlobalEventProperty(new SmartlookGlobalEventProperty(key: string, v
     ios: {
       swift: `
 class func setGlobalEventProperty(value: String, forName name: String)
-  
-static var immutable: SLPropertyOption 
+\n
+static var immutable: SLPropertyOption
 class func setGlobalEventProperty(value: String, forName name: String, options: SLPropertyOption)
 `,
       'objective-c': `
 + (void)setGlobalEventPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name;
-  
+\n
 typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
     SLPropertyOptionDefaults    = 0,
     SLPropertyOptionImmutable   = 1 << 0
@@ -2590,7 +2590,7 @@ Smartlook.removeAllGlobalEventProperties();
       typescript: `
 smartlook.removeAllGlobalEventProperties()
       `,
-    },    
+    },
     ios: {
       swift: `
 Smartlook.clearGlobalEventProperties()
@@ -2684,7 +2684,7 @@ Smartlook.setEventTrackingMode(eventTrackingMode: SmartlookEventTrackingMode);
 static let fullTracking: Smartlook.EventTrackingMode
 static let ignoreUserInteractionEvents: Smartlook.EventTrackingMode
 static let noTracking: Smartlook.EventTrackingMode
-  
+\n
 class func setEventTrackingMode(to eventTrackingMode: Smartlook.EventTrackingMode)
 class func currentEventTrackingMode() -> Smartlook.EventTrackingMode
 `,
@@ -2692,7 +2692,7 @@ class func currentEventTrackingMode() -> Smartlook.EventTrackingMode
 SLEventTrackingMode const SLEventTrackingModeFullTracking;
 SLEventTrackingMode const SLEventTrackingModeIgnoreUserInteractionEvents;
 SLEventTrackingMode const SLEventTrackingModeNoTracking;
-  
+\n
 + (void)setEventTrackingModeTo:(nonnull SLEventTrackingMode)eventTrackingMode;
 + (nonnull SLEventTrackingMode)currentEventTrackingMode;
       `,
@@ -2819,7 +2819,7 @@ Smartlook.setRenderingMode({renderingMode: Smartlook.RenderingMode});
       typescript: `
 smartlook.setRenderingMode(renderingMode: SmartlookRenderingMode);
       `,
-    },    
+    },
     ios: {
       swift: `
 class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
@@ -2831,7 +2831,7 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
     flutter: {
     dart: `
 enum SmartlookRenderingMode { native, no_rendering }
-  
+\n
 Smartlook.setRenderingMode(SmartlookRenderingMode renderingMode);
 `,
   },
@@ -2932,7 +2932,7 @@ class func  Smartlook.setup(key: String,
                         ])
           `,
         'objective-c': `
-+(void)setupWithKey:(nonnull NSString *)key 
++(void)setupWithKey:(nonnull NSString *)key
             options:@{
               SLSetupOptionRenderingModeKey:SLRenderingMode,
               SLSetupOptionRenderingModeOptionsKey:SLRenderingModeOption
@@ -3161,7 +3161,7 @@ SmartlookOkHttpInterceptor.Builder()
 />
 
 <TextBlock kind="important" visibleOn="android">{`
-If at least one sensitive header name regex is added, default ones (shown above) are not going to be used. 
+If at least one sensitive header name regex is added, default ones (shown above) are not going to be used.
 `}</TextBlock>
 
 # Utility methods
@@ -3303,7 +3303,7 @@ smartlook.getDashboardSessionUrl(new SmartlookDashboardSessionUrl(false))).then(
   }}
 />
 
-If `withCurrentTimestamp` is set to `true` link will include information about current recording timestamp. 
+If `withCurrentTimestamp` is set to `true` link will include information about current recording timestamp.
 This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
 
 <TextBlock kind="note">{`
@@ -3462,23 +3462,23 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     cordova: {
       javascript: `
  Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
-    TextBlock("Session: " + dashboardSessionUrl); 
+  onSessionReady: function (dashboardSessionUrl) {
+    TextBlock("Session: " + dashboardSessionUrl);
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
-    TextBlock("Visitor: " + dashboardVisitorUrl); 
+  onVisitorReady: function (dashboardVisitorUrl) {
+    TextBlock("Visitor: " + dashboardVisitorUrl);
   }
 });
       `,
-    }, 
+    },
     ionic: {
       typescript: `
  smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
-  function (dashboardSessionUrl) { 
-    alert("Session: " + dashboardSessionUrl); 
+  function (dashboardSessionUrl) {
+    alert("Session: " + dashboardSessionUrl);
   },
-  function (dashboardVisitorUrl) { 
-    alert("Visitor: " + dashboardVisitorUrl); 
+  function (dashboardVisitorUrl) {
+    alert("Visitor: " + dashboardVisitorUrl);
   }
 ));
       `,
@@ -3532,7 +3532,7 @@ Smartlook.registerIntegrationListener(
 />
 
 <CodeBlock
-  snippets={{ 
+  snippets={{
     ios: {
       swift: `
 public class let dashboardSessionURLChanged: NSNotification.Name
@@ -3586,7 +3586,7 @@ Smartlook SDK automatic integrations into most popular frameworks are in progres
 
 ## Integration samples
 Samples adjusted for specific analytic tools can be found in `Integrations documentation:`
-- <Link to="/integrations/amplitude">Amplitude</Link>
-- <Link to="/integrations/mixpanel">Mixpanel</Link>
-- <Link to="/integrations/heap">Heap</Link>
-- <Link to="/integrations/firebase_crashlytics">Firebase Crashlytics</Link>
+- <Link to="/docs/sdk/integrations/amplitude">Amplitude</Link>
+- <Link to="/docs/sdk/integrations/mixpanel">Mixpanel</Link>
+- <Link to="/docs/sdk/integrations/heap">Heap</Link>
+- <Link to="/docs/sdk/integrations/firebase-crashlytics">Firebase Crashlytics</Link>

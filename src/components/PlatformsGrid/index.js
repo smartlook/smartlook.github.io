@@ -10,49 +10,49 @@ const PLATFORMS = [
 		name: 'Android',
 		platform: 'android',
 		image: 'platforms/android.svg',
-		link: '/sdk-installation/android?platform=android',
+		link: '/docs/sdk/android?platform=android',
 	},
 	{
 		name: 'iOS',
 		platform: 'ios',
 		image: 'platforms/apple.svg',
-		link: '/sdk-installation/ios?platform=ios',
+		link: '/docs/sdk/ios?platform=ios',
 	},
 	{
 		name: 'React Native',
 		platform: 'react',
 		image: 'platforms/react.svg',
-		link: '/sdk-installation/react-native?platform=react',
+		link: '/docs/sdk/react-native?platform=react',
 	},
 	{
 		name: 'Unity',
 		platform: 'unity',
 		image: 'platforms/unity.svg',
-		link: '/sdk-installation/unity?platform=unity',
+		link: '/docs/sdk/unity?platform=unity',
 	},
 	{
 		name: 'Flutter',
 		platform: 'flutter',
 		image: 'platforms/flutter.svg',
-		link: '/sdk-installation/flutter?platform=flutter',
+		link: '/docs/sdk/flutter?platform=flutter',
 	},
 	{
 		name: 'Cocos',
 		platform: 'cocos',
 		image: 'platforms/cocos.svg',
-		link: '/sdk-installation/cocos?platform=cocos',
+		link: '/docs/sdk/cocos?platform=cocos',
 	},
 	{
 		name: 'Cordova',
 		platform: 'cordova',
 		image: 'platforms/cordova.svg',
-		link: '/sdk-installation/cordova?platform=cordova',
+		link: '/docs/sdk/cordova?platform=cordova',
 	},
 	{
 		name: 'Ionic',
 		platform: 'ionic',
 		image: 'platforms/ionic.svg',
-		link: '/sdk-installation/ionic?platform=ionic',
+		link: '/docs/sdk/ionic?platform=ionic',
 	},
 ]
 
@@ -63,7 +63,7 @@ export const PlatformsGrid = () => {
 
 	return (
 		<div sx={styles.grid}>
-			<div sx={styles.box} onClick={() => handleNavigate('web', '/web')}>
+			<div sx={styles.box} onClick={() => handleNavigate('web', '/docs/web')}>
 				<h3 sx={styles.boxName}>Web</h3>
 				<span sx={styles.boxType}>Website</span>
 				<p sx={styles.webDesc}>
