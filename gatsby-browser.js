@@ -6,6 +6,8 @@ import { PlatformsProvider } from 'context'
 
 ;(typeof global !== 'undefined' ? global : window).Prism = Prism
 
+Prism.languages['objective-c'] = Prism.languages['objectivec']
+
 require('prismjs/components/prism-kotlin')
 require('prismjs/components/prism-swift')
 require('prismjs/components/prism-groovy')
