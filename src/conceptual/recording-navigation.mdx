@@ -1,7 +1,7 @@
 ---
 name: Recording Navigation
-menu: Conceptual
-route: /conceptual/recording-navigation
+menu: SDK Conceptual
+route: /docs/sdk/conceptual/recording-navigation
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -11,7 +11,7 @@ import { usePlatforms } from 'hooks'
 
 *This section discusses how is the user navigation in the application recorded*
 
-Understanding the way user uses the application is the purpose of the analytics. A typical mobile application breaks into several *screens*, between them users navigates to achieve their goals. 
+Understanding the way user uses the application is the purpose of the analytics. A typical mobile application breaks into several *screens*, between them users navigates to achieve their goals.
 
 Smartlook attempts to track the transitions automaticallt and record them as **navigation events**, that are then available in the Dashboard. Another usage of navigation events is generating **heatmpas**.
 
@@ -76,7 +76,7 @@ Smartlook.trackNavigationEvent("LOGIN_SCREEN", ViewState.START)
 Smartlook.trackNavigationEvent({name: "LOGIN_SCREEN", viewState: Smartlook.ViewState.START})
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 smartlook.trackNavigationEvent(new SmartlookNavigationEvent("LOGIN_SCREEN", SmartlookViewState.START));
       `,
@@ -98,5 +98,5 @@ XAMARIN - C#
 where the type value is either of `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
 
 <TextBlock>{`
-More details about the navigation events, consult <Link to="/api_reference#navigation-even">the API reference</Link>.
+More details about the navigation events, consult <Link to="/docs/sdk/api-reference#navigation-even">the API reference</Link>.
 `}</TextBlock>

@@ -3,11 +3,26 @@ module.exports = {
 	base: '/nextgen-docs',
 	menu: [
 		{
+			name: 'Web',
+			menu: [
+				'Getting started',
+				'Identify visitor',
+				'GDPR',
+				'Sensitive data protection',
+				'Custom events',
+				'Custom event properties',
+				'Custom click properties',
+				'Custom navigation event',
+				'Recording API',
+				'Error logging',
+			],
+		},
+		{
 			name: 'SDK Installation',
 			menu: ['Android', 'iOS'],
 		},
 		{
-			name: 'Conceptual',
+			name: 'SDK Conceptual',
 			menu: [
 				'SDK Installation',
 				'Setup & Start Recording',
@@ -26,7 +41,8 @@ module.exports = {
 			name: 'REST API',
 			menu: ['Introduction', 'API Reference'],
 		},
-		'Cookbooks',
+		'SDK Cookbooks',
+		'SDK Integrations',
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',

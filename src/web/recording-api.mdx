@@ -1,0 +1,85 @@
+---
+name: "Recording API"
+route: /docs/web/recording-api
+menu: Web
+---
+
+import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
+
+<Title>Recording API</Title>
+<Subtitle>Get information such as URL, pause & resume recording, ...</Subtitle>
+
+## Variables
+
+ We prepared for you some variables with specific indentificators. The most useful one will be recording URL as it gives you a link to see and play given recording.
+
+| VARIABLE  | DESCRIPTION   | EXAMPLE                                                                                      |
+|-----------|---------------|----------------------------------------------------------------------------------------------|
+| playUrl   | Recording URL | https://app.smartlook.com/98ba963q415cccc12d7b9632/recordings/player/77EWaC_oP9Q/PS45qdBVkhn |
+| sessionId | Session ID    | a12bCDEfg                                                                                    |
+| visitorId | Visitor ID    | AbcDeFGhi                                                                                    |
+| recordId  | Recording ID  | A1B2c345dE                                                                                   |
+| key       | Project key   | a123bcd4e56ab123b3456789b12ab1234abcde1a                                                     |
+
+## Access variables
+
+This example shows a code how it can look in a console.
+
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
+<script>
+  smartlook(
+    function () {
+      console.log(smartlook.playUrl);
+      console.log(smartlook.visitorId);
+    }
+  );
+</script>
+`,
+  }}
+/>
+
+Now let's say you want to save a recording URL (`playUrl`) in your own service.
+
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
+<script>
+  smartlook(
+    function () {
+      MyServiceToLogUrl.sendToApi(smartlook.playUrl);
+    }
+  );
+</script>
+`,
+  }}
+/>
+
+## Pause & resume
+
+Use `pause` and `resume` methods to control recording.
+
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
+<script>
+  smartlook('pause');
+</script>
+`,
+  }}
+/>
+
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
+<script>
+  smartlook('resume');
+</script>
+`,
+  }}
+/>
