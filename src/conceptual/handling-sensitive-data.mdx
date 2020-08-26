@@ -11,7 +11,7 @@ import rendering_modes from 'assets/rendering_modes.png'
 
 <TextBlock kind='title'>Handling Sensitive Data</TextBlock>
 
-The goal of analytic is to understand the user journey in the application and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes. 
+The goal of analytic is to understand the user journey in the application and their interaction with it to improve the user experience. To gather the necessary data, Smartlook follows user actions and records what users see on the screen. This indeed represents a challenge for protecting user privacy - out of decency, the law requirements, and also because the data itself is rarely needed for analytical purposes.
 
 What analytics uses is the metadata.
 
@@ -32,20 +32,20 @@ Most UI elements are whitelisted by default. Some types of UI elements (text edi
 There are three levels of granularity established for handling the sensitive data recording:
 - individual UI elements recording
 - UI element types recording
-- the whole screen recording 
+- the whole screen recording
 
 <TextBlock kind="important">{`
 In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The application author must take active steps to whitelist these elements in order to record their content.
 `}</TextBlock>
 
 ## Handling Sensitivity of Individual UI Elements
- 
+
 <TextBlock invisibleOn="cordova,ionic,unity,cocos,flutter">{`
-In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g., 
+In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to black list it, e.g.,
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova,ionic">{`
-In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one, 
+In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one,
 `}</TextBlock>
 
 <TextBlock visibleOn="unity,cocos,flutter">{`
@@ -76,8 +76,8 @@ self.portraitImageView.slSensitive = YES;
     },
     react: {
       js: `
-ref={ (ref) => { 
-    Smartlook.registerBlacklistedView(ref); 
+ref={ (ref) => {
+    Smartlook.registerBlacklistedView(ref);
   }
 }
 `,
@@ -92,7 +92,7 @@ UNREAL - C#
 CORDOVA - javascript
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 IONIC - typescript
       `,
@@ -122,7 +122,7 @@ When, on the other hand, an otherwise blacklisted view (in our example a web vie
 <TextBlock visibleOn="cordova,ionic">{`
 When, on the other hand, an otherwise blacklisted \`html\` element (in our example a text input) should be recorded, follow this example code:
 `}</TextBlock>
- 
+
 <CodeBlock kind="example"
     snippets={{
       android: {
@@ -147,8 +147,8 @@ self.self.introWebView.slSensitive = NO;
     },
     react: {
       js: `
-ref={ (ref) => { 
-    Smartlook.unregisterBlacklistedView(ref); 
+ref={ (ref) => {
+    Smartlook.unregisterBlacklistedView(ref);
   }
 }
 `,
@@ -163,7 +163,7 @@ UNREAL - C#
 CORDOVA - javascript
     `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 IONIC - typescript
       `,
@@ -192,13 +192,13 @@ Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode I
 `}</TextBlock>
 
 <TextBlock>{`
-More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+More on the topic in <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Sensitivity of Classes
 
 <TextBlock kind="important">{`
-This functionality is available only on some platforms. Please consult the <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link> if it is available for a particular development toolchain.
+This functionality is available only on some platforms. Please consult the <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link> if it is available for a particular development toolchain.
 `}</TextBlock>
 
 In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an application that heavily uses web views for presenting some insensitive content, or if the application defines its own subclasses of visual components that present sensitive user data.
@@ -206,7 +206,7 @@ In some use cases, whitelisting or blacklisting individual views is not practica
 To cover this use-case, Smartlook offers **on some platforms** a convenient way to blacklist or whitelist all descendants of some class or visual elements that conform to a protocol.
 
 <TextBlock kind="note" visibleOn="ios">{`
-On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/api_reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Content Presented in WebViews
@@ -214,7 +214,7 @@ On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIV
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
 <TextBlock>
-In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/api_reference#sensitive-data-hiding">API reference</Link>. 
+In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/api_reference#sensitive-data-hiding">API reference</Link>.
 </TextBlock>
 
 ### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
@@ -227,7 +227,7 @@ When a wireframe mode is on, Smartlook draws a sketch of the screens instead of 
 
 ### Setting Rendering Mode
 
-The default rendering mode for an application is set in [the dashboard](https://application.smartlook.com/settings/projects). 
+The default rendering mode for an application is set in [the dashboard](https://application.smartlook.com/settings/projects).
 
 When debugging or experimenting to find the most suitable one for a particular application, the default rendering mode can be also set within the setup options. In production releases, this option should not be used.
 
@@ -258,5 +258,5 @@ Event tracking mode cannot be set on per-UI-element basis, only for the whole ap
 `}</TextBlock>
 
 <TextBlock>{`
-More about rendering modes could be found <Link to="/api_reference#event-tracking-modes">in the API reference.</Link> 
+More about rendering modes could be found <Link to="/api_reference#event-tracking-modes">in the API reference.</Link>
 `}</TextBlock>
