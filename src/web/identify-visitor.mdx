@@ -19,11 +19,16 @@ import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
 
 Below is the simplest usage of the `identify` method. The example assumes there is a `user_id` variable identifying your visitor. The JavaScript code you need to insert in your is simply,
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('identify', user_id);
 </script>
-```
+`,
+  }}
+/>
 
 **`user_id`** is a unique number or string used to identify your user.
 
@@ -36,19 +41,29 @@ The next example assumes you are using a template used for rendering the final H
 
 Here is an example in **PHP**.
 
-```php
+<Code
+  kind="example"
+  snippets={{
+    php: `
 echo "<script>";
 echo "smartlook('identify', '{$user->id}');";
 echo "</script>";
-```
+`,
+  }}
+/>
 
 That will generate the following JavaScript code on the page:
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('identify', '123');
 </script>
-```
+`,
+  }}
+/>
 
 ## More visitor details
 
@@ -58,7 +73,10 @@ The third parameter of the `identify` method is optional. It is expected to be a
 
 Feel free to modify the code and expand it to your needs as you can see in the example below.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('identify', uid, {
     "name": "John Doe",
@@ -68,17 +86,24 @@ Feel free to modify the code and expand it to your needs as you can see in the e
     "price": 150
   });
 </script>
-```
+`,
+  }}
+/>
 
 ## Anonymize user
 
 You can anonymize the previously identified user by calling
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('anonymize');
 </script>
-```
+`,
+  }}
+/>
 
 A new visitor with a new session will be created.
 This method is useful to call when multiple people are using the same browser (typically after logout).

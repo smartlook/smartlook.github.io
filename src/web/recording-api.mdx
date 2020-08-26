@@ -25,7 +25,10 @@ import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
 
 This example shows a code how it can look in a console.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook(
     function () {
@@ -34,11 +37,16 @@ This example shows a code how it can look in a console.
     }
   );
 </script>
-```
+`,
+  }}
+/>
 
 Now let's say you want to save a recording URL (`playUrl`) in your own service.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook(
     function () {
@@ -46,20 +54,32 @@ Now let's say you want to save a recording URL (`playUrl`) in your own service.
     }
   );
 </script>
-```
+`,
+  }}
+/>
 
 ## Pause & resume
 
 Use `pause` and `resume` methods to control recording.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('pause');
 </script>
-```
+`,
+  }}
+/>
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('resume');
 </script>
-```
+`,
+  }}
+/>

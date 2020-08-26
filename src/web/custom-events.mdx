@@ -15,11 +15,16 @@ import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
 
 Code you need to insert in your site has a following format in **JavaScript**.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('track', eventName, properties);
 </script>
-```
+`,
+  }}
+/>
 
 <TextBlock kind="important">
 {`
@@ -32,7 +37,10 @@ It is not recommended to call the API right before page unload or page navigatio
 
 You can configure an event that will fire when your user sees certain pop-up windows such as promotion alerts or upsell windows. Watch recordings to understand how your users are interacting with those pop-ups and get helpful insights to better engage your users.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   // full example with your defined variables
   var eventName = 'UserOpenUpsellWindow';
@@ -41,14 +49,21 @@ You can configure an event that will fire when your user sees certain pop-up win
   };
   smartlook('track', eventName, properties);
 </script>
-```
+`,
+  }}
+/>
 
 Parameter `properties` is a variable. In case you need to display only a specific information about your user there is no need to use any other parameters in your custom event.
 
 Have a look at this example where user reached app preset limit.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('track', 'UserLimitReached');
 </script>
-```
+`,
+  }}
+/>

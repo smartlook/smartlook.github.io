@@ -11,11 +11,16 @@ import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
 
 You can add properties to every event that is being tracked using the `properties` call as shown below:
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('properties', { 'package': 'free', 'environment': 'production' });
 </script>
-```
+`,
+  }}
+/>
 
 Properties `package` and `environment` will be added to every event that is being tracked (urls, clicks, ...) including the custom events.
 

@@ -12,7 +12,10 @@ import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 
 Copy the tracking code from your project settings and include it on your web. The code should be similar to this:
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script type='text/javascript'>
   window.smartlook||(function(d) {
     var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
@@ -21,7 +24,9 @@ Copy the tracking code from your project settings and include it on your web. Th
     })(document);
     smartlook('init', 'YOUR_PROJECT_KEY');
 </script>
-```
+`,
+  }}
+/>
 
 Check the `GDPR compliant by design` section and adjust the settings if needed. If you plan to identify visitors from EU you have to sign our DPA, read more on that in the GDPR section.
 

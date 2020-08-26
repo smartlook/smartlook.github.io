@@ -27,7 +27,10 @@ At Smartlook we use a pop-up window to ask for user consent. You should implemen
 
 Verify if a visitor gave their consent or not:
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook(function() {
     console.log(smartlook.consent.api)
@@ -35,7 +38,9 @@ Verify if a visitor gave their consent or not:
     console.log(smartlook.consent.ip)
   });
 </script>
-```
+`,
+  }}
+/>
 
 There are 3 possible values that you can see in the console:
 
@@ -47,59 +52,73 @@ There are 3 possible values that you can see in the console:
 
 User consented to have their form inputs recorded.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   // in this variable inser your consent
-  var consentText = 'Here goes consent text from your website.';
-
+  var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
-  var clientDecision = false; // if user refused to provide consent
-
+  var clientDecision = false; // if user refused to provide consent\n
   smartlook('consentForms', clientDecision ? consentText : false);
 </script>
-```
+`,
+  }}
+/>
 
 ## IP address
 
 User consented to have their IP address recorded.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   // in this variable inser your consent
-  var consentText = 'Here goes consent text from your website.';
-
+  var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
-  var clientDecision = false; // if user refused to provide consent
-
+  var clientDecision = false; // if user refused to provide consent\n
   smartlook('consentIP', clientDecision ? consentText : false);
 </script>
-```
+`,
+  }}
+/>
 
 ## Identify user via API
 
 User consented to being identified via the API.
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   // in this variable inser your consent
-  var consentText = 'Here goes consent text from your website.';
-
+  var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
-  var clientDecision = false; // if user refused to provide consent
-
+  var clientDecision = false; // if user refused to provide consent\n
   smartlook('consentAPI', clientDecision ? consentText : false);
 </script>
-```
+`,
+  }}
+/>
 
 ## GDPR safe data
 
 You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
 
-```html
+<Code
+  kind="example"
+  snippets={{
+    html: `
 <p data-recording-gdpr-safe>
   Tesla Model X price is $80,700.
 </p>
-```
+`,
+  }}
+/>

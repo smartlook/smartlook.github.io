@@ -24,14 +24,26 @@ When a CORS error occurs in Smartlook’s Javascript console you’ll see a mess
 To fix the CORS error you have to:
 
 1) Add a `crossorigin="anonymous"` script attribute
-```
+
+<Code
+  kind="example"
+  snippets={{
+    html: `
 <script src="http://different-domain.com/script.js" crossorigin="anonymous"></script>
-```
+`,
+  }}
+/>
 
 2) Add a Cross Origin HTTP header
-```
+
+<Code
+  kind="example"
+  snippets={{
+    html: `
 Access-Control-Allow-Origin: *
-```
+`,
+  }}
+/>
 
 You can use Smartlook’s Custom Errors API (see below) if you cant fix the CORS errors.
 
@@ -43,35 +55,48 @@ You can then use these logs in Smartlook analytics and session replay to visuali
 
 Custom Errors API is used as follows:
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   smartlook('error', errorArg);
 </script>
-```
+`,
+  }}
+/>
 
 Where `errorArg` could be either an instance of Error object or simple string message.
 
 
 ## Example usage
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
   try {
     // ...custom code
   } catch (e) {
-    // ...custom code that handles the error
-
+    // ...custom code that handles the error\n
     // log error using Smartlook API
     smartlook('error', e);
   }
 </script>
-```
+`,
+  }}
+/>
 
-```js
+<Code
+  kind="example"
+  snippets={{
+    javascript: `
 <script>
-  // ...custom code
-
+  // ...custom code\n
   // log some unexpected behaviour using Smartlook API
   smartlook('error', 'calendar showing bad week');
 </script>
-```
+`,
+  }}
+/>
