@@ -1,7 +1,7 @@
 ---
 name: What is recorded and how
 menu: SDK Conceptual
-route: /conceptual/what-and-how-is-recorded
+route: /docs/sdk/conceptual/what-and-how-is-recorded
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -11,9 +11,9 @@ import { usePlatforms } from 'hooks'
 
 *This section describes what different kinds of data Smartlook SDK records and how the level of recorded data details can be controlled.*
 
-Smartlook records two interconnected types of data: 
+Smartlook records two interconnected types of data:
 - a video of the application UI as the user sees it
-- metadata about the user interaction with the application. 
+- metadata about the user interaction with the application.
 
 These two information sets are then used for two main purposes
 - to replay the user sessions in the form of a screen recording video with visual indication of user interaction
@@ -26,8 +26,8 @@ Smartlook defaults offer a balanced setting and a robust protection of user priv
 # Screen Recording
 
 <TextBlock>{`
-Screen recording quality is primarily a technologic decision, with an obvious trade-off. The crisper and smoother the video, the higher the Smartlook footprint in terms of CPU, battery and memory usage, and the more data is generated and transported over the network. Further details are provided in <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>.
- 
+Screen recording quality is primarily a technologic decision, with an obvious trade-off. The crisper and smoother the video, the higher the Smartlook footprint in terms of CPU, battery and memory usage, and the more data is generated and transported over the network. Further details are provided in <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>.
+\n
 The level of recorded visual details is given by the rendering mode. The default mode is **native**, when Smartlook takes screenshots of the device screen, removes sensitive data from it and then composes video out of it. Alternative rendering modes construct the video recording by sketching the UI structure in one of several **wireframe** styles, as described in <Link to="api_reference#rendering">Rendering Modes documentation</Link>.
 `}</TextBlock>
 
@@ -36,6 +36,6 @@ The level of recorded visual details is given by the rendering mode. The default
 Smartlook tracks two interconnected types of events. User interaction events, i.e., finger touches, gestures and such, and analytics events, by which Smartlook understands button clicks, navigation between screens and similar events that initialize an action in the application.
 
 <TextBlock>{`
-The default setting is to track all these events (with exception of events on the keyboard, for obvious user privacy reasons). If this is not desired, it is possible to limit the kind of tracked events using event tracking modes as described in <Link to="/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link>.
+The default setting is to track all these events (with exception of events on the keyboard, for obvious user privacy reasons). If this is not desired, it is possible to limit the kind of tracked events using event tracking modes as described in <Link to="/docs/sdk/conceptual/handling-sensitive-data#handling-sensitive-events">Handling Sensitive Events</Link>.
 `}</TextBlock>
 

@@ -1,7 +1,7 @@
 ---
 name: When The Recordings Appear in Dashboard?
 menu: SDK Conceptual
-route: /conceptual/when-the-recordings-appear-in-dashboard
+route: /docs/sdk/conceptual/when-the-recordings-appear-in-dashboard
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -21,11 +21,11 @@ Smartlook uses various techniques to acquire analytics data from the application
 
 In the dashboard, currently active sessions are listed in the **Active sessions** tab. If the device is online, the session appears there immediatelly after the application starts. I then can take several minutes before the data related to the session are uploded, processed and available for repleay. Also, when the application is closed on the device, the active session lives for few more minutes before the data is processed. We also wait for a short period of time to be sure the application is really suspended for good, that it was not just a short interruption of the application by an incomming call or notification. In such a case of just short interruption, Smartlook continues with recording into the active session once the application is active again.
 
-Once the session is wrapped up, it moves to the **All visitors** tab. 
+Once the session is wrapped up, it moves to the **All visitors** tab.
 
 # Data Uploading
 
-The frequency in which the data is gathered and sent depends on several factors. 
+The frequency in which the data is gathered and sent depends on several factors.
 
 Events data are recorded almost synchronously as they happen. Then they are sent in batches every few minutes to the server.
 
@@ -33,7 +33,7 @@ Video frames are gathered with the maximal frequency as configured. However, if 
 
 
 <TextBlock>{`
-More about <Link to="/conceptual/screen-recording.quality/">Screen Recording Quality</Link>.
+More about <Link to="/docs/sdk/conceptual/screen-recording.quality/">Screen Recording Quality</Link>.
 `}</TextBlock>
 
 # Offline recording
@@ -42,7 +42,7 @@ When the device has no or not suitable network connection, the recorded data is 
 
 ## Cache Size
 
-The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage. 
+The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage.
 
 Currently, the overal size of data in Smartlook cache are limited to **200 MB** or maximal **20% of the free storage space** if it is less than 200 MB, and all data **older 30 days** are deleted regardless the cache size.
 

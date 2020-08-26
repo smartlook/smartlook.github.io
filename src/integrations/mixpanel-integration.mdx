@@ -1,7 +1,7 @@
 ---
 name: Mixpanel
 menu: SDK Integrations
-route: /integrations/mixpanel
+route: /docs/sdk/integrations/mixpanel
 ---
 
 import { CodeBlock, TextBlock, Title } from "components";
@@ -92,36 +92,36 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     cordova: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     mixpanel.track(
     "Smartlook session URL",
     {"session_url": dashboardSessionUrl});
 );
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     mixpanel.people.set({ "smartlook_visitor_url": dashboardVisitorUrl });\n
     // identify must be called along with every instance of people.set
     mixpanel.identify("sample_identifier");
   }
 });
       `,
-    }, 
+    },
     ionic: {
       typescript: `
 smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
-  function (dashboardSessionUrl) { 
+  function (dashboardSessionUrl) {
     mixpanel.track(
     "Smartlook session URL",
     {"session_url": dashboardSessionUrl})
   },
-  function (dashboardVisitorUrl) { 
+  function (dashboardVisitorUrl) {
     mixpanel.people.set({ "smartlook_visitor_url": dashboardVisitorUrl })\n
     // identify must be called along with every instance of people.set
     mixpanel.identify("sample_identifier")
   }
 ));
       `,
-    }, 
+    },
     ios: {
       swift: `
 NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in

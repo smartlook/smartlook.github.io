@@ -1,7 +1,7 @@
 ---
 name: Setup & Start Recording
 menu: SDK Conceptual
-route: /conceptual/setup-and-start-recording
+route: /docs/sdk/conceptual/setup-and-start-recording
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -45,25 +45,23 @@ class MyCustomApplication : Application() {
     ios: {
       swift: `
 include Smartlook
- 
+\n
 ...
- 
+\n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
- 
    Smartlook.setup(key: "THE_API_KEY")
    Smartlook.startRecording()
 }
       `,
       'objective-c': `
 #include Smartlook
- 
+\n
 ...
- 
+\n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
- 
    Smartlook.setup(key: "THE_API_KEY")
    Smartlook.startRecording()
-}      
+}
       `,
     },
     react: {
@@ -128,7 +126,7 @@ function onDeviceReady() {
     Smartlook.setupAndStartRecording({smartlookAPIKey: "THE_API_KEY"});
 }    `,
     },
-    ionic: { 
+    ionic: {
       typescrit: `
 this.platform.ready().then(() => {
     this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("THE_API_KEY"));
@@ -160,17 +158,17 @@ XAMARIN - C#
 This is basically all that is needed to record the sessions. All other events in the application life cycle are handled by Smartlook automatically.
 
 <TextBlock kind="important">{`
-  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. For the recordings being available immediately, the device must be on WiFi, or mobile uploads must be enabled in [the project dashboard](https://application.smartlook.com/settings/projects). The recording is not streamed, it is uploaded in chunks and then processed on the server. In depth description when the recordings will be availabe in the project dashboard provides <Link to="/conceptual/when-i-will-see-the-recordings-in-dashboard">this document</Link>.
+  It may take several minutes before the recordings appear in the Dashboard. In the default setup, recordings are not uploaded when the device is on a mobile network. For the recordings being available immediately, the device must be on WiFi, or mobile uploads must be enabled in [the project dashboard](https://application.smartlook.com/settings/projects). The recording is not streamed, it is uploaded in chunks and then processed on the server. In depth description when the recordings will be availabe in the project dashboard provides <Link to="/docs/sdk/conceptual/when-i-will-see-the-recordings-in-dashboard">this document</Link>.
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
-  When debugging an application with Smartlook, a Main Thread Checker warning which might be accompanied by a short application freeze during the application start is encountered. The freeze does not happen in production builds. Details of how to solve this situation provides this <Link to="/cookbooks/ios-main-thread-check-warning">technical note</Link>.
+  When debugging an application with Smartlook, a Main Thread Checker warning which might be accompanied by a short application freeze during the application start is encountered. The freeze does not happen in production builds. Details of how to solve this situation provides this <Link to="/docs/sdk/cookbooks/ios-main-thread-check-warning">technical note</Link>.
 `}</TextBlock>
 
 ## Setup Options
 
 Smartlook recording can be customized by several parameters. Some of the recording customization options can be set by dedicated methods, some others can be also set as startup options.
- 
+
 <TextBlock kind="important">{`
-Not all options are available on all platforms. For a comprehensive list of all the setup options and related details, consult our <Link to="/api_reference/#setup-configuration">API reference</Link>.
+Not all options are available on all platforms. For a comprehensive list of all the setup options and related details, consult our <Link to="/docs/sdk/api-reference/#setup-configuration">API reference</Link>.
 `}</TextBlock>

@@ -1,7 +1,7 @@
 ---
 name: Amplitude
 menu: SDK Integrations
-route: /integrations/amplitude
+route: /docs/sdk/integrations/amplitude
 ---
 
 import { CodeBlock, TextBlock, Title } from "components";
@@ -100,33 +100,33 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
     cordova: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     amplitudeClient.logEvent(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl});
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     var identify = new amplitude.Identify().set("smartlook_visitor_url", dashboardVisitorUrl);
     amplitude.identify(identify);
   }
 });
       `,
-    }, 
+    },
     ionic: {
       typescript: `
 smartlook.registerIntegrationListener(new SmartlookIntegrationListener(
-  function (dashboardSessionUrl) { 
+  function (dashboardSessionUrl) {
     amplitudeClient.logEvent(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl})
   },
-  function (dashboardVisitorUrl) { 
+  function (dashboardVisitorUrl) {
     var identify = new amplitude.Identify().set("smartlook_visitor_url", dashboardVisitorUrl)
     amplitude.identify(identify)
   }
 ));
       `,
-    }, 
+    },
     ios: {
       swift: `
 NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
@@ -203,13 +203,13 @@ SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
   react: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     amplitude.logEvent(
         "Smartlook session URL",
         {"session_url": dashboardSessionUrl});
 );
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     var identify = new amplitude.Identify().set("smartlook_visitor_url", dashboardVisitorUrl);
     amplitude.identify(identify);
   }
