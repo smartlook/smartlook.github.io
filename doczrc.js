@@ -22,7 +22,7 @@ module.exports = {
 			menu: ['Android', 'iOS'],
 		},
 		{
-			name: 'Conceptual',
+			name: 'SDK Conceptual',
 			menu: [
 				'SDK Installation',
 				'Setup & Start Recording',
@@ -36,9 +36,9 @@ module.exports = {
 				'Integrating with Other Tools',
 			],
 		},
-		'API reference',
-		'Cookbooks',
-		'Integrations',
+		'SDK API reference',
+		'SDK Cookbooks',
+		'SDK Integrations',
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',
