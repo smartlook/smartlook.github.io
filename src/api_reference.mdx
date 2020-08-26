@@ -865,7 +865,7 @@ Or can be tagged directly by an \`UIView\` property added by Smartlook:
   kind="example"
   snippets={{
     android: {
-      java: `
+      xml: `
 <View>
     <tag android:id="@id/smartlook_blacklisted_view"/>
 </View>
@@ -1114,7 +1114,7 @@ Or it can be tagged directly by an \`UIView\` property added by Smartlook:
   kind="example"
   snippets={{
     android: {
-      java: `
+      xml: `
 <View>
   <tag android:id="@id/smartlook_whitelisted_view"/>
 </View>
@@ -1392,7 +1392,7 @@ If \`WebView\` is being recorded **all sensitive elements** on the displayed web
   kind="example"
   snippets={{
     android: {
-      java: `
+      html: `
 <div class='smartlook-hide'>
    This will be hidden.
 </div>
@@ -2313,7 +2313,7 @@ So a detected click on a given view has a custom event name instead of id it can
   kind="example"
   snippets={{
     android: {
-      java: `
+      xml: `
 <View>
     <tag android:id="@id/smartlook_custom_name" android:value="custom_name"/>
 </View>
@@ -2364,7 +2364,7 @@ Or \`Activity\`/\`Fragment\` root view can be tagged directly in \`XML\` layout 
   kind="example"
   snippets={{
     android: {
-      java: `
+      xml: `
 <?xml version="1.0" encoding="utf-8"?>
 <View>
 	<tag android:id="@id/smartlook_custom_controller_name" android:value="custom_name"/>\n
