@@ -1,7 +1,7 @@
 ---
 name: Handling Sensitive Data
-menu: Conceptual
-route: /conceptual/handling-sensitive-data
+menu: SDK Conceptual
+route: /docs/sdk/conceptual/handling-sensitive-data
 ---
 
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
@@ -192,13 +192,13 @@ Note also, that the \`slSensitive\` property of \`UIView\` can be set in Xcode I
 `}</TextBlock>
 
 <TextBlock>{`
-More on the topic in <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link>.
+More on the topic in <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Sensitivity of Classes
 
 <TextBlock kind="important">{`
-This functionality is available only on some platforms. Please consult the <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link> if it is available for a particular development toolchain.
+This functionality is available only on some platforms. Please consult the <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link> if it is available for a particular development toolchain.
 `}</TextBlock>
 
 In some use cases, whitelisting or blacklisting individual views is not practical, e.g., in an application that heavily uses web views for presenting some insensitive content, or if the application defines its own subclasses of visual components that present sensitive user data.
@@ -206,7 +206,7 @@ In some use cases, whitelisting or blacklisting individual views is not practica
 To cover this use-case, Smartlook offers **on some platforms** a convenient way to blacklist or whitelist all descendants of some class or visual elements that conform to a protocol.
 
 <TextBlock kind="note" visibleOn="ios">{`
-On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/api_reference#sensitive-data-hiding" platform="ios">API reference</Link>.
+On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Content Presented in WebViews
@@ -214,7 +214,7 @@ On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIV
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
 <TextBlock>
-In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/api_reference#sensitive-data-hiding">API reference</Link>.
+In order to change the default behaviour, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/docs/sdk/api-reference#sensitive-data-hiding">API reference</Link>.
 </TextBlock>
 
 ### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
@@ -234,7 +234,7 @@ When debugging or experimenting to find the most suitable one for a particular a
 The application can change the rendering mode at any time, e.g., to temporarily hide the sensitive user content on some screens. It is also possible to obtain the currently used values.
 
 <TextBlock>{`
-More about rendering modes could be found <Link to="/api_reference#rendering">in the API reference.</Link>
+More about rendering modes could be found <Link to="/docs/sdk/api-reference#rendering">in the API reference.</Link>
 `}</TextBlock>
 
 # Handling Sensitive Events
@@ -258,5 +258,5 @@ Event tracking mode cannot be set on per-UI-element basis, only for the whole ap
 `}</TextBlock>
 
 <TextBlock>{`
-More about rendering modes could be found <Link to="/api_reference#event-tracking-modes">in the API reference.</Link>
+More about rendering modes could be found <Link to="/docs/sdk/api-reference#event-tracking-modes">in the API reference.</Link>
 `}</TextBlock>

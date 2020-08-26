@@ -1,7 +1,7 @@
 ---
 name: Firebase Crashlytics
-menu: Integrations
-route: /integrations/firebase_crashlytics
+menu: SDK Integrations
+route: /docs/sdk/integrations/firebase-crashlytics
 ---
 
 import { CodeBlock, TextBlock, Title } from "components";
@@ -35,12 +35,12 @@ Smartlook.enableCrashlytics(true)
       javascript: `
 Not available on this platform.
       `,
-    }, 
+    },
     ionic: {
       typescript: `
 Not available on this platform.
       `,
-    }, 
+    },
     ios: {
       swift: `
 Smartlook.setup(key:"THE_API_KEY", options:[.enableCrashytics: true])
@@ -134,12 +134,12 @@ Smartlook.registerIntegrationListener(object : IntegrationListener {
       javascript: `
 Not available on this platform.
       `,
-    }, 
+    },
     ionic: {
       typescript: `
 Not available on this platform.
       `,
-    }, 
+    },
     ios: {
       swift: `
 NotificationCenter.default.addObserver(forName: Smartlook.dashboardSessionURLChanged, object: nil, queue: nil) { (note) in
@@ -202,13 +202,13 @@ SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
   react: {
       javascript: `
 Smartlook.registerIntegrationListener({
-  onSessionReady: function (dashboardSessionUrl) { 
+  onSessionReady: function (dashboardSessionUrl) {
     await Promise.all([
       crashlytics().setAttribute('dashboardSessionUrl', dashboardSessionUrl)
     ]);
 );
   },
-  onVisitorReady: function (dashboardVisitorUrl) { 
+  onVisitorReady: function (dashboardVisitorUrl) {
     await Promise.all([
       crashlytics().setAttribute('dashboardVisitorUrl', dashboardVisitorUrl)
     ]);
