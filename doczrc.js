@@ -37,12 +37,12 @@ module.exports = {
 			],
 		},
 		'SDK API reference',
-		{
-			name: 'REST API',
-			menu: ['Introduction', 'API Reference'],
-		},
 		'SDK Cookbooks',
 		'SDK Integrations',
+		{
+			name: 'REST API',
+			menu: ['Overview', 'API Reference'],
+		},
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',
