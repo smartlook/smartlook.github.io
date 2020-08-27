@@ -1,0 +1,125 @@
+---
+name: Overview
+menu: REST API
+route: /docs/rest-api/overview
+---
+
+import { Title, Code, TextBlock } from "components"
+
+<Title>Getting started</Title>
+
+Smartlook provides a set of useful methods to programmatically retrieve information about various resources. You can use the API to further analyze data of your visitors
+and do a deeper exploration of values collected by Smartlook.
+
+# Resources
+This API provides access to a number of resources available in the Smartlook. Currently provided ones are the following:
+
+- Visitors
+- Events
+- Funnels
+
+# Using the API
+Requests to the API are performed using the HTTP protocol to the host `https://public-api.smartlook.com`.
+To access your project data, you have to [get an API token](#create-the-api-token) that will be sent together with your request to authenticate it.
+Your request to the API then must contain an authorization header as follows:
+
+```
+Authorization: Bearer <token>
+```
+
+For example, to list the events of your project, you perform the following call:
+
+<Code
+  kind="example"
+  snippets={{
+    bash: `
+curl -X GET \\
+  https://public-api.smartlook.com/api/events \\
+  -H 'authorization: Bearer <token>' \\
+  -H 'cache-control: no-cache'
+`,
+  }}
+/>
+
+The complete list of available endpoints is listed in the [API reference](/docs/rest-api/reference).
+Each endpoint is prefixed by a version number (eg. `/api/v1/events`), however, it is not mandatory to specify the version. For the calls without version being specified (eg. `/api/events`) the latest is used.
+
+## Traversing paged results
+When making an API requests to a resource, that returns multiple objects, the result will be split into multiple pages.
+All the paginated responses are using cursor-based pagination and therefore calls to pages are stable.
+The response of paginated results has a `pagination` property, that contains two values - `before` and `after`.
+These values point to the beginning and the end of the returned page respectively.
+
+<TextBlock kind="important">{`
+**Don't store cursors.** Cursors are only temporal values as they quickly may become invalid.
+`}</TextBlock>
+
+To get the link to the next page add `after` cursor to the query (`?after=<after>`) (for the previous page use the `before` the cursor).
+There can be only one cursor in the query.
+Links to both previous and next page can be found in the `_links` section of the response.
+To get consistent results we recommend using `_links` for navigation between pages.
+<!-- This section may contain more useful links and it is described [here](#links-to-related-resources). -->
+
+To change the number of results returned in response you may pass the `limit` parameter in the query.
+This value will be then propagated to the `_links` in further responses or it will be set to a default value.
+
+The response may then looks as follows:
+
+<Code
+  kind="example"
+  snippets={{
+    json: `
+{
+    ...data,
+    "pagination": {
+        "before": "MTaxX34=",
+        "after": "HellOW0rLD",
+    }
+    "_links": {
+        "nextPage": "/api/events?after=HellOW0rLD&limit=10",
+        "previousPage": "/api/events?before=MTaxX34=&limit=10"
+    }
+}
+`,
+  }}
+/>
+
+<!-- ## Links to related resources
+
+## Handling errors -->
+
+
+# Managing the API tokens
+The Smartlook REST API uses tokens for authentication. You will need one if you are about to access the Smartlook REST API or you are integrating some of the third party applications with Smartlook.
+
+You can manage your tokens in the settings of your project. To obtain a token, navigate in the Smartlook to your **Account settings**, and there select a project you want to access through the REST API.
+On the right side, there is a section **REST API** where you can see the list of active tokens in your project. Next to each token, there is a time since the token was last used. Keep in mind, that when the token is inactive for more than 90 days, it will automatically become invalid.
+
+<TextBlock kind="note">{`
+The tokens can be managed only by the owner of the project. If you want to access the REST API of projects you were invited in, please contact the owner to give you the token.
+`}</TextBlock>
+
+
+## Create the API token
+In the bottom part of the **REST API** section lives a button **Create token**. After clicking the button you will be prompted to enter the token description.
+The description comes in handy when you have multiple tokens in the project and there it should explain the purpose of the token.
+After clicking the **Create** button, you will see the token. Now you can copy it to the clipboard and close the dialog.
+When you close the dialog with the token, you won't be for the security reasons able to see the token again. So be sure that you have stored your token correctly.
+
+<TextBlock kind="important">{`
+**Be careful!** Anyone with the token can access the data of your project. Please store the token securely and don't allow unauthorized entities to access it.
+In case you might want to delete the token, you can do so in [the tokens list](#managing-the-api-tokens).
+`}</TextBlock>
+
+The token is created in the scope of a single project and therefore to be able to access multiple of your projects, you have to create a token for each of them separately.
+To help you manage the access to your projects in a more granular manner, you may create multiple tokens per a single project where each is for a different purpose.
+
+# Rate limits
+There are thousands of developers making requests to the Smartlook REST API at every moment.
+To keep our API available to as many of you as possible, we introduced rate limits to the number of requests you can make during a time window.
+
+There is a budget for both a project and endpoints.
+Each endpoint has a price assigned and it might be higher for the endpoints that impose more stress on the system.
+
+To get information about your usage of the Smartlook REST API you can call `/api/statistics` endpoint.
+To extend limits for your projects please contact the Smartlook support.

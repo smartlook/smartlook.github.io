@@ -22,6 +22,7 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"scroll-to-element": "^2.0.3",
+		"swagger-ui-react": "^3.32.2",
 		"smoothscroll-polyfill": "^0.4.4"
 	},
 	"devDependencies": {

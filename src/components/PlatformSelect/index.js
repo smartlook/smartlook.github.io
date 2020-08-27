@@ -7,10 +7,12 @@ import { NanoPop } from 'nanopop'
 
 import { PLATFORMS } from 'config/constants'
 import { usePlatforms, useQueryString } from 'hooks'
+import { useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
 
-export const PlatformSelect = () => {
+export const PlatformSelect = (props) => {
+	const doc = useCurrentDoc()
 	const [isOpened, setIsOpened] = React.useState(false)
 
 	const reference = React.createRef()
@@ -39,16 +41,19 @@ export const PlatformSelect = () => {
 		setIsOpened(false)
 	}
 
-	const handleClickOutside = (e) => {
-		if (
-			popper.current.contains(e.target) ||
-			reference.current.contains(e.target)
-		) {
-			return
-		}
+	const handleClickOutside = React.useCallback(
+		(e) => {
+			if (
+				popper.current?.contains(e.target) ||
+				reference.current?.contains(e.target)
+			) {
+				return
+			}
 
-		setIsOpened(false)
-	}
+			setIsOpened(false)
+		},
+		[popper, reference, setIsOpened],
+	)
 
 	React.useLayoutEffect(() => {
 		if (isOpened) {
@@ -60,31 +65,38 @@ export const PlatformSelect = () => {
 		const _reference = reference.current
 		const _popper = popper.current
 
-		const nanopop = new NanoPop(_reference, _popper, {
-			margin: 4,
-			position: 'bottom-end',
-		})
+		if (_reference && _popper) {
+			const nanopop = new NanoPop(_reference, _popper, {
+				margin: 4,
+				position: 'bottom-end',
+			})
 
-		nanopop.update()
+			nanopop.update()
 
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
+			return () => {
+				document.removeEventListener('mousedown', handleClickOutside)
+			}
 		}
-	}, [isOpened])
+	}, [handleClickOutside, isOpened, popper, reference])
 
-	return (
-		<React.Fragment>
-			<div
-				sx={styles.reference}
-				ref={reference}
-				onClick={() => setIsOpened((s) => !s)}
-			>
-				{renderSelectedPlatform()}
-				<span sx={styles.selectIcon} />
-			</div>
-			<div sx={styles.popper({ isOpened })} ref={popper}>
-				{PLATFORMS.filter((platform) => platform.value !== currentPlatform).map(
-					(platform) => {
+	if (
+		(doc.showPlatformSelect ?? props.defaultIsVisible) ||
+		props.forceVisible
+	) {
+		return (
+			<React.Fragment>
+				<div
+					sx={styles.reference}
+					ref={reference}
+					onClick={() => setIsOpened((s) => !s)}
+				>
+					{renderSelectedPlatform()}
+					<span sx={styles.selectIcon} />
+				</div>
+				<div sx={styles.popper({ isOpened })} ref={popper}>
+					{PLATFORMS.filter(
+						(platform) => platform.value !== currentPlatform,
+					).map((platform) => {
 						return (
 							<div
 								sx={styles.popperItem}
@@ -95,9 +107,11 @@ export const PlatformSelect = () => {
 								<p sx={styles.popperItemText}>{platform.displayName}</p>
 							</div>
 						)
-					},
-				)}
-			</div>
-		</React.Fragment>
-	)
+					})}
+				</div>
+			</React.Fragment>
+		)
+	} else {
+		return null
+	}
 }
