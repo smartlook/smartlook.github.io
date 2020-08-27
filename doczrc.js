@@ -1,6 +1,7 @@
 module.exports = {
 	dest: '/docs',
 	base: '/',
+	description: 'Smartlook documentation',
 	menu: [
 		{
 			name: 'Web',
