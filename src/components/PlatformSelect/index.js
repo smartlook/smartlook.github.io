@@ -104,7 +104,9 @@ export const PlatformSelect = (props) => {
 								data-value={platform.value}
 								onClick={handleChange}
 							>
-								<p sx={styles.popperItemText}>{platform.displayName}</p>
+								<p sx={styles.popperItemText} data-value={platform.value}>
+									{platform.displayName}
+								</p>
 							</div>
 						)
 					})}
