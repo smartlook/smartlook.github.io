@@ -74,6 +74,7 @@ export const PlatformsGrid = () => {
 			{PLATFORMS.map((p, index) => {
 				return (
 					<div
+						key={p.name}
 						sx={styles.box}
 						onClick={() => handleNavigate(p.platform, p.link)}
 					>
