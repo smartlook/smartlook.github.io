@@ -38,6 +38,11 @@ The best place to setup the SDK is in [platform ready](https://ionicframework.co
 The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\`:
 `}</TextBlock>
 
+<TextBlock visibleOn="xamarin">{`
+The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\` on **iOS** and in \`onCreate()\` method of your \`Application\` class on Android:
+`}</TextBlock>
+
+
 <CodeBlock
 	kind="example"
   snippets={{
@@ -166,7 +171,14 @@ class AppActivity : Cocos2dxActivity() {
     }
 }
       `
-  }
+  },
+xamarin: {
+      csharp: `
+using Smartlook;
+...
+Smartlook.Analytics.SetupAndStart("API_KEY");
+      `,
+    },
   }}
 />
 
@@ -174,7 +186,7 @@ class AppActivity : Cocos2dxActivity() {
 SDK can be setup later than in Application class, typically when the Application is fetching API key, please take a look [here](/cookbooks/android_setup_outside_application_class).
 `}</TextBlock>
 
-<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react">{`
+<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin">{`
 The easiest way of setting up the SDK is with \`setupAndStartRecording()\` method:
 `}</TextBlock>
 
@@ -217,10 +229,14 @@ SmartlookUnity.Smartlook.SetupAndStartRecording(string apiKey);
 Smartlook.setupAndStartRecording(string apiKey);
     `,
     },
+xamarin: {
+      csharp: `
+static public void SetupAndStart(string key, SetupOptions options = new SetupOptions())`,
+    },
   }}
 />
 
-<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react">{`
+<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin">{`
 It will set the SDK up and also start the recording. SDK can be setup without starting the recording using:
 `}</TextBlock>
 
@@ -266,7 +282,11 @@ SmartlookUnity.Smartlook.Setup(string apiKey);
     javascript: `
 Smartlook.setup(string apiKey);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+static public void Setup(string key, SetupOptions options = new SetupOptions())`,
+    },
   }}
 />
 
@@ -323,13 +343,18 @@ SmartlookUnity.Smartlook.StartRecording();
     javascript: `
 Smartlook.startRecording();
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void StartRecording()
+      `,
+    },
   }}
 />
 
 ### Setup configuration
 
-<TextBlock visibleOn="ios,android,cordova,ionic,react,flutter,cocos">{`
+<TextBlock visibleOn="ios,android,cordova,ionic,react,flutter,cocos,xamarin">{`
 Some recording parameters can be configured on setup:
 `}</TextBlock>
 
@@ -386,6 +411,40 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
 | fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
 `}</TextBlock>
+
+<TextBlock visibleOn="xamarin">
+All setup options are optional and can be set using properties of an instance of `SetupOptions` class.
+</TextBlock>
+
+<TextBlock visibleOn="xamarin">{`
+| Parameter            | Type                   | Default value | Description                                                                                                                                 
+|----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| EnableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
+| Framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
+| UseAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| [RenderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
+| [RenderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
+| StartNewSession     | bool                   | false         | Always start new session with Smartlook setup.   |
+| StartNewSessionAndResetUser | bool                | false         | Always start new session and reset user woth Smartlook setup.  |
+`}</TextBlock>
+
+<CodeBlock
+  snippets={{
+    xamarin: {
+      csharp: `
+public struct SetupOptions
+{
+  public int? Framerate;
+  public bool? EnableCrashlytics;
+  public RenderingMode? RenderingMode;
+  public RenderingModeOption? RenderingModeOption;
+  public EventTrackingMode? EventTrackingMode;
+  public bool? StartNewSession;
+  public bool? StartNewSessionAndResetUser;
+}`,
+    },
+  }}
+/>
 
 <TextBlock kind="example" visibleOn="android">{`
 Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that provides methods for settting any of the setup parameters shown above.
@@ -605,7 +664,13 @@ SmartlookUnity.Smartlook.StopRecording();
 Smartlook.startRecording();
 Smartlook.stopRecording();
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void StartRecording()
+public static void StopRecording()
+`,
+    },
   }}
 />
 
@@ -666,7 +731,12 @@ SmartlookUnity.Smartlook.IsRecording();
     javascript: `
 Smartlook.isRecording();
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static bool IsRecording
+      `,
+    },
   }}
 />
 
@@ -692,7 +762,7 @@ smartlook.isRecording().then((isRecording) => {
   }}
 />
 
-<TextBlock visibleOn="android,cocos">{`
+<TextBlock visibleOn="android,cocos,xamarin">{`
 ## Reset session
 Current session can be ended and new session created by calling:
 `}</TextBlock>
@@ -715,10 +785,15 @@ Smartlook.resetSession(boolean resetUser);
 Smartlook.resetSession(resetUser: Boolean)
       `,
     },
+xamarin: {
+      csharp: `
+public static void ResetSession(bool resetUser = false)
+      `,
+    }
   }}
 />
 
-<TextBlock visibleOn="android,cocos">{`
+<TextBlock visibleOn="android,cocos,xamarin">{`
 If \`resetUser\` is set to \`true\` SDK will create new visitor during the reset. This is especially beneficial when new user needs to be identified (typically after logout).\n
 New session can be created on SDK setup:
 `}</TextBlock>
@@ -750,10 +825,16 @@ val builder = Smartlook.SetupOptionsBuilder(API_KEY)
 Smartlook.setupAndStartRecording(builder.build())
       `,
     },
+xamarin: {
+      csharp: `
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true);
+Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+`,
+    }
   }}
 />
 
-<TextBlock visibleOn="android,cocos">{`
+<TextBlock visibleOn="android,cocos,xamarin">{`
 New visitor can also be created on SDK setup:
 `}</TextBlock>
 
@@ -784,20 +865,26 @@ val builder = Smartlook.SetupOptionsBuilder(API_KEY)
 Smartlook.setupAndStartRecording(builder.build())
       `,
     },
+xamarin: {
+      csharp: `
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSessionAndResetUser: true);
+Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+      `,
+    }
   }}
 />
 
 # Sensitive data hiding
 
-<TextBlock visibleOn="android,ios,react">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 When using **native** rendering mode, **SDK can record sensitive data in your application**. Recording can be configured with methods listed below so sensitive data is not recorded, or **Wireframe** rendering mode can be set beacause it does not record sensitive data by design.
 `}</TextBlock>
 
-<TextBlock kind="important" visibleOn="android,ios,react">{`
+<TextBlock kind="important" visibleOn="android,ios,react,xamarin">{`
 Sensitive elements are **hidden locally** on the device, no sentive data is transfered over network and stored in dashboard.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity">{`
+<TextBlock visibleOn="android,ios,react,flutter,unity,xamarin">{`
 ## Blacklisted views
 `}</TextBlock>
 
@@ -805,7 +892,7 @@ Sensitive elements are **hidden locally** on the device, no sentive data is tran
 This functionality is not available yet.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 Any view can be hidden in the recording by marking it as a **blacklisted** view. View can be marked as blacklisted by calling:
 `}</TextBlock>
 
@@ -833,7 +920,12 @@ class func registerBlacklisted(object: Any)
     javascript: `
 Smartlook.registerBlacklistedView(ref.current);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void RegisterBlacklistedObject(object @object)
+      `,
+    },
   }}
 />
 
@@ -848,6 +940,11 @@ Smartlook.registerBlacklisted(object: someView)
 [Smartlook registerBlacklistedObject:self.someView];
     `,
   },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.RegisterBlacklistedObject(BlacklistedButton);
+      `,
+    },
 }}
 />
 
@@ -899,7 +996,7 @@ self.someView.slSensitive = YES;
 }}
 />
 
-<TextBlock visibleOn="android,ios,react">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 If view no longer needs to be blacklisted:
 `}</TextBlock>
 
@@ -927,11 +1024,16 @@ class func registerBlacklisted(object: Any)
     javascript: `
 Smartlook.unregisterBlacklistedView(ref.current);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.UnregisterBlacklistedObject(BlacklistedButton);
+      `,
+    },
   }}
 />
 
-<TextBlock kind="note" visibleOn="android,ios">{`
+<TextBlock kind="note" visibleOn="android,ios,xamarin">{`
 Blacklisted view is hidden on recording by single color rectangle. Color of this rectangle can be configured by calling:
 <CodeBlock
   snippets={{
@@ -949,6 +1051,11 @@ class func setBlacklistedItem(color: UIColor)
       \`,
       'objective-c': \`
 + (void)setBlacklistedItemsColor:(nonnull UIColor *)color;
+      \`,
+    },
+xamarin: {
+      csharp: \`
+        public static void SetBlacklistedItemsColor(float red, float green, float blue);
       \`,
     },
   }}
@@ -995,7 +1102,7 @@ class func registerBlacklisted(object: Any)
 // see examples below
 + (void)registerBlacklistedObject:(nonnull id)object;
       `,
-    },
+    }
   }}
 />
 
@@ -1052,15 +1159,23 @@ class func unregisterBlacklisted(object: Any)
       'objective-c': `
 + (void)unregisterBlacklistedObject:(nonnull id)object
       `,
-    }
+    },
   }}
 />
+
+<TextBlock kind="note" visibleOn="ios">{`
+Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\`.
+`}</TextBlock>
+
+<TextBlock kind="note" visibleOn="xamarin">{`
+Note that for convenience, **some classes are blacklisted by default**: \`UITextView\`, \`UITextField\` and \`WKWebView\` on iOS, \`EditText\` and \`WebView\` on Android.
+`}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
 Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity">{`
+<TextBlock visibleOn="android,ios,react,flutter,unity, xamarin">{`
 ## Whitelisted views
 `}</TextBlock>
 
@@ -1068,7 +1183,7 @@ Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be
 This functionality is not available yet.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 View can be whitelisted so it is recorded even if it is instance of a blacklisted class:
 `}</TextBlock>
 
@@ -1096,7 +1211,12 @@ class func registerWhitelisted(object: Any)
       javascript: `
 Smartlook.unregisterBlacklistedView(ref.current);
     `,
-    }
+    },
+xamarin: {
+      csharp: `
+public static void RegisterWhitelistedObject(object @object)
+      `,
+    },
   }}
 />
 
@@ -1129,7 +1249,7 @@ self.someView.slSensitive = NO;
   }}
 />
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 \`View\` can be removed from whitelist by calling:
 `}</TextBlock>
 
@@ -1151,6 +1271,11 @@ Smartlook.unregisterWhitelisted(object: someView)
 `,
       'objective-c': `
 [Smartlook unregisterWhitelistedObject:someView];
+      `,
+    },
+xamarin: {
+      csharp: `
+public static void UnregisterWhitelistedObject(object @object)
       `,
     },
   }}
@@ -1271,11 +1396,16 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.no_rendering);
     javascript: `
 Smartlook.setRenderingMode("no_rendering");
     `,
-  }
+  },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.None);
+      `,
+    },
   }}
 />
 
-<TextBlock kind="note" visibleOn="android,ios,react">{`
+<TextBlock kind="note" visibleOn="android,ios,react,xamarin">{`
 SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because all user interaction is still beaing recorde, but all sensitive data are not rendered by design. Read more about rendering modes [in conceptual documentation](/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
 `}</TextBlock>
 
@@ -1336,11 +1466,16 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.native);
     javascript: `
 Smartlook.setRenderingMode("native");
     `,
-  }
+  },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.Native);
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android,ios,flutter,unity,react,cocos">{`
+<TextBlock visibleOn="android,ios,flutter,unity,react,cocos,xamarin">{`
 ## WebView blacklisting/whitelisting
 `}</TextBlock>
 
@@ -1358,6 +1493,10 @@ When application has some parts displayed using \`WKWebView\` and theese parts s
 
 <TextBlock kind="note" visibleOn="ios">{`
 \`UIWebView\` class is obsolete and no longer supported by Apple. Thus, its instances and their content are not specifically handled by Smartlook from the \`sensitivity\` point of view.
+`}</TextBlock>
+
+<TextBlock visibleOn="xamarin">{`
+When application has some parts displayed using a **WebView** (\`WKWebView\` on iOS, \`WebView\` on Android) and theese parts should be recorded, **WebView** recording needs to be enabled by removing the respective components from the blacklist:
 `}</TextBlock>
 
 <CodeBlock
@@ -1379,51 +1518,40 @@ Smartlook.unregisterBlacklisted(object: WKWebView.class)
 [Smartlook unregisterBlacklistedObject:WKWebView.class];
       `,
     },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.UnregisterBlaclistedObject(MyWebView);
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 If \`WebView\` is being recorded **all sensitive elements** on the displayed web page should be marked as sensitive so the are **are hidden**. This can be done by marking sensitive html elements with \`.smartlook-hide\` css class:
-`}</TextBlock>
-
-<CodeBlock
+<Code
   kind="example"
   snippets={{
-    android: {
-      html: `
+    html: \`
 <div class='smartlook-hide'>
    This will be hidden.
 </div>
-      `,
-    },
-    ios: {
-      html: `
-<div class='smartlook-hide'>
-   This will be hidden.
-</div>
-      `,
-    },
+\`,
   }}
 />
-
-<TextBlock visibleOn="android,ios">{`
-All input inputs are hidden by default except for \`button\` and \`submit\` types. If some hidden inputs should to be recorded they can be marked with \`.smartlook-show\` css class:
 `}</TextBlock>
 
-<CodeBlock
+<TextBlock visibleOn="android,ios,xamarin">{`
+All input inputs are hidden by default except for \`button\` and \`submit\` types. If some hidden inputs should to be recorded they can be marked with \`.smartlook-show\` css class:
+<Code
+  visibleOn="andoid,ios,xamarin"
+  kind="example"
   snippets={{
-    android: {
-      html: `
+    html: \`
 <input type="text" class='smartlook-show'>
-      `,
-    },
-    ios: {
-      html: `
-<input type="text" class='smartlook-show'>
-      `,
-    },
+\`,
   }}
 />
+`}</TextBlock>
 
 # User Identification
 User indetifier can be specified by calling:
@@ -1478,7 +1606,12 @@ SmartlookUnity.Smartlook.SetUserIdentifier(string userIdentifier);
     javascript: `
 Smartlook.setUserIdentifier(string userIdentifier);
     `,
-  }
+  },
+xamarin: {
+      csharp: `
+static public void SetUserIdentifier(string identifier, Dictionary<string, string> userProperies = null)
+      `,
+    },
   }}
 />
 
@@ -1655,7 +1788,7 @@ smartlook.setUserIdentifier(new SmartlookUserIdentifier("sample_identifier", {na
   }}
 />
 
-<TextBlock visibleOn="ios">{`
+<TextBlock visibleOn="ios,xamarin">{`
 Additional custom properties can be added to each recording session by calling:
 `}</TextBlock>
 
@@ -1669,10 +1802,15 @@ class func setSessionProperty(value: String, forName name: String)
 + (void)setSessionPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name;
 `,
     },
+xamarin: {
+      csharp: `
+public static void SetSessionProperty(string name, string value, PropertyOptions options = PropertyOptions.Defaults)
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="ios">{`
+<TextBlock visibleOn="ios,xamarin">{`
 These properties can be seen in the Dashboard at Visitor details.
 \n
 If session property should be protected against accidental further changes it can be set as immutable. Immutable property value cannot be changed once it is set.
@@ -1694,6 +1832,16 @@ typedef NS_OPTIONS(NSUInteger, SLPropertyOption) {
 + (void)setSessionPropertyValue:(nonnull NSString *)value forName:(nonnull NSString *)name withOptions:(SLPropertyOption)options;
 `,
     },
+xamarin: {
+      csharp: `
+[Flags]
+public enum PropertyOptions : uint
+{
+  Defaults = 0,
+  Immutable = 1 << 0
+}
+`,
+    },
   }}
 />
 
@@ -1708,12 +1856,17 @@ Smartlook.setSessionProperty(value: "immutable-value", forName: "my-property", o
 [Smartlook setSessionPropertyValue:@"immutable-value" forName:@"my-property" withOptions:SLPropertyOptionImmutable];
       `,
   },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.SetSessionProperty("immutable-prop", "immutable-value", Smartlook.Analytics.PropertyOptions.Immutable);
+      `,
+    },
 }}
 />
 
 # Analytics
 
-<TextBlock visibleOn="android, ios, react">{`
+<TextBlock visibleOn="android, ios, react, xamarin">{`
 Some analytic events are recorded out-of-box:
 * Activity/Fragment changes
 * Focus changes
@@ -1785,6 +1938,11 @@ SmartlookUnity.Smartlook.TrackCustomEvent(string eventName);
 Smartlook.trackCustomEvent(key);
 `,
   },
+xamarin: {
+      csharp: `
+public static void TrackCustomEvent(string name, Dictionary<string, string> eventProperties = null)
+      `,
+    },
   }}
 />
 
@@ -1796,7 +1954,7 @@ Additional data serialized as \`JSONObject\`, \`Bundle\`, \`String\` with valid 
 Addition data passed as a \`object\` can be added to custom event:
 `}</TextBlock>
 
-<TextBlock visibleOn="ios">{`
+<TextBlock visibleOn="ios,xamarin">{`
 Custom event also accepts a dictionary of string key/values as event properties.
 `}</TextBlock>
 
@@ -1863,7 +2021,7 @@ SmartlookUnity.TrackCustomEvent(string eventName, string properties);
     javascript: `
 Smartlook.trackCustomEvent(key, map);
 `,
-  },
+  }
   }}
 />
 
@@ -1957,7 +2115,18 @@ SmartlookUnity.TrackNavigationEvent(string screenName, NavigationEventType direc
     javascript: `
 Smartlook.trackNavigationEvent(screenName, "enter"/"exit");
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public enum NavigationEventType
+{
+  Enter,
+  Exit
+}
+         
+public static void TrackNavigationEvent(string identifier, NavigationEventType type = NavigationEventType.Enter)
+      `,
+    },
   }}
 />
 
@@ -1973,7 +2142,7 @@ where \`viewState\` can be either \`Smartlook.ViewState.START\` or \`Smartlook.V
 where \`viewState\` can be either \`SmartlookViewState.START\` or \`SmartlookViewState.STOP\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="ios">{`
+<TextBlock visibleOn="ios,xamarin">{`
 where the \`type\` could flag the event as either \`enter\` or \`exit\` of the navigation controller.
 `}</TextBlock>
 
@@ -2079,7 +2248,12 @@ SmartlookUnity.Smartlook.StartTimedCustomEvent(string eventName, string properti
     javascript: `
 Smartlook.startTimedCustomEvent("sample_timed_event", {prop: "propValue"});
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static string StartTimedCustomEvent(string name, Dictionary<string, string> eventProperties = null)
+      `,
+    },
   }}
 />
 
@@ -2143,7 +2317,12 @@ SmartlookUnity.Smartlook.StopTimedCustomEvent(string eventId, string properties)
     javascript: `
 Smartlook.stopTimedCustomEvent("event_id", {prop: "propValue"});
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void TrackTimedCustomEvent(string eventId, Dictionary<string, string> eventProperties = null)
+      `,
+    },
   }}
 />
 
@@ -2226,11 +2405,16 @@ SmartlookUnity.Smartlook.CancelTimedCustomEvent(string eventId, string reason, s
     javascript: `
 Smartlook.stopTimedCustomEvent("event_id", "reason", {prop: "propValue"});
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void TrackTimedCustomEventCancel(string eventId, string reason = null, Dictionary<string, string> eventProperties = null)
+      `,
+    },
   }}
 />
 
-<TextBlock kind="example" visibleOn="android,cordova,ionic,ios,cocos">{`
+<TextBlock kind="example" visibleOn="android,cordova,ionic,ios,cocos,xamarin">{`
 Typical use of timed event might look like this:
 <CodeBlock
   snippets={{
@@ -2288,9 +2472,19 @@ id eventRef = [Smartlook startTimedCustomEventWithName:@"duration_event"];
 [Smartlook trackTimedCustomEventCancelWithEventId:eventRef];
       \`,
     },
+xamarin: {
+      csharp: \`
+timedEventId = Smartlook.Analytics.StartTimedCustomEvent("TIMED_EVENT", new Dictionary<string, string>() { { "PROP_1", "START_VALUE_1" }, { "PROP_2", "START_VALUE_2" } });
+System.Threading.Thread.Sleep(1000);
+Smartlook.Analytics.TrackTimedCustomEvent(timedEventId, new Dictionary<string, string>() { { "PROP_1", "TRACK_VALUE_1" } });
+        \`,
+    },
   }}
 />
-\n
+\n 
+`}</TextBlock>
+
+<TextBlock invisibleOn="ios">{`
 In this case \`duration_event\` will have duration property set to circa 1000ms.
 `}</TextBlock>
 
@@ -2451,7 +2645,18 @@ SmartlookUnity.Smartlook.SetGlobalEventProperties(string properties, bool immuta
     javascript: `
 Smartlook.setGlobalEventProperty(key, value, immutable);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public enum PropertyOptions : uint
+{
+  Defaults = 0,
+  Immutable = 1 << 0
+}
+        
+public static void SetGlobalEventProperty(string name, string value, PropertyOptions options = PropertyOptions.Defaults)
+      `,
+    },
   }}
 />
 
@@ -2491,6 +2696,12 @@ Smartlook.setGlobalEventProperty(value: "immutable-value", forName: "my-immutabl
 [Smartlook setGlobalEventPropertyValue:@"immutable-value" forName:@"my-immutable-property" withOptions:SLPropertyOptionImmutable];
     `,
   },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.SetGlobalEventProperty("prop1", "value1");
+Smartlook.Analytics.SetGlobalEventProperty("immutable-prop", "immutable value", Smartlook.Analytics.PropertyOptions.Immutable);
+      `,
+    },
 }}
 />
 
@@ -2554,7 +2765,12 @@ SmartlookUnity.Smartlook.RemoveGlobalEventProperty(string key);
     javascript: `
 Smartlook.removeGlobalEventProperty(key);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void RemoveGlobalEventProperty(string name)
+      `,
+    },
   }}
 />
 
@@ -2610,7 +2826,12 @@ SmartlookUnity.Smartlook.RemoveAllGlobalEventProperties();
     javascript: `
 Smartlook.removeAllGlobalEventProperties();
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void ClearGlobalEventProperties()
+              `,
+    },
   }}
 />
 
@@ -2620,7 +2841,7 @@ Global event properties are stored until they are not removed or the app is unin
 
 ## Event tracking modes
 
-<TextBlock visibleOn="android,ios,cordova,ionic">{`
+<TextBlock visibleOn="android,ios,cordova,ionic,xamarin">{`
 Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
 `}</TextBlock>
 
@@ -2655,6 +2876,14 @@ This functionality is not available yet.
 <TextBlock visibleOn="android,ios,cordova,ionic">{`
 Event tracking mode can be changed **anytime** during the application run:
 `}</TextBlock>
+
+<TextBlock visibleOn="xamarin">{`
+  Tracking modes are defined in the \`EventTrackingMode\` enumeration:
+* \`FullTracking\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
+* \`IgnoreUserInteraction\`: automatically detected events will not be tracked. User defined events are still enabled.
+* \`NoTracking\`: no analytic events are enabled.
+`}</TextBlock>
+
 
 <CodeBlock
   snippets={{
@@ -2694,6 +2923,12 @@ SLEventTrackingMode const SLEventTrackingModeNoTracking;
 + (nonnull SLEventTrackingMode)currentEventTrackingMode;
       `,
     },
+xamarin: {
+      csharp: `
+public static void SetEventTrackingMode(EventTrackingMode eventTrackingMode)
+public static EventTrackingMode CurrentEventTrackingMode
+      `,
+    },
   }}
 />
 
@@ -2708,12 +2943,12 @@ Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
   }}
 />
 
-<TextBlock kind="note" visibleOn="android,ios,cordova,ionic">{`
+<TextBlock kind="note" visibleOn="android,ios,cordova,ionic,xamarin">{`
 Take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
 
 # Rendering
-<TextBlock visibleOn="android,ios,cordova,ionic,react,flutter,cocos,unity">{`
+<TextBlock visibleOn="android,ios,cordova,ionic,react,flutter,cocos,unity,xamarin">{`
 SDK can use different methods of capturing screen image data. These are called **rendering modes**.
 \n
 ## Set rendering mode
@@ -2728,7 +2963,7 @@ Not all rendering modes are available on this platform. Only RenderingMode.NO_RE
 Rendering mode can be changed on SDK setup using \`builder\`:
 `}</TextBlock>
 
-<TextBlock visibleOn="ios,cordova,ionic">{`
+<TextBlock visibleOn="ios,cordova,ionic,xamarin">{`
 Rendering mode can be set on SDK setup, e.g.:
 `}</TextBlock>
 
@@ -2777,11 +3012,25 @@ Smartlook.setup(key: API_KEY, options: [.renderingMode: Smartlook.RenderingMode.
       'objective-c': `
 [Smartlook setupWithKey:@"API_KEY" options:@{ SLSetupOptionRenderingModeOptionsKey: SLRenderingModeOptionBlueprintWireframe }];
       `,
-      },
+      }
     }}
 />
 
-<TextBlock visibleOn="android,ios,cordova,ionic">{`
+<CodeBlock kind="example"
+    snippets={{
+xamarin: {
+      csharp: `
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(
+  renderingMode: Analytics.RenderingMode.Wireframe,
+  renderingModeOption: Analytics.RenderingModeOption.IconBlueprint
+ );      
+ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+      `,
+    },
+    }}
+/>
+
+<TextBlock visibleOn="android,ios,cordova,ionic,xamarin">{`
 Or at anytime during application run using:
 `}</TextBlock>
 
@@ -2841,7 +3090,12 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType renderingMode);
     javascript: `
 Smartlook.SetRenderingMode("native"/"no_rendering"/"wireframe");
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static void SetRenderingMode(RenderingMode renderingMode, RenderingModeOption? renderingModeOption = null)
+      `,
+    },
   }}
 />
 
@@ -2880,6 +3134,16 @@ SLRenderingMode const SLRenderingModeWireframe;
 SLRenderingMode const SLRenderingModeNoRendering;
       `,
     },
+xamarin: {
+      csharp: `
+public enum RenderingMode : uint
+{
+  Native = 0,
+  Wireframe = 1,
+  NoRendering = 2,
+}
+      `,
+    },
   }}
 />
 
@@ -2893,11 +3157,11 @@ SLRenderingMode const SLRenderingModeNoRendering;
 * \`SmartlookRenderingMode.NO_RENDERING()\`
 `}</TextBlock>
 
-<TextBlock kind="note" visibleOn="android,ios,cordova,ionic,cocos">{`
+<TextBlock kind="note" visibleOn="android,ios,cordova,ionic,cocos,xamarin">{`
 \`NO_RENDERING\` mode does not record any screen data, this is beneficial on screens that include sensitive data, [read more](#no-rendering).
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 ## Rendering mode option
 \`WIREFRAME\` rendering mode can be further configured by \`renderingModeOption\`.
 \n
@@ -2939,8 +3203,22 @@ class func  Smartlook.setup(key: String,
     }}
 />
 
+<CodeBlock kind="example"
+    snippets={{
+xamarin: {
+      csharp: `
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(
+  renderingMode: Analytics.RenderingMode,
+  renderingModeOption: Analytics.RenderingModeOption
+ );      
+ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+      `,
+    },
+    }}
+/>
 
-<TextBlock visibleOn="android,ios">{`
+
+<TextBlock visibleOn="android,ios,xamarin">{`
 Or at anytime during application run using:
 `}</TextBlock>
 
@@ -2962,10 +3240,15 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode, option re
 + (void)setRenderingModeTo:(nonnull SLRenderingMode)renderingMode withOption:(nullable SLRenderingModeOption)renderingModeOption
       `,
     },
+xamarin: {
+      csharp: `
+public static void SetRenderingMode(RenderingMode renderingMode, RenderingModeOption? renderingModeOption = null)
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android,ios">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 Rendering mode options for \`WIREFRAME\` rendering mode:
 `}</TextBlock>
 
@@ -2989,6 +3272,17 @@ SLRenderingModeOption const SLRenderingModeOptionNone;
 SLRenderingModeOption const SLRenderingModeOptionColorWireframe;
 SLRenderingModeOption const SLRenderingModeOptionBlueprintWireframe;
 SLRenderingModeOption const SLRenderingModeOptionIconBlueprintWireframe;
+      `,
+    },
+xamarin: {
+      csharp: `
+public enum RenderingModeOption : uint
+{
+  None = 0,
+  Wireframe = 1,
+  Blueprint = 2,
+  IconBlueprint = 3,
+}
       `,
     },
   }}
@@ -3272,7 +3566,11 @@ SmartlookUnity.Smartlook.GetDashboardSessionUrl(bool withCurrentTimestamp);
     javascript: `
 Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
 `,
-  }
+  },
+xamarin: {
+      csharp: `
+public static Uri DashboardSessionUri(bool withCurrentTimestamp = false)`,
+    },
   }}
 />
 
@@ -3358,6 +3656,11 @@ SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
     javascript: `
 Smartlook.getDashboardVisitorUrl();
 `,
+  },
+  xamarin: {
+    csharp: `
+public static Uri DashboardVisitorUri
+`
   }
   }}
 />
@@ -3399,9 +3702,13 @@ Listener can be registered like this:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
-Dashboard URL change notifications can be registered to integrate them programmatically into other 3rd party analytics frameworks.
+Dashboard URL change notifications can be registered to integrate them programmatically into other party analytics frameworks.
 \n
 The notifications are:
+`}</TextBlock>
+
+<TextBlock visibleOn="xamarin">{`
+Application can handle dashboard URLs changes and pass the current values to other analytics frameworks by implementing the respective \`EventHandler\`s:
 `}</TextBlock>
 
 <CodeBlock
@@ -3523,6 +3830,22 @@ Smartlook.registerIntegrationListener(
     }
   );
 `,
+  },
+  xamarin: {
+    csharp: `
+void c_DashboardSessionUriChanged(object sender, Smartlook.Analytics.DashboardUriChangedEventArgs a)
+{
+  Console.WriteLine("AppDelegate: Session Uri changed '{0}''{1}'", sender, a.dashboardUri);
+}
+ 
+void c_DashboardVisitorUriChanged(object sender, Smartlook.Analytics.DashboardUriChangedEventArgs a)
+{
+  Console.WriteLine("AppDelegate: Visitor Uri changed '{0}''{1}'", sender, a.dashboardUri);
+}
+ 
+Smartlook.Analytics.DashboardSessionUriChanged += c_DashboardSessionUriChanged;
+Smartlook.Analytics.DashboardVisitorUriChanged += c_DashboardVisitorUriChanged;
+`
   }
   }}
 />

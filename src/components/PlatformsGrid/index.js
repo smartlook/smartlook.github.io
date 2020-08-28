@@ -54,6 +54,12 @@ const PLATFORMS = [
 		image: 'platforms/ionic.svg',
 		link: '/docs/sdk/ionic?platform=ionic',
 	},
+	{
+		name: 'Xamarin',
+		platform: 'xamarin',
+		image: 'platforms/xamarin.svg',
+		link: '/docs/sdk/xamarin?platform=xamarin',
+	},
 ]
 
 export const PlatformsGrid = () => {

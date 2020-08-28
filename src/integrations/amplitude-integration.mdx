@@ -11,7 +11,12 @@ import { CodeBlock, TextBlock, Title } from "components";
 
 ## Manual integration
 
-<TextBlock invisibleOn="ios">
+<TextBlock kind="important" visibleOn="xamarin">{`
+There seems to be no official Xamarin integration of Aplitude. In the case of custom integration, this <Link to="/api_reference/#integrations">API Reference documentation</Link> applies.
+`}</TextBlock>
+
+
+<TextBlock invisibleOn="ios,xamarin">
 Smartlook can be easily integrated into Amplitude using `IntegrationListener`:
 </TextBlock>
 

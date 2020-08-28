@@ -39,6 +39,11 @@ export const PLATFORMS = [
 		displayName: 'Cocos',
 		defaultLanguage: 'java',
 	},
+	{
+		value: 'xamarin',
+		displayName: 'Xamarin',
+		defaultLanguage: 'csharp',
+	},
 ]
 
 export const DEFAULT_PLATFORM = 'android'
