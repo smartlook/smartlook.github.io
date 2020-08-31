@@ -92,8 +92,8 @@ Smartlook.setUserIdentifier('sample_user_identifier');
 xamarin: {
       csharp: `
 Dictionary<string, string> props = new Dictionary<string, string>();
-props["name"] = UserDetails.Name;
-Smartlook.Analytics.SetUserIdentifier(UserDetails.ID, props);
+props["name"] = "Sample Name";
+Smartlook.Analytics.SetUserIdentifier("sample_user_identifier", props);
       `,
     },
   }}
@@ -255,10 +255,10 @@ xamarin: {
       csharp: `
 // to always setup with new session
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true); 
-Smartlook.Analytics.SetupAndStart("API_KEY", smartlookSetupOptions);\n
+Smartlook.Analytics.SetupAndStart(API_KEY, smartlookSetupOptions);\n
 // to start with new session and user
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSessionAndResetUser: true);
-Smartlook.Analytics.SetupAndStart("API_KEY", smartlookSetupOptions);
+Smartlook.Analytics.SetupAndStart(API_KEY, smartlookSetupOptions);
       `,
     },
   }}

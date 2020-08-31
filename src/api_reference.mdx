@@ -828,7 +828,7 @@ Smartlook.setupAndStartRecording(builder.build())
 xamarin: {
       csharp: `
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true);
-Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+Smartlook.Analytics.Setup(API_KEY, smartlookSetupOptions);
 `,
     }
   }}
@@ -942,7 +942,7 @@ Smartlook.registerBlacklisted(object: someView)
   },
 xamarin: {
       csharp: `
-Smartlook.Analytics.RegisterBlacklistedObject(BlacklistedButton);
+Smartlook.Analytics.RegisterBlacklistedObject(SomeView);
       `,
     },
 }}
@@ -1027,7 +1027,7 @@ Smartlook.unregisterBlacklistedView(ref.current);
   },
 xamarin: {
       csharp: `
-Smartlook.Analytics.UnregisterBlacklistedObject(BlacklistedButton);
+Smartlook.Analytics.UnregisterBlacklistedObject(object @object);
       `,
     },
   }}
@@ -1267,10 +1267,10 @@ Smartlook.unregisterWhitelistedViews(views: List<View>)
     },
     ios: {
       swift: `
-Smartlook.unregisterWhitelisted(object: someView)
+class func unregisterWhitelisted(object: Any)
 `,
       'objective-c': `
-[Smartlook unregisterWhitelistedObject:someView];
++ (void)unregisterWhitelistedObject:(nonnull id)object;
       `,
     },
 xamarin: {
@@ -3211,7 +3211,7 @@ Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(
   renderingMode: Analytics.RenderingMode,
   renderingModeOption: Analytics.RenderingModeOption
  );      
- Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+ Smartlook.Analytics.Setup(API_KEY, smartlookSetupOptions);
       `,
     },
     }}

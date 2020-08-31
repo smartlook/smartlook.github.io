@@ -29,7 +29,7 @@ public class MyCustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Smartlook.setupAndStartRecording(THE_API_KEY);
+        Smartlook.setupAndStartRecording(API_KEY);
     }
 }
       `,
@@ -38,7 +38,7 @@ import android.application.Application;\n
 class MyCustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Smartlook.setupAndStartRecording(THE_API_KEY)
+        Smartlook.setupAndStartRecording(API_KEY)
     }
 }
       `,
@@ -50,7 +50,7 @@ include Smartlook
 ...
 \n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-   Smartlook.setup(key: "THE_API_KEY")
+   Smartlook.setup(key: API_KEY)
    Smartlook.startRecording()
 }
       `,
@@ -60,7 +60,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ...
 \n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-   Smartlook.setup(key: "THE_API_KEY")
+   Smartlook.setup(key: API_KEY)
    Smartlook.startRecording()
 }
       `,
@@ -69,7 +69,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
       js: `
 //i.e.
 componentDidMount() {
-  Smartlook.setupAndStartRecording("API_KEY");
+  Smartlook.setupAndStartRecording(API_KEY);
   var Smartlook = require("smartlook-react-native-wrapper");
   ...
 }
@@ -82,7 +82,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SmartlookUnity.Smartlook.SetupAndStartRecording("API_KEY");
+        SmartlookUnity.Smartlook.SetupAndStartRecording(API_KEY);
     }
 \n
     // Update is called once per frame
@@ -104,7 +104,7 @@ public class AppActivity extends Cocos2dxActivity {
     public void onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(THE_API_KEY);
+        Smartlook.setupAndStartRecording(API_KEY);
     }
 }
       `,
@@ -113,7 +113,7 @@ class AppActivity : Cocos2dxActivity() {
     override fun onCreate() {
         ...
         // DO OTHER INITIALIZATION BELOW
-        Smartlook.setupAndStartRecording(THE_API_KEY)
+        Smartlook.setupAndStartRecording(API_KEY)
     }
 }
       `
@@ -124,13 +124,13 @@ if(document.readyState === "complete") {
   document.addEventListener("deviceready", onDeviceReady, false);
 }\n
 function onDeviceReady() {
-    Smartlook.setupAndStartRecording({smartlookAPIKey: "THE_API_KEY"});
+    Smartlook.setupAndStartRecording({smartlookAPIKey: API_KEY});
 }    `,
     },
     ionic: {
       typescrit: `
 this.platform.ready().then(() => {
-    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig("THE_API_KEY"));
+    this.smartlook.setupAndStartRecording(new SmartlookSetupConfig(API_KEY));
 }
       `,
     },
@@ -141,7 +141,7 @@ this.platform.ready().then(() => {
   void initState() {
     super.initState();
     ...
-    Smartlook.setupAndStartRecording('THE_API_KEY');
+    Smartlook.setupAndStartRecording(API_KEY);
     ...
   }
 }
@@ -151,7 +151,7 @@ xamarin: {
       csharp: `
 using Smartlook;
 ...
-Smartlook.Analytics.SetupAndStart("API_KEY");
+Smartlook.Analytics.SetupAndStart(API_KEY);
       `,
     },
   }}
