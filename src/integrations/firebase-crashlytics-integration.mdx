@@ -44,10 +44,10 @@ Not available on this platform.
     },
     ios: {
       swift: `
-Smartlook.setup(key:"THE_API_KEY", options:[.enableCrashytics: true])
+Smartlook.setup(key:"API_KEY", options:[.enableCrashytics: true])
       `,
       'objective-c': `
-[Smartlook startWithKey:@"THE_API_KEY" withOptions:@{ SLSetupOptionEnableCrashyticsKey:@YES } ];
+[Smartlook startWithKey:@"API_KEY" withOptions:@{ SLSetupOptionEnableCrashyticsKey:@YES } ];
       `,
     },
     flutter: {
@@ -64,6 +64,12 @@ SmartlookUnity.Smartlook.EnableCrashlytics(true);
       javascript: `
 Smartlook.enableCrashlytics(true);
       `,
+  },
+  xamarin: {
+      csharp: `
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(enableCrashlytics: true);\n
+Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
+`,
   }
   }}
 />
@@ -72,12 +78,16 @@ Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key
 
 ## Manual integration
 
-<TextBlock invisibleOn='ios'>
+<TextBlock invisibleOn='ios,xamarin'>
 Smartlook can be easily integrated into Crashlytics using `IntegrationListener`:
 </TextBlock>
 
 <TextBlock visibleOn='ios'>
 Smartlook can be easily integrated into Crashlytics using `Notifications`:
+</TextBlock>
+
+<TextBlock visibleOn='xamarin'>
+Smartlook can be easily integrated into Crashlytics using `EventHandlers`:
 </TextBlock>
 
 <CodeBlock
@@ -217,6 +227,26 @@ Smartlook.registerIntegrationListener({
 });
       `,
   },
+  xamarin: {
+    csharp: `
+void c_DashboardSessionUriChanged(object sender, Smartlook.Analytics.DashboardUriChangedEventArgs a)
+{
+  if (a.dashboardUri != null)
+  {
+   Crashlytics.SharedInstance.SetCustomValue(new NSString(a.dashboardUri.AbsolutePath), "Smartlook session URL");
+  }
+}
+Smartlook.Analytics.DashboardSessionUriChanged += c_DashboardSessionUriChanged;\n
+void c_DashboardVisitorUriChanged(object sender, Smartlook.Analytics.DashboardUriChangedEventArgs a)
+{
+  if (a.dashboardUri != null)
+  {
+    Crashlytics.SharedInstance.SetCustomValue(new NSString(a.dashboardUri.AbsolutePath), "Smartlook visitor URL");
+  }
+}
+Smartlook.Analytics.DashboardVisitorUriChanged += c_DashboardVisitorUriChanged;\n
+`,
+  }
   }}
 />
 

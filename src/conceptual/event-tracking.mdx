@@ -132,8 +132,10 @@ Smartlook.trackCustomEvent("CUSTOM EVENT", { "PROP_1" : "value1" });
    },
 xamarin: {
       csharp: `
-XAMARIN - C#
-      `,
+Dictionary<string, string> eventProperties = new Dictionary<string, string>();
+eventProperties["prop1"] = "value 1";
+Smartlook.Analytics.TrackCustomEvent("CUSTOM EVENT", eventProperties);      
+`,
     },
   }}
 />

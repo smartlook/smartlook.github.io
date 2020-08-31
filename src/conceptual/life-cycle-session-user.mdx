@@ -91,7 +91,9 @@ Smartlook.setUserIdentifier('sample_user_identifier');
    },
 xamarin: {
       csharp: `
-XAMARIN - C#
+Dictionary<string, string> props = new Dictionary<string, string>();
+props["name"] = "Sample Name";
+Smartlook.Analytics.SetUserIdentifier("sample_user_identifier", props);
       `,
     },
   }}
@@ -125,21 +127,21 @@ Soon we will provide better setup options via builder mechanism, meanwhile pleas
     android: {
       java: `
 // to always setup with new session
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession();
 Smartlook.setupAndStartRecording(builder.build());\n
 // to start with new session and user
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser();
 Smartlook.setupAndStartRecording(builder.build());
       `,
     kotlin: `
 // to always setup with new session
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession()
 Smartlook.setupAndStartRecording(builder.build());\n
 // to start with new session and user
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser()
 Smartlook.setupAndStartRecording(builder.build())
       `,
@@ -158,7 +160,7 @@ Smartlook.setup(key: "THE_API_KEY",
 [Smartlook setupWithKey:@"THE_API_KEY"
                 options:@{
                      SLSetupOptionStartNewSessionKey: @YES
-                }];\\n
+                }];\n
 // to setup with new session and user
 [Smartlook setupWithKey:@THE_API_KEY
                 options:@{
@@ -169,20 +171,20 @@ Smartlook.setup(key: "THE_API_KEY",
     react: {
       js: `
 // to always setup with new session
-Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.setupAndStartRecording(API_KEY);
 Smartlook.resetSession(false);\n
 // to start with new session and user
-Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.setupAndStartRecording(API_KEY);
 Smartlook.resetSession(true);
 `,
     },
     unity: {
       csharp: `
 // to always setup with new session
-SmartlookUnity.Smartlook.SetupAndStartRecording(YOUR_API_KEY);
+SmartlookUnity.Smartlook.SetupAndStartRecording(API_KEY);
 SmartlookUnity.Smartlook.ResetSession(false);\n
 // to start with new session and user
-SmartlookUnity.Smartlook.SetupAndStartRecording(YOUR_API_KEY);
+SmartlookUnity.Smartlook.SetupAndStartRecording(API_KEY);
 SmartlookUnity.Smartlook.ResetSession(true);
 `,
     },
@@ -194,21 +196,21 @@ UNREAL - C#
     cocos: {
       java: `
 // to always setup with new session
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession();
 Smartlook.setupAndStartRecording(builder.build());\n
 // to start with new session and user
-Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser();
 Smartlook.setupAndStartRecording(builder.build());
       `,
     kotlin: `
 // to always setup with new session
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSession()
 Smartlook.setupAndStartRecording(builder.build());\n
 // to start with new session and user
-val builder = Smartlook.SetupOptionsBuilder(YOUR_API_KEY)
+val builder = Smartlook.SetupOptionsBuilder(API_KEY)
         .startNewSessionAndUser()
 Smartlook.setupAndStartRecording(builder.build())
       `,
@@ -217,12 +219,12 @@ Smartlook.setupAndStartRecording(builder.build())
       javascript: `
 // to always setup with new session
 Smartlook.setupAndStartRecording({
-  smartlookAPIKey: "YOUR_API_KEY",
+  smartlookAPIKey: "API_KEY",
   startNewSession: true
 });\n
 // to always setup with new session and user
 Smartlook.setupAndStartRecording({
-  smartlookAPIKey: "YOUR_API_KEY",
+  smartlookAPIKey: "API_KEY",
   startNewSessionAndUser: true
 });
     `,
@@ -230,11 +232,11 @@ Smartlook.setupAndStartRecording({
     ionic: {
       typescrit: `
 // to always setup with new session
-var builder = new SmartlookSetupConfigBuilder(YOUR_API_KEY)
+var builder = new SmartlookSetupConfigBuilder(API_KEY)
         .startNewSession(true);\n
 Smartlook.setupAndStartRecording(builder.build());\n
 // to always setup with new session and user
-var builder = new SmartlookSetupConfigBuilder(YOUR_API_KEY)
+var builder = new SmartlookSetupConfigBuilder(API_KEY)
         .startNewSessionAnduser(true);\n
 Smartlook.setupAndStartRecording(builder.build());\n
       `,
@@ -242,16 +244,21 @@ Smartlook.setupAndStartRecording(builder.build());\n
    flutter: {
       dart: `
 // to always setup with new session
-Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.setupAndStartRecording(API_KEY);
 Smartlook.resetSession(false);\n
 // to start with new session and user
-Smartlook.setupAndStartRecording(YOUR_API_KEY);
+Smartlook.setupAndStartRecording(API_KEY);
 Smartlook.resetSession(true);
    `,
    },
 xamarin: {
       csharp: `
-XAMARIN - C#
+// to always setup with new session
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true); 
+Smartlook.Analytics.SetupAndStart(API_KEY, smartlookSetupOptions);\n
+// to start with new session and user
+Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSessionAndResetUser: true);
+Smartlook.Analytics.SetupAndStart(API_KEY, smartlookSetupOptions);
       `,
     },
   }}
