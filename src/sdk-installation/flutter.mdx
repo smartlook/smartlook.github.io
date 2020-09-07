@@ -34,7 +34,10 @@ class _MyAppState extends State<MyApp> {
 	void initState() {
 		super.initState();
 		...
-		Smartlook.setupAndStartRecording('API_KEY');
+		SetupOptions options = (
+                    new SetupOptionsBuilder('API_KEY')
+                  ).build();
+                Smartlook.setupAndStartRecording(options);
 		...
 	  }
 }`,
