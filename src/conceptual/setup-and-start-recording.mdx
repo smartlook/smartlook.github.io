@@ -69,8 +69,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
       js: `
 //i.e.
 componentDidMount() {
-  Smartlook.setupAndStartRecording(API_KEY);
   var Smartlook = require("smartlook-react-native-wrapper");
+  Smartlook.setupAndStartRecording(API_KEY);
   ...
 }
 `,
@@ -141,7 +141,10 @@ this.platform.ready().then(() => {
   void initState() {
     super.initState();
     ...
-    Smartlook.setupAndStartRecording(API_KEY);
+    SetupOptions options = (
+      new SetupOptionsBuilder('API_KEY')
+    ).build();
+    Smartlook.setupAndStartRecording(options);
     ...
   }
 }

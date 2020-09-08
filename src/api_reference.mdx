@@ -121,7 +121,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     ...
-    Smartlook.setupAndStartRecording('API_KEY');
+    SetupOptions options = (
+      new SetupOptionsBuilder('API_KEY')
+      ).build();
+    Smartlook.setupAndStartRecording(options);
     ...
     }
 }
@@ -216,7 +219,7 @@ smartlook.setupAndStartRecording(new SmartlookSetupConfig(smartlookApiKey: strin
     },
     flutter: {
       dart: `
-Smartlook.setupAndStartRecording(String apiKey);
+Smartlook.setupAndStartRecording(SetupOptions options);
       `,
     },
     unity: {
@@ -270,7 +273,7 @@ class func setup(withKey key: String)
     },
     flutter: {
     dart: `
-Smartlook.setup(String key);
+Smartlook.setup(SetupOptions options);
 `,
   },
   unity: {
@@ -405,7 +408,16 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
 
-<TextBlock visibleOn="react,flutter,unity,cocos">{`
+<TextBlock visibleOn="flutter,react">{`
+| Parameter              | Required | Description                                                                                                                                        | Default value        |
+|------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
+| fps                    | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
+| startNewSession        | no       | If set to true SDK forces start of new session on setup.                                                                               | false                |
+| startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
+`}</TextBlock>
+
+<TextBlock visibleOn="unity,cocos">{`
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
@@ -538,7 +550,12 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
   snippets={{
     flutter: {
       dart: `
-Smartlook.setup("API_KEY", FPS);
+SetupOptions options = (
+  new SetupOptionsBuilder('API_KEY')
+    ..Fps = 2
+    ..StartNewSession = true
+  ).build();
+Smartlook.setupAndStartRecording(options);
 `
     },
   }}
@@ -552,7 +569,11 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
   snippets={{
     react: {
       javascript: `
-Smartlook.setup("API_KEY", fps);
+var options = new Object();
+options.fps = 2;
+options.smartlookAPIKey = "API_KEY";
+options.startNewSessionAndUser = true;
+Smartlook.setupAndStartRecording(options);
 `
     },
   }}
