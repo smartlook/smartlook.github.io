@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
+
 const smartlookTrackScript = `
   window.smartlook||(function(d) {
     var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
@@ -13,6 +14,11 @@ const smartlookTrackScript = `
 const Wrapper = ({ children, doc }) => (
 	<React.Fragment>
 		<Helmet>
+			<link
+				rel="shortcut icon"
+				type="image/png"
+				href={require('assets/favicon.png')}
+			></link>
 			<script type="text/javascript" defer={true}>
 				{smartlookTrackScript}
 			</script>
