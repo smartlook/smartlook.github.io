@@ -2167,16 +2167,24 @@ where \`viewState\` can be either \`SmartlookViewState.START\` or \`SmartlookVie
 where the \`type\` could flag the event as either \`enter\` or \`exit\` of the navigation controller.
 `}</TextBlock>
 
+<TextBlock kind="important" visibleOn="flutter">{`
+Navigation events need to be tracked manually, because Flutter applications typically consist of single activity.
+Manual tracking of navigation events need to be done so **mobile heatmaps work correctly**.
+`}</TextBlock>
+
 <TextBlock kind="important" visibleOn="unity">{`
 Navigation events need to be tracked manually, because Unity applications typically consist of single activity.
+Manual tracking of navigation events need to be done so **mobile heatmaps work correctly**.
 `}</TextBlock>
 
 <TextBlock kind="important" visibleOn="cocos">{`
 Navigation events need to be tracked manually, because Cocos applications typically consist of single activity.
+Manual tracking of navigation events need to be done so **mobile heatmaps work correctly**.
 `}</TextBlock>
 
 <TextBlock kind="important" visibleOn="cordova, ionic">{`
 Navigation events need to be tracked manually, because web technology based applications typically consist of single activity.
+Manual tracking of navigation events need to be done so **mobile heatmaps work correctly**.
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
