@@ -137,7 +137,8 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SmartlookUnity.Smartlook.SetupAndStartRecording("API_KEY");
+        SmartlookUnity.SetupOptionsBuilder builder = new SmartlookUnity.SetupOptionsBuilder("API_KEY");
+        SmartlookUnity.Smartlook.SetupAndStartRecording(builder.Build());
     }
 \n
     // Update is called once per frame
@@ -408,7 +409,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,react">{`
+<TextBlock visibleOn="flutter,react,unity">{`
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
@@ -417,7 +418,7 @@ The options dictionary keys are constants defined as members of \`SetupOptionKey
 | startNewSessionAndUser | no       | If set to true SDK forces start of new session and creates new visitor on setup.                                                        | false                |                                                                                                                | null                 |
 `}</TextBlock>
 
-<TextBlock visibleOn="unity,cocos">{`
+<TextBlock visibleOn="cocos">{`
 | Parameter              | Required | Description                                                                                                                                        | Default value        |
 |------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey                 | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
@@ -536,7 +537,11 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
   snippets={{
     unity: {
       csharp: `
-SmartlookUnity.Smartlook.SetupAndStartRecording("API_KEY", FPS);
+SmartlookUnity.SetupOptionsBuilder builder = new SmartlookUnity.SetupOptionsBuilder("API_KEY");
+builder.
+  .SetFps(2)
+  .SetStartNewSession(true);
+SmartlookUnity.Smartlook.SetupAndStartRecording(builder.Build());
 `
     },
   }}

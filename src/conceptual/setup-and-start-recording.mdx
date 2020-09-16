@@ -82,7 +82,8 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SmartlookUnity.Smartlook.SetupAndStartRecording(API_KEY);
+        SmartlookUnity.SetupOptionsBuilder builder = new SmartlookUnity.SetupOptionsBuilder("API_KEY");
+        SmartlookUnity.Smartlook.SetupAndStartRecording(builder.Build());
     }
 \n
     // Update is called once per frame
