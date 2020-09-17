@@ -40,10 +40,10 @@ module.exports = {
 		'SDK API reference',
 		'SDK Cookbooks',
 		'SDK Integrations',
-		// {
-		// 	name: 'REST API',
-		// 	menu: ['Overview', 'API Reference'],
-		// },
+		{
+			name: 'REST API (beta)',
+			menu: ['Overview', 'API Reference'],
+		},
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',
