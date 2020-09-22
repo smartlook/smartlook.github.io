@@ -7,14 +7,44 @@ showPlatformSelect: true
 
 import { CodeBlock, TextBlock, Title } from "components";
 
+import auto_integration_amplitude from 'assets/auto_integration_amplitude.png'
+
 <Title>Amplitude integration</Title>
+
+<TextBlock visibleOn="android">{`
+## Automatic integration
+Smartlook can be automatically integrated into Amplitude using:
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+AmplitudeClient amplitudeInstance = Amplitude.getInstance().initialize(this, "YOUR_API_KEY");
+...
+Smartlook.enableIntegration(new AmplitudeIntegration(amplitudeInstance));
+      `,
+      kotlin: `
+val amplitudeInstance = Amplitude.getInstance().initialize(this, "YOUR_API_KEY")
+...
+Smartlook.enableIntegration(AmplitudeIntegration(amplitudeInstance))
+      `,
+  }
+  }}
+/>
+
+<TextBlock visibleOn="android">{`
+Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Amplitude user.
+`}</TextBlock>
+
+<img visibleOn="android" src={auto_integration_amplitude} />
 
 ## Manual integration
 
 <TextBlock kind="important" visibleOn="xamarin">{`
 There seems to be no official Xamarin integration of Aplitude. In the case of custom integration, this <Link to="/api_reference/#integrations">API Reference documentation</Link> applies.
 `}</TextBlock>
-
 
 <TextBlock invisibleOn="ios,xamarin">
 Smartlook can be easily integrated into Amplitude using `IntegrationListener`:
@@ -253,5 +283,7 @@ Full Amplitude documentation with examples can be found on the [official website
 Full Amplitude documentation with examples can be found on the [official website](https://developers.amplitude.com/docs/javascript).
 `}</TextBlock>
 
+<TextBlock invisibleOn="android">{`
 ## Automatic integration
 Automatic Amplitude integration coming soon.
+`}</TextBlock>

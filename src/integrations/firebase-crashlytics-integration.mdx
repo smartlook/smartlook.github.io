@@ -7,6 +7,8 @@ showPlatformSelect: true
 
 import { CodeBlock, TextBlock, Title } from "components";
 
+import auto_integration_firebase_crashlytics from 'assets/auto_integration_firebase_crashlytics.png'
+
 <Title>Firebase Crahslytics integration</Title>
 
 ## Automatic integration
@@ -18,10 +20,10 @@ Smartlook can be auto-integrated into you project’s crashlytics simply by call
   snippets={{
     android: {
       java: `
-Smartlook.enableCrashlytics(true);
+Smartlook.enableIntegration(new FirebaseCrashlyticsIntegration());
       `,
       kotlin: `
-Smartlook.enableCrashlytics(true)
+Smartlook.enableIntegration(FirebaseCrashlyticsIntegration());
       `,
     },
     cocos: {
@@ -74,7 +76,10 @@ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
   }}
 />
 
-Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key-value pair with link to your Smartlook dashboard. Once opened, you can directly play recording just before the crash.
+Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key-value pair with link to your Smartlook dashboard.
+Once opened, you can directly play recording just before the crash.
+
+<img src={auto_integration_firebase_crashlytics} />
 
 ## Manual integration
 

@@ -7,7 +7,44 @@ showPlatformSelect: true
 
 import { CodeBlock, TextBlock, Title } from "components";
 
-<Title>Mixpanel integration</Title>
+import auto_integration_mixpanel from 'assets/auto_integration_mixpanel.png'
+
+<Title>Mixpannel integration</Title>
+
+<TextBlock visibleOn="android">{`
+## Automatic integration
+Smartlook can be automatically integrated into Mixpanel like this:
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, "YOUR TOKEN");
+mixpanel.people.identify("sample_identifier");
+...
+Smartlook.enableIntegration(new MixpanelIntegration(mixpanel));
+      `,
+      kotlin: `
+val mixpanel = MixpanelAPI.getInstance(this, "YOUR TOKEN")
+mixpanel.people.identify("sample_identifier")
+...
+Smartlook.enableIntegration(MixpanelIntegration(mixpanel))
+      `,
+  }
+  }}
+/>
+
+<TextBlock kind="important" visibleOn="android">{`
+User must be identified in Mixpanel for Smartlook automatic integration to work correctly.
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Mixpanel user.
+`}</TextBlock>
+
+<img visibleOn="android" src={auto_integration_mixpanel} />
 
 ## Manual integration
 
@@ -231,5 +268,7 @@ Full mixpanel documentation with examples can be found on the [official website]
 Full mixpanel documentation with examples can be found on the [official website](https://developer.mixpanel.com/docs/javascript).
 `}</TextBlock>
 
+<TextBlock invisibleOn="android">{`
 ## Automatic integration
-Automatic Mixpanel integration coming soon.
+Automatic Mixpannel integration coming soon.
+`}</TextBlock>

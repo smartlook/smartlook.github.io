@@ -7,15 +7,48 @@ showPlatformSelect: true
 
 import { CodeBlock, TextBlock, Title } from "components";
 
+import auto_integration_heap from 'assets/auto_integration_heap.png'
+
 <Title>Heap integration</Title>
+
+<TextBlock visibleOn="android">{`
+## Automatic integration
+Smartlook can be automatically integrated into Heap using:
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+Heap.init(applicationContext, "MY ENV ID");
+...
+Smartlook.enableIntegration(new HeapIntegration());
+      `,
+      kotlin: `
+Heap.init(applicationContext, "MY ENV ID")
+...
+Smartlook.enableIntegration(HeapIntegration())
+      `,
+  }
+  }}
+/>
+
+<TextBlock kind="important" visibleOn="android">{`
+\`enableIntegration\` integration must be called after Heap is intialized.
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Heap user.
+`}</TextBlock>
+
+<img visibleOn="android" src={auto_integration_heap} />
 
 ## Manual integration
 
 <TextBlock kind="important" visibleOn="xamarin">{`
 There seems to be [no official Xamarin integration of Heap](https://help.heap.io/getting-started/getting-started-faqs/does-heap-support-xamarin/). In the case of custom integration, this <Link to="/api_reference/#integrations">API Reference documentation</Link> applies.
 `}</TextBlock>
-
-
 
 <TextBlock invisibleOn="ios,xamarin">
 Smartlook can be easily integrated into Heap using `IntegrationListener`:
@@ -214,5 +247,7 @@ Smartlook.registerIntegrationListener({
 Full Heap API documentation can be found on the [official website](https://developers.heap.io/reference).
 `}</TextBlock>
 
+<TextBlock invisibleOn="android">{`
 ## Automatic integration
-Automatic Heap integration coming soon.
+Automatic Amplitude integration coming soon.
+`}</TextBlock>
