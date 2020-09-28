@@ -3929,12 +3929,108 @@ Smartlook.unregisterIntegrationListener()
   }}
 />
 
-## Automatic integrations
-Smartlook SDK automatic integrations into most popular frameworks are in progress.
-
-## Integration samples
+### Integration samples
 Samples adjusted for specific analytic tools can be found in `Integrations documentation:`
 - <Link to="/docs/sdk/integrations/amplitude">Amplitude</Link>
 - <Link to="/docs/sdk/integrations/mixpanel">Mixpanel</Link>
 - <Link to="/docs/sdk/integrations/heap">Heap</Link>
 - <Link to="/docs/sdk/integrations/firebase-crashlytics">Firebase Crashlytics</Link>
+- <Link to="/docs/sdk/integrations/bugsnag">Bugsnag</Link>
+
+## Automatic integrations
+
+<TextBlock invisibleOn="android">{`
+Smartlook SDK automatic integrations into most popular frameworks are in progress.
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+Automatic integrations provide simple way of integrating Smartlook into various 3rd party analytic tools.
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+### Enable integrations
+One or list of automatic integrations can be enabled by calling:
+`}</TextBlock>
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.enableIntegration(Integration integration);
+Smartlook.enableIntegrations(List<Integration> integrations);
+      `,
+      kotlin: `
+Smartlook.enableIntegration(integration: Integration)
+Smartlook.enableIntegrations(integrations: List<Integration>)
+      `,
+    },
+  }}
+/>
+
+<TextBlock visibleOn="android">{`
+Specific \`Integration\`s are described in Integrations documentation:
+- <Link to="/docs/sdk/integrations/amplitude">Amplitude</Link>
+- <Link to="/docs/sdk/integrations/mixpanel">Mixpanel</Link>
+- <Link to="/docs/sdk/integrations/heap">Heap</Link>
+- <Link to="/docs/sdk/integrations/firebase-crashlytics">Firebase Crashlytics</Link>
+- <Link to="/docs/sdk/integrations/bugsnag">Bugsnag</Link>
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+### Disable integrations
+Every currently enabled \`Integration\` can be disabled:
+`}</TextBlock>
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.disableIntegration(Integration integration);
+Smartlook.disableIntegrations(List<Integration> integrations);
+      `,
+      kotlin: `
+Smartlook.disableIntegration(integration: Integration)
+Smartlook.disableIntegrations(integrations: List<Integration>)
+      `,
+    },
+  }}
+/>
+
+<TextBlock visibleOn="android">{`
+Or all currently enabled integrations can be disabled using:
+`}</TextBlock>
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.disableAllIntegrations();
+      `,
+      kotlin: `
+Smartlook.disableAllIntegrations()
+      `,
+    },
+  }}
+/>
+
+<TextBlock kind="important" visibleOn="android">{`
+Smartlook SDK tries to disable automatic integration and remove "integrated" URLs from targed analytic tools. This however is "best effort" try and cannot be guaranteed.
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+### List integrations
+All currently enabled integrations can be listed:
+`}</TextBlock>
+
+<CodeBlock
+  snippets={{
+    android: {
+      java: `
+Smartlook.currentEnabledIntegrations();
+      `,
+      kotlin: `
+Smartlook.currentEnabledIntegrations()
+      `,
+    },
+  }}
+/>
