@@ -469,8 +469,8 @@ Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNu
         .setFps(int fps)
         .setExperimental(boolean experimental)
         .setActivity(@NonNull Activity activity)
-        .setRenderingMode(@RenderingMode String renderingMode)
-        .setRenderingMode(@RenderingModeOption String renderingModeOption);\\n
+        .setRenderingMode(RenderingMode renderingMode)
+        .setRenderingMode(RenderingModeOption renderingModeOption);\\n
 Smartlook.setupAndStartRecording(builder.build());
       \`,
       kotlin: \`
@@ -478,8 +478,8 @@ val builder = Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
         .setFps(fps: Int)
         .setExperimental(experimental: Boolean)
         .setActivity(@NonNull activity: Activity)
-        .setRenderingMode(@RenderingMode renderingMode: String)
-        .setRenderingMode(@RenderingModeOption renderingModeOption: String)\\n
+        .setRenderingMode(renderingMode: RenderingMode)
+        .setRenderingMode(renderingModeOption: RenderingModeOption)\\n
 Smartlook.setupAndStartRecording(builder.build())
       \`,
     },
@@ -2089,18 +2089,18 @@ Screen/navigation transitions can be manually tracked by calling:
   snippets={{
     android: {
       java: `
-Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState);
+Smartlook.trackNavigationEvent(@NotNull String name, ViewState viewState);
       `,
       kotlin: `
-Smartlook.trackNavigationEvent(@NotNull name: String, @ViewState viewState: String)
+Smartlook.trackNavigationEvent(@NotNull name: String, viewState: ViewState)
       `,
     },
     cocos: {
       java: `
-Smartlook.trackNavigationEvent(@NotNull String name, @ViewState String viewState);
+Smartlook.trackNavigationEvent(@NotNull String name, ViewState viewState);
       `,
       kotlin: `
-Smartlook.trackNavigationEvent(@NotNull name: String, @ViewState viewState: String)
+Smartlook.trackNavigationEvent(@NotNull name: String, viewState: ViewState)
       `,
     },
     cordova: {
@@ -2200,10 +2200,10 @@ It can be explicitly specified if the navigation event happened between \`Activi
   snippets={{
     android: {
       java: `
-Smartlook.trackNavigationEvent(@NotNull String name, @ViewType String type, @ViewState String viewState);
+Smartlook.trackNavigationEvent(@NotNull String name, ViewType type, ViewState viewState);
       `,
       kotlin: `
-Smartlook.trackNavigationEvent(@NotNull name: String, @ViewType type: String, @ViewState viewState: String)
+Smartlook.trackNavigationEvent(@NotNull name: String, type: ViewType, viewState: ViewState)
       `,
     },
   }}
@@ -2876,7 +2876,7 @@ Global event properties are stored until they are not removed or the app is unin
 ## Event tracking modes
 
 <TextBlock visibleOn="android,ios,cordova,ionic,xamarin">{`
-Sometimes it can be beneficial to disable automatically detected or all events due to security reasons. This can be done using one of the **event tracking modes**:
+It can be beneficial to disable some automatically detected events due to security or usability reasons. This can be done using **event tracking modes**:
 `}</TextBlock>
 
 <TextBlock visibleOn="flutter,unity,react,cocos">{`
@@ -2885,8 +2885,10 @@ This functionality is not available yet.
 
 <TextBlock visibleOn="android">{`
 * **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
-* **IGNORE_USER_INTERACTION** automatically detected events will not be tracked. User defined events are still enabled.
-* **NO_TRACKING** no analytic events are enabled.
+* **IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -2896,19 +2898,17 @@ This functionality is not available yet.
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova">{`
-* \`Smartlook.RenderingMode.FULL_TRACKING\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
-* \`Smartlook.RenderingMode.IGNORE_USER_INTERACTION\`: automatically detected events will not be tracked. User defined events are still enabled.
-* \`Smartlook.RenderingMode.NO_TRACKING\`: no analytic events are enabled.
+* **Smartlook.EventTrackingMode.FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **Smartlook.EventTrackingMode.IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **Smartlook.EventTrackingMode.IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **Smartlook.EventTrackingMode.IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **Smartlook.EventTrackingMode.NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
 `}</TextBlock>
 
 <TextBlock visibleOn="ionic">{`
 * \`SmartlookEventTrackingMode.FULL_TRACKING()\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
 * \`SmartlookEventTrackingMode.IGNORE_USER_INTERACTION()\`: automatically detected events will not be tracked. User defined events are still enabled.
 * \`SmartlookEventTrackingMode.NO_TRACKING()\`: no analytic events are enabled.
-`}</TextBlock>
-
-<TextBlock visibleOn="android,ios,cordova,ionic">{`
-Event tracking mode can be changed **anytime** during the application run:
 `}</TextBlock>
 
 <TextBlock visibleOn="xamarin">{`
@@ -2918,20 +2918,26 @@ Event tracking mode can be changed **anytime** during the application run:
 * \`NoTracking\`: no analytic events are enabled.
 `}</TextBlock>
 
+<TextBlock visibleOn="android,ios,cordova,ionic">{`
+Single or combination of event tracking modes can be set using:  
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
     android: {
       java: `
-Smartlook.setEventTrackingMode(@EventTrackingMode String eventTrackingMode);
+Smartlook.setEventTrackingMode(EventTrackingMode eventTrackingMode);
+Smartlook.setEventTrackingModes(List<EventTrackingMode> eventTrackingModes);
       `,
       kotlin: `
-Smartlook.setEventTrackingMode(@EventTrackingMode eventTrackingMode: String);
+Smartlook.setEventTrackingMode(eventTrackingMode: EventTrackingMode);
+Smartlook.setEventTrackingModes(eventTrackingModes: List<EventTrackingMode>);
       `,
     },
     cordova: {
       javascript: `
 Smartlook.setEventTrackingMode({eventTrackingMode: Smartlook.EventTrackingMode});
+Smartlook.setEventTrackingModes({eventTrackingModes: Smartlook.EventTrackingMode[]});
       `,
     },
     ionic: {
@@ -3006,24 +3012,24 @@ Rendering mode can be set on SDK setup, e.g.:
       android: {
         java: `
 Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
-        .setRenderingMode(@RenderingMode String renderingMode);\n
+        .setRenderingMode(RenderingMode renderingMode);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
         kotlin: `
 val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
-        .setRenderingMode(@RenderingMode String renderingMode)\n
+        .setRenderingMode(renderingMode: RenderingMode)\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
       `,
       },
       cocos: {
         java: `
 Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
-        .setRenderingMode(@RenderingMode String renderingMode);\n
+        .setRenderingMode(RenderingMode renderingMode);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
         kotlin: `
 val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
-        .setRenderingMode(@RenderingMode String renderingMode)\n
+        .setRenderingMode(renderingMode: RenderingMode)\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build())
       `,
       },
@@ -3076,18 +3082,18 @@ Rendering mode can be set anytime during application run using:
   snippets={{
     android: {
       java: `
-Smartlook.setRenderingMode(@RenderingMode String renderingMode);
+Smartlook.setRenderingMode(RenderingMode renderingMode);
       `,
       kotlin: `
-Smartlook.setRenderingMode(@RenderingMode renderingMode: String)
+Smartlook.setRenderingMode(renderingMode: RenderingMode)
       `,
     },
     cocos: {
       java: `
-Smartlook.setRenderingMode(@RenderingMode String renderingMode);
+Smartlook.setRenderingMode(RenderingMode String renderingMode);
       `,
       kotlin: `
-Smartlook.setRenderingMode(@RenderingMode renderingMode: String)
+Smartlook.setRenderingMode(renderingMode: RenderingMode)
       `,
     },
     cordova: {
@@ -3195,8 +3201,26 @@ public enum RenderingMode : uint
 \`NO_RENDERING\` mode does not record any screen data, this is beneficial on screens that include sensitive data, [read more](#no-rendering).
 `}</TextBlock>
 
+<TextBlock visibleOn="android">{`
+## Current rendering mode
+Currently active rendering mode can be obtained by calling:
+`}</TextBlock>
+
+<CodeBlock
+    snippets={{
+      android: {
+        java: `
+Smartlook.currentRenderingMode();
+      `,
+        kotlin: `
+Smartlook.currentRenderingMode()
+      `,
+    },
+  }}
+/>
+
 <TextBlock visibleOn="android,ios,xamarin">{`
-## Rendering mode option
+## Set rendering mode option
 \`WIREFRAME\` rendering mode can be further configured by \`renderingModeOption\`.
 \n
 Rendering mode option can be set on setup:
@@ -3208,13 +3232,13 @@ Rendering mode option can be set on setup:
         java: `
 Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(RenderingMode.WIREFRAME)
-        .setRenderingModeOption(@RenderingModeOption String renderingModeOption);\n
+        .setRenderingModeOption(RenderingModeOption renderingModeOption);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
       `,
         kotlin: `
 val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
         .setRenderingMode(RenderingMode.WIREFRAME)
-        .setRenderingModeOption(@RenderingModeOption renderingModeOption: String);\n
+        .setRenderingModeOption(renderingModeOption: RenderingModeOption);\n
 Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
         `,
       },
@@ -3260,10 +3284,10 @@ Or at anytime during application run using:
   snippets={{
     android: {
       java: `
-Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption String renderingModeOption);
+Smartlook.setRenderingMode(RenderingMode.WIREFRAME, RenderingModeOption renderingModeOption);
       `,
       kotlin: `
-Smartlook.setRenderingMode(RenderingMode.WIREFRAME, @RenderingModeOption renderingModeOption: String)
+Smartlook.setRenderingMode(RenderingMode.WIREFRAME, renderingModeOption: RenderingModeOption)
       `,
     },
     ios: {
@@ -3317,6 +3341,24 @@ public enum RenderingModeOption : uint
   Blueprint = 2,
   IconBlueprint = 3,
 }
+      `,
+    },
+  }}
+/>
+
+<TextBlock visibleOn="android">{`
+## Current rendering mode option
+Currently active rendering mode option can be obtained by calling:
+`}</TextBlock>
+
+<CodeBlock
+    snippets={{
+      android: {
+        java: `
+Smartlook.currentRenderingModeOption();
+      `,
+        kotlin: `
+Smartlook.currentRenderingModeOption()
       `,
     },
   }}
