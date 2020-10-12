@@ -2919,6 +2919,7 @@ This functionality is not available yet.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,cordova,ionic">{`
+### Set event tracking modes
 Single or combination of event tracking modes can be set using:  
 `}</TextBlock>
 
@@ -2986,6 +2987,24 @@ Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
 <TextBlock kind="note" visibleOn="android,ios,cordova,ionic,xamarin">{`
 Take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+### List event tracking modes
+All currently active event tracking modes can be listed by calling:
+`}</TextBlock>
+
+<CodeBlock
+    snippets={{
+      android: {
+        java: `
+Smartlook.currentEventTrackingModes();
+      `,
+        kotlin: `
+Smartlook.currentEventTrackingModes()
+      `,
+    },
+  }}
+/>
 
 # Rendering
 <TextBlock visibleOn="android,ios,cordova,ionic,react,flutter,cocos,unity,xamarin">{`
