@@ -2875,13 +2875,10 @@ Global event properties are stored until they are not removed or the app is unin
 
 ## Event tracking modes
 
-<TextBlock visibleOn="android,ios,cordova,ionic,xamarin">{`
+<TextBlock visibleOn="android,ios,cordova,ionic,xamarin,cocos,flutter,unity,react">{`
 It can be beneficial to disable some automatically detected events due to security or usability reasons. This can be done using **event tracking modes**:
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,react,cocos">{`
-This functionality is not available yet.
-`}</TextBlock>
 
 <TextBlock visibleOn="android">{`
 * **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
@@ -2889,6 +2886,38 @@ This functionality is not available yet.
 * **IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
 * **IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
 * **NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
+`}</TextBlock>
+
+<TextBlock visibleOn="cocos">{`
+* **FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
+`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+* **EventTrackingMode.FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **EventTrackingMode.IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **EventTrackingMode.IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **EventTrackingMode.IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **EventTrackingMode.NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
+`}</TextBlock>
+
+<TextBlock visibleOn="unity">{`
+* **SmartlookUnity.Smartlook.EventTrackingMode.FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **SmartlookUnity.Smartlook.EventTrackingMode.IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **SmartlookUnity.Smartlook.EventTrackingMode.IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **SmartlookUnity.Smartlook.EventTrackingMode.IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **SmartlookUnity.Smartlook.EventTrackingMode.NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
+`}</TextBlock>
+
+<TextBlock visibleOn="react">{`
+* **Smartlook.EventTrackingMode().FULL_TRACKING** this a default state. SDK tracks all automatically detected events along with all user defined events.
+* **Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION** disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* **Smartlook.EventTrackingMode().IGNORE_NAVIGATION_INTERACTION** disables automatically detected navigation events. User defined ones are still being sent.
+* **Smartlook.EventTrackingMode().IGNORE_RAGE_CLICKS** disables automatic detection and tracking of rage click events.
+* **Smartlook.EventTrackingMode().NO_TRACKING** no automatically detected events are tracked. Only user defined events are still tracked.
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -2970,6 +2999,34 @@ public static void SetEventTrackingMode(EventTrackingMode eventTrackingMode)
 public static EventTrackingMode CurrentEventTrackingMode
       `,
     },
+    cocos: {
+        java: `
+Smartlook.setEventTrackingMode(EventTrackingMode eventTrackingMode);
+Smartlook.setEventTrackingModes(List<EventTrackingMode> eventTrackingModes);
+      `,
+      kotlin: `
+Smartlook.setEventTrackingMode(eventTrackingMode: EventTrackingMode);
+Smartlook.setEventTrackingModes(eventTrackingModes: List<EventTrackingMode>);
+      `,
+      },
+      flutter: {
+    dart: `
+Smartlook.setEventTrackingMode(EventTrackingMode eventTrackingMode);
+Smartlook.setEventTrackingModes(List<EventTrackingMode> eventTrackingModes);
+`,
+  },
+  unity: {
+    csharp: `
+SmartlookUnity.Smartlook.setEventTrackingMode(EventTrackingMode eventTrackingMode);
+SmartlookUnity.Smartlook.setEventTrackingModes(List<EventTrackingMode> eventTrackingModes);
+`,
+  },
+  react: {
+    csharp: `
+Smartlook.setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode);
+Smartlook.setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]);
+`,
+  },
   }}
 />
 
@@ -2979,6 +3036,12 @@ public static EventTrackingMode CurrentEventTrackingMode
     ionic: {
       typescript: `
 Smartlook.setEventTrackingMode(SmartlookEventTrackingMode.FULL_TRACKING());
+      `,
+    },
+    react: {
+      javascript: `
+Smartlook.setEventTrackingMode(Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION);
+Smartlook.setEventTrackingModes([Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION, Smartlook.EventTrackingMode().IGNORE_RAGE_CLICKS]);
       `,
     },
   }}
