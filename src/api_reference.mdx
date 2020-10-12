@@ -2922,8 +2922,10 @@ It can be beneficial to disable some automatically detected events due to securi
 
 <TextBlock visibleOn="ios">{`
 * \`fullTracking\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
-* \`ignoreUserInteractionEvents\`: automatically detected events will not be tracked. User defined events are still enabled.
-* \`noTracking\`: no analytic events are enabled.
+* \`ignoreUserInteractionEvents\`: disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* \`ignoreNavigationInteraction\`: disables automatically detected navigation events. User defined ones are still being sent.
+* \`ignoreRageClicksEvents\`: disables automatic detection and tracking of rage click events.
+* \`noTracking\`: no automatically detected events are tracked. Only user defined events are still tracked.
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova">{`
@@ -2944,6 +2946,8 @@ It can be beneficial to disable some automatically detected events due to securi
   Tracking modes are defined in the \`EventTrackingMode\` enumeration:
 * \`FullTracking\`: this a default state. SDK tracks all automatically detected events along with all user defined events.
 * \`IgnoreUserInteraction\`: automatically detected events will not be tracked. User defined events are still enabled.
+* \`IgnoreNavigationInteraction\`: disables automatically detected navigation events. User defined ones are still being sent.
+* \`IgnoreRageClicks\`: disables automatic detection and tracking of rage click events.
 * \`NoTracking\`: no analytic events are enabled.
 `}</TextBlock>
 
@@ -2977,26 +2981,18 @@ Smartlook.setEventTrackingMode(eventTrackingMode: SmartlookEventTrackingMode);
     },
     ios: {
       swift: `
-static let fullTracking: Smartlook.EventTrackingMode
-static let ignoreUserInteractionEvents: Smartlook.EventTrackingMode
-static let noTracking: Smartlook.EventTrackingMode
-\n
-class func setEventTrackingMode(to eventTrackingMode: Smartlook.EventTrackingMode)
-class func currentEventTrackingMode() -> Smartlook.EventTrackingMode
+class func Smartlook.setEventTrackingMode(to: Smartlook.EventTrackingMode)
+class func Smartlook.setEventTrackingModes(to: [Smartlook.EventTrackingMode])
 `,
       'objective-c': `
-SLEventTrackingMode const SLEventTrackingModeFullTracking;
-SLEventTrackingMode const SLEventTrackingModeIgnoreUserInteractionEvents;
-SLEventTrackingMode const SLEventTrackingModeNoTracking;
-\n
-+ (void)setEventTrackingModeTo:(nonnull SLEventTrackingMode)eventTrackingMode;
-+ (nonnull SLEventTrackingMode)currentEventTrackingMode;
++ (void)setEventTrackingModeTo:(SLEventTrackingMode _Nonnull)eventTrackingMode;
++ (void)setEventTrackingModesTo:(NSArray<SLEventTrackingMode> * _Nonnull)eventTrackingModes;
       `,
     },
 xamarin: {
       csharp: `
 public static void SetEventTrackingMode(EventTrackingMode eventTrackingMode)
-public static EventTrackingMode CurrentEventTrackingMode
+public static void SetEventTrackingModes(EventTrackingMode[] eventTrackingModes)
       `,
     },
     cocos: {
@@ -3048,10 +3044,12 @@ Smartlook.setEventTrackingModes([Smartlook.EventTrackingMode().IGNORE_USER_INTER
 />
 
 <TextBlock kind="note" visibleOn="android,ios,cordova,ionic,xamarin">{`
-Take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
+Further info about event tracking modes could be found in <Link to="/docs/sdk/conceptual/event-tracking">Event Tracking</Link> conceptual document.
+\n
+Take also a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 ### List event tracking modes
 All currently active event tracking modes can be listed by calling:
 `}</TextBlock>
@@ -3064,6 +3062,19 @@ Smartlook.currentEventTrackingModes();
       `,
         kotlin: `
 Smartlook.currentEventTrackingModes()
+      `,
+    },
+    ios: {
+      swift: `
+class func Smartlook.currentEventTrackingModes() -> [Smartlook.EventTrackingMode]
+`,
+      'objective-c': `
++ (nonnull NSArray<SLEventTrackingMode> *)currentEventTrackingModes;
+      `,
+    },
+xamarin: {
+      csharp: `
+public static EventTrackingMode[] CurrentEventTrackingModes
       `,
     },
   }}
