@@ -3286,7 +3286,7 @@ public enum RenderingMode : uint
 \`NO_RENDERING\` mode does not record any screen data, this is beneficial on screens that include sensitive data, [read more](#no-rendering).
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 ## Current rendering mode
 Currently active rendering mode can be obtained by calling:
 `}</TextBlock>
@@ -3300,6 +3300,19 @@ Smartlook.currentRenderingMode();
         kotlin: `
 Smartlook.currentRenderingMode()
       `,
+      },
+      ios: {
+      swift: `
+class func currentRenderingMode() -> RenderingMode
+`,
+      'objective-c': `
++ (_Nonnull SLRenderingMode)currentRenderingMode;
+      `,
+    },
+xamarin: {
+      csharp: `
+public static RenderingMode CurrentRenderingMode
+`,
     },
   }}
 />
@@ -3431,7 +3444,7 @@ public enum RenderingModeOption : uint
   }}
 />
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios,xamarin">{`
 ## Current rendering mode option
 Currently active rendering mode option can be obtained by calling:
 `}</TextBlock>
@@ -3444,7 +3457,19 @@ Smartlook.currentRenderingModeOption();
       `,
         kotlin: `
 Smartlook.currentRenderingModeOption()
+      `},
+      ios: {
+      swift: `
+class func currentRenderingModeOption() -> RenderingModeOption?
+`,
+      'objective-c': `
++ (_Nullable SLRenderingModeOption)currentRenderingModeOption;
       `,
+    },
+xamarin: {
+      csharp: `
+public static RenderingModeOption CurrentRenderingModeOption
+`,
     },
   }}
 />
