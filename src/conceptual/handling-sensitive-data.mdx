@@ -5,7 +5,7 @@ route: /docs/sdk/conceptual/handling-sensitive-data
 showPlatformSelect: true
 ---
 
-import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
+import { Code, CodeBlock, TextBlock, Link, MD, Title, Image } from 'components'
 import { usePlatforms } from 'hooks'
 
 import rendering_modes from 'assets/rendering_modes.png'
@@ -224,7 +224,7 @@ There can be scenarios when direct recording of the screen is not appropriate or
 
 When a wireframe mode is on, Smartlook draws a sketch of the screens instead of copying its content literally into the video. The principal UI elements and user interaction with them are still clearly distinguishable, but their actual look and content (texts, images) are replaced by an abstract representation.
 
-<img src={rendering_modes} />
+<Image src={rendering_modes} alt="Rendering modes" />
 
 ### Setting Rendering Mode
 

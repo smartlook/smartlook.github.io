@@ -16,6 +16,7 @@
 		"@mdx-js/runtime": "^1.6.6",
 		"classnames": "^2.2.6",
 		"docz": "^2.3.1",
+		"gatsby-remark-find-replace": "^0.3.0",
 		"nanopop": "^2.1.0",
 		"prismjs": "^1.21.0",
 		"query-string": "^6.13.1",
