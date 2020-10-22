@@ -5,59 +5,69 @@ import { navigate } from 'gatsby'
 
 import * as styles from './styles'
 
+import { ReactComponent as Android } from 'assets/platforms/android.svg'
+import { ReactComponent as Apple } from 'assets/platforms/apple.svg'
+import { ReactComponent as React } from 'assets/platforms/react.svg'
+import { ReactComponent as Unity } from 'assets/platforms/unity.svg'
+import { ReactComponent as Flutter } from 'assets/platforms/flutter.svg'
+import { ReactComponent as Cocos } from 'assets/platforms/cocos.svg'
+import { ReactComponent as Cordova } from 'assets/platforms/cordova.svg'
+import { ReactComponent as Ionic } from 'assets/platforms/ionic.svg'
+import { ReactComponent as Xamarin } from 'assets/platforms/xamarin.svg'
+
 const PLATFORMS = [
 	{
 		name: 'Android',
 		platform: 'android',
-		image: 'platforms/android.svg',
+		image: <Android />,
 		link: '/docs/sdk/android?platform=android',
 	},
 	{
 		name: 'iOS',
 		platform: 'ios',
-		image: 'platforms/apple.svg',
+		image: <Apple />,
 		link: '/docs/sdk/ios?platform=ios',
 	},
 	{
 		name: 'React Native',
 		platform: 'react',
-		image: 'platforms/react.svg',
+		image: <React />,
 		link: '/docs/sdk/react-native?platform=react',
 	},
 	{
 		name: 'Unity',
 		platform: 'unity',
-		image: 'platforms/unity.svg',
+		image: <Unity />,
 		link: '/docs/sdk/unity?platform=unity',
 	},
 	{
 		name: 'Flutter',
 		platform: 'flutter',
-		image: 'platforms/flutter.svg',
+		image: <Flutter />,
 		link: '/docs/sdk/flutter?platform=flutter',
 	},
 	{
 		name: 'Cocos',
 		platform: 'cocos',
-		image: 'platforms/cocos.svg',
+		image: <Cocos />,
 		link: '/docs/sdk/cocos?platform=cocos',
 	},
 	{
 		name: 'Cordova',
 		platform: 'cordova',
-		image: 'platforms/cordova.svg',
+		image: <Cordova />,
 		link: '/docs/sdk/cordova?platform=cordova',
 	},
 	{
 		name: 'Ionic',
 		platform: 'ionic',
-		image: 'platforms/ionic.svg',
+		image: <Ionic />,
 		link: '/docs/sdk/ionic?platform=ionic',
 	},
 	{
 		name: 'Xamarin',
 		platform: 'xamarin',
-		image: 'platforms/xamarin.svg',
+		image: <Xamarin />,
 		link: '/docs/sdk/xamarin?platform=xamarin',
 	},
 ]
@@ -84,12 +94,7 @@ export const PlatformsGrid = () => {
 						sx={styles.box}
 						onClick={() => handleNavigate(p.platform, p.link)}
 					>
-						<img
-							src={require(`assets/${p.image}`)}
-							alt={p.name}
-							className="platform-image"
-							sx={{ mb: 3 }}
-						/>
+						{p.image}
 						<h3 sx={styles.boxName}>{p.name}</h3>
 						<span sx={styles.boxType}>Mobile</span>
 					</div>
