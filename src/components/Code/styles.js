@@ -4,8 +4,17 @@ export const main = ({ kind }) => ({
 	pl: 0,
 	mb: 0,
 	listStyle: 'none',
-	// bg: 'onahau',
+	border: '1px solid #ffe5ce',
+	borderBottom: 'none',
+	borderTopLeftRadius: 3,
+	borderTopRightRadius: 3,
 	bg: `${kind === 'example' ? '#ffe5ce' : 'onahau'}`,
+
+	'& + pre': {
+		borderTop: 'none',
+		borderTopLeftRadius: 0,
+		borderTopRightRadius: 0,
+	},
 })
 
 const tabBase = {

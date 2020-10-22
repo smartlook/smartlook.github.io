@@ -5,7 +5,6 @@ import React from 'react'
 
 import { Code as PrismRenderer } from 'gatsby-theme-docz/src/components/Code'
 
-// import './Code.css'
 import * as styles from './styles'
 
 export const Code = ({ kind, snippets, shownTab, onTabChange }) => {

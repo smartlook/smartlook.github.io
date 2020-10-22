@@ -31,10 +31,7 @@ export const styles = {
 		fontSize: 16,
 		lineHeight: '24px',
 		border: 'solid 1px transparent',
-		borderTop: 'none',
 		borderRadius: '3px',
-		borderTopLeftRadius: 0,
-		borderTopRightRadius: 0,
 	}),
 	table: {
 		width: '100%',
