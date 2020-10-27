@@ -367,6 +367,7 @@ Some recording parameters can be configured on setup:
 |---------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
 | apiKey              | yes      | Unique 40 character key identifying your app (can be found in the dashboard).                                                                      | ""                   |
 | fps                 | no       | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden! | 2                    |
+| useAdaptiveFramerate | no      | Adaptive framerate is a optimization that keeps the SDK from capturing redundant screenshots when the application is idle. | true                   |
 | experimental        | no       | If set to true it enables some experimental features as TextureView/Maps/MapBox recording etc.                                                    | false                |
 | activity            | no       | Actual activity reference is required when setting the SDK outside of Application class.                                                           | null                 |
 | [renderingMode](#rendering)       | no       | Defines the way SDK is going to capture screen image data.                                                                                          | RenderingMode.NATIVE |
@@ -468,6 +469,7 @@ Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that prov
 Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNull String apiKey)
         .setFps(int fps)
         .setExperimental(boolean experimental)
+        .useAdaptiveFramerate(boolean enabled)
         .setActivity(@NonNull Activity activity)
         .setRenderingMode(@RenderingMode String renderingMode)
         .setRenderingMode(@RenderingModeOption String renderingModeOption);\\n
@@ -477,6 +479,7 @@ Smartlook.setupAndStartRecording(builder.build());
 val builder = Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
         .setFps(fps: Int)
         .setExperimental(experimental: Boolean)
+        .useAdaptiveFramerate(enabled: Boolean)
         .setActivity(@NonNull activity: Activity)
         .setRenderingMode(@RenderingMode renderingMode: String)
         .setRenderingMode(@RenderingModeOption renderingModeOption: String)\\n
