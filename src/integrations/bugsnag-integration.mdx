@@ -105,10 +105,20 @@ Bugsnag.start({onError: function (event) {
     },
     ios: {
       swift: `
-todo
+let config = BugsnagConfiguration.loadConfig()
+config.addOnSendError { (event) -> Bool in
+    event.addMetadata(    Smartlook.getDashboardSessionURL(withCurrentTimestamp: true), key:"Smartlook dashboard session URL")
+    return true
+}
+Bugsnag.start(with: config)
       `,
       'objective-c': `
-todo
+BugsnagConfiguration *config = [BugsnagConfiguration loadConfig];
+[config addOnSendErrorBlock:^BOOL (BugsnagEvent *event) {
+  [event addMetadata:[Smartlook getDashboardSessionURLWithCurrentTimestamp:YES] withKey:@"Smartlook dashboard session URL"];
+  return YES;
+}];
+[Bugsnag startWithConfiguration:config];
       `,
     },
     flutter: {
@@ -155,7 +165,7 @@ Full Bugsnag documentation with examples can be found on the [official website](
 Full Bugsnag documentation with examples can be found on the [official website](https://docs.bugsnag.com/platforms/javascript/).
 `}</TextBlock>
 
-<TextBlock invisibleOn="android">{`
+<TextBlock invisibleOn="android,ios">{`
 ## Automatic integration
 Automatic Bugsnag integration coming soon.
 `}</TextBlock>
