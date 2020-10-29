@@ -44,14 +44,22 @@ Not available on this platform.
 Not available on this platform.
       `,
     },
-    ios: {
+  ios: {
       swift: `
-Smartlook.setup(key:"API_KEY", options:[.enableCrashytics: true])
-      `,
+var integrations = Array<Smartlook.Integration>()
+integrations.append(Smartlook.FirebaseAnalyticsIntegration(integrationWith: Firebase.Analytics.self))
+integrations.append(Smartlook.FirebaseCrashlyticsIntegration(integrationWith: Firebase.Crashlytics.crashlytics()))\n
+let smartlookConfiguration = Smartlook.Configuration.configuration(key: "YOUR_SMARTLOOK_API_KEY")
+smartlookConfiguration.enableIntegrations = integrations\n    
+Smartlook.setupAndStartRecording(configuration: smartlookConfiguration)
+`,
       'objective-c': `
-[Smartlook startWithKey:@"API_KEY" withOptions:@{ SLSetupOptionEnableCrashyticsKey:@YES } ];
-      `,
-    },
+[FIRApp configure];\n
+NSMutableArray<SLIntegration *> *smartlookIntegrations = [NSMutableArray new];
+[smartlookIntegrations addObject:[[SLFirebaseAnalyticsIntegration alloc] initIntegrationWith:[FIRAnalytics class]]];
+[smartlookIntegrations addObject:[[SLFirebaseCrashlyticsIntegration alloc] initIntegrationWith:[FIRCrashlytics crashlytics]]];\n
+[Smartlook setupAndStartRecordingWithConfiguration:configuration];
+`,},
     flutter: {
       dart: `
 Smartlook.enableCrashlytics(true);
