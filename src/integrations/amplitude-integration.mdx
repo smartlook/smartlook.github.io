@@ -11,7 +11,7 @@ import auto_integration_amplitude from 'assets/auto_integration_amplitude.png'
 
 <Title>Amplitude integration</Title>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 ## Automatic integration
 Smartlook can be automatically integrated into Amplitude using:
 `}</TextBlock>
@@ -30,15 +30,29 @@ val amplitudeInstance = Amplitude.getInstance().initialize(this, "YOUR_API_KEY")
 ...
 Smartlook.enableIntegration(AmplitudeIntegration(amplitudeInstance))
       `,
+  },
+  ios: {
+      swift: `
+Amplitude.instance()?.initializeApiKey("YOUR_AMPLITUDE_API_KEY")\n
+let smartlookConfiguration = Smartlook.Configuration.configuration(key: "YOUR_SMARTLOOK_API_KEY")
+smartlookConfiguration.enableIntegrations = [ Smartlook.AmplitudeIntegration(integrationWith: Amplitude.instance()) ]\n    
+Smartlook.setupAndStartRecording(configuration: smartlookConfiguration)
+`,
+      'objective-c': `
+[[Amplitude instance] initializeApiKey:@"YOUR_AMPLITUDE_API_KEY"];\n
+SLSetupConfiguration *configuration = [SLSetupConfiguration configurationWithKey:@"YOUR_SMARTLOOK_API_KEY"];
+configuration.enableIntegrations = @[ [[SLAmplitudeIntegration alloc] initIntegrationWith:[Amplitude instance]] ];\n
+[Smartlook setupAndStartRecordingWithConfiguration:configuration];
+`,
   }
   }}
 />
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Amplitude user.
 `}</TextBlock>
 
-<img visibleOn="android" src={auto_integration_amplitude} />
+<img visibleOn="android,ios" src={auto_integration_amplitude} />
 
 ## Manual integration
 
