@@ -11,7 +11,7 @@ import auto_integration_heap from 'assets/auto_integration_heap.png'
 
 <Title>Heap integration</Title>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 ## Automatic integration
 Smartlook can be automatically integrated into Heap using:
 `}</TextBlock>
@@ -30,6 +30,20 @@ Heap.init(applicationContext, "MY ENV ID")
 ...
 Smartlook.enableIntegration(HeapIntegration())
       `,
+  },
+  ios: {
+      swift: `
+Heap.initialize("YOUR_HEAP_API_KEY")\n
+let smartlookConfiguration = Smartlook.Configuration.configuration(key: "YOUR_SMARTLOOK_API_KEY")
+smartlookConfiguration.enableIntegrations = [ Smartlook.HeapIntegration(integrationWith: Heap.self) ]\n
+Smartlook.setupAndStartRecording(configuration: smartlookConfiguration)
+`,
+      'objective-c': `
+[Heap initialize:@"YOUR_HEAP_API_KEY"];\n
+SLSetupConfiguration *configuration = [SLSetupConfiguration configurationWithKey:@"YOUR_SMARTLOOK_API_KEY"];
+configuration.enableIntegrations = @[ [SLHeapIntegration alloc] initIntegrationWith:[Heap class]] ];\n
+[Smartlook setupAndStartRecordingWithConfiguration:configuration];
+`,
   }
   }}
 />
@@ -38,7 +52,7 @@ Smartlook.enableIntegration(HeapIntegration())
 \`enableIntegration\` integration must be called after Heap is intialized.
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Heap user.
 `}</TextBlock>
 
