@@ -1,5 +1,11 @@
 {
 	"javascript.validate.enable": false,
 	"typescript.validate.enable": false,
-	"eslint.validate": ["javascript", "javascriptreact"]
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact"
+	],
+	"cSpell.enableFiletypes": [
+		"mdx"
+	]
 }

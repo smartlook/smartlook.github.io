@@ -6,7 +6,7 @@ export const spec = {
 	},
 	servers: [
 		{
-			url: 'https://public-api.smartlook.com',
+			url: 'https://api.smartlook.cloud/',
 			description: 'Smartlook REST API host',
 		},
 	],
@@ -51,7 +51,10 @@ export const spec = {
 													_links: {
 														type: 'object',
 														properties: {
-															detail: {
+															eventVisitors: {
+																type: 'string',
+															},
+															event: {
 																type: 'string',
 															},
 														},
@@ -104,7 +107,6 @@ export const spec = {
 						},
 						name: 'before',
 						required: false,
-						description: 'Used for the pagination of the results',
 					},
 					{
 						in: 'query',
@@ -113,7 +115,14 @@ export const spec = {
 						},
 						name: 'after',
 						required: false,
-						description: 'Used for the pagination of the results',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'number',
+						},
+						name: 'limit',
+						required: false,
 					},
 					{
 						in: 'query',
@@ -122,18 +131,12 @@ export const spec = {
 						},
 						name: 'categoryId',
 						required: false,
-						description: 'The ID of the category of the events',
 					},
 				],
 				operationId: 'getEventsList',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
-		'/api/v1/events/{eventOid}': {
+		'/api/v1/events/{eventId}': {
 			get: {
 				responses: {
 					'200': {
@@ -158,7 +161,7 @@ export const spec = {
 												categoryName: {
 													type: 'string',
 												},
-												totalOccurence: {
+												totalOccurrence: {
 													type: 'number',
 												},
 												uniqueVisitors: {
@@ -167,10 +170,10 @@ export const spec = {
 												newVisitors: {
 													type: 'number',
 												},
-												averageOccurencePerVisitor: {
+												averageOccurrencePerVisitor: {
 													type: 'number',
 												},
-												occurenceHistogram: {
+												occurrenceHistogram: {
 													type: 'array',
 													items: {
 														type: 'object',
@@ -178,7 +181,7 @@ export const spec = {
 															date: {
 																type: 'string',
 															},
-															occurenceCount: {
+															occurrenceCount: {
 																type: 'number',
 															},
 															uniqueVisitorsCount: {
@@ -191,7 +194,7 @@ export const spec = {
 												_links: {
 													type: 'object',
 													properties: {
-														visitors: {
+														eventVisitors: {
 															type: 'string',
 														},
 													},
@@ -214,9 +217,8 @@ export const spec = {
 						schema: {
 							type: 'string',
 						},
-						name: 'eventOid',
+						name: 'eventId',
 						required: true,
-						description: 'The ID of the event',
 					},
 					{
 						in: 'query',
@@ -225,7 +227,6 @@ export const spec = {
 						},
 						name: 'dateFrom',
 						required: true,
-						description: 'Start date of the events window',
 					},
 					{
 						in: 'query',
@@ -234,27 +235,20 @@ export const spec = {
 						},
 						name: 'dateTo',
 						required: true,
-						description: 'End date of the events window',
 					},
 					{
 						in: 'query',
 						schema: {
 							type: 'string',
 						},
-						name: 'occurenceHistogramInterval',
+						name: 'occurrenceHistogramInterval',
 						required: false,
-						description: 'Resolution of the event histogram',
 					},
 				],
 				operationId: 'getEventDetail',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
-		'/api/v1/events/{eventOid}/visitors': {
+		'/api/v1/events/{eventId}/visitors': {
 			get: {
 				responses: {
 					'200': {
@@ -296,6 +290,21 @@ export const spec = {
 													numberOfVisits: {
 														type: 'number',
 													},
+													_links: {
+														type: 'object',
+														properties: {
+															visitor: {
+																type: 'string',
+															},
+															visitorSessions: {
+																type: 'string',
+															},
+															visitorEvents: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
 												},
 												additionalProperties: false,
 											},
@@ -314,9 +323,8 @@ export const spec = {
 						schema: {
 							type: 'string',
 						},
-						name: 'eventOid',
+						name: 'eventId',
 						required: true,
-						description: 'The ID of the event',
 					},
 					{
 						in: 'query',
@@ -325,8 +333,6 @@ export const spec = {
 						},
 						name: 'dateFrom',
 						required: true,
-						description:
-							'Filters visitors that were first seen after this date',
 					},
 					{
 						in: 'query',
@@ -335,16 +341,9 @@ export const spec = {
 						},
 						name: 'dateTo',
 						required: true,
-						description:
-							'Filters visitors that were first seen before this date',
 					},
 				],
 				operationId: 'getEventVisitors',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
 		'/api/v1/funnels': {
@@ -385,7 +384,7 @@ export const spec = {
 																_links: {
 																	type: 'object',
 																	properties: {
-																		detail: {
+																		event: {
 																			type: 'string',
 																		},
 																	},
@@ -398,7 +397,7 @@ export const spec = {
 													_links: {
 														type: 'object',
 														properties: {
-															detail: {
+															funnel: {
 																type: 'string',
 															},
 														},
@@ -448,7 +447,6 @@ export const spec = {
 						},
 						name: 'before',
 						required: false,
-						description: 'Used for the pagination of the results',
 					},
 					{
 						in: 'query',
@@ -457,7 +455,6 @@ export const spec = {
 						},
 						name: 'after',
 						required: false,
-						description: 'Used for the pagination of the results',
 					},
 					{
 						in: 'query',
@@ -466,18 +463,12 @@ export const spec = {
 						},
 						name: 'limit',
 						required: false,
-						description: 'Maximum number of funnels in the response',
 					},
 				],
 				operationId: 'getFunnelsList',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
-		'/api/v1/funnels/{funnelOid}': {
+		'/api/v1/funnels/{funnelId}': {
 			get: {
 				responses: {
 					'200': {
@@ -537,7 +528,7 @@ export const spec = {
 																	_links: {
 																		type: 'object',
 																		properties: {
-																			detail: {
+																			event: {
 																				type: 'string',
 																			},
 																		},
@@ -567,9 +558,8 @@ export const spec = {
 						schema: {
 							type: 'string',
 						},
-						name: 'funnelOid',
+						name: 'funnelId',
 						required: true,
-						description: 'ID of the funnel',
 					},
 					{
 						in: 'query',
@@ -578,7 +568,6 @@ export const spec = {
 						},
 						name: 'dateFrom',
 						required: true,
-						description: 'Start date of the funnel window',
 					},
 					{
 						in: 'query',
@@ -587,15 +576,9 @@ export const spec = {
 						},
 						name: 'dateTo',
 						required: true,
-						description: 'End date of the funnel window',
 					},
 				],
 				operationId: 'getFunnelDetail',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
 		'/api/v1/visitors/{visitorId}': {
@@ -647,7 +630,10 @@ export const spec = {
 												_links: {
 													type: 'object',
 													properties: {
-														sessions: {
+														visitorSessions: {
+															type: 'string',
+														},
+														visitorEvents: {
 															type: 'string',
 														},
 													},
@@ -675,11 +661,6 @@ export const spec = {
 					},
 				],
 				operationId: 'getVisitorDetails',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
 		'/api/v1/visitors/{visitorId}/sessions': {
@@ -844,6 +825,18 @@ export const spec = {
 													dashboardURL: {
 														type: 'string',
 													},
+													_links: {
+														type: 'object',
+														properties: {
+															visitor: {
+																type: 'string',
+															},
+															sessionEvents: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
 												},
 												additionalProperties: false,
 											},
@@ -903,11 +896,194 @@ export const spec = {
 					},
 				],
 				operationId: 'getVisitorSessions',
-				security: [
+			},
+		},
+		'/api/v1/visitors/{visitorId}/events': {
+			get: {
+				responses: {
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										pagination: {
+											type: 'object',
+											properties: {
+												before: {
+													type: 'string',
+												},
+												after: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+										events: {
+											type: 'array',
+											items: {
+												type: 'object',
+												properties: {
+													id: {
+														type: 'string',
+													},
+													visitorId: {
+														type: 'string',
+													},
+													sessionId: {
+														type: 'string',
+													},
+													properties: {
+														type: 'array',
+														items: {
+															type: 'object',
+															properties: {
+																name: {
+																	type: 'string',
+																},
+																type: {
+																	type: 'string',
+																},
+																value: {
+																	type: 'string',
+																},
+															},
+															additionalProperties: false,
+														},
+													},
+													duration: {
+														type: 'number',
+													},
+													startedAt: {
+														type: 'string',
+													},
+													pageUrl: {
+														type: 'string',
+													},
+													type: {
+														type: 'string',
+													},
+													value: {
+														$ref: '#/components/schemas/AnyValue',
+													},
+													sourceType: {
+														type: 'string',
+													},
+													eventName: {
+														type: 'string',
+													},
+													selector: {
+														type: 'string',
+													},
+													_links: {
+														type: 'object',
+														properties: {
+															visitor: {
+																type: 'string',
+															},
+															eventVisitors: {
+																type: 'string',
+															},
+															event: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
+												},
+												additionalProperties: false,
+											},
+										},
+										_links: {
+											type: 'object',
+											properties: {
+												nextPage: {
+													type: 'string',
+												},
+												previousPage: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['visitors'],
+				parameters: [
 					{
-						BearerAuth: [],
+						in: 'path',
+						schema: {
+							type: 'string',
+						},
+						name: 'visitorId',
+						required: true,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'dateFrom',
+						required: false,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'dateTo',
+						required: false,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'eventTypes',
+						required: false,
+						description:
+							'What types of events should be returned in the response (values separated by ","). Types of events are: click, url, error, rage_click, custom, focus',
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'sessionId',
+						required: false,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'before',
+						required: false,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'after',
+						required: false,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'number',
+						},
+						name: 'limit',
+						required: false,
 					},
 				],
+				operationId: 'getVisitorEvents',
 			},
 		},
 		'/api/v1/statistics': {
@@ -938,11 +1114,6 @@ export const spec = {
 				tags: ['system'],
 				parameters: [],
 				operationId: 'getApiStats',
-				security: [
-					{
-						BearerAuth: [],
-					},
-				],
 			},
 		},
 	},
@@ -958,9 +1129,6 @@ export const spec = {
 			BearerAuth: {
 				type: 'http',
 				scheme: 'bearer',
-				bearerFormat: 'jwt',
-				description:
-					'API token for the project (you can create one in the Smartlook dashboard)',
 			},
 		},
 	},
