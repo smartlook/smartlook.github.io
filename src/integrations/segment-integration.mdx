@@ -1,0 +1,120 @@
+---
+name: Segment
+menu: SDK Integrations
+route: /docs/sdk/integrations/segment
+showPlatformSelect: true
+---
+
+import { CodeBlock, TextBlock, Title, Code } from "components";
+
+<Title>Segment integration</Title>
+
+<TextBlock kind="important">{`
+The standard Segment integration is not available at this time. It is technically ready, but Segment ignores our requests to add Smartlook to their mobile sources catalog.\n
+Without this, the standard integration can't work.\n
+Instead, use on available platforms our automated Smartlook to Segment integration, or use the recipes below to write your own.
+`}</TextBlock>
+
+<TextBlock visibleOn="android,ios">{`
+## Automatic integration
+Smartlook can be automatically integrated into Segment as its source middleware:
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    android: {
+      java: `
+TBD
+      `,
+      kotlin: `
+TBD
+      `,
+  },
+  ios: {
+      swift: `
+// initialize Smartlook
+let smartlookConfiguration = Smartlook.Configuration.configuration(key: SMARTLOOK_API_KEY)
+Smartlook.setupAndStartRecording(configuration: smartlookConfiguration)\n
+// initialize Segment
+let segmentConfiguration = SEGAnalyticsConfiguration(writeKey: SEGMENT_API_KEY)
+...
+if let smartlookMiddleware = Smartlook.segmentSourceMiddleware(withResetEventType: SEGEventType.reset.rawValue) {
+  segmentConfiguration.middlewares = [smartlookMiddleware]
+}\n 
+SEGAnalytics.setup(with: segmentConfiguration)
+`,
+      'objective-c': `
+// initialize Smartlook
+SLSetupConfiguration *configuration = [SLSetupConfiguration configurationWithKey:SMARTLOOK_API_KEY];
+[Smartlook setupAndStartRecordingWithConfiguration:configuration];\n
+// initialize Segment
+SEGAnalyticsConfiguration *segmentConfiguration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_API_KEY];
+...    
+SEGBlockMiddleware *smartlookMiddleware = [Smartlook segmentSourceMiddlewareWithResetEventType:SEGEventTypeReset];
+if (smartlookMiddleware != nil) {
+  segmentConfiguration.middlewares = @[smartlookMiddleware];
+}\n
+[SEGAnalytics setupWithConfiguration:segmentConfiguration];
+`,
+  }
+  }}
+/>
+
+<TextBlock visibleOn="android,ios">{`
+This way, Segment \`track\`,  \`Screen\`, \`identify\` and \`reset\` call transalate to the respective Smartlook method calls.
+`}</TextBlock>
+
+
+## Manual integration
+
+Recipes for straigthforward Segment integration in Android or iOS that could be inspiration for other supported platforms as well. 
+
+Full Segment documentation for mobile platforms can be found on the [official website](https://segment.com/docs/connections/sources/catalog/).
+
+<Code
+  kind="example"
+  snippets={{
+      java: `
+TBD
+      `,
+      kotlin: `
+TBD
+      `,
+      swift: `
+let segmentConfiguration = SEGAnalyticsConfiguration(writeKey: SEGMENT_API_KEY)\n    
+let smartlookMiddleware = SEGBlockMiddleware(block: { (context, next) in
+  switch (context.eventType) {
+  case .track:
+    if let track = context.payload as? SEGTrackPayload {
+      var props = [String:String]()
+      // striglify payload props
+      Smartlook.trackCustomEvent(name: track.event, props: props)
+    }
+  default:
+    break
+  }
+  next(context)
+})
+segmentConfiguration.middlewares = [smartlookMiddleware]\n
+SEGAnalytics.setup(with: segmentConfiguration)
+          `,
+      'objective-c': `
+SEGAnalyticsConfiguration *segmentConfiguration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_API_KEY];\n
+SEGBlockMiddleware *smartlookMiddleware = [[SEGBlockMiddleware alloc] initWithBlock:^(SEGContext * _Nonnull context, SEGMiddlewareNext  _Nonnull next) {
+  switch (context.eventType) {
+    SEGEventTypeTrack:
+    {
+      SEGTrackPayload *track = (SEGTrackPayload *)context.payload;
+      [Smartlook trackCustomEventWithName:track.event props:track.properties];
+    }
+    default: {}
+  }
+  next(context);
+}];
+segmentConfiguration.middlewares = @[smartlookMiddleware];\n
+[SEGAnalytics setupWithConfiguration:segmentConfiguration];
+`,
+    }
+  }
+/>
