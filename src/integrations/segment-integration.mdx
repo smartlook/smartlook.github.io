@@ -11,8 +11,8 @@ import { CodeBlock, TextBlock, Title, Code } from "components";
 
 <TextBlock kind="important">{`
 The standard Segment integration is not available at this time. It is technically ready, but Segment ignores our requests to add Smartlook to their mobile sources catalog.\n
-Without this, the standard integration can't work.\n
-Instead, use on available platforms our automated Smartlook to Segment integration, or use the recipes below to write your own.
+Without it, the standard integration can't work.\n
+Instead, use our custom automated Smartlook to Segment integration, or the recipes below to write your own integration.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios">{`
@@ -39,7 +39,7 @@ Smartlook.setupAndStartRecording(configuration: smartlookConfiguration)\n
 // initialize Segment
 let segmentConfiguration = SEGAnalyticsConfiguration(writeKey: SEGMENT_API_KEY)
 ...
-if let smartlookMiddleware = Smartlook.segmentSourceMiddleware(withResetEventType: SEGEventType.reset.rawValue) {
+if let smartlookMiddleware = Smartlook.segmentSourceMiddleware(options: .default, segResetEventType: SEGEventType.reset.rawValue) {
   segmentConfiguration.middlewares = [smartlookMiddleware]
 }\n 
 SEGAnalytics.setup(with: segmentConfiguration)
@@ -51,7 +51,7 @@ SLSetupConfiguration *configuration = [SLSetupConfiguration configurationWithKey
 // initialize Segment
 SEGAnalyticsConfiguration *segmentConfiguration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_API_KEY];
 ...    
-SEGBlockMiddleware *smartlookMiddleware = [Smartlook segmentSourceMiddlewareWithResetEventType:SEGEventTypeReset];
+SEGBlockMiddleware *smartlookMiddleware = [Smartlook segmentSourceMiddlewareWithOptions:SLSegmentMiddlewareOptionDefault whereSEGResetEventTypeIs:SEGEventTypeReset];
 if (smartlookMiddleware != nil) {
   segmentConfiguration.middlewares = @[smartlookMiddleware];
 }\n
@@ -62,9 +62,19 @@ if (smartlookMiddleware != nil) {
 />
 
 <TextBlock visibleOn="android,ios">{`
-This way, Segment \`track\`,  \`Screen\`, \`identify\` and \`reset\` call transalate to the respective Smartlook method calls.
+Smartlook Middleware integration transalates Segment's \`track\`,  \`screen\`, \`identify\` and \`reset\` calls to the respective Smartlook method calls. The \`options\` argument can filter unnecessary or unwanted mapping.
 `}</TextBlock>
-
+<TextBlock visibleOn="ios">{`
+| Option        | Segment Event type        | Smartlook API Method(s)                                                  | Notes                                                               |
+|---------------|---------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------|
+|\`.track\`     | \`SEGEventTypeTrack\`     | \`trackCustomEvent(name:props:)\`                                        | - - -  |
+|\`.screen\`    | \`SEGEventTypeScreen\`    |\`trackNavigationEvent(withControllerId:type:)\`                          | This mapping is set **off** in the \`.default\` options combinations, as it interferes with Smartlook Heatmap generating. <br /> When enabled, the Smartlook's \`type\` is always \`.enter\`.|
+|\`.identity\`  | \`SEGEventTypeIdentify\`  |\`setUserIdentifier(userIdentifier:); setSessionProperty(value:forName:)\`| - - -  |
+|\`.alias\`     | \`SEGEventTypeAlias\`     |\`setUserIdentifier(userIdentifier:)\`                                    | - - -  |
+|\`.reset\`     | \`SEGEventTypeReset\`     |\`resetSession(resetUser:)\`                                              | \`resetUser\` attribute is always set to \`true\`.   |
+|\`.all\`       | - - -                     | - - -                                                                    | Sets all options (all call mappings) enabled.            |
+|\`.default\`   | - - -                     | - - -                                                                    | Sets all options except for \`.screen\` to avoid Smartlook heatmpa mangling.|
+`}</TextBlock>
 
 ## Manual integration
 
