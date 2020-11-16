@@ -35,6 +35,11 @@ export const PLATFORMS = [
 		defaultLanguage: '',
 	},
 	{
+		value: 'unreal',
+		displayName: 'Unreal Engine',
+		defaultLanguage: '',
+	},
+	{
 		value: 'cocos',
 		displayName: 'Cocos',
 		defaultLanguage: 'java',
