@@ -44,6 +44,8 @@ curl -X GET \\
 The complete list of available endpoints is listed in the [API reference](/docs/rest-api/reference).
 Each endpoint is prefixed by a version number (eg. `/api/v1/events`), however, it is not mandatory to specify the version. For the calls without version being specified (eg. `/api/events`) the latest is used.
 
+To make things easier for you we prepared a [Javascript client](https://www.npmjs.com/package/@smartlook/rest-api-client) that can be used both in the browser and the Node.js.
+
 ## Traversing paged results
 When making an API requests to a resource that returns multiple objects, the result will be split into multiple pages.
 All the paginated responses are using cursor-based pagination and therefore calls to pages are stable.
