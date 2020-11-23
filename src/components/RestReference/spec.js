@@ -2,7 +2,7 @@ export const spec = {
 	openapi: '3.0.0',
 	info: {
 		title: 'Smartlook REST API',
-		version: '1.0.0',
+		version: '1.0.1',
 	},
 	servers: [
 		{
@@ -11,14 +11,31 @@ export const spec = {
 		},
 	],
 	paths: {
-		'/status': {
+		'/v1.0/status': {
 			get: {
 				responses: {
-					default: {
-						description: 'Unknown',
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										ok: {
+											type: 'boolean',
+										},
+										version: {
+											type: 'string',
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
 					},
 				},
-				operationId: 'statusGet',
+				parameters: [],
+				operationId: 'status',
 			},
 		},
 		'/api/v1/events': {
