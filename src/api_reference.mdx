@@ -86,29 +86,21 @@ this.platform.ready().then(() => {
     },
     ios: {
       swift: `
-import Smartlook
-\n
+import Smartlook\n
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-\n
-  Smartlook.setup(key: "API_KEY")
-  Smartlook.startRecording()
-\n
+  let smartlookConfig = Smartlook.SetupConfiguration(key: "API_KEY")
+  Smartlook.setupAndStartRecording(configuration: smartlookConfig)
   // other initialization stuff
-\n
   return true
 }
       `,
       'objective-c': `
-#import <Smartlook/Smartlook.h>
-\n
+#import <Smartlook/Smartlook.h>\n
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-\n
-    [Smartlook setupWithKey: @"API_KEY"];
-    [Smartlook startRecording];
-\n
-    // other initialization stuff
-\n
-    return YES;
+  SLSetupConfiguration *slConfig = [[SLSetupConfiguration alloc] initWithKey:@"API_KEY"];
+  [Smartlook setupAndStartRecordingWithConfiguration:slConfig];
+  // other initialization stuff
+  return YES;
 }
       `,
     },
@@ -190,12 +182,8 @@ Smartlook.Analytics.SetupAndStart("API_KEY");
 SDK can be setup later than in Application class, typically when the Application is fetching API key, please take a look [here](/cookbooks/android_setup_outside_application_class).
 `}</TextBlock>
 
-<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin">{`
+<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin,ios">{`
 The easiest way of setting up the SDK is with \`setupAndStartRecording()\` method:
-`}</TextBlock>
-
-<TextBlock visibleOn="ios">{`
-The easiest way of setting up the SDK is with \`setup()\` method:
 `}</TextBlock>
 
 <CodeBlock
@@ -237,10 +225,18 @@ xamarin: {
       csharp: `
 static public void SetupAndStart(string key, SetupOptions options = new SetupOptions())`,
     },
+    ios: {
+      swift: `
+class func Smartlook.setupAndStartRecording(configuration: Smartlook.SetupConfiguration)
+      `,
+      'objective-c': `
++ (void)setupWithConfiguration:(nonnull SLSetupConfiguration *)configuration;
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin">{`
+<TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin,ios">{`
 It will set the SDK up and also start the recording. SDK can be setup without starting the recording using:
 `}</TextBlock>
 
@@ -266,10 +262,10 @@ smartlook.setup(new SmartlookSetupConfig(smartlookAPIKey: string));
     },
     ios: {
       swift: `
-class func setup(withKey key: String)
+class func Smartlook.setup(configuration: Smartlook.SetupConfiguration)
       `,
       'objective-c': `
-+(void)setupWithKey:(nonnull NSString *)key;
++ (void)setupWithConfiguration:(nonnull SLSetupConfiguration *)configuration;
       `,
     },
     flutter: {
@@ -374,19 +370,20 @@ Some recording parameters can be configured on setup:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
-The following table describes all available optional parameters. Most of them can be also set by a dedicated method. See the respective documentation section for details.
+Smartlook can be setup using and instance of \`SetupConfiguration\` object. The object has a mandatory \`apiKey\` property, other property values are optional.\n
+Some of the parameters could be also set in your project settings in Smartlook portal. It is advisible to use the projects settings when available there and use this setup configuration for testing and evaluating only.
 \n
-The options dictionary keys are constants defined as members of \`SetupOptionKey\` enumeration.
-\n
-| Parameter            | Type                   | Default value | Description
+| Property             | Type                   | Default value | Description
 |----------------------|------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| .enableCrashlytics   | bool                   | false         | Enables Firebase Crashlytics integration              |
-| .framerate           | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
-| .useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
-| [.renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
-| [.renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
-| .startNewSession     | bool                   | false         | Always start new session with Smartlook setup.   |
-| .startNewSessionAndUser | bool                | false         | Always start new session and reset user woth Smartlook setup.  |
+| apiKey               | string                 | -             | The API key of the project. Set it in the object \`init(key:)\` initializator.             |
+| framerate            | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from Dashboard will be overridden!   |
+| useAdaptiveFramerate | bool                    | true        | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| [renderingMode](#rendering)      | RenderingMode          | native        | Define the way SDK is going to capture screen image data.  |
+| [renderingModeOption](#rendering) | RenderingModeOption    | none          | Further customize rendering mode.  |
+| resetSession     | bool                   | false         | Start recording with new session    |
+| resetSessionAndUser | bool                | false         | Start nrecording with new session and reset user  |
+| [eventTrackingModes](#event-tracking-modes) | [EventTrackingMode]                | full tracking         | Sets which types of events are tracking by Smartlook  |
+| [enableIntegrations](#integrations) | [Integration]     | -         | Array of enabled 3rd party integrations.|
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova">{`
@@ -508,26 +505,6 @@ Smartlook.setupAndStartRecording(builder.build())
   }}
 />
 `}</TextBlock>
-
-<TextBlock visibleOn="ios">{`
-Full SDK setup configuration can be done with optional \`setup\` method parameter.
-`}</TextBlock>
-
-<CodeBlock
-  snippets={{
-    ios: {
-      swift: `
-class func setup(key: String, options: [Smartlook.SetupOptionKey : Any]? = nil)
-`,
-      'objective-c': `
-+(void)setupWithKey:(nonnull NSString *)key options:(nullable NSDictionary<SLSetupOptionKey,id> *)options;
-\n
-// values in the options dictionary must be objects, e.g.,
-[Smartlook setupWithKey:@"SOME_API_KEY" options:@{ SLSetupOptionFramerateKey: @3 }];
-      `,
-    },
-  }}
-/>
 
 <TextBlock visibleOn="unity">{`
 Full SDK setup configuration can be done with optional \`fps\` method parameter.
@@ -4096,15 +4073,15 @@ Samples adjusted for specific analytic tools can be found in `Integrations docum
 
 ## Automatic integrations
 
-<TextBlock invisibleOn="android">{`
+<TextBlock invisibleOn="android,ios">{`
 Smartlook SDK automatic integrations into most popular frameworks are in progress.
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Automatic integrations provide simple way of integrating Smartlook into various 3rd party analytic tools.
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 ### Enable integrations
 One or list of automatic integrations can be enabled by calling:
 `}</TextBlock>
@@ -4121,10 +4098,18 @@ Smartlook.enableIntegration(integration: Integration)
 Smartlook.enableIntegrations(integrations: List<Integration>)
       `,
     },
+    ios: {
+      swift: `
+public class func Smartlook.enable(integrations: [Smartlook.Integration]>)
+      `,
+      'objective-c': `
++ (void)enableIntegrations:(NSArray<SLIntegration *> * _Nonnull)integrations;
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Specific \`Integration\`s are described in Integrations documentation:
 - <Link to="/docs/sdk/integrations/amplitude">Amplitude</Link>
 - <Link to="/docs/sdk/integrations/mixpanel">Mixpanel</Link>
@@ -4133,7 +4118,7 @@ Specific \`Integration\`s are described in Integrations documentation:
 - <Link to="/docs/sdk/integrations/bugsnag">Bugsnag</Link>
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 ### Disable integrations
 Every currently enabled \`Integration\` can be disabled:
 `}</TextBlock>
@@ -4150,10 +4135,18 @@ Smartlook.disableIntegration(integration: Integration)
 Smartlook.disableIntegrations(integrations: List<Integration>)
       `,
     },
+    ios: {
+      swift: `
+public class func Smartlook.disable(integrations: [Smartlook.Integration])
+      `,
+      'objective-c': `
++ (void)disableIntegrations:(NSArray<SLIntegration *> * _Nonnull)integrations;
+      `,
+    },
   }}
 />
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 Or all currently enabled integrations can be disabled using:
 `}</TextBlock>
 
@@ -4167,14 +4160,22 @@ Smartlook.disableAllIntegrations();
 Smartlook.disableAllIntegrations()
       `,
     },
+    ios: {
+      swift: `
+public class func Smartlook.disableAllIntegrations()
+      `,
+      'objective-c': `
++ (void)disableAllIntegrations;
+      `,
+    },
   }}
 />
 
-<TextBlock kind="important" visibleOn="android">{`
+<TextBlock kind="important" visibleOn="android,ios">{`
 Smartlook SDK tries to disable automatic integration and remove "integrated" URLs from targed analytic tools. This however is "best effort" try and cannot be guaranteed.
 `}</TextBlock>
 
-<TextBlock visibleOn="android">{`
+<TextBlock visibleOn="android,ios">{`
 ### List integrations
 All currently enabled integrations can be listed:
 `}</TextBlock>
@@ -4187,6 +4188,14 @@ Smartlook.currentEnabledIntegrations();
       `,
       kotlin: `
 Smartlook.currentEnabledIntegrations()
+      `,
+    },
+    ios: {
+      swift: `
+public class func Smartlook.currentlyEnabledIntegrations()
+      `,
+      'objective-c': `
++ (NSArray<SLIntegration *> *  _Nonnull)currentlyEnabledIntegrations;
       `,
     },
   }}
