@@ -21,7 +21,7 @@ pod Smartlook
   }}
 />
 
-Smartlook can be also added directly to the app project by **downloading** the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.5.0.2607.zip), unzipping the file and adding `Smartlook.framework` to the Xcode project.
+Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.0)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.0.2975.zip), unzipping the file and adding `Smartlook.framework` to the Xcode project.
 
 2. To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
 
@@ -53,6 +53,13 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 </TextBlock>
 
 3. Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.
+
+<TextBlock kind="important">
+{`
+When starting in debug mode, your iOS app may **stop for a few seconds after is starts and print a warning** when Smartlook is included.  
+It is caused by **Xcode's Main Thread Checker** diagnostics. Read more about why it happens and how to handle it in this <Link to="/docs/sdk/cookbooks/ios-main-thread-check-warning">Technical Note</Link>.
+`}
+</TextBlock>
 
 <TextBlock kind="important">
 {`
