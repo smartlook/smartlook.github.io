@@ -371,6 +371,7 @@ Some recording parameters can be configured on setup:
 | [renderingMode](#rendering)                  | no       | Defines the way SDK is going to capture screen image data.                                                                                         | RenderingMode.NATIVE            |
 | [renderingModeOption](#rendering)            | no       | Further customization of rendering mode.                                                                                                           | null                            |
 | [eventTrackingModes](#event-tracking-modes)  | no       | Event tracking modes can be used to disable some automatically detected events.                                                                    | EventTrackingMode.FULL_TRACKING |
+| useAdaptiveFramerate                         | no       | Adaptive framerate is a optimization that keeps the SDK from capturing redundant screenshots when the application is idle.                         | true                            |
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -472,6 +473,7 @@ Full SDK setup configuration can be done with \`SetupOptionsBuilder\`, that prov
 Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNull String apiKey)
         .setFps(int fps)
         .setExperimental(boolean experimental)
+        .useAdaptiveFramerate(boolean enabled)
         .setActivity(@NonNull Activity activity)
         .setRenderingMode(RenderingMode renderingMode)
         .setRenderingMode(RenderingModeOption renderingModeOption);
@@ -482,6 +484,7 @@ Smartlook.setupAndStartRecording(builder.build());
 val builder = Smartlook.SetupOptionsBuilder(@NotNull apiKey: String)
         .setFps(fps: Int)
         .setExperimental(experimental: Boolean)
+        .useAdaptiveFramerate(enabled: Boolean)
         .setActivity(@NonNull activity: Activity)
         .setRenderingMode(renderingMode: RenderingMode)
         .setRenderingMode(renderingModeOption: RenderingModeOption)
