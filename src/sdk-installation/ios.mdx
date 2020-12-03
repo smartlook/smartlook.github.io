@@ -21,7 +21,7 @@ pod Smartlook
   }}
 />
 
-Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.0)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.0.2975.zip), unzipping the file and adding `Smartlook.framework` to the Xcode project.
+Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.0)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.0.2975.zip), unzipping the file and adding `Smartlook.xcframework` to the Xcode project.
 
 2. To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
 
@@ -29,18 +29,22 @@ Smartlook can be also added directly to the app project by **downloading** our l
   kind="example"
   snippets={{
       swift: `
-import Smartlook
-...
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n
-    Smartlook.setup(key: "YOUR_API_KEY")
-    Smartlook.startRecording()
+import Smartlook\n
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  let smartlookConfig = Smartlook.SetupConfiguration(key: "API_KEY")
+  Smartlook.setupAndStartRecording(configuration: smartlookConfig)
+  // other initialization stuff
+  return true
+}
       `,
       'objective-c': `
-#import <Smartlook/Smartlook.h>
-...
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {\n
-    [Smartlook setupWithKey: @"YOUR_API_KEY"];
-    [Smartlook startRecording];
+#import <Smartlook/Smartlook.h>\n
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  SLSetupConfiguration *slConfig = [[SLSetupConfiguration alloc] initWithKey:@"API_KEY"];
+  [Smartlook setupAndStartRecordingWithConfiguration:slConfig];
+  // other initialization stuff
+  return YES;
+}
       `,
     }
   }
