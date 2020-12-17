@@ -1,0 +1,23 @@
+---
+name: iOS technical note on App Store Mach-O error
+menu: SDK Cookbooks
+route: /docs/sdk/cookbooks/swift-package-app-store-mach-o-error
+showPlatformSelect: true
+---
+
+import { Title, TextBlock } from 'components'
+import xcode_binary_swift_package_error_workaround from 'assets/xcode_binary_swift_package_error_workaround.png'
+
+<TextBlock kind="important" invisibleOn="android">{`
+This guide applies to all frameworks that create or generate iOS applications.
+`}</TextBlock>
+
+<Title>iOS technical note: On App Store upload “Found an unexpected Mach-O header code: 0x72613c2” error</Title>
+
+When uploading your app with embedded Smartlook or other static library Swift Package, you may experience the
+
+`Found an unexpected Mach-O header code: 0x72613c2`
+
+error that protects you from uploading the app.
+
+<img src={xcode_binary_swift_package_error_workaround} />
