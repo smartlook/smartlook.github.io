@@ -1,0 +1,37 @@
+---
+name: iOS technical note on App Store Mach-O error
+menu: SDK Cookbooks
+route: /docs/sdk/cookbooks/swift-package-app-store-mach-o-error
+showPlatformSelect: true
+---
+
+import { Title, TextBlock } from 'components'
+import xcode_binary_swift_package_error_workaround from 'assets/xcode_binary_swift_package_error_workaround.png'
+
+<Title>iOS technical note: On “Found an unexpected Mach-O header code: 0x72613c2” App Store upload error</Title>
+
+<TextBlock kind="important">{`
+This guide may apply to all frameworks that create or generate iOS applications and use Swift Package Manager.
+`}</TextBlock>
+
+When uploading your app with embedded Smartlook or other static library Swift Package, you may experience the
+
+`Found an unexpected Mach-O header code: 0x72613c2`
+
+error that protects you from uploading the app to the App Store.
+
+The cause of this error is a **bug in Xcode** that does not handle static libraries added via Swift Package Manager properly. The static libraries are linked right, but then they are packaged to the app archive to be set to App Store as if they are dynamic.
+
+To fix this, follow the following steps:
+
+1. Add Swift Package as normal
+2. Navigate to you **app target General info** pane
+3. In the left column Project Navigator, reveal the **Swift Package structure**
+4. Drop the xcproject to **Frameworks, Libraries, and Embedded Content** list next to the library already added by Swift Package Manager
+5. Change its **Embed** type to **Do Not Embed**
+6. **Remove the original reference** (ignore the warning about removing the dependency)
+7. Delete the **Xcode derived data** folder content (usually in `~/Library/Developer/Xcode/DerivedData`)
+
+From now on, Xcode should treat the static library added in Swift Package as expected.
+
+<img src={xcode_binary_swift_package_error_workaround} />

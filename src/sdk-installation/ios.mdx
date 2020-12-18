@@ -10,7 +10,27 @@ import { usePlatforms } from 'hooks'
 
 <Title>iOS SDK Installation</Title>
 
-1. In projects that use **Cocoapods**, Smartlook can be installed by adding the respective pod into `Podfile`:
+## Installation
+
+There are three ways to integrate Smartlook into your app:
+
+### 1. Swift Package Manager
+
+Add this Swift Package `https://github.com/smartlook/SmartlookSwiftPackage`.
+
+<TextBlock kind="important">
+{`
+If you experience \"**Found an unexpected Mach-O header code: 0x72613c2**\" error when uploading archived app to App Store, please follow <Link to="/docs/sdk/cookbooks/swift-package-app-store-mach-o-error">this guide</Link>.
+`}
+</TextBlock>
+
+### 2. Direct integration
+
+Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.1)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.1.3033.zip), unzipping the file and adding `Smartlook.xcframework` to the Xcode project.
+
+### 3. Cocoapods 
+
+In projects that use **Cocoapods**, Smartlook can be installed by adding the respective pod into `Podfile`:
 
 <Code
   kind="example"
@@ -21,9 +41,15 @@ pod Smartlook
   }}
 />
 
-Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.0)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.0.2975.zip), unzipping the file and adding `Smartlook.xcframework` to the Xcode project.
+<TextBlock kind="important">
+{`
+Please note that due to Cocoapods own limitations, Smartlook integrated via Cocoapods cannot be used in simulators on arm64 MacBooks. If this is your case, we recommend switching to Swift Packages Manager as described above.
+`}
+</TextBlock>
 
-2. To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
+## Setup and Start Recording
+
+To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
 
 <Code
   kind="example"
@@ -56,7 +82,7 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 `}
 </TextBlock>
 
-3. Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.
+Smartlook now starts recording the app. The recordings will appear in the [Smartlook player](https://app.smartlook.com/) shortly.
 
 <TextBlock kind="important">
 {`
