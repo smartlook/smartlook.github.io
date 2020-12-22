@@ -307,6 +307,9 @@ export const spec = {
 													numberOfVisits: {
 														type: 'number',
 													},
+													eventMatchedCount: {
+														type: 'number',
+													},
 													_links: {
 														type: 'object',
 														properties: {
@@ -1101,6 +1104,140 @@ export const spec = {
 					},
 				],
 				operationId: 'getVisitorEvents',
+			},
+		},
+		'/api/v1/visitors/search': {
+			post: {
+				responses: {
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										totalVisitorsCount: {
+											type: 'number',
+										},
+										totalSessionsCount: {
+											type: 'number',
+										},
+										visitors: {
+											type: 'array',
+											items: {
+												type: 'object',
+												properties: {
+													id: {
+														type: 'string',
+													},
+													identification: {
+														type: 'object',
+														properties: {
+															uid: {
+																type: 'string',
+															},
+															properties: {
+																type: 'array',
+																items: {
+																	$ref: '#/components/schemas/AnyValue',
+																},
+															},
+														},
+														additionalProperties: false,
+													},
+													firstSeen: {
+														type: 'string',
+													},
+													lastSeen: {
+														type: 'string',
+													},
+													numberOfVisits: {
+														type: 'number',
+													},
+													numberOfSessions: {
+														type: 'number',
+													},
+													numberOfEvents: {
+														type: 'number',
+													},
+													_links: {
+														type: 'object',
+														properties: {
+															visitorSessions: {
+																type: 'string',
+															},
+															visitorEvents: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
+												},
+												additionalProperties: false,
+											},
+										},
+										pagination: {
+											type: 'object',
+											properties: {
+												after: {
+													$ref: '#/components/schemas/AnyValue',
+												},
+											},
+											additionalProperties: false,
+										},
+										_links: {
+											type: 'object',
+											properties: {
+												nextPage: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['visitors'],
+				parameters: [],
+				operationId: 'searchVisitors',
+				requestBody: {
+					content: {
+						'application/json': {
+							schema: {
+								type: 'object',
+								properties: {
+									filters: {
+										type: 'array',
+										items: {
+											type: 'object',
+											properties: {
+												name: {
+													type: 'string',
+												},
+												value: {
+													oneOf: [
+														{
+															type: 'number',
+														},
+														{
+															type: 'string',
+														},
+													],
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+								},
+								additionalProperties: false,
+							},
+						},
+					},
+				},
 			},
 		},
 		'/api/v1/statistics': {
