@@ -1014,6 +1014,10 @@ self.someView.slSensitive = YES;
 }}
 />
 
+<TextBlock kind="note" visibleOn="ios">{`
+Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
+`}</TextBlock>
+
 <TextBlock visibleOn="android,ios,react,xamarin">{`
 If view no longer needs to be blacklisted:
 `}</TextBlock>
@@ -1266,6 +1270,10 @@ self.someView.slSensitive = NO;
     },
   }}
 />
+
+<TextBlock kind="note" visibleOn="ios">{`
+Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
+`}</TextBlock>
 
 <TextBlock visibleOn="android,ios,xamarin">{`
 \`View\` can be removed from whitelist by calling:
