@@ -180,7 +180,7 @@ Smartlook.Analytics.SetupAndStart("API_KEY");
 />
 
 <TextBlock kind="note" visibleOn="android">{`
-SDK can be setup later than in Application class, typically when the Application is fetching API key, please take a look [here](/cookbooks/android_setup_outside_application_class).
+SDK can be setup later than in Application class, typically when the Application is fetching API key, please take a look [here](/docs/sdk/cookbooks/android-setup-outside-application-class).
 `}</TextBlock>
 
 <TextBlock visibleOn="android,cordova,ionic,flutter,unity,react,xamarin,ios">{`
@@ -476,8 +476,8 @@ Smartlook.SetupOptionsBuilder builder = new Smartlook.SetupOptionsBuilder(@NotNu
         .useAdaptiveFramerate(boolean enabled)
         .setActivity(@NonNull Activity activity)
         .setRenderingMode(RenderingMode renderingMode)
-        .setRenderingMode(RenderingModeOption renderingModeOption);
-        .setEventTrackingModes(List<EventTrackingMode> eventTrackingMode)\\n
+        .setRenderingMode(RenderingModeOption renderingModeOption)
+        .setEventTrackingModes(List<EventTrackingMode> eventTrackingMode);\\n
 Smartlook.setupAndStartRecording(builder.build());
       \`,
       kotlin: \`
@@ -1436,7 +1436,7 @@ SDK provides rendering modes that hide sensitive information by simplifying the 
 `}</TextBlock>
 
 <TextBlock kind="important">{`
-Some screens can leak sensitive data even through automatically detected touch events. More about this issue in [secure custom keyboard example](/cookbooks/secure_custom_keyboard).
+Some screens can leak sensitive data even through automatically detected touch events. More about this issue in [secure custom keyboard example](/docs/sdk/cookbooks/secure-custom-keyboard).
 `}</TextBlock>
 
 When application is no longer displaying sensitive screen rendering mode can be set back to preferred variant:
@@ -3077,7 +3077,7 @@ Smartlook.setEventTrackingModes([Smartlook.EventTrackingMode().IGNORE_USER_INTER
 <TextBlock kind="note" visibleOn="android,ios,cordova,ionic,xamarin">{`
 Further info about event tracking modes could be found in <Link to="/docs/sdk/conceptual/event-tracking">Event Tracking</Link> conceptual document.
 \n
-Also take a look at [pin code keyboard sample](/cookbooks/secure_custom_keyboard), demonstrating usage of analytic event modes.
+Also take a look at [pin code keyboard sample](/docs/sdk/cookbooks/secure-custom-keyboard), demonstrating usage of analytic event modes.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,xamarin">{`
