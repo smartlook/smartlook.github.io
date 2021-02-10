@@ -12,165 +12,461 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
-<TextBlock kind="important" visibleOn="ios,react,cordova,ionic,cocos">
+<TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
 {`
-Standard iOS SDK is linked as a Cocopoad dependency to React Native, Cordova, Ionic and Cocos plugins. \n
+Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
 This means, that the bugfixes in the latest standard iOS SDK release propagate to all respective frameworks as well.\n
 New API methods, however, must wait for the respective platfrom plugin update.
 `}
 </TextBlock>
 
+<TextBlock kind="important" visibleOn="unity,unreal">
+{`
+Changelog not available for this platform.
+`}
+</TextBlock>
 
-
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-## iOS SDK [1.7.2] - 2020-02-02
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.6] - 2021-02-02
+\n
 ### Fixed
-- issue when sensitive data were not covered when behind a translucent view like \`UIAlertController\`
+- Minor stability improvements
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+## iOS SDK [1.7.2] - 2021-02-02
+\n
 ### Changed
-- sensitive data overlay is now a hatched pattern not a solid color
+- Sensitive data overlay is now a hatched pattern not a solid color
+\n
+### Fixed
+- Issue when sensitive data were not covered when behind a translucent view like \`UIAlertController\`
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.7.1] - 2020-12-18
+\n
+### Changed
+- Some improvements in algorithms efficiency when reading the screen structure
+\n
 ### Fixed
-- improved memory management, including fix of memory leak when not released memory acquired in \`class_copyMethodList\`
-- code that may lead to crashes due to race condition when storing user and other properties
-### Various
-- some improvements in algorithms efficiency when reading the screen structure
+- Improved memory management, including fix of memory leak when not released memory acquired in \`class_copyMethodList\`
+- Code that may lead to crashes due to race condition when storing user and other properties
 \n
 ***`}</TextBlock>
 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK  [1.7.0] - 2020-12-02
+\n
 ### Added
 - Automatic integrations for [Heap.io](https://heap.io/), [Amplitude](https://amplitude.com/), [Firebase Crashlytics](https://firebase.google.com/products/crashlytics), [Bugsnag](https://www.bugsnag.com/) and [Mixpanel](https://mixpanel.com/)
 - Segment [Middleware](https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/middleware/) implementation that can be used to propagate events from segment to Smartlook
 - Setup configuration via a setup object, not a dictionary
+\n
 ### Fixed
 - Various stability improvements
 \n
  ***`}</TextBlock>
 
 
-<TextBlock visibleOn="xamarin">{`
-##  Xamarin [1.5.2] - 2020-11-15
-### Changed
-- update underlying Android SDK to the latest version
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.7.0] - 2020-12-02
+\n
+### Added
+- Automatic integrations for [Heap.io](https://heap.io/), [Amplitude](https://amplitude.com/), [Firebase Crashlytics](https://firebase.google.com/products/crashlytics), [Bugsnag](https://www.bugsnag.com/) and [Mixpanel](https://mixpanel.com/)
+- Segment [Middleware](https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/middleware/) implementation that can be used to propagate events from segment to Smartlook
+- Adaptive recording framerate enable/disable API
+\n
+### Fixed
+- Various stability improvements
 \n
 ***`}</TextBlock>
 
 
+
 <TextBlock visibleOn="xamarin">{`
-##  Xamarin [1.5.1] - 2020-10-15
+##  Xamarin [1.5.2] - 2020-11-15
+\n
+### Changed
+- Update underlying Android SDK to the latest version
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.5] - 2020-10-26
+\n
+### Fixed
+- Minor stability improvements
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.6.1] - 2020-10-26
+\n
+### Fixed
+- Fixed \`Activity\` reference issue
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="xamarin">{`
+## Xamarin [1.5.1] - 2020-10-15
+\n
 ### Added
 - support for EventTrackingModes
 - rageClicks detection
+\n
 ### Fixed
 - minor bug fixes
 \n
 ***`}</TextBlock>
 
- 
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.6.0] - 2020-10-12
+\n
+### Added
+- New robust event tracking mode implementation
+\n
+### Fixed
+- Json conversions stability improved
+- Debug log tags are not obfuscated
+\n
+### Changed
+- API is now using enums instead of annotation classes, this applies for: \`RenderingMode\`, \`RenderingModeOption\`, \`ViewType\` and \`ViewState\` 
+- Wireframe rendering mode improved \`view.clipChildren=false\` is now considered
+\n
+***`}</TextBlock>
+
+
 
 <TextBlock visibleOn="xamarin">{`
-##  Xamarin [1.5.0] - 2020-09-15
+## Xamarin [1.5.0] - 2020-09-15
+\n
 - First publicly released NuGet with embedded native iOS and Android SDKs version 1.5.
 \n
 ***`}</TextBlock>
 
  
-
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-##  iOS SDK [1.5.0] - 2020-10-05
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.4] - 2020-10-07
+\n
+### Added 
+- Support of setEventTrackingModes functinality
+\n
 ### Fixed
-- there are some reported bugs that cannot reproduced by us. This release attempts to fix them nevertherless:
- - https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/8
- - https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/5
-### Added
-- event tracking modes
-- rage click detection
-- added networking dev tool to iOS\n
-### Changed
-- removed some long deprecated methods
+- Minor stability improvements
 \n
 ***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.3] - 2020-10-05
+\n
+### Added 
+- Builder setup with options
+\n
+### Fixed
+- Better handling of internal sessions
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+##  iOS SDK [1.5.0] - 2020-10-05
+\n
+### Added
+- Event tracking modes
+- Rage click detection
+- Added networking dev tool to iOS\n
+\n
+### Changed
+- Removed some long deprecated methods
+\n
+### Fixed
+- There are some reported bugs that cannot reproduced by us. This release attempts to fix them nevertherless:
+- https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/8
+- https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/5
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.2] - 2020-09-08
+\n
+### Fixed
+- Identify methods can be called outside UI thread
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.5.3] - 2020-09-08
+\n
+### Added
+- Additional builder options for bridges (React, Flutter, ...)
+\n
+### Fixed
+- Event spamming stability issue
+- Internal session handling
+- **Sessions from the same visitor are correctly grouped in Dashboard**
+\n
+***`}</TextBlock>
+
+
 
 <TextBlock visibleOn="react">{`
 ## React Native [0.33.0] - 2020-09-07
+\n
 ### Changed
-- update to the latest native SDK versions
-***`}</TextBlock>
-
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-##  iOS SDK [1.4.1] - 2020-07-07
-### Fixed
-- messed up focus events
-- ocassional crashes in SLInternalSDKProperties when initializing the SDK
+- Update to the latest native SDK versions
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-##  iOS SDK [1.4.0] - 2020-06-24
+
+<TextBlock visibleOn="react">{`
+## [1.5.2] - 2020-07-22
+\n
+### Fixed
+- Identify methods can be called outside UI thread
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.1] - 2020-07-15
+\n
+### Fixed
+- Crashlytics handling
+\n
+***`}</TextBlock>
+
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.5.1] - 2020-07-15
+\n
+### Fixed
+- Crashlytics handling
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [1.0.0] - 2020-07-09
+\n
 ### Added 
-- integration points for other SDKs: session URL with timestamp, visitor page https://smartlook.github.io/docs/sdk/ios/#dashboard-urls
-### Fixed
-- a significant memory leak
+- Added IntegrationListener that can be used to obtain dashboard session and visitor URL
+- New \`getDashboardVisitorUrl\` method used to obtain dashboard visitor URL
+- Session can be now restarted using resetSession method
+- New visitor can be crated using resetSession method with resetUser option set to \`TRUE\`
+\n
 ### Changed
-- performace improvements
-- video quality improvements
+- All SDK threads are now named
+- Method getDashboardSessionUrl has new option withCurrentTimestamp
+\n 
+### Fixed
+- Crashes tied to orientation changes
+- Identify now fully supports UTF-8
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.5.0] - 2020-07-09
+\n
+### Added
+- New API for identification and user properties
+- Added \`IntegrationListener\` that can be used to obtain dashboard session and visitor URL
+- New \`getDashboardVisitorUrl\` method used to obtain dashboard visitor URL
+- Session can be now restarted using \`resetSession\` method
+- New visitor can be created using \`resetSession\` method with \`resetUser\` option set to TRUE
+\n
+### Changed
+- All \`setup\` and \`setupAndStart\` methods (appart from the basic variants with \`apiKey\` parameter only) are now deprecated
+- Method \`getDashboardSessionUrl\` has new option \`withCurrentTimestamp\` 
+- All SDK threads are now named
+\n
+### Fixed
+- Crashes tied to orientation changes
+- Identify now fully supports UTF-8
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.9] - 2020-07-07
+\n
+### Added
+- Better session cache handling / Strict cache rules
+- Analytics only mode and no rendering
+\n
+### Fixed
+- Event is tracked even before session has started
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+##  iOS SDK [1.4.1] - 2020-07-07
+\n
+### Fixed
+- Messed up focus events
+- Ocassional crashes in SLInternalSDKProperties when initializing the SDK
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+##  iOS SDK [1.4.0] - 2020-06-24
+\n
+### Added 
+- Integration points for other SDKs: session URL with timestamp, visitor page https://smartlook.github.io/docs/sdk/ios/#dashboard-urls
+\n
+### Changed
+- Performace improvements
+- Video quality improvements
+\n
+### Fixed
+- A significant memory leak
+\n
+***`}</TextBlock>
+
+ 
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK  [1.3.1] - 2020-04-29
+\n
 ### Fixed
-- an issue when Smartlook blocked answer from \`UICollectionViewDelegate\` \`collectionView:shouldSelectItemAtIndexPath:\` method
+- An issue when Smartlook blocked answer from \`UICollectionViewDelegate\` \`collectionView:shouldSelectItemAtIndexPath:\` method
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.3.0] - 2020-04-22
-### Fixed
-- memory issues in apps with a lot of background activities
+\n
 ### Added
 - Event tracking modes
 - \`noRecording\` rendering mode
 - \`resetSessionAndUser\` to explicitelly start new session and optionally reset the current user
+\n
+### Fixed
+- Memory issues in apps with a lot of background activities
+\n
 ### Deprecated
 - \`fullScreenSensitive\` and \`analyticsOnlyMode\`: they shud be subsititued by a suitable combination of rendering mode and events tracking mode
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-##  iOS SDK [1.2.9] - 2020-04-07
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.4.2] - 2020-04-16
+\n
+### Added
+- Smartlook setup Builder
+- Log listener API
+- Added various event tracking modes
+- WebView whitelisting
+\n
+### Changed
+- Offline cache has strict rules now, so the SDK does not occupy large amount of device memory
+\n
 ### Fixed
-- fixed an error that blocked analytics events
+- **Smartlook.trackCustomEvent()** fixed -> all custom events are being handled correctly
+- Custom events send to the SDK on application start are now being tracked
+- All API constants (like \`RenderingMode\`, \`LogAspect\`, etc.) are now visible
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+##  iOS SDK [1.2.9] - 2020-04-07
+\n
+### Fixed
+- Fixed an error that blocked analytics events
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
- ##  iOS SDK [1.2.8] - 2020-03-16
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+##  iOS SDK [1.2.8] - 2020-03-16
+\n
 ### Added
 - Analytics-Only recording: does not record screen and does not visualise user interactions https://smartlook.github.io/docs/sdk/ios/#analytics-only-mode
 - Rendering Mode BETA: to further protect user's privacy, new recording modes were added to record the screen in the form of a wireframe scheme https://smartlook.github.io/docs/sdk/ios/#rendering-mode-beta
+\n
 ### Changed
-- some refactorings, optimizations
+- Some refactorings, optimizations
+\n
 ### Fixed
-- various small and niche bugs
+- Various small and niche bugs
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.8] - 2020-03-12
+\n
+### Added
+- Additional API methods
+\n
+### Fixed
+- Video rendering optimization
+- Minor stability improvements
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.4.0] - 2020-03-11
+\n
+### Added
+- Wireframe rendering mode
+- TabItem selector identification
+- OkHttp network interceptor
+\n
+### Changed
+- Improved image downscaling == better video quality
+- Smartlook API doesnt have obfuscated parameter names
+- Improved selector detection
+- Removed **deprecated** API methods from versions under 1.0.0
+\n
+### Fixed
+- Orientation detection problems
+- WebView recording stability issues
 \n
 ***`}</TextBlock>
 
@@ -178,14 +474,16 @@ New API methods, however, must wait for the respective platfrom plugin update.
 
 <TextBlock visibleOn="react">{`
 ## React Native [0.26.0] - 2020-03-11
+\n
 ### Changed
-- updated plugin API to be in line with other Smartlook platforms
+- Updated plugin API to be in line with other Smartlook platforms
 \n
 ***`}</TextBlock>
 
 
 <TextBlock visibleOn="react">{`
 ## React Native [0.23.0] - 2020-01-27
+\n
 ### Changed
 - iOS: podspec moved to root folder of the bridge, making bridge installation easier
 - iOS: removed all references to \`UIWebView\` (https://developer.apple.com/news/?id=12232019b)
@@ -193,30 +491,49 @@ New API methods, however, must wait for the respective platfrom plugin update.
 ***`}</TextBlock>
 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.7] - 2019-12-19
+\n
+### Changed
+- Image quality boost
+\n
+### Fixed
+- Fix of rare orientation handling issues
+- Minor stability improvements
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK [1.2.7] - 2019-12-18
+\n
 ### Changed
-- removed all traces of \`UIWebView\` from SDK. \`UIWebView\` is deprecated and app that use it will soon not allowed in App Store. 
-- removing \`UIWebView\` from SDK causes that **\`UIWebView\` instances are not overlayed in recordings**. If you want all instances of \`UIWebView\` overlayed to protect potentially sensitive data, add the following line just after Smartlook setup.
+- Removed all traces of \`UIWebView\` from SDK. \`UIWebView\` is deprecated and app that use it will soon not allowed in App Store. 
+- Removing \`UIWebView\` from SDK causes that **\`UIWebView\` instances are not overlayed in recordings**. If you want all instances of \`UIWebView\` overlayed to protect potentially sensitive data, add the following line just after Smartlook setup.
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.2.6] - 2019-12-02
-### Changed
-- removed calls to UIWebView methods to avoid App Store warnings. 
-- this causes that **in whitelisted UIWebView, sensitive fields are no longer overlayed**. In embedded web views, sensitive fileds are overlayed only in WKWebView from now.
+\n
 ### Added
-- ability to whitelist sensitive fields in whitelisted WKWebViews. In order to do that, flag the whitelisted HTML elements with \`smartlook-show\` CSS class.
+- Ability to whitelist sensitive fields in whitelisted WKWebViews. In order to do that, flag the whitelisted HTML elements with \`smartlook-show\` CSS class.
+\n
+### Changed
+- Removed calls to UIWebView methods to avoid App Store warnings. 
+- This causes that **in whitelisted UIWebView, sensitive fields are no longer overlayed**. In embedded web views, sensitive fileds are overlayed only in WKWebView from now.
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK  [1.2.5] - 2019-11-11
+\n
 ### Changed
 - SDK is build using Xcode 10 again to avoid \`___isPlatformVersionAtLeast\` undefined symbol issue.
 \n
@@ -224,35 +541,39 @@ New API methods, however, must wait for the respective platfrom plugin update.
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.2.4] - 2019-11-09
+\n
 ### Fixed
-- crashing when app presents \`UIAlertController\` *not* using the standard \`UIViewController.present(_:animated:completion:)\` method
+- Crashing when app presents \`UIAlertController\` *not* using the standard \`UIViewController.present(_:animated:completion:)\` method
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.2.3] - 2019-10-25
+\n
 ### Fixed
-- crashing when app uses \`UIAlertController\` with \`nil\` action handler
+- Crashing when app uses \`UIAlertController\` with \`nil\` action handler
 \n
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.2.2] - 2019-10-23
+\n
 ### Added
 - \`UIAlertController\` navigation events and actions recorded
--  in whitelisted instances of \`UIWebView\` or \`WKWebView\`, the sensitive data inside them are overlayed
+- In whitelisted instances of \`UIWebView\` or \`WKWebView\`, the sensitive data inside them are overlayed
 \n
 ***`}</TextBlock>
 
 
 <TextBlock visibleOn="react">{`
 ## React Native [0.18.0] - 2019-10-8
+\n
 ### Changed
 - iOS - RN 0.6.0 and higher: Smartlook now integratind via Cocoapods. Latest version of native Smartlook SDK is always used. https://smartlook.github.io/docs/sdk/react-native/#ios
 - iOS - RN before 0.6.0: no longer directly supported. \`Smartlook.framework\` removed from the npm package, must be downloaded and added to the Xcode project manually. https://smartlook.github.io/docs/sdk/react-native/#ios
@@ -261,67 +582,250 @@ New API methods, however, must wait for the respective platfrom plugin update.
 
 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.2.1] - 2019-09-23
-### Fixed
-- bug when Smartlook crashed on iOS 10.x when some kinds of views (e.g., \`UIAlertController\`) were used in the app
-- bug when Smartlook crashed when the app started w/out network connection
+\n
 ### Added
-- support for custom timed events
+- Support for custom timed events
+\n
+### Fixed
+- Bug when Smartlook crashed on iOS 10.x when some kinds of views (e.g., \`UIAlertController\`) were used in the app
+- Bug when Smartlook crashed when the app started w/out network connection
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.6] - 2019-09-18
+\n
+### Added 
+- Custom API client
+\n
+### Changed
+- Improved sensitive view hiding
+\n
+### Fixed
+- Touch/selector events are more reliable
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.1.5] - 2019-09-17
+\n
+### Added
+- Detection of ANR implemented
+- New custom timed event
+\n
+### Changed
+- Optimized video size and bitrate so the recordings are smaller than 0,5 MB per minute
+\n
+### Fixed
+- Referrer detection now stable
+- Tracking of focus gain event
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.5] - 2019-09-10
+\n
+### Fixed
+- iOS plugin build issues in Swift-based apps
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK  [1.2.0] - 2019-09-09
+\n
 ### Added
-- support for custom navigation events
+- Support for custom navigation events
+\n
 ### Changed
-- improved recording when there are Maps, SpriteKit, SceneKit or Metal views in UIKit app
+- Improved recording when there are Maps, SpriteKit, SceneKit or Metal views in UIKit app
+\n
 ### Fixed
-- bug when \`isRecording\` returned \`true\` before \`Smartlook.setup()\`
-- various smaller issues
+- Bug when \`isRecording\` returned \`true\` before \`Smartlook.setup()\`
+- Various smaller issues
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.4] - 2019-08-20
+\n
+### Fixed
+- Minor staility improvements
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.1.2] - 2019-08-20
+\n
+### Fixed
+- User identification now works consistently regardless of when it gets called
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.1.1] - 2019-08-19
+\n
+### Added
+- Added ability to adjust view name for "click" events
+- Prepared SDK for mobile uploads
+\n
+### Fixed
+- Json parsing issues
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.3] - 2019-08-07
+\n
+### Fixed
+- Beta release of the plugin and minor bugfixes.
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.1.0] - 2019-08-07
+\n
+### Added
+- Custom navigation events
+- Added ability to not record sensitive elements in WebViews
+- Automatic hiding of input elements on WebViews
+\n
+### Fixed
+- Fixed some minor stability issues
+- Adaptive framerate is allowed only on native/React SDKs
+- Fixed some FragmentDialog recording issues
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.2] - 2019-07-24
+\n
+### Added
+- Additional methods for events recording
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.0.1] - 2019-07-24
+\n
+### Fixed
+- Fixed some minor stability issues
+- Resolved OkHttp v3 and v4 incompability issues
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [0.0.1] - 2019-07-23
+\n
+### Added
+- Initial testing version of Flutter wrapper for Smartlook
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.1.0] - 2019-07-23
+\n
 ### Changed
-- new much consistent version of API, the legacy API marked as deprecated, see documentation for details
-- better snapshot handlings to improve CPU and battery efficiency
+- New much more consistent version of API, the legacy API marked as deprecated, see documentation for details
+- Better snapshot handlings to improve CPU and battery efficiency
+\n
 ### Fixed
-- various small errors
+- Various small errors
 \n
 ***`}</TextBlock>
 
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [1.0.0] - 2019-07-18
+\n
+### Added
+- Adaptive framerate (SDK does not capture new video frames when application idle)
+- View/class blacklist and whitelist for marking views as (non) sensitive
+- Sensitive mode
+\n
+### Changed
+- API rewriten and unified with iOS API
+- Timed event has event properties
+\n
+### Deprecated
+- Most of original API methods were deprecated
+\n
+### Fixed
+- Significant stability improvement
+- Fixed keyboard detection
+- Recording is not randomly stopping on activity change or orientation change
+- Resolved OkHttp v3 and v4 incpomatibility crash
+- A variety of minnor issue were fixed
+\n
+***`}</TextBlock>
  
 <TextBlock visibleOn="react">{`
 ## React Native [0.7.0] - 2019-05-23
+\n
 ### Changed
 - Improved handling of application lifecycle
 \n
 ***`}</TextBlock>
 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [0.9.0.2.5.7-beta] - 2019-05-23
+\n
+### Changed
+- New isRecording() method - you can now check if SDK is running or not
+- Improved capture logic and selectors detection
+- Fix of several minor issues
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [1.0.0] - 2019-05-21
+\n
 ### Added 
 - Crashlytics support: URL of the latest recording made by Smartlook during or before the crash is added to crashreports
 - Timed events: custom events can record their duration
 - Form analytics: the length of editign focus to individual UI elements is explicitly recorded
 - Pause/Resume recording, init Smartlook w/out to start recording later
 - Optional framerate parameter in Smartlook initialization
+\n
 ### Fixed
-- crashes in some complex scenarios where delegate methods to e.g., UITableView are implemented with inheritance hierarchy
+- Crashes in some complex scenarios where delegate methods to e.g., \`UITableView\` are implemented with inheritance hierarchy
 \n
 ***`}</TextBlock>
+
 
  
 <TextBlock visibleOn="react">{`
 ## React Native [0.6.0] - 2019-04-11
+\n
 ### Changed
 - **Breaking changes:** iOS SDK is no longer available via Pods but is provided as a bundle in the npm package - integration steps are described in the documentation mentioned above
 \n
@@ -329,32 +833,79 @@ New API methods, however, must wait for the respective platfrom plugin update.
 
 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [0.9.0.2.5.3-beta] - 2019-04-11
+\n
+### Changed
+- Possibility to use initPassive method and controll recording via start/pause methods
+- Fix of cached sessions -> sometimes we created two visitors for single user
+- Better lifecycle handling of the activities
+- Fix of stability issues for some Huawei/Honor models
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [0.9.0.2.3.9-beta] - 2019-03-26
+\n
+### Changed
+- Possibility to set desired FPS in init methods
+- Possibility to init SDK in the middle of the app lifecycle
+- Automatic detection of activity/fragment/dialog lifecycle + duration metrics
+- Fix of session length
+- Better detection that keyboard is active
+- Alpha functionality for form analytics -> You can now see which input was somehow problematic for the user to fill in
+- Fix of several stability issues
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ## iOS SDK  [0.1.12] - 2019-03-25
+\n
 ### Fixed
-- Optimized sensitive views overlays with respect to the device rotation and CPU load.
+- Optimized sensitive views overlays with respect to the device rotation and CPU load
 ***`}</TextBlock>
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
-## iOS SDK  [0.1.11] - 2019-03-4
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
+## iOS SDK  [0.1.11] - 2019-03-04
+\n
 ### Added
 - Supporting selector event on all \`UIControl\` instances, including \`UIDatePicker\`, \`UISegmentedControl\`, \`UISlider\`, \`UIStepper\` and \`UISwitch\`
 - \`UIView\` has two new properties for direct setting of their *sensitivity* handling: \`slSensitive\` (boolean flag) and \`slOverlay\` (overlay colour)
-  - these properties are also accessible in Xcode Interface Builder
+- these properties are also accessible in Xcode Interface Builder
+\n
 ### Fixed
 - Location of accessed UITabBarItems
 - More accurate overlay of sensitive views
 \n
 ***`}</TextBlock>
 
- 
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{` 
+## Android SDK [0.9.0.2.1.9-beta] - 2019-02-25
+\n
+### Changed
+- Enhanced selector detection
+- Fixed display resolution metrics
+- Better functionality of pause/start methods
+- Fix of several stability issues
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [0.1.10] - 2019-01-29
-### Changes
+\n
+### Changed
 - Sensitive input views (\`UITextField\`, \`UITextView\`) are hidden by default now, i.e., overlay is opt-out, not opt-in now
+\n
 ### Fixed
 - UserAgent properly set for Smartlook communication
 - Fixed snapshots generating when app switches keyWindow
@@ -363,13 +914,83 @@ New API methods, however, must wait for the respective platfrom plugin update.
 
  
 
-<TextBlock visibleOn="ios,react,cordova,ionic,cocos">{`
+<TextBlock visibleOn="ios,react,cordova,ionic,cocos,flutter">{`
 ##  iOS SDK [0.1.9] - 2019-01-15
+\n
 ### Added
 - Multitouch events
 - Keyboard show/hide events
+\n
 ### Fixed
 - Removed conflicting Crashlytics framework
 - Some further minor bug fixes and tweaks
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [0.9.0.2.1.4-beta] - 2019-01-14
+\n
+### Changed
+- Better detection of selectors
+- Better handling of orientation events
+- Minor non-critical bugfixes
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android,react,cordova,ionic,cocos,flutter">{`
+## Android SDK [0.9.0.2.0.8-beta] - 2019-01-14
+\n
+### Changed
+- Overall performance improvements
+- Better handling of app's lifecycle
+- Several bugfixes
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [0.9.0.2.0.2-beta] - 2019-01-08
+\n
+### Changed
+- Better click detection
+- Several bugfixes
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [0.9.0.2.0.0-beta] - 2018-12-19
+\n
+### Changed
+- Multitouch detection
+- Keyboard event -> shown in dashboard
+- Experimental recording of native maps and MapBox
+- Improvement of offline recordings
+\n
+### Fixed
+- Several bugfixes
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [0.9.0.1.8.1-beta] - 2018-11-30
+\n
+### Changed
+- Fixed \`ArrayIndexOutOfBoundsException\` bug described in issue #8.
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [0.9.0.1.7.7-beta] - 2018-11-22
+\n
+### Changed
+- Improved click detection
+- Bug fix: https://github.com/smartlook/smartlook-android-sdk/issues/8
 \n
 ***`}</TextBlock>
