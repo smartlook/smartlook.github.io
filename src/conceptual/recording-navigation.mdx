@@ -10,21 +10,21 @@ import { usePlatforms } from 'hooks'
 
 <Title>Recording Navigation</Title>
 
-*This section discusses how is the user navigation in the application recorded*
+*This section discusses how the user navigation is recorded in the application.*
 
-Understanding the way user uses the application is the purpose of the analytics. A typical mobile application breaks into several *screens*, between them users navigates to achieve their goals.
+Understanding the way users use the application is the purpose of the analytics. A typical mobile application breaks into several screens, between them, users navigate to achieve their goals.
 
-Smartlook attempts to track the transitions automaticallt and record them as **navigation events**, that are then available in the Dashboard. Another usage of navigation events is generating **heatmpas**.
+Smartlook attempts to track the transitions automatically and record them as **navigation events** that are then available in the Dashboard. Another usage of navigation events is generating **heatmaps**.
 
-To generate a meaningfull heatmap, a portion of the application UI with stable structure must be used. Smartlook assumes that a *screen*, i.e., interval between two subsequent navigation events is such a *UI unit*.
+To generate a meaningful heatmap, a portion of the application UI with a stable structure must be used. Smartlook assumes that a *screen*, i.e., an interval between two subsequent navigation events is such a *UI unit*.
 
 <TextBlock kind="important">
-Properly dividing the user flow into individual screens important for correct heatmap generation, as each heatmap is generated for a particular screen, i.e., interval between two navigation events.
+Properly dividing the user flow into individual screens is important for correct heatmap generation, as each heatmap is generated for a particular screen, i.e., an interval between two navigation events.
 </TextBlock>
 
-However, the accuracy and usefulness of these auto-tracked navigation events depends heavily on the way the application UI is composed. Smartlook understands well apps that use standard UI kits a paradigms for each platform. If the application is, however, made using a 3rd party frameworks, e.g., a gaming framework, that Smartlook SDK cannot detect the navigation logic of the application. Details abount the extent auto-detection of navigation events on each particular platform are provided in the API Reference.
+However, the accuracy and usefulness of these auto-tracked navigation events depends heavily on the way the application UI is composed. Smartlook understands very well the apps that use standard UI kits as paradigms for each platform. If the application is, however, made using a third-party framework, e.g., a gaming framework, that Smartlook SDK cannot detect the navigation logic of the application. Details about the extent of the auto-detection of the navigation events on each particular platform are provided in the API Reference.
 
-In such a case, in orded to get useful navigation data, navigation events must be tracked programatically, using this method:
+In such a case, in order to get useful navigation data, navigation events must be tracked programmatically, using this method:
 
 <TextBlock kind="note">
 The navigation event recorded by this method is indistinguishable from the auto-detected navigation events.
@@ -96,7 +96,7 @@ Smartlook.Analytics.TrackNavigationEvent("LOGIN_SCREEN", Smartlook.Analytics.Nav
 />
 
 
-where the type value is either of `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
+Where the type value is either of the `enter` or `exit` kind. The `exit` event also records the duration from the previous corresponding enter event.
 
 <TextBlock>{`
 More details about the navigation events, consult <Link to="/docs/sdk/api-reference#navigation-even">the API reference</Link>.
