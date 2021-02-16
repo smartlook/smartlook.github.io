@@ -8,19 +8,19 @@ showPlatformSelect: true
 import { Code, CodeBlock, TextBlock, Link, MD, Title } from "components";
 import { usePlatforms } from 'hooks'
 
-<Title>When The Recordings Appear in Dashboard?</Title>
+<Title>When the Recordings Appear in the Dashboard?</Title>
 
-*This section conserns with the algoritms that controll recording data upload to Smartlook servers.*
+*This section is concerned with the algorithms that control the recording data upload to Smartlook servers.*
 
 <TextBlock kind="important">
-All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers assynchronously in batches.
+All analytics data recorded by Smartlook, be it events or screen recordings, are sent to Smartlook servers asynchronously in batches.
 </TextBlock>
 
-Smartlook uses various techniques to acquire analytics data from the application. It stores them in an intermediate cache inside the application first, and then sent them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allow it.
+Smartlook uses various techniques to acquire analytics data from the application. It stores them in an intermediate cache inside the application first, and then sends them in batches to Smartlook servers, when suitable network connection is available and the project settings and limits allow it.
 
 # Understanding Active Sessions
 
-In the dashboard, currently active sessions are listed in the **Active sessions** tab. If the device is online, the session appears there immediatelly after the application starts. I then can take several minutes before the data related to the session are uploded, processed and available for repleay. Also, when the application is closed on the device, the active session lives for few more minutes before the data is processed. We also wait for a short period of time to be sure the application is really suspended for good, that it was not just a short interruption of the application by an incomming call or notification. In such a case of just short interruption, Smartlook continues with recording into the active session once the application is active again.
+In the dashboard, currently active sessions are listed in the **Active sessions** tab. If the device is online, the session appears there immediately after the application starts. I can then take several minutes before the data related to the session is uploaded, processed, and available for repleay. Also, when the application is closed on the device, the active session lives for a few more minutes before the data is processed. We also wait for a short period of time to be sure the application is really suspended for good, that it was not just a short interruption of the application by an incoming call or notification. In such a case of just a short interruption, Smartlook continues with recording into the active session once the application is active again.
 
 Once the session is wrapped up, it moves to the **All visitors** tab.
 
@@ -30,7 +30,7 @@ The frequency in which the data is gathered and sent depends on several factors.
 
 Events data are recorded almost synchronously as they happen. Then they are sent in batches every few minutes to the server.
 
-Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequncy down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on mobile network, and the video data wait in a cache till the application runs with wifi connection available. This defaut setting can be changed in the [project settings](https://application.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
+Video frames are gathered with the maximal frequency as configured. However, if no UI change is detected, Smartlook slows the frequency down to spare system resources. Video chunks are sent to servers in intervals that also depend on the UI changes, when suitable network connection is available. By default, video data is not sent over the network when the device is on a mobile network, and the video data waits in a cache till the application runs with an available Wi-Fi connection. This default setting can be changed in the [project settings](https://application.smartlook.com/settings/projects) so that the video data too is uploaded on mobile networks.
 
 
 <TextBlock>{`
@@ -39,23 +39,23 @@ More about <Link to="/docs/sdk/conceptual/screen-recording-quality/">Screen Reco
 
 # Offline recording
 
-When the device has no or not suitable network connection, the recorded data is cached. Cached data size is limited, and the cached data is sent the next time the application is running with the suitable network connection.
+When the device has no network connection or no suitable network connection, the recorded data is cached. Cached data size is limited, and the cached data is sent the next time the application is running with a suitable network connection.
 
 ## Cache Size
 
-The cache size is limited by an algoritm that combines the data age, size and the overal free space in the device storage.
+The cache size is limited by an algorithm that combines the data age, size and the overall free space in the device storage.
 
-Currently, the overal size of data in Smartlook cache are limited to **200 MB** or maximal **20% of the free storage space** if it is less than 200 MB, and all data **older 30 days** are deleted regardless the cache size.
+Currently, the overall size of data in the Smartlook cache is limited to **200 MB** or a maximum of **20% of the free storage space** if it is less than 200 MB, and all data **older than 30 days** are deleted regardless of the cache size.
 
 
 # Recording limitations
 
-There are some circumstances under which is SDK not recording:
+There are some circumstances under which SDK is not recording:
 
-Parallel limit defines a given number of active sessions (session that is being actively processed by our backend is called "active") that are allowed to be recorded at the same time. If this limit gets surpassed, new recordings will NOT be recorded until the number of active sessions is no longer surpassing the limit.
+Parallel limit defines a given number of active sessions (a session that is being actively processed by our backend is called "active") that are allowed to be recorded at the same time. If this limit is surpassed, new recordings will NOT be recorded until the number of active sessions is no longer surpassing the prescribed limit.
 
-There is a maximal number of sessions that can be recorded a month. If this limit is surpassed SDK will not record until next month.
+There is a maximum number of sessions that can be recorded a month. If this limit is surpassed SDK will not record until the following month.
 
 <TextBlock kind="important">
-Both parallel limit and number of sessions is given by the purchased package. If the app is hitting these limits please feel free to contact our sales team or upgrade the package.
+Both parallel limit and number of sessions are given by the purchased package. If the app is hitting these limits, then please feel free to contact our sales team or upgrade the package.
 </TextBlock>
