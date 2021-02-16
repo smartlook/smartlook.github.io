@@ -16,17 +16,17 @@ There are three ways to integrate Smartlook into your app:
 
 ### 1. Swift Package Manager
 
-Add this Swift Package `https://github.com/smartlook/SmartlookSwiftPackage`.
+Add this Swift Package – `https://github.com/smartlook/SmartlookSwiftPackage`.
 
 <TextBlock kind="important">
 {`
-If you experience \"**Found an unexpected Mach-O header code: 0x72613c2**\" error when uploading archived app to App Store, please follow <Link to="/docs/sdk/cookbooks/swift-package-app-store-mach-o-error">this guide</Link>.
+If you experience \"**Found an unexpected Mach-O header code: 0x72613c2**\" error when uploading an archived app to the App Store, please follow <Link to="/docs/sdk/cookbooks/swift-package-app-store-mach-o-error">this guide</Link>.
 `}
 </TextBlock>
 
 ### 2. Direct integration
 
-Smartlook can be also added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.2)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.2.3235.zip), unzipping the file and adding `Smartlook.xcframework` to the Xcode project.
+Smartlook can also be added directly to the app project by **downloading** our latest [Smartlook iOS SDK (1.7.2)](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.7.2.3235.zip), unzipping the file, and adding `Smartlook.xcframework` to the Xcode project.
 
 ### 3. Cocoapods 
 
@@ -49,7 +49,7 @@ Please note that due to Cocoapods own limitations, you may not be able to run ap
 
 ## Setup and Start Recording
 
-To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching` method:
+To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured, e.g., in `AppDelegate` and its `didFinishLaunching` method:
 
 <Code
   kind="example"
@@ -78,7 +78,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 <TextBlock kind="important">
 {`
-To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
 `}
 </TextBlock>
 
@@ -86,7 +86,7 @@ Smartlook now starts recording the app. The recordings will appear in the [Smart
 
 <TextBlock kind="important">
 {`
-When starting in debug mode, your iOS app may **stop for a few seconds after is starts and print a warning** when Smartlook is included.  
+When starting in debug mode, your iOS app may **stop for a few seconds after this it will start and print a warning** when Smartlook is included.  
 It is caused by **Xcode's Main Thread Checker** diagnostics. Read more about why it happens and how to handle it in this <Link to="/docs/sdk/cookbooks/ios-main-thread-check-warning">Technical Note</Link>.
 `}
 </TextBlock>
@@ -99,27 +99,26 @@ SDK will upload sessions **only on WiFi**. When uploading on mobile connections 
 
 # Supported versions
 
-Current **minimal** supported iOS version is **10**.
+Currently the **minimal** supported iOS version is **10**.
 
 # Further Steps
 
 <TextBlock>{`
-All methods of Smartlook SDK are documented in the <Link to="/docs/sdk/api-reference" platform="ios">Smartlook API reference</Link>.
+All Smartlook SDK methods are documented in the <Link to="/docs/sdk/api-reference" platform="ios">Smartlook API reference</Link>.
 \n
 Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
 \n
-**Issues and bugs** can be reported in the [Smartlook issue tracker](https://github.com/smartlook/smartlook-mobile-issue-tracker).
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="ios">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="ios">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="ios">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="ios">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="ios">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="ios">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="ios">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="ios">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>
 
 

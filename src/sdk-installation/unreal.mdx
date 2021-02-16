@@ -19,11 +19,11 @@ The Smartlook Unreal Engine 4 SDK is currently available only for iOS devices.
 ## Installation for iOS
 
 1. Download [Smartlook iOS Unreal Engine 4 SDK v1.1](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.1.zip).
-2. Unzip the archive, create `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
+2. Unzip the archive, create a `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
 3. Close and reopen your Unreal project to load the Smartlook plugin.
-4. Open Plugins settings (Edit - Plugins), make sure Smartlook plugin is enabled. Smartlook plugin can be found in Installed section under Analytics.
+4. Open Plugins settings (Edit - Plugins), make sure the Smartlook plugin is enabled. The Smartlook plugin can be found in the Installed section under Analytics.
 5. Set analytics provider to `IOSSmartlook` (Edit - Project Settings - Analytics - Providers)
-6. Obtain your SDK Key from [Smartlook Dashboard](https://app.smartlook.com/settings/projects) and insert it into Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
+6. Obtain your SDK Key from the [Smartlook Dashboard](https://app.smartlook.com/settings/projects) and insert it into the Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
 7. Enable recording by ticking the `Start Recording` switch in Smartlook Plugin settings, or by using `Start Session` analytics blueprint node, or by using:
 
 <Code
@@ -48,27 +48,26 @@ FAnalytics::Get().GetDefaultConfiguredProvider()->RecordEvent();
 
 # Supported versions
 
-Current **minimal** supported Unreal Engine 4 version is **4.6.1** (Metal rendering only, openGL ES is not supported).
+Currently the **minimal** supported Unreal Engine 4 version is **4.6.1** (Metal rendering only, openGL ES is not supported).
 
 # Further Steps
 
 <TextBlock>{`
-All methods of Smartlook SDK are documented in the <Link to="/docs/sdk/api-reference" platform="ios">Smartlook API reference</Link>.
+All Smartlook SDK methods are documented in the <Link to="/docs/sdk/api-reference" platform="unreal">Smartlook API reference</Link>.
 \n
 Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
 \n
-**Issues and bugs** can be reported in the [Smartlook issue tracker](https://github.com/smartlook/smartlook-mobile-issue-tracker).
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="ios">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="ios">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="ios">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="ios">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="ios">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="ios">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="ios">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="ios">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="ios">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>
 
 
