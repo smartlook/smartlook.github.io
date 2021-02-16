@@ -10,14 +10,14 @@ import { Title, TextBlock, Code } from 'components'
 <Title>Making Smartlook UIView Properties Inspectable in Xcode</Title>
 
 <TextBlock kind="important">{`
-This guide applies to all frameworks that use Xcode Interface Builder.
+This guide applies to all frameworks that use the Xcode Interface Builder.
 `}</TextBlock>
 
-Inspectable properties of visual elements used in Xcode Design Builder enable quick code-less editing of their values. 
+Inspectable properties of visual elements used in the Xcode Design Builder enable quick codeless editing of their values. 
 
-Unfortunatelly, properties exported from an external framework like Smartlook cannot be directly attributed as `IBInspectable` to enable this functionality.
+Unfortunately, properties exported from an external framework like Smartlook cannot be directly attributed as `IBInspectable` to enable this functionality.
 
-There is, however, a neat straigthforward workaround to enable this functionality by wrapping the Smartlook properties in own inspectable properties via a custom `UIView` extension:
+There is, however, a neat straightforward workaround to enable this functionality by wrapping the Smartlook properties in its own inspectable properties via a custom `UIView` extension:
 
 <Code
 	snippets={{
@@ -31,5 +31,5 @@ extension UIView {
 	}}
 />
 
-By adding this code to your app, a wrapper is created around Smartlook's `slSensitive` property that publishes its value to Interface Builder as `smartlookSensitive`. You can indeed use another name for the new inspectable property so it fits your code naming conventions.
+By adding this code to your app, a wrapper is created around Smartlook's `slSensitive` property that publishes its value to the Interface Builder as `smartlookSensitive`. You can indeed use another name for the new inspectable property so it fits your code naming conventions.
 
