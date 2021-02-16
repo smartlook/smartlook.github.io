@@ -78,34 +78,34 @@ if (smartlookMiddleware != nil) {
 />
 
 <TextBlock visibleOn="ios">{`
-Smartlook Middleware integration transalates Segment's \`track\`,  \`screen\`, \`identify\`, \`alias\` and \`reset\` calls to the respective Smartlook method calls. The \`options\` argument can filter unnecessary or unwanted mapping.
+Smartlook Middleware integration translates Segment's \`track\`, \`screen\`, \`identify\`, \`alias\`, and \`reset\` calls to the respective Smartlook method calls. The \`options\` argument can filter unnecessary or unwanted mapping.
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
-Smartlook Middleware integration transalates Segment's \`track\`,  \`screen\` \`identify\` and \`alias\` calls to the respective Smartlook method calls. The \`options\` argument can filter unnecessary or unwanted mapping.
+Smartlook Middleware integration translates Segment's \`track\`,  \`screen\` \`identify\` and \`alias\` calls to the respective Smartlook method calls. The \`options\` argument can filter unnecessary or unwanted mapping.
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
-| Option        | Segment Event type        | Smartlook API Method(s)                                                  | Notes                                                               |
-|---------------|---------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------|
-|\`.track\`     | \`SEGEventTypeTrack\`     | \`trackCustomEvent(name:props:)\`                                        | - - -  |
-|\`.screen\`    | \`SEGEventTypeScreen\`    |\`trackNavigationEvent(withControllerId:type:)\`                          | This mapping is set **off** in the \`.default\` options combinations, as it interferes with Smartlook Heatmap generating. <br /> When enabled, the Smartlook's \`type\` is always \`.enter\`.|
-|\`.identity\`  | \`SEGEventTypeIdentify\`  |\`setUserIdentifier(userIdentifier:); setSessionProperty(value:forName:)\`| - - -  |
-|\`.alias\`     | \`SEGEventTypeAlias\`     |\`setUserIdentifier(userIdentifier:)\`                                    | - - -  |
-|\`.reset\`     | \`SEGEventTypeReset\`     |\`resetSession(resetUser:)\`                                              | \`resetUser\` attribute is always set to \`true\`.   |
-|\`.all\`       | - - -                     | - - -                                                                    | Sets all options (all call mappings) enabled.            |
-|\`.default\`   | - - -                     | - - -                                                                    | Sets all options except for \`.screen\` to avoid Smartlook heatmap mangling.|
+| Option        | Segment Event Type        | Smartlook API Method(s)                                                  | Notes                                                                                                                                                                                            |
+|---------------|---------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|\`.track\`     | \`SEGEventTypeTrack\`     | \`trackCustomEvent(name:props:)\`                                        | - - -                                                                                                                                                                                            |
+|\`.screen\`    | \`SEGEventTypeScreen\`    |\`trackNavigationEvent(withControllerId:type:)\`                          | This mapping is set **off** in the \`.default\` options combinations, as it interferes with Smartlook's Heatmaps generating. <br /> When enabled, the Smartlook's \`type\` is always \`.enter\`. |
+|\`.identity\`  | \`SEGEventTypeIdentify\`  |\`setUserIdentifier(userIdentifier:); setSessionProperty(value:forName:)\`| - - -                                                                                                                                                                                            |
+|\`.alias\`     | \`SEGEventTypeAlias\`     |\`setUserIdentifier(userIdentifier:)\`                                    | - - -                                                                                                                                                                                            |
+|\`.reset\`     | \`SEGEventTypeReset\`     |\`resetSession(resetUser:)\`                                              | \`resetUser\` attribute is always set to \`true\`.                                                                                                                                               |
+|\`.all\`       | - - -                     | - - -                                                                    | Sets all options (all call mappings) enabled.                                                                                                                                                    |
+|\`.default\`   | - - -                     | - - -                                                                    | Sets all options except for \`.screen\` to avoid Smartlook's Heatmaps mangling.                                                                                                                  |
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
-| Option                   | Segment Event type | Smartlook API Method(s)                                                   | Notes                                                               |
+| Option                   | Segment Event Type | Smartlook API Method(s)                                                   | Notes                                                                                                                                                                                                   |
 |--------------------------|--------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------|
-|\`ENABLE_CUSTOM_EVENTS\`  | \`track\`          | \`trackCustomEvent(name, props:)\`                                        | - - -  |
-|\`ENABLE_SCREEN_EVENTS\`  | \`screen\`         | \`trackNavigationEvent(name, ViewState.START)\`                           | This mapping is **not enabled** in the \`.default\` option combination, as it interferes with Smartlook Heatmap generating. <br /> When enabled, the Smartlook's \`ViewState\` is always \`.START\`.|
-|\`ENABLE_IDENTIFY\`       | \`identify\`       | \`setUserIdentifier(userIdentifier); setUserProperties(properties)\`      | - - -  |
-|\`ENABLE_ALIAS\`          | \`alias\`          | \`setUserIdentifier(userIdentifier)\`                                     | This mapping is **not enabled** in the \`.default\` option combination, because Smartlook SDK doesnt have alias functionality. If enabled, alias is going to rewrite previous user identifier.  |
-|\`ENABLE_ALL\`            | - - -              | - - -                                                                     | Sets all options (all call mappings) enabled.            |
-|\`ENABLE_DEFAULT\`        | - - -              | - - -                                                                     | Sets all options except for \`.screen\` and \`.alias\` to avoid Smartlook heatmap mangling and identifier rewritting. |
+|\`ENABLE_CUSTOM_EVENTS\`  | \`track\`          | \`trackCustomEvent(name, props:)\`                                        | - - -                                                                                                                                                                                                   |
+|\`ENABLE_SCREEN_EVENTS\`  | \`screen\`         | \`trackNavigationEvent(name, ViewState.START)\`                           | This mapping is **not enabled** in the \`.default\` option combination, as it interferes with Smartlook's Heatmaps generating. <br /> When enabled, the Smartlook's \`ViewState\` is always \`.START\`. |
+|\`ENABLE_IDENTIFY\`       | \`identify\`       | \`setUserIdentifier(userIdentifier); setUserProperties(properties)\`      | - - -                                                                                                                                                                                                   |
+|\`ENABLE_ALIAS\`          | \`alias\`          | \`setUserIdentifier(userIdentifier)\`                                     | This mapping is **not enabled** in the \`.default\` option combination, because Smartlook SDK doesn't have alias functionality. If enabled, alias is going to rewrite the previous user identifier.     |
+|\`ENABLE_ALL\`            | - - -              | - - -                                                                     | Sets all options (all call mappings) enabled.                                                                                                                                                           |
+|\`ENABLE_DEFAULT\`        | - - -              | - - -                                                                     | Sets all options except for \`.screen\` and \`.alias\` to avoid Smartlook's Heatmaps mangling and the identifier rewriting.                                                                             |
 `}</TextBlock>
 
 <CodeBlock
@@ -130,7 +130,7 @@ val smartlookMiddleware = Smartlook.createSegmentMiddleware(options)
 
 ## Manual integration
 
-Recipes for straigthforward Segment integration in Android or iOS that could be inspiration for other supported platforms as well. 
+There are recipes for straightforward Segment integration in Android or iOS that could be an inspiration for other supported platforms as well.
 
 Full Segment documentation for mobile platforms can be found on the [official website](https://segment.com/docs/connections/sources/catalog/).
 

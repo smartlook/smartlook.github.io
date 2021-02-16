@@ -9,11 +9,11 @@ import { CodeBlock, TextBlock, Title } from "components";
 
 import auto_integration_firebase_crashlytics from 'assets/auto_integration_firebase_crashlytics.png'
 
-<Title>Firebase Crahslytics integration</Title>
+<Title>Firebase Crashlytics integration</Title>
 
 ## Automatic integration
 
-Smartlook can be auto-integrated into you project’s crashlytics simply by calling:
+Smartlook can be auto-integrated into you project’s Crashlytics simply by calling:
 
 <CodeBlock
   kind="example"
@@ -84,8 +84,8 @@ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
   }}
 />
 
-Then in Crashlytics dashboard, there should be a new `Smartlook session URL` key-value pair with link to your Smartlook dashboard.
-Once opened, you can directly play recording just before the crash.
+Then in the Crashlytics dashboard, there should be a new `Smartlook session URL` key-value pair with a link to your Smartlook dashboard.
+Once opened, you can directly play the recording just before the crash occurred.
 
 <img src={auto_integration_firebase_crashlytics} />
 
