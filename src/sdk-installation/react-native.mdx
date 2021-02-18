@@ -11,7 +11,7 @@ import { Code, TextBlock, Link, Title } from "components";
 
 <TextBlock kind="important">
 {`
-**Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "_How do I add custom native code to my Expo project?_". Smartlook functionality must be implemented in the native code.
+**Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "_How do I add custom native code to my Expo project?_" Smartlook functionality must be implemented in the native code.
 `}
 </TextBlock>
 
@@ -36,7 +36,7 @@ yarn add smartlook-react-native-wrapper
 *Android*
 
 * Open `android/build.gradle`
-* Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using older React native version
+* Update gradle version to `classpath 'com.android.tools.build:gradle:3.1.0'` in case you are using an older React native version
 * Add our maven repository:
 
 <Code
@@ -61,9 +61,9 @@ Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip`. Th
 
 Smartlook native library is installed as a **Cocoapods dependency**.
 
-There are no manual steps required, just make sure your Cocoapod dependecies are up-to-date after Smartlook RN installation dependecy.
+There are no manual steps required, just make sure your Cocoapod dependencies are up-to-date after Smartlook RN installation dependency.
 
-3. Import Smartlook, setup it and start recording
+3. Import Smartlook, setup it and start recording.
 
 <Code
   kind="example"
@@ -78,7 +78,7 @@ Smartlook.setupAndStartRecording("KEY");
 
 <TextBlock kind="important">
 {`
-To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
 `}
 </TextBlock>
 
@@ -86,7 +86,7 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 
 <TextBlock kind="important">
 {`
-SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
 
@@ -103,14 +103,13 @@ Some **advanced use-case** and **troubleshooting** case-studies are described in
 \n
 **Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="react">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="react">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="react">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="react">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="react">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="react">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="react">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="react">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="react">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="react">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>

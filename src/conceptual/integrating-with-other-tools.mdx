@@ -12,9 +12,9 @@ import { usePlatforms } from 'hooks'
 
 *This section shows how to integrate Smartlook with other analytical tools.*
 
-It is a typical use-case that an application uses several specialized 3rd party libraries to cover various aspects of the analytics, and it is an advantage when it is possible to integrate these tools together.
+It is a typical use-case that an application uses several specialized third-party libraries to cover various aspects of the analytics, and it is a great advantage when it is possible to integrate these tools together.
 
-In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in Smartlook dashboard.
+In order to integrate Smartlook recordings with other tools, Smartlook publishes two URLs that point to the currently recorded session, and the current user in the Smartlook dashboard.
 
 <TextBlock kind="important">{`
 The integration URLs are accessible only to the authorized Smartlook users.
@@ -23,11 +23,11 @@ The integration URLs are accessible only to the authorized Smartlook users.
 The integration is then made by sending these URLs to the other tools, e.g., as custom parameters of their own objects.
 
 <TextBlock kind="note">{`
-Smartlook also notifies the hosting application whenever one of the integration URLs changes. The notification mechanism heavily depends on the platform, technical details are provided in the API Reference.
+Smartlook also notifies the hosting application whenever one of the integration URLs changes. The notification mechanism depends heavily on the platform; technical details are provided in the API Reference.
 `}</TextBlock>
 
 <TextBlock kind="note">
-Some practical examples of integrating Smartlook into some popular 3rd party tools are provided in the **Cookbooks** section of the documentation.
+Some practical examples of integrating Smartlook into some popular third-party tools are provided in the **Cookbooks** section of the documentation.
 </TextBlock>
 
 # Current Session URL
@@ -120,7 +120,7 @@ Technical details are provided in the <Link to="/api_reference#dashboard-session
 
 # Current Visitor URL
 
-Visitor URL points to a Dashboard page that wrapps the visitor info (their sessions &c.). This URL may change during the application run are result of user identification via Smartlook SDK.
+Visitor URL points to a Dashboard page that wraps the visitor info (their sessions). This URL may change during the application run as a result of user identification via Smartlook SDK.
 
 <CodeBlock kind="example"
   snippets={{

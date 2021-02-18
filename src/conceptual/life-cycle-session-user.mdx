@@ -10,18 +10,18 @@ import { usePlatforms } from 'hooks'
 
 <Title>Life Cycle, Session, User</Title>
 
-*This section covers the way Smartlook automatically follows application life cycle, and introduces the concept of recording sessions and users.*
+*This section covers the way Smartlook automatically follows an application life cycle, and introduces the concept of recording sessions and users.*
 
-Apart from the initial Smartlook setup when a new instance of an application starts, Smartlook follows the life cycle of the application automatically. When the application is suspended to the background, recording is paused automatically. When the application resumes to the frontend again, the recording resumes. There is no need to call API methods to achieve this basic behaviour.
+Apart from the initial Smartlook setup when a new instance of an application starts, Smartlook follows the life cycle of the application automatically. When the application is suspended to the background, recording is paused automatically. When the application resumes to the frontend again, the recording resumes. There is no need to call API methods to achieve this basic behavior.
 
 # Session
-Sessions roughly correspond to individual application “runs”.
+Sessions roughly correspond to individual application “runs.”
 
-This does not mean, however, that each interval when the application is on screen is always recorded as a separate session. When an application is suspended to the background just for a short period of time (e.g., it is interrupted by an incoming call, notification), the original session continues when the application is resumed. If the application is closed for several minutes, a new session will start at the next application opening.
+This does not mean, however, that each interval when the application is onscreen is always recorded as a separate session. When an application is suspended to the background just for a short period of time (e.g., it is interrupted by an incoming call, notification, etc.), the original session continues when the application is resumed. If the application is closed for several minutes, a new session will start at the next application opening.
 
 <TextBlock kind="important">
 {`
-To change this default behaviour, an API method that resets the session must be called when appropriate, as described later in this document.
+To change this default behavior, an API method that resets the session must be called when appropriate, as described later in this document.
 `}
 </TextBlock>
 
@@ -101,22 +101,22 @@ Smartlook.Analytics.SetUserIdentifier("sample_user_identifier", props);
 
 
 <TextBlock kind="note">{`
-This call associates the current user with the provided id. If a user with such an id already exists in one of your Smartlook projects, the session is automatically assigned to that user.
+This call associates the current user with the provided ID. If a user with such an ID already exists in one of your Smartlook projects, the session is automatically assigned to that user.
 `}</TextBlock>
 
 
 <TextBlock kind="important">{`
-When this method is called again with a different user identifier, it does not create a new user, it changes the id of the user currently associated with the session. To “login” a new user, use the resetSession method described in the following section.
+When this method is called on again with a different user identifier, it does not create a new user, it changes the ID of the user currently associated with the session. To “login” a new user, use the resetSession method described in the following section.
 `}</TextBlock>
 
-The application remembers the last user id and reuses it as the default user id with each new session (i.e., when the application is launched again on the device). This happens even when the user is not identified explicitly. This ensures that when the application runs again on the same device, the implicit users are by default associated together.
+The application remembers the last user’s ID and reuses it as the default user ID with each new session (i.e., when the application is launched again on the device). This happens even when the user is not identified explicitly. This ensures that when the application runs again on the same device, the implicit users are by default associated together.
 
 <Link to="/docs/sdk/api-reference#user-identification">User identification API Reference</Link>
 
 
 # Explicit Control of Sessions and Users
 
-In some use cases it makes sense to explicitly control the session and users flow. For example, when a device with an application is shared among many users. In these cases the application should always start with a fresh session (or user). To do so, use one of the following setup option:
+In some use-cases it makes sense to explicitly control the session and users’ flow. For example, when a device with an application is shared among many users. In these cases the application should always start with a fresh session (or user). To do so, use one of the following setup options:
 
 <TextBlock visibleOn="react,flutter,unity">{`
 Soon we will provide better setup options via builder mechanism, meanwhile please use:
@@ -265,12 +265,12 @@ Smartlook.Analytics.SetupAndStart(API_KEY, smartlookSetupOptions);
 />
 
 
-When it is desired to start a new session, or login a new user while the application is running, it is also possible by using a dediceted `resetSession` method. This method takes one paramter, the indicates, whether the user identity should be also reset, or whether the new session should retain the user from the current session:
+When it is desired to start a new session, or login a new user while the application is running, it is also possible by using a dedicated `resetSession` method. This method takes one parameter, then indicates whether the user identity should also be reset, or whether the new session should retain the user from the current session
 
 <Link to="/docs/sdk/api-reference#reset-session">Reset Session API reference</Link>.
 
 <TextBlock kind="important">{`
-It is not recommended to call this method when the application is being closed. Smartlook is busy with cleaning up when the application is going to background, and calling this method may create ephemeral sessions as an unwanted consequence. If it is prefered that sessions do not continue with the next application launch under any circumstances, the setup resetSession options when initializing Smartlook should be used instead.
+It is not recommended to call this method when the application is being closed. Smartlook is busy with cleaning up when the application is going to the background, and calling this method may create ephemeral sessions as an unwanted consequence. If it is prefered that sessions do not continue with the next application launch under any circumstances, the setup resetSession options when initializing Smartlook should be used instead.
 `}</TextBlock>
 
 # Explicit Recording Stopping and Starting
@@ -284,13 +284,13 @@ However, in situations when it is practical to record just a small part of the a
 <Link to="/docs/sdk/api-reference#start-and-stop-recording">Start and Stop Recording API reference</Link>
 
 <TextBlock kind="note">{`
-When the recording is controlled programmatically this way, the time the user spends in the rest of the application is not visible on the timeline. Thus, for just a short recording interruption (e.g., when the user fills in some form full of sensitive data), consider switching to some combination of rendering and event tracking modes. This way, the time the user spents incognito is visible on the timeline. More about this can be found in <Link to="/docs/sdk/conceptual/handling-sensitive-data">Handling Sensitive Data</Link>.
+When the recording is controlled programmatically this way, the time the user spends in the rest of the application is not visible on the timeline. Thus, for just a short recording interruption (e.g., when the user fills in some form full of sensitive data), consider switching to some combination of rendering and event tracking modes. This way, the time the user spends incognito is visible on the timeline. More about this can be found in <Link to="/docs/sdk/conceptual/handling-sensitive-data">Handling Sensitive Data</Link>.
 `}</TextBlock>
 
-# Session and User properties
+# Session and User Properties
 
 <TextBlock>{`
-In many cases, it is convenient to associate some custom properties to the current session and user. Details could be found in the respective <Link to="/docs/sdk/api-reference#user-properties">API Reference</Link>
+In many cases, it is convenient to associate some custom properties to the current session and user. Details could be found in the respective <Link to="/docs/sdk/api-reference#user-properties">API Reference</Link>.
 `}</TextBlock>
 
 <TextBlock kind="note">{`

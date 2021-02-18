@@ -10,49 +10,49 @@ import { usePlatforms } from 'hooks'
 
 <Title>Screen Recording Quality</Title>
 
-*This section discusses the recording quality settings, optional tweaks and trade-offs.*
+*This section discusses the recording quality settings, optional tweaks, and trade-offs.*
 
 # Understanding Video Recording Quality
 
 Although everyone wants the best video quality for the application recording, setting the appropriate video quality requires careful consideration and understanding the trade-offs of different settings.
 
-The higher the quality, the more demanding the recording in terms of CPU load, memory footprint, energy consumption (battery life) and network traffic is.
+The higher the quality, the more demanding the recording in terms of CPU load, memory footprint, energy consumption (battery life), and network traffic is.
 
 The primary way to set the video quality is by selecting one of the presets available in the application dashboard. Dashboard settings affect all new recordings.
 
 # Recording Quality
 
-There are three preset values of **Low/Medium/High** (see the project [settings](https://application.smartlook.com/settings/projects)). Technically, this option sets primarily the video bitrate, which affects the video image quality and size of the video data. For most projects, **Medium** has a best price-performance ratio. When the application is used in an environment where data size that is sent from the application matters, **Low** might be the best option. For apps where the high image quality of the recordings is important, and data size does not matter much, **High** can be used.
+There are three preset values of **Low/Medium/High** (see the project [settings](https://application.smartlook.com/settings/projects)). Technically, this option sets primarily the video bitrate, which affects the video image quality and size of the video data. For most projects, **Medium** has the best price-performance ratio. When the application is used in an environment where data size that is sent from the application matters, **Low** might be the best option. For apps where the high image quality of the recordings is important, and data size does not matter much, **High** can be used.
 
 The current settings are:
 
-| Preset           | Bitrate         | Maximal bandwidth         |
+| Preset           | Bitrate         | Maximum bandwidth     |
 |------------------|-----------------|-----------------------|
 | Low              |  80 000 bits/s  | ~ 0.5 MB per minute   |
 | Medium           | 160 000 bits/s  | ~ 1 MB per minute     |
 | High             | 320 000 bits/s  | ~ 2 MB per minute     |
 
-The real data size depends on many factors (how complex the UI is, how often it changes significantly) and tends to be a fraction (½ or ⅓) of the maximal size.
+The real data size depends on many factors (how complex the UI is, how often it changes significantly) and tends to be a fraction (½ or ⅓) of the maximum size.
 
-Technologically, this setting affects the memory footprint of the SDK, its CPU load and primarily the size of the data that the SDK sends over the network.
+Technologically, this setting affects the memory footprint of the SDK, its CPU load, and primarily the size of the data that the SDK sends over the network.
 
-# Framerate
+# Frame rate
 
-Framerate (in frames per second, or fps) states how often Smartlook takes a snapshot of the screen. The higher the framerate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analysing user interaction in a common application, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
+Frame rate (in frames per second, or fps) states how often Smartlook takes a snapshot of the screen. The higher the frame rate, the smoother the recording of UI changes. The trade-off is, however, higher CPU load and energy consumption. For analyzing user interaction in a common application, the default fps value (2fps) is quite sufficient. Higher fps makes sense in dynamic apps like games.
 
-We recommend setting the framerate for the project on the [dashboard](https://application.smartlook.com/settings/projects).
+We recommend setting the frame rate for the project on the [dashboard](https://application.smartlook.com/settings/projects).
 
 Alternatively, it can also be set as one of Smartlook setup options. This is particularly useful for debugging and finding the optimal value for the application. In production releases, this option should not be used.
 
 <TextBlock>{`
-The configured framerate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive framerate, may not work perfectly in some edge cases with technologies that are used to create UI. If the adaptive framerate algorithm produces unsatisfying results, it can be switched off by the respective Smartlook setup option (see <Link to="/docs/sdk/api-reference#setup-configuration">API reference</Link>).
+The configured frame rate, however, is its maximal value. In order to reduce the footprint, Smartlook watches the real changes in the UI and takes snapshots only when the UI is not idle. While working well in most apps, this kind of optimization, known as adaptive frame rate, may not work perfectly in some edge cases with technologies that are used to create UI. If the adaptive frame rate algorithm produces unsatisfying results, it can be switched off by the respective Smartlook setup options (see <Link to="/docs/sdk/api-reference#setup-configuration">API reference</Link>).
 `}</TextBlock>
 
 # Rendering Mode
 
 On top of taking snapshots of the screens for the video recording, Smartlook can also present the UI in the form of several types of wireframe sketches.
 
-Different rendering modes use different amounts of CPU, memory and produce video data of different sizes. The difference is individual for each application and depends on the way the application UI is structured. There is not always a direct relation between the simplicity of the visual presentation and resources load.
+Different rendering modes use different amounts of CPU, memory, and produce video data of different sizes. The difference is individual for each application and depends on the way the application UI is structured. There is not always a direct relation between the simplicity of the visual presentation and resources load.
 
 <TextBlock>{`
 Read more about rendering modes in the <Link to="/docs/sdk/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level">Rendering Modes: Handling Sensitive Data at the Whole Screen Level</Link>.

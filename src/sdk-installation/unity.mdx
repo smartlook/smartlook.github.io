@@ -10,15 +10,15 @@ import { usePlatforms } from 'hooks'
 
 <Title>Unity SDK Installation</Title>
 
-## Installation for Android - aar
+## Installation for Android - AAR
 
 1. Download [Smartlook Android Unity SDK v1.6.2](https://sdk.smartlook.com/android/app-1.6.2-unity.aar).
 2. Put `AAR` file to `Assets/Plugins/Android` in your Unity project.
-3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
+3. Get a Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
 
 ## Installation for Android - Gradle
 
-In case there is a conflict with other libraries, we also released lite version of the SDK. This solution however needs to be implemented via gradle of the app itself. Steps are described below. Flow is similar to integration of our native SDK.
+In case there is a conflict with other libraries, we also released a lite version of the SDK. This solution however needs to be implemented via gradle of the app itself. Steps are described below. Flow is similar to integration of our native SDK.
 
 1. Add Smartlook in your **app’s** `build.gradle`:
 
@@ -59,26 +59,26 @@ implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
   }}
 />
 
-4. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
+4. Get a Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
 
 ## Installation for iOS
 
 1. Download [Smartlook iOS Unity SDK v1.5.0](https://sdk.smartlook.com/ios/smartlook-unity-ios-sdk-1.5.0.165.zip).
 2. Unzip the archive and put `SmartlookUnity.framework` to `Assets/Plugins/iOS` in your Unity project.
-3. Get Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
+3. Get a Unity bridge from [our Github repository](https://github.com/smartlook/unity-bridge).
 
 ## Unity Jar Resolver
 
-Currently this option is still in progress - Please let us know if this is somehow blocking issue to you.
+Currently this option is still in progress - Please let us know if this is somehow a blocking issue to you.
 
 # Supported versions
-Currently **minimal** supported Android version is **Jelly Bean (API 18)**, however **video is recorded only for API 24+**, analytics events and other functionality is not limited.
+Currently the **minimal** supported Android version is **Jelly Bean (API 18)**, however **video is recorded only for API 24+**, analytics events and functionalities are not limited.
 
 Smartlook Unity iOS SDK works with Metal graphics API only. OpenGL is not supported at the moment.
 
 # Start Recording
 
-To start recording (or just to setup the SDK), you can use i.e.  :
+To start recording (or just to setup the SDK), you can use i.e.:
 
 <Code
   kind="example"
@@ -104,12 +104,12 @@ public class NewBehaviourScript : MonoBehaviour
 />
 
 <Alert kind="important">
-To setup Smartlook, you need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
+To setup Smartlook, you will need your unique API key. This can be found in your mobile project settings in <a href="https://app.smartlook.com/settings/projects">your Smartlook Dashboard</a>.
 </Alert>
 
 <TextBlock kind="important">
 {`
-SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, too, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
 
@@ -122,14 +122,13 @@ Some **advanced use-case** and **troubleshooting** case-studies are described in
 \n
 **Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="unity">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="unity">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="unity">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="unity">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="unity">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="unity">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="unity">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="unity">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="unity">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>

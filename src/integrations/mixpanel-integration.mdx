@@ -9,7 +9,7 @@ import { CodeBlock, TextBlock, Title } from "components";
 
 import auto_integration_mixpanel from 'assets/auto_integration_mixpanel.png'
 
-<Title>Mixpannel integration</Title>
+<Title>Mixpanel integration</Title>
 
 <TextBlock visibleOn="android,ios">{`
 ## Automatic integration
@@ -53,11 +53,11 @@ configuration.enableIntegrations = @[ [SLMixpanelIntegration alloc] initIntegrat
 />
 
 <TextBlock kind="important" visibleOn="android">{`
-User must be identified in Mixpanel for Smartlook automatic integration to work correctly.
+The user must be identified in Mixpanel for Smartlook automatic integration to work correctly.
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
-Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Mixpanel user.
+A Smartlook visitor URL will be added as a new property called the \`Smartlook visitor dashboard URL\` into a Mixpanel user.
 `}</TextBlock>
 
 <img visibleOn="android" src={auto_integration_mixpanel} />

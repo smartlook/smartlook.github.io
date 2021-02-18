@@ -13,7 +13,7 @@ import auto_integration_heap from 'assets/auto_integration_heap.png'
 
 <TextBlock visibleOn="android,ios">{`
 ## Automatic integration
-Smartlook can be automatically integrated into Heap using:
+Smartlook can be automatically integrated into Heap by using the following:
 `}</TextBlock>
 
 <CodeBlock
@@ -49,11 +49,11 @@ configuration.enableIntegrations = @[ [SLHeapIntegration alloc] initIntegrationW
 />
 
 <TextBlock kind="important" visibleOn="android">{`
-\`enableIntegration\` integration must be called after Heap is intialized.
+\`enableIntegration\` integration must be called after Heap is initialized.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios">{`
-Smartlook visitor URL will be added as a new property called \`Smartlook visitor dashboard URL\` into a Heap user.
+A Smartlook visitor URL will be added as a new property called the \`Smartlook visitor dashboard URL\` into a Heap user.
 `}</TextBlock>
 
 <img visibleOn="android" src={auto_integration_heap} />

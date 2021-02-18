@@ -17,8 +17,8 @@ When debugging the iOS version of the app with Smartlook, a warning is encounter
 
 `Main Thread Checker: UI API called on a background thread: -[UIView drawViewHierarchyInRect:afterScreenUpdates:]`
 
-The warning is harmless, and is caused by Smartlook capturing screen on background. The alternative (capturing the screenshot on the main thread) may cause glitches of the app UI - so implementing it this way and having this warning is a necessary trade-off to enable seamless recording functionality.
+The warning is harmless, and is caused by Smartlook’s capturing screen on the background. The alternative (capturing the screenshot on the main thread) may cause glitches of the app UI – so implementing it this way and having this warning is a necessary trade-off to enable seamless recording functionality.
 
 This warning also might be accompanied by a short freeze of the app during debugging. This freeze does not happen in production builds, and is caused by the `Main Thread Checker` Xcode diagnostic option.
 
-This option can be switched off in the respective run scheme diagnostic options, see "_Detect Improper UI Updates on Background Threads_" section of ["_Diagnosing Memory, Thread, and Crash Issues Early_"](https://developer.apple.com/documentation/xcode/diagnosing_memory_thread_and_crash_issues_early).
+This option can be switched off in the respective run scheme diagnostic options, see "_Detect Improper UI Updates on Background Threads_" section of the ["_Diagnosing Memory, Thread, and Crash Issues Early_."](https://developer.apple.com/documentation/xcode/diagnosing_memory_thread_and_crash_issues_early)
