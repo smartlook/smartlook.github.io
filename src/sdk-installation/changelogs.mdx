@@ -15,10 +15,19 @@ This changelog shows all relevant releases for each platform.
 <TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
 {`
 Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
-This means, that the bugfixes in the latest standard iOS SDK release propagate to all respective frameworks as well.\n
+This means, that the bugfixes in the latest standard iOS/Android SDK release propagate to all respective frameworks as well.\n
 New API methods, however, must wait for the respective platfrom plugin update.
 `}
 </TextBlock>
+
+<TextBlock visibleOn="cordova">{`
+## Cordova [1.7.4] - 2021-02-22
+\n
+### Fixed
+- Compile error on iOS caused by missing \`WKWebView\` headed import in the plugin code.
+\n
+***`}</TextBlock>
+
 
 <TextBlock kind="important" visibleOn="unity,unreal">
 {`
