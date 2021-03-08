@@ -936,7 +936,7 @@ class func registerBlacklisted(object: Any)
     },
     react: {
     javascript: `
-Smartlook.registerBlacklistedView(ref.current);
+Smartlook.registerBlacklistedView(ref);
 `,
   },
 xamarin: {
@@ -1044,7 +1044,7 @@ class func registerBlacklisted(object: Any)
     },
     react: {
     javascript: `
-Smartlook.unregisterBlacklistedView(ref.current);
+Smartlook.unregisterBlacklistedView(ref);
 `,
   },
 xamarin: {
@@ -1089,8 +1089,12 @@ This is applied for all blacklisted objects.
 ## Blacklisted classes
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,react,cocos">{`
+<TextBlock visibleOn="flutter,unity,cocos">{`
 This functionality is not available yet.
+`}</TextBlock>
+
+<TextBlock visibleOn="react">{`
+Note that \`UITextView\`, \`UITextField\`, \`WKWebView\` on iOS and \`EditText\`, \`WebView\` on Android are blacklisted by default. Specific instances of these classes can be recorded using whitelist. 
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
@@ -1197,7 +1201,7 @@ Note that for convenience, **some classes are blacklisted by default**: \`UIText
 Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity, xamarin">{`
+<TextBlock visibleOn="android,ios,react,flutter,unity,xamarin">{`
 ## Whitelisted views
 `}</TextBlock>
 
@@ -1205,7 +1209,7 @@ Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be
 This functionality is not available yet.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,xamarin">{`
+<TextBlock visibleOn="android,ios,xamarin,react">{`
 A specific view can be whitelisted so it is recorded even if it is an instance of a blacklisted class:
 `}</TextBlock>
 
@@ -1231,7 +1235,7 @@ class func registerWhitelisted(object: Any)
     },
     react: {
       javascript: `
-Smartlook.unregisterBlacklistedView(ref.current);
+Smartlook.registerWhitelistedView(ref);
     `,
     },
 xamarin: {
@@ -1275,7 +1279,7 @@ self.someView.slSensitive = NO;
 Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,xamarin">{`
+<TextBlock visibleOn="android,ios,xamarin,react">{`
 A specific view can be removed from a whitelist by calling:
 `}</TextBlock>
 
@@ -1298,6 +1302,11 @@ class func unregisterWhitelisted(object: Any)
       'objective-c': `
 + (void)unregisterWhitelistedObject:(nonnull id)object;
       `,
+    },
+    react: {
+      javascript: `
+Smartlook.unregisterWhitelistedView(ref);
+    `,
     },
 xamarin: {
       csharp: `
@@ -1505,7 +1514,7 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.Native);
 ## WebView blacklisting/whitelisting
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,react,cocos">{`
+<TextBlock visibleOn="flutter,unity,cocos">{`
 This functionality is not available yet.
 `}</TextBlock>
 
@@ -1515,6 +1524,10 @@ When an application has some parts displayed using \`WebView\` and theese parts 
 
 <TextBlock visibleOn="ios">{`
 When an application has some parts displayed using \`WKWebView\` and theese parts should be recorded, then the \`WKWebView\` recording needs to be enabled by removing \`WKWebView\` from the  list of blacklisted classes:
+`}</TextBlock>
+
+<TextBlock visibleOn="react">{`
+When an application has some parts displayed using \`WebView\` or \`WKWebView\` and theese parts should be recorded, then the \`WebView\` or \`WKWebView\` recording needs to be enabled by adding the given view reference to whitelist:
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
@@ -1544,6 +1557,11 @@ Smartlook.unregisterBlacklisted(object: WKWebView.class)
 [Smartlook unregisterBlacklistedObject:WKWebView.class];
       `,
     },
+    react: {
+      javascript: `
+Smartlook.registerWhitelistedView(webViewRef);
+    `,
+    },
 xamarin: {
       csharp: `
 Smartlook.Analytics.UnregisterBlaclistedObject(MyWebView);
@@ -1552,7 +1570,7 @@ Smartlook.Analytics.UnregisterBlaclistedObject(MyWebView);
   }}
 />
 
-<TextBlock visibleOn="android,ios,xamarin">{`
+<TextBlock visibleOn="android,ios,xamarin,react">{`
 If \`WebView\` is being recorded, **all sensitive elements** on the displayed web page should be marked as sensitive so that they **are hidden**. This can be done by marking sensitive HTML elements with \`.smartlook-hide\` css class:
 <Code
   kind="example"
@@ -1566,7 +1584,7 @@ If \`WebView\` is being recorded, **all sensitive elements** on the displayed we
 />
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,xamarin">{`
+<TextBlock visibleOn="android,ios,xamarin,react">{`
 All inputs are hidden by default except for \`button\` and \`submit\` types. If some hidden inputs should be recorded they can be marked with \`.smartlook-show\` css class:
 <Code
   visibleOn="andoid,ios,xamarin"
