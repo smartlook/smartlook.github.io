@@ -894,20 +894,26 @@ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
 
 # Sensitive data hiding
 
-<TextBlock visibleOn="android,ios,react,xamarin">{`
-When using **native** rendering mode, **SDK can record sensitive data in your application**. Recording can be configured with the methods listed below so sensitive data is not recorded, or **Wireframe** rendering mode can be set because it does not record any sensitive data by design.
+<TextBlock>{`
+When using **native** rendering mode, **SDK can record sensitive data in your application**.\n
+In order to protect user privacy, Smartlook can be configured so that the sensitive data is not recorded.
 `}</TextBlock>
 
-<TextBlock kind="important" visibleOn="android,ios,react,xamarin">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
+Smartlook attempts to hide selected sensitive UI element automatically. It can be also instructed to hide or show particular UI components. Alternativelly, using one of the **wireframe** rendering modes records screen in a schematic way, showing no user data. The last possibility is to stop screen capturing altogether by using **no rendering** mode.
+`}</TextBlock>
+
+<TextBlock kind="important" visibleOn="android,ios,react,xamarin,cordova,ionic">{`
 Sensitive elements are **hidden locally** on the device; no sensitive data are transferred over the network and stored in the dashboard.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity,xamarin">{`
-## Blacklisted views
+<TextBlock visibleOn="flutter,unity,cocos,unreal">{`
+On this platform, hidding selectivelly sensitive parts of the screen is not possible.\n
+To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter, unity,cocos">{`
-This functionality is not available yet.
+<TextBlock visibleOn="android,ios,react,xamarin">{`
+## Blacklisted views
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,react,xamarin">{`
@@ -1085,12 +1091,8 @@ xamarin: {
 This is applied for all blacklisted objects.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity,cocos">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 ## Blacklisted classes
-`}</TextBlock>
-
-<TextBlock visibleOn="flutter,unity,cocos">{`
-This functionality is not available yet.
 `}</TextBlock>
 
 <TextBlock visibleOn="react">{`
@@ -1201,12 +1203,8 @@ Note that for convenience, **some classes are blacklisted by default**: \`UIText
 Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,flutter,unity,xamarin">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 ## Whitelisted views
-`}</TextBlock>
-
-<TextBlock visibleOn="flutter,unity">{`
-This functionality is not available yet.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,xamarin,react">{`
@@ -1315,15 +1313,6 @@ public static void UnregisterWhitelistedObject(object @object)
     },
   }}
 />
-
-<TextBlock visibleOn="cordova,ionic">{`
-Some application elements should not be recorded because of security (posibly GDPR) reasons.
-All of theese can be marked and will be hidden on the recording.
-`}</TextBlock>
-
-<TextBlock kind="important" visibleOn="cordova,ionic">{`
-Sensitive elements are **hidden locally** on the device, no sentive data is transfered over network and stored in dashboard.
-`}</TextBlock>
 
 <TextBlock visibleOn="cordova,ionic">{`
 ## Hidden elements
@@ -1510,12 +1499,8 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.Native);
   }}
 />
 
-<TextBlock visibleOn="android,ios,flutter,unity,react,cocos,xamarin">{`
+<TextBlock visibleOn="android,ios,react,xamarin">{`
 ## WebView blacklisting/whitelisting
-`}</TextBlock>
-
-<TextBlock visibleOn="flutter,unity,cocos">{`
-This functionality is not available yet.
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
