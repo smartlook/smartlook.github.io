@@ -1,64 +1,73 @@
 ---
-name: Unreal
+name: Unreal Engine 4
 menu: SDK Installation
 route: /docs/sdk/unreal
-hidden: true
 showPlatformSelect: true
 ---
 
-import { TextBlock, Link } from "components";
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
+import { usePlatforms } from 'hooks'
 
-
-## Description
-
-The Smartlook Unreal SDK is currently available only for iOS devices.
-
-If you are not using Unreal, check out our [Android](https://smartlook.github.io/docs/sdk/android/) and [iOS](https://smartlook.github.io/docs/sdk/ios/) builds for normal apps.
-
-## What you can do
-
-* Replay session recordings in our web player
-* Capture all of the user interactions and find ones you can about in the Events manager
-* Set your own custom analytics event and do complex funnels/queries in the dashboard
-* Collect referrer value and source of installation per visitor
-
-## Reporting issues
-
-For more information on how to report issues please check our [Smartlook SDK Support section](https://smartlook.github.io/docs/sdk/support/#how-to-submit-an-issue).
-
-## Installation for iOS
-
-1. Download [Smartlook iOS Unreal SDK v1.2.4](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.2.4.zip).
-2. Unzip the archive, create `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
-3. Close and reopen your Unreal project to load the Smartlook plugin.
-4. Open Plugins settings (Edit - Plugins), make sure Smartlook plugin is enabled. Smartlook plugin can be found in Installed section under Analytics.
-5. Set analytics provider to `IOSSmartlook` (Edit - Project Settings - Analytics - Providers)
-6. Obtain your SDK Key from [Smartlook Dashboard](https://www.smartlook.com/app/dashboard/settings/projects) and enter it into Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
-7. Enable recording by ticking the `Start Recording` switch in Smartlook Plugin settings, or by using Unreal analytics' `FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();`, or by using `Start Session` analytics blueprint node.
-8. You can record events with `FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();`, or by using `Record Event` analytics blueprint node.
+<Title>Unreal Engine 4 SDK Installation</Title>
 
 <TextBlock kind="note">
 {`
-SDK will upload sessions only on WiFi if you want to upload sessions on mobile connections too, you need to enable this in your project setting in the dashboard. For more details about when your recordings appear in the Dashboard, refer <Link to="/docs/sdk/conceptual/when-i-will-see-the-recordings-in-dashboard">this detailed document</Link>.
+The Smartlook Unreal Engine 4 SDK is currently available only for iOS devices.
 `}
 </TextBlock>
 
-# What will SDK do?
+## Installation for iOS
 
-After this basic setup SDK will:
-* record your application.
-* **stop itself automatically on application closure**.
-* automatically hide some default sensitive views.
-* detect basic user gestures and touches.
-* records install referrer if present.
-* and much more!
+1. Download [Smartlook iOS Unreal Engine 4 SDK v1.1](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.1.zip).
+2. Unzip the archive, create a `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
+3. Close and reopen your Unreal project to load the Smartlook plugin.
+4. Open Plugins settings (Edit - Plugins), make sure the Smartlook plugin is enabled. The Smartlook plugin can be found in the Installed section under Analytics.
+5. Set analytics provider to `IOSSmartlook` (Edit - Project Settings - Analytics - Providers)
+6. Obtain your SDK Key from the [Smartlook Dashboard](https://app.smartlook.com/settings/projects) and insert it into the Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
+7. Enable recording by ticking the `Start Recording` switch in Smartlook Plugin settings, or by using `Start Session` analytics blueprint node, or by using:
 
-For more advanced recording customization please refer to
+<Code
+  kind="example"
+  snippets={{
+    ruby: `
+FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();
+`,
+  }}
+/>
 
-<Link to="/docs/sdk/api-reference">Smartlook API reference</Link>
+8. Record events with `Record Event` analytics blueprint node, or by using:
+
+<Code
+  kind="example"
+  snippets={{
+    ruby: `
+FAnalytics::Get().GetDefaultConfiguredProvider()->RecordEvent();
+`,
+  }}
+/>
 
 # Supported versions
-TODO
 
-# Issue tracker
-If you are experiencing any technical difficulties with our SDK feel free to report a issue to our [FIXME issue tracker]().
+Currently the **minimal** supported Unreal Engine 4 version is **4.6.1** (Metal rendering only, openGL ES is not supported).
+
+# Further Steps
+
+<TextBlock>{`
+All Smartlook SDK methods are documented in the <Link to="/docs/sdk/api-reference" platform="unreal">Smartlook API reference</Link>.
+\n
+Some **advanced use-case** and **troubleshooting** case-studies are described in the Cookbooks section of this documentation.
+\n
+**Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
+\n
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
+`}</TextBlock>
+
+

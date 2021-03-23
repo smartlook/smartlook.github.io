@@ -2,7 +2,7 @@ export const spec = {
 	openapi: '3.0.0',
 	info: {
 		title: 'Smartlook REST API',
-		version: '1.0.0',
+		version: '1.0.1',
 	},
 	servers: [
 		{
@@ -11,14 +11,31 @@ export const spec = {
 		},
 	],
 	paths: {
-		'/status': {
+		'/v1.0/status': {
 			get: {
 				responses: {
-					default: {
-						description: 'Unknown',
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										ok: {
+											type: 'boolean',
+										},
+										version: {
+											type: 'string',
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
 					},
 				},
-				operationId: 'statusGet',
+				parameters: [],
+				operationId: 'status',
 			},
 		},
 		'/api/v1/events': {
@@ -288,6 +305,9 @@ export const spec = {
 														type: 'string',
 													},
 													numberOfVisits: {
+														type: 'number',
+													},
+													eventMatchedCount: {
 														type: 'number',
 													},
 													_links: {
@@ -1084,6 +1104,140 @@ export const spec = {
 					},
 				],
 				operationId: 'getVisitorEvents',
+			},
+		},
+		'/api/v1/visitors/search': {
+			post: {
+				responses: {
+					'200': {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										totalVisitorsCount: {
+											type: 'number',
+										},
+										totalSessionsCount: {
+											type: 'number',
+										},
+										visitors: {
+											type: 'array',
+											items: {
+												type: 'object',
+												properties: {
+													id: {
+														type: 'string',
+													},
+													identification: {
+														type: 'object',
+														properties: {
+															uid: {
+																type: 'string',
+															},
+															properties: {
+																type: 'array',
+																items: {
+																	$ref: '#/components/schemas/AnyValue',
+																},
+															},
+														},
+														additionalProperties: false,
+													},
+													firstSeen: {
+														type: 'string',
+													},
+													lastSeen: {
+														type: 'string',
+													},
+													numberOfVisits: {
+														type: 'number',
+													},
+													numberOfSessions: {
+														type: 'number',
+													},
+													numberOfEvents: {
+														type: 'number',
+													},
+													_links: {
+														type: 'object',
+														properties: {
+															visitorSessions: {
+																type: 'string',
+															},
+															visitorEvents: {
+																type: 'string',
+															},
+														},
+														additionalProperties: false,
+													},
+												},
+												additionalProperties: false,
+											},
+										},
+										pagination: {
+											type: 'object',
+											properties: {
+												after: {
+													$ref: '#/components/schemas/AnyValue',
+												},
+											},
+											additionalProperties: false,
+										},
+										_links: {
+											type: 'object',
+											properties: {
+												nextPage: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['visitors'],
+				parameters: [],
+				operationId: 'searchVisitors',
+				requestBody: {
+					content: {
+						'application/json': {
+							schema: {
+								type: 'object',
+								properties: {
+									filters: {
+										type: 'array',
+										items: {
+											type: 'object',
+											properties: {
+												name: {
+													type: 'string',
+												},
+												value: {
+													oneOf: [
+														{
+															type: 'number',
+														},
+														{
+															type: 'string',
+														},
+													],
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+								},
+								additionalProperties: false,
+							},
+						},
+					},
+				},
 			},
 		},
 		'/api/v1/statistics': {

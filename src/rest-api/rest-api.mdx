@@ -44,6 +44,8 @@ curl -X GET \\
 The complete list of available endpoints is listed in the [API reference](/docs/rest-api/reference).
 Each endpoint is prefixed by a version number (eg. `/api/v1/events`), however, it is not mandatory to specify the version. For the calls without version being specified (eg. `/api/events`) the latest is used.
 
+To make things easier for you we prepared a [Javascript client](https://www.npmjs.com/package/@smartlook/rest-api-client) that can be used both in the browser and the Node.js.
+
 ## Traversing paged results
 When making an API requests to a resource that returns multiple objects, the result will be split into multiple pages.
 All the paginated responses are using cursor-based pagination and therefore calls to pages are stable.
@@ -123,3 +125,9 @@ The limit is usually 500 requests per 30 minutes for each endpoint.
 
 To get information about your usage of the Smartlook REST API you can call `/api/statistics` endpoint.
 To extend limits for your projects please contact the Smartlook support.
+
+# Further Steps
+
+<TextBlock>{`
+**Issues and bugs** can be reported in the [Smartlook REST API issue tracker](https://github.com/smartlook/smartlook-rest-api-issue-tracker/issues).
+`}</TextBlock>

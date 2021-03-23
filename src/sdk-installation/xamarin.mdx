@@ -26,11 +26,11 @@ Smartlook.Analytics.SetupAndStart("API_KEY");
 
 <TextBlock kind="important">
 {`
-To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
 `}
 </TextBlock>
 
-The most straightforward way to run Smartlook is by setting and starting it up at the very begin of the app life cycle
+The most straightforward way to run Smartlook is by setting and starting it up at the very begin of the app life cycle:
 - **iOS**: in `didFinishLaunchingWithOptions` of the `AppDelegates` class
 - **Android**: in `onCreate()` of the `Application` class
 
@@ -38,7 +38,7 @@ The most straightforward way to run Smartlook is by setting and starting it up a
 
 <TextBlock kind="important">
 {`
-SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, too, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="xamarin">Conceptual documentation</Link>.
+SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="xamarin">Conceptual documentation</Link>.
 `}
 </TextBlock>
 
@@ -51,15 +51,14 @@ Some **advanced use-case** and **troubleshooting** case-studies are described in
 \n
 **Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="xamarin">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="xamarin">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="xamarin">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="xamarin">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="xamarin">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="xamarin">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="xamarin">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="xamarin">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="xamarin">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="xamarin">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>
 

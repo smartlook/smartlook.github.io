@@ -19,7 +19,7 @@ import { usePlatforms } from 'hooks'
   kind="example"
   snippets={{
     gradle: `
-implementation 'com.smartlook.recording:app:1.6.0-cocos'
+implementation 'com.smartlook.recording:app:1.6.2-cocos'
 `,
   }}
 />
@@ -70,7 +70,7 @@ class AppActivity : Cocos2dxActivity() {
 
 <TextBlock kind="important">
 {`
-To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+To setup Smartlook, the **unique project API key **is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
 `}
 </TextBlock>
 
@@ -78,7 +78,7 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 
 <TextBlock kind="important">
 {`
-SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
 
@@ -95,9 +95,9 @@ pod Smartlook
   }}
 />
 
-Smartlook can be also added directly to the app project by **downloading** the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.5.0.2607.zip), unzipping the file and adding `Smartlook.framework` to the Xcode project.
+Smartlook can be also added directly to the app project by **downloading** the latest [Smartlook iOS SDK](https://sdk.smartlook.com/ios/smartlook-ios-sdk-1.5.0.2607.zip), unzipping the file, and adding `Smartlook.framework` to the Xcode project.
 
-2. To **setup** and **start** recording with Smartlook, Smartlook must be imported and configured e.g., in `AppDelegate` and its `didFinishLaunching`:
+2. To **setup** and **start** recording with Smartlook, Smartlook must be imported, and configured e.g., in `AppDelegate` and its `didFinishLaunching`:
 
 <Code
   kind="example"
@@ -122,7 +122,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 <TextBlock kind="important">
 {`
-To setup Smartlook, the **unique project API key** is needed. It can be found in the mobile project settings in <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.\n
+To setup Smartlook, the **unique project API key** is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.\n
 To understand the *adaptive framework* option see <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="cocos">Smartlook API reference</Link>. 
 `}
 </TextBlock>
@@ -131,12 +131,12 @@ To understand the *adaptive framework* option see <Link to="/docs/sdk/conceptual
 
 <TextBlock kind="important">
 {`
-SDK will upload sessions **only on WiFi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
+SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
 
 # Supported versions
-Currently **minimal** supported Android version is **Jelly Bean (API 18)**, however **video is recorded only for API 24+**, analytics events and other functionality is not limited. Current **minimal** supported iOS version is **10**.
+Currently the **minimal** supported Android version is **Jelly Bean (API 18)**, however **video is recorded only for API 24+**, analytics events and other functionalities are not limited. Currently the **minimal** supported iOS version is **10**.
 
 # Further Steps
 
@@ -147,14 +147,13 @@ Some **advanced use-case** and **troubleshooting** case-studies are described in
 \n
 **Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
-**Concepts** undelying the Smartlook functionality are descibed in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="cocos">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="cocos">How are the data recorded and uploaded to be visible in player and dashboard</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="cocos">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="cocos">What is recorded be Smartlook, and how</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="cocos">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="cocos">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="cocos">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="cocos">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="cocos">Smartlook integration with other tools</Link>
+**Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
 `}</TextBlock>

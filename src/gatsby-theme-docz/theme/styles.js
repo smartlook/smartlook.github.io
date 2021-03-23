@@ -56,7 +56,8 @@ export const styles = {
 		borderBottomWidth: '1px',
 	},
 	hr: {
-		border: 0,
-		borderBottom: (t) => `1px solid ${t.colors.border}`,
+		border: 1,
+		color: '#02b9f5',
+		width: '66%',
 	},
 }

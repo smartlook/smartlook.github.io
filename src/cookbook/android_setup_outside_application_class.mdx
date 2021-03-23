@@ -11,12 +11,12 @@ import { Code, Title, TextBlock } from 'components'
 This guide is focused on Android (Java/Kotlin).
 `}</TextBlock>
 
-<Title>SDK setup outside Application class</Title>
+<Title>SDK setup outside an Application class</Title>
 
-Sometimes it is not possible to initialize SDK at the start of the application.
-Typical example is when you need to fetch your api key so you don't have your api key at the application start.
+Sometimes it is not possible to initialize SDK at the start of the application. A typical example is when you need to fetch your api key so you don't have your api key at the application start.
 
-If this is your case you need to provide SDK setup with actual `Activity` reference so the SDK can “catch up” with applications lifecycle.
+If this is the case you will need to provide the SDK setup with an actual `Activity` reference so the SDK can “catch up” with the application’s lifecycle.
+
 
 <Code
 	snippets={{

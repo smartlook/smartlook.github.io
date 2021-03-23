@@ -17,12 +17,11 @@ Code samples in this guide are written in Java/Kotlin but the principles are app
 
 <Title>Secure custom keyboard</Title>
 
-Some applications use non-native keyboards, typically for entering pin codes, etc.
-This can lead to recording of sensitive data as we are gonna demonstrate by simple example.
+Some applications use non-native keyboards, typically for entering pin codes, etc. This can lead to the recording of sensitive data as we are going to demonstrate by this simple example.
 
 <Image src={pin_code_screen} alt="Pin code screen" />
 
-For this screen we need to change rendering mode to `RenderingMode.NO_RENDERING`:
+For this screen, we need to change the rendering mode to `RenderingMode.NO_RENDERING`:
 
 <Code
 	snippets={{
@@ -35,7 +34,7 @@ Smartlook.setRenderingMode(RenderingMode.NO_RENDERING);
 	}}
 />
 
-By doing this we will ensure the SDK will not record the pin when the user enters it into the application. The visual clues might be:
+By doing this we will ensure the SDK will not record the pin when the user enters it into the application. The visual clues might be the following:
 
 - Number buttons have a hover effect on them.
 - Numbers might be visible for a small period of time after they are entered.
@@ -45,7 +44,7 @@ By doing this we will ensure the SDK will not record the pin when the user enter
 <Image src={pin_code_screen_no_rendering} alt="Pin code screen no rendering" />
 
 <TextBlock kind="note">{`
-SDK does not record touches on native keyboard, so there is no risk of leaking any sensitive data this way.
+SDK does not record touches on native keyboards, so there is no risk of leaking any sensitive data this way.
 `}</TextBlock>
 
 Automatic touch detection can be disabled by setting event tracking mode to `EventTrackingMode.IGNORE_USER_INTERACTION`:
@@ -61,9 +60,9 @@ Smartlook.setEventTrackingMode(EventTrackingMode.IGNORE_USER_INTERACTION);
 	}}
 />
 
-After applying these two steps SDK will not record any sensitive data on this “pin” screen.
+After applying these two steps, SDK will not record any sensitive data on this “pin” screen.
 
-When your application is leaving this screen just set rendering mode and event tracking mode, back to your preferred values:
+When your application is leaving this screen, just set the rendering mode and event tracking mode, back to your preferred values:
 
 <Code
 	snippets={{

@@ -41,6 +41,12 @@ const PLATFORMS = [
 		link: '/docs/sdk/unity?platform=unity',
 	},
 	{
+		name: 'Unreal Engine',
+		platform: 'unreal',
+		image: 'platforms/unreal.svg',
+		link: '/docs/sdk/unreal?platform=unreal',
+	},
+	{
 		name: 'Flutter',
 		platform: 'flutter',
 		image: <Flutter />,
