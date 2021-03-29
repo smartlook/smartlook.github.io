@@ -41,7 +41,7 @@ In order to provide robust user privacy protection by default, some UI elements,
 
 ## Plaftorm overview
 
-The support for individual sensitive data protecting methods depends heavily on the technology used for creating the particular user intefrace. 
+The support for individual sensitive data protecting methods depends heavily on the technology used for creating the particular user interface. 
 
 | Technology                           | Wireframe modes   | No rendering     | Individual elements sensitivity | Classes sensitivity  
 |--------------------------------------|------------------ |------------------|---------------------------------|----------------------
@@ -62,7 +62,7 @@ In order not to record a particular view, like here in an example with an image 
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova,ionic">{`
-In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one.
+In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a \`css\` class \`.smartlook-hide\` to mark the element as a sensitive one.
 `}</TextBlock>
 
 <CodeBlock kind="example"
@@ -298,7 +298,7 @@ More on this topic in <Link to="/docs/sdk/api-reference?platform=android#blackli
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
 <TextBlock>{`
-In order to change the default behavior, HTML elements that are not recorded by default can be whitelisted by assigning \`smartlook-show\` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning \`smartlook-hide\` CSS class to it.
+In order to change the default behavior, \`html\` elements that are not recorded by default can be whitelisted by assigning \`smartlook-show\` \`css\` class to them. Any \`html\` element that should not be recorded can be blacklisted by assigning \`smartlook-hide\` \`css\` class to it.
 `}</TextBlock>
 
 <Code kind="example"
