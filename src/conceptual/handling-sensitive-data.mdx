@@ -39,18 +39,30 @@ There are three levels of granularity established for handling the sensitive dat
 In order to provide robust user privacy protection by default, some UI elements, namely text inputs and web views (that typically contain sensitive user data) are not recorded in the default Smartlook setup. The application author must take active steps to whitelist these elements in order to record their content.
 `}</TextBlock>
 
+## Plaftorm overview
+
+The support for individual sensitive data protecting methods depends heavily on the technology used for creating the particular user interface. 
+
+| Technology                           | Wireframe modes   | No rendering     | Individual elements sensitivity | Classes sensitivity  
+|--------------------------------------|------------------ |------------------|---------------------------------|----------------------
+| Native Android                       |  supported        |     supported    |     supported                   | supported            
+| iOS UIKit                            |  supported        |     supported    |     supported                   | supported
+| iOS UISwift                          |  limited          |     supported    |     coming soon                 | 
+| Xamarin                              |  supported        |     supported    |     supported                   | supported
+| React Navive                         |  supported        |     supported    |     supported                   | 
+| Cordova/Ionic                        |                   |     supported    |     supported                   |
+| Embedded WebView                     |                   |     supported    |     supported                   |
+| Flutter                              |                   |     supported    |                                 |
+| Gaming (OpenGL, Metal) frameworks    |                   |     supported    |                        |
+
 ## Handling Sensitivity of Individual UI Elements
 
-<TextBlock invisibleOn="cordova,ionic,unity,cocos,flutter">{`
-In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to blacklist it, e.g.,
+<TextBlock invisibleOn="cordova,ionic">{`
+In order not to record a particular view, like here in an example with an image view that shows a portrait image of the user, use a variable that holds a reference to the view with one of the following approaches to blacklist it.
 `}</TextBlock>
 
 <TextBlock visibleOn="cordova,ionic">{`
-In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a css class \`.smartlook-hide\` to mark the element as a sensitive one,
-`}</TextBlock>
-
-<TextBlock visibleOn="unity,cocos,flutter">{`
-Currently not available.
+In order not to record a particular \`html\` element, like here in an example with an \`img\` that shows a portrait image of the user, use a \`css\` class \`.smartlook-hide\` to mark the element as a sensitive one.
 `}</TextBlock>
 
 <CodeBlock kind="example"
@@ -83,21 +95,6 @@ ref={ (ref) => {
 }
 `,
     },
-    unreal: {
-      csharp: `
-UNREAL - C#
-      `,
-    },
-   cordova: {
-      javascript: `
-CORDOVA - javascript
-    `,
-    },
-    ionic: {
-      typescrit: `
-IONIC - typescript
-      `,
-    },
 xamarin: {
       csharp: `
 Smartlook.Analytics.RegisterBlacklistedObject(SomeView);
@@ -113,10 +110,30 @@ Smartlook.Analytics.RegisterBlacklistedObject(SomeView);
 <img class='smartlook-hide'>
       `,
     },
+    unreal: {
+      csharp: `
+// This functionality is not available on this platform.
+      `,
+    },
+  unity: {
+    csharp: `
+// This functionality is not available on this platform.
+    `,
+  },
+    flutter: {
+      dart: `
+// This functionality is not available on this platform.
+      `,
+  },
+    cocos: {
+      java: `
+// This functionality is not available on this platform.
+      `,
+  },
   }}
 />
 
-<TextBlock invisibleOn="cordova,ionic,unity,cocos,flutter">{`
+<TextBlock invisibleOn="cordova,ionic">{`
 When, on the other hand, an otherwise blacklisted view (in our example a web view) should be recorded, follow this example code:
 `}</TextBlock>
 
@@ -154,21 +171,6 @@ ref={ (ref) => {
 }
 `,
     },
-    unreal: {
-      csharp: `
-UNREAL - C#
-      `,
-    },
-   cordova: {
-      javascript: `
-CORDOVA - javascript
-    `,
-    },
-    ionic: {
-      typescrit: `
-IONIC - typescript
-      `,
-    },
 xamarin: {
       csharp: `
 Smartlook.Analytics.RegisterWhitelistedObject(SomeView);
@@ -184,41 +186,139 @@ Smartlook.Analytics.RegisterWhitelistedObject(SomeView);
 <input type="text" class='smartlook-show'>
       `,
     },
+    unreal: {
+      csharp: `
+// This functionality is not available on this platform.
+      `,
+    },
+  unity: {
+    csharp: `
+// This functionality is not available on this platform.
+    `,
+  },
+    flutter: {
+      dart: `
+// This functionality is not available on this platform.
+      `,
+  },
+    cocos: {
+      java: `
+// This functionality is not available on this platform.
+      `,
+  },
   }}
 />
 
 
 <TextBlock kind="note" visibleOn="ios">{`
-Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
+Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary to create an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
 `}</TextBlock>
 
 <TextBlock>{`
-More on this topic in <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+More on this topic in <Link to="/docs/sdk/api-reference#sensitive-data-hiding">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Sensitivity of Classes
-
-<TextBlock kind="important">{`
-This functionality is available only on some platforms. Please consult the <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link> if it is available for a particular development toolchain.
-`}</TextBlock>
 
 In some use-cases, whitelisting or blacklisting individual views is not practical, e.g., in an application that heavily uses web views for presenting some insensitive content, or if the application defines its own subclasses of visual components that present sensitive user data.
 
 To cover this use-case, Smartlook offers **on some platforms** a convenient way to blacklist or whitelist all descendants of some class or visual elements that conform to a protocol.
 
+<CodeBlock kind="example"
+    snippets={{
+      android: {
+      java: `
+Smartlook.registerBlacklistedClass(WebView.class);
+`,
+      kotlin: `
+Smartlook.registerBlacklistedClass(WebView::class.java)
+`
+    },
+      ios: {
+      swift: `
+Smartlook.registerBlacklisted(object: WKWebView.class)
+      `,
+      'objective-c': `
+[Smartlook registerBlacklistedObject:WKWebView.class];
+      `,
+    },
+    react: {
+      js: `
+// This functionality is not available on this platform.
+`,
+    },
+xamarin: {
+      csharp: `
+Smartlook.Analytics.RegisterWhitelistedObject(WKWebView.Class);
+      `,
+    },
+    cordova: {
+      html: `
+// This functionality is not available on this platform.
+`,
+    },
+    ionic: {
+      html: `
+// This functionality is not available on this platform.
+      `,
+    },
+    unreal: {
+      csharp: `
+// This functionality is not available on this platform.
+      `,
+    },
+  unity: {
+    csharp: `
+// This functionality is not available on this platform.
+    `,
+  },
+    flutter: {
+      dart: `
+// This functionality is not available on this platform.
+      `,
+  },
+    cocos: {
+      java: `
+// This functionality is not available on this platform.
+      `,
+  },
+  }}
+/>
+
 <TextBlock kind="note" visibleOn="ios">{`
-On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/docs/sdk/api-reference?platform=ios#sensitive-data-hiding">API reference</Link>.
+On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. 
+`}</TextBlock>
+
+<TextBlock>{`
+More on this topic in <Link to="/docs/sdk/api-reference?platform=android#blacklisted-classes">API reference</Link>.
 `}</TextBlock>
 
 ## Handling Content Presented in WebViews
 
 Native WebView classes are blacklisted by default. Its instances, or the whole class, must be whitelisted in order to record its content. However, a whitelisted web view can still contain HTML elements with sensitive content, and Smartlook thus does not record the HTML elements where the user enters data.
 
-<TextBlock>
-In order to change the default behavior, HTML elements that are not recorded by default can be whitelisted by assigning `smartlook-show` CSS class to them. Any HTML element that should not be recorded can be blacklisted by assigning `smartlook-hide` CSS class to it: <Link to="/docs/sdk/api-reference#sensitive-data-hiding">API reference</Link>.
-</TextBlock>
+<TextBlock>{`
+In order to change the default behavior, \`html\` elements that are not recorded by default can be whitelisted by assigning \`smartlook-show\` \`css\` class to them. Any \`html\`   element that should not be recorded can be blacklisted by assigning \`smartlook-hide\` \`css\` class to it.
+`}</TextBlock>
 
-### Rendering Modes: Handling Sensitive Data at the Whole Screen Level
+<Code kind="example"
+	snippets={{
+		html: `
+<input type="text" class='smartlook-show'>\n
+<img class='smartlook-hide'>
+`,
+	}}
+/>
+
+<TextBlock>{`
+More on this topic in <Link to="/docs/sdk/api-reference#webview-blacklistingwhitelisting">API reference</Link>.
+`}</TextBlock>
+
+## Rendering Modes: Handling Sensitive Data at the Whole Screen Level
+
+<TextBlock kind="important">{`
+This functionality is fully available only on some platforms. Please consult the <Link to="/docs/sdk/api-reference#rendering">API reference</Link> what rendering modes are available for a particular development toolchain.
+`}</TextBlock>
 
 There can be scenarios when direct recording of the screen is not appropriate or necessary to understand the user behavior. In such cases, Smartlook can be instructed to use (permanently or just temporarily) one of its wireframe rendering modes.
 
@@ -250,7 +350,7 @@ The default setting is to track all events (with the exception of events on the 
 
 Typically, the default **`Full Tracking`** mode is desired, as it gives a detailed picture of user activities.
 
-On the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the application should switch to the **`Ignore User Interaction Events`** mode temporarily.
+On the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the application should  switch temporarily to the **`Ignore User Interaction Events`** mode.
 
 In specific cases, some apps that handle complex private information on particular screens may prefer stopping event recording altogether, by switching to the **`No Tracking`** mode for the screens.
 
@@ -259,5 +359,5 @@ Event tracking mode cannot be set on a per-UI-element basis, but only for the wh
 `}</TextBlock>
 
 <TextBlock>{`
-More about rendering modes can be found <Link to="/docs/sdk/api-reference#event-tracking-modes">in the API reference.</Link>
+More about event tracking modes can be found <Link to="/docs/sdk/api-reference#event-tracking-modes">in the API reference</Link>.
 `}</TextBlock>
