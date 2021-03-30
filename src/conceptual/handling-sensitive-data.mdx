@@ -211,7 +211,7 @@ Smartlook.Analytics.RegisterWhitelistedObject(SomeView);
 
 
 <TextBlock kind="note" visibleOn="ios">{`
-Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
+Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary to create an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
 `}</TextBlock>
 
 <TextBlock>{`
@@ -286,7 +286,7 @@ Smartlook.Analytics.RegisterWhitelistedObject(WKWebView.Class);
 />
 
 <TextBlock kind="note" visibleOn="ios">{`
-On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. More on the topic in <Link to="/docs/sdk/api-reference#sensitive-data-hiding">API reference</Link>.
+On iOS, it is also possible to blacklist or whitelist all instances of a **\`UIView\` subclass** or all \`UIView\` or all UIView subclasses that conform to a **protocol**. 
 `}</TextBlock>
 
 <TextBlock>{`
@@ -350,7 +350,7 @@ The default setting is to track all events (with the exception of events on the 
 
 Typically, the default **`Full Tracking`** mode is desired, as it gives a detailed picture of user activities.
 
-On the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the application should switch to the **`Ignore User Interaction Events`** mode temporarily.
+On the other hand, on some screens the event location of touches on an otherwise blacklisted view can reveal sensitive private information (e.g., custom input view for PIN). In such a case, touches should not be recorded, and the application should  switch temporarily to the **`Ignore User Interaction Events`** mode.
 
 In specific cases, some apps that handle complex private information on particular screens may prefer stopping event recording altogether, by switching to the **`No Tracking`** mode for the screens.
 
@@ -359,5 +359,5 @@ Event tracking mode cannot be set on a per-UI-element basis, but only for the wh
 `}</TextBlock>
 
 <TextBlock>{`
-More about event tracking modes can be found <Link to="/docs/sdk/api-reference#event-tracking-modes">in the API reference.</Link>
+More about event tracking modes can be found <Link to="/docs/sdk/api-reference#event-tracking-modes">in the API reference</Link>.
 `}</TextBlock>
