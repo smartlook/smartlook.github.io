@@ -68,8 +68,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     react: {
       js: `
 //i.e.
+import Smartlook from 'smartlook-react-native-wrapper';
+
 componentDidMount() {
-  var Smartlook = require("smartlook-react-native-wrapper");
   Smartlook.setupAndStartRecording(API_KEY);
   ...
 }
