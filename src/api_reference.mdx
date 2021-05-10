@@ -1503,6 +1503,27 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.Native);
 ## WebView blacklisting/whitelisting
 `}</TextBlock>
 
+<TextBlock kind="important" visibleOn="android,ios,react,xamarin">{`
+**Javascript evaluation must be enabled** for WebView blacklisting/whitelisting to work!
+\n
+<CodeBlock
+  snippets={{
+    android: {
+      java: \`
+WebView myWebView = (WebView) findViewById(R.id.webview);
+WebSettings webSettings = myWebView.getSettings();
+webSettings.setJavaScriptEnabled(true);
+      \`,
+      kotlin: \`
+val myWebView: WebView = findViewById(R.id.webview) as WebView
+val webSettings: WebSettings = myWebView.getSettings()
+webSettings.setJavaScriptEnabled(true)
+      \`,
+    },
+  }}
+/>
+`}</TextBlock>
+
 <TextBlock visibleOn="android">{`
 When an application has some parts displayed using \`WebView\` and theese parts should be recorded, then the \`WebView\` recording needs to be enabled by removing \`WebView\` from the list of blacklisted classes:
 `}</TextBlock>
