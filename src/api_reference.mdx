@@ -562,7 +562,7 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
 <CodeBlock
   snippets={{
     react: {
-      javascript: `
+      typescript: `
 Smartlook.setupAndStartRecording({ smartlookAPIKey: token, fps: 2, startNewSessionAndUser: true });
 `
     },
@@ -1481,7 +1481,7 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.no_rendering);
     `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.setRenderingMode(Smartlook.RenderingMode.NoRendering);
     `,
   },
@@ -1551,7 +1551,7 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.native);
     `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.setRenderingMode(Smartlook.RenderingMode.Native);
     `,
   },
@@ -1701,7 +1701,7 @@ SmartlookUnity.Smartlook.SetUserIdentifier(string userIdentifier);
     `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.setUserIdentifier(userIdentifier: string, userProperties = {}); // userProperties is optional
     `,
   },
@@ -2032,7 +2032,7 @@ SmartlookUnity.Smartlook.TrackCustomEvent(string eventName);
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.trackCustomEvent(name: string);
 `,
   },
@@ -2116,7 +2116,7 @@ SmartlookUnity.TrackCustomEvent(string eventName, string properties);
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.trackCustomEvent(name: string, properties = {});;
 `,
   }
@@ -2210,7 +2210,7 @@ SmartlookUnity.TrackNavigationEvent(string screenName, NavigationEventType direc
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.trackNavigationEvent(screenName: string, viewState: Smartlook.ViewState);
 `,
   },
@@ -2748,7 +2748,7 @@ SmartlookUnity.Smartlook.SetGlobalEventProperties(string properties, bool immuta
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.setGlobalEventProperty(key: string, value: string, immutable = false);
 Smartlook.setGlobalEventProperties(properties: {}, immutable = false)
 `,
@@ -2869,7 +2869,7 @@ SmartlookUnity.Smartlook.RemoveGlobalEventProperty(string key);
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.removeGlobalEventProperty(key: string);
 `,
   },
@@ -4118,7 +4118,7 @@ SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.registerIntegrationListener(
   (visitorUrl: string) => {
     console.log('app visitor', visitorUrl);
