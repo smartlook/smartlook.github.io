@@ -9,6 +9,10 @@ import { Code, TextBlock, Link, Title } from "components";
 
 <Title>React Native SDK Installation</Title>
 
+<TextBlock kind="note">
+{`In the version \`1.0.0\` we have added TypeScript typings and an example app`}
+</TextBlock>
+
 <TextBlock kind="important">
 {`
 **Managed Expo apps can't be supported** due to the explicit technical restrictions imposed by Expo. For details, see [Expo Documentation](https://docs.expo.io/versions/v36.0.0/introduction/faq/), the FAQ "_How do I add custom native code to my Expo project?_" Smartlook functionality must be implemented in the native code.
@@ -55,7 +59,7 @@ allprojects {
   }
 />
 
-Also edit `gradle-wrapper.properties` so you are using: `gradle-4.4-all.zip`. This step is not needed in newer React native versions.
+Also edit `gradle-wrapper.properties` so you are using: `gradle-6.9-all.zip`. This step is not needed in newer React native versions.
 
 *iOS*
 
@@ -68,8 +72,8 @@ There are no manual steps required, just make sure your Cocoapod dependencies ar
 <Code
   kind="example"
   snippets={{
-      javascript: `
-var Smartlook = require('smartlook-react-native-wrapper');
+      typescript: `
+import Smartlook from 'smartlook-react-native-wrapper';
 Smartlook.setupAndStartRecording("KEY");
 `,
     }
@@ -93,6 +97,12 @@ SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections
 # Supported versions
 
 React Native version 0.60+ on iOS 10+ and Android Jelly Bean (API 18).
+
+# SDK integration example app
+
+1. Clone the bridge repo `git clone https://github.com/smartlook/smartlook-react-native-bridge.git`
+2. Install the dependencies `cd smartlook-react-native-bridge && yarn bootstrap`
+3. To run it on iOS use `yarn example ios` and `yarn example android` for Android.
 
 # Further Steps
 

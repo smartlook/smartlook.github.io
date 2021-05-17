@@ -88,9 +88,23 @@ self.portraitImageView.slSensitive = YES;
       `,
     },
     react: {
-      js: `
-ref={ (ref) => {
-    Smartlook.registerBlacklistedView(ref);
+      typescript: `
+// We have prepared two convenient ways, it's up to you which you like more\n
+// React hook based
+import { useSmartlookSensitiveRef } from 'smartlook-react-native-wrapper';\n
+function MyFunctionalComponent() {
+  const ref = useSmartlookSensitiveRef<Image>(true);
+  return <PortraitImageView ref={ref} />;
+}\n
+// Or component based
+import { SmartlookSensitiveComponent } from 'smartlook-react-native-wrapper';\n
+class MyClassBasedComponent extends React.Component {
+  render() {
+    return (
+      <SmartlookSensitiveComponent isSensitive={true}>
+        <PortraitImageView />
+      </SmartlookSensitiveComponent>
+    );
   }
 }
 `,
@@ -164,9 +178,23 @@ self.self.introWebView.slSensitive = NO;
       `,
     },
     react: {
-      js: `
-ref={ (ref) => {
-    Smartlook.registerWhitelistedView(ref);
+      typescript: `
+// We have prepared two convenient ways, it's up to you which you like more\n
+// React hook based
+import { useSmartlookSensitiveRef } from 'smartlook-react-native-wrapper';\n
+function MyFunctionalComponent() {
+  const ref = useSmartlookSensitiveRef<Image>(false);
+  return <WebView ref={ref} />;
+}\n
+// Or component based
+import { SmartlookSensitiveComponent } from 'smartlook-react-native-wrapper';\n
+class MyClassBasedComponent extends React.Component {
+  render() {
+    return (
+      <SmartlookSensitiveComponent isSensitive={false}>
+        <WebView />
+      </SmartlookSensitiveComponent>
+    );
   }
 }
 `,
