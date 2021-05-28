@@ -9,6 +9,7 @@ import { ReactComponent as Android } from 'assets/platforms/android.svg'
 import { ReactComponent as Apple } from 'assets/platforms/apple.svg'
 import { ReactComponent as React } from 'assets/platforms/react.svg'
 import { ReactComponent as Unity } from 'assets/platforms/unity.svg'
+import { ReactComponent as Unreal } from 'assets/platforms/unreal.svg'
 import { ReactComponent as Flutter } from 'assets/platforms/flutter.svg'
 import { ReactComponent as Cocos } from 'assets/platforms/cocos.svg'
 import { ReactComponent as Cordova } from 'assets/platforms/cordova.svg'
@@ -43,7 +44,7 @@ const PLATFORMS = [
 	{
 		name: 'Unreal Engine',
 		platform: 'unreal',
-		image: 'platforms/unreal.svg',
+		image: <Unreal />,
 		link: '/docs/sdk/unreal?platform=unreal',
 	},
 	{

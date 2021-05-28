@@ -20,7 +20,18 @@ module.exports = {
 		},
 		{
 			name: 'SDK Installation',
-			menu: ['Android', 'iOS', 'Cocos', 'Cordova', 'Flutter', 'Ionic', 'React Native', 'Unity', 'Unreal Engine 4', 'Xamarin'],
+			menu: [
+				'Android',
+				'iOS',
+				'Cocos',
+				'Cordova',
+				'Flutter',
+				'Ionic',
+				'React Native',
+				'Unity',
+				'Unreal Engine 4',
+				'Xamarin',
+			],
 		},
 		{
 			name: 'SDK Conceptual',
