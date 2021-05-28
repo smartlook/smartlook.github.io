@@ -41,7 +41,7 @@ export const spec = {
 		'/api/v1/events': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -156,7 +156,7 @@ export const spec = {
 		'/api/v1/events/{eventId}': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -268,7 +268,7 @@ export const spec = {
 		'/api/v1/events/{eventId}/visitors': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -369,7 +369,7 @@ export const spec = {
 		'/api/v1/funnels': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -491,7 +491,7 @@ export const spec = {
 		'/api/v1/funnels/{funnelId}': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -604,7 +604,7 @@ export const spec = {
 		'/api/v1/visitors/{visitorId}': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -686,7 +686,7 @@ export const spec = {
 		'/api/v1/visitors/{visitorId}/sessions': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -921,7 +921,7 @@ export const spec = {
 		'/api/v1/visitors/{visitorId}/events': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -1243,7 +1243,7 @@ export const spec = {
 		'/api/v1/statistics': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {

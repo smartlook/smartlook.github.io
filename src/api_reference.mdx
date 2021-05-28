@@ -162,8 +162,8 @@ public class NewBehaviourScript : MonoBehaviour
 `,
   },
   react: {
-    javascript: `
-var Smartlook = require('smartlook-react-native-wrapper');
+    typescript: `
+import Smartlook from 'smartlook-react-native-wrapper';
 Smartlook.setupAndStartRecording("API_KEY");
 `,
   },
@@ -238,8 +238,8 @@ SmartlookUnity.Smartlook.SetupAndStartRecording(string apiKey);
       `,
     },
     react: {
-      javascript: `
-Smartlook.setupAndStartRecording(string apiKey);
+      typescript: `
+Smartlook.setupAndStartRecording(optionsOrAPIKey: Smartlook.SetupOptions | string) ;
     `,
     },
 xamarin: {
@@ -301,8 +301,8 @@ SmartlookUnity.Smartlook.Setup(string apiKey);
 `,
   },
   react: {
-    javascript: `
-Smartlook.setup(string apiKey);
+    typescript: `
+Smartlook.setup(optionsOrAPIKey: Smartlook.SetupOptions | string);
 `,
   },
 xamarin: {
@@ -364,7 +364,7 @@ SmartlookUnity.Smartlook.StartRecording();
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.startRecording();
 `,
   },
@@ -589,12 +589,8 @@ Full SDK setup configuration can be done with optional \`fps\` method parameter.
 <CodeBlock
   snippets={{
     react: {
-      javascript: `
-var options = new Object();
-options.fps = 2;
-options.smartlookAPIKey = "API_KEY";
-options.startNewSessionAndUser = true;
-Smartlook.setupAndStartRecording(options);
+      typescript: `
+Smartlook.setupAndStartRecording({ smartlookAPIKey: token, fps: 2, startNewSessionAndUser: true });
 `
     },
   }}
@@ -705,7 +701,7 @@ SmartlookUnity.Smartlook.StopRecording();
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.startRecording();
 Smartlook.stopRecording();
 `,
@@ -809,8 +805,8 @@ SmartlookUnity.Smartlook.IsRecording();
 `,
   },
   react: {
-    javascript: `
-Smartlook.isRecording();
+    typescript: `
+Smartlook.isRecording(): Promise<boolean>;
 `,
   },
 xamarin: {
@@ -840,10 +836,17 @@ smartlook.isRecording().then((isRecording) => {
 });
       `,
     },
+    react: {
+      typescript: `
+Smartlook.isRecording().then((isRecording: boolean) => {
+  alert(isRecording);
+});
+`
+    }
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin">{`
+<TextBlock visibleOn="android,cocos,xamarin,react">{`
 ## Reset session
 Current session can be ended and a new session created by calling:
 `}</TextBlock>
@@ -870,11 +873,16 @@ xamarin: {
       csharp: `
 public static void ResetSession(bool resetUser = false)
       `,
+    },
+    react: {
+      typescript: `
+Smartlook.resetSession(resetUser: boolean);
+      `
     }
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin">{`
+<TextBlock visibleOn="android,cocos,xamarin,react">{`
 If \`resetUser\` is set to \`true\`, SDK will create a new visitor during the reset. This is especially beneficial when a new user needs to be identified (typically after logout).\n
 A new session can be created on SDK setup:
 `}</TextBlock>
@@ -915,7 +923,7 @@ Smartlook.Analytics.Setup(API_KEY, smartlookSetupOptions);
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin">{`
+<TextBlock visibleOn="android,cocos,xamarin,react">{`
 A new visitor can also be created on SDK setup:
 `}</TextBlock>
 
@@ -951,7 +959,12 @@ xamarin: {
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSessionAndResetUser: true);
 Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
       `,
-    }
+    },
+react: {
+      typescript: `
+Smartlook.setupAndStartRecording({ smartlookAPIKey: API_KEY, startNewSessionAndUser: true });
+      `
+}
   }}
 />
 
@@ -1008,8 +1021,8 @@ class func registerBlacklisted(object: Any)
       `,
     },
     react: {
-    javascript: `
-Smartlook.registerBlacklistedView(ref);
+    typescript: `
+Smartlook.registerBlacklistedView(ref: ComponentOrHandle));
 `,
   },
 xamarin: {
@@ -1431,6 +1444,57 @@ Hidden inputs that are hidden by default will be recorded if marked with \`.smar
   }}
 />
 
+<TextBlock visibleOn="react">{`
+## Declarative way to handle sensitive views in React Native
+To simplify handling of sensitive/not sensitive views in React Native we have prepared nice declarative ways to do it.
+#### Using SmartlookSensitiveComponent
+You can wrap the component to the SmartlookSensitiveComponent and control, if it's hidden or not with \`isSensitive\` prop.
+Just be sure that you are not passing functional component as children! Eg. wrap it to [React.forwardRef](https://reactjs.org/docs/forwarding-refs.html) first.
+See the example in \`example/src/components/Button.tsx\`.
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    react: {
+      typescript: `
+import { SmartlookSensitiveComponent } from 'smartlook-react-native-wrapper';
+// Blacklisting
+<SmartlookSensitiveComponent isSensitive={true}>
+  <Button title="Blacklisted button" />
+</SmartlookSensitiveComponent>
+// Whitelisting
+<SmartlookSensitiveComponent isSensitive={false}>
+  <TextInput
+    style={{height: 40}}
+    defaultValue="Whitelisted input"
+  />
+</SmartlookSensitiveComponent>
+      `,
+    },
+  }}
+/>
+
+<TextBlock visibleOn="react">{`
+#### Using useSmartlookSensitiveRef hook
+The another way to handle sensitive views is with \`useSmartlookSensitiveRef\` hook.
+`}</TextBlock>
+
+<CodeBlock
+  kind="example"
+  snippets={{
+    react: {
+      typescript: `
+import { WebView } from 'react-native-webview';
+import { useSmartlookSensitiveRef } from 'smartlook-react-native-wrapper';\n
+const isWebViewSensitive = false;
+const ref = useSmartlookSensitiveRef<WebView>(isWebViewSensitive);\n
+<WebView ref={ref} source={{ html: "..." }} />
+      `,
+    },
+  }}
+/>
+
 ## No Rendering
 
 <TextBlock visibleOn="unreal">{`
@@ -1490,8 +1554,8 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.no_rendering);
     `,
   },
   react: {
-    javascript: `
-Smartlook.setRenderingMode("no_rendering");
+    typescript: `
+Smartlook.setRenderingMode(Smartlook.RenderingMode.NoRendering);
     `,
   },
 xamarin: {
@@ -1562,8 +1626,8 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType.native);
     `,
   },
   react: {
-    javascript: `
-Smartlook.setRenderingMode("native");
+    typescript: `
+Smartlook.setRenderingMode(Smartlook.RenderingMode.Native);
     `,
   },
 xamarin: {
@@ -1587,7 +1651,7 @@ When an application has some parts displayed using \`WKWebView\` and theese part
 `}</TextBlock>
 
 <TextBlock visibleOn="react">{`
-When an application has some parts displayed using \`WebView\` or \`WKWebView\` and theese parts should be recorded, then the \`WebView\` or \`WKWebView\` recording needs to be enabled by adding the given view reference to whitelist:
+When an application has some parts displayed using \`WebView\` and theese parts should be recorded, then the \`WebView\` recording needs to be enabled by adding the given view reference to whitelist:
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
@@ -1618,8 +1682,13 @@ Smartlook.unregisterBlacklisted(object: WKWebView.class)
       `,
     },
     react: {
-      javascript: `
-Smartlook.registerWhitelistedView(webViewRef);
+      typescript: `
+// The full example can be seen in \`example/src/screens/WebViewScreen.tsx\`
+import { WebView } from 'react-native-webview';
+import { useSmartlookSensitiveRef } from 'smartlook-react-native-wrapper';\n
+const isWebViewSensitive = false;
+const ref = useSmartlookSensitiveRef<WebView>(isWebViewSensitive);\n
+<WebView ref={ref} source={{ html: "..." }} />
     `,
     },
 xamarin: {
@@ -1707,8 +1776,8 @@ SmartlookUnity.Smartlook.SetUserIdentifier(string userIdentifier);
     `,
   },
   react: {
-    javascript: `
-Smartlook.setUserIdentifier(string userIdentifier);
+    typescript: `
+Smartlook.setUserIdentifier(userIdentifier: string, userProperties = {}); // userProperties is optional
     `,
   },
 xamarin: {
@@ -2083,8 +2152,8 @@ SmartlookUnity.Smartlook.TrackCustomEvent(string eventName);
 `,
   },
   react: {
-    javascript: `
-Smartlook.trackCustomEvent(key);
+    typescript: `
+Smartlook.trackCustomEvent(name: string);
 `,
   },
 xamarin: {
@@ -2167,8 +2236,8 @@ SmartlookUnity.TrackCustomEvent(string eventName, string properties);
 `,
   },
   react: {
-    javascript: `
-Smartlook.trackCustomEvent(key, map);
+    typescript: `
+Smartlook.trackCustomEvent(name: string, properties = {});;
 `,
   }
   }}
@@ -2314,8 +2383,8 @@ SmartlookUnity.TrackNavigationEvent(string screenName, NavigationEventType direc
 `,
   },
   react: {
-    javascript: `
-Smartlook.trackNavigationEvent(screenName, "enter"/"exit");
+    typescript: `
+Smartlook.trackNavigationEvent(screenName: string, viewState: Smartlook.ViewState);
 `,
   },
 xamarin: {
@@ -2871,8 +2940,9 @@ SmartlookUnity.Smartlook.SetGlobalEventProperties(string properties, bool immuta
 `,
   },
   react: {
-    javascript: `
-Smartlook.setGlobalEventProperty(key, value, immutable);
+    typescript: `
+Smartlook.setGlobalEventProperty(key: string, value: string, immutable = false);
+Smartlook.setGlobalEventProperties(properties: {}, immutable = false)
 `,
   },
 xamarin: {
@@ -2999,8 +3069,8 @@ SmartlookUnity.Smartlook.RemoveGlobalEventProperty(string key);
 `,
   },
   react: {
-    javascript: `
-Smartlook.removeGlobalEventProperty(key);
+    typescript: `
+Smartlook.removeGlobalEventProperty(key: string);
 `,
   },
 xamarin: {
@@ -3114,11 +3184,11 @@ It can be beneficial to disable some automatically detected events due to securi
 `}</TextBlock>
 
 <TextBlock visibleOn="react">{`
-* \`Smartlook.EventTrackingMode().FULL_TRACKING\` this a default state. SDK tracks all automatically detected events along with all user defined events.
-* \`Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION\` disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
-* \`Smartlook.EventTrackingMode().IGNORE_NAVIGATION_INTERACTION\` disables automatically detected navigation events. User defined ones are still being sent.
-* \`Smartlook.EventTrackingMode().IGNORE_RAGE_CLICKS\` disables automatic detection and tracking of <Link to="/docs/sdk/conceptual/event-tracking#rage-clicks-events">rage click events</Link>.
-* \`Smartlook.EventTrackingMode().NO_TRACKING\` no automatically detected events are tracked. Only user defined events are still tracked.
+* \`Smartlook.EventTrackingMode.FullTracking\` this a default state. SDK tracks all automatically detected events along with all user defined events.
+* \`Smartlook.EventTrackingMode.IgnoreUserInteraction\` disables automatically detected selector (click on a \`View\`), focus, touch, gesture and keyboard events.
+* \`Smartlook.EventTrackingMode.IgnoreNavigationInteraction\` disables automatically detected navigation events. User defined ones are still being sent.
+* \`Smartlook.EventTrackingMode.IgnoreRageClicks\` disables automatic detection and tracking of <Link to="/docs/sdk/conceptual/event-tracking#rage-clicks-events">rage click events</Link>.
+* \`Smartlook.EventTrackingMode.NoTracking\` no automatically detected events are tracked. Only user defined events are still tracked.
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -3142,7 +3212,7 @@ It can be beneficial to disable some automatically detected events due to securi
 * \`SmartlookEventTrackingMode.IGNORE_USER_INTERACTION()\`: automatically detected events will not be tracked. User defined events are still enabled.
 * \`Smartlook.EventTrackingMode.IGNORE_NAVIGATION_INTERACTION()\` disables automatically detected navigation events. User defined ones are still being sent.
 * \`Smartlook.EventTrackingMode.IGNORE_RAGE_CLICKS()\` disables automatic detection and tracking of <Link to="/docs/sdk/conceptual/event-tracking#rage-clicks-events">rage click events</Link>.
-* \`SmartlookEventTrackingMode.NO_TRACKING()\`: no analytic events are enabled.
+* \`Smartlook.EventTrackingMode.NO_TRACKING()\`: no analytic events are enabled.
 `}</TextBlock>
 
 <TextBlock visibleOn="xamarin">{`
@@ -3257,7 +3327,7 @@ SmartlookUnity.Smartlook.setEventTrackingModes(List<EventTrackingMode> eventTrac
 `,
   },
   react: {
-    csharp: `
+    typescript: `
 Smartlook.setEventTrackingMode(eventTrackingMode: Smartlook.EventTrackingMode);
 Smartlook.setEventTrackingModes(eventTrackingModes: Smartlook.EventTrackingMode[]);
 `,
@@ -3275,9 +3345,9 @@ Smartlook.setEventTrackingModes(new SmartlookEventTrackingModes([SmartlookEventT
       `,
     },
     react: {
-      javascript: `
-Smartlook.setEventTrackingMode(Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION);
-Smartlook.setEventTrackingModes([Smartlook.EventTrackingMode().IGNORE_USER_INTERACTION, Smartlook.EventTrackingMode().IGNORE_RAGE_CLICKS]);
+      typescript: `
+Smartlook.setEventTrackingMode(Smartlook.EventTrackingMode.IgnoreUserInteraction);
+Smartlook.setEventTrackingModes([Smartlook.EventTrackingMode.IgnoreUserInteraction, Smartlook.EventTrackingMode.IgnoreRageClicks]);
       `,
     },
   }}
@@ -3465,8 +3535,8 @@ SmartlookUnity.Smartlook.SetRenderingMode(RenderingModeType renderingMode);
 `,
   },
   react: {
-    javascript: `
-Smartlook.SetRenderingMode("native"/"no_rendering"/"wireframe");
+    typescript: `
+Smartlook.setRenderingMode(renderingMode: Smartlook.RenderingMode); // Smartlook.RenderingMode.Native/NoRendering/Wireframe
 `,
   },
 xamarin: {
@@ -3941,8 +4011,8 @@ SmartlookUnity.Smartlook.SetReferrer(string referrer, string source);
 `,
   },
   react: {
-    javascript: `
-Smartlook.setReferrer("referrer", "source");
+    typescript: `
+Smartlook.setReferrer(referrer: string, source: string);
 `,
   }
   }}
@@ -4009,8 +4079,8 @@ SmartlookUnity.Smartlook.GetDashboardSessionUrl(bool withCurrentTimestamp);
 `,
   },
   react: {
-    javascript: `
-Smartlook.getDashboardSessionUrl(withCurrentTimestamp);
+    typescript: `
+Smartlook.getDashboardSessionUrl(withCurrentTimestamp = false): Promise<string>;
 `,
   },
 xamarin: {
@@ -4108,8 +4178,8 @@ SmartlookUnity.Smartlook.GetDashboardVisitorUrl();
 `,
   },
   react: {
-    javascript: `
-Smartlook.getDashboardVisitorUrl();
+    typescript: `
+Smartlook.getDashboardVisitorUrl(): Promise<string>;
 `,
   },
   xamarin: {
@@ -4275,15 +4345,15 @@ SmartlookUnity.Smartlook.RegisterIntegrationListener(new IntegrationListener());
 `,
   },
   react: {
-    javascript: `
+    typescript: `
 Smartlook.registerIntegrationListener(
-    (visitor) => {
-      console.log("app visitor", visitorUrl)
-    },
-    (dash) => {
-      console.log("app dash", dashboardUrl)
-    }
-  );
+  (visitorUrl: string) => {
+    console.log('app visitor', visitorUrl);
+  },
+  (dashboardUrl: string) => {
+    console.log('app dash', dashboardUrl);
+  },
+);
 `,
   },
   xamarin: {

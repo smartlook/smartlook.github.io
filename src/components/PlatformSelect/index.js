@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui'
 
 import React from 'react'
 
-import { NanoPop } from 'nanopop'
+import { reposition } from 'nanopop'
 
 import { PLATFORMS } from 'config/constants'
 import { usePlatforms, useQueryString } from 'hooks'
@@ -66,12 +66,10 @@ export const PlatformSelect = (props) => {
 		const _popper = popper.current
 
 		if (_reference && _popper) {
-			const nanopop = new NanoPop(_reference, _popper, {
+			reposition(_reference, _popper, {
 				margin: 4,
 				position: 'bottom-end',
 			})
-
-			nanopop.update()
 
 			return () => {
 				document.removeEventListener('mousedown', handleClickOutside)
