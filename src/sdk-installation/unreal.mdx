@@ -7,6 +7,9 @@ showPlatformSelect: true
 
 import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 import { usePlatforms } from 'hooks'
+import unreal_enable from 'assets/unreal_enable.png'
+import unreal_providers from 'assets/unreal_providers.png'
+import unreal_settings from 'assets/unreal_settings.png'
 
 <Title>Unreal Engine 4 SDK Installation</Title>
 
@@ -18,33 +21,18 @@ The Smartlook Unreal Engine 4 SDK is currently available only for iOS devices.
 
 ## Installation for iOS
 
-1. Download [Smartlook iOS Unreal Engine 4 SDK v1.1](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.1.zip).
+1. Download Smartlook iOS Unreal Engine 4 SDK:
+* [SDK for Unreal Engine 4.26 and newer](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.1.zip)
+* [SDK for Unreal Engine 4.25 and older](https://sdk.smartlook.com/ios/smartlook-unreal-ios-sdk-1.1.zip)
 2. Unzip the archive, create a `Plugins` directory in your project's directory (if needed), and put `Smartlook` to `Plugins`.
-3. Close and reopen your Unreal project to load the Smartlook plugin.
-4. Open Plugins settings (Edit - Plugins), make sure the Smartlook plugin is enabled. The Smartlook plugin can be found in the Installed section under Analytics.
-5. Set analytics provider to `IOSSmartlook` (Edit - Project Settings - Analytics - Providers)
-6. Obtain your SDK Key from the [Smartlook Dashboard](https://app.smartlook.com/settings/projects) and insert it into the Smartlook Plugin settings (Edit - Project Settings - Analytics - Smartlook).
-7. Enable recording by ticking the `Start Recording` switch in Smartlook Plugin settings, or by using `Start Session` analytics blueprint node, or by using:
+3. Open Plugins settings (Edit - Plugins) and enable Smartlook plugin.
+<img visibleOn="unreal" src={unreal_enable} />
 
-<Code
-  kind="example"
-  snippets={{
-    ruby: `
-FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession();
-`,
-  }}
-/>
+4. Set analytics provider to `IOSSmartlook` in Project Settings.
+<img visibleOn="unreal" src={unreal_providers} />
 
-8. Record events with `Record Event` analytics blueprint node, or by using:
-
-<Code
-  kind="example"
-  snippets={{
-    ruby: `
-FAnalytics::Get().GetDefaultConfiguredProvider()->RecordEvent();
-`,
-  }}
-/>
+6. Obtain your SDK Api Key from the [Smartlook Dashboard](https://app.smartlook.com) and add it into the Smartlook Plugin Settings. Optionally enable automatic recording by ticking the Start Recording option.
+<img visibleOn="unreal" src={unreal_settings} />
 
 # Supported versions
 

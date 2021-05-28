@@ -45,7 +45,7 @@ class MyCustomApplication : Application() {
     },
     ios: {
       swift: `
-include Smartlook
+import Smartlook
 \n
 ...
 \n
@@ -55,13 +55,15 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
       `,
       'objective-c': `
-#include Smartlook
+#import <Smartlook/Smartlook.h>
 \n
 ...
 \n
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-   Smartlook.setup(key: API_KEY)
-   Smartlook.startRecording()
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  SLSetupConfiguration *slConfig = [[SLSetupConfiguration alloc] initWithKey:@"API_KEY"];
+  [Smartlook setupAndStartRecordingWithConfiguration:slConfig];
+  // other initialization stuff
+  return YES;
 }
       `,
     },

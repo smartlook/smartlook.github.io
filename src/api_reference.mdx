@@ -12,11 +12,25 @@ import wireframe_rendering_mode from 'assets/rendering_wireframe.png'
 import no_rendering_mode from 'assets/rendering_no_rendering.png'
 import blueprint_rendering_mode from 'assets/rendering_blueprint.png'
 import icon_blueprint_rendering_mode from 'assets/rendering_icon_blueprint.png'
+import unreal_blueprint from 'assets/unreal_blueprint.png'
+import unreal_bp_startendsession from 'assets/unreal_bp_startendsession.png'
+import unreal_bp_setuserid from 'assets/unreal_bp_setuserid.png'
+import unreal_bp_recordevent from 'assets/unreal_bp_recordevent.png'
+import unreal_enable from 'assets/unreal_enable.png'
+import unreal_settings from 'assets/unreal_settings.png'
 
 # Lifecycle & Recording
 
+<TextBlock visibleOn="unreal">{`
+Smartlook Unreal Engine 4 SDK uses UE4's built in Analytics APIs. Because of this, some APIs available on Smartlook SDKs for other platforms are not available on UE4 SDK. You can learn more about UE4 Analytics APIs here:
+* [UE4 Blueprint Analytics API Reference](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/index.html)
+* [UE4 C++ Analytics API Reference](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/index.html)
+`}</TextBlock>
+
 ## SDK setup (on application start)
+<TextBlock invisibleOn="unreal">{`
 Smartlook SDK **setup** needs to be called only **once during an application’s lifetime** and it should be called **on application startup**. There is **no need to stop** recording explicitly **on application closure**, SDK will stop itself automatically.
+`}</TextBlock>
 
 <TextBlock visibleOn="android">{`
 The best place to setup the SDK is in \`onCreate()\` method of your \`Application\` class:
@@ -42,6 +56,11 @@ The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method o
 The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method of the \`ApplicationDelegate\` on **iOS** and in \`onCreate()\` method of your \`Application\` class on Android:
 `}</TextBlock>
 
+<TextBlock visibleOn="unreal">{`
+SDK is configured automatically by enabling Smartlook Plugin in Plugin settings:
+`}</TextBlock>
+
+<img visibleOn="unreal" src={unreal_enable}/>
 
 <CodeBlock
 	kind="example"
@@ -297,7 +316,9 @@ static public void Setup(string key, SetupOptions options = new SetupOptions())`
 Smartlook SDK needs to be initialized with an API key that can be acquired in the Smartlook Dashboard.
 `}</TextBlock>
 
+<TextBlock invisibleOn="unreal">{`
 And then the recording can be started by calling:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -356,6 +377,12 @@ public static void StartRecording()
 />
 
 ### Setup configuration
+
+<TextBlock visibleOn="unreal">{`
+You can start recording automatically by ticking the \`Start Recording\` option in Smartlook plugin settings. You can also provide the desired <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="unreal">framerate</Link>:
+`}</TextBlock>
+
+<img visibleOn="unreal" src={unreal_settings}/>
 
 <TextBlock visibleOn="ios,android,cordova,ionic,react,flutter,cocos,xamarin">{`
 Some recording parameters can be configured on setup:
@@ -692,12 +719,48 @@ public static void StopRecording()
   }}
 />
 
-<TextBlock kind="note">{`
+<TextBlock visibleOn="unreal">{`
+Blueprint:
+`}</TextBlock>
+<img visibleOn="unreal" src={unreal_bp_startendsession}/>
+
+<TextBlock visibleOn="unreal">{`
+C++:
+`}</TextBlock>
+<CodeBlock
+  snippets={{
+    unreal: {
+      cpp: `
+#include "Runtime/Analytics/Analytics/Public/Analytics.h"
+#include "Runtime/Analytics/Analytics/Public/Interfaces/IAnalyticsProvider.h"\n
+FAnalytics::Get().GetDefaultConfiguredProvider()->StartSession());
+FAnalytics::Get().GetDefaultConfiguredProvider()->EndSession());
+`,
+    },
+  }}
+/>
+
+<TextBlock invisibleOn="unreal" kind="note">{`
 \`stopRecording()\` **doesn't need to be called** on application closure. **Recording is stopped automatically**.
 `}</TextBlock>
 
+<TextBlock visibleOn="unreal" kind="note">{`
+\`EndSession()\` **doesn't need to be called** on application closure. **Recording is stopped automatically**.
+`}</TextBlock>
+
 ## Check if SDK is recording
-Check if SDK is currently recording can be handy when using `startRecording()` and `stopRecording()` methods. Simply call:
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
+Check if SDK is currently recording can be handy when using \`startRecording()\` and \`stopRecording()\` methods. Simply call:
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
+Check if SDK is currently recording can be handy when using \`startRecording()\` and \`stopRecording()\` methods. Simply call:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -894,7 +957,7 @@ Smartlook.Analytics.Setup("API_KEY", smartlookSetupOptions);
 
 # Sensitive data hiding
 
-<TextBlock>{`
+<TextBlock invisibleOn="unreal">{`
 When using **native** rendering mode, **SDK can record sensitive data in your application**.\n
 In order to protect user privacy, Smartlook can be configured so that the sensitive data is not recorded.
 `}</TextBlock>
@@ -907,9 +970,13 @@ Smartlook attempts to hide selected sensitive UI element automatically. It can b
 Sensitive elements are **hidden locally** on the device; no sensitive data are transferred over the network and stored in the dashboard.
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,cocos,unreal">{`
+<TextBlock visibleOn="flutter,unity,cocos">{`
 On this platform, selectively hiding sensitive parts of the screen is not possible.\n
 To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
+`}</TextBlock>
+
+<TextBlock visibleOn="unreal">{`
+UE4 SDK does not support hiding sensitive parts of the screen at the moment.
 `}</TextBlock>
 
 <TextBlock visibleOn="android,ios,react,xamarin">{`
@@ -1366,8 +1433,14 @@ Hidden inputs that are hidden by default will be recorded if marked with \`.smar
 
 ## No Rendering
 
+<TextBlock visibleOn="unreal">{`
+Sometimes the whole screen consists of sensitive data. In these cases it is beneficial to not record any screen data. In Unreal SDK the only way to handle these situations is to stop session recording and resuming recording when sensitive data is no longer displayed.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
 Sometimes the whole screen consists of sensitive data. In these cases it is beneficial to not record any screen data.
-This can be done by switching to `no rendering` rendering mode:
+This can be done by switching to \`no rendering\` rendering mode:
+`}</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -1433,11 +1506,13 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.None);
 SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because all user interaction is still being recorded, but all sensitive data are not rendered by design. Read more about rendering modes [in conceptual documentation](/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
 `}</TextBlock>
 
-<TextBlock kind="important">{`
+<TextBlock kind="important" invisibleOn="unreal">{`
 Some screens can leak sensitive data even through automatically detected touch events. More about this issue in [secure custom keyboard example](/docs/sdk/cookbooks/secure-custom-keyboard).
 `}</TextBlock>
 
+<TextBlock invisibleOn="unreal">{`
 When an application is no longer displaying sensitive data, the screen rendering mode can be set back to the preferred variant:
+`}</TextBlock>
 
 <CodeBlock
   kind="example"
@@ -1643,6 +1718,27 @@ static public void SetUserIdentifier(string identifier, Dictionary<string, strin
     },
   }}
 />
+
+<TextBlock visibleOn="unreal">{`
+Blueprint:
+`}</TextBlock>
+<img visibleOn="unreal" src={unreal_bp_setuserid}/>
+
+<TextBlock visibleOn="unreal">{`
+C++:
+`}</TextBlock>
+<CodeBlock
+  snippets={{
+    unreal: {
+      cpp: `
+#include "Runtime/Analytics/Analytics/Public/Analytics.h"
+#include "Runtime/Analytics/Analytics/Public/Interfaces/IAnalyticsProvider.h"\n
+FAnalytics::Get().GetDefaultConfiguredProvider()->SetUserID(TEXT("Custom User ID"));
+`,
+    },
+  }}
+/>
+
 
 <TextBlock kind="note">{`
 Identifiers can be found in the Dashboard and are very useful for finding specific user’s recordings.
@@ -1893,6 +1989,24 @@ Smartlook.Analytics.SetSessionProperty("immutable-prop", "immutable-value", Smar
 }}
 />
 
+<TextBlock visibleOn="unreal">{`
+Additional custom properties can be added to each recording session by using UE4 Analytics APIs:\n
+\n
+Blueprint:
+* [Start Session with Attributes](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/StartSessionwithAttributes/index.html)
+* [Set Build Info](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/SetBuildInfo/index.html)
+* [Set Gender](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/SetGender/index.html)
+* [Set Location](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/SetLocation/index.html)
+* [Set Age](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/SetAge/index.html)
+\n
+C++:
+* [Start Session with Attributes](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/StartSession/2/index.html)
+* [Set Build Info](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/SetBuildInfo/index.html)
+* [Set Gender](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/SetGender/index.html)
+* [Set Location](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/SetLocation/index.html)
+* [Set Age](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/SetAge/index.html)
+`}</TextBlock>
+
 # Analytics
 
 <TextBlock visibleOn="android, ios, react, xamarin">{`
@@ -1902,6 +2016,10 @@ Some analytic events are recorded out-of-box:
 * Clicked views
 * Application crashes
 * For everything else, custom events can be used
+`}</TextBlock>
+
+<TextBlock visibleOn="unreal">{`
+Unreal SDK does not track any events automatically like other SDKs. It is needed to use Custom Events.
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
@@ -1914,7 +2032,9 @@ For everything else custom events need to be used.
 `}</TextBlock>
 
 ## Custom event
+<TextBlock invisibleOn="unreal">{`
 A simple custom event can be created by calling:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2080,13 +2200,66 @@ smartlook.trackCustomEvent(new SmartlookCustomEvent("sample_event", eventPropert
   }}
 />
 
+<TextBlock invisibleOn="unreal">{`
+A simple custom event can be created by using:
+`}</TextBlock>
+
+<TextBlock visibleOn="unreal">{`
+Blueprint:
+`}</TextBlock>
+<img visibleOn="unreal" src={unreal_bp_recordevent}/>
+
+<TextBlock visibleOn="unreal">{`
+C++:
+`}</TextBlock>
+<CodeBlock
+  snippets={{
+    unreal: {
+      cpp: `
+#include "Runtime/Analytics/Analytics/Public/Analytics.h"
+#include "Runtime/Analytics/Analytics/Public/Interfaces/IAnalyticsProvider.h"\n
+FAnalytics::Get().GetDefaultConfiguredProvider()->RecordEvent(TEXT("Custom Event Name"));
+`,
+    },
+  }}
+/>
+
+<TextBlock visibleOn="unreal">{`
+Additional custom event APIs:\n
+\n
+Blueprint:
+* [Record Event with Attributes](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordEventwithAttributes/index.html)
+* [Record Error](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordError/index.html)
+* [Record Error with Attributes](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordErrorwithAttributes/index.html)
+* [Record Currency Purchase (with Attributes)](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordCurrencyPurchase/index.html)
+* [Record Currency Given (with Attributes)](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordCurrencyGiven/index.html)
+* [Record Item Purchase(with Attributes)](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordItemPurchase/index.html)
+* [Record Progress (with Attributes)](https://docs.unrealengine.com/en-US/BlueprintAPI/Analytics/RecordProgress/index.html)
+\n
+C++:
+* [Record Event with Attributes](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordEvent/2/index.html)
+* [Record Error](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordError/1/index.html)
+* [Record Error with Attributes](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordError/2/index.html)
+* [Record Currency Purchase (with Attributes)](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordCurrencyPurchase/1/index.html)
+* [Record Currency Given (with Attributes)](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordCurrencyGiven/1/index.html)
+* [Record Item Purchase](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordItemPurchase/1/index.html)
+* [Record Progress (with Attributes)](https://docs.unrealengine.com/en-US/API/Runtime/Analytics/Interfaces/IAnalyticsProvider/RecordProgress/1/index.html)
+`}</TextBlock>
+
+
 <TextBlock kind="note" visibleOn="android,cordova,ionic,cocos">{`
 Event properties will effectively use only flat objects.
 In case an object that includes objects or arrays as a child elements is used, these elements are going to be ignored.
 `}</TextBlock>
 
 ## Navigation event
+<TextBlock invisibleOn="unreal">{`
 Screen/navigation transitions can be manually tracked by calling:
+`}</TextBlock>
+
+<TextBlock visibleOn="unreal">{`
+Screen/navigation transitions can be manually tracked by using Custom Events.
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2217,8 +2390,14 @@ where \`viewType\` is one of \`ViewType.ACTIVITY\` or \`ViewType.FRAGMENT\`.
 `}</TextBlock>
 
 ## Timed event
+<TextBlock invisibleOn="unreal">{`
 Duration of any time-sensitive or long-running actions in the application can be measured using timed events.
 A timed event can be started by using the following:
+`}</TextBlock>
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2294,8 +2473,10 @@ public static string StartTimedCustomEvent(string name, Dictionary<string, strin
   }}
 />
 
-This will not send out any events but will return a unique `eventId` that **needs to be stored** and it is then used to stop/cancel a custom timed event.
+<TextBlock invisibleOn="unreal">{`
+This will not send out any events but will return a unique \`eventId\` that **needs to be stored** and it is then used to stop/cancel a custom timed event.
 To send out an event with a duration, stop needs to be called:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2363,13 +2544,17 @@ public static void TrackTimedCustomEvent(string eventId, Dictionary<string, stri
   }}
 />
 
-with corresponding `eventId` obtained from `startTimedCustomEvent`.
+<TextBlock invisibleOn="unreal">{`
+with corresponding \`eventId\` obtained from \`startTimedCustomEvent\`.
+`}</TextBlock>
 
-<TextBlock kind="note">{`
+<TextBlock kind="note" invisibleOn="unreal">{`
 Properties set in start will be **merged** with properties set in stop/cancel. Properties from stop/cancel have a higher priority and will rewrite conflicting properties from the start.
 `}</TextBlock>
 
-In case a given action failed `cancelTimedCustomEvent()` can be called instead of `stopTimedCustomEvent()` it has an extra field used for the **reason** of any failure:
+<TextBlock invisibleOn="unreal">{`
+In case a given action failed \`cancelTimedCustomEvent()\` can be called instead of \`stopTimedCustomEvent()\` it has an extra field used for the **reason** of any failure:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2521,7 +2706,7 @@ Smartlook.Analytics.TrackTimedCustomEvent(timedEventId, new Dictionary<string, s
 \n 
 `}</TextBlock>
 
-<TextBlock invisibleOn="ios">{`
+<TextBlock invisibleOn="ios,unreal">{`
 In this case the \`duration_event\` will have duration a property set to circa 1000ms.
 `}</TextBlock>
 
@@ -2604,8 +2789,15 @@ Or \`Activity\`/\`Fragment\` root view can be tagged directly in \`XML\` layout 
 />
 
 ## Global event properties
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
 Extra properties can be attached to every event, these properties are called **global event properties**.
 Global event properties can be set by calling:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2742,15 +2934,23 @@ Smartlook.Analytics.SetGlobalEventProperty("immutable-prop", "immutable value", 
 }}
 />
 
-
+<TextBlock invisibleOn="unreal">{`
 Properties set to be **immutable** have the **highest** priority and once set they **cannot be overridden** (only removed).
+`}</TextBlock>
 
-<TextBlock kind="note">{`
+<TextBlock kind="note" invisibleOn="unreal">{`
 Global event properties have higher a priority so in the merging process they will override custom properties with the same key.
 `}</TextBlock>
 
 ## Remove global event properties
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
 A global property with a given key can be removed:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2811,7 +3011,9 @@ public static void RemoveGlobalEventProperty(string name)
   }}
 />
 
+<TextBlock invisibleOn="unreal">{`
 Or all global event properties can be removed at once:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -2872,11 +3074,15 @@ public static void ClearGlobalEventProperties()
   }}
 />
 
-<TextBlock kind="note">{`
+<TextBlock kind="note" invisibleOn="unreal">{`
 Global event properties are stored until they are not removed or the app is uninstalled.
 `}</TextBlock>
 
 ## Event tracking modes
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
 
 <TextBlock visibleOn="android,ios,cordova,ionic,xamarin,cocos,flutter,unity,react">{`
 It can be beneficial to disable some automatically detected events due to security or usability reasons. This can be done using **event tracking modes**:
@@ -3115,6 +3321,11 @@ public static EventTrackingMode[] CurrentEventTrackingModes
 />
 
 # Rendering
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
 <TextBlock visibleOn="android,ios,cordova,ionic,react,flutter,cocos,unity,xamarin">{`
 SDK can use different methods of capturing screen image data. These are called **rendering modes**.
 \n
@@ -3742,7 +3953,14 @@ Referrer value and source of installation are stored per visitor and can be view
 `}</TextBlock>
 
 ## Dashboard session URL
-A `URL` leading to the Smartlook Dashboard for a currently recorded session can be obtained like this:
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
+A \`URL\` leading to the Smartlook Dashboard for a currently recorded session can be obtained like this:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -3825,15 +4043,24 @@ smartlook.getDashboardSessionUrl(new SmartlookDashboardSessionUrl(false))).then(
   }}
 />
 
-If `withCurrentTimestamp` is set to `true` link it will include information about the current recording timestamp.
-This will ensure that the player will start playing the session at the moment when `getDashboardSessionUrl` was called.
+<TextBlock invisibleOn="unreal">{`
+If \`withCurrentTimestamp\` is set to \`true\` link it will include information about the current recording timestamp.
+This will ensure that the player will start playing the session at the moment when \`getDashboardSessionUrl\` was called.
+`}</TextBlock>
 
-<TextBlock kind="note">{`
+<TextBlock kind="note" invisibleOn="unreal">{`
 This URL can be opened only by someone who has access to your dashboard. This is **not a public shareable link**.
 `}</TextBlock>
 
 ## Dashboard visitor URL
-A `URL` leading to the Smartlook Dashboard for a currently recorded visitor can be obtained like this:
+
+<TextBlock visibleOn="unreal">{`
+Currently not supported by the SDK.
+`}</TextBlock>
+
+<TextBlock invisibleOn="unreal">{`
+A \`URL\` leading to the Smartlook Dashboard for a currently recorded visitor can be obtained like this:
+`}</TextBlock>
 
 <CodeBlock
   snippets={{
@@ -3915,7 +4142,7 @@ smartlook.getDashboardVisitorUrl().then((dashboardVisitorUrl) => {
   }}
 />
 
-<TextBlock kind="note">{`
+<TextBlock kind="note" invisibleOn="unreal">{`
 This URL can be opened only by someone who has access to your dashboard. This is **not a public sharing link**.
 `}</TextBlock>
 
