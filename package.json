@@ -18,7 +18,6 @@
 		"classnames": "^2.2.6",
 		"docz": "^2.3.2-alpha.0",
 		"gatsby-plugin-svgr": "^2.0.2",
-		"gatsby-remark-find-replace": "^0.3.0",
 		"nanopop": "^2.1.0",
 		"prismjs": "^1.21.0",
 		"query-string": "^6.13.1",
