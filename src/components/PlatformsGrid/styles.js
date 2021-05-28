@@ -28,9 +28,17 @@ export const box = {
 	borderRight: (t) => `1px solid ${t.colors.onahau}`,
 	zIndex: 1,
 
+	svg: {
+		marginBottom: 3,
+		color: '#97abd0',
+	},
+
 	'&:hover': {
 		boxShadow: '0 0 15px 0 rgba(39, 65, 136, 0.2)',
 		zIndex: 5,
+		svg: {
+			color: '#039ea4',
+		},
 	},
 
 	[mountMedia(920)]: {

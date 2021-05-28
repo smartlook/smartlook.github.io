@@ -5,7 +5,7 @@ route: /docs/sdk/cookbooks/secure-custom-keyboard
 showPlatformSelect: true
 ---
 
-import { Code, TextBlock, Title } from 'components'
+import { Code, TextBlock, Title, Image } from 'components'
 import { usePlatforms } from 'hooks'
 
 import pin_code_screen from 'assets/pin_code_screen.png'
@@ -19,7 +19,7 @@ Code samples in this guide are written in Java/Kotlin but the principles are app
 
 Some applications use non-native keyboards, typically for entering pin codes, etc. This can lead to the recording of sensitive data as we are going to demonstrate by this simple example.
 
-<img src={pin_code_screen} />
+<Image src={pin_code_screen} alt="Pin code screen" />
 
 For this screen, we need to change the rendering mode to `RenderingMode.NO_RENDERING`:
 
@@ -41,7 +41,7 @@ By doing this we will ensure the SDK will not record the pin when the user enter
 
 **Setting rendering mode is not enough!** SDK automatically tracks touch events, so even with blank video, we can clearly see where the user is touching on the recording.
 
-<img src={pin_code_screen_no_rendering} />
+<Image src={pin_code_screen_no_rendering} alt="Pin code screen no rendering" />
 
 <TextBlock kind="note">{`
 SDK does not record touches on native keyboards, so there is no risk of leaking any sensitive data this way.

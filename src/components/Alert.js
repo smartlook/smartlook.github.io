@@ -2,18 +2,12 @@
 
 import { jsx } from 'theme-ui'
 
-import { usePlatforms } from 'hooks'
+import { useVisibility } from 'hooks'
 
 import * as styles from './TextBlock/styles'
 
-const getMatch = (items, matchTo) =>
-	items
-		.split(',')
-		.map((i) => i.trim())
-		.includes(matchTo)
-
 export const Alert = ({ kind = 'note', visibleOn, invisibleOn, children }) => {
-	const { currentPlatform } = usePlatforms()
+	const { match } = useVisibility(visibleOn, invisibleOn)
 
 	const getStyles = (kind) => {
 		switch (kind) {
@@ -31,17 +25,7 @@ export const Alert = ({ kind = 'note', visibleOn, invisibleOn, children }) => {
 		}
 	}
 
-	let isMatch = true
-
-	if (visibleOn !== undefined) {
-		isMatch = getMatch(visibleOn, currentPlatform)
-	}
-
-	if (invisibleOn !== undefined) {
-		isMatch = !getMatch(invisibleOn, currentPlatform)
-	}
-
-	if (!isMatch) {
+	if (!match) {
 		return null
 	}
 
