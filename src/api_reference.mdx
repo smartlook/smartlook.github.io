@@ -4,7 +4,7 @@ menu: SDK API reference
 route: /docs/sdk/api-reference
 showPlatformSelect: true
 ---
-import { Code, CodeBlock, TextBlock, Link } from "components";
+import { Code, CodeBlock, TextBlock, Link, Image } from "components";
 import { usePlatforms } from 'hooks'
 
 import native_rendering_mode from 'assets/rendering_native.png'
@@ -60,7 +60,7 @@ The best place to setup the SDK is in \`didFinishLaunchingWithOptions\` method o
 SDK is configured automatically by enabling Smartlook Plugin in Plugin settings:
 `}</TextBlock>
 
-<img visibleOn="unreal" src={unreal_enable}/>
+<Image visibleOn="unreal" src={unreal_enable} width="100%"/>
 
 <CodeBlock
 	kind="example"
@@ -382,7 +382,7 @@ public static void StartRecording()
 You can start recording automatically by ticking the \`Start Recording\` option in Smartlook plugin settings. You can also provide the desired <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="unreal">framerate</Link>:
 `}</TextBlock>
 
-<img visibleOn="unreal" src={unreal_settings}/>
+<Image visibleOn="unreal" src={unreal_settings} width="100%"/>
 
 <TextBlock visibleOn="ios,android,cordova,ionic,react,flutter,cocos,xamarin">{`
 Some recording parameters can be configured on setup:
@@ -718,7 +718,7 @@ public static void StopRecording()
 <TextBlock visibleOn="unreal">{`
 Blueprint:
 `}</TextBlock>
-<img visibleOn="unreal" src={unreal_bp_startendsession}/>
+<Image visibleOn="unreal" src={unreal_bp_startendsession} width="381px"/>
 
 <TextBlock visibleOn="unreal">{`
 C++:
@@ -1791,7 +1791,7 @@ static public void SetUserIdentifier(string identifier, Dictionary<string, strin
 <TextBlock visibleOn="unreal">{`
 Blueprint:
 `}</TextBlock>
-<img visibleOn="unreal" src={unreal_bp_setuserid}/>
+<Image visibleOn="unreal" source={unreal_bp_setuserid} width="180px"/>
 
 <TextBlock visibleOn="unreal">{`
 C++:
@@ -2276,7 +2276,7 @@ A simple custom event can be created by using:
 <TextBlock visibleOn="unreal">{`
 Blueprint:
 `}</TextBlock>
-<img visibleOn="unreal" src={unreal_bp_recordevent}/>
+<Image visibleOn="unreal" src={unreal_bp_recordevent} width="206px"/>
 
 <TextBlock visibleOn="unreal">{`
 C++:
