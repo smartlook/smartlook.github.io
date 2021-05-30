@@ -1768,16 +1768,15 @@ Additional user information such as \`name\`, \`email\`, etc., can be set using 
   snippets={{
     android: {
       java: `
-UserProperties userProperties = new UserProperties();
-userProperties.putEmail("sample@email.com");
-userProperties.putName("John Doe");
+UserProperties userProperties = new UserProperties()
+   .putEmail("sample@email.com")
+   .putName("John Doe");\n
 Smartlook.setUserProperties(userProperties);
       `,
       kotlin: `
-val userProperties = UserProperties().apply {
-    putEmail("sample@email.com")
-    putName("John Doe")
-}
+val userProperties = UserProperties()
+    .putEmail("sample@email.com")
+    .putName("John Doe")\n
 Smartlook.setUserProperties(userProperties)
       `,
     },
@@ -1812,13 +1811,11 @@ If there is no suitable helper method for specific properties, \`put()\` method 
   snippets={{
     android: {
       java: `
-UserProperties userProperties = new UserProperties();
-userProperties.put("key", "value");
+UserProperties userProperties = new UserProperties().put("key", "value");\n
 Smartlook.setUserProperties(userProperties);
       `,
       kotlin: `
-val userProperties = UserProperties()
-userProperties.put("key", "value")
+val userProperties = UserProperties().put("key", "value")\n
 Smartlook.setUserProperties(userProperties)
       `,
     },
