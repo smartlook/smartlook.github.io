@@ -28,7 +28,7 @@ New API methods, however, must wait for the respective platfrom plugin update.
 In this release, we have completely reworked our upload mechanism. SDK now uses system jobs. This change has many advantages over the old upload mechanism:
 - Offline recordings are uploaded as soon as there is a suitable network connection (Wi-Fi or mobile connection if the project has enabled mobile uploads). This means the application doesn’t have to run for the upload to happen.
 - Uploads happen in batches, this ensures lower battery usage.
-- SDK uses fewer API calls now. One ensuring we use correct configuration and upload ones.
+- SDK now uses fewer API calls.
 \n
 Internal SDK packages were reworked, which means you might need to migrate some imports when upgrading from an older version. Please follow the <Link to="/docs/sdk/cookbooks/android_1_8_0_migration">migration guide</Link> for more details.
 \n
@@ -44,7 +44,7 @@ new UserProperties()
 \`,
 }}
 />   
-- SDK now uses \`AndroidX\` as default dependencies, but “support” version is still available.
+- SDK now uses \`AndroidX\` as default dependencies, but the “support” version is still available.
 - SDK targets the latest (at the time of release) \`Android API 30\`.
 \n
 ### Fixed
