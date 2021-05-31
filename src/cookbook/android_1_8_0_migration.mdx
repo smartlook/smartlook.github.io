@@ -14,18 +14,18 @@ This guide is focused on migration of Android SDK from pre 1.8.0 versions.
 
 <Title>1.8.0 Migration</Title>
 
-When updating the Smartlook SDK to `1.8.0` (or newer) from older SDK version, some of the SDK imports may be broken. 
+When updating the Smartlook SDK to `1.8.0` (or newer) from the older SDK version, some of the SDK imports may be broken. 
 This is caused by major internal architecture changes made in `1.8.0`.
 
 ## Using Android studio
 
-When using `Android Studio` imports can be easily fixed with following two steps:
-- Delete all broken Smartlook SDK import lines. They start with `com.smartlook.sdk.smartlook` and are highlighted by red color.
+When using `Android Studio`, imports can be easily fixed by using the following two steps:
+- Delete all broken Smartlook SDK import lines. They start with `com.smartlook.sdk.smartlook` and are highlighted in red color.
 - Use [Code Completion (IntelliSense)](https://www.jetbrains.com/help/rider/Auto-Completing_Code.html) to fix missing imports.
 
 ## Using migration table
 
-If you want to fix imports using custom script or using bulk find/replace command, following migration table can be used:
+If you want to fix imports using custom script or using bulk find/replace command, the following migration table can be used:
 
 | Old import(package)                                                           | New import(package)                                                          |
 |-------------------------------------------------------------------------------|------------------------------------------------------------------------------|
