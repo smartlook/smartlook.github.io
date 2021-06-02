@@ -14,10 +14,25 @@ import { Code, CodeBlock, TextBlock, Link, Title } from "components";
   kind="example"
   snippets={{
     groovy: `
-implementation 'com.smartlook.recording:app:1.7.0-native'
+implementation 'com.smartlook.recording:app:1.8.0-native'
 `,
   }}
 />
+
+<TextBlock kind="note">
+{`
+Note that \`1.8.0-native\` uses \`AndroidX\` if you need to fallback to \`support\` please use the following:
+
+<Code
+  kind="example"
+  snippets={{
+    groovy: \`
+implementation 'com.smartlook.recording:app:1.8.0-native-support'
+\`,
+  }}
+/>
+`}
+</TextBlock>
 
 2. Add Smartlook Maven repository in your **projects** `build.gradle`:
 
@@ -74,6 +89,11 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
+
+# SDK update & migrations
+
+## 1.8.0 migration
+When updating the Smartlook SDK to `1.8.0` (or newer) from the older SDK version, some of the SDK imports may be broken. To fix this please follow the [migration guide](/docs/sdk/cookbooks/android_1_8_0_migration).
 
 # Supported versions
 Currently the **minimal** supported Android version is **Jelly Bean (API 18)**.
