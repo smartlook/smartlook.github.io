@@ -8,6 +8,10 @@ import { Code, CodeBlock, TextBlock, Link, Title } from "components";
 
 <Title>Cordova SDK Installation</Title>
 
+<TextBlock kind="note">
+{`In the version \`1.8.0\` we have added TypeScript typings.`}
+</TextBlock>
+
 1. Add Cordova plugin to your project using this command:
 
 <Code
@@ -48,6 +52,39 @@ To setup Smartlook, the **unique project API key **is needed. It can be found in
 SDK will upload sessions **only on Wi-Fi**. When uploading on mobile connections is requested, it must be enabled in the project settings in the dashboard. More details about the recording process can be found in the <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard">Conceptual documentation</Link>.
 `}
 </TextBlock>
+
+4. To access the typescript types you will need to explicitly set the type folder roots. Add this to your project's tsconfig.json.:
+
+<Code
+  kind="example"
+  snippets={{
+    json: `
+"typeRoots": ["./node_modules/@types", "./node_modules/cordova-plugin-smartlook/globalTypes"]
+`,
+  }}
+/>
+
+So the whole file will look for example like.:
+
+<Code
+  kind="example"
+  snippets={{
+    json: `
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"sourceMap": true,
+		"typeRoots": ["./node_modules/@types", "./node_modules/cordova-plugin-smartlook/globalTypes"],
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node"
+	},
+	"include": ["src/js"]
+}
+`,
+  }}
+/>
 
 # Supported versions
 Currently the **minimal** supported version is **Jelly Bean (API 18)** for Android and **10** for iOS.
