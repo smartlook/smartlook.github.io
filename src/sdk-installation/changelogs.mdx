@@ -12,6 +12,14 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
+<TextBlock visibleOn="ios">{`
+## iOS [1.7.6.1] - 2021-05-10
+\n
+### Fixed
+- Build identical to the previous version released using Xcode 12.4 to keep bitcode compatibility
+(<Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/83">the related github issue</Link>)\n
+***`}</TextBlock>
+
 <TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
 {`
 Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
