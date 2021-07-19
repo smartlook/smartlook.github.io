@@ -992,11 +992,19 @@ To hide sensitive data, screen capturing must be stopped completelly by using **
 UE4 SDK does not support hiding sensitive parts of the screen at the moment.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,xamarin">{`
+<TextBlock visibleOn="android">{`
+## Sensitive views
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,react,xamarin">{`
 ## Blacklisted views
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,xamarin">{`
+<TextBlock visibleOn="android">{`
+Any view can be hidden in the recording by marking it as a **sensitive** view. A specific view can be marked as sensitive by calling:
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,react,xamarin">{`
 Any view can be hidden in the recording by marking it as a **blacklisted** view. A specific view can be marked as blacklisted by calling:
 `}</TextBlock>
 
@@ -1004,12 +1012,11 @@ Any view can be hidden in the recording by marking it as a **blacklisted** view.
   snippets={{
     android: {
       java: `
-Smartlook.registerBlacklistedView(View view);
-Smartlook.registerBlacklistedViews(List<View> views);
+Smartlook.setSensitivty(SmartlookSensitivity.EXPLICITLY_SENSITIVE, View view);
       `,
       kotlin: `
-Smartlook.registerBlacklistedView(view: View)
-Smartlook.registerBlacklistedViews(views: List<View>)
+val view: View      
+view.isSensitive = SmartlookSensitivity.EXPLICITLY_SENSITIVE
       `,
     },
     ios: {
@@ -1066,7 +1073,7 @@ Or can be tagged directly by an \`UIView\` property added by Smartlook:
     android: {
       xml: `
 <View>
-    <tag android:id="@id/smartlook_blacklisted_view" android:value=""/>
+    <tag android:id="@id/smartlook_sensitive" android:value="true"/>
 </View>
       `,
     },
@@ -1112,12 +1119,11 @@ If a specific view no longer needs to be blacklisted:
   snippets={{
     android: {
       java: `
-Smartlook.unregisterBlacklistedView(View view);
-Smartlook.unregisterBlacklistedViews(List<View> views);
+Smartlook.setSensitivty(SmartlookSensitivity.DEFAULT, View view);
       `,
       kotlin: `
-Smartlook.unregisterBlacklistedView(view: View)
-Smartlook.unregisterBlacklistedViews(views: List<View>)
+val view: View      
+view.isSensitive = SmartlookSensitivity.DEFAULT
       `,
     },
     ios: {
@@ -1141,8 +1147,8 @@ Smartlook.Analytics.UnregisterBlacklistedObject(object @object);
   }}
 />
 
-<TextBlock kind="note" visibleOn="android,ios,xamarin">{`
-A blacklisted view is hidden on recording by a single color rectangle. The color of this rectangle can be configured by calling:
+<TextBlock kind="note" visibleOn="android">{`
+A sensitive view is hidden on recording by a single color rectangle. The color of this rectangle can be configured by calling:
 <CodeBlock
   snippets={{
     android: {
@@ -1153,6 +1159,15 @@ Smartlook.setBlacklistedItemsColor(@ColorInt int color);
 Smartlook.setBlacklistedItemsColor(@ColorInt color: Int);
       \`,
     },
+  }}
+/>
+This is applied for all sensitive objects.
+`}</TextBlock>
+
+<TextBlock kind="note" visibleOn="ios,xamarin">{`
+A blacklisted view is hidden on recording by a single color rectangle. The color of this rectangle can be configured by calling:
+<CodeBlock
+  snippets={{
     ios: {
       swift: \`
 class func setBlacklistedItem(color: UIColor)
@@ -1171,7 +1186,11 @@ xamarin: {
 This is applied for all blacklisted objects.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,xamarin">{`
+<TextBlock visibleOn="android">{`
+## Sensitive classes
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,react,xamarin">{`
 ## Blacklisted classes
 `}</TextBlock>
 
@@ -1180,7 +1199,7 @@ Note that \`UITextView\`, \`UITextField\`, \`WKWebView\` on iOS and \`EditText\`
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
-Sometimes it can be beneficial to blacklist all instances of a given \`Class\` that extends a \`View\` rather than blacklisting a specific \`View\`’s instances:
+Sometimes it can be beneficial to mark all instances of a given \`Class\` that extends a \`View\` as sensitive rather than blacklisting a specific \`View\` instances:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -1191,12 +1210,11 @@ Sometimes it can be beneficial to blacklist all instances of a **\`UIView\` subc
   snippets={{
     android: {
       java: `
-Smartlook.registerBlacklistedClass(Class class);
-Smartlook.registerBlacklistedClasses(List<Class> classes);
+Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, Class class);
       `,
       kotlin: `
-Smartlook.registerBlacklistedClass(class: Class)
-Smartlook.registerBlacklistedClasses(classes: List<Class>)
+val clazz: Class
+clazz.isSensitive = SmartlookSensitivity.EXPLICITLY_SENSITIVE
       `,
     },
     ios: {
@@ -1237,7 +1255,7 @@ self.someView.slSensitive = true
 />
 
 <TextBlock visibleOn="android">{`
-Any blacklisted classes can be removed:
+Any sensitive classes can be removed:
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="ios">{`
@@ -1252,12 +1270,11 @@ Any of the blacklisted objects can be removed:
   snippets={{
     android: {
       java: `
-Smartlook.unregisterBlacklistedClass(Class class);
-Smartlook.unregisterBlacklistedClasses(List<Class> classes);
+Smartlook.setSensitivity(SmartlookSensitivity.DEFAULT, Class class);
       `,
       kotlin: `
-Smartlook.unregisterBlacklistedClass(class: Class)
-Smartlook.unregisterBlacklistedClasses(classes: List<Class>)
+val clazz: Class
+clazz.isSensitive = SmartlookSensitivity.DEFAULT
       `,
     },
     ios: {
@@ -1280,14 +1297,22 @@ Note that for convenience, **some classes are blacklisted by default**: \`UIText
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
-Note that \`EditText\` and \`WebView\` are **blacklisted by default** and can be removed using \`Smartlook.unregisterBlacklistedClass()\`.
+Note that \`EditText\` and \`WebView\` are **sensitive by default** and can be removed by setting sensitivity to  \`SmartlookSensitivity.DEFAULT\`.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,react,xamarin">{`
+<TextBlock visibleOn="android">{`
+## Insensitive views
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,react,xamarin">{`
 ## Whitelisted views
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,xamarin,react">{`
+<TextBlock visibleOn="android">{`
+A specific view can be insensitive so it is recorded even if it is an instance of a sensitive class:
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,xamarin,react">{`
 A specific view can be whitelisted so it is recorded even if it is an instance of a blacklisted class:
 `}</TextBlock>
 
@@ -1295,12 +1320,11 @@ A specific view can be whitelisted so it is recorded even if it is an instance o
   snippets={{
     android: {
       java: `
-Smartlook.registerWhitelistedView(View view);
-Smartlook.registerWhitelistedViews(List<View> views);
+Smartlook.setSensitivty(SmartlookSensitivity.EXPLICITLY_INSENSITIVE, View view);
       `,
       kotlin: `
-Smartlook.registerWhitelistedView(view: View)
-Smartlook.registerWhitelistedViews(views: List<View>)
+val view: View      
+view.isSensitive = SmartlookSensitivity.EXPLICITLY_INSENSITIVE
       `,
     },
     ios: {
@@ -1325,7 +1349,7 @@ public static void RegisterWhitelistedObject(object @object)
 />
 
 <TextBlock visibleOn="android">{`
-Or it can be tagged as whitelisted directly in an \`xml\` layout file:
+Or it can be tagged as insensitive directly in an \`xml\` layout file:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -1338,7 +1362,7 @@ Or it can be tagged directly by an \`UIView\` property added by Smartlook:
     android: {
       xml: `
 <View>
-  <tag android:id="@id/smartlook_whitelisted_view" android:value=""/>
+  <tag android:id="@id/smartlook_sensitive" android:value="false"/>
 </View>
     `,
     },
@@ -1357,7 +1381,11 @@ self.someView.slSensitive = NO;
 Note also, that there is a small workaround that makes  \`slSensitive\` property of \`UIView\` inspectable in Xcode Interface Builder, i.e., it is not necessary creating an \`@IBOutlet\` for a view that is designed in the Interface Builder just in order to set its sensitivity. See our <Link to="/docs/sdk/cookbooks/how-to-make-smartlook-properties-inspectable">How to make Smartlook properties inspectable</Link> cookbook.
 `}</TextBlock>
 
-<TextBlock visibleOn="android,ios,xamarin,react">{`
+<TextBlock visibleOn="android">{`
+A specific view insensitivity can be removed by calling:
+`}</TextBlock>
+
+<TextBlock visibleOn="ios,xamarin,react">{`
 A specific view can be removed from a whitelist by calling:
 `}</TextBlock>
 
@@ -1365,12 +1393,11 @@ A specific view can be removed from a whitelist by calling:
   snippets={{
     android: {
       java: `
-Smartlook.unregisterWhitelistedView(View view);
-Smartlook.unregisterWhitelistedViews(List<View> views);
+Smartlook.setSensitivty(SmartlookSensitivity.DEFAULT, View view);
       `,
       kotlin: `
-Smartlook.unregisterWhitelistedView(view: View)
-Smartlook.unregisterWhitelistedViews(views: List<View>)
+val view: View      
+view.isSensitive = SmartlookSensitivity.DEFAULT
       `,
     },
     ios: {
@@ -1643,7 +1670,7 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.Native);
 `}</TextBlock>
 
 <TextBlock visibleOn="android">{`
-When an application has some parts displayed using \`WebView\` and theese parts should be recorded, then the \`WebView\` recording needs to be enabled by removing \`WebView\` from the list of blacklisted classes:
+When an application has some parts displayed using \`WebView\` and theese parts should be recorded, then the \`WebView\` recording needs to be enabled by removing \`WebView\` from the list of sensitive classes:
 `}</TextBlock>
 
 <TextBlock visibleOn="ios">{`
@@ -1667,10 +1694,10 @@ When an application has some parts displayed using a **WebView** (\`WKWebView\` 
   snippets={{
     android: {
       java: `
-Smartlook.unregisterBlacklistedClass(WebView.class);
+Smartlook.setSensitivity(SmartlookSensitivity.DEFAULT, WebView.class);
       `,
       kotlin: `
-Smartlook.registerBlacklistedClass(WebView::class.java)
+WebView::class.java.isSensitive = SmartlookSensitivity.DEFAULT
       `,
     },
     ios: {
