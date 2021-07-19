@@ -70,11 +70,11 @@ In order not to record a particular \`html\` element, like here in an example wi
       android: {
       java: `
 ImageView portraitImageView = (ImageView) findViewById(R.id.portrait_image_view);
-Smartlook.registerBlacklistedView(portraitImageView);
+Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, portraitImageView);
 `,
       kotlin: `
 val portraitImageView = findViewById(R.id.portrait_image_view) as ImageView
-Smartlook.registerBlacklistedView(portraitImageView)
+portraitImageView.isSensitive = SmartlookSensitivity.EXPLICITLY_SENSITIVE
 `
     },
       ios: {
@@ -160,11 +160,11 @@ When, on the other hand, an otherwise blacklisted \`html\` element (in our examp
       android: {
       java: `
 WebView webView = (WebView) findViewById(R.id.web_view);
-Smartlook.registerWhitelistedView(webView);
+Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_INSENSITIVE, portraitImageView);
 `,
       kotlin: `
 val webView = findViewById(R.id.web_view) as WebView
-Smartlook.registerWhitelistedView(webView)
+webView.isSensitive = SmartlookSensitivity.EXPLICITLY_INSENSITIVE
 `
     },
       ios: {
@@ -256,10 +256,10 @@ To cover this use-case, Smartlook offers **on some platforms** a convenient way 
     snippets={{
       android: {
       java: `
-Smartlook.registerBlacklistedClass(WebView.class);
+Smartlook.setSensitivity(SmartlookSensitivity.EXPLICITLY_SENSITIVE, WebView.class);
 `,
       kotlin: `
-Smartlook.registerBlacklistedClass(WebView::class.java)
+WebView::class.java.isSensitive = SmartlookSensitivity.EXPLICITLY_SENSITIVE
 `
     },
       ios: {
