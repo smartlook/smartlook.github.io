@@ -366,6 +366,14 @@ The application can change the rendering mode at any time, e.g., to temporarily 
 More about rendering modes could be found <Link to="/docs/sdk/api-reference#rendering">in the API reference</Link>.
 `}</TextBlock>
 
+<TextBlock visibleOn="android">{`
+## WebGL player: Interactive tool not just for developers
+\n
+Our new WebGL player is currently in BETA status so we are thrilled for your feedback and suggestions! So far we are testing this feature only on Android however we are going to support other platforms very soon. Apart from video or wireframe data, our SDK collects also information about app's structure. Thanks to WebGL player, you are now free to explore app's layout structure in 3D as you can see below. Instructions on how to enable WebGL can be found in our <Link to="/docs/sdk/api-reference#webgl-player---beta">API reference</Link>.
+\n
+WebGL player can be also used for event creation, i.e. create event from button so you can use it later in funnels. This feature is accessible via mouse right click.
+`}</TextBlock>
+
 # Handling Sensitive Events
 
 It is not just the visual elements that can contain sensitive information. Sometimes, a clue to sensitive user data can be found in user interaction events. Consider that, e.g., location of click events on a keyboard area could be used to guess a user’s password even when the keyboard itself is obfuscated.

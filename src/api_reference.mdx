@@ -3795,6 +3795,42 @@ public static RenderingModeOption CurrentRenderingModeOption
 />
 
 <TextBlock visibleOn="android">{`
+## WebGL Player - BETA
+Apart from video or wireframe data, SDK can also send additional data needed for WebGL player. Currently this BETA functionality is accessible via builder. Read more about WebGL feature [in conceptual documentation](/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).:
+`}</TextBlock>
+
+<CodeBlock
+   snippets={{
+      android: {
+        java: `
+Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
+        .enableWebGLRecording(WebGLRecordingMode webGLRecordingMode);
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+      `,
+        kotlin: `
+val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
+        .enableWebGLRecording(webGLRecordingMode: WebGLRecordingMode);
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+        `,
+      },
+    }}
+/>
+
+<TextBlock visibleOn="android">{`
+WebGL modes available are following:
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+* \`WebGLRecordingMode.WEBGL_ONLY\`
+* \`WebGLRecordingMode.WEBGL_HYBRID\`
+`}</TextBlock>
+
+<TextBlock kind="note" visibleOn="android">{`
+\`WEBGL_ONLY\` mode does not record any screen data, similar to \`NO_RENDERING\`, however you will be able to inspect app's struccture in our WebGL player. \`WEBGL_HYBRID\` mode sends video or wireframe data and WebGL related data as well. [read more](#no-rendering).
+`}</TextBlock>
+
+
+<TextBlock visibleOn="android">{`
 # Network intercepting
 An application’s HTTP traffic can be tracked using the network inceptor provided by the SDK. This feature only currently available for **OkHttp** HTTP/REST communication library.
 `}</TextBlock>
