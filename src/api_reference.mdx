@@ -409,7 +409,7 @@ Some of the parameters could be also set in your project settings in Smartlook p
 |---------------------------------------------|------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | apiKey                                      | string                 | -             | The API key of the project. Set it in the object \`init(key:)\` initializator.                                                                                                                                                                     |
 | framerate                                   | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from the dashboard will be overridden!                                                                                                       |
-| useAdaptiveFramerate                        | bool                   | true          | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| useAdaptiveFramerate                        | bool                   | true          | By default, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [renderingMode](#rendering)                 | RenderingMode          | native        | Define the way SDK is going to capture screen image data.                                                                                                                                                                                          |
 | [renderingModeOption](#rendering)           | RenderingModeOption    | none          | Further customize the rendering mode.                                                                                                                                                                                                              |
 | [eventTrackingModes](#event-tracking-modes) | [EventTrackingMode]    | full tracking | Sets which types of events are tracking by Smartlook                                                                                                                                                                                               |
@@ -3826,7 +3826,7 @@ WebGL modes available are the following:
 `}</TextBlock>
 
 <TextBlock kind="note" visibleOn="android">{`
-\`WEBGL_ONLY\` mode does not record any screen data, similar to \`NO_RENDERING\`, however you wi’ll be able to inspect the app's structure in our interactive player. \`WEBGL_HYBRID\` mode sends video or wireframe data and WebGL-related data as well. [read more](#no-rendering).
+\`WEBGL_ONLY\` mode does not record any screen data, similar to \`NO_RENDERING\`, however you’ll be able to inspect the app's structure in our interactive player. \`WEBGL_HYBRID\` mode sends video or wireframe data and WebGL-related data as well. [read more](#no-rendering).
 `}</TextBlock>
 
 
