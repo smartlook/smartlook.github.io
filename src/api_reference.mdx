@@ -409,7 +409,7 @@ Some of the parameters could be also set in your project settings in Smartlook p
 |---------------------------------------------|------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | apiKey                                      | string                 | -             | The API key of the project. Set it in the object \`init(key:)\` initializator.                                                                                                                                                                     |
 | framerate                                   | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from the dashboard will be overridden!                                                                                                       |
-| useAdaptiveFramerate                        | bool                   | true          | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| useAdaptiveFramerate                        | bool                   | true          | By default, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [renderingMode](#rendering)                 | RenderingMode          | native        | Define the way SDK is going to capture screen image data.                                                                                                                                                                                          |
 | [renderingModeOption](#rendering)           | RenderingModeOption    | none          | Further customize the rendering mode.                                                                                                                                                                                                              |
 | [eventTrackingModes](#event-tracking-modes) | [EventTrackingMode]    | full tracking | Sets which types of events are tracking by Smartlook                                                                                                                                                                                               |
@@ -465,7 +465,7 @@ All setup options are optional and can be set using properties of an instance of
 |---------------------------------------------|------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | EnableCrashlytics                           | bool                   | false         | Enables Firebase Crashlytics integration                                                                                                                                                                                                  |
 | Framerate                                   | int                    | 2             | Recorded video frame rate (allowed values between 2 and 10). Note that by setting this value settings from the dashboard will be overridden!                                                                                              |
-| UseAdaptiveFramerate                        | bool                   | true          | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
+| UseAdaptiveFramerate                        | bool                   | true          | By defaults, Smartlook adapts its recording framerate to the frequency of UI changes in order to lower its footprint in app performace. For details, see <Link to="/docs/sdk/conceptual/screen-recording-quality">Screen Recording Quality</Link>. |
 | [RenderingMode](#rendering)                 | RenderingMode          | native        | Define the way SDK is going to capture screen image data.                                                                                                                                                                                 |
 | [RenderingModeOption](#rendering)           | RenderingModeOption    | none          | Further customize the rendering mode.                                                                                                                                                                                                     |
 | [EventTrackingModes](#event-tracking-modes) | EventTrackingMode      | all events    | Event tracking modes can be used to disable some automatically detected events.                                                                                                                                                           |
@@ -1567,7 +1567,7 @@ Smartlook.Analytics.SetRenderingMode(Smartlook.Analytics.RenderingMode.None);
 />
 
 <TextBlock kind="note" visibleOn="android,ios,react,xamarin">{`
-SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because all user interaction is still being recorded, but all sensitive data are not rendered by design. Read more about rendering modes [in conceptual documentation](/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
+SDK provides rendering modes that hide sensitive information by simplifying the rendered screen for recording. This can be advantageous because all user interaction is still being recorded, but all sensitive data are not rendered by design. Read more about rendering modes [in conceptual documentation](/docs/sdk/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
 `}</TextBlock>
 
 <TextBlock kind="important" invisibleOn="unreal">{`
@@ -3793,6 +3793,42 @@ public static RenderingModeOption CurrentRenderingModeOption
     },
   }}
 />
+
+<TextBlock visibleOn="android">{`
+## Interactive player - BETA
+Apart from video or wireframe data, SDK can also send additional data needed for the interactive player. Currently this BETA functionality is accessible via builder. Read more about this interactive player's feature [in conceptual documentation](/docs/sdk/conceptual/interactive-player).:
+`}</TextBlock>
+
+<CodeBlock
+   snippets={{
+      android: {
+        java: `
+Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
+        .enableWebGLRecording(WebGLRecordingMode webGLRecordingMode);
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+      `,
+        kotlin: `
+val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
+        .enableWebGLRecording(webGLRecordingMode: WebGLRecordingMode);
+Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
+        `,
+      },
+    }}
+/>
+
+<TextBlock visibleOn="android">{`
+WebGL modes available are the following:
+`}</TextBlock>
+
+<TextBlock visibleOn="android">{`
+* \`WebGLRecordingMode.WEBGL_ONLY\`
+* \`WebGLRecordingMode.WEBGL_HYBRID\`
+`}</TextBlock>
+
+<TextBlock kind="note" visibleOn="android">{`
+\`WEBGL_ONLY\` mode does not record any screen data, similar to \`NO_RENDERING\`, however you’ll be able to inspect the app's structure in our interactive player. \`WEBGL_HYBRID\` mode sends video or wireframe data and WebGL-related data as well. [read more](#no-rendering).
+`}</TextBlock>
+
 
 <TextBlock visibleOn="android">{`
 # Network intercepting
