@@ -1,0 +1,37 @@
+---
+name: Interactive player
+menu: SDK Conceptual
+route: /docs/sdk/conceptual/interactive-player
+showPlatformSelect: true
+---
+
+import { Code, CodeBlock, TextBlock, Link, MD, Title, Image } from "components"
+import { usePlatforms } from 'hooks'
+
+import playerImage from 'assets/webgl_player.png'
+import buttonImage from 'assets/webgl_button.png'
+
+<Title>Interactive player</Title>
+
+*This section discusses Interactive player and which features could be used via player directly.*
+
+## Interactive player: explore your apps in new dimension
+
+We are thrilled to announce our new Interactive player for mobile projects! With this new feature, you are going to be able to:
+- Inspect app’s structure, similar to Layout inspector in Android studio or View Debugger in Xcode
+- Replay user’s sessions in 3D or 2D projection, similar to our already presented [Wireframe mode](/docs/sdk/conceptual/handling-sensitive-data#recording-modes-handling-sensitive-data-at-the-whole-screen-level).
+- Thanks to detailed debug info, you can easily inspect complex view structures
+
+For better understanding of why you might be interested in our new Interactive player, we also recorded a short presentation to our [YouTube channel](https://www.youtube.com/watch?v=qNNACN3mtAY)
+
+<Image src={playerImage} width="60%" />
+
+So far this feature is available on [Android native SDK](/docs/sdk/api-reference?platform=android#interactive-player---beta), however we are going to introduce this functionality to iOS and other frameworks very soon - React native and Flutter will be the first.
+
+Apart from data for Interactive player, SDK still sends recordings of the app. You can freely switch between those representations via WEBGL ACTIVE button at the bottom:
+
+<Image src={buttonImage} width="60%"/>
+
+
+Soon we are also going to introduce new features like event creation from the player or navigation to funnel directly from the player. Feel free to [contact us](https://roadmap.smartlook.com/tabs/2-planned/submit-idea) with your ideas of what you would like to see in our new player.
+
