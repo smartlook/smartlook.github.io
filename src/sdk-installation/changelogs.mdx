@@ -12,6 +12,27 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
+<TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
+{`
+Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
+This means, that the bugfixes in the latest standard iOS/Android SDK release propagate to all respective frameworks as well.\n
+New API methods, however, must wait for the respective platfrom plugin update.
+`}
+</TextBlock>
+
+
+
+
+
+
+
+<TextBlock visibleOn="ios">{`
+## iOS [1.7.9] - 2021-07-30
+\n
+### Fixed
+- Various improvements to SDK stability, lesser memory and CPU consumption.
+***`}</TextBlock>
+
 
 <TextBlock visibleOn="android">{`
 ## Android SDK [1.8.3] - 2021-07-09
@@ -46,15 +67,6 @@ This changelog shows all relevant releases for each platform.
 - Build identical to the previous version released using Xcode 12.4 to keep bitcode compatibility
 (<Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/83">the related github issue</Link>)\n
 ***`}</TextBlock>
-
-<TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
-{`
-Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
-This means, that the bugfixes in the latest standard iOS/Android SDK release propagate to all respective frameworks as well.\n
-New API methods, however, must wait for the respective platfrom plugin update.
-`}
-</TextBlock>
-
 
 
 <TextBlock visibleOn="android">{`
