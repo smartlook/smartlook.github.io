@@ -52,8 +52,8 @@ module.exports = {
 		'SDK Cookbooks',
 		'SDK Integrations',
 		{
-			name: 'REST API (beta)',
-			menu: ['Overview', 'API Reference'],
+			name: 'REST API',
+			menu: ['Overview', 'Cookbook', 'API Reference'],
 		},
 	],
 	title: 'Smartlook',
