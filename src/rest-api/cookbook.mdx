@@ -1,0 +1,15 @@
+---
+name: Cookbook
+menu: REST API
+route: /docs/rest-api/cookbook
+---
+
+import { Title, Code, TextBlock } from "components"
+
+<Title>Cookbook</Title>
+
+# Deeplink to the visitor detail
+1. Fetch detail using our REST API (https://api.smartlook.cloud/api/v1/visitors/search, check out the [API reference](/docs/rest-api/reference))
+2. Get the `visitorId` from the response
+3. Get `projectId` and `organizationId` from your dashboard URL
+4. Now you can build the URL to the visitor detail as follows: `https://app.smartlook.com/org/{organizationId}/project/{projectId}/recordings?visitor={visitorId}`
