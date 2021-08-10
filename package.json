@@ -9,7 +9,7 @@
 		"prettier:check": "yarn prettier --check",
 		"prettier:write": "yarn prettier --write",
 		"dev": "docz dev",
-		"build": "docz build",
+		"build": "docz build && cp ./CNAME ./docs/CNAME",
 		"serve": "docz serve"
 	},
 	"dependencies": {
