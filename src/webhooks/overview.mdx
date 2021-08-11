@@ -1,0 +1,75 @@
+---
+name: Overview
+menu: WEBHOOKS
+route: /docs/webhooks/overview
+---
+
+import { Title, Code, TextBlock } from "components"
+
+<Title>Overview</Title>
+Webhooks are sent from anomalies. Anomalies are described on our updates page <a href="https://updates.smartlook.com/worried-about-anomalies-in-your-events-190172" target="_blank">HERE</a>
+
+# Cookbook
+
+<h3> 1. Set webhook URL on anomalies </h3>
+
+Optionaly set secret
+
+screen from app.smartlook.com
+
+<h3> 2. Set API on the server side </h3>
+
+Webhooks are sent as POST HTTP request. In the section [parameters](#parameters) is more information about webhooks message.
+
+<h3> 3. Catch HTTP requests </h3>
+
+
+
+<h3> 4. Verify the message </h3>
+
+You can verify the message about HASH. More info [HERE](#security)
+
+# Security
+When your secret token is set, Smartlook uses it to create a hash signature with each payload, in the header.
+
+<h3> HASH </h3>
+Is used HMAC hex digest to compute the hash.
+You can configure the hash about the code below.
+
+```jsx title="/src/components/hmac.js"
+const crypto = require('crypto')
+
+const secret = SECRET_TOKEN
+const message = request.body
+
+const signature = crypto
+		.createHmac('sha256', secret)
+		.update(`${message}`)
+		.digest('hex')
+```
+
+# Parameters
+
+Example of webhook body
+```
+{
+    "template": "Absolute threshold",
+    "anomalyEventName": "Errors",
+    "params": {
+        "projectName": "Smartlook Project",
+        "projectId": "8588faeebe0e42150310a97a",
+        "organizationId": "0310a97a49e88588faeebe0e",
+        "projectTimeZoneId": "Europe/Prague",
+        "eventId": "event_error",
+        "funnelId": null,
+        "direction": "up",
+        "threshold": 1,
+        "alertType": "eventThresholdAbsolute",
+        "anomaly": {
+            "date": "2021-01-01T21:59:59.999Z",
+            "eventsCount": 13,
+            "eventsCountDifference": 12
+        }
+    }
+}
+```

@@ -55,6 +55,10 @@ module.exports = {
 			name: 'REST API',
 			menu: ['Overview', 'Cookbook', 'API Reference'],
 		},
+		{
+			name: 'WEBHOOKS',
+			menu: ['Overview'],
+		},
 	],
 	title: 'Smartlook',
 	files: 'src/**/*.{md,mdx}',
