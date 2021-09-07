@@ -14,7 +14,7 @@ export const spec = {
 		'/v1.0/status': {
 			get: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
@@ -542,7 +542,13 @@ export const spec = {
 															event: {
 																type: 'object',
 																properties: {
+																	step: {
+																		type: 'number',
+																	},
 																	id: {
+																		type: 'string',
+																	},
+																	eventName: {
 																		type: 'string',
 																	},
 																	_links: {
@@ -556,6 +562,9 @@ export const spec = {
 																	},
 																},
 																additionalProperties: false,
+															},
+															percentFromPreviousStep: {
+																type: 'number',
 															},
 														},
 														additionalProperties: false,
@@ -596,6 +605,14 @@ export const spec = {
 						},
 						name: 'dateTo',
 						required: true,
+					},
+					{
+						in: 'query',
+						schema: {
+							type: 'boolean',
+						},
+						name: 'waitForFinish',
+						required: false,
 					},
 				],
 				operationId: 'getFunnelDetail',
@@ -914,6 +931,14 @@ export const spec = {
 						name: 'limit',
 						required: false,
 					},
+					{
+						in: 'query',
+						schema: {
+							type: 'string',
+						},
+						name: 'sort',
+						required: false,
+					},
 				],
 				operationId: 'getVisitorSessions',
 			},
@@ -1109,7 +1134,7 @@ export const spec = {
 		'/api/v1/visitors/search': {
 			post: {
 				responses: {
-					'200': {
+					200: {
 						description: 'Success',
 						content: {
 							'application/json': {
