@@ -846,7 +846,7 @@ Smartlook.isRecording().then((isRecording: boolean) => {
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin,react">{`
+<TextBlock visibleOn="ios,android,cocos,xamarin,react">{`
 ## Reset session
 Current session can be ended and a new session created by calling:
 `}</TextBlock>
@@ -878,11 +878,19 @@ public static void ResetSession(bool resetUser = false)
       typescript: `
 Smartlook.resetSession(resetUser: boolean);
       `
-    }
+    },
+    ios: {
+      swift: `
+class func resetSession(resetUser: Bool)
+`,
+      'objective-c': `
++ (void)resetSessionAndUser:(BOOL)resetUser
+    `,
+  },
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin,react">{`
+<TextBlock visibleOn="android,cocos,xamarin,react,ios">{`
 If \`resetUser\` is set to \`true\`, SDK will create a new visitor during the reset. This is especially beneficial when a new user needs to be identified (typically after logout).\n
 A new session can be created on SDK setup:
 `}</TextBlock>
@@ -919,7 +927,21 @@ xamarin: {
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true);
 Smartlook.Analytics.Setup(API_KEY, smartlookSetupOptions);
 `,
-    }
+    },
+    ios: {
+      swift: `
+let setupConfig = Smartlook.SetupConfiguration(key: "API_KEY")
+setupConfig.resetSession = true         // to reset just the session
+setupConfig.resetSessionAndUser = true  // alternatively, to reset user and implicitly the session, too
+Smartlook.setupAndStartRecording(configuration: setupConfig)
+`,
+      'objective-c': `
+SLSetupConfiguration *slConfig = [[SLSetupConfiguration alloc] initWithKey:@"API_KEY"];
+slConfig.resetSession = YES;         // to reset just the session
+slConfig.resetSessionAndUser = YES;  // alternatively, to reset user and implicitly the session, too
+[Smartlook setupAndStartRecordingWithConfiguration:slConfig];
+    `,
+  },
   }}
 />
 
