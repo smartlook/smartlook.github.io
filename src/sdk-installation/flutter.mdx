@@ -10,6 +10,17 @@ import { usePlatforms } from 'hooks'
 
 <Title>Flutter SDK Installation</Title>
 
+<TextBlock kind="important">
+{`
+The Smartlook plugin for flutter was renamed. It's now called <Link to="https://pub.dev/packages/flutter_smartlook">flutter_smartlook</Link>.
+Please update the dependency name in your pubspec.yaml as well as imports.
+`}
+</TextBlock>
+
+<TextBlock kind="note">
+{`We are introducing the all-new wireframing mode in the version \`3.0.0\`, where we are the only ones who support functionality like this on Flutter.`}
+</TextBlock>
+
 1. Add Smartlook among other dependencies into the `pubspec.yaml`
 
 <Code
@@ -17,7 +28,7 @@ import { usePlatforms } from 'hooks'
   snippets={{
     yaml: `
 dependencies:
-  smartlook:
+  flutter_smartlook:
 `,
   }}
 />
@@ -28,7 +39,7 @@ dependencies:
   kind="example"
   snippets={{
     dart: `
-import 'package:smartlook/smartlook.dart';\n
+import 'package:flutter_smartlook/flutter_smartlook.dart';\n
 class _MyAppState extends State<MyApp> {
 	@override
 	void initState() {
@@ -40,7 +51,19 @@ class _MyAppState extends State<MyApp> {
                 Smartlook.setupAndStartRecording(options);
 		...
 	  }
-}`,
+}
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SmartlookHelperWidget(
+      child: MaterialApp(
+        title: 'Flutter App',
+        home: HomeScreen(),
+      ),
+    );
+  }
+}
+`,
   }}
 />
 
@@ -72,12 +95,12 @@ Some **advanced use-case** and **troubleshooting** case-studies are described in
 **Issues and bugs** can be reported in the <Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker">issue tracker</Link>.
 \n
 **Concepts** underlying the Smartlook functionality are described in the Conceptual documentation:
-* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="android">Setup & Start Recording</Link>
-* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="android">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
-* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="android">Smartlook Life Cycle in the App, Session, User</Link>
-* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="android">What is recorded by Smartlook, and how?</Link>
-* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="android">Handling Sensitive Data</Link>
-* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="android">Screen Recording Quality</Link>
-* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="android">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="android">Navigation</Link> in the App
-* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="android">Smartlook integration with other tools</Link>
+* <Link to="/docs/sdk/conceptual/setup-and-start-recording" platform="flutter">Setup & Start Recording</Link>
+* <Link to="/docs/sdk/conceptual/when-the-recordings-appear-in-dashboard" platform="flutter">How are the data recorded and uploaded to be visible in the player and dashboard?</Link>
+* <Link to="/docs/sdk/conceptual/life-cycle-session-user" platform="flutter">Smartlook Life Cycle in the App, Session, User</Link>
+* <Link to="/docs/sdk/conceptual/what-and-how-is-recorded" platform="flutter">What is recorded by Smartlook, and how?</Link>
+* <Link to="/docs/sdk/conceptual/handling-sensitive-data" platform="flutter">Handling Sensitive Data</Link>
+* <Link to="/docs/sdk/conceptual/screen-recording-quality" platform="flutter">Screen Recording Quality</Link>
+* Tracking <Link to="/docs/sdk/conceptual/event-tracking" platform="flutter">Events</Link> and <Link to="/docs/sdk/conceptual/recording-navigation" platform="flutter">Navigation</Link> in the App
+* <Link to="/docs/sdk/conceptual/integrating-with-other-tools" platform="flutter">Smartlook integration with other tools</Link>
 `}</TextBlock>

@@ -1005,9 +1005,18 @@ Smartlook attempts to hide selected sensitive UI element automatically. It can b
 Sensitive elements are **hidden locally** on the device; no sensitive data are transferred over the network and stored in the dashboard.
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,cocos">{`
+<TextBlock visibleOn="unity,cocos">{`
 On this platform, selectively hiding sensitive parts of the screen is not possible.\n
 To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
+`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+On this platform, selectively hiding sensitive parts of the screen is not possible.\n
+To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
+`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+Alternatively, using one of the **wireframe** rendering modes records screen in a schematic way, showing no user data.
 `}</TextBlock>
 
 <TextBlock visibleOn="unreal">{`
@@ -3422,7 +3431,7 @@ SDK can use different methods of capturing screen image data. These are called *
 \n
 `}</TextBlock>
 
-<TextBlock kind="important" visibleOn="flutter,cocos">{`
+<TextBlock kind="important" visibleOn="cocos">{`
 Not all rendering modes are available on this platform. Only RenderingMode.NO_RENDERING or RenderingMode.NATIVE are available.
 `}</TextBlock>
 
@@ -3543,7 +3552,7 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
     },
     flutter: {
     dart: `
-enum SmartlookRenderingMode { native, no_rendering }
+enum SmartlookRenderingMode { native, no_rendering, wireframe }
 \n
 Smartlook.setRenderingMode(SmartlookRenderingMode renderingMode);
 `,
@@ -3564,6 +3573,30 @@ public static void SetRenderingMode(RenderingMode renderingMode, RenderingModeOp
       `,
     },
   }}
+/>
+
+<TextBlock visibleOn="flutter">{`
+Please note that on flutter, to fully support **wireframe** mode, you have to add **SmartlookHelperWidget** as the root widget of your app.
+`}</TextBlock>
+
+<CodeBlock kind="example"
+    snippets={{
+flutter: {
+      dart: `
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SmartlookHelperWidget(
+      child: MaterialApp(
+        title: 'Flutter App',
+        home: HomeScreen(),
+      ),
+    );
+  }
+}
+      `,
+    },
+    }}
 />
 
 <CodeBlock
