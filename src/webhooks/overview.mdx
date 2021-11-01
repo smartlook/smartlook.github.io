@@ -5,6 +5,7 @@ route: /docs/webhooks/overview
 ---
 
 import { Title, Code, TextBlock } from "components"
+import webhook_settings from 'assets/webhook_settings.png'
 
 <Title>Overview</Title>
 Webhooks are sent from anomalies. Anomalies are described on our updates page <a href="https://updates.smartlook.com/worried-about-anomalies-in-your-events-190172" target="_blank">HERE</a>
@@ -15,19 +16,16 @@ Webhooks are sent from anomalies. Anomalies are described on our updates page <a
 
 Optionaly set secret
 
-screen from app.smartlook.com
+<img visibleOn="android,ios" src={webhook_settings} />
 
 <h3> 2. Set API on the server side </h3>
 
 Webhooks are sent as POST HTTP request. In the section [parameters](#parameters) is more information about webhooks message.
 
-<h3> 3. Catch HTTP requests </h3>
 
+<h3> 3. Verify the message </h3>
 
-
-<h3> 4. Verify the message </h3>
-
-You can verify the message about HASH. More info [HERE](#security)
+You can verify the message about HASH. More info is below.
 
 # Security
 When your secret token is set, Smartlook uses it to create a hash signature with each payload, in the header.
@@ -49,6 +47,7 @@ const signature = crypto
 ```
 
 # Parameters
+
 
 Example of webhook body
 ```
