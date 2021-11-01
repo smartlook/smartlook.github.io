@@ -846,7 +846,7 @@ Smartlook.isRecording().then((isRecording: boolean) => {
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin,react">{`
+<TextBlock visibleOn="ios,android,cocos,xamarin,react">{`
 ## Reset session
 Current session can be ended and a new session created by calling:
 `}</TextBlock>
@@ -878,11 +878,19 @@ public static void ResetSession(bool resetUser = false)
       typescript: `
 Smartlook.resetSession(resetUser: boolean);
       `
-    }
+    },
+    ios: {
+      swift: `
+class func resetSession(resetUser: Bool)
+`,
+      'objective-c': `
++ (void)resetSessionAndUser:(BOOL)resetUser
+    `,
+  },
   }}
 />
 
-<TextBlock visibleOn="android,cocos,xamarin,react">{`
+<TextBlock visibleOn="android,cocos,xamarin,react,ios">{`
 If \`resetUser\` is set to \`true\`, SDK will create a new visitor during the reset. This is especially beneficial when a new user needs to be identified (typically after logout).\n
 A new session can be created on SDK setup:
 `}</TextBlock>
@@ -919,7 +927,21 @@ xamarin: {
 Analytics.SetupOptions smartlookSetupOptions = new Analytics.SetupOptions(startNewSession: true);
 Smartlook.Analytics.Setup(API_KEY, smartlookSetupOptions);
 `,
-    }
+    },
+    ios: {
+      swift: `
+let setupConfig = Smartlook.SetupConfiguration(key: "API_KEY")
+setupConfig.resetSession = true         // to reset just the session
+setupConfig.resetSessionAndUser = true  // alternatively, to reset user and implicitly the session, too
+Smartlook.setupAndStartRecording(configuration: setupConfig)
+`,
+      'objective-c': `
+SLSetupConfiguration *slConfig = [[SLSetupConfiguration alloc] initWithKey:@"API_KEY"];
+slConfig.resetSession = YES;         // to reset just the session
+slConfig.resetSessionAndUser = YES;  // alternatively, to reset user and implicitly the session, too
+[Smartlook setupAndStartRecordingWithConfiguration:slConfig];
+    `,
+  },
   }}
 />
 
@@ -983,9 +1005,18 @@ Smartlook attempts to hide selected sensitive UI element automatically. It can b
 Sensitive elements are **hidden locally** on the device; no sensitive data are transferred over the network and stored in the dashboard.
 `}</TextBlock>
 
-<TextBlock visibleOn="flutter,unity,cocos">{`
+<TextBlock visibleOn="unity,cocos">{`
 On this platform, selectively hiding sensitive parts of the screen is not possible.\n
 To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
+`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+On this platform, selectively hiding sensitive parts of the screen is not possible.\n
+To hide sensitive data, screen capturing must be stopped completelly by using **no recording** mode.
+`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+Alternatively, using one of the **wireframe** rendering modes records screen in a schematic way, showing no user data.
 `}</TextBlock>
 
 <TextBlock visibleOn="unreal">{`
@@ -3400,7 +3431,7 @@ SDK can use different methods of capturing screen image data. These are called *
 \n
 `}</TextBlock>
 
-<TextBlock kind="important" visibleOn="flutter,cocos">{`
+<TextBlock kind="important" visibleOn="cocos">{`
 Not all rendering modes are available on this platform. Only RenderingMode.NO_RENDERING or RenderingMode.NATIVE are available.
 `}</TextBlock>
 
@@ -3521,7 +3552,7 @@ class func setRenderingMode(to renderingMode: Smartlook.RenderingMode)
     },
     flutter: {
     dart: `
-enum SmartlookRenderingMode { native, no_rendering }
+enum SmartlookRenderingMode { native, no_rendering, wireframe }
 \n
 Smartlook.setRenderingMode(SmartlookRenderingMode renderingMode);
 `,
@@ -3542,6 +3573,30 @@ public static void SetRenderingMode(RenderingMode renderingMode, RenderingModeOp
       `,
     },
   }}
+/>
+
+<TextBlock visibleOn="flutter">{`
+Please note that on flutter, to fully support **wireframe** mode, you have to add **SmartlookHelperWidget** as the root widget of your app.
+`}</TextBlock>
+
+<CodeBlock kind="example"
+    snippets={{
+flutter: {
+      dart: `
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SmartlookHelperWidget(
+      child: MaterialApp(
+        title: 'Flutter App',
+        home: HomeScreen(),
+      ),
+    );
+  }
+}
+      `,
+    },
+    }}
 />
 
 <CodeBlock

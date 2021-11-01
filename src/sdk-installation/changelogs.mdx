@@ -12,6 +12,126 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
+<TextBlock visibleOn="ios">{`
+## iOS [1.8.0] - 2021-10-20
+\n
+- Maintenance release dedicated to various optimisations 
+***`}</TextBlock>
+
+
+<TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
+{`
+Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
+This means, that the bugfixes in the latest standard iOS/Android SDK release propagate to all respective frameworks as well.\n
+New API methods, however, must wait for the respective platfrom plugin update.
+`}
+</TextBlock>
+
+
+
+<TextBlock visibleOn="react">{`
+## React native [1.2.2] - 2021-10-19
+\n
+### Changed
+- Updated native SDK library to latest version
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [3.0.2] - 2021-10-13
+\n
+### Fixed
+- Gradle build issues resolved
+\n
+***`}</TextBlock>
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [3.0.1] - 2021-10-12
+\n
+### Fixed
+- Orientation change detected on orientation force 
+\n
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="flutter">{`
+## Flutter [3.0.0] - 2021-10-11
+\n
+### Added
+- Support of "wireframe" mode
+\n	
+### Changed
+- New name - \`flutter_smartlook\`
+- Update of both iOS and Android SDKs -> performance and stability improvements
+- Support of latest Flutter versions
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [1.8.7] - 2021-10-11
+\n
+### Fixed
+- Fragment transaction sensitive views handling
+- Orientation change detected on orientation force
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [1.8.6] - 2021-09-20
+\n
+### Fixed
+- Dialog sensitive views correctly hidden
+\n
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="ios">{`
+## iOS [1.7.10] - 2021-08-30
+\n
+### Fixed
+- Ocassional crashes in Smartlook cache serialisation in offline (<Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/86">the related github issue</Link>)
+- Ocassional crashes in apps that use \`AVFoundation\` player. 
+***`}</TextBlock>
+
+
+<TextBlock visibleOn="ios">{`
+## iOS [1.7.9] - 2021-07-30
+\n
+### Fixed
+- Various improvements to SDK stability, lesser memory and CPU consumption.
+***`}</TextBlock>
+
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [1.8.5] - 2021-08-19
+\n
+### Fixed
+- Prefromance improvements
+- Improved sensitive view hidding
+\n
+***`}</TextBlock>
+
+
+
+
+<TextBlock visibleOn="android">{`
+## Android SDK [1.8.4] - 2021-08-11
+\n
+### Fixed
+- Stability improvements regarding multithreading
+- Various bug fixes	
+\n
+***`}</TextBlock>
+
+
 
 <TextBlock visibleOn="android">{`
 ## Android SDK [1.8.3] - 2021-07-09
@@ -46,15 +166,6 @@ This changelog shows all relevant releases for each platform.
 - Build identical to the previous version released using Xcode 12.4 to keep bitcode compatibility
 (<Link to="https://github.com/smartlook/smartlook-mobile-issue-tracker/issues/83">the related github issue</Link>)\n
 ***`}</TextBlock>
-
-<TextBlock kind="important" visibleOn="react,cordova,ionic,cocos,flutter">
-{`
-Standard iOS/Android SDK is linked as a Cocopoad/Gradle dependency to React Native, Cordova, Ionic and Cocos plugins. \n
-This means, that the bugfixes in the latest standard iOS/Android SDK release propagate to all respective frameworks as well.\n
-New API methods, however, must wait for the respective platfrom plugin update.
-`}
-</TextBlock>
-
 
 
 <TextBlock visibleOn="android">{`
