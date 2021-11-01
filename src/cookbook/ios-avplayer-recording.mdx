@@ -13,7 +13,7 @@ import { Title, TextBlock } from 'components'
 This guide applies to all frameworks that create or generate iOS applications.
 `}</TextBlock>
 
-Support for recording video from `AVPlayerLayer` or from camera preview via `AVCaptureVideoPreviewLayer` is not currently available.
+Support for recording video from `AVPlayerLayer` or camera preview via `AVCaptureVideoPreviewLayer` is not currently available.
 
 ## Symptoms
 
@@ -23,17 +23,17 @@ Support for recording video from `AVPlayerLayer` or from camera preview via `AVC
 
 ## Technical reasons
 
-Both layers uses low level API that serves data to this layers via pixel buffers. Graphic data from `AVFoundation` are processed directly on device GPU with hardware support, not in `Core Graphics` framework like other GUI parts. For us are these low level layer inaccessible.
+Both layers use low-level API that serves data to these layers via pixel buffers. Graphic data from `AVFoundation` are processed directly on-device GPU with hardware support, not in `Core Graphics` framework like other GUI parts. For us are these low-level layers inaccessible.
 
 <TextBlock kind="note">{`
 \`AVPlayer\` recording failure is obviously an architectural problem that has not been solved by Apple for a long time. Their own \`ReplayKit\` framework behaves exactly the same, and Apple itself points this out in the documentation.\n
-In general, using the camera preview does not mean that recording is not working. 
+In general, using the camera preview does not mean that the recording is not working. 
 For example, in \`ARKit\` we do not have problems because internally uses \`MetalKit\`. `}</TextBlock>
 
 ## Recommendations
 
 ### Camera preview
-Do not use `AVCaptureVideoPreviewLayer` to render the data from device camera. 
+Do not use `AVCaptureVideoPreviewLayer` to render the data from the device camera. 
 
 Instead, use `MTKView` (`MetalKit`) to preview the camera. Such a solution works, and it does not seem to have any performance impacts.
 
