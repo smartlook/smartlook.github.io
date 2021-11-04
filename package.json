@@ -10,7 +10,8 @@
 		"prettier:write": "yarn prettier --write",
 		"dev": "docz dev",
 		"build": "docz build && cp ./CNAME ./docs/CNAME",
-		"serve": "docz serve"
+		"serve": "docz serve",
+		"clean": "docz clean"
 	},
 	"dependencies": {
 		"@mdx-js/runtime": "^1.6.6",
