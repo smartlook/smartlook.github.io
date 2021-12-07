@@ -13,6 +13,16 @@ import { usePlatforms } from 'hooks'
 This changelog shows all relevant releases for each platform.
 
 <TextBlock visibleOn="ios">{`
+## iOS [1.8.3] - 2021-12-04
+\n
+### Fixed
+- Occasional crashes caused by \`EXC_BAD_ACCESS KERN_INVALID_ADDRESS\`.
+- Safer handling of video pixel buffer pool to avoid \`Fatal Exception: NSInternalInconsistencyException\` crashes with uncertain cause.
+### Changed
+- Minor internal data handling optimization
+***`}</TextBlock>
+
+<TextBlock visibleOn="ios">{`
 ## iOS [1.8.2] - 2021-11-24
 \n
 ### Fixed
