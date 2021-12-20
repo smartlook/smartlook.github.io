@@ -1,5 +1,6 @@
 module.exports = {
 	dest: '/docs',
+	src: 'src/',
 	base: '/',
 	description: 'Smartlook documentation',
 	menu: [
@@ -61,5 +62,4 @@ module.exports = {
 		},
 	],
 	title: 'Smartlook',
-	files: 'src/**/*.{md,mdx}',
 }

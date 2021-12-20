@@ -14,10 +14,11 @@
 		"clean": "docz clean"
 	},
 	"dependencies": {
+		"@emotion/core": "^10.0.0",
 		"@mdx-js/runtime": "^1.6.6",
 		"@svgr/webpack": "^5.4.0",
 		"classnames": "^2.2.6",
-		"docz": "^2.3.2-alpha.0",
+		"docz": "^2.3.3-alpha.0",
 		"gatsby-plugin-svgr": "^2.0.2",
 		"nanopop": "^2.1.0",
 		"prismjs": "^1.21.0",
@@ -26,7 +27,8 @@
 		"react-dom": "^16.13.1",
 		"scroll-to-element": "^2.0.3",
 		"smoothscroll-polyfill": "^0.4.4",
-		"swagger-ui-react": "^3.32.2"
+		"swagger-ui-react": "^3.32.2",
+		"typescript": "^4.5.4"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.1.0",
