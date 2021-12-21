@@ -13,3 +13,10 @@ import { Title, Code, TextBlock } from "components"
 2. Get the `visitorId` from the response
 3. Get `projectId` and `organizationId` from your dashboard URL
 4. Now you can build the URL to the visitor detail as follows: `https://app.smartlook.com/org/{organizationId}/project/{projectId}/recordings?visitor={visitorId}`
+
+
+# Deeplink to delete visitors
+1. Check out the [API reference](/docs/rest-api/reference)
+2. Are existing 2 endpoints for deleting visitors and their related events, sessions...
+    1. Delete only 1 visitor by `visitorId` (unique ID obtained by Smartlook) - this `visitorId` fill in to the path
+    2. Delete more visitors by `userId` (`UserId` is a value, which is obtained from the recorded page, where you can set this ID)

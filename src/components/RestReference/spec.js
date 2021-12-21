@@ -1320,6 +1320,25 @@ export const spec = {
 				tags: ['visitors'],
 				parameters: [],
 				operationId: 'deleteVisitors',
+				requestBody: {
+					content: {
+						'application/json': {
+							schema: {
+								type: 'object',
+								properties: {
+									uids: {
+										type: 'array',
+										items: {
+											type: 'string',
+											additionalProperties: false,
+										},
+									},
+								},
+								additionalProperties: false,
+							},
+						},
+					},
+				},
 			},
 		},
 		'/api/v1/statistics': {
