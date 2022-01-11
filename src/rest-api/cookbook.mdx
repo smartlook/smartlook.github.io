@@ -5,6 +5,8 @@ route: /docs/rest-api/cookbook
 ---
 
 import { Title, Code, TextBlock } from "components"
+import postman_delete_by_vid from 'assets/postman_delete_by_vid.png'
+import postman_delete_by_uids from 'assets/postman_delete_by_uids.png'
 
 <Title>Cookbook</Title>
 
@@ -16,7 +18,9 @@ import { Title, Code, TextBlock } from "components"
 
 
 # Delete identified visitors
-1. Check out the [API reference](/docs/rest-api/reference)
-2. There are 2 endpoints to delete visitors and their related events and sessions
-    1. Delete only 1 visitor by `visitorId` (unique ID obtained by Smartlook) - this `visitorId` fill in to the path
-    2. Delete more visitors by `userId` (`userId` is set by identify method in the SDK)
+There are 2 endpoints to delete visitors and their related events and sessions
+1. Delete only 1 visitor by `visitorId` (unique ID obtained by Smartlook) - this `visitorId` fill in to the path `/api/v1/visitors/{visitorId}`
+<img src={postman_delete_by_vid} />
+
+2. Delete more visitors by `userId` (`userId` is set by identify method in the SDK). Endpoint `/api/v1/visitors`
+<img src={postman_delete_by_uids} />
