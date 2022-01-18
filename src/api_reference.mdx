@@ -3849,41 +3849,6 @@ public static RenderingModeOption CurrentRenderingModeOption
   }}
 />
 
-<TextBlock visibleOn="android">{`
-## Interactive player - BETA
-Apart from video or wireframe data, SDK can also send additional data needed for the interactive player. Currently this BETA functionality is accessible via builder. Read more about this interactive player's feature [in conceptual documentation](/docs/sdk/conceptual/interactive-player).:
-`}</TextBlock>
-
-<CodeBlock
-   snippets={{
-      android: {
-        java: `
-Smartlook.SetupOptionsBuilder setupOptionsBuilder = new Smartlook.SetupOptionsBuilder(API_KEY)
-        .enableWebGLRecording(WebGLRecordingMode webGLRecordingMode);
-Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
-      `,
-        kotlin: `
-val setupOptionsBuilder = Smartlook.SetupOptionsBuilder(API_KEY)
-        .enableWebGLRecording(webGLRecordingMode: WebGLRecordingMode);
-Smartlook.setupAndStartRecording(setupOptionsBuilder.build());
-        `,
-      },
-    }}
-/>
-
-<TextBlock visibleOn="android">{`
-WebGL modes available are the following:
-`}</TextBlock>
-
-<TextBlock visibleOn="android">{`
-* \`WebGLRecordingMode.WEBGL_ONLY\`
-* \`WebGLRecordingMode.WEBGL_HYBRID\`
-`}</TextBlock>
-
-<TextBlock kind="note" visibleOn="android">{`
-\`WEBGL_ONLY\` mode does not record any screen data, similar to \`NO_RENDERING\`, however you’ll be able to inspect the app's structure in our interactive player. \`WEBGL_HYBRID\` mode sends video or wireframe data and WebGL-related data as well. [read more](#no-rendering).
-`}</TextBlock>
-
 
 <TextBlock visibleOn="android">{`
 # Network intercepting
