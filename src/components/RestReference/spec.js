@@ -699,6 +699,38 @@ export const spec = {
 				],
 				operationId: 'getVisitorDetails',
 			},
+			delete: {
+				responses: {
+					200: {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										deletedItems: {
+											type: 'number',
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['visitors'],
+				parameters: [
+					{
+						in: 'path',
+						schema: {
+							type: 'string',
+						},
+						name: 'visitorId',
+						required: true,
+					},
+				],
+				operationId: 'deleteVisitor',
+			},
 		},
 		'/api/v1/visitors/{visitorId}/sessions': {
 			get: {
@@ -1254,6 +1286,50 @@ export const spec = {
 													],
 												},
 											},
+											additionalProperties: false,
+										},
+									},
+								},
+								additionalProperties: false,
+							},
+						},
+					},
+				},
+			},
+		},
+		'/api/v1/visitors': {
+			delete: {
+				responses: {
+					200: {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										deletedItems: {
+											type: 'number',
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['visitors'],
+				parameters: [],
+				operationId: 'deleteVisitors',
+				requestBody: {
+					content: {
+						'application/json': {
+							schema: {
+								type: 'object',
+								properties: {
+									uids: {
+										type: 'array',
+										items: {
+											type: 'string',
 											additionalProperties: false,
 										},
 									},
