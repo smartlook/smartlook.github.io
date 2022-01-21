@@ -12,6 +12,16 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
+<TextBlock visibleOn="ios">{`
+## iOS [1.8.4] - 2022-01-31
+\n
+Mostly a maintenance release to improve the SDK stability. Some internal refactorings.
+### Fixed
+- Occasional crashes caused by unsafe concurrent access to SDK caches.
+- Occasionaly missing last few seconds of the recording.
+### Changed
+- Some refactoring in internal data handling and uploading.
+***`}</TextBlock>
 
 
 <TextBlock visibleOn="android">{`
