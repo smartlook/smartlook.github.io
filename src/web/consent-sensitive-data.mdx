@@ -1,0 +1,153 @@
+---
+name: 'Consent and sensitive data'
+route: /docs/web/consent-sensitive-data
+menu: Web
+---
+
+import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from 'components'
+
+<Title>Consent and sensitive data</Title>
+
+<TextBlock kind="important">
+	{`
+  This API is for projects created after **6th of February 2022**.
+  \n\n
+  New consent and sensitivity data protection policy applies. More info in our <a href="https://help.smartlook.com/en/articles/3244453-terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+  \n\n
+  <small>API for projects created before **6th of February 2022** can be found at <a href="https://docs.smartlook.com/docs/web/gdpr" target="_blank" rel="noopener noreferrer">GDPR</a>.</small>
+`}
+</TextBlock>
+
+## Potential sensitive data
+
+No potential sensitive data are recorded. This means that inputs, ip addresses, on-page emails and long numbers are **not recorded by default**.
+
+## Consent
+
+You are obligated to get visitors' consent when you want to store potential sensitive data on our end. Unless covered by your Terms of Service.
+
+## API
+
+Use the `record` API calls after consent is handled.
+These should be called always after `init` call.
+
+### Form inputs
+
+Use `record` with `{ forms: true }` or `{ forms: false }` attributes to start or stop recording of all form inputs.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true });
+</script>
+`,
+	}}
+/>
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: false });
+</script>
+`,
+	}}
+/>
+
+### IP address
+
+Use `record` with `{ ips: true }` attribute to start recording of ip address.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { ips: true });
+</script>
+`,
+	}}
+/>
+
+<TextBlock kind="important">
+	{`
+Recording of IP address can't be stopped once started.
+`}
+</TextBlock>
+
+### On-page emails
+
+Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start or stop recording of on-page emails.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { emails: true });
+</script>
+`,
+	}}
+/>
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { emails: false });
+</script>
+`,
+	}}
+/>
+
+### On-page longer numbers
+
+Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of on-page numbers.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { numbers: true });
+</script>
+`,
+	}}
+/>
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { numbers: false });
+</script>
+`,
+	}}
+/>
+
+<TextBlock kind="important">
+	{`
+Numbers in format **\\d[\\d\\s\\-]{6}\\d** are being masked
+`}
+
+</TextBlock>
+
+## Combining calls
+
+You can combine these calls together like this:
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, numbers: true, emails: false, ips: true });
+</script>
+`,
+	}}
+/>

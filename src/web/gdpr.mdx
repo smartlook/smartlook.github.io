@@ -1,10 +1,19 @@
 ---
-name: "GDPR"
+name: 'GDPR'
 route: /docs/web/gdpr
 menu: Web
+hidden: true
 ---
 
-import { Code, CodeBlock, TextBlock, Link, Title, Subtitle, Image } from 'components'
+import {
+	Code,
+	CodeBlock,
+	TextBlock,
+	Link,
+	Title,
+	Subtitle,
+	Image,
+} from 'components'
 
 import gdpr_consent_img from 'assets/web/gdpr_consent.png'
 
@@ -12,7 +21,15 @@ import gdpr_consent_img from 'assets/web/gdpr_consent.png'
 <Subtitle>Record user information about EU visitors.</Subtitle>
 
 <TextBlock kind="important">
-{`
+	{`
+  This API is for projects created before **6th of February 2022**.
+  \n\n
+  API for projects created after **6th of February 2022** can be found at <a href="https://docs.smartlook.com/docs/web/consent-sensitive-data" target="_blank" rel="noopener noreferrer">Consent sensitive data</a>.
+`}
+</TextBlock>
+
+<TextBlock kind="important">
+	{`
 Make sure you enabled the corresponding project settings before using this API.
 `}
 </TextBlock>
@@ -28,9 +45,9 @@ At Smartlook we use a pop-up window to ask for user consent. You should implemen
 Verify if a visitor gave their consent or not:
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   smartlook(function() {
     console.log(smartlook.consent.api)
@@ -39,7 +56,7 @@ Verify if a visitor gave their consent or not:
   });
 </script>
 `,
-  }}
+	}}
 />
 
 There are 3 possible values that you can see in the console:
@@ -53,9 +70,9 @@ There are 3 possible values that you can see in the console:
 User consented to have their form inputs recorded.
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   // in this variable inser your consent
   var consentText = 'Here goes consent text from your website.';\n
@@ -65,7 +82,7 @@ User consented to have their form inputs recorded.
   smartlook('consentForms', clientDecision ? consentText : false);
 </script>
 `,
-  }}
+	}}
 />
 
 ## IP address
@@ -73,9 +90,9 @@ User consented to have their form inputs recorded.
 User consented to have their IP address recorded.
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   // in this variable inser your consent
   var consentText = 'Here goes consent text from your website.';\n
@@ -85,7 +102,7 @@ User consented to have their IP address recorded.
   smartlook('consentIP', clientDecision ? consentText : false);
 </script>
 `,
-  }}
+	}}
 />
 
 ## Identify user via API
@@ -93,9 +110,9 @@ User consented to have their IP address recorded.
 User consented to being identified via the API.
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   // in this variable inser your consent
   var consentText = 'Here goes consent text from your website.';\n
@@ -105,7 +122,7 @@ User consented to being identified via the API.
   smartlook('consentAPI', clientDecision ? consentText : false);
 </script>
 `,
-  }}
+	}}
 />
 
 ## GDPR safe data
@@ -113,12 +130,12 @@ User consented to being identified via the API.
 You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
 
 <Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <p data-recording-gdpr-safe>
   Tesla Model X price is $80,700.
 </p>
 `,
-  }}
+	}}
 />
