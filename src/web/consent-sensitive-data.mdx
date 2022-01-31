@@ -4,36 +4,51 @@ route: /docs/web/consent-sensitive-data
 menu: Web
 ---
 
-import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from 'components'
+import { Code, TextBlock, Title } from 'components'
 
 <Title>Consent and sensitive data</Title>
 
 <TextBlock kind="important">
-	{`
-  This API is for projects created after **6th of February 2022**.
-  \n\n
-  New consent and sensitivity data protection policy applies. More info in our <a href="https://help.smartlook.com/en/articles/3244453-terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
-  \n\n
-  <small>API for projects created before **6th of February 2022** can be found at <a href="https://docs.smartlook.com/docs/web/gdpr" target="_blank" rel="noopener noreferrer">GDPR</a>.</small>
+{`
+  <b>IMPORTANT NOTE</b>: This brand-new API is a replacement for an old <a href="/docs/web/gdpr" target="_blank" rel="noopener noreferrer">consent API</a>.
+  It is enabled by default in projects created after the 6th of February 2022.
+  If your project was created prior to this date please refer to <a href="/docs/web/consent-sensitive-data#migration-guide">the migration guide</a>.
+  There is an ongoing transition period until the 3rd of March 2022 in which you should migrate to the new API.
+  After the period old API will no longer work and any call will show only a warning with a link to this documentation.
 `}
 </TextBlock>
 
-## Potential sensitive data
-
-No potential sensitive data are recorded. This means that inputs, ip addresses, on-page emails and long numbers are **not recorded by default**.
+The section covers our API for handling sensitive data.
+It can be useful especially when you want to have control over which data is being recorded.
+Our WEB SDK is written with privacy-first in mind therefore we do not record any potentially sensitive data by default.
+This means that inputs, IP addresses, on-page emails and long numbers are not recorded
+unless you enable it explicitly via [record API](#record-api).
 
 ## Consent
+<TextBlock kind="note">
+{`
+ <b>By default, no sensitive data are recorded. You most likely need to get visitors' consent first before enabling recording sensitive data.</b>
+`}
+</TextBlock>
 
-You are obligated to get visitors' consent when you want to store potential sensitive data on our end. Unless covered by your Terms of Service.
+We divided sensitive data handling into four categories - form inputs, IP addresses, emails and numbers.
+Each category can be treated separately. This gives you a grained control over which data you want to be recorded.
+Please keep in mind that before enabling recording of any category you probably need to get consent
+from visitor first depending on which jurisdiction you are in.
+You can read more about it on our [Terms of Service](https://help.smartlook.com/en/articles/3244453-terms-of-service) page.
 
-## API
-
-Use the `record` API calls after consent is handled.
-These should be called always after `init` call.
+## Record API
+The `record` API allows you to handle recording of form inputs, IP addresses, emails and longer numbers individually.
+Following subsections explain how to use it correctly. This API should be called always after `init` call.
 
 ### Form inputs
+The `forms` option covers all interactive form elements such as `<input />`, `<select />` or `<textarea />`.
+These elements do not necessarily need to be within `<form />` to be recorded.
+Sensitive inputs such as passwords are never recorded even if recording forms is enabled.
+Instead, in recording we show typing animation to indicate user interaction with that particular field.
+If you have more elements you want to mask or not record at all you can always use our [data attributes API](/docs/web/sensitive-data-protection#masking).
 
-Use `record` with `{ forms: true }` or `{ forms: false }` attributes to start or stop recording of all form inputs.
+To start recording form inputs on your website use `record` with `{ forms: true }`.
 
 <Code
 	kind="example"
@@ -45,6 +60,8 @@ Use `record` with `{ forms: true }` or `{ forms: false }` attributes to start or
 `,
 	}}
 />
+
+To stop recording form inputs on your website use `record` with `{ forms: false }`.
 
 <Code
 	kind="example"
@@ -59,7 +76,16 @@ Use `record` with `{ forms: true }` or `{ forms: false }` attributes to start or
 
 ### IP address
 
-Use `record` with `{ ips: true }` attribute to start recording of ip address.
+<TextBlock kind="note">
+{`
+Recording of IP address can not be stopped once started.
+`}
+</TextBlock>
+
+The IP address recording allows us to store customer IP address that can be used for example in filtering later on.
+Please note that once the IP address recording is enabled it cannot be stopped again.
+
+Use `record` with `{ ips: true }` attribute to start recording of IP address.
 
 <Code
 	kind="example"
@@ -72,15 +98,10 @@ Use `record` with `{ ips: true }` attribute to start recording of ip address.
 	}}
 />
 
-<TextBlock kind="important">
-	{`
-Recording of IP address can't be stopped once started.
-`}
-</TextBlock>
 
-### On-page emails
+### Emails
 
-Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start or stop recording of on-page emails.
+Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start or stop recording of emails on the page.
 
 <Code
 	kind="example"
@@ -104,9 +125,12 @@ Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start 
 	}}
 />
 
-### On-page longer numbers
+### Numbers
 
-Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of on-page numbers.
+Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of longer numbers.
+If longer numbers are not recorded we replace them with wildcards (*).
+This option is especially effective if you do not want to record telephone numbers, social numbers and so on.
+Longer number is defined as a sequence of 8 numbers in a row that can contain hyphens or space characters in between.
 
 <Code
 	kind="example"
@@ -130,16 +154,10 @@ Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to star
 	}}
 />
 
-<TextBlock kind="important">
-	{`
-Numbers in format **\\d[\\d\\s\\-]{6}\\d** are being masked
-`}
+### Combining calls
 
-</TextBlock>
-
-## Combining calls
-
-You can combine these calls together like this:
+All the calls can be combined.
+You can also specify only the subset of the fields. The fields that are not specified stay untouched.
 
 <Code
 	kind="example"
@@ -147,6 +165,55 @@ You can combine these calls together like this:
 		javascript: `
 <script>
   smartlook('record', { forms: true, numbers: true, emails: false, ips: true });
+</script>
+`,
+	}}
+/>
+
+
+## Migration guide
+
+If you use an old `consent` API then migration to new `record` API is pretty seamless.
+Old consent API will be cut off at the 3rd of March 2022. Any calls to this API will only print warning to console.
+
+As you can see in the example below there is no equivalent for `consentAPI` call in the new record API.
+Consent for identifying via API is implicitly given once you call [`identify` API](/docs/web/identify-visitor).
+Assuming you enabled identify API in project settings in our application.
+
+Old calls:
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('consentForms', 'consent given');
+  smartlook('consentIP','consent given');
+  smartlook('consentAPI', 'consent given');
+</script>
+`,
+	}}
+/>
+
+New call:
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, ips: true });
+</script>
+`,
+	}}
+/>
+
+If you used to have numbers and emails recording enabled in your application you need to explicitly call it here now.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, emails: true, ips: true, numbers: true });
 </script>
 `,
 	}}

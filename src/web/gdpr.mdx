@@ -21,14 +21,14 @@ import gdpr_consent_img from 'assets/web/gdpr_consent.png'
 <Subtitle>Record user information about EU visitors.</Subtitle>
 
 <TextBlock kind="important">
-	{`
-  This API is for projects created before **6th of February 2022**.
-  \n\n
-  API for projects created after **6th of February 2022** can be found at <a href="https://docs.smartlook.com/docs/web/consent-sensitive-data" target="_blank" rel="noopener noreferrer">Consent sensitive data</a>.
-`}
+{`
+  **IMPORTANT NOTE**: This API is deprecated and works only for projects created before **6th of February 2022**.
+  There is an ongoing transition period until the 3rd of March 2022 in which you should migrate to the new API
+  described in <a href="/docs/web/consent-sensitive-data" target="_blank" rel="noopener noreferrer">Consent sensitive data</a> section.
+  After the period old API will no longer work and any call will show only a warning with a link to this documentation.`}
 </TextBlock>
 
-<TextBlock kind="important">
+<TextBlock kind="note">
 	{`
 Make sure you enabled the corresponding project settings before using this API.
 `}
@@ -74,7 +74,7 @@ User consented to have their form inputs recorded.
 	snippets={{
 		javascript: `
 <script>
-  // in this variable inser your consent
+  // in this variable insert your consent
   var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
@@ -94,7 +94,7 @@ User consented to have their IP address recorded.
 	snippets={{
 		javascript: `
 <script>
-  // in this variable inser your consent
+  // in this variable insert your consent
   var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
@@ -114,7 +114,7 @@ User consented to being identified via the API.
 	snippets={{
 		javascript: `
 <script>
-  // in this variable inser your consent
+  // in this variable insert your consent
   var consentText = 'Here goes consent text from your website.';\n
   // choose only one variable
   var clientDecision = true; // if user agreed and provided consent
@@ -127,7 +127,7 @@ User consented to being identified via the API.
 
 ## GDPR safe data
 
-You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
+You can add attribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
 
 <Code
 	kind="example"
