@@ -12,6 +12,20 @@ import { usePlatforms } from 'hooks'
 
 This changelog shows all relevant releases for each platform.
 
+<TextBlock visibleOn="ios">{`
+## iOS [1.8.5] - 2022-00-08
+\n
+Maintenance and bugfixing release.
+### Added
+- Basic support for SwiftUI wireframe
+### Fixed
+- a bug that caused occasional corrupted records
+- a bug in data upload handling that occasionally caused crashes
+- a bug that mysteriously caused crashes when navigating with UIBarButtonItem
+- a bugs that may cause crashes due to unsafe concurrent access to some internal caches
+- a bug that may cause crashes due to accessing still locked filesystem
+- several other minor tweaks and fixes 
+***`}</TextBlock>
 
 
 <TextBlock visibleOn="android">{`
