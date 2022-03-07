@@ -16,17 +16,23 @@ import {
 } from 'components'
 
 import gdpr_consent_img from 'assets/web/gdpr_consent.png'
+import consent_v1 from 'assets/web/consent_v1.png'
+import consent_v2 from 'assets/web/consent_v2.png'
 
 <Title>GDPR</Title>
 <Subtitle>Record user information about EU visitors.</Subtitle>
 
 <TextBlock kind="important">
-{`
-  **IMPORTANT NOTE**: This API is deprecated and works only for projects created before **6th of February 2022**.
-  There is an ongoing transition period until the 3rd of March 2022 in which you should migrate to the new API
+	{`
+  **IMPORTANT NOTE**: This API is deprecated and works only for projects created before **14th of March 2022** (consent version 1).
+  There is an ongoing transition period until the 16th of May 2022 in which you should migrate to the new API
   described in <a href="/docs/web/consent-sensitive-data" target="_blank" rel="noopener noreferrer">Consent sensitive data</a> section.
-  After the period old API will no longer work and any call will show only a warning with a link to this documentation.`}
+  After the period old API will no longer work and any call will show only a warning with a link to this documentation.<br />
+  <b>Project's consent version</b> can be found in project detail (screenshot below).
+  `}
 </TextBlock>
+<img src={consent_v1} />
+<img src={consent_v2} />
 
 <TextBlock kind="note">
 	{`

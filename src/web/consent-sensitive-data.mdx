@@ -6,17 +6,24 @@ menu: Web
 
 import { Code, TextBlock, Title } from 'components'
 
+import consent_v1 from 'assets/web/consent_v1.png'
+import consent_v2 from 'assets/web/consent_v2.png'
+
 <Title>Consent and sensitive data</Title>
 
 <TextBlock kind="important">
-{`
+	{`
   <b>IMPORTANT NOTE</b>: This brand-new API is a replacement for an old <a href="/docs/web/gdpr" target="_blank" rel="noopener noreferrer">consent API</a>.
-  It is enabled by default in projects created after the 6th of February 2022.
-  If your project was created prior to this date please refer to <a href="/docs/web/consent-sensitive-data#migration-guide">the migration guide</a>.
-  There is an ongoing transition period until the 3rd of March 2022 in which you should migrate to the new API.
+  It is enabled by default in projects created after the 14th of March 2022 (consent version 2).
+  If your project was created prior to this date (consent version 1) please refer to <a href="/docs/web/consent-sensitive-data#migration-guide">the migration guide</a>.
+  There is an ongoing transition period until the 16th of May 2022 in which you should migrate to the new API.
   After the period old API will no longer work and any call will show only a warning with a link to this documentation.
+  <br /> <br />
+  <b>Project's consent version</b> can be found in project detail (screenshot below).
 `}
 </TextBlock>
+<img src={consent_v1} />
+<img src={consent_v2} />
 
 The section covers our API for handling sensitive data.
 It can be useful especially when you want to have control over which data is being recorded.
@@ -25,8 +32,9 @@ This means that inputs, IP addresses, on-page emails and long numbers are not re
 unless you enable it explicitly via [record API](#record-api).
 
 ## Consent
+
 <TextBlock kind="note">
-{`
+	{`
  <b>By default, no sensitive data are recorded. You most likely need to get visitors' consent first before enabling recording sensitive data.</b>
 `}
 </TextBlock>
@@ -38,10 +46,12 @@ from visitor first depending on which jurisdiction you are in.
 You can read more about it on our [Terms of Service](https://help.smartlook.com/en/articles/3244453-terms-of-service) page.
 
 ## Record API
+
 The `record` API allows you to handle recording of form inputs, IP addresses, emails and longer numbers individually.
 Following subsections explain how to use it correctly. This API should be called always after `init` call.
 
 ### Form inputs
+
 The `forms` option covers all interactive form elements such as `<input />`, `<select />` or `<textarea />`.
 These elements do not necessarily need to be within `<form />` to be recorded.
 Sensitive inputs such as passwords are never recorded even if recording forms is enabled.
@@ -77,7 +87,7 @@ To stop recording form inputs on your website use `record` with `{ forms: false 
 ### IP address
 
 <TextBlock kind="note">
-{`
+	{`
 Recording of IP address can not be stopped once started.
 `}
 </TextBlock>
@@ -97,7 +107,6 @@ Use `record` with `{ ips: true }` attribute to start recording of IP address.
 `,
 	}}
 />
-
 
 ### Emails
 
@@ -128,7 +137,7 @@ Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start 
 ### Numbers
 
 Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of longer numbers.
-If longer numbers are not recorded we replace them with wildcards (*).
+If longer numbers are not recorded we replace them with wildcards (\*).
 This option is especially effective if you do not want to record telephone numbers, social numbers and so on.
 Longer number is defined as a sequence of 8 numbers in a row that can contain hyphens or space characters in between.
 
@@ -170,17 +179,17 @@ You can also specify only the subset of the fields. The fields that are not spec
 	}}
 />
 
-
 ## Migration guide
 
 If you use an old `consent` API then migration to new `record` API is pretty seamless.
-Old consent API will be cut off at the 3rd of March 2022. Any calls to this API will only print warning to console.
+Old consent API will be cut off at the 16th of May 2022. Any calls to this API will only print warning to console.
 
 As you can see in the example below there is no equivalent for `consentAPI` call in the new record API.
 Consent for identifying via API is implicitly given once you call [`identify` API](/docs/web/identify-visitor).
 Assuming you enabled identify API in project settings in our application.
 
 Old calls:
+
 <Code
 	kind="example"
 	snippets={{
@@ -195,12 +204,13 @@ Old calls:
 />
 
 New call:
+
 <Code
 	kind="example"
 	snippets={{
 		javascript: `
 <script>
-  smartlook('record', { forms: true, ips: true });
+  smartlook('record', { forms: true, ips: true, api: true });
 </script>
 `,
 	}}
@@ -213,7 +223,7 @@ If you used to have numbers and emails recording enabled in your application you
 	snippets={{
 		javascript: `
 <script>
-  smartlook('record', { forms: true, emails: true, ips: true, numbers: true });
+  smartlook('record', { forms: true, emails: true, ips: true, numbers: true, api: true });
 </script>
 `,
 	}}
