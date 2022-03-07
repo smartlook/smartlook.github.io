@@ -26,20 +26,20 @@ This guide is focused on Android platform.
   snippets={{
     groovy: `
 plugins {
-    id 'com.smartlook.crash-gradle-plugin' version '1.0.0'
+    id 'com.smartlook.crash-gradle-plugin' version '1.0.1'
 }
 `,
   }}
 />
 
-2. In the same `build.gradle` file, define the configuration for the plugin and include in your Smartlook API key:
+2. In the same `build.gradle` file, define the configuration for the plugin and include in your Smartlook API token:
 
 <Code
   kind="example"
   snippets={{
     groovy: `
 smartlookCrashGradlePlugin {
-    apiKey = "your-smartlook-api-key"
+    apiKey = "your-smartlook-api-token"
     force = true
 }
 `,
@@ -48,7 +48,7 @@ smartlookCrashGradlePlugin {
 
 <TextBlock kind="important">
 {`
-In order to upload the mapping file, the **unique project API key **is needed. It can be found in the mobile project settings in the <Link to="https://app.smartlook.com/settings/projects">Smartlook Dashboard</Link>.
+In order to upload the mapping file, the **REST API token** is needed. How to create/get it is described here<Link to="https://docs.smartlook.com/docs/rest-api/overview#create-the-api-token">Create the api token</Link>.
 `}
 </TextBlock>
 
