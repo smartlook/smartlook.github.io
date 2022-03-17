@@ -14,9 +14,9 @@ import consent_v2 from 'assets/web/consent_v2.png'
 <TextBlock kind="important">
 	{`
   <b>IMPORTANT NOTE</b>: This brand-new API is a replacement for an old <a href="/docs/web/gdpr" target="_blank" rel="noopener noreferrer">consent API</a>.
-  It is enabled by default in projects created after the 14th of March 2022 (consent version 2).
+  It is enabled by default in projects created after the 1st of April 2022 (consent version 2).
   If your project was created prior to this date (consent version 1) please refer to <a href="/docs/web/consent-sensitive-data#migration-guide">the migration guide</a>.
-  There is an ongoing transition period until the 16th of May 2022 in which you should migrate to the new API.
+  There is an ongoing transition period until the 1st of June 2022 in which you should migrate to the new API.
   After the period old API will no longer work and any call will show only a warning with a link to this documentation.
   <br /> <br />
   <b>Project's consent version</b> can be found in project detail (screenshot below).
@@ -44,6 +44,8 @@ Each category can be treated separately. This gives you a grained control over w
 Please keep in mind that before enabling recording of any category you probably need to get consent
 from visitor first depending on which jurisdiction you are in.
 You can read more about it on our [Terms of Service](https://help.smartlook.com/en/articles/3244453-terms-of-service) page.
+
+Please note that if you want to disable recording of any sensitive data types, this will apply only prospectively and historical data would need to be deleted on request. For IP addresses, the latest known IP address will remain associated with the visitor ID, unless manually deleted.
 
 ## Record API
 
@@ -85,12 +87,6 @@ To stop recording form inputs on your website use `record` with `{ forms: false 
 />
 
 ### IP address
-
-<TextBlock kind="note">
-	{`
-Recording of IP address can not be stopped once started.
-`}
-</TextBlock>
 
 The IP address recording allows us to store customer IP address that can be used for example in filtering later on.
 Please note that once the IP address recording is enabled it cannot be stopped again.
@@ -182,7 +178,7 @@ You can also specify only the subset of the fields. The fields that are not spec
 ## Migration guide
 
 If you use an old `consent` API then migration to new `record` API is pretty seamless.
-Old consent API will be cut off at the 16th of May 2022. Any calls to this API will only print warning to console.
+Old consent API will be cut off at the 1st of June 2022. Any calls to this API will only print warning to console.
 
 As you can see in the example below there is no equivalent for `consentAPI` call in the new record API.
 Consent for identifying via API is implicitly given once you call [`identify` API](/docs/web/identify-visitor).
