@@ -16,23 +16,84 @@ import {
 } from 'components'
 
 import gdpr_consent_img from 'assets/web/gdpr_consent.png'
-import consent_v1 from 'assets/web/consent_v1.png'
-import consent_v2 from 'assets/web/consent_v2.png'
+import consent from 'assets/web/consent.png'
+import switch_image from 'assets/web/switch.png'
 
 <Title>GDPR</Title>
 <Subtitle>Record user information about EU visitors.</Subtitle>
 
 <TextBlock kind="important">
 	{`
-  **IMPORTANT NOTE**: This API is deprecated and works only for projects created before **14th of March 2022** (consent version 1).
-  There is an ongoing transition period until the 16th of May 2022 in which you should migrate to the new API
+  <b>IMPORTANT NOTE</b>: This API is deprecated and works only for projects created before <b>1st of April 2022</b> (consent version 1).
+  There is an ongoing transition period until the <b>1st of June 2022</b> in which you should migrate to the new API
   described in <a href="/docs/web/consent-sensitive-data" target="_blank" rel="noopener noreferrer">Consent sensitive data</a> section.
-  After the period old API will no longer work and any call will show only a warning with a link to this documentation.<br />
+  <br />After the period old API will no longer work and any call will show only a warning with a link to this documentation.
+  <br /><br />
   <b>Project's consent version</b> can be found in project detail (screenshot below).
+  <br />
+  <b>Personal data collection settings</b> changes from consent version 1 to consent version 2 can be seen at screenshot below.
   `}
 </TextBlock>
-<img src={consent_v1} />
-<img src={consent_v2} />
+
+<div style={{ display: 'flex', flexDirection: 'column', marginBottom: '24px' }}>
+	<div
+		style={{
+			display: 'flex',
+			justifyContent: 'center',
+		}}
+	>
+		<img
+			src={consent}
+			style={{
+				marginBottom: 0,
+				borderRadius: '3px',
+				border: '1px solid black',
+			}}
+		/>
+	</div>
+	<div
+		style={{
+			fontStyle: 'italic',
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '6px',
+			fontSize: '14px',
+		}}
+	>
+		Project detail with consent version
+	</div>
+</div>
+
+<div style={{ display: 'flex', flexDirection: 'column', marginBottom: '24px' }}>
+	<div
+		style={{
+			display: 'flex',
+			justifyContent: 'center',
+		}}
+	>
+		<img
+			src={switch_image}
+			style={{
+				width: '750px',
+				marginBottom: 0,
+				marginTop: '24px',
+				borderRadius: '3px',
+				border: '1px solid black',
+			}}
+		/>
+	</div>
+	<div
+		style={{
+			fontStyle: 'italic',
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '6px',
+			fontSize: '14px',
+		}}
+	>
+		Personal data collection settings (consent v1 and consent v2)
+	</div>
+</div>
 
 <TextBlock kind="note">
 	{`
