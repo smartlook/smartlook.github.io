@@ -1,16 +1,16 @@
 ---
-name: "Sensitive data protection"
+name: 'Sensitive data protection'
 route: /docs/web/sensitive-data-protection
 menu: Web
 ---
 
-import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
+import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from 'components'
 
 <Title>Sensitive data protection</Title>
 <Subtitle>Do not record sensitive data. Mask forms and inputs.</Subtitle>
 
 <TextBlock kind="important">
-{`
+	{`
 Passwords and credit card numbers are not recorded by default.
 `}
 </TextBlock>
@@ -23,33 +23,19 @@ Recordings of credit cards are safe because most payment gates are 3rd party app
 
 There can be situations where you want to **disable** recordings or maybe **ignore** certain elements from being recorded.
 
-| NAME	| DESCRIPTION |
-|------|------------|
-|disable | Disable recordings. |
-|ignore | Ignore recordings of given element. |
+| NAME    | DESCRIPTION                         |
+| ------- | ----------------------------------- |
+| disable | Disable recordings.                 |
+| ignore  | Ignore recordings of given element. |
 
 ### disable
 
-Following code will disable recording of an entire page.
+Attribute `data-recording-disable` disables element containing sensitive information which will not be recorded at all. Element _will not be displayed_ in recordings.
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
-<script>
-  smartlook('disable', true);
-</script>
-`,
-  }}
-/>
-
-Attribute `data-recording-disable` disables element containing sensitive information which will not be recorded at all. Element *will not be displayed* in recordings.
-
-
-<Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <div data-recording-disable>
   Sensitive information will not be recorded.
   </div>
@@ -57,7 +43,7 @@ Attribute `data-recording-disable` disables element containing sensitive informa
   </div>
 </div>
 `,
-  }}
+	}}
 />
 
 ### sensitive
@@ -65,9 +51,9 @@ Attribute `data-recording-disable` disables element containing sensitive informa
 Attribute `data-recording-sensitive` replaces all characters in element and its' descendants with a `*`.
 
 <Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <div data-recording-sensitive>
   This text will be replaced by *.
   </div>
@@ -75,15 +61,15 @@ Attribute `data-recording-sensitive` replaces all characters in element and its'
   </div>
 </div>
 `,
-  }}
+	}}
 />
 
 This is how the example html will look like in the recordings.
 
 <Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <div data-recording-sensitive>
   **** **** **** ** ******** ** **
   </div>
@@ -91,18 +77,18 @@ This is how the example html will look like in the recordings.
   </div>
 </div>
 `,
-  }}
+	}}
 />
 
 <TextBlock kind="important">
-{`
+	{`
 All input elements affected by \`data-recording-sensitive\` will have their values and events ignored.
 `}
 </TextBlock>
 
 ### ignore
 
-Attribute `data-recording-ignore` ignores elements. Element *will be displayed* in recordings but **values will not**.
+Attribute `data-recording-ignore` ignores elements. Element _will be displayed_ in recordings but **values will not**.
 
 This attribute can have 2 values:
 
@@ -110,24 +96,24 @@ This attribute can have 2 values:
 2. `events` - inserted values will not be displayed at all
 
 <Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <input type="text" placeholder="Person age" data-recording-ignore="mask">
 `,
-  }}
+	}}
 />
 
 <Code
-  kind="example"
-  snippets={{
-    html: `
+	kind="example"
+	snippets={{
+		html: `
 <input type="text" placeholder="Card number" data-recording-ignore="events">
 `,
-  }}
+	}}
 />
 
-You probably noticed the *Card number* example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
+You probably noticed the _Card number_ example. We block credit cards in recordings by default but it may happen that your site is using some custom coded payment solution that is not either secure or is coded in such a way that our script does not recognise it. For such rare cases you can make sure by using this attribute and value that your customer card numbers are safe and will not be recorded.
 
 ## Masking forms
 
@@ -181,4 +167,19 @@ Maybe you want to mask only some selected fields.
 </form>
 `,
   }}
+/>
+
+## Safe data
+
+You can add atribute `data-recording-gdpr-safe` to any element that is safe and its numerical data (numbers, prices) are not sensitive.
+
+<Code
+	kind="example"
+	snippets={{
+		html: `
+<p data-recording-gdpr-safe>
+  Tesla Model X price is $80,700.
+</p>
+`,
+	}}
 />

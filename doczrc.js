@@ -9,7 +9,7 @@ module.exports = {
 			menu: [
 				'Getting started',
 				'Identify visitor',
-				'GDPR',
+				'Consent and sensitive data',
 				'Sensitive data protection',
 				'Custom events',
 				'Custom event properties',

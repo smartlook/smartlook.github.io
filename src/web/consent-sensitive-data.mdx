@@ -1,0 +1,286 @@
+---
+name: 'Consent and sensitive data'
+route: /docs/web/consent-sensitive-data
+menu: Web
+---
+
+import { Code, TextBlock, Title } from 'components'
+
+import consent from 'assets/web/consent.png'
+import switch_image from 'assets/web/switch.png'
+
+<Title>Consent and sensitive data</Title>
+
+<TextBlock kind="important">
+	{`
+  <b>IMPORTANT NOTE</b>: This brand-new API is a replacement for an old <a href="/docs/web/gdpr" target="_blank" rel="noopener noreferrer">consent API</a>.
+  It is enabled by default in projects created after the <b>1st of April 2022</b> (consent version 2).
+  If your project was created prior to this date (consent version 1) please refer to <a href="/docs/web/consent-sensitive-data#migration-guide">the migration guide</a>.
+  There is an ongoing transition period until the <b>1st of June 2022</b> in which you should migrate to the new API.
+  After the period old API will no longer work and any call will show only a warning with a link to this documentation.
+  <br /> <br />
+  <b>Project's consent version</b> can be found in project detail (screenshot below).
+  <br />
+  <b>Personal data collection settings</b> changes from consent version 1 to consent version 2 can be seen at screenshot below.
+`}
+</TextBlock>
+
+<div style={{ display: 'flex', flexDirection: 'column', marginBottom: '24px' }}>
+	<div
+		style={{
+			display: 'flex',
+			justifyContent: 'center',
+		}}
+	>
+		<img
+			src={consent}
+			style={{
+				marginBottom: 0,
+				borderRadius: '3px',
+				border: '1px solid black',
+			}}
+		/>
+	</div>
+	<div
+		style={{
+			fontStyle: 'italic',
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '6px',
+			fontSize: '14px',
+		}}
+	>
+		Project detail with consent version
+	</div>
+</div>
+
+<div style={{ display: 'flex', flexDirection: 'column', marginBottom: '24px' }}>
+	<div
+		style={{
+			display: 'flex',
+			justifyContent: 'center',
+		}}
+	>
+		<img
+			src={switch_image}
+			style={{
+				width: '750px',
+				marginBottom: 0,
+				marginTop: '24px',
+				borderRadius: '3px',
+				border: '1px solid black',
+			}}
+		/>
+	</div>
+	<div
+		style={{
+			fontStyle: 'italic',
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '6px',
+			fontSize: '14px',
+		}}
+	>
+		Personal data collection settings (consent v1 and consent v2)
+	</div>
+</div>
+
+The section covers our API for handling sensitive data.
+It can be useful especially when you want to have control over which data is being recorded.
+Our WEB SDK is written with privacy-first in mind therefore we do not record any potentially sensitive data by default.
+This means that inputs, IP addresses, on-page emails and long numbers are not recorded
+unless you enable it explicitly via [record API](#record-api).
+
+## Consent
+
+<TextBlock kind="note">
+	{`
+ <b>By default, no sensitive data are recorded. You most likely need to get visitors' consent first before enabling recording sensitive data.</b>
+`}
+</TextBlock>
+
+We divided sensitive data handling into four categories - form inputs, IP addresses, emails and numbers.
+Each category can be treated separately. This gives you a grained control over which data you want to be recorded.
+Please keep in mind that before enabling recording of any category you probably need to get consent
+from visitor first depending on which jurisdiction you are in.
+You can read more about it on our [Terms of Service](https://help.smartlook.com/en/articles/3244453-terms-of-service) page.
+
+Please note that if you want to disable recording of any sensitive data types, this will apply only prospectively and historical data would need to be deleted on request. For IP addresses, the latest known IP address will remain associated with the visitor ID, unless manually deleted.
+
+## Record API
+
+The `record` API allows you to handle recording of form inputs, IP addresses, emails and longer numbers individually.
+Following subsections explain how to use it correctly. This API should be called always after `init` call.
+
+### Form inputs
+
+The `forms` option covers all interactive form elements such as `<input />`, `<select />` or `<textarea />`.
+These elements do not necessarily need to be within `<form />` to be recorded.
+Sensitive inputs such as passwords are never recorded even if recording forms is enabled.
+Instead, in recording we show typing animation to indicate user interaction with that particular field.
+If you have more elements you want to mask or not record at all you can always use our [data attributes API](/docs/web/sensitive-data-protection#masking).
+
+To start recording form inputs on your website use `record` with `{ forms: true }`.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true });
+</script>
+`,
+	}}
+/>
+
+To stop recording form inputs on your website use `record` with `{ forms: false }`.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: false });
+</script>
+`,
+	}}
+/>
+
+### IP address
+
+The IP address recording allows us to store customer IP address that can be used for example in filtering later on.
+Please note that once the IP address recording is enabled it cannot be stopped again.
+
+Use `record` with `{ ips: true }` attribute to start recording of IP address.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { ips: true });
+</script>
+`,
+	}}
+/>
+
+### Emails
+
+Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start or stop recording of emails on the page.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { emails: true });
+</script>
+`,
+	}}
+/>
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { emails: false });
+</script>
+`,
+	}}
+/>
+
+### Numbers
+
+Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of longer numbers.
+If longer numbers are not recorded we replace them with wildcards (\*).
+This option is especially effective if you do not want to record telephone numbers, social numbers and so on.
+Longer number is defined as a sequence of 8 numbers in a row that can contain hyphens or space characters in between.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { numbers: true });
+</script>
+`,
+	}}
+/>
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { numbers: false });
+</script>
+`,
+	}}
+/>
+
+### Combining calls
+
+All the calls can be combined.
+You can also specify only the subset of the fields. The fields that are not specified stay untouched.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, numbers: true, emails: false, ips: true });
+</script>
+`,
+	}}
+/>
+
+## Migration guide
+
+If you use an old `consent` API then migration to new `record` API is pretty seamless.
+Old consent API will be cut off at the 1st of June 2022. Any calls to this API will only print warning to console.
+
+As you can see in the example below there is no equivalent for `consentAPI` call in the new record API.
+Consent for identifying via API is implicitly given once you call [`identify` API](/docs/web/identify-visitor).
+Assuming you enabled identify API in project settings in our application.
+
+Old calls:
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('consentForms', 'consent given');
+  smartlook('consentIP','consent given');
+  smartlook('consentAPI', 'consent given');
+</script>
+`,
+	}}
+/>
+
+New call:
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, ips: true, api: true });
+</script>
+`,
+	}}
+/>
+
+If you used to have numbers and emails recording enabled in your application you need to explicitly call it here now.
+
+<Code
+	kind="example"
+	snippets={{
+		javascript: `
+<script>
+  smartlook('record', { forms: true, emails: true, ips: true, numbers: true, api: true });
+</script>
+`,
+	}}
+/>

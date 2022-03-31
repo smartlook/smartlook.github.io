@@ -1,16 +1,22 @@
 ---
-name: "Identify visitor"
+name: 'Identify visitor'
 menu: Web
 route: /docs/web/identify-visitor
 ---
 
-import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
+import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from 'components'
 
 <Title>Identify visitor</Title>
 <Subtitle>Display detailed visitor information in the dashboard.</Subtitle>
 
 <TextBlock kind="important">
-{`
+	{`
+  The \`identify\` method requires the "Identify users via API" setting enabled in project settings.
+`}
+</TextBlock>
+
+<TextBlock kind="important">
+	{`
 **Developer needed:** The \`identify\` method requires you or *your developer* to propagate information from your service. This method is called from your visitor's browser, therefore any information you want to associate with your visitor needs to be part of your webpage.
 `}
 </TextBlock>
@@ -20,49 +26,48 @@ import { Code, CodeBlock, TextBlock, Link, Title, Subtitle } from "components";
 Below is the simplest usage of the `identify` method. The example assumes there is a `user_id` variable identifying your visitor. The JavaScript code you need to insert in your is simply,
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   smartlook('identify', user_id);
 </script>
 `,
-  }}
+	}}
 />
 
 **`user_id`** is a unique number or string used to identify your user.
 
 The next example assumes you are using a template used for rendering the final HTML in which you can pass information about the current visitor. Pairing your visitor with your internal identifier enables you to find this user in Smartlook by this identifier.
 
-
-| uid        | name          | email                |
-| ---------  |:-------------:| --------------------:|
-| 123        | John Doe      | john.doe@example.com |
+| uid |   name   |                email |
+| --- | :------: | -------------------: |
+| 123 | John Doe | john.doe@example.com |
 
 Here is an example in **PHP**.
 
 <Code
-  kind="example"
-  snippets={{
-    php: `
+	kind="example"
+	snippets={{
+		php: `
 echo "<script>";
 echo "smartlook('identify', '{$user->id}');";
 echo "</script>";
 `,
-  }}
+	}}
 />
 
 That will generate the following JavaScript code on the page:
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   smartlook('identify', '123');
 </script>
 `,
-  }}
+	}}
 />
 
 ## More visitor details
@@ -74,9 +79,9 @@ The third parameter of the `identify` method is optional. It is expected to be a
 Feel free to modify the code and expand it to your needs as you can see in the example below.
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   smartlook('identify', uid, {
     "name": "John Doe",
@@ -87,7 +92,7 @@ Feel free to modify the code and expand it to your needs as you can see in the e
   });
 </script>
 `,
-  }}
+	}}
 />
 
 ## Anonymize user
@@ -95,14 +100,14 @@ Feel free to modify the code and expand it to your needs as you can see in the e
 You can anonymize the previously identified user by calling
 
 <Code
-  kind="example"
-  snippets={{
-    javascript: `
+	kind="example"
+	snippets={{
+		javascript: `
 <script>
   smartlook('anonymize');
 </script>
 `,
-  }}
+	}}
 />
 
 A new visitor with a new session will be created.
@@ -110,7 +115,7 @@ This method is useful to call when multiple people are using the same browser (t
 
 ## Static site usage
 
-The `identify` method should always be called *after* the Smartlook Web SDK is initialized.
+The `identify` method should always be called _after_ the Smartlook Web SDK is initialized.
 
 If you are integrating the Smartlook Web SDK within the `<head></head>` section of your static site, the actual `identify` call should be just before the closing `</body>` tag.
 
