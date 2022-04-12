@@ -54,12 +54,6 @@ const PLATFORMS = [
 		link: 'https://mobile.developer.smartlook.com/reference/flutter-api-documentation',
 	},
 	{
-		name: 'Cocos',
-		platform: 'cocos',
-		image: <Cocos />,
-		link: 'https://mobile.developer.smartlook.com/reference/cocos-api-documentation',
-	},
-	{
 		name: 'Cordova',
 		platform: 'cordova',
 		image: <Cordova />,
