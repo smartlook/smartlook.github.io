@@ -20,38 +20,13 @@ module.exports = {
 			],
 		},
 		{
-			name: 'SDK Installation',
+			name: 'Mobile SDK',
 			menu: [
-				'Android',
-				'iOS',
-				'Cocos',
-				'Cordova',
-				'Flutter',
-				'Ionic',
-				'React Native',
-				'Unity',
-				'Unreal Engine 4',
-				'Xamarin',
+				{
+					name: 'Mobile SDK', route: 'https://mobile.developer.smartlook.com' 
+				}
 			],
 		},
-		{
-			name: 'SDK Conceptual',
-			menu: [
-				'SDK Installation',
-				'Setup & Start Recording',
-				'When The Recordings Appear in Dashboard?',
-				'Life Cycle, Session, User',
-				'What is recorded and how',
-				'Handling Sensitive Data',
-				'Screen Recording Quality',
-				'Event Tracking',
-				'Recording Navigation',
-				'Integrating with Other Tools',
-			],
-		},
-		'SDK API reference',
-		'SDK Cookbooks',
-		'SDK Integrations',
 		{
 			name: 'REST API',
 			menu: ['Overview', 'Cookbook', 'API Reference'],
