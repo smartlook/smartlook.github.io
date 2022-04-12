@@ -63,7 +63,7 @@ const PLATFORMS = [
 		name: 'Cordova',
 		platform: 'cordova',
 		image: <Cordova />,
-		link: 'https://mobile.developer.smartlook.com/reference/cordoba-api-documentation',
+		link: 'https://mobile.developer.smartlook.com/reference/cordova-api-documentation',
 	},
 	{
 		name: 'Ionic',
