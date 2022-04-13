@@ -1,0 +1,96 @@
+---
+name: Android Crash Reports
+menu: SDK Cookbooks
+route: /docs/sdk/cookbooks/android_crash_reports
+showPlatformSelect: false
+---
+import { Code, CodeBlock, TextBlock, Link, Title } from "components";
+import { usePlatforms } from 'hooks'
+
+<TextBlock kind="important" invisibleOn="android">{`
+This guide is focused on Android platform.
+`}</TextBlock>
+
+<Title>Crash reports</Title>
+
+*This section deals with how to setup Smartlook Crash Reports.*
+
+## Step 1: If you haven't already, add Smartlook SDK to your Android project as described [here](https://docs.smartlook.com/docs/sdk/android?platform=android).
+
+## Step 2: Add the Smartlook Crash Reports plugin to your app
+
+1. In your app-level `build.gradle` file, apply the Crash Reports Gradle plugin:
+
+<Code
+  kind="example"
+  snippets={{
+    groovy: `
+plugins {
+    id 'com.smartlook.crash-gradle-plugin' version '1.0.1'
+}
+`,
+  }}
+/>
+
+2. In the same `build.gradle` file, define the configuration for the plugin and include in your Smartlook API token:
+
+<Code
+  kind="example"
+  snippets={{
+    groovy: `
+smartlookCrashGradlePlugin {
+    apiKey = "your-smartlook-api-token"
+    force = true
+}
+`,
+  }}
+/>
+
+<TextBlock kind="important">
+{`
+In order to upload the mapping file, the **REST API token** is needed. How to create/get it is described here<Link to="https://docs.smartlook.com/docs/rest-api/overview#create-the-api-token">Create the api token</Link>.
+`}
+</TextBlock>
+
+## Step 3: Force a test crash to finish setup
+
+To finish setting up Crash Reports and see initial data in the Crash Reports of the Smartlook console, you need to force a test crash.
+
+1. Add code to your app that you can use to force a test crash
+
+You can use the following code in your app's MainActivity to add a button to your app that, when pressed, causes a crash. The button is labeled "Test Crash".
+
+
+<Code
+  kind="example"
+  snippets={{
+      java: `
+crashButton.setOnClickListener(new View.OnClickListener() {
+   public void onClick(View view) {
+       throw new RuntimeException("Test Crash"); // Force a crash
+   }
+});
+      `,
+      kotlin: `
+crashButton.setOnClickListener {
+   throw RuntimeException("Test Crash") // Force a crash
+}
+      `,
+  }}
+/>
+
+2. Build and run your app
+
+3. Force the test crash in order to send your app's first crash report.
+
+4. Go to the Crash Reports dashboard of the Smartlook to see your test crash.
+
+<TextBlock kind="important">
+{`
+This can take a while.
+`}
+</TextBlock>
+
+# Supported versions
+Currently the **minimal** supported Android version is **Jelly Bean (API 18)**.
+
