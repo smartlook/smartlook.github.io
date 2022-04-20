@@ -88,7 +88,7 @@ import switch_image from 'assets/web/switch.png'
 The section covers our API for handling sensitive data.
 It can be useful especially when you want to have control over which data is being recorded.
 Our WEB SDK is written with privacy-first in mind therefore we do not record any potentially sensitive data by default.
-This means that inputs, IP addresses, on-page emails and long numbers are not recorded
+This means that inputs, IP addresses, on-page emails and numbers are not recorded
 unless you enable it explicitly via [record API](#record-api).
 
 ## Consent
@@ -109,7 +109,7 @@ Please note that if you want to disable recording of any sensitive data types, t
 
 ## Record API
 
-The `record` API allows you to handle recording of form inputs, IP addresses, emails and longer numbers individually.
+The `record` API allows you to handle recording of form inputs, IP addresses, emails and numbers individually.
 Following subsections explain how to use it correctly. This API should be called always after `init` call.
 
 ### Form inputs
@@ -192,11 +192,9 @@ Use `record` with `{ emails: true }` or `{ emails: false }` attributes to start 
 
 ### Numbers
 
-Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of longer numbers.
-If longer numbers are not recorded we replace them with wildcards (\*).
+Use `record` with `{ numbers: true }` or `{ numbers: false }` attributes to start or stop recording of all numbers.
+If numbers are not recorded we replace them with wildcards (\*).
 This option is especially effective if you do not want to record telephone numbers, social numbers and so on.
-Longer number is defined as a sequence of 8 numbers in a row that can contain hyphens or space characters in between.
-
 <Code
 	kind="example"
 	snippets={{
