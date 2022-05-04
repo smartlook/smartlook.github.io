@@ -1405,6 +1405,181 @@ export const spec = {
 				operationId: 'getMe',
 			},
 		},
+		'/api/v1/sessions/{sessionId}': {
+			get: {
+				responses: {
+					200: {
+						description: 'Success',
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties: {
+										id: {
+											type: 'string',
+										},
+										visitorId: {
+											type: 'string',
+										},
+										identification: {
+											type: 'object',
+											properties: {
+												uid: {
+													type: 'string',
+												},
+												properties: {
+													$ref: '#/components/schemas/AnyValue',
+												},
+												visitorIp: {
+													type: 'string',
+												},
+												browser: {
+													type: 'object',
+													properties: {
+														name: {
+															type: 'string',
+														},
+														code: {
+															type: 'string',
+														},
+														userAgent: {
+															type: 'string',
+														},
+													},
+													additionalProperties: false,
+												},
+												platform: {
+													type: 'object',
+													properties: {
+														name: {
+															type: 'string',
+														},
+														operatingSystem: {
+															type: 'string',
+														},
+														code: {
+															type: 'string',
+														},
+													},
+													additionalProperties: false,
+												},
+												country: {
+													type: 'object',
+													properties: {
+														name: {
+															type: 'string',
+														},
+														code: {
+															type: 'string',
+														},
+														region: {
+															type: 'string',
+														},
+														city: {
+															type: 'string',
+														},
+													},
+													additionalProperties: false,
+												},
+												device: {
+													type: 'object',
+													properties: {
+														type: {
+															type: 'string',
+														},
+														orientation: {
+															type: 'string',
+														},
+														width: {
+															type: 'number',
+														},
+														height: {
+															type: 'number',
+														},
+													},
+													additionalProperties: false,
+												},
+											},
+											additionalProperties: false,
+										},
+										duration: {
+											type: 'number',
+										},
+										startedAt: {
+											type: 'string',
+										},
+										endedAt: {
+											type: 'string',
+										},
+										referrer: {
+											type: 'string',
+										},
+										landingPage: {
+											type: 'string',
+										},
+										exitPage: {
+											type: 'string',
+										},
+										notes: {
+											type: 'array',
+											items: {
+												type: 'object',
+												properties: {
+													id: {
+														type: 'string',
+													},
+													time: {
+														type: 'number',
+													},
+													text: {
+														type: 'string',
+													},
+												},
+												additionalProperties: false,
+											},
+										},
+										domain: {
+											type: 'string',
+										},
+										protocol: {
+											type: 'string',
+										},
+										dashboardURL: {
+											type: 'string',
+										},
+										_links: {
+											type: 'object',
+											properties: {
+												visitor: {
+													type: 'string',
+												},
+												sessionEvents: {
+													type: 'string',
+												},
+											},
+											additionalProperties: false,
+										},
+									},
+									additionalProperties: false,
+								},
+							},
+						},
+					},
+				},
+				tags: ['session'],
+				parameters: [
+					{
+						in: 'path',
+						schema: {
+							type: 'string',
+						},
+						name: 'sessionId',
+						required: true,
+					},
+				],
+				operationId: 'getSessionDetail',
+			},
+		},
 	},
 	components: {
 		schemas: {
